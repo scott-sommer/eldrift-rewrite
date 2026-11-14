@@ -1,3 +1,4 @@
+import { maintainNativeUpgradeBootstrap } from './native-upgrade-bootstrap-population';
 import { maintainUpgradeMasterFleet } from './native-upgrade-master-fleet';
 import type { StatePort } from '../persistence/versioned-state';
 import { stateKey } from '../persistence/state-key';
@@ -24,6 +25,7 @@ export function createNativeUpgradeFleet(state: StatePort, dispatch: ReturnType<
     const otherQueues = Object.values(Game.rooms).filter(room => room.controller?.my && room.name !== home.name).flatMap(room => pending(room.name));
     const units = observePopulation();
     maintainUpgradeMasterFleet(state, home, target, settings, active, units, otherQueues);
+    maintainNativeUpgradeBootstrap(state, home, target, settings, active, units, otherQueues);
     maintainUpgradeFleet(state, { home: home.name, target, enabled, desired: settings.upgradeFleetTarget, ...(body ? { body } : {}) },
       units, otherQueues, Game.time);
     dispatch.activate();

@@ -1,11 +1,11 @@
 import type { Position } from '../../capabilities/movement/step';
-export interface ParkingUnit { id: string; position: Position }
+export interface ParkingUnit { id: string; position: Position; order?: string }
 /** Keep controller-adjacent tiles free for reclaiming; retain valid parking as the roster changes. */
 export function planUpgradeParking(controller: Position, anchor: Position, units: readonly ParkingUnit[], standable: (position: Position) => boolean) {
   const candidates = parkingTiles(controller, anchor).filter(standable);
   const available = new Map(candidates.map(position => [key(position), position]));
   const result = new Map<string, Position>();
-  const sorted = [...units].sort((a, b) => a.id.localeCompare(b.id));
+  const sorted = [...units].sort((a, b) => (a.order ?? a.id).localeCompare(b.order ?? b.id) || a.id.localeCompare(b.id));
   for (const unit of sorted) {
     const position = available.get(key(unit.position));
     if (!position) continue;

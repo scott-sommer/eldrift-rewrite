@@ -17,3 +17,12 @@ test('parking holds when blocked and supports missing-spawn controller anchor wi
   expect([...plan.values()].every(point => point.x > 0 && point.y > 0 && Math.max(point.x - 1, point.y - 1) > 1)).toBe(true);
   expect(plan.size).toBe(1);
 });
+
+test('explicit stable ordering makes assignments independent of generated object IDs', () => {
+  const first = [{ id: 'z', order: 'master', position: pos(20, 20) }, { id: 'a', order: 'u0', position: pos(20, 21) }];
+  const second = [{ ...first[1]!, id: 'y' }, { ...first[0]!, id: 'b' }];
+  const a = planUpgradeParking(pos(20, 20), pos(23, 22), first, () => true);
+  const b = planUpgradeParking(pos(20, 20), pos(23, 22), second, () => true);
+  expect(a.get('z')).toEqual(b.get('b'));
+  expect(a.get('a')).toEqual(b.get('y'));
+});

@@ -39,7 +39,7 @@ export function observeUpgradeParking(room: Room, units: readonly Creep[]) {
   const ownIds = new Set(units.map(creep => creep.id as string));
   const occupied = new Set([...room.find(FIND_CREEPS), ...room.find(FIND_POWER_CREEPS)]
     .filter(creep => !ownIds.has(creep.id)).map(creep => creep.pos.x + ':' + creep.pos.y));
-  return planUpgradeParking(controller, anchor, units.map(creep => ({ id: creep.id, position: movementPosition(creep.pos) })),
+  return planUpgradeParking(controller, anchor, units.map(creep => ({ id: creep.id, order: creep.name, position: movementPosition(creep.pos) })),
     position => matrix.get(position.x, position.y) < 255 && !occupied.has(position.x + ':' + position.y)
       && (terrain.get(position.x, position.y) & TERRAIN_MASK_WALL) === 0);
 }

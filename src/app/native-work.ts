@@ -9,7 +9,7 @@ import type { createNativeDispatch } from './native-dispatch';
 import { createNativeWork } from '../adapters/screeps/work-execution';
 import { observeWorkAssessment } from '../adapters/screeps/work-assessment';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
-import { isWorkOwner, workModeFor } from '../features/work/identity';
+import { nativeWorkerSettings } from './native-worker-settings';
 import { defaultWorkPolicy } from '../features/work/policy';
 import { selectWork } from '../features/work/select';
 import { createWorkTaskBehavior } from './work-task';
@@ -36,18 +36,25 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     const recoveryActive = recovering(room, config.values);
     maintainNativeWorkers(state, room, config.values, recoveryActive);
     if (config.values.workersEnabled) dispatch.activate();
-    const workers = Object.values(Game.creeps).filter(creep => !creep.spawning && creep.memory.population?.home === view.name &&
-      isWorkOwner(creep.memory.population.owner, view.name)).sort((a, b) => a.name.localeCompare(b.name));
-    const assessment = config.values.workersEnabled ? observeWorkAssessment(room) : undefined;
-    const policy = { ...defaultWorkPolicy, wallHits: config.values.workerWallHits, rampartHits: config.values.workerRampartHits,
-      downgradeThreshold: config.values.workerDowngradeThreshold, allowUpgrade: !recoveryActive && (!room.storage || room.storage.store.energy > config.values.workerUpgradeReserve) };
+    const workers = Object.values(Game.creeps).filter(creep => !creep.spawning && creep.memory.population?.home === view.name)
+      .sort((a, b) => a.name.localeCompare(b.name));
+    const assessment = observeWorkAssessment(room);
     for (const creep of workers) {
-      if (cargo.run(creep, view.name, config.values)) continue;
-      reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: view.name }, Game.time,
-        current => assessment ? selectWork(assessment, movementPosition(creep.pos), workModeFor(creep.memory.population!.owner, view.name, config.values.workerMode)!, policy, current?.id) : undefined);
-      if (!config.values.workersEnabled) continue;
-      dispatch.activate(); execute(creep.name, { creep, config: config.values });
+      const settings = nativeWorkerSettings(creep.memory.population!.owner, view.name, config.values);
+      if (settings) runWorker(creep, room, settings, recoveryActive, assessment);
     }
   } };
+  function runWorker(creep: Creep, room: Room, settings: Readonly<RuntimeConfig>, recoveryActive: boolean,
+    assessment: ReturnType<typeof observeWorkAssessment>): void {
+    if (cargo.run(creep, room.name, settings)) return;
+    const policy = { ...defaultWorkPolicy, wallHits: settings.workerWallHits, rampartHits: settings.workerRampartHits,
+      downgradeThreshold: settings.workerDowngradeThreshold,
+      allowUpgrade: !recoveryActive && (!room.storage || room.storage.store.energy > settings.workerUpgradeReserve) };
+    const origin = creep.pos.roomName === room.name ? movementPosition(creep.pos) : { room: room.name, x: 25, y: 25 };
+    reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: room.name }, Game.time,
+      current => settings.workersEnabled ? selectWork(assessment, origin, settings.workerMode, policy, current?.id) : undefined);
+    if (!settings.workersEnabled) return;
+    dispatch.activate(); execute(creep.name, { creep, config: settings });
+  }
   return { feature, definitions: { ...definitions, ...cargo.definitions } };
 }

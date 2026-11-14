@@ -1,10 +1,10 @@
 import type { CollectionSource } from '../../capabilities/resources/collection';
 import { movementPosition } from './movement-traffic';
 /** Snapshot only; controller-link classification and reserve policy are supplied by composition. */
-export function observeWorkerEnergy(room: Room, controllerLinks: ReadonlySet<string>): CollectionSource[] {
+export function observeWorkerEnergy(room: Room, controllerLinks: ReadonlySet<string>, retainedStores = false): CollectionSource[] {
   const structures = room.find(FIND_STRUCTURES).flatMap(item => {
     if (item.structureType === STRUCTURE_CONTAINER) return [stored(item, 'container')];
-    if (!('my' in item) || !item.my || !item.isActive()) return [];
+    if (!accessibleStore(item, retainedStores)) return [];
     if (item.structureType === STRUCTURE_STORAGE) return [stored(item, 'storage')];
     if (item.structureType === STRUCTURE_TERMINAL) return [stored(item, 'terminal')];
     if (item.structureType === STRUCTURE_LINK) return [{ ...stored(item, 'link'), controllerLink: controllerLinks.has(item.id) }];
@@ -19,4 +19,10 @@ export function observeWorkerEnergy(room: Room, controllerLinks: ReadonlySet<str
 function stored(item: { id: string; pos: RoomPosition; store: StoreDefinition }, kind: CollectionSource['kind']): CollectionSource {
   const stock = item.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0;
   return { id: item.id, position: movementPosition(item.pos), kind, stock, available: stock };
+}
+
+function accessibleStore(item: AnyStructure, retainedStores: boolean): boolean {
+  if (!('my' in item) || !item.my) return false;
+  const retained = retainedStores && (item.structureType === STRUCTURE_STORAGE || item.structureType === STRUCTURE_TERMINAL);
+  return retained || item.isActive();
 }

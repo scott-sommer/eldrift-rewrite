@@ -1,3 +1,4 @@
+import { upgradeBootstrapOwner } from '../features/work/upgrade-identity';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
 import type { createNativeDispatch } from './native-dispatch';
@@ -20,7 +21,7 @@ export function createNativeWorkerCollection(state: StatePort, dispatch: ReturnT
     const links = new Set(classifyLinks(observed.links, observed.room).controllers.map(link => link.id));
     const allocations = createQuantityReservations(state).list(Game.time).flatMap(claim => claim.allocations);
     const booked = (pool: string) => allocations.filter(item => item.pool === pool).reduce((sum, item) => sum + item.amount, 0);
-    const sources = observeWorkerEnergy(room, links).map(source => ({ ...source,
+    const sources = observeWorkerEnergy(room, links, creep.memory.population?.owner === upgradeBootstrapOwner(home)).map(source => ({ ...source,
       available: Math.max(0, source.stock - booked(logisticsPool('stock', source.id, 'energy'))) }));
     const free = creep.store.getFreeCapacity();
     const order = selectProfileEnergy(sources, creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 }, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
