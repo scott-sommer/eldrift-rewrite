@@ -8,3 +8,7 @@ Still incomplete: main.ts uses the packaging scaffold; production composition wi
 
 
 Latest validation: app/core/smoke 8 tests pass in 231ms; quality passes. Room-policy tests include disabling one room without blocking another and resuming deferred work after re-enabling it. Config providers must supply complete layer inputs for each room, including shared empire/environment values; production provider wiring remains outstanding.
+
+Production entry point now invokes createGameLoop with current-tick Screeps adapters. Configuration provider preserves shared environment/empire layers while selecting room profiles and overrides; main currently supplies an empty store (defaults). Persistent configuration storage is ED-16/operator integration work. Observation and top-level runtime failures reach the injected diagnostic boundary. The packaged loop runs against a minimal synthetic Game without Node globals; this is not a real engine test.
+
+Latest full validation: 83 tests passed in 1.85s; quality passed; bundle check passed. No gameplay features are registered. Earlier paragraphs describing scaffold-only main wiring are historical and superseded by this entry.

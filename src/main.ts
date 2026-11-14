@@ -1,5 +1,9 @@
-import { createApplication } from './app/application';
+import { createGameLoop } from './app/game-loop';
+import { createGamePorts } from './adapters/screeps/runtime';
+import { configurationFor } from './config/provider';
 
-// Feature services are introduced through the backlog; this is the packaging seam.
-const application = createApplication([]);
-export const loop = (): void => application.tick();
+// Gameplay features are registered here as their capability work is completed.
+export const loop = createGameLoop([], {
+  ...createGamePorts(),
+  config: room => configurationFor({}, room),
+});
