@@ -1,6 +1,6 @@
 import { createActionArbiter } from '../core/execution/action-arbiter';
 import { createMovementService } from '../adapters/screeps/movement-service';
-import { createNativeSpawn } from '../adapters/screeps/spawn';
+import { createNativeStructureActions } from '../adapters/screeps/structure-actions';
 import { populationMemory, observeSpawning } from '../adapters/screeps/population';
 import { createSpawnCoordinator } from '../features/population/spawn-coordinator';
 import type { StatePort } from '../persistence/versioned-state';
@@ -9,11 +9,17 @@ import type { StatePort } from '../persistence/versioned-state';
 export function createNativeDispatch(state: StatePort) {
   const arbiter = createActionArbiter(() => Game.time);
   const movement = createMovementService(arbiter);
+  const structures = createNativeStructureActions(state, populationMemory);
+  const observe = () => {
+    const view = observeSpawning();
+    return { ...view, slots: view.slots.filter(slot => structures.availableSpawn(slot.id)),
+      energy: Object.fromEntries(Object.entries(view.energy).map(([room, energy]) => [room, structures.availableEnergy(room, energy)])) };
+  };
   const spawn = createSpawnCoordinator(state,
-    { clock: () => Game.time, invoke: createNativeSpawn(populationMemory) }, observeSpawning, 'skip');
+    { clock: () => Game.time, invoke: structures.spawn }, observe, 'skip');
   let activeTick = -1;
   return {
-    arbiter, movement,
+    arbiter, movement, structures,
     activate() { activeTick = Game.time; },
     flush() {
       if (activeTick !== Game.time) return;
