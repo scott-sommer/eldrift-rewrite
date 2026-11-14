@@ -13,6 +13,9 @@ export interface RuntimeConfig {
   preservationEnabled: boolean;
   miningEnabled: boolean;
   mineralMiningEnabled: boolean;
+  mineralTransportEnabled: boolean;
+  terminalFreeReserve: number;
+  storageFreeReserve: number;
   miningBodyBudget: number;
   backgroundEnabled: boolean;
   backgroundCpuFraction: number;
@@ -35,6 +38,9 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   preservationEnabled: false,
   miningEnabled: false,
   mineralMiningEnabled: false,
+  mineralTransportEnabled: false,
+  terminalFreeReserve: 50000,
+  storageFreeReserve: 50000,
   miningBodyBudget: 800,
   backgroundEnabled: true,
   backgroundCpuFraction: 0.5,

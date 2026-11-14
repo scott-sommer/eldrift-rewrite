@@ -1,3 +1,4 @@
+import { generateNativeMineralTransport } from './native-mineral-transport';
 import { generateNativeLinkService } from './native-link-service';
 import { runNativeLinks } from './native-links';
 import { settleHaulingTask } from './settle-hauling-task';
@@ -41,6 +42,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         execute(creep.name, creep);
       }
       if (config.values.energyRequestsEnabled || config.values.preservationEnabled) generateNativeEnergyRequests(state, Game.rooms[view.name]!, units, config.values);
+      if (config.values.mineralTransportEnabled) generateNativeMineralTransport(state, Game.rooms[view.name]!, config.values);
       maintainNativeCouriers(state, Game.rooms[view.name]!, config.values, observeRoutes);
     },
   };

@@ -3,6 +3,9 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
+  mineralTransportEnabled: value => typeof value === 'boolean',
+  terminalFreeReserve: value => bounded(value, 300000) && Number.isInteger(value),
+  storageFreeReserve: value => bounded(value, 1000000) && Number.isInteger(value),
   mineralMiningEnabled: value => typeof value === 'boolean',
   energyRequestsEnabled: value => typeof value === 'boolean',
   towerRefillFraction: value => bounded(value, 1),
