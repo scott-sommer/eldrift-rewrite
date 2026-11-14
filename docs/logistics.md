@@ -224,3 +224,13 @@ The caller must provide a complete room observation: this is not a remote unseen
 Native --source-loss removes the original source container after automatic request generation and substitutes another source identity. The obsolete request is cancelled, a new request is generated, and exactly 30 energy is delivered with one confirmed receipt. Six-tick stock history and empty task/reservation queues are asserted. Evidence: artifacts/engine-67yvqj/evidence.json. Unit tests cover replacement, in-flight reservation protection and owner isolation.
 
 Validation: 350 unit tests across 109 files passed in 3.18 seconds; quality passed (156 production files,152 test files,zero Lizard violations). All 48 engine suite checks passed in 53.40 seconds, including negative error/timeout sentinels (artifacts/engine-suite.json).
+
+## Automatic dropped-energy supply
+
+Dropped energy now precedes tombstones, ruins and ordinary stored sources when a feasible batch fits. Source observations carry a minimum batch for indivisible pickup. Generation checks this against available stock, sink deficit and request maximum, falling back to divisible sources for smaller deficits. Native composition uses the smallest positive current courier capacity; without couriers it uses the currently affordable configured courier recipe. Admission still checks the individual courier's actual free capacity and reservations, so larger couriers cannot over-collect a smaller courier's request. No feasible body/capacity means drops are deferred.
+
+Unreserved automatic requests whose outstanding quantity falls below the newly observed minimum batch are cancelled and regenerated. This handles growing piles and capacity changes without inventing receipts. Reserved work retains its existing protection. The generator remains bounded to spawn/extension deficits; preservation of excess drops into storage/terminal, minerals, and starvation-specific policies remains future work.
+
+Native --drop-supply seeds a 1000-energy pile, a 50-capacity courier and an empty extension, with no logistics requests. The production loop generates and confirms one 50-energy delivery, leaving container stock untouched and no task/reservation behind. Final evidence: artifacts/engine-pbQVIJ/evidence.json. Existing courier bootstrap also passed (before the final stale-batch reconciliation extension), artifacts/engine-3BTziE/evidence.json.
+
+Validation: final quality passed (157 production files,152 test files,zero Lizard violations); 353 tests across109 files passed in3.32s; smoke passed155ms; final native drop-supply scenario passed. Suite now contains49 scenarios; full suite was not rerun this increment. Native energy generation composition is extracted into app/native-energy-supply.ts.

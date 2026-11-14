@@ -4,8 +4,8 @@ import { recoverNativeCargo } from './native-cargo-recovery';
 import { createNativeCourierRoutes } from './native-courier-routes';
 import { haulingOwner } from '../features/logistics/identity';
 import { maintainNativeCouriers, cancelCourierDemand } from './native-courier-population';
-import { observeEnergySupply } from '../adapters/screeps/energy-supply';
-import { generateEnergyRequests } from '../features/logistics/energy-requests';
+import { generateNativeEnergyRequests } from './native-energy-supply';
+
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
 import type { createNativeDispatch } from './native-dispatch';
@@ -36,11 +36,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
       }
-      if (config.values.energyRequestsEnabled) {
-        const supply = observeEnergySupply(Game.rooms[view.name]!);
-        generateEnergyRequests(state, view.name, Game.time, supply.sources, supply.sinks,
-          { owner: haulingOwner(view.name), lifetime: 100, maximumQuantity: 200, maximumNewRequests: 10 });
-      }
+      if (config.values.energyRequestsEnabled) generateNativeEnergyRequests(state, Game.rooms[view.name]!, units, config.values);
       maintainNativeCouriers(state, Game.rooms[view.name]!, config.values, observeRoutes);
     },
   };

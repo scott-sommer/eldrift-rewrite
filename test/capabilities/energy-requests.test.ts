@@ -50,3 +50,19 @@ test('disappeared unassigned supply is replaced immediately from another source'
   expect(generateEnergyRequests(state, 'home', 2, [endpoint('container', 30)], [endpoint('spawn', 30)], policy)).toBe(1);
   expect(queue.pending(2).map(item => item.source)).toEqual(['container']);
 });
+
+test('drop batches skip undersized sinks and request limits without blocking divisible sources', () => {
+  const { state, queue } = fixture();
+  const sources = [{ ...endpoint('drop', 1000, -3), minimumBatch: 50 }, endpoint('container', 30)];
+  generateEnergyRequests(state, 'home', 1, sources, [endpoint('small', 20, 0), endpoint('large', 50, 1)], policy);
+  expect(queue.pending(1).map(item => [item.sink, item.source, item.quantity])).toEqual([['small', 'container', 20], ['large', 'drop', 50]]);
+  expect(generateEnergyRequests(state, 'home', 2, sources, [endpoint('capped', 50)], { ...policy, maximumQuantity: 10 })).toBe(1);
+  expect(queue.pending(2).find(item => item.sink === 'capped')?.source).toBe('container');
+});
+
+test('changed pickup batch replaces an unreserved request that can no longer be collected', () => {
+  const { state, queue } = fixture();
+  generateEnergyRequests(state, 'home', 1, [{ ...endpoint('drop', 30, -3), minimumBatch: 30 }], [endpoint('sink', 50)], policy);
+  expect(generateEnergyRequests(state, 'home', 2, [{ ...endpoint('drop', 100, -3), minimumBatch: 50 }], [endpoint('sink', 50)], policy)).toBe(1);
+  expect(queue.pending(2).map(item => item.quantity)).toEqual([50]);
+});
