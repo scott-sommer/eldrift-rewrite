@@ -1,3 +1,4 @@
+const { provenance, sampleTick } = require('./report.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -30,19 +31,21 @@ server.on('error', error => { console.error(error); finish(1); });
   });
   await server.start();
   const initial = Number(await server.world.gameTime);
-  for (let tick = 0; tick < 3; tick++) await server.tick();
+  const samples = [];
+  for (let tick = 0; tick < 3; tick++) samples.push(await sampleTick(server, bot));
   assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
   assert.equal(Number(await server.world.gameTime), initial + 3);
   assert.equal(memory.eldrift.format, 1);
   assert.equal(memory.eldrift.records['operator/config'].owner, 'operator');
   assert.deepEqual(messages, []);
-  const report = { ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
+  const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1); });
+
 
 
 
