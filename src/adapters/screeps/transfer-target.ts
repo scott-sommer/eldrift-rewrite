@@ -5,6 +5,7 @@ export type TransferObject = AnyStoreStructure | Tombstone | Ruin | Resource | C
 export interface NativeTransferCommand {
   owner: string;
   attemptId: string;
+  requestKey?: string;
   target: string;
   position: Position;
   resource: ResourceConstant;
@@ -39,3 +40,4 @@ export function nativeTransferView(creep: Creep, target: TransferObject | null, 
     inRange: !!target && creep.pos.inRangeTo(target, 1), available: amounts?.available ?? 0,
     capacity: amounts?.capacity ?? 0, remaining: command.maximum };
 }
+

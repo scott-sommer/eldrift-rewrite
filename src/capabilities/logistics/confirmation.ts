@@ -1,5 +1,6 @@
 export interface TransferAttempt {
   id: string;
+  requestKey?: string;
   unit: string;
   target: string;
   room: string;
@@ -14,6 +15,7 @@ export interface TransferObservation { tick: number; cargo?: number; events?: re
 export type TransferConfirmation = { status: 'waiting' } | { status: 'unknown' } | { status: 'observed'; amount: number };
 export function validateTransferAttempt(attempt: TransferAttempt): void {
   if (![attempt.id, attempt.unit, attempt.target, attempt.room, attempt.resource].every(value => typeof value === 'string' && value.length > 0)) throw new Error('Invalid transfer attempt identity');
+  if (attempt.requestKey !== undefined && (typeof attempt.requestKey !== 'string' || !attempt.requestKey)) throw new Error('Invalid transfer request binding');
   if (!['withdraw', 'transfer', 'pickup'].includes(attempt.kind)) throw new Error('Invalid transfer attempt kind');
   if (![attempt.tick, attempt.amount, attempt.cargoBefore].every(value => Number.isSafeInteger(value) && value >= 0)
     || attempt.amount === 0) throw new Error('Invalid transfer attempt quantity');
@@ -42,4 +44,5 @@ function boundedAmount(amount: number, maximum: number): TransferConfirmation {
   return Number.isSafeInteger(amount) && amount >= 0 && amount <= maximum
     ? { status: 'observed', amount } : { status: 'unknown' };
 }
+
 

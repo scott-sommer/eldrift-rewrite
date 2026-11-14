@@ -26,7 +26,7 @@ export function createNativeTransfer(arbiter: ReturnType<typeof createActionArbi
 }
 function issue(creep: Creep, target: TransferObject, command: NativeTransferCommand, amount: number,
   arbiter: ReturnType<typeof createActionArbiter>, begin: (attempt: TransferAttempt) => boolean): IntentResult {
-  const attempt: TransferAttempt = { id: command.attemptId, unit: creep.id, target: command.target, room: creep.room.name,
+  const attempt: TransferAttempt = { id: command.attemptId, ...(command.requestKey ? { requestKey: command.requestKey } : {}), unit: creep.id, target: command.target, room: creep.room.name,
     resource: command.resource, kind: command.kind, tick: Game.time, amount, cargoBefore: creep.store.getUsedCapacity(command.resource) };
   if (!begin(attempt)) return { status: 'blocked', reason: 'action-conflict' };
   const actions = createCreepActions(creep, command.owner, arbiter);
@@ -34,4 +34,5 @@ function issue(creep: Creep, target: TransferObject, command: NativeTransferComm
   if (command.kind === 'withdraw') return actions.withdraw(target as AnyStoreStructure | Tombstone | Ruin, command.resource, amount);
   return actions.transfer(target as AnyStoreStructure | Creep | PowerCreep, command.resource, amount);
 }
+
 
