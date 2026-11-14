@@ -11,7 +11,7 @@ const { provenance, sampleTick } = require('./report.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { ScreepsServer } = require('screeps-server-mockup');
+const { ScreepsServer, TerrainMatrix } = require('screeps-server-mockup');
 const root = path.resolve(__dirname, '../..');
 fs.mkdirSync(path.join(root, 'artifacts'), { recursive: true });
 const directory = fs.mkdtempSync(path.join(root, 'artifacts/engine-'));
@@ -54,6 +54,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--service-recovery')) modules.main = await actionBundle(root, 'service-recovery-bot');
   if (process.argv.includes('--unseen')) modules.main = await actionBundle(root, 'unseen-navigation-bot');
   if (process.argv.includes('--occupied-exit')) modules.main = await actionBundle(root, 'occupied-exit-bot');
+  if (process.argv.includes('--spawn')) modules.main = await actionBundle(root, 'spawn-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -67,6 +68,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--service-recovery')) await loadedRecoveryWorld(server, bot);
   if (process.argv.includes('--unseen')) await unseenWorld(server, bot);
   if (process.argv.includes('--occupied-exit')) await occupiedExitWorld(server, bot);
+  if (process.argv.includes('--spawn')) await server.world.setTerrain('W0N1', new TerrainMatrix());
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -78,7 +80,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  const tickCount = process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
+  const tickCount = process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
@@ -112,6 +114,13 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--service-recovery')) verifyServiceRecovery(memory);
   if (process.argv.includes('--unseen')) verifyUnseen(memory);
   if (process.argv.includes('--occupied-exit')) verifyOccupiedExit(memory);
+  if (process.argv.includes('--spawn')) {
+    assert.equal(memory.spawnEvidence.accepted, 1);
+    assert.equal(memory.spawnEvidence.observed[0], false);
+    assert.equal(memory.spawnEvidence.observed.at(-1), true);
+    assert.ok(memory.spawnEvidence.spawning.includes(true));
+    assert.equal(memory.spawnEvidence.spawning.at(-1), false);
+  }
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -119,6 +128,8 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
+
 
 
 
