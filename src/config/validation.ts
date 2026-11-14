@@ -13,6 +13,8 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   terminalEnergyHigh: value => bounded(value, 300000) && Number.isInteger(value),
   storageEnergyReserve: value => bounded(value, 1000000) && Number.isInteger(value),
   energyBankingEnabled: value => typeof value === 'boolean',
+  workerSupplyEnabled: value => typeof value === 'boolean',
+  controllerContainerTarget: value => bounded(value, 2000) && Number.isInteger(value),
   energyReclamationEnabled: value => typeof value === 'boolean',
   energyRequestsEnabled: value => typeof value === 'boolean',
   towerRefillFraction: value => bounded(value, 1),

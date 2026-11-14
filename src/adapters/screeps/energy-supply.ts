@@ -13,7 +13,7 @@ export function observeEnergySupply(room: Room, pickupCapacity = 0, towerRefillF
   return { sources: [...drops, ...sources], sinks };
 }
 function endpoint(item: { id: string; pos: RoomPosition }, amount: number, priority: number) {
-  return { id: item.id, position: { room: item.pos.roomName, x: item.pos.x, y: item.pos.y }, amount, priority };
+  return { id: item.id, position: { room: item.pos.roomName, x: item.pos.x, y: item.pos.y }, amount, priority, minimumBatch: 0 };
 }
 
 function consumerDemand(item: AnyStructure, towerRefillFraction: number) {
