@@ -1,3 +1,5 @@
+const { groundDeliveryWorld, reloadGroundDelivery, verifyGroundDelivery } = require('./ground-delivery.cjs');
+const groundDelivery = process.argv.includes('--ground-delivery');
 const { upgradeMasterWorld, ageUpgradeMaster, verifyUpgradeMaster } = require('./upgrade-master.cjs');
 const masterContention = process.argv.includes('--upgrade-master-contention');
 const upgradeMaster = process.argv.includes('--upgrade-master') || masterContention;
@@ -138,6 +140,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (upgradeService) modules.main = await actionBundle(root, 'upgrade-service-bot');
   if (workerCargoMode) modules.main = await actionBundle(root, 'worker-cargo-bot');
   if (upgradeClaim) modules.main = await actionBundle(root, 'upgrade-claim-bot');
+  if (groundDelivery) modules.main = await actionBundle(root, 'ground-delivery-bot');
   if (upgradeBootstrap) modules.main = await actionBundle(root, 'upgrade-bootstrap-bot');
   if (upgradeCycle) modules.main = await actionBundle(root, 'upgrade-cycle-bot');
   if (upgradeLoss) modules.main = await actionBundle(root, 'upgrade-loss-bot');
@@ -229,6 +232,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (upgradeService) await upgradeServiceWorld(server, bot);
   if (workerCargoMode) await workerCargoWorld(server, bot, workerCargoMode);
   if (upgradeClaim) await upgradeClaimWorld(server, bot);
+  if (groundDelivery) await groundDeliveryWorld(server, bot);
   if (upgradeBootstrap) await upgradeBootstrapWorld(server, bot, bootstrapHarvest);
   if (upgradeCycle) await upgradeCycleWorld(server, bot);
   if (upgradeLoss) await upgradeLossWorld(server, bot);
@@ -343,6 +347,10 @@ server.on('error', error => { console.error(error); finish(1, error); });
   const samples = evidence.samples;
   const tickCount = bootstrapHarvest ? 250 : upgradeBootstrap ? 150 : upgradeClaim ? 60 : upgradeCycle ? 55 : upgradeLoss ? 160 : distributorRecovery ? 45 : masterContention ? 8 : upgradeMaster ? 120 : upgradeFleetLoss ? 8 : upgradeFleet ? 240 : upgradeRoom ? 24 : upgradeService ? 150 : workerCargoMode ? 15 : recoveryBanking ? 100 : automaticSupport ? 100 : supportTransport ? 20 : process.argv.includes('--recovery-scavenger-spawn') ? 160 : process.argv.includes('--recovery-scavenging') ? 20 : process.argv.includes('--recovery-economy') ? 180 : process.argv.includes('--energy-recovery') ? 8 : process.argv.includes('--worker-population') ? 44 : process.argv.includes('--worker-pickup') ? 6 : process.argv.includes('--worker-collection') ? 10 : process.argv.includes('--worker-runtime') ? 6 : process.argv.includes('--work-selection') ? 4 : process.argv.includes('--mining-storage') ? 5 : process.argv.includes('--work-supply') ? 10 : process.argv.includes('--reclamation') ? 7 : process.argv.includes('--banking-demand') ? 8 : storeBalanceMode ? 6 : (process.argv.includes('--energy-banking') || process.argv.includes('--banking-fallback')) ? 5 : process.argv.includes('--storage-loss') ? 4 : process.argv.includes('--cargo-death') ? 9 : process.argv.includes('--courier-death') ? 4 : (process.argv.includes('--mineral-transport') || process.argv.includes('--mineral-reload')) ? 9 : process.argv.includes('--link-reversal') ? 8 : process.argv.includes('--link-service') ? 4 : process.argv.includes('--link-contention') ? 4 : process.argv.includes('--controller-links') ? 4 : process.argv.includes('--tower-supply') ? 5 : process.argv.includes('--expiry-delivery') ? 4 : process.argv.includes('--full-sink') ? 4 : process.argv.includes('--preservation-decay') ? 8 : process.argv.includes('--preservation') ? 8 : process.argv.includes('--large-drop') ? 5 : process.argv.includes('--drop-supply') ? 5 : process.argv.includes('--source-loss') ? 6 : process.argv.includes('--remains-supply') ? 7 : process.argv.includes('--pickup-admission') ? 4 : process.argv.includes('--missing-sink') ? 4 : process.argv.includes('--unknown-delivery') ? 5 : process.argv.includes('--unknown-recovery') ? 5 : process.argv.includes('--expiry-recovery') ? 4 : process.argv.includes('--cargo-recovery') ? 4 : process.argv.includes('--empty-source') ? 6 : process.argv.includes('--colony-economy') ? 100 : process.argv.includes('--courier-bootstrap') ? 30 : process.argv.includes('--energy-logistics') ? 5 : process.argv.includes('--hauling-cycle') ? 6 : process.argv.includes('--transfer-confirmation') ? 4 : process.argv.includes('--mining-interrupted') ? 9 : process.argv.includes('--extractor-fault') ? 13 : process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
+    if (groundDelivery) {
+      const reloaded = await reloadGroundDelivery(server, bot, modules, tick);
+      if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
+    }
     if (bootstrapHarvest) await drainBootstrapStorage(server, tick);
     if (upgradeClaim) await releaseUpgradeGcl(server, bot, tick);
     if (upgradeCycle) {
@@ -413,6 +421,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (upgradeService) verifyUpgradeService(memory);
   if (workerCargoMode) verifyWorkerCargo(memory, workerCargoMode);
   if (upgradeClaim) verifyUpgradeClaim(memory);
+  if (groundDelivery) verifyGroundDelivery(memory);
   if (upgradeBootstrap) verifyUpgradeBootstrap(memory, bootstrapHarvest);
   if (upgradeCycle) verifyUpgradeCycle(memory);
   if (upgradeLoss) verifyUpgradeLoss(memory);
