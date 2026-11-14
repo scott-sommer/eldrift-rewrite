@@ -18,14 +18,17 @@
     "trace": "node tools/trace.mjs",
     "upload": "node tools/upload.mjs",
     "check:lizard": "node tools/quality.mjs",
-    "quality": "npm run typecheck && npm run check:boundaries && npm run check:lizard"
+    "quality": "npm run typecheck && npm run lint && npm run check:boundaries && npm run check:lizard",
+    "lint": "eslint src test --max-warnings 0"
   },
   "devDependencies": {
+    "@eslint/js": "10.0.1",
     "@jridgewell/trace-mapping": "0.3.31",
     "@types/screeps": "3.4.0",
     "esbuild": "0.28.2",
-    "typescript": "7.0.2",
-    "typescript-ast": "npm:typescript@6.0.3",
+    "eslint": "10.15.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2",
     "vitest": "5.1.0"
   }
 }
