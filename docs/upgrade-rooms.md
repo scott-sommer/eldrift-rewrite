@@ -378,3 +378,16 @@ Actual --supply-sponsor-loss executes normal main: tick1 collects30; sponsor own
 Unit tests cover unseen sponsor non-loss, recovery surviving sponsor vision loss, delayed refuge eligibility and owner-scoped queue cancellation. Quality passed (300 production /266 test files; zero Lizard violations);574 tests/174files passed in4.47s. Complete expanded native suite passed all128 checks in225.50s (artifacts/engine-suite.json), including the four endpoint/cancellation cases added in the previous increment.
 
 Remaining: long-route replacement/soak and refuge route-availability cases, persisted plan anchors, low-RCL master recruitment and combined reset/reclaim/bootstrap/rebuild. Sponsor loss without any observed ownership-loss tick remains unknown and deliberately does not trigger reassignment.
+
+
+## Long-route full-load replacement (ED-22, 2026-11-15)
+
+Added --supply-replacement: 900 ticks of the normal production main loop over W0N1 → neutral E0N1 → owned RCL4 E1N1, with a road corridor spanning most of all three rooms. No supply units are seeded. Two real 17 MOVE /33 CARRY bodies consume exactly5,000 sponsor spawn energy in total. Each courier carries and confirms delivery of1,650 energy; source stock falls from4,000 to the configured700 reserve, destination reaches3,300. The roster never exceeds one unit.
+
+After the first confirmed delivery, the fixture shortens the first courier's remaining lifetime to exercise native age/death processing. Replacement is demanded only after that death, preserving fixed-roster behavior. Observed timeline: first spawn tick1, mobile151, confirmed delivery290; replacement spawn295, mobile445, confirmed delivery584. The measured delivery gap is294ticks. This proves replacement resumes service across the route, not uninterrupted throughput. Predictive pre-spawning would be an explicit policy enhancement and must account for roster overlap and route travel estimates.
+
+Final evidence: artifacts/engine-83HLSR/evidence.json. The scenario rejects caught runtime error messages as well as checking transfer outcomes, route coverage, body cost and reserve conservation. Initial fixture failure (engine-UpWCEJ) exposed missing surrounding terrain needed by native pathfinder exploration; completing the surrounding walled terrain resolved it without changing production movement. The selected map route is explicitly asserted.
+
+Quality passed (300 production /267 test files; zero Lizard violations);574 tests/174files passed in4.72s. Final long-route scenario passed. It is registered for the next full native suite; the preceding128-case aggregate was not rerun for this fixture-only addition. This900-tick case is not the release CPU/memory/soak gate.
+
+Next specialist parity work: low-RCL master recruitment and combined reset/reclaim/bootstrap/rebuild. Persisted plan anchors and refuge route-availability tests also remain open.
