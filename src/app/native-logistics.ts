@@ -1,3 +1,4 @@
+import { recoverNativeCargo } from './native-cargo-recovery';
 import { createNativeCourierRoutes } from './native-courier-routes';
 import { haulingOwner } from '../features/logistics/identity';
 import { maintainNativeCouriers, cancelCourierDemand } from './native-courier-population';
@@ -27,6 +28,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
 
       dispatch.activate();
       for (const creep of units) {
+        recoverNativeCargo(state, definitions, creep, view.name);
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
@@ -41,6 +43,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
   };
   return { feature, definitions };
 }
+
 
 
 

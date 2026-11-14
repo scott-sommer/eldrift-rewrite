@@ -34,13 +34,13 @@ test('assigned hauling request collects and delivers in bounded batches across r
   expect(createLogisticsRequests(state, 'room').pending(6)).toEqual([]);
   expect(createQuantityReservations(state).list(6)).toEqual([]);
 });
-test('cancelled requests with cargo are retained for recovery rather than silently completed', () => {
+test('cancelled requests with cargo fail their assignment for recovery rather than falsely completing delivery', () => {
   const state = fixture();
   createLogisticsRequests(state, 'room').cancel('economy', 'fill');
   const outcome = runHauling(state, binding, { tick: 2, cargo: 20, freeCargo: 30, sourceStock: 0, sinkFree: 100, sinkPool: 'sink-capacity' }, {
     observe: () => ({ tick: 2 }), execute: () => { throw new Error('Must not issue'); },
   });
-  expect(outcome).toMatchObject({ status: 'blocked', reason: 'orphaned-hauling-cargo' });
+  expect(outcome).toMatchObject({ status: 'failed', reason: 'orphaned-hauling-cargo' });
 });
 
 
@@ -66,3 +66,4 @@ test('a loaded courier still delivers after the source is depleted', () => {
   expect(outcome).toEqual({ status: 'running' });
   expect(issued).toEqual(['deliver:20']);
 });
+

@@ -158,3 +158,13 @@ The six-tick --empty-source native regression removes the remaining source stock
 Validation: 333 unit tests across 104 files passed in 3.21 seconds; quality passed (150 production files, 140 test files, zero Lizard violations). Transfer settlement was extracted from the hauling decision function to retain low complexity. This resolves assignment starvation from empty sources; expired/cancelled loaded cargo, missing sinks and uncertain transfer recovery still require implementation.
 
 Full engine regression passed all 40 scenarios in 45.71 seconds (artifacts/engine-suite.json).
+
+## Cancelled-cargo recovery
+
+A cancelled request with carried resources now fails its assignment after settling available transfer evidence. The native logistics loop can then admit a separate recovery request for an idle loaded courier. This request has its own identity and receipts, reserves only request quantity and destination capacity, and is sized to currently reservable capacity. Existing tasks, pending journal attempts and unknown results prevent takeover. Multiple resources are recovered one at a time; no resource drop is issued.
+
+Native recovery prefers owned storage, then terminal, then energy spawn/extension consumers, then containers. When no suitable capacity exists, cargo stays with the courier. Recovery does not count as fulfillment of the abandoned request. Expiry that removes a task before its pending transfer is settled, uncertain evidence, missing/full live-task destinations and journal cleanup still require additional recovery work.
+
+The --cargo-recovery real-engine scenario cancels a 30-energy request immediately after withdrawal. The original destination remains empty and its cancelled request has no receipts; a separate recovery request delivers all 30 energy to storage, confirms one receipt and clears task/reservation state. Evidence: artifacts/engine-X4tyys/evidence.json. Unit tests additionally verify partial shared capacity (20 + 5), no competing third admission, and refusal to overwrite pending/unknown journals.
+
+Validation: 335 tests across 105 files passed in 3.43 seconds; quality passed (152 production files, 142 test files, zero Lizard violations). Ordinary --hauling-cycle and combined --colony-economy regressions also passed after the integration, evidence artifacts/engine-3TBI5g/evidence.json and artifacts/engine-fQVVQb/evidence.json. Full 41-case engine suite was not rerun this increment.

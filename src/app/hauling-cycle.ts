@@ -43,7 +43,7 @@ function book(state: StatePort, binding: HaulingBinding, request: LogisticsReque
 }
 function finish(state: StatePort, binding: HaulingBinding, view: HaulingView): Outcome {
   createQuantityReservations(state).releaseScope(binding.scope);
-  return view.cargo > 0 ? wait(view.tick, 'orphaned-hauling-cargo') : { status: 'done' };
+  return view.cargo > 0 ? { status: 'failed', reason: 'orphaned-hauling-cargo' } : { status: 'done' };
 }
 function wait(tick: number, reason: string): Outcome { return { status: 'blocked', reason, retryAt: tick + 1 }; }
 
@@ -56,3 +56,4 @@ function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingV
   });
   return settled?.status === 'waiting';
 }
+
