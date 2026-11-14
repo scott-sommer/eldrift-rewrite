@@ -16,7 +16,9 @@
     "check:bundle": "npm run build && node tools/check-bundle.mjs",
     "check:boundaries": "node tools/check-boundaries.mjs",
     "trace": "node tools/trace.mjs",
-    "upload": "node tools/upload.mjs"
+    "upload": "node tools/upload.mjs",
+    "check:lizard": "node tools/quality.mjs",
+    "quality": "npm run typecheck && npm run check:boundaries && npm run check:lizard"
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "0.3.31",
