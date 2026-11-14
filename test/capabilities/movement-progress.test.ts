@@ -24,7 +24,8 @@ test('repeated blockage requests an occupancy-aware replan and resets after prog
   const avoidance: boolean[] = [];
   const paths = createPathService(() => { searches++; return { status: 'complete', path: [{ ...position, x: 21 }], cost: 1, operations: 1 }; }, () => tick);
   const navigate = createNavigator({ paths,
-    request: (view, avoidUnits) => {
+    request: (view, avoidUnits, unit) => {
+      expect(unit).toBe('unit-id');
       avoidance.push(avoidUnits);
       return { origin: view.position, destination: view.destination, range: 0,
         profile: { id: 'test', plainCost: 1, swampCost: 5, maxOps: 100, maxRooms: 1 }, topologyVersion: String(avoidUnits), policyVersion: 'one' };
@@ -39,3 +40,4 @@ test('repeated blockage requests an occupancy-aware replan and resets after prog
   expect(navigate('arrived-damaged', { ...view, tick: 4, position: view.destination }, false)).toEqual({ status: 'done' });
   expect(avoidance).toHaveLength(3);
 });
+

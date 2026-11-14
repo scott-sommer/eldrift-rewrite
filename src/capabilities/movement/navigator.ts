@@ -6,7 +6,7 @@ import { withinRange } from './path-model';
 import type { createPathService } from './path-service';
 interface NavigationPorts {
   paths: ReturnType<typeof createPathService>;
-  request(view: MovementView, avoidUnits: boolean): PathRequest;
+  request(view: MovementView, avoidUnits: boolean, unit: string): PathRequest;
   direction(origin: Position, next: Position): number;
   move(unit: string, direction: number): MovementIntent;
   rejected: MovementPorts['rejected'];
@@ -25,7 +25,7 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
     const result = movementStep(view, {
       route: () => {
         const avoidUnits = failures >= repathAfter;
-        const request = ports.request(view, avoidUnits);
+        const request = ports.request(view, avoidUnits, unit);
         if (avoidUnits) ports.paths.invalidate(request);
         const path = ports.paths.find(request);
         if (path.status === 'no-route') return { status: 'unavailable', reason: path.reason, retryAt: view.tick + 1 };
@@ -50,3 +50,4 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
     },
   });
 }
+
