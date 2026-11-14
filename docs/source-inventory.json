@@ -12,7 +12,7 @@
     "capabilityWork": [
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -46,7 +46,15 @@
         "name": "runSquad",
         "line": 41
       }
-    ]
+    ],
+    "proposedOwner": "features/missions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "booster.js",
@@ -61,7 +69,7 @@
     "capabilityWork": [
       "Restore resource planning, labs, and boost reservations"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -83,7 +91,15 @@
         "name": "findLabWithResource",
         "line": 131
       }
-    ]
+    ],
+    "proposedOwner": "features/industry",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "consoleCommands.js",
@@ -106,7 +122,7 @@
       "Document configuration profiles and the strategy extension workflow",
       "Rehearse memory migration and rollback; prepare the release candidate"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "labV2",
@@ -252,7 +268,15 @@
         "name": "setUp",
         "line": 693
       }
-    ]
+    ],
+    "proposedOwner": "adapters/operator",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "controller.js",
@@ -291,7 +315,7 @@
       "Close the capability matrix with packaged multi-tick parity scenarios",
       "Measure CPU, memory, and colony progress under bounded soak tests"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "extract mechanisms and policy into separate owners; rebuild orchestration",
     "imports": [
       "role.minerV2",
       "role.courierV3",
@@ -546,7 +570,15 @@
         "name": "runVassals",
         "line": 1531
       }
-    ]
+    ],
+    "proposedOwner": "app",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "creep.base.js",
@@ -561,7 +593,7 @@
     "capabilityWork": [
       "Implement bounded state machines, task outcomes, and action ownership"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -647,7 +679,15 @@
         "name": "harvestDeposit",
         "line": 411
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/tasks",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "defend.js",
@@ -662,7 +702,7 @@
     "capabilityWork": [
       "Restore threat assessment, towers, safe mode, and remote response"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -704,7 +744,15 @@
         "name": "runTowers",
         "line": 184
       }
-    ]
+    ],
+    "proposedOwner": "features/defense",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "defenseManager.js",
@@ -719,7 +767,7 @@
     "capabilityWork": [
       "Restore threat assessment, towers, safe mode, and remote response"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -869,7 +917,15 @@
         "name": "preferRamparts",
         "line": 836
       }
-    ]
+    ],
+    "proposedOwner": "features/defense",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "expansion.manager.js",
@@ -886,7 +942,7 @@
       "Port scouting, observer intel, and the traversable room graph",
       "Restore expansion selection, claiming, and colony bootstrap"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -1104,7 +1160,15 @@
         "name": "run",
         "line": 695
       }
-    ]
+    ],
+    "proposedOwner": "features/expansion",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "formation.js",
@@ -1119,7 +1183,7 @@
     "capabilityWork": [
       "Port formations and coordinated squad movement"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -1127,7 +1191,15 @@
         "name": "runBoxFormation",
         "line": 28
       }
-    ]
+    ],
+    "proposedOwner": "features/missions/formations",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "formations.js",
@@ -1142,7 +1214,7 @@
     "capabilityWork": [
       "Port formations and coordinated squad movement"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "assaultCreeps"
@@ -1205,7 +1277,15 @@
         "name": "runTrainCreeps",
         "line": 405
       }
-    ]
+    ],
+    "proposedOwner": "features/missions/formations",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "grafana.js",
@@ -1222,7 +1302,7 @@
       "Port metrics, CPU diagnostics, and room-planning visuals",
       "Measure CPU, memory, and colony progress under bounded soak tests"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -1234,7 +1314,15 @@
         "name": "tickEnd",
         "line": 144
       }
-    ]
+    ],
+    "proposedOwner": "adapters/observability",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "jobs.js",
@@ -1255,7 +1343,7 @@
       "Implement bounded state machines, task outcomes, and action ownership",
       "Unify movement, routing, path caches, and traffic handling"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "extract mechanisms and policy into separate owners; rebuild orchestration",
     "imports": [
       "utilV2",
       "role.courierV2"
@@ -1590,7 +1678,15 @@
         "name": "runJobFillEnergyStructure",
         "line": 1970
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/tasks",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "labV2.js",
@@ -1605,7 +1701,7 @@
     "capabilityWork": [
       "Restore resource planning, labs, and boost reservations"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -1659,7 +1755,15 @@
         "name": "findNearest",
         "line": 194
       }
-    ]
+    ],
+    "proposedOwner": "features/industry",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "main.js",
@@ -1698,7 +1802,7 @@
       "Measure CPU, memory, and colony progress under bounded soak tests",
       "Rehearse memory migration and rollback; prepare the release candidate"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "extract mechanisms and policy into separate owners; rebuild orchestration",
     "imports": [
       "utilV2",
       "consoleCommands",
@@ -1769,7 +1873,15 @@
         "name": "visualizeMatrix",
         "line": 424
       }
-    ]
+    ],
+    "proposedOwner": "app",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "market.js",
@@ -1784,7 +1896,7 @@
     "capabilityWork": [
       "Restore terminal balancing, transfers, and market policy"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -1838,7 +1950,15 @@
         "name": "MIN_PRICES",
         "line": 33
       }
-    ]
+    ],
+    "proposedOwner": "features/trade",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "mission.js",
@@ -1857,7 +1977,7 @@
       "Implement bounded state machines, task outcomes, and action ownership",
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "formations"
@@ -2152,7 +2272,15 @@
         "name": "Mission",
         "line": 906
       }
-    ]
+    ],
+    "proposedOwner": "features/missions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "remote.defense.hostility.js",
@@ -2167,7 +2295,7 @@
     "capabilityWork": [
       "Restore threat assessment, towers, safe mode, and remote response"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -2219,7 +2347,15 @@
         "name": "isPlayerHostile",
         "line": 231
       }
-    ]
+    ],
+    "proposedOwner": "features/defense",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "remote.defense.js",
@@ -2236,7 +2372,7 @@
       "Restore remote mining, reservation, and outpost logistics",
       "Restore threat assessment, towers, safe mode, and remote response"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "remote.manager",
       "remote.defense.hostility",
@@ -2272,7 +2408,15 @@
         "name": "run",
         "line": 70
       }
-    ]
+    ],
+    "proposedOwner": "features/defense",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "remote.defense.response.js",
@@ -2287,7 +2431,7 @@
     "capabilityWork": [
       "Restore threat assessment, towers, safe mode, and remote response"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "spawner"
@@ -2406,7 +2550,15 @@
         "name": "planVisibleRemoteResponses",
         "line": 372
       }
-    ]
+    ],
+    "proposedOwner": "features/defense",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "remote.manager.js",
@@ -2423,7 +2575,7 @@
       "Port scouting, observer intel, and the traversable room graph",
       "Restore remote mining, reservation, and outpost logistics"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "expansion.manager"
@@ -2646,7 +2798,15 @@
         "name": "runRoom",
         "line": 951
       }
-    ]
+    ],
+    "proposedOwner": "features/remotes",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "resourceManager.js",
@@ -2669,7 +2829,7 @@
       "Restore terminal balancing, transfers, and market policy",
       "Complete advanced resource and structure capability parity"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "labV2"
@@ -2708,7 +2868,15 @@
         "name": "resourceManager",
         "line": 68
       }
-    ]
+    ],
+    "proposedOwner": "features/industry",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.attacker.js",
@@ -2725,7 +2893,7 @@
       "Restore remote mining, reservation, and outpost logistics",
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -2739,7 +2907,15 @@
         "name": "roleAttacker",
         "line": 3
       }
-    ]
+    ],
+    "proposedOwner": "features/missions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.builder.js",
@@ -2756,7 +2932,7 @@
       "Port building, repairs, upgrading, and colony recovery",
       "Restore expansion selection, claiming, and colony bootstrap"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "role.upgrader",
       "role.courierV2",
@@ -2784,7 +2960,15 @@
         "name": "isArt",
         "line": 631
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/work",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.claimer.js",
@@ -2805,7 +2989,7 @@
       "Restore expansion selection, claiming, and colony bootstrap",
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "jobs",
@@ -2853,7 +3037,15 @@
         "name": "roleClaimer",
         "line": 144
       }
-    ]
+    ],
+    "proposedOwner": "features/expansion",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.courier.js",
@@ -2868,7 +3060,7 @@
     "capabilityWork": [
       null
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "characterize distinctive behavior; consolidate equivalent capabilities; do not retire until operator audit",
     "imports": [
       "utilV2"
     ],
@@ -2882,7 +3074,15 @@
         "name": "roleCourier",
         "line": 3
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "dormant candidate; external invocation unverified",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.courierV2.js",
@@ -2897,7 +3097,7 @@
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -2955,7 +3155,15 @@
         "name": "grabEnergy",
         "line": 745
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.courierV3.js",
@@ -2974,7 +3182,7 @@
       "Unify movement, routing, path caches, and traffic handling",
       "Port hauling, distribution, scavenging, and link logistics"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "jobs",
       "utilV2",
@@ -3042,7 +3250,15 @@
         "name": "runRecoverySupportCourier",
         "line": 70
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.distributorV2.js",
@@ -3057,7 +3273,7 @@
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "jobs",
       "utilV2"
@@ -3088,7 +3304,15 @@
         "name": "performanceWrap",
         "line": 63
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.golem.js",
@@ -3103,7 +3327,7 @@
     "capabilityWork": [
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -3111,7 +3335,15 @@
         "name": "roleGolem",
         "line": 1
       }
-    ]
+    ],
+    "proposedOwner": "features/missions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.hauler.js",
@@ -3126,7 +3358,7 @@
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3148,7 +3380,15 @@
         "name": "grabEnergy",
         "line": 357
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.hunter.js",
@@ -3165,7 +3405,7 @@
       "Build legacy characterization fixtures and corrected behavior regressions",
       "Restore threat assessment, towers, safe mode, and remote response"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3183,7 +3423,15 @@
         "name": "roleAttacker",
         "line": 17
       }
-    ]
+    ],
+    "proposedOwner": "features/defense",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.mineralCourierV2.js",
@@ -3200,7 +3448,7 @@
       "Port hauling, distribution, scavenging, and link logistics",
       "Restore resource planning, labs, and boost reservations"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "jobs",
       "utilV2"
@@ -3243,7 +3491,15 @@
         "name": "util",
         "line": 21
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.minerV2.js",
@@ -3260,7 +3516,7 @@
       "Implement bounded state machines, task outcomes, and action ownership",
       "Port mining stations and reusable extraction behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "remote.manager"
@@ -3299,7 +3555,15 @@
         "name": "updateRemoteReachability",
         "line": 36
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/extraction",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.patroller.js",
@@ -3314,10 +3578,18 @@
     "capabilityWork": [
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
-    "sourceSymbols": []
+    "sourceSymbols": [],
+    "proposedOwner": "features/missions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.powerSquad.js",
@@ -3332,7 +3604,7 @@
     "capabilityWork": [
       "Restore source-keeper and power-bank operations"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3346,7 +3618,15 @@
         "name": "powerSquad",
         "line": 3
       }
-    ]
+    ],
+    "proposedOwner": "features/missions/expeditions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.scavenger.js",
@@ -3361,7 +3641,7 @@
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "jobs",
       "utilV2"
@@ -3396,7 +3676,15 @@
         "name": "evaluateNextTask",
         "line": 84
       }
-    ]
+    ],
+    "proposedOwner": "features/logistics",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.scout.js",
@@ -3411,7 +3699,7 @@
     "capabilityWork": [
       "Port scouting, observer intel, and the traversable room graph"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2",
       "expansion.manager",
@@ -3655,7 +3943,15 @@
         "name": "roleScout",
         "line": 684
       }
-    ]
+    ],
+    "proposedOwner": "features/intel",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.skSquad.js",
@@ -3670,7 +3966,7 @@
     "capabilityWork": [
       "Restore source-keeper and power-bank operations"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3684,7 +3980,15 @@
         "name": "skSquad",
         "line": 9
       }
-    ]
+    ],
+    "proposedOwner": "features/missions/expeditions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.upgradeMaster.js",
@@ -3699,7 +4003,7 @@
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3713,7 +4017,15 @@
         "name": "LAB_MINERAL_AMOUNT",
         "line": 12
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/work",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.upgrader.js",
@@ -3728,7 +4040,7 @@
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3742,7 +4054,15 @@
         "name": "roleUpgrader",
         "line": 3
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/work",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.upgraderV2.js",
@@ -3757,7 +4077,7 @@
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "jobs",
       "utilV2"
@@ -3772,7 +4092,15 @@
         "name": "util",
         "line": 11
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/work",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "role.wallBuilder.js",
@@ -3787,7 +4115,7 @@
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "jobs",
       "utilV2"
@@ -3814,7 +4142,15 @@
         "name": "findLowestHits",
         "line": 148
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/work",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.energy.recovery.js",
@@ -3829,7 +4165,7 @@
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -3911,7 +4247,15 @@
         "name": "getCourierSupportRequests",
         "line": 170
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/recovery",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.layout.js",
@@ -3934,7 +4278,7 @@
       "Restore expansion selection, claiming, and colony bootstrap",
       "Document configuration profiles and the strategy extension workflow"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "room.layout.shared",
       "room.layout.strategy.standard",
@@ -4005,7 +4349,15 @@
         "name": "syncRoomPlanToBuildQueue",
         "line": 138
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.layout.scoring.js",
@@ -4022,7 +4374,7 @@
       "Port standard and constrained layouts behind validated strategy contracts",
       "Port metrics, CPU diagnostics, and room-planning visuals"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "room.layout.shared"
     ],
@@ -4040,7 +4392,15 @@
         "name": "scoreDistributorServicing",
         "line": 19
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.layout.shared.js",
@@ -4063,7 +4423,7 @@
       "Add stamp composition for irregular rooms",
       "Implement terrain-aware defensive planning and barrier validation"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -4351,7 +4711,15 @@
         "name": "finalizePlan",
         "line": 977
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.layout.strategy.constrained.js",
@@ -4368,7 +4736,7 @@
       "Port standard and constrained layouts behind validated strategy contracts",
       "Add stamp composition for irregular rooms"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "room.layout.shared",
       "room.layout.scoring"
@@ -4527,7 +4895,15 @@
         "name": "getBootstrapSpawnPlan",
         "line": 590
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.layout.strategy.standard.js",
@@ -4544,7 +4920,7 @@
       "Port standard and constrained layouts behind validated strategy contracts",
       "Add stamp composition for irregular rooms"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "room.layout.shared",
       "room.layout.scoring"
@@ -4575,7 +4951,15 @@
         "name": "getBootstrapSpawnPlan",
         "line": 70
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.properties.js",
@@ -4594,7 +4978,7 @@
       "Port mining stations and reusable extraction behaviors",
       "Extract room assessment, grid geometry, and planning constraints"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -4604,7 +4988,15 @@
         "name": "util",
         "line": 1
       }
-    ]
+    ],
+    "proposedOwner": "world",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.rampart.strategy.exitPerimeter.js",
@@ -4619,7 +5011,7 @@
     "capabilityWork": [
       "Implement terrain-aware defensive planning and barrier validation"
     ],
-    "disposition": "implement enhancement under ED-26",
+    "disposition": "rebuild as planned enhancement",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -4635,7 +5027,15 @@
         "name": "applyRamparts",
         "line": 19
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "placeholder",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.rampart.strategy.perimeterWithController.js",
@@ -4650,7 +5050,7 @@
     "capabilityWork": [
       "Implement terrain-aware defensive planning and barrier validation"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "room.layout.shared"
     ],
@@ -4676,7 +5076,15 @@
         "name": "applyRamparts",
         "line": 84
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.rampart.strategy.terrainAwareCore.js",
@@ -4691,7 +5099,7 @@
     "capabilityWork": [
       "Implement terrain-aware defensive planning and barrier validation"
     ],
-    "disposition": "implement enhancement under ED-26",
+    "disposition": "rebuild as planned enhancement",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -4707,7 +5115,15 @@
         "name": "applyRamparts",
         "line": 19
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/planning",
+    "baselineClassification": "placeholder",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "room.strategy.js",
@@ -4724,7 +5140,7 @@
       "Record the rewrite charter, capability inventory, and architecture decisions",
       "Separate population demand, body recipes, spawn queues, and execution"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "characterize distinctive behavior; consolidate equivalent capabilities; do not retire until operator audit",
     "imports": [],
     "staticReachability": "not reachable from main literal imports; external use not excluded",
     "sourceSymbols": [
@@ -4768,7 +5184,15 @@
         "name": "getTaskName",
         "line": 1582
       }
-    ]
+    ],
+    "proposedOwner": "features/spawning",
+    "baselineClassification": "dormant candidate; external invocation unverified",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "spawner.js",
@@ -4793,7 +5217,7 @@
       "Restore expansion selection, claiming, and colony bootstrap",
       "Port vassal coordination and specialist room modes"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "extract mechanisms and policy into separate owners; rebuild orchestration",
     "imports": [
       "utilV2",
       "expansion.manager",
@@ -5014,7 +5438,15 @@
         "name": "getCreepsUnderTTL",
         "line": 2747
       }
-    ]
+    ],
+    "proposedOwner": "features/spawning",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "squad.tnt.js",
@@ -5031,7 +5463,7 @@
       "Port formations and coordinated squad movement",
       "Restore source-keeper and power-bank operations"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -5045,7 +5477,15 @@
         "name": "squadTruckAndTrailor",
         "line": 17
       }
-    ]
+    ],
+    "proposedOwner": "features/missions/formations",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "terminal.js",
@@ -5064,7 +5504,7 @@
       "Restore terminal balancing, transfers, and market policy",
       "Complete advanced resource and structure capability parity"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -5096,7 +5536,15 @@
         "name": "terminal",
         "line": 9
       }
-    ]
+    ],
+    "proposedOwner": "features/trade",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "upgradeRoom.js",
@@ -5115,7 +5563,7 @@
       "Port vassal coordination and specialist room modes",
       "Restore terminal balancing, transfers, and market policy"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -5129,7 +5577,15 @@
         "name": "run",
         "line": 3
       }
-    ]
+    ],
+    "proposedOwner": "features/economy/work",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "utilV2.js",
@@ -5164,7 +5620,7 @@
       "Preserve flags and console controls through application operations",
       "Rehearse memory migration and rollback; prepare the release candidate"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "extract mechanisms and policy into separate owners; rebuild orchestration",
     "imports": [
       "room.layout"
     ],
@@ -5770,7 +6226,15 @@
         "name": "getBoosts",
         "line": 3504
       }
-    ]
+    ],
+    "proposedOwner": "core/geometry + capabilities/movement + feature-specific extractions",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "visuals.js",
@@ -5785,7 +6249,7 @@
     "capabilityWork": [
       "Port metrics, CPU diagnostics, and room-planning visuals"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
     "sourceSymbols": [
@@ -5825,7 +6289,15 @@
         "name": "drawStructure",
         "line": 105
       }
-    ]
+    ],
+    "proposedOwner": "adapters/observability",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   },
   {
     "file": "waypointer.js",
@@ -5842,7 +6314,7 @@
       "Unify movement, routing, path caches, and traffic handling",
       "Restore mission lifecycle and specialist military behaviors"
     ],
-    "disposition": "selectively port and clean; verify behavior per capability",
+    "disposition": "port and clean behind declared interfaces",
     "imports": [
       "utilV2"
     ],
@@ -5852,6 +6324,14 @@
         "name": "util",
         "line": 10
       }
-    ]
+    ],
+    "proposedOwner": "capabilities/movement",
+    "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
+    "parityEvidence": {
+      "commit": null,
+      "required": "behavior fixture plus relevant contract/engine scenario",
+      "tests": [],
+      "status": "not implemented"
+    }
   }
 ]

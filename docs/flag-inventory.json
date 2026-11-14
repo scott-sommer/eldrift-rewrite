@@ -5,7 +5,75 @@
     "source": "`room.strategy.js`, `spawner.js`, `consoleCommands.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 66,
+        "text": "if (lab.mineralType === undefined || lab.mineralType == null) continue;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 67,
+        "text": "if (resources[r][lab.mineralType] === undefined) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 68,
+        "text": "resources[r][lab.mineralType] = lab.mineralAmount;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 70,
+        "text": "resources[r][lab.mineralType] += lab.mineralAmount;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 72,
+        "text": "if(resources.total[lab.mineralType] === undefined) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 73,
+        "text": "resources.total[lab.mineralType] = lab.mineralAmount;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 75,
+        "text": "resources.total[lab.mineralType] += lab.mineralAmount;"
+      },
+      {
+        "file": "controller.js",
+        "line": 172,
+        "text": "return f.name.indexOf('Mine') > -1; /*|| f.name.indexOf('Reserve') > -1*/"
+      },
+      {
+        "file": "controller.js",
+        "line": 174,
+        "text": "//var flags = _(Game.flags).filter(function(f){return f.name.indexOf('Mine1:E52N46') > -1}).value();    // For testing only..."
+      },
+      {
+        "file": "controller.js",
+        "line": 643,
+        "text": "if (lab.mineralType === undefined || lab.mineralType == null) continue;"
+      },
+      {
+        "file": "controller.js",
+        "line": 644,
+        "text": "if (resources[r][lab.mineralType] === undefined) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 645,
+        "text": "resources[r][lab.mineralType] = lab.mineralAmount;"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Reserve:<homeRoom>`",
@@ -13,7 +81,75 @@
     "source": "`room.strategy.js`, `spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "controller.js",
+        "line": 170,
+        "text": "// Lets cache some paths for Mining and Reserve flags."
+      },
+      {
+        "file": "controller.js",
+        "line": 172,
+        "text": "return f.name.indexOf('Mine') > -1; /*|| f.name.indexOf('Reserve') > -1*/"
+      },
+      {
+        "file": "controller.js",
+        "line": 175,
+        "text": "//var flags = _(Game.flags).filter(function(f){return f.name.indexOf('Reserve3:E54N49') > -1}).value();    // For testing only..."
+      },
+      {
+        "file": "controller.js",
+        "line": 176,
+        "text": "//var flags = _(Game.flags).filter(function(f){return f.name.indexOf('Reserve1:E54N48') > -1}).value();    // For testing only..."
+      },
+      {
+        "file": "controller.js",
+        "line": 177,
+        "text": "//var flags = _(Game.flags).filter(function(f){return f.name.indexOf('Reserve3:E54N48') > -1}).value();    // For testing only..."
+      },
+      {
+        "file": "controller.js",
+        "line": 178,
+        "text": "//var flags = _(Game.flags).filter(function(f){return f.name.indexOf('Reserve5:E52N46') > -1}).value();    // For testing only..."
+      },
+      {
+        "file": "controller.js",
+        "line": 215,
+        "text": "if (flag.name.indexOf('Reserve') > -1) { // RESERVE: Start 1 tile away."
+      },
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "grafana.js",
+        "line": 48,
+        "text": "var names = ['miner', 'courier', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "role.claimer.js",
+        "line": 235,
+        "text": "Game.notify(creep.pos.roomName + ' was occupied and reserved by ' + tarController.owner + '. This vassal will be suspended until you reset the vassal memory.');"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 155,
+        "text": "* patrol index when that target has been serviced, and preserves squad"
+      },
+      {
+        "file": "room.layout.strategy.constrained.js",
+        "line": 280,
+        "text": "if(!shared.isBuildableTile(room, labPos.x, labPos.y, STRUCTURE_LAB, reserved, 1, 48)) {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Claim:<homeRoom>`",
@@ -21,7 +157,75 @@
     "source": "`room.strategy.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 547,
+        "text": "if(util.cancelClaimIntent(roomName)) removed.claimIntents++;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 591,
+        "text": "var clearRoomData = function(roomName, unclaim = true) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 748,
+        "text": "Game.processClaimFlags = util.processClaimFlags;"
+      },
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "controller.js",
+        "line": 912,
+        "text": "if(creep.memory.role == 'claimer') creep.memory.wpSelector = creep.memory.targetController.roomName;"
+      },
+      {
+        "file": "controller.js",
+        "line": 1198,
+        "text": "if(Game.time % 50 == 15) logPerformance(()=>util.processClaimFlags(), 'functions.processClaimFlags', true);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 124,
+        "text": "if(util.getClaimIntent && util.getClaimIntent(homeRoomName)) return true;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 209,
+        "text": "var isBlacklistedClaimTarget = function(homeRoomName, roomName) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 241,
+        "text": "isClaimable: !!controller && !util.isHighwayRoom(room.name) && !util.isKeeperRoom(room.name),"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 497,
+        "text": "if(isBlacklistedClaimTarget(homeRoom.name, targetRoomName)) return;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 577,
+        "text": "var ensureClaimIntent = function(homeRoomName, targetRoomName, controllerPos) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 581,
+        "text": "let result = util.queueClaimIntent(homeRoomName, controllerPos, {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Outpost:<homeRoom>`",
@@ -29,7 +233,75 @@
     "source": "`room.strategy.js`, `spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 391,
+        "text": "var addRemote = function (remoteName, roomName, outposter = true) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 537,
+        "text": "for(let homeRoomName in Memory.manager.outposts) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 538,
+        "text": "let outposts = Memory.manager.outposts[homeRoomName];"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 540,
+        "text": "if(outposts[roomName] !== undefined) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 541,
+        "text": "delete outposts[roomName];"
+      },
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "controller.js",
+        "line": 1231,
+        "text": "if(outpostPos) util.addOutpost(outpostPos, pendingRemote.roomName);"
+      },
+      {
+        "file": "grafana.js",
+        "line": 48,
+        "text": "var names = ['miner', 'courier', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1475,
+        "text": "var outpostFlags = _(Game.flags).filter(function(flag){return flag.name.indexOf('Outpost')>=0}).value();"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1476,
+        "text": "outpostFlags = outpostFlags.filter(function(flag){return flag.name.indexOf(myRoom.name)>=0});"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1477,
+        "text": "if(outpostFlags.length > 0) {"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1480,
+        "text": "for (let o in outpostFlags) {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`NewSpawn:<homeRoom>`",
@@ -37,7 +309,75 @@
     "source": "`room.strategy.js`, `spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "controller.js",
+        "line": 1178,
+        "text": "var newSpawnFlags = _(Game.flags).filter(function(flag){return flag.name.indexOf('NewSpawn')>=0}).value();"
+      },
+      {
+        "file": "controller.js",
+        "line": 1179,
+        "text": "for(let f in newSpawnFlags) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 1180,
+        "text": "let flag = newSpawnFlags[f];"
+      },
+      {
+        "file": "grafana.js",
+        "line": 48,
+        "text": "var names = ['miner', 'courier', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 86,
+        "text": "var newSpawnFlags = _(Game.flags).filter(function(flag){"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 90,
+        "text": "var newSpawnFlags = _.filterWithCache('Game.flags.'+creep.memory.assignedFlag, Game.flags, {name: creep.memory.assignedFlag});"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 92,
+        "text": "newSpawnFlags = [];"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 95,
+        "text": "newSpawnFlags = _.filterWithCache('Game.flags.upgrade.'+creep.memory.assignedRoom, Game.flags, (f)=>f.name.indexOf('Upgrade:'+creep.memory.homeRoom) > -1 && f.pos.roomName == creep.memory.assignedRoom);  //{name: 'Upgrade:'+creep.memory.homeRoom}"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 96,
+        "text": "if(!newSpawnFlags || newSpawnFlags.length == 0) {"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 97,
+        "text": "newSpawnFlags = _.filterWithCache('Game.flags.createRoom.'+creep.memory.assignedRoom, Game.flags, (f)=>f.name.indexOf('CreateRoom') > -1 && f.name.indexOf(creep.memory.homeRoom) > -1);"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 98,
+        "text": "if(newSpawnFlags.length > 0) {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`CreateRoom:<homeRoom>`",
@@ -45,7 +385,75 @@
     "source": "`spawner.js`, `role.claimer.js`, `room.layout.js`, `utilV2.js`, `expansion.manager.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "expansion.manager.js",
+        "line": 112,
+        "text": "var getCreateRoomFlags = function() {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 113,
+        "text": "return _.filter(Game.flags, (flag) => flag.name.indexOf('CreateRoom') > -1);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 116,
+        "text": "var getCreateRoomFlagHomeRoom = function(flag) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 123,
+        "text": "var hasCreateRoomFlagForHomeRoom = function(homeRoomName) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 126,
+        "text": "flag.name.indexOf('CreateRoom') > -1 && getCreateRoomFlagHomeRoom(flag) == homeRoomName"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 579,
+        "text": "if(hasCreateRoomFlagForHomeRoom(homeRoomName)) return false;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 697,
+        "text": "let currentCreateRoomFlags = getCreateRoomFlags();"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 699,
+        "text": "let freeClaimSlots = Game.gcl.level - countOwnedRooms() - currentCreateRoomFlags.length - Object.keys(currentClaimIntents).length;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 709,
+        "text": "if(hasCreateRoomFlagForHomeRoom(homeRoom.name)) continue;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 715,
+        "text": "if(currentCreateRoomFlags.length > 0 || Object.keys(currentClaimIntents).length > 0) return;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 732,
+        "text": "let targetedRooms = new Set(currentCreateRoomFlags.map((flag) => flag.pos.roomName));"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 97,
+        "text": "newSpawnFlags = _.filterWithCache('Game.flags.createRoom.'+creep.memory.assignedRoom, Game.flags, (f)=>f.name.indexOf('CreateRoom') > -1 && f.name.indexOf(creep.memory.homeRoom) > -1);"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`CreateRoom:<homeRoom>:...:OverrideClaim` or any `CreateRoom` / `NewSpawn` flag containing `Override`",
@@ -53,7 +461,75 @@
     "source": "`spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "expansion.manager.js",
+        "line": 112,
+        "text": "var getCreateRoomFlags = function() {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 113,
+        "text": "return _.filter(Game.flags, (flag) => flag.name.indexOf('CreateRoom') > -1);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 116,
+        "text": "var getCreateRoomFlagHomeRoom = function(flag) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 123,
+        "text": "var hasCreateRoomFlagForHomeRoom = function(homeRoomName) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 126,
+        "text": "flag.name.indexOf('CreateRoom') > -1 && getCreateRoomFlagHomeRoom(flag) == homeRoomName"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 579,
+        "text": "if(hasCreateRoomFlagForHomeRoom(homeRoomName)) return false;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 697,
+        "text": "let currentCreateRoomFlags = getCreateRoomFlags();"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 699,
+        "text": "let freeClaimSlots = Game.gcl.level - countOwnedRooms() - currentCreateRoomFlags.length - Object.keys(currentClaimIntents).length;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 709,
+        "text": "if(hasCreateRoomFlagForHomeRoom(homeRoom.name)) continue;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 715,
+        "text": "if(currentCreateRoomFlags.length > 0 || Object.keys(currentClaimIntents).length > 0) return;"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 732,
+        "text": "let targetedRooms = new Set(currentCreateRoomFlags.map((flag) => flag.pos.roomName));"
+      },
+      {
+        "file": "role.builder.js",
+        "line": 97,
+        "text": "newSpawnFlags = _.filterWithCache('Game.flags.createRoom.'+creep.memory.assignedRoom, Game.flags, (f)=>f.name.indexOf('CreateRoom') > -1 && f.name.indexOf(creep.memory.homeRoom) > -1);"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Upgrade...`",
@@ -61,7 +537,75 @@
     "source": "`controller.js`, `spawner.js`, `terminal.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "booster.js",
+        "line": 43,
+        "text": "if (boostParts[b] == 'upgrade' && (lab === undefined || lab == null)) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 188,
+        "text": "var getRoomUpgradeProgress = function(roomName) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 200,
+        "text": "var getUpgradeProgress = function(roomName = undefined) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 203,
+        "text": "console.log(getRoomUpgradeProgress(Game.myRooms[r].name));"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 206,
+        "text": "console.log(getRoomUpgradeProgress(roomName));"
+      },
+      {
+        "file": "controller.js",
+        "line": 705,
+        "text": "let upgradeRoomFlags = _.filter(Game.flags, (f) => f.name.indexOf('Upgrade') > -1);"
+      },
+      {
+        "file": "controller.js",
+        "line": 706,
+        "text": "if (upgradeRoomFlags && upgradeRoomFlags.length > 0) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 707,
+        "text": "for (let upgradeRoomFlag of upgradeRoomFlags) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 708,
+        "text": "Game.rooms[upgradeRoomFlag.pos.roomName].upgradeRoom = true;"
+      },
+      {
+        "file": "controller.js",
+        "line": 710,
+        "text": "upgradeRoom.run(upgradeRoomFlag.pos.roomName);"
+      },
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "creep.base.js",
+        "line": 30,
+        "text": "//console.log('INITIALIZING UPGRADER CREEP IN BASECREEP - ' + creep.name);"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Build:<structureType>:<roomName>[:rclLevel]`",
@@ -69,7 +613,75 @@
     "source": "`utilV2.js`, exposed from `consoleCommands.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 633,
+        "text": "if(Memory.build) delete Memory.build[roomName];"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 747,
+        "text": "Game.processBuildFlags = util.processBuildFlags;"
+      },
+      {
+        "file": "controller.js",
+        "line": 46,
+        "text": "var processBuildFlags = function() {"
+      },
+      {
+        "file": "controller.js",
+        "line": 50,
+        "text": "var buildFlags = _(Game.flags).filter(function (flag) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 51,
+        "text": "return flag.name.indexOf('Build') >= 0"
+      },
+      {
+        "file": "controller.js",
+        "line": 54,
+        "text": "while (buildFlags.length > 0) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 56,
+        "text": "var buildFlag = buildFlags.pop();"
+      },
+      {
+        "file": "controller.js",
+        "line": 57,
+        "text": "if(Game.rooms[buildFlag.pos.roomName] != undefined) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 59,
+        "text": "var index = buildFlag.name.indexOf(':') + 1;"
+      },
+      {
+        "file": "controller.js",
+        "line": 60,
+        "text": "var strType = buildFlag.name.substring(index);"
+      },
+      {
+        "file": "controller.js",
+        "line": 64,
+        "text": "if (buildFlag.room.createConstructionSite(buildFlag.pos.x, buildFlag.pos.y, STRUCTURE_SPAWN) == 0) {"
+      },
+      {
+        "file": "controller.js",
+        "line": 65,
+        "text": "buildFlag.remove();"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Defend:<count>` in the room to defend",
@@ -77,7 +689,75 @@
     "source": "`room.strategy.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "defend.js",
+        "line": 27,
+        "text": "//myRoom.defenders = _.filter(Game.creeps, {memory: {role: 'defender', homeRoom: myRoom.name}});"
+      },
+      {
+        "file": "defend.js",
+        "line": 28,
+        "text": "myRoom.defenders = util.getCreeps('defender', myRoom.name);"
+      },
+      {
+        "file": "defend.js",
+        "line": 41,
+        "text": "//console.log(defender.name + ' has a target rampart: '+tarRampart);"
+      },
+      {
+        "file": "defend.js",
+        "line": 44,
+        "text": "//console.log(defender.name + ' is moving to rampart: '+JSON.stringify(tarRampart));"
+      },
+      {
+        "file": "defend.js",
+        "line": 124,
+        "text": "//if(creep.name == 'Vivian') console.log('rampartsToDefend '+JSON.stringify(structure));"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 7,
+        "text": "* Setting up boost lab for defenders."
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 44,
+        "text": "if(!Memory.manager.defense[roomName].defenders) Memory.manager.defense[roomName].defenders = [];"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 80,
+        "text": "if (Memory.manager.defense[roomName].defenders.length > 0) {"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 81,
+        "text": "defenders = util.getCreeps('defender', roomName);"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 83,
+        "text": "//for(var i in Memory.manager.defense[roomName].defenders) {"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 84,
+        "text": "//    var defenderId = Memory.manager.defense[roomName].defenders[i];"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 92,
+        "text": "Memory.manager.defense[roomName].defenders = defenderUpdate;"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Patrol:<index>:<homeRoom>`",
@@ -85,7 +765,75 @@
     "source": "`consoleCommands.js`, `room.strategy.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 144,
+        "text": "var processPatrol = function(patrolName) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 145,
+        "text": "var patrolFlags = _(Game.flags).filter(function(flag){"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 146,
+        "text": "return flag.name.indexOf(patrolName) >= 0;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 150,
+        "text": "for(let f in patrolFlags) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 151,
+        "text": "let patrolFlag = patrolFlags[f];"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 152,
+        "text": "var params = patrolFlag.name.split(':');"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 156,
+        "text": "pos: patrolFlag.pos"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 164,
+        "text": "if(Memory.patrols[patrolName] === undefined) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 165,
+        "text": "Memory.patrols[patrolName] = {};"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 168,
+        "text": "Memory.patrols[patrolName].patrolPositions = patrolPositions;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 169,
+        "text": "Memory.patrols[patrolName].index = 1;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 170,
+        "text": "Memory.patrols[patrolName].patrolLength = patrolFlags.length;"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Scout:<homeRoom>...`",
@@ -93,7 +841,75 @@
     "source": "`room.strategy.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 555,
+        "text": "if(scouting && scouting.rooms && scouting.rooms[roomName]) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 556,
+        "text": "delete scouting.rooms[roomName];"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 561,
+        "text": "scouting.pendingRooms = _.filter(scouting.pendingRooms, (pendingRoom) => pendingRoom != roomName);"
+      },
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 163,
+        "text": "var getScoutTargetRooms = function(homeRoomName) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 195,
+        "text": "var getRecentScoutDeaths = function(homeRoomName) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 196,
+        "text": "let scouting = util.getRoomScoutingMemory(homeRoomName);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 205,
+        "text": "var hasRecentScoutDeathInRoom = function(homeRoomName, roomName) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 206,
+        "text": "return getRecentScoutDeaths(homeRoomName).some((death) => death.pos.roomName == roomName);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 370,
+        "text": "var recordScoutedRoom = function(homeRoomName, room) {"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 373,
+        "text": "let scouting = util.getRoomScoutingMemory(homeRoomName);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 374,
+        "text": "let existing = scouting.rooms[room.name] || {};"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Down:<homeRoom>` or `Down:<count>:<homeRoom>` depending path",
@@ -101,7 +917,75 @@
     "source": "`room.strategy.js`, `spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "controller.js",
+        "line": 870,
+        "text": "var names = ['miner', 'courier', 'scavenger', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "controller.js",
+        "line": 1643,
+        "text": "vassalFlag.memory.invadedTimer = Game.time + INVASION_COOLDOWN;"
+      },
+      {
+        "file": "controller.js",
+        "line": 1644,
+        "text": "vassalFlag.memory.occupiedTimer = Game.time + OCCUPIED_COOLDOWN;"
+      },
+      {
+        "file": "grafana.js",
+        "line": 48,
+        "text": "var names = ['miner', 'courier', 'upgrader', 'builder', 'newSpawner', 'distributor', 'claimer', 'reserver', 'downer', 'attacker', 'outposter', 'mineralMiner', 'mineralCourier', 'healer', 'scout', 'patroller', 'skSquad', 'hauler', 'powerSquad'];"
+      },
+      {
+        "file": "labV2.js",
+        "line": 63,
+        "text": "if (inputLabs.length == 2 && inputLabs[0] != undefined && inputLabs[0].mineralAmount >= 5 && inputLabs[1] != undefined && inputLabs[1].mineralAmount >= 5 && lab.cooldown <= 0) {"
+      },
+      {
+        "file": "remote.defense.response.js",
+        "line": 229,
+        "text": "util.manualSpawnTask(REMOTE_DEFENSE_PRIORITY, 'downer', spawnRoom.name, 0, memory);"
+      },
+      {
+        "file": "remote.defense.response.js",
+        "line": 346,
+        "text": "let candidates = getCandidateSpawnRooms(myRooms, room.name, context.homeRoomName, 'downer');"
+      },
+      {
+        "file": "remote.manager.js",
+        "line": 548,
+        "text": "var isClaimedOwnedRoom = function(roomName, homeRoomName) {"
+      },
+      {
+        "file": "remote.manager.js",
+        "line": 806,
+        "text": "if(isClaimedOwnedRoom(node.pos.roomName, homeRoom.name) || !selectedIds.has(sourceId)) {"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1380,
+        "text": "var downers = _.filter(Game.creeps, {memory: {role:'downer', homeRoom:myRoom.name}});"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1381,
+        "text": "var downFlags = _(Game.flags).filter(function(flag){return flag.name.indexOf('Down')>=0}).value();"
+      },
+      {
+        "file": "room.strategy.js",
+        "line": 1382,
+        "text": "downFlags = downFlags.filter(function(flag){return flag.name.indexOf(myRoom.name)>=0});"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Steal:...:<homeRoom>`",
@@ -109,7 +993,60 @@
     "source": "`spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "role.hauler.js",
+        "line": 204,
+        "text": "_.filter(creep.room.flags, (f)=>f.name.indexOf('Steal') > -1).forEach((f)=>f.remove());"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1509,
+        "text": "var stealFlags = _.filter(Game.flags, (f) => f.name.indexOf('Steal') > -1 && f.name.indexOf(roomName) > -1);"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1566,
+        "text": "//         if(hauler && hauler.memory.stealer && util.readPositionFromMemory(hauler.memory.collectPos).isEqualTo(stealFlag.pos)) haulers.push(hauler);"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1587,
+        "text": "if(stealFlags.length > 0) {"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1588,
+        "text": "for(let s in stealFlags) {"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1589,
+        "text": "let stealFlag = stealFlags[s];"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1591,
+        "text": "let stealInfo = stealFlag.name.split(':');"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1599,
+        "text": "//         if(hauler && hauler.memory.stealer && util.readPositionFromMemory(hauler.memory.collectPos).isEqualTo(stealFlag.pos)) haulers.push(hauler);"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1614,
+        "text": "collectPos: stealFlag.pos,"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Transfer:...:<homeRoom>`",
@@ -117,7 +1054,75 @@
     "source": "`spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "role.builder.js",
+        "line": 27,
+        "text": "creep.transfer(availableSpawn, RESOURCE_ENERGY);"
+      },
+      {
+        "file": "role.distributorV2.js",
+        "line": 44,
+        "text": "creep.transfer(availableSpawn, RESOURCE_ENERGY);"
+      },
+      {
+        "file": "role.upgradeMaster.js",
+        "line": 191,
+        "text": "creep.transfer(lab, resourceType);"
+      },
+      {
+        "file": "role.upgradeMaster.js",
+        "line": 204,
+        "text": "creep.transfer(lab, RESOURCE_ENERGY);"
+      },
+      {
+        "file": "role.upgraderV2.js",
+        "line": 91,
+        "text": "if(creep.room.flags.filter((f)=>f.name.indexOf('Transfer') > -1).length > 0) {"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1510,
+        "text": "var transferFlags = _.filter(Game.flags, (f) => f.name.indexOf('Transfer') > -1 && f.name.indexOf(roomName) > -1);"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1554,
+        "text": "if(transferFlags.length > 0) {"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1555,
+        "text": "for(let t in transferFlags) {"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1556,
+        "text": "let transferFlag = transferFlags[t];"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1558,
+        "text": "let transferInfo = transferFlag.name.split(':');"
+      },
+      {
+        "file": "spawner.js",
+        "line": 1577,
+        "text": "returnPos: transferFlag.pos"
+      },
+      {
+        "file": "terminal.js",
+        "line": 297,
+        "text": "if(result == OK) console.log('TERMINAL: Transferred 1000 energy from ' + terminalsInExcess[0].room.name + ' to ' + term.room.name);"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Safe:<range>`",
@@ -125,7 +1130,75 @@
     "source": "`defend.js`, `defenseManager.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "defend.js",
+        "line": 56,
+        "text": "var safeFlags = _.filter(room.flags, function (flag) {"
+      },
+      {
+        "file": "defend.js",
+        "line": 57,
+        "text": "return flag.pos.roomName == room.name && flag.name.indexOf('Safe') > -1;"
+      },
+      {
+        "file": "defend.js",
+        "line": 59,
+        "text": "if (safeFlags.length != 0) {"
+      },
+      {
+        "file": "defend.js",
+        "line": 61,
+        "text": "var safeFlag = safeFlags[0];"
+      },
+      {
+        "file": "defend.js",
+        "line": 63,
+        "text": "var safeRange = (Number(safeFlags[0].name.split(':')[1]));"
+      },
+      {
+        "file": "defend.js",
+        "line": 64,
+        "text": "var closestHostile = safeFlag.pos.findClosestByRange(FIND_HOSTILE_CREEPS);"
+      },
+      {
+        "file": "defend.js",
+        "line": 65,
+        "text": "if (closestHostile == null && closestHostile != undefined && safeFlag.pos.getRangeTo(closestHostile) < safeRange) {"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 24,
+        "text": "var safeFlags = _.filter(room.flags, function (flag) {"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 25,
+        "text": "return flag.pos.roomName == room.name && flag.name.indexOf('Safe') > -1;"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 27,
+        "text": "if (safeFlags.length != 0) {"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 29,
+        "text": "var safeFlag = safeFlags[0];"
+      },
+      {
+        "file": "defenseManager.js",
+        "line": 31,
+        "text": "var safeRange = (Number(safeFlags[0].name.split(':')[1]));"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Dismantle1:<homeRoom>`",
@@ -133,7 +1206,20 @@
     "source": "`controller.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "controller.js",
+        "line": 1358,
+        "text": "let flag = Game.flags['Dismantle1:'+creep.memory.homeRoom];"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Sign`",
@@ -141,7 +1227,75 @@
     "source": "`controller.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "assaultCreeps.js",
+        "line": 252,
+        "text": "if(assignedHealers.indexOf(healInfo.name) < 0 && hpGap > 0) {"
+      },
+      {
+        "file": "assaultCreeps.js",
+        "line": 255,
+        "text": "assignedHealers.push(healInfo.name);"
+      },
+      {
+        "file": "assaultCreeps.js",
+        "line": 266,
+        "text": "if(assignedHealers.indexOf(healInfo.name) < 0 && hpGap > 0) {    //&& healInfo.amount > hpGap"
+      },
+      {
+        "file": "assaultCreeps.js",
+        "line": 269,
+        "text": "assignedHealers.push(healInfo.name);"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 433,
+        "text": "|| task.memory.assignedRoom == roomName"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 436,
+        "text": "|| (task.memory.assignedNode && task.memory.assignedNode.roomName == roomName)));"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 613,
+        "text": "Object.assign(result, removeRoomReferencesFromMemory(roomName));"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 634,
+        "text": "if(Memory.powerFarmingAssignments && Memory.powerFarmingAssignments[roomName]) delete Memory.powerFarmingAssignments[roomName];"
+      },
+      {
+        "file": "controller.js",
+        "line": 1382,
+        "text": "let flag = Game.flags['Sign'];"
+      },
+      {
+        "file": "creep.base.js",
+        "line": 266,
+        "text": "console.log(creep.memory.role + ' does not have an assignedNode set ('+creep.name+')');"
+      },
+      {
+        "file": "creep.base.js",
+        "line": 270,
+        "text": "var assignedNode = new RoomPosition(creep.memory.assignedNode.x, creep.memory.assignedNode.y, creep.memory.assignedNode.roomName);"
+      },
+      {
+        "file": "expansion.manager.js",
+        "line": 375,
+        "text": "scouting.rooms[room.name] = Object.assign(existing, summarizeRoom(room));"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`<squadName>`",
@@ -149,7 +1303,75 @@
     "source": "`squad.tnt.js`, `utilV2.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "role.powerSquad.js",
+        "line": 12,
+        "text": "var squadName = truck.memory.squad;"
+      },
+      {
+        "file": "role.powerSquad.js",
+        "line": 15,
+        "text": "trailors = _.filter(trailors, { memory: { squad: squadName } });"
+      },
+      {
+        "file": "role.powerSquad.js",
+        "line": 28,
+        "text": "var squadName = truck.memory.squad;"
+      },
+      {
+        "file": "role.powerSquad.js",
+        "line": 125,
+        "text": "var powerBank = Game.getObjectById(squadName);"
+      },
+      {
+        "file": "role.powerSquad.js",
+        "line": 133,
+        "text": "if (bank && bank.id == squadName) powerBank = bank;"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 18,
+        "text": "var squadName = truck.memory.squad;"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 21,
+        "text": "trailors = _.filter(trailors, (c) => c.memory.squad == squadName && !c.memory.truck);"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 30,
+        "text": "var squadName = truck.memory.squad;"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 33,
+        "text": "trailors = _.filter(trailors, (c) => c.memory.squad == squadName && !c.memory.truck);"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 163,
+        "text": "var squadName = truck.memory.squad;"
+      },
+      {
+        "file": "role.skSquad.js",
+        "line": 164,
+        "text": "var patrol = Memory.patrols[squadName];"
+      },
+      {
+        "file": "spawner.js",
+        "line": 160,
+        "text": "var spawnTnT = function(priority, squadName, roomName, mode = 'rally', boostLevel = 0, powerFarmers = false, manual = true) {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Vassal:<controllerRoom>:<vassalRoom>`",
@@ -157,7 +1379,75 @@
     "source": "`consoleCommands.js`, `controller.js`, `room.strategy.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "consoleCommands.js",
+        "line": 109,
+        "text": "if(Memory.roomCache[myRoom.name].vassals === undefined) Memory.roomCache[myRoom.name].vassals = {};"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 111,
+        "text": "let vassalFlags = _(Game.flags).filter(function (flag) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 112,
+        "text": "if (flag.name.indexOf('Vassal') > -1) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 122,
+        "text": "//let vassalNames = [];"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 123,
+        "text": "for (let v in vassalFlags) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 124,
+        "text": "let flag = vassalFlags[v];"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 134,
+        "text": "Memory.roomCache[myRoom.name].vassals[flag.pos.roomName] = memory;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 136,
+        "text": "//console.log(JSON.stringify(Memory.roomCache[myRoom.name].vassals[flag.pos.roomName]));"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 659,
+        "text": "var testFunction = function(vassalName) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 661,
+        "text": "if(!Memory.manager.invaderCores[vassalName]) Memory.manager.invaderCores[vassalName] = {};"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 663,
+        "text": "let waitTime = Memory.manager.invaderCores[vassalName].waitTime;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 668,
+        "text": "let room = Game.rooms[vassalName];"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Miss:<missionPlanId>:<stage>:<type>:...`",
@@ -165,7 +1455,75 @@
     "source": "`mission.js`, exposed from `consoleCommands.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "assaultCreeps.js",
+        "line": 41,
+        "text": "var runSquad = function(creeps, mission) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 331,
+        "text": "let scheduleAttack = function(ticksToWait, missionPlan, missionName, priority, rooms, boostLevel, recurring = -1) {"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 388,
+        "text": "Memory.missionSchedules[missionName] = mem;"
+      },
+      {
+        "file": "consoleCommands.js",
+        "line": 716,
+        "text": "Game.createMissionPlan = mission.createMissionPlanFromFlags;"
+      },
+      {
+        "file": "formations.js",
+        "line": 105,
+        "text": "assaultCreeps.runSquad(creeps, mission);"
+      },
+      {
+        "file": "formations.js",
+        "line": 126,
+        "text": "assaultCreeps.runSquad(creeps, mission);"
+      },
+      {
+        "file": "formations.js",
+        "line": 402,
+        "text": "assaultCreeps.runSquad(creeps, mission);"
+      },
+      {
+        "file": "formations.js",
+        "line": 414,
+        "text": "assaultCreeps.runSquad(creeps, mission);"
+      },
+      {
+        "file": "mission.js",
+        "line": 105,
+        "text": "var creepNames = mission.creepIds;"
+      },
+      {
+        "file": "mission.js",
+        "line": 349,
+        "text": "util.manualSpawnTask(spawnOptions.priority, unitType, roomName, spawnOptions.boostLevel, {missionId: missionId});"
+      },
+      {
+        "file": "mission.js",
+        "line": 419,
+        "text": "for(let roomName of mission.spawnRooms) {"
+      },
+      {
+        "file": "mission.js",
+        "line": 444,
+        "text": "console.log('Mission '+mission.id+' has failed due to the complete destruction of the squad.');"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`formation`",
@@ -173,7 +1531,75 @@
     "source": "`controller.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "controller.js",
+        "line": 1162,
+        "text": "formation.run(Game.flags.formation);"
+      },
+      {
+        "file": "formation.js",
+        "line": 21,
+        "text": "runBoxFormation(flag);"
+      },
+      {
+        "file": "formation.js",
+        "line": 28,
+        "text": "var runBoxFormation = function(flag) {"
+      },
+      {
+        "file": "formation.js",
+        "line": 87,
+        "text": "console.log(`Creep ${creep.name} doesn't have a spot in formation ${flag.name}`);"
+      },
+      {
+        "file": "formations.js",
+        "line": 180,
+        "text": "console.log(`Creep ${creep.name} doesn't have a spot in formation`);"
+      },
+      {
+        "file": "formations.js",
+        "line": 250,
+        "text": "//console.log('Creep '+creep.name+' has no train position: '+creep.memory.formationInfos[formationIndex].trainPosition);"
+      },
+      {
+        "file": "mission.js",
+        "line": 611,
+        "text": "var getFormationOptions = function(pos, formationIndex, fpos, targets = undefined, roomName = undefined) {"
+      },
+      {
+        "file": "mission.js",
+        "line": 621,
+        "text": "var simpleCreateFormationStage = function(formationPos, formationIndex, fpos, targets = undefined, roomName = undefined) {"
+      },
+      {
+        "file": "mission.js",
+        "line": 623,
+        "text": "targets ? getDestroyCriteria(targets, roomName) : getFormationCriteria(formationPos),"
+      },
+      {
+        "file": "mission.js",
+        "line": 624,
+        "text": "getFormationOptions(formationPos, formationIndex, fpos, targets, roomName)"
+      },
+      {
+        "file": "mission.js",
+        "line": 637,
+        "text": "var getTrainOptions = function(pos, formationIndex, targets = undefined, roomName = undefined) {"
+      },
+      {
+        "file": "mission.js",
+        "line": 661,
+        "text": "var simpleCreateTrainStage = function(headPos, formationIndex, targets = undefined, roomName = undefined) {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Lab1:<inputMineral>:<roomName>`",
@@ -181,7 +1607,25 @@
     "source": "`utilV2.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "room.strategy.js",
+        "line": 1083,
+        "text": "//console.log('['+myRoom.name+'] Memory.roomCache[myRoom.name].labs[Lab1] != undefined: '+(Memory.roomCache[myRoom.name].labs['Lab1'] != undefined));"
+      },
+      {
+        "file": "utilV2.js",
+        "line": 1076,
+        "text": "room.createFlag(inputLabs[0].pos, `Lab1:${compound.L1}:${roomName}`);"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Lab2:<inputMineral>:<roomName>`",
@@ -189,7 +1633,20 @@
     "source": "`utilV2.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "utilV2.js",
+        "line": 1077,
+        "text": "room.createFlag(inputLabs[1].pos, `Lab2:${compound.L2}:${roomName}`);"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Lab3+ :<targetCompound>:<roomName>`",
@@ -197,7 +1654,14 @@
     "source": "`utilV2.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   },
   {
     "pattern": "`Boost...`",
@@ -205,6 +1669,74 @@
     "source": "`spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported"
+    "implementationStatus": "not ported",
+    "sourceCandidates": [
+      {
+        "file": "booster.js",
+        "line": 26,
+        "text": "//console.log('1 Trying to boost '+creep.name);"
+      },
+      {
+        "file": "booster.js",
+        "line": 33,
+        "text": "//console.log('2 Trying to boost '+creep.name);"
+      },
+      {
+        "file": "booster.js",
+        "line": 38,
+        "text": "//console.log('3 Trying to boost '+creep.name);"
+      },
+      {
+        "file": "booster.js",
+        "line": 41,
+        "text": "let lab = findLabWithBoostForPart(boostParts[b], room);"
+      },
+      {
+        "file": "booster.js",
+        "line": 43,
+        "text": "if (boostParts[b] == 'upgrade' && (lab === undefined || lab == null)) {"
+      },
+      {
+        "file": "booster.js",
+        "line": 44,
+        "text": "creep.memory.boost.splice(b, 1);    // Remove this boost part from the creep's memory if it isn't available..."
+      },
+      {
+        "file": "booster.js",
+        "line": 45,
+        "text": "console.log('1/ Boost cancelled - '+creep.pos.roomName + ' - ' + JSON.stringify(creep.memory.boost));"
+      },
+      {
+        "file": "booster.js",
+        "line": 50,
+        "text": "console.log('2/ Boost cancelled - '+creep.pos.roomName + ' - ' + JSON.stringify(creep.memory.boost));"
+      },
+      {
+        "file": "booster.js",
+        "line": 58,
+        "text": "var result = lab.boostCreep(creep);"
+      },
+      {
+        "file": "booster.js",
+        "line": 61,
+        "text": "console.log(`[${room.name}] Boosted ${creep.memory.role} ${creep.name}'s ${boostParts[b]}`);"
+      },
+      {
+        "file": "booster.js",
+        "line": 64,
+        "text": "console.log('3/ Boost cancelled - '+creep.pos.roomName + ' - ' + JSON.stringify(creep.memory.boost));"
+      },
+      {
+        "file": "booster.js",
+        "line": 77,
+        "text": "var findLabWithBoostForPart = function(part, room) {"
+      }
+    ],
+    "verification": "lexical source candidates; semantic validation required during port",
+    "requiredTests": [
+      "parse and validate arguments",
+      "route to owning application operation",
+      "preserve idempotency and manual precedence"
+    ]
   }
 ]

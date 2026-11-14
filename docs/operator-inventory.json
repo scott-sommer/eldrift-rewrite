@@ -4,479 +4,899 @@
     "handler": "testFunction",
     "source": "consoleCommands.js",
     "line": 694,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "adapters/operator diagnostics",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getResources",
     "handler": "consoleResources",
     "source": "consoleCommands.js",
     "line": 695,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "processPatrol",
     "handler": "processPatrol",
     "source": "consoleCommands.js",
     "line": 696,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "processVassals",
     "handler": "processVassals",
     "source": "consoleCommands.js",
     "line": 697,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/expansion",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "removeLabs",
     "handler": "removeLabs",
     "source": "consoleCommands.js",
     "line": 698,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "removeAllLabs",
     "handler": "removeAllLabs",
     "source": "consoleCommands.js",
     "line": 699,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "setupLabs",
     "handler": "labV2.setupLabs",
     "source": "consoleCommands.js",
     "line": 700,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "setBoosts",
     "handler": "labV2.setBoosts",
     "source": "consoleCommands.js",
     "line": 701,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "setAllRoomBoosts",
     "handler": "labV2.setAllRoomBoosts",
     "source": "consoleCommands.js",
     "line": 702,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getUpgradeProgress",
     "handler": "getUpgradeProgress",
     "source": "consoleCommands.js",
     "line": 703,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/economy/work",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "sendResources",
     "handler": "sendResources",
     "source": "consoleCommands.js",
     "line": 704,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "observeRoom",
     "handler": "util.observeRoom",
     "source": "consoleCommands.js",
     "line": 705,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/intel",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getHitpointsPotential",
     "handler": "util.getHitpointsPotential",
     "source": "consoleCommands.js",
     "line": 706,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getMeleePotential",
     "handler": "util.getMeleePotential",
     "source": "consoleCommands.js",
     "line": 707,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getDismantlePotential",
     "handler": "util.getDismantlePotential",
     "source": "consoleCommands.js",
     "line": 708,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getRangedPotential",
     "handler": "util.getRangedPotential",
     "source": "consoleCommands.js",
     "line": 709,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getHealPotential",
     "handler": "util.getHealPotential",
     "source": "consoleCommands.js",
     "line": 710,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "buildRoadsFromPath",
     "handler": "util.buildRoadsFromPath",
     "source": "consoleCommands.js",
     "line": 711,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "buildRemoteRoads",
     "handler": "util.buildRemoteRoads",
     "source": "consoleCommands.js",
     "line": 712,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getManufactureCompound",
     "handler": "getManufactureCompound",
     "source": "consoleCommands.js",
     "line": 713,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "testAttackMission",
     "handler": "mission.testAttackMission",
     "source": "consoleCommands.js",
     "line": 714,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "createTestMissionPlan",
     "handler": "mission.createTestMissionPlan",
     "source": "consoleCommands.js",
     "line": 715,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "createMissionPlan",
     "handler": "mission.createMissionPlanFromFlags",
     "source": "consoleCommands.js",
     "line": 716,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "spawnMission",
     "handler": "mission.spawnMission",
     "source": "consoleCommands.js",
     "line": 717,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getRoomInDirection",
     "handler": "util.getRoomInDirection",
     "source": "consoleCommands.js",
     "line": 718,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "core/geometry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getPositionInDirection",
     "handler": "util.getPositionInDirection",
     "source": "consoleCommands.js",
     "line": 719,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "core/geometry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "printRoomProduction",
     "handler": "printRoomProduction",
     "source": "consoleCommands.js",
     "line": 720,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/trade and economy",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "isAllied",
     "handler": "util.isAllied",
     "source": "consoleCommands.js",
     "line": 721,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/defense/diplomacy",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "addSource",
     "handler": "util.addSource",
     "source": "consoleCommands.js",
     "line": 722,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "removeSource",
     "handler": "util.removeSource",
     "source": "consoleCommands.js",
     "line": 723,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "updateSourceNodes",
     "handler": "util.updateSourceNodes",
     "source": "consoleCommands.js",
     "line": 724,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "processMiningFlags",
     "handler": "processMiningFlags",
     "source": "consoleCommands.js",
     "line": 725,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "calculateRoomCourierSpawn",
     "handler": "util.calculateRoomCourierSpawn",
     "source": "consoleCommands.js",
     "line": 726,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/logistics",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "calculateRequiredCarryParts",
     "handler": "util.calculateRequiredCarryParts",
     "source": "consoleCommands.js",
     "line": 727,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/logistics",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "setAllBoosts",
     "handler": "setAllBoosts",
     "source": "consoleCommands.js",
     "line": 728,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getRoomSpawnTasks",
     "handler": "util.getRoomSpawnTasks",
     "source": "consoleCommands.js",
     "line": 729,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/spawning",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "dismantleRoom",
     "handler": "dismantleRoom",
     "source": "consoleCommands.js",
     "line": 730,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "clearDismantleRoom",
     "handler": "clearDismantleRoom",
     "source": "consoleCommands.js",
     "line": 731,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "addReservation",
     "handler": "util.addReservation",
     "source": "consoleCommands.js",
     "line": 732,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "removeReservation",
     "handler": "util.removeReservation",
     "source": "consoleCommands.js",
     "line": 733,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "removeReservations",
     "handler": "util.removeReservations",
     "source": "consoleCommands.js",
     "line": 734,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "addOutpost",
     "handler": "util.addOutpost",
     "source": "consoleCommands.js",
     "line": 735,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "removeOutpost",
     "handler": "util.removeOutpost",
     "source": "consoleCommands.js",
     "line": 736,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "RemoveOutposts",
     "handler": "util.removeOutposts",
     "source": "consoleCommands.js",
     "line": 737,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "scheduleAttack",
     "handler": "scheduleAttack",
     "source": "consoleCommands.js",
     "line": 738,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "addRemote",
     "handler": "addRemote",
     "source": "consoleCommands.js",
     "line": 739,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/remotes",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "checkPortals",
     "handler": "checkPortals",
     "source": "consoleCommands.js",
     "line": 740,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/intel",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getSpawnRoomTasks",
     "handler": "getSpawnRoomTasks",
     "source": "consoleCommands.js",
     "line": 741,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/spawning",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "clearRoomData",
     "handler": "clearRoomData",
     "source": "consoleCommands.js",
     "line": 742,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/expansion",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "unclaimRoom",
     "handler": "clearRoomData",
     "source": "consoleCommands.js",
     "line": 743,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/expansion",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "clearDismantledRoomMemory",
     "handler": "clearDismantledRoomMemory",
     "source": "consoleCommands.js",
     "line": 745,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/missions",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "visualizeRoom",
     "handler": "visuals.visualizeRoom",
     "source": "consoleCommands.js",
     "line": 746,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "adapters/operator diagnostics",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "processBuildFlags",
     "handler": "util.processBuildFlags",
     "source": "consoleCommands.js",
     "line": 747,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "processClaimFlags",
     "handler": "util.processClaimFlags",
     "source": "consoleCommands.js",
     "line": 748,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/expansion",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "cancelClaim",
     "handler": "util.cancelClaimIntent",
     "source": "consoleCommands.js",
     "line": 749,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/expansion",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "applyLayout",
     "handler": "roomLayout.applyLayout",
     "source": "consoleCommands.js",
     "line": 750,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "importLayout",
     "handler": "roomLayout.importLayoutV2",
     "source": "consoleCommands.js",
     "line": 751,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "doRoomPlanning",
     "handler": "util.doRoomPlanning",
     "source": "consoleCommands.js",
     "line": 752,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "getBoosts",
     "handler": "util.getBoosts",
     "source": "consoleCommands.js",
     "line": 753,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "features/industry",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   },
   {
     "command": "exportTerrainLayouts",
     "handler": "exportTerrainLayouts",
     "source": "consoleCommands.js",
     "line": 754,
-    "status": "pending behavior review",
-    "targetIssue": "ED-39"
+    "status": "registered operator entrypoint; effect characterization pending",
+    "targetIssue": "ED-39",
+    "proposedOwner": "capabilities/planning and construction",
+    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "requiredTests": [
+      "valid operation and observable effect",
+      "invalid or missing targets",
+      "repeated invocation and ownership constraints"
+    ]
   }
 ]
