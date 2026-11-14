@@ -10,6 +10,7 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   courierSpawningEnabled: value => typeof value === 'boolean',
   courierBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
   logisticsEnabled: value => typeof value === 'boolean',
+  linksEnabled: value => typeof value === 'boolean',
   miningEnabled: value => typeof value === 'boolean',
   miningBodyBudget: value => bounded(value, 10000) && Number.isInteger(value) && Number(value) >= 200,
   backgroundEnabled: value => typeof value === 'boolean',
