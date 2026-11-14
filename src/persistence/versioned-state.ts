@@ -15,6 +15,9 @@ export interface StatePort {
   read(key: string): unknown;
   write(key: string, value: Envelope): void;
 }
+export interface RemovableStatePort extends StatePort {
+  remove(key: string, owner: string): void;
+}
 function envelope(value: unknown): value is Envelope {
   if (!value || typeof value !== 'object') return false;
   const record = value as Partial<Envelope>;

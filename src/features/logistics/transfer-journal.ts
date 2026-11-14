@@ -3,8 +3,8 @@ import type { StatePort, StateSchema } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
 import { confirmTransfer, validateTransferAttempt } from '../../capabilities/logistics/confirmation';
 import type { TransferAttempt, TransferObservation, TransferConfirmation } from '../../capabilities/logistics/confirmation';
-interface Journal { acknowledged: boolean; attempt: TransferAttempt | null; result: TransferConfirmation | null }
-const schema: StateSchema<Journal> = {
+export interface Journal { acknowledged: boolean; attempt: TransferAttempt | null; result: TransferConfirmation | null }
+export const schema: StateSchema<Journal> = {
   owner: 'logistics', version: 1, initial: () => ({ acknowledged: true, attempt: null, result: null }), migrations: {}, valid,
 };
 /** Begin persists before invocation; a reconstructed caller cannot issue the pending attempt again. */

@@ -6,7 +6,7 @@ import type { TransferAttempt } from '../../capabilities/logistics/confirmation'
 import { validateLogisticsRequest } from '../../capabilities/logistics/request';
 import type { LogisticsRequest } from '../../capabilities/logistics/request';
 export interface UncertainTransfer { attempt: TransferAttempt; request: LogisticsRequest; home: string; scope: string; tick: number; cargo: number | null }
-interface Incidents { entries: UncertainTransfer[]; discarded: number }
+export interface Incidents { entries: UncertainTransfer[]; discarded: number }
 /** Retain ten detailed incidents per unit plus an explicit count of older discarded details. */
 export function recordUncertainTransfer(state: StatePort, incident: UncertainTransfer): void {
   const key = stateKey('logistics-uncertainty', incident.attempt.unit);
@@ -27,7 +27,7 @@ function validIncident(value: unknown): value is UncertainTransfer {
   return [item.home, item.scope].every(nonempty) && nonnegative(item.tick) && item.tick >= item.attempt.tick
     && (item.cargo === null || nonnegative(item.cargo));
 }
-const schema: StateSchema<Incidents> = {
+export const schema: StateSchema<Incidents> = {
   owner: 'logistics', version: 1, initial: () => ({ entries: [], discarded: 0 }), migrations: {},
   valid(value: unknown): value is Incidents {
     if (!value || typeof value !== 'object') return false;

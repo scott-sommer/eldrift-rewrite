@@ -1,3 +1,4 @@
+import { createLogisticsRetirement } from './app/logistics-retirement';
 import { createNativeLogisticsFeature } from './app/native-logistics';
 import { createNativeDispatch } from './app/native-dispatch';
 import { createNativeMiner } from './adapters/screeps/mining';
@@ -18,7 +19,7 @@ const mining = createNativeMiningFeature(state, {
   mine: createNativeMiner(dispatch.arbiter, dispatch.movement), activate: dispatch.activate,
 });
 const logistics = createNativeLogisticsFeature(state, dispatch);
-const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions });
+const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions }, createLogisticsRetirement(state));
 // Gameplay registration is separate from configuration-controlled activation.
 export const loop = createGameLoop([mining.feature, logistics.feature], {
   ...ports,

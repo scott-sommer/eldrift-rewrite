@@ -18,6 +18,12 @@ function verifyCargoDeath(memory) {
   const recovered = requests.filter(record => record.request.owner.endsWith(':preserve'));
   assert.equal(recovered.length, 1);
   assert.deepEqual(recovered[0].receipts.map(receipt => receipt.amount), [50, 19]);
+  const retired = records['logistics-retired/empire'].data.entries;
+  assert.equal(retired.length, 1);
+  assert.equal(retired[0].journal.acknowledged, false);
+  assert.equal(retired[0].journal.attempt.amount, 50);
+  assert.equal(retired[0].journal.attempt.kind, 'withdraw');
+  assert.equal(records['logistics-attempts/' + retired[0].unit], undefined);
   assert.deepEqual(records['tasks/a-hauler'].data.queue, []);
   assert.deepEqual(records['tasks/z-hauler'].data.queue, []);
   assert.deepEqual(records['quantity-reservations/empire'].data.claims, []);

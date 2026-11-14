@@ -1,4 +1,4 @@
-import type { StatePort } from '../../persistence/versioned-state';
+import type { RemovableStatePort } from '../../persistence/versioned-state';
 import { copyPlain } from '../../persistence/plain-data';
 interface MemoryRoot { eldrift?: unknown }
 interface Store { format: 1; records: Record<string, unknown> }
@@ -11,12 +11,20 @@ function store(root: MemoryRoot): Store {
 function validKey(key: string): void {
   if (!/^[a-z][a-zA-Z0-9-]*\/(?:[a-zA-Z0-9_-]|%[0-9a-f]{4})+$/.test(key)) throw new Error(`Invalid state key: ${key}`);
 }
-export function createMemoryPort(memory: () => MemoryRoot): StatePort {
+export function createMemoryPort(memory: () => MemoryRoot): RemovableStatePort {
   return {
     read(key) {
       validKey(key);
       const records = store(memory()).records;
       return Object.hasOwn(records, key) ? copyPlain(records[key]) : undefined;
+    },
+    remove(key, owner) {
+      validKey(key);
+      const records = store(memory()).records;
+      if (!Object.hasOwn(records, key)) return;
+      const record = records[key];
+      if (!record || typeof record !== 'object' || !('owner' in record) || record.owner !== owner) throw new Error('State deletion owner mismatch');
+      delete records[key];
     },
     write(key, value) {
       validKey(key);
