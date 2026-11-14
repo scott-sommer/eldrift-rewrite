@@ -1,3 +1,4 @@
+import { createNativeCourierRoutes } from './native-courier-routes';
 import { haulingOwner } from '../features/logistics/identity';
 import { maintainNativeCouriers, cancelCourierDemand } from './native-courier-population';
 import { observeEnergySupply } from '../adapters/screeps/energy-supply';
@@ -14,6 +15,7 @@ export { haulingOwner } from '../features/logistics/identity';
 export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>) {
   const definitions = { haul: createNativeHaulingTask(state, dispatch,
     { version: 'owned-logistics', blockedRooms: [], costs: {}, maximumRooms: 4 }) };
+  const observeRoutes = createNativeCourierRoutes(state);
   const execute = createTaskRunner(state, definitions, () => Game.time);
   const feature: RoomFeature = {
     id: 'logistics', urgency: 'urgent', interval: 1,
@@ -34,10 +36,11 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         generateEnergyRequests(state, view.name, Game.time, supply.sources, supply.sinks,
           { owner: haulingOwner(view.name), lifetime: 100, maximumQuantity: 200, maximumNewRequests: 10 });
       }
-      maintainNativeCouriers(state, Game.rooms[view.name]!, config.values);
+      maintainNativeCouriers(state, Game.rooms[view.name]!, config.values, observeRoutes);
     },
   };
   return { feature, definitions };
 }
+
 
 

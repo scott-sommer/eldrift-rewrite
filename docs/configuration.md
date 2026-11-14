@@ -16,4 +16,5 @@ logisticsEnabled (default false) enables execution of queued logistics requests 
 
 energyRequestsEnabled (default false) adds owned-room spawn/extension requests when logisticsEnabled is also enabled. Sources are containers and owned storage/terminals. Initial generation policy and remaining resource/fallback scope are documented in docs/logistics.md; courier population is not yet automatic.
 
-courierSpawningEnabled (default false) enables bootstrap courier demand when logisticsEnabled is active. courierBodyBudget defaults to 300 (integer 100..2600); the first courier is limited by currently available room energy. Native sizing is currently a pending-work bootstrap floor; measured route throughput integration remains unfinished. Disabling either logistics or courier spawning cancels its unissued spawn requests.
+courierSpawningEnabled (default false) enables bootstrap courier demand when logisticsEnabled is active. courierBodyBudget defaults to 300 (integer 100..2600); the first courier is limited by currently available room energy. Native sizing combines a pending-work bootstrap floor with static per-station route estimates for safe, visible owned-room container mining. Remote routing and measured traffic delays remain unfinished. Disabling either logistics or courier spawning cancels its unissued spawn requests.
+

@@ -1,3 +1,4 @@
+import type { createNativeCourierRoutes } from './native-courier-routes';
 import { stateKey } from '../persistence/state-key';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
@@ -12,8 +13,8 @@ export function cancelCourierDemand(state: StatePort, room: string): void {
   const queue = createSpawnQueue(state, room);
   for (const request of queue.list().filter(item => item.owner === haulingOwner(room))) queue.cancel(request.id, request.owner);
 }
-/** Bootstrap floor only; measured station route demand is a separate integration obligation. */
-export function maintainNativeCouriers(state: StatePort, room: Room, config: Readonly<RuntimeConfig>): void {
+/** Route capacity plus a pending-work bootstrap floor share the spawn queue. */
+export function maintainNativeCouriers(state: StatePort, room: Room, config: Readonly<RuntimeConfig>, observeRoutes: ReturnType<typeof createNativeCourierRoutes>): void {
   if (!config.courierSpawningEnabled) { cancelCourierDemand(state, room.name); return; }
   const owner = haulingOwner(room.name);
   const units = observePopulation().filter(unit => unit.room === room.name && unit.owner === owner)
@@ -22,7 +23,9 @@ export function maintainNativeCouriers(state: StatePort, room: Room, config: Rea
   const body = courier(budget)?.parts;
   if (!body) { cancelCourierDemand(state, room.name); return; }
   const work = createLogisticsRequests(state, room.name).pending(Game.time).length > 0;
-  applyCourierDemand(state, { owner, room: room.name, body, routes: [], utilization: 0.8,
-    minimumCapacity: work ? courierCapacity(body) : 0, travelTicks: 25, marginTicks: 10, priority: 1, requestLifetime: 100 }, units, Game.time);
+  const routes = observeRoutes(room, body);
+  applyCourierDemand(state, { owner, room: room.name, body, routes: routes.routes, utilization: 0.8,
+    minimumCapacity: work ? courierCapacity(body) : 0, travelTicks: routes.travelTicks, marginTicks: 10, priority: 1, requestLifetime: 100 }, units, Game.time);
 }
+
 
