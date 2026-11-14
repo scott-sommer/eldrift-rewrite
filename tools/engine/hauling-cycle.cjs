@@ -7,10 +7,12 @@ async function drainHaulingSink(server, index) {
 }
 function verifyHaulingCycle(memory) {
   const evidence = memory.haulingCycle;
-  assert.deepEqual(evidence.statuses, ['running', 'running', 'logistics-capacity-unavailable', 'running', 'running', 'done']);
+  assert.deepEqual(evidence.statuses, ['running', 'running', 'running', 'running', 'running', 'done']);
   assert.deepEqual(evidence.outstanding, [30, 30, 20, 20, 20, 0]);
   assert.deepEqual(evidence.stores, [[30, 0, 1990], [20, 10, 1990], [20, 0, 2000], [20, 0, 1980], [0, 20, 1980], [0, 0, 2000]]);
   assert.deepEqual(memory.eldrift.records['quantity-reservations/empire'].data.claims, []);
+  assert.deepEqual(memory.eldrift.records['tasks/hauler'].data.queue, []);
   assert.equal(memory.eldrift.records['logistics-requests/W0N1'].data.records[0].receipts.length, 2);
 }
 module.exports = { haulingCycleWorld: transferConfirmationWorld, drainHaulingSink, verifyHaulingCycle };
+

@@ -77,3 +77,12 @@ Explicit unfinished recovery: unknown transfer evidence returns transfer-evidenc
 Validation before full-engine run: 317 unit tests passed in 2.94s; quality passed (136 production files, zero Lizard violations); targeted engine evidence artifacts/engine-E4yhMp/evidence.json passed. Both unit and native cases verify waiting for sink capacity and completion cleanup; cancellation-with-cargo is covered by the unit cycle test.
 
 Full engine validation: all 35 cases passed in 33.42s.
+
+## Persistent hauling tasks
+Hauling work now has a validated payload (home, native unit identity and request) and a shared-task-framework behavior. Admission preserves existing queues, rejects inactive or endpoint-mismatched requests, and requires a caller-supplied unique task ID. Native unit identity prevents a replacement creep with the same name from inheriting the prior worker's hauling task. Existing request and quantity identities remain independent from task identity.
+
+Continuous blocked outcomes are retained as running work instead of spending the generic retry allowance on normal capacity waits. Explicit terminal failures and task expiry still use shared cleanup. Recovery-policy gaps remain: task expiry/cancellation with cargo and unknown evidence must feed salvage/retarget behavior before colony activation; preserving the task is not a complete recovery strategy.
+
+The native hauling-cycle scenario now admits and runs persisted haul tasks, reconstructs the behavior/runner every tick, and still verifies two deliveries around a full-sink wait. Completion leaves the task queue empty as well as releasing quantity claims. No separate hauling movement implementation was introduced.
+
+Validation: 318 unit tests passed in 2.99s; final quality checks passed (138 production files, zero Lizard violations); updated native hauling-cycle scenario passed (artifacts/engine-HKcAKR/evidence.json). Full engine suite was not rerun for this task binding increment. Automatic selection among requests, native endpoint observation composition, population policy and main-loop registration remain pending.
