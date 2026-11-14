@@ -254,3 +254,13 @@ Native --preservation creates no seeded requests and enables preservation withou
 Remaining: preservation-specific stale-source/decay reconciliation, active full-destination reassignment, retention/late-receipt accounting, and starvation/link policies are not yet complete. In this initial policy, an uncollectable residual preservation request can remain pending until its100-tick expiry; no receipt is invented for it. Tests above do not establish full ED-21 parity.
 
 Validation: full unit suite passed356 tests across110 files in3.28s before the final source-eligibility adapter test; targeted preservation, adapter and smoke then passed4 tests in196ms. Final quality passed (159 production files,156 test files,zero Lizard violations). All51 engine checks passed in55.37s (artifacts/engine-suite.json), including error and timeout sentinels.
+
+## Preservation decay reconciliation
+
+Source reconciliation is now shared by energy supply and preservation through a resource-aware helper. Stock identity includes both source ID and resource, so energy remaining in a tombstone cannot keep a depleted mineral request alive. Each policy reconciles only its owner; energy additionally filters to energy requests. Active request-pool reservations protect collection/delivery. Unreserved missing/depleted sources and infeasible minimum batches cancel promptly without invented receipts. Reservation pools are indexed once per reconciliation pass.
+
+This supersedes the initial preservation limitation above requiring residual demand to wait for100-tick expiry. Complete visible-room source observations are still required. Full-destination reassignment, other lifecycle/accounting gaps and remaining ED-21 parity remain outstanding.
+
+Native --preservation-decay activates the room before any creep intent, then lets a tombstone decay naturally into a hydrogen drop. The original source request cancels; the replacement drop yields29 hydrogen after native decay, and only that29 is credited. The remaining1-unit demand cancels, with no tasks/claims left. Evidence: artifacts/engine-1PeLaD/evidence.json. Earlier fixture attempts did not activate the idle room, allowing withdrawal before decay; activation corrected the intended timing. Existing --source-loss also passed, artifacts/engine-Qumiav/evidence.json.
+
+Validation: quality passed (160 production files,156 test files,zero Lizard violations);359 unit tests across111 files passed3.28s; smoke passed154ms; both relevant native scenarios passed. Full engine suite now includes52 scenarios and was not rerun this increment.

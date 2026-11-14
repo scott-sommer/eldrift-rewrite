@@ -1,19 +1,7 @@
 import type { StatePort } from '../../persistence/versioned-state';
-import { createQuantityReservations } from '../../persistence/quantities/store';
-import { logisticsPool } from '../../capabilities/logistics/request';
-import { createLogisticsRequests } from './request-store';
-/** Complete owned-room observations may retire abandoned supply, while preserving reserved deliveries. */
+import { reconcileSupplySources } from './reconcile-supply-sources';
+/** Energy policy cannot retire another resource's work even when it shares the same owner. */
 export function reconcileEnergySources(state: StatePort, room: string, owner: string, tick: number,
   sources: readonly { id: string; amount: number; minimumBatch?: number }[]): number {
-  const queue = createLogisticsRequests(state, room);
-  const claims = createQuantityReservations(state).list(tick);
-  const stocked = new Map(sources.filter(source => source.amount > 0).map(source => [source.id, source.minimumBatch ?? 0]));
-  let cancelled = 0;
-  for (const request of queue.pending(tick)) {
-    if (request.owner !== owner || request.resource !== 'energy' || (stocked.has(request.source) && request.quantity >= stocked.get(request.source)!)) continue;
-    const pool = logisticsPool('request', request.owner, request.id);
-    if (claims.some(claim => claim.allocations.some(item => item.pool === pool))) continue;
-    if (queue.cancel(owner, request.id)) cancelled++;
-  }
-  return cancelled;
+  return reconcileSupplySources(state, room, owner, tick, sources.map(source => ({ ...source, resource: 'energy' })), 'energy');
 }
