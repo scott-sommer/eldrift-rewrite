@@ -12,7 +12,7 @@ export function createNativePathSearch(matrix: Matrices): PathSearch {
       pos: new RoomPosition(destination.x, destination.y, destination.room), range,
     }, {
       plainCost: profile.plainCost, swampCost: profile.swampCost,
-      maxOps: profile.maxOps, maxRooms: profile.maxRooms,
+      maxOps: profile.maxOps, maxRooms: roomBudget(profile.maxRooms, allowed),
       roomCallback: room => allowed && !allowed.has(room) ? false : matrix(room, profile) ?? true,
     });
     const path = result.path.map(position => ({ room: position.roomName, x: position.x, y: position.y }));
@@ -20,4 +20,8 @@ export function createNativePathSearch(matrix: Matrices): PathSearch {
     const complete = !result.incomplete && withinRange(end, destination, range);
     return { status: complete ? 'complete' : 'incomplete', path, cost: result.cost, operations: result.ops };
   };
+}
+
+function roomBudget(maximum: number, allowed: ReadonlySet<string> | undefined): number {
+  return Math.min(maximum, allowed?.size ?? maximum);
 }

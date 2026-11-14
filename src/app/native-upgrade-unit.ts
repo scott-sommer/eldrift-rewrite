@@ -8,11 +8,12 @@ import { logisticsPool } from '../capabilities/logistics/request';
 import { upgradeOwner } from '../features/work/upgrade-identity';
 /** Station ownership is independent from storage collection and controller work. */
 export function runUpgradeUnit(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, creep: Creep,
-  room: string, station: Position, layout: NativeUpgradeLayout): void {
+  room: string, station: Position, layout: NativeUpgradeLayout, synchronized = false): void {
   const owner = upgradeOwner(room);
   const actions = createCreepActions(creep, owner, dispatch.arbiter);
   if (!creep.pos.isEqualTo(station.x, station.y) || creep.room.name !== room) {
-    dispatch.movement.move(creep, { owner, destination: station, range: 0, group: owner,
+    dispatch.movement.move(creep, { owner, destination: station, range: 0,
+      ...(synchronized ? { group: owner } : {}),
       policy: { version: 'upgrade-stations', maximumRooms: 16, blockedRooms: [], costs: {} } });
   }
   if (creep.pos.inRangeTo(layout.controller, 3) && creep.store.energy > 0) actions.upgrade(layout.controller);

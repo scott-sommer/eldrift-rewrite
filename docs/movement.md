@@ -88,3 +88,12 @@ createGameLoop now accepts an explicit afterTick hook after scheduled feature ex
 Validation: 208 tests passed in2.48s; quality/Lizard passed with zero violations. Tests cover feature-before-dispatch ordering, feature/dispatch exceptions, repeated calls, next-tick recovery and blocked startup. The actual-engine recovery fixture now registers its planner as a scheduled feature and dispatches through afterTick; it invokes the feature loop twice per tick and still passes the six-tick denial/repath/arrival assertions. The main composition has no gameplay request producers yet and retains the default no-op hook until the complete Screeps movement service is registered. Cross-room exits and the production service composition remain outstanding.
 
 
+
+
+## Congestion detour persistence and specialist assembly
+
+Native specialist ownership-loss tests exposed shortest-path oscillation: a unit moved one step around congestion, its failure counter reset, and the following step returned toward the original blocker. createMovementDetours retains occupancy-aware replanning for the same destination and range after congestion. Arrival forgets it; changing goals discards it; a100tick idle expiry and1000entry bounded cache prevent retained dead-unit state. Each active detour refreshes expiry. Fatigue still suppresses movement; traffic continues to reject stationary occupied destinations. This state is ephemeral and can be rebuilt after a code reset.
+
+Atomic traffic groups are for assembled specialist ring movement, not arbitrary independent travel. Ring execution now groups movements only when the whole roster is physically on ring stations; parking and return/assembly use ordinary dependency-aware traffic dispatch. Native ownership-loss/return verifies every original station is recovered.
+
+Native path search maxRooms is capped by the size of the allowed corridor as well as its mobility profile. This prevents single-room paths from exploring outside their permitted region; it corrected native 'Could not load terrain data' failures encountered on blocked detours in the fixture. Contract coverage asserts maxRooms1 for a one-room corridor even when the profile permits16; full native regression covers multi-room navigation.

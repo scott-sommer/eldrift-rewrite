@@ -18,7 +18,7 @@ test('only consecutive accepted moves without observed progress count as blockag
   expect(progress.observe('unit-id', position, 8, true)).toBe(0);
   expect(createMovementProgress().observe('unit-id', position, 9, true)).toBe(0);
 });
-test('repeated blockage requests an occupancy-aware replan and resets after progress', () => {
+test('congestion replanning survives intermediate progress and ends at arrival', () => {
   let tick = 1;
   let searches = 0;
   const avoidance: boolean[] = [];
@@ -35,9 +35,11 @@ test('repeated blockage requests an occupancy-aware replan and resets after prog
   for (tick = 1; tick <= 3; tick++) expect(navigate('unit-id', { ...view, tick }).status).toBe('running');
   expect(avoidance).toEqual([false, false, true]);
   expect(searches).toBe(2);
-  expect(navigate('unit-id', { ...view, tick: 4, position: view.destination })).toEqual({ status: 'done' });
+  expect(navigate('unit-id', { ...view, tick: 4, position: { ...position, x: 21 } }).status).toBe('running');
+  expect(avoidance).toEqual([false, false, true, true]);
+  expect(navigate('unit-id', { ...view, tick: 5, position: view.destination })).toEqual({ status: 'done' });
   expect(navigate('damaged', { ...view, tick: 4 }, false)).toEqual({ status: 'failed', reason: 'no-active-move' });
   expect(navigate('arrived-damaged', { ...view, tick: 4, position: view.destination }, false)).toEqual({ status: 'done' });
-  expect(avoidance).toHaveLength(3);
+  expect(avoidance).toHaveLength(4);
 });
 

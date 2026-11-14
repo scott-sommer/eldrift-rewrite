@@ -18,9 +18,9 @@ export function createRuntime(features: readonly RoomFeature[], ports: RuntimePo
         configs.set(name, config);
         return config.values.allies;
       });
-      const jobs: ScheduledWork[] = world.ownedRooms.flatMap(room => {
+      const jobs: ScheduledWork[] = [...world.rooms.values()].flatMap(room => {
         const config = configs.get(room.name)!;
-        return features.map(feature => ({
+        return features.filter(feature => room.owned || feature.scope === 'visible').map(feature => ({
           id: `${room.name}/${feature.id}`, room: room.name,
           urgency: feature.urgency, interval: feature.interval, background: config.values,
           run: () => feature.run({ world, room, config }),

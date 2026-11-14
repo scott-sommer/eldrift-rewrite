@@ -69,3 +69,26 @@ test('repeated invocation in one tick reuses observations and does not repeat ac
   runtime.tick();
   expect([scans, actions]).toEqual([2, 2]);
 });
+
+test('visible scope survives ownership loss without scheduling ordinary economy in foreign rooms', () => {
+  let owned = true, visible = true, tick = 1;
+  const seen: string[] = [];
+  const runtime = createRuntime([
+    { id: 'economy', urgency: 'urgent', interval: 1, run: () => { seen.push('owned'); } },
+    { id: 'parking', scope: 'visible', urgency: 'urgent', interval: 1, run: () => { seen.push('visible'); } },
+  ], {
+    observations: { visibleRooms: () => visible ? ['target'] : [], observeRoom: name => ({ name, owned, units: [], structures: [] }) },
+    config: () => ({}), clock: () => ({ tick, tickLimit: 20, bucket: 10000 }), usedCpu: () => 0, reportFailure: () => {},
+  });
+  runtime.tick();
+  expect(seen).toEqual(['owned', 'visible']);
+  owned = false; tick++;
+  runtime.tick();
+  expect(seen).toEqual(['owned', 'visible', 'visible']);
+  visible = false; tick++;
+  runtime.tick();
+  expect(seen).toHaveLength(3);
+  visible = true; owned = true; tick++;
+  runtime.tick();
+  expect(seen.slice(3)).toEqual(['owned', 'visible']);
+});

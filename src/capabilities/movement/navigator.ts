@@ -1,3 +1,4 @@
+import { createMovementDetours } from './detour';
 import { createMovementProgress } from './progress';
 import { movementStep } from './step';
 import type { MovementView, MovementPorts, MovementIntent, Position } from './step';
@@ -15,16 +16,18 @@ interface NavigationPorts {
 export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
   if (!Number.isSafeInteger(repathAfter) || repathAfter < 1) throw new Error('Invalid repath threshold');
   const progress = createMovementProgress();
+  const detours = createMovementDetours();
   const navigate = (unit: string, view: MovementView, mobile = true) => {
     const failures = progress.observe(unit, view.position, view.tick, mobile && view.fatigue === 0);
     if (withinRange(view.position, view.destination, view.range)) {
       progress.forget(unit);
+      detours.forget(unit);
       return { status: 'done' as const };
     }
     if (!mobile) return { status: 'failed' as const, reason: 'no-active-move' };
     const result = movementStep(view, {
       route: () => {
-        const avoidUnits = failures >= repathAfter;
+        const avoidUnits = detours.avoid(unit, view, failures >= repathAfter);
         const request = ports.request(view, avoidUnits, unit);
         if (avoidUnits) ports.paths.invalidate(request);
         const path = ports.paths.find(request);

@@ -8,6 +8,7 @@ export interface FeatureContext {
 }
 export interface RoomFeature {
   readonly id: string;
+  readonly scope?: 'owned' | 'visible';
   readonly urgency: 'urgent' | 'background';
   readonly interval: number;
   run(context: FeatureContext): void;

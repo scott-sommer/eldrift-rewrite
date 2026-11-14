@@ -25,9 +25,10 @@ export function createNativeUpgradeRoom(state: StatePort, dispatch: ReturnType<t
     { ...defaultUpgradeRotation, empireReserve: config.values.upgradeRoomEmpireReserve, perOtherRoomReserve: config.values.upgradeRoomOtherReserve });
     boosts.consume(settled);
     dispatch.activate();
+    const synchronized = roster.every(creep => layout.stations.some(position => creep.pos.roomName === position.room && creep.pos.isEqualTo(position.x, position.y)));
     for (const slot of plan.state.slots) {
       const creep = roster.find(unit => unit.id === slot.unit)!;
-      runUpgradeUnit(state, dispatch, creep, room.name, layout.stations[slot.slot]!, layout);
+      runUpgradeUnit(state, dispatch, creep, room.name, layout.stations[slot.slot]!, layout, synchronized);
       if (plan.renew === creep.id && creep.pos.isNearTo(layout.spawn)) dispatch.structures.renew(layout.spawn, creep, upgradeOwner(room.name));
       if (plan.boost === creep.id && creep.pos.isNearTo(layout.lab)) {
         boosts.issue(Game.time, { id: creep.id, boosted: boostedWork(creep) }, () => dispatch.structures.boost(layout.lab, creep, upgradeOwner(room.name)));

@@ -14,3 +14,8 @@ Production entry point now invokes createGameLoop with current-tick Screeps adap
 Latest full validation: 83 tests passed in 1.85s; quality passed; bundle check passed. No gameplay features are registered. Earlier paragraphs describing scaffold-only main wiring are historical and superseded by this entry.
 
 Repeated runtime calls in the same tick now reuse the completed result, avoiding repeated scans/actions. Configuration changes therefore take effect on the next tick. Deterministic staggering is tested across different registration orders. Full suite: 85 passed in 1.84s; quality and bundle checks passed before the test-only clock correction. A diagnostic scenario was corrected to advance its tick when changing configuration; all tests then passed. Runtime acceptance review remains separate from gameplay/engine parity.
+
+
+## Explicit visible-room lifecycle scope
+
+RoomFeature.scope is optional and defaults to owned-room execution. Features explicitly declaring scope: 'visible' are scheduled for successfully observed visible rooms, using that room's resolved configuration and the same failure isolation/CPU scheduler. Ownership loss removes ordinary economy jobs but retains visible lifecycle jobs; loss of visibility removes both. Observation failures do not authorize work on missing rooms. upgrade-parking is the first consumer, allowing surviving specialists to clear an unowned controller even when the player has no remaining owned rooms. Tests cover owned→visible-unowned→unseen→owned transitions.
