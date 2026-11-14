@@ -18,6 +18,10 @@ async function linkContentionWorld(server, bot) {
 }
 function verifyLinkContention(memory) {
   assert.deepEqual(memory.linkContention, [[800, 0, 0, 0, 0], [800, 0, 0, 50, 0], [0, 777, 50, 0, 0], [0, 777, 0, 0, 50]]);
+  const linkReceipts = memory.eldrift.records['link-transfers/W0N1'].data.entries.filter(entry => entry.status === 'confirmed');
+  assert.equal(linkReceipts.length, 1);
+  assert.equal(linkReceipts[0].receipt.sent, 750);
+  assert.equal(linkReceipts[0].receipt.receivedAfterLoss, 727);
   const records = memory.eldrift.records['logistics-requests/W0N1'].data.records;
   assert.equal(records.length, 2);
   for (const record of records) assert.deepEqual(record.receipts.map(receipt => receipt.amount), [50]);

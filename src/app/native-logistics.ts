@@ -1,3 +1,4 @@
+import { settleNativeLinkTransfers } from './native-link-accounting';
 import { generateNativeStoreBalance } from './native-store-balance';
 import { generateNativeLogisticsRequests } from './native-logistics-requests';
 import { generateNativeLinkService } from './native-link-service';
@@ -32,6 +33,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         .sort((a, b) => a.name.localeCompare(b.name));
 
       dispatch.activate();
+      settleNativeLinkTransfers(state, Game.rooms[view.name]!);
       if (config.values.linksEnabled) runNativeLinks(state, Game.rooms[view.name]!, dispatch.arbiter, config.values);
       generateNativeLinkService(state, Game.rooms[view.name]!, config.values);
       generateNativeStoreBalance(state, Game.rooms[view.name]!, config.values);

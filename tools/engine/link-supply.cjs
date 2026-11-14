@@ -9,6 +9,13 @@ async function linkSupplyWorld(server, bot) {
   }
 }
 function verifyLinkSupply(memory) {
+  const journal = memory.eldrift.records['link-transfers/W0N1'].data;
+  assert.equal(journal.discarded, 0);
+  assert.deepEqual(journal.entries.filter(entry => entry.status === 'confirmed').map(entry => ({ ...entry.receipt, elapsed: entry.receipt.observedAt - entry.issuedAt, observedAt: undefined })), [
+    { observedAt: undefined, elapsed: 1, sent: 800, receivedAfterLoss: 776 },
+    { observedAt: undefined, elapsed: 1, sent: 24, receivedAfterLoss: 23 },
+  ]);
+  assert.ok(journal.entries.every(entry => entry.request.resource === 'energy' && entry.request.owner === 'links:W0N1'));
   assert.deepEqual(memory.linkSupply, [[800, 800, 0], [0, 800, 776], [0, 776, 799]]);
 }
 module.exports = { linkSupplyWorld, verifyLinkSupply };
