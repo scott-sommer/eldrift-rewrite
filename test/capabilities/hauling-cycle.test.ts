@@ -1,0 +1,45 @@
+import { expect, test } from 'vitest';
+import { runHauling } from '../../src/app/hauling-cycle';
+import { createTransferJournal } from '../../src/features/logistics/transfer-journal';
+import { createLogisticsRequests } from '../../src/features/logistics/request-store';
+import { createQuantityReservations } from '../../src/persistence/quantities/store';
+import type { Envelope } from '../../src/persistence/versioned-state';
+const request = { id: 'fill', owner: 'economy', source: 'source', sink: 'sink', resource: 'energy', quantity: 50, priority: 0, expiresAt: 100 };
+const binding = { home: 'room', unit: 'unit-id', holder: 'hauler', scope: 'task:hauler', request };
+function fixture() {
+  const records = new Map<string, Envelope>();
+  const state = { read: (key: string) => records.get(key), write: (key: string, value: Envelope) => { records.set(key, JSON.parse(JSON.stringify(value)) as Envelope); } };
+  createLogisticsRequests(state, 'room').submit(request, 1);
+  return state;
+}
+test('assigned hauling request collects and delivers in bounded batches across reconstruction and a full sink', () => {
+  const state = fixture();
+  const issued: string[] = [];
+  const samples = [[1, 0, 100, 30], [2, 30, 70, 30], [3, 0, 70, 0], [4, 0, 70, 20], [5, 20, 50, 20], [6, 0, 50, 0]];
+  const outcomes = samples.map(([tick, cargo, sourceStock, sinkFree]) => runHauling(state, binding,
+    { tick: tick!, cargo: cargo!, freeCargo: 50 - cargo!, sourceStock: sourceStock!, sinkFree: sinkFree!, sinkPool: 'sink-capacity' }, {
+      observe: attempt => ({ tick: tick!, cargo: cargo!, events: [{ source: attempt.kind === 'withdraw' ? 'source' : 'unit-id',
+        target: attempt.kind === 'withdraw' ? 'unit-id' : 'sink', resource: 'energy', amount: attempt.amount }] }),
+      execute: (_request, phase, amount, id, requestKey) => {
+        const kind = phase === 'collect' ? 'withdraw' : 'transfer';
+        expect(createTransferJournal(state, 'unit-id').begin({ id, requestKey, unit: 'unit-id', target: phase === 'collect' ? 'source' : 'sink',
+          resource: 'energy', room: 'room', kind, tick: tick!, amount, cargoBefore: cargo! })).toBe(true);
+        issued.push(phase + ':' + amount);
+        return { status: 'running' };
+      },
+    }));
+  expect(issued).toEqual(['collect:30', 'deliver:30', 'collect:20', 'deliver:20']);
+  expect(outcomes[2]).toMatchObject({ status: 'blocked', reason: 'logistics-capacity-unavailable' });
+  expect(outcomes.at(-1)).toEqual({ status: 'done' });
+  expect(createLogisticsRequests(state, 'room').pending(6)).toEqual([]);
+  expect(createQuantityReservations(state).list(6)).toEqual([]);
+});
+test('cancelled requests with cargo are retained for recovery rather than silently completed', () => {
+  const state = fixture();
+  createLogisticsRequests(state, 'room').cancel('economy', 'fill');
+  const outcome = runHauling(state, binding, { tick: 2, cargo: 20, freeCargo: 30, sourceStock: 0, sinkFree: 100, sinkPool: 'sink-capacity' }, {
+    observe: () => ({ tick: 2 }), execute: () => { throw new Error('Must not issue'); },
+  });
+  expect(outcome).toMatchObject({ status: 'blocked', reason: 'orphaned-hauling-cargo' });
+});
+
