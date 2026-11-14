@@ -21,9 +21,10 @@ async function specialistMiningWorld(server, bot) {
 }
 function verifySpecialistMining(memory) {
   const evidence = memory.specialistMining;
-  assert.deepEqual(evidence.linkEnergy, [0, 50, 50]);
-  assert.deepEqual(evidence.mineralAmount, [0, 1, 1]);
+  assert.deepEqual(evidence.linkEnergy, [0, 50, 50, 50, 50, 50, 50, 50]);
+  assert.deepEqual(evidence.mineralAmount, [0, 1, 1, 1, 1, 1, 1, 2]);
   assert.equal(evidence.mineralOutcomes[0], 'running');
-  assert.deepEqual(evidence.mineralOutcomes.slice(1), ['extractor-cooldown', 'extractor-cooldown']);
+  assert.deepEqual(evidence.mineralOutcomes.slice(1), [...Array(5).fill('extractor-cooldown'), 'running', 'extractor-cooldown']);
 }
 module.exports = { specialistMiningWorld, verifySpecialistMining };
+

@@ -97,7 +97,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  const tickCount = process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
+  const tickCount = process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
@@ -148,6 +148,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
