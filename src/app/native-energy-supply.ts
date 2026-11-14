@@ -1,3 +1,4 @@
+import { observeReclamationSupply } from '../adapters/screeps/reclamation-supply';
 import { observeRecoverableResources } from '../adapters/screeps/recoverable-resources';
 import { preserveResources } from '../features/logistics/preserve-resources';
 import type { StatePort } from '../persistence/versioned-state';
@@ -14,7 +15,7 @@ export function generateNativeEnergyRequests(state: StatePort, room: Room, units
   const pickupCapacity = capacities.length ? Math.min(...capacities) : planned ? courierCapacity(planned.parts) : 0;
   if (config.energyRequestsEnabled) {
     const supply = observeEnergySupply(room, pickupCapacity, config.towerRefillFraction);
-    generateEnergyRequests(state, room.name, Game.time, supply.sources, supply.sinks,
+    generateEnergyRequests(state, room.name, Game.time, [...supply.sources, ...observeReclamationSupply(room, config.energyReclamationEnabled)], supply.sinks,
       { owner: haulingOwner(room.name), lifetime: 100, maximumQuantity: Math.max(200, pickupCapacity), maximumNewRequests: 10 });
   }
   if (config.preservationEnabled) {

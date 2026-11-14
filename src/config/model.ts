@@ -9,6 +9,7 @@ export interface RuntimeConfig {
   courierSpawningEnabled: boolean;
   courierBodyBudget: number;
   energyRequestsEnabled: boolean;
+  energyReclamationEnabled: boolean;
   energyBankingEnabled: boolean;
   storeBalancingEnabled: boolean;
   storeBalanceMinimumEnergyFraction: number;
@@ -40,6 +41,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   courierSpawningEnabled: false,
   courierBodyBudget: 300,
   energyRequestsEnabled: false,
+  energyReclamationEnabled: false,
   energyBankingEnabled: false,
   storeBalancingEnabled: false,
   storeBalanceMinimumEnergyFraction: 0.75,

@@ -3,7 +3,7 @@ import type { StatePort } from '../../persistence/versioned-state';
 import type { Position } from '../../capabilities/movement/step';
 import { logisticsPool } from '../../capabilities/logistics/request';
 import { createLogisticsRequests } from './request-store';
-export interface EnergyEndpoint { id: string; position: Position; amount: number; priority: number; minimumBatch?: number }
+export interface EnergyEndpoint { id: string; position: Position; amount: number; priority: number; minimumBatch?: number; allowedSinks?: readonly string[] }
 export interface EnergySupplyPolicy { owner: string; lifetime: number; maximumQuantity: number; maximumNewRequests: number }
 /** Observed deficits become bounded requests; existing work retains its identity and priority. */
 export function generateEnergyRequests(state: StatePort, room: string, tick: number,
@@ -30,7 +30,7 @@ export function generateEnergyRequests(state: StatePort, room: string, tick: num
   return created;
 }
 function nearestSource(sources: readonly EnergyEndpoint[], sink: EnergyEndpoint, stock: ReadonlyMap<string, number>, maximum: number) {
-  return sources.filter(source => source.id !== sink.id && (stock.get(source.id) ?? 0) > 0 && fitsBatch(source, sink, stock, maximum))
+  return sources.filter(source => (source.allowedSinks === undefined || source.allowedSinks.includes(sink.id)) && source.id !== sink.id && (stock.get(source.id) ?? 0) > 0 && fitsBatch(source, sink, stock, maximum))
     .sort((a, b) => a.priority - b.priority || distance(a, sink) - distance(b, sink) || a.id.localeCompare(b.id))[0];
 }
 function distance(a: EnergyEndpoint, b: EnergyEndpoint): number {

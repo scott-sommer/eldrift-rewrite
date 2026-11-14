@@ -30,3 +30,9 @@ For idle mineral cargo recovery, `terminalFreeReserve` controls terminal prefere
 `storeBalancingEnabled` defaults false. Normal balancing uses `terminalEnergyLow`20,000, `terminalEnergyHigh`30,000 and `storageEnergyReserve`70,000; low must be strictly below high. It fills low terminal energy, exports stored minerals and drains surplus terminal energy in bounded batches, respecting destination capacity headroom. One pending balancing service request prevents opposite simultaneous work within this policy.
 
 `storeBalanceMinimumEnergyFraction` defaults to0.75 and accepts0–1. Normal balancing starts only when room spawn/extension energy is strictly above that fraction of positive capacity. Low energy retires unassigned balancing requests before courier admission; already reserved cargo finishes. A value of1 suppresses new normal balancing work.
+
+### Explicit recovery donors
+
+`energyReclamationEnabled` defaults to false and takes effect with `energyRequestsEnabled` and `logisticsEnabled`. It permits energy in owned, active labs and links to supply owned, active spawns/extensions. Donors cannot supply towers or durable stores through this policy; minerals are never reclaimed. Normal energy sources remain preferred. This is an explicit donor capability, not automatic starvation detection: ED-22 still owns recovery entry/exit hysteresis, reassignment and coordination with industry/link policy.
+
+Turning it off stops further donor generation. The ordinary request reconciliation retires unreserved donor requests; already admitted work may finish safely. Generation currently follows courier execution, so disabling is not an immediate pre-admission cancellation barrier. Shared quantity claims prevent link transfers or other couriers from spending already reserved donor energy; they do not guarantee recovery wins scheduling priority over native links.
