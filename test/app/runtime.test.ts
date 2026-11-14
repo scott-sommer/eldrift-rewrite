@@ -53,3 +53,19 @@ test('synchronizing room work each tick preserves fairness under a one-job CPU a
   runtime.tick();
   expect(seen.at(-1)).toBe('c');
 });
+
+test('repeated invocation in one tick reuses observations and does not repeat actions', () => {
+  let scans = 0;
+  let actions = 0;
+  let tick = 10;
+  const runtime = createRuntime([{ id: 'action', urgency: 'urgent', interval: 1, run: () => { actions++; } }], {
+    observations: { visibleRooms: () => ['a'], observeRoom: name => { scans++; return { name, owned: true, units: [], structures: [] }; } },
+    config: () => ({}), clock: () => ({ tick, tickLimit: 20, bucket: 10000 }), usedCpu: () => 0, reportFailure: () => {},
+  });
+  const first = runtime.tick();
+  expect(runtime.tick()).toBe(first);
+  expect([scans, actions]).toEqual([1, 1]);
+  tick++;
+  runtime.tick();
+  expect([scans, actions]).toEqual([2, 2]);
+});

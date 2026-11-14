@@ -6,9 +6,11 @@ import type { ScheduledWork } from '../core/scheduling/model';
 import type { RoomFeature, RuntimePorts, RuntimeResult } from './runtime-model';
 export function createRuntime(features: readonly RoomFeature[], ports: RuntimePorts) {
   const scheduler = createScheduler([], ports, 0);
+  let last: RuntimeResult | undefined;
   return {
     tick(): RuntimeResult {
       const clock = ports.clock();
+      if (last?.world.tick === clock.tick) return last;
       const empire = resolveConfig(ports.config(), clock.tick);
       const configs = new Map<string, EffectiveConfig>();
       const world = observeTick(clock.tick, ports.observations, name => {
@@ -26,8 +28,10 @@ export function createRuntime(features: readonly RoomFeature[], ports: RuntimePo
       });
       scheduler.synchronize(jobs, clock.tick);
       const failures = scheduler.run({ ...clock, ...empire.values });
-      return { world, failures };
+      last = { world, failures };
+      return last;
     },
   };
 }
+
 

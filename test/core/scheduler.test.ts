@@ -51,3 +51,18 @@ test('diagnostic sink failure does not prevent independent work or erase the ori
   expect(scheduler.run(budget)[0]?.error).toBe(error);
   expect(ran).toBe(true);
 });
+
+test('staggering is deterministic across construction order and avoids running every job at startup', () => {
+  function schedule(ids: string[]) {
+    const calls: string[] = [];
+    let tick = 0;
+    const work = ids.map(id => ({ id, urgency: 'background' as const, interval: 3, run: () => { calls.push(`${tick}:${id}`); } }));
+    const scheduler = createScheduler(work, { usedCpu: () => 0, reportFailure: () => {} }, 0);
+    for (tick = 0; tick < 6; tick++) scheduler.run({ ...budget, tick });
+    return calls;
+  }
+  const calls = schedule(['a', 'b', 'c']);
+  expect(calls).toEqual(schedule(['c', 'a', 'b']));
+  expect(calls).toHaveLength(6);
+  expect(calls.filter(call => call.startsWith('0:'))).toHaveLength(1);
+});
