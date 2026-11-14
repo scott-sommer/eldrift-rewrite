@@ -1,0 +1,47 @@
+import { openState, saveState, type StatePort, type StateSchema } from '../../persistence/versioned-state';
+import { stateKey } from '../../persistence/state-key';
+import { confirmGroundRelease, validateGroundAttempt, type GroundAttempt, type GroundObservation, type GroundConfirmation } from '../../capabilities/logistics/ground-confirmation';
+interface GroundJournal { attempt: GroundAttempt | null; result: GroundConfirmation | null; acknowledged: boolean }
+const schema: StateSchema<GroundJournal> = {
+  owner: 'ground-delivery', version: 1, migrations: {},
+  initial: () => ({ attempt: null, result: null, acknowledged: true }), valid,
+};
+export function createGroundJournal(port: StatePort, unit: string) {
+  const key = stateKey('ground-delivery', unit);
+  const read = () => openState(port, key, schema);
+  return {
+    read,
+    begin(attempt: GroundAttempt): boolean {
+      validateGroundAttempt(attempt);
+      if (attempt.unit !== unit) throw new Error('Ground journal unit mismatch');
+      const previous = read();
+      if (previous.attempt && (!previous.acknowledged || previous.attempt.tick >= attempt.tick)) return false;
+      saveState(port, key, schema, { attempt, result: null, acknowledged: false });
+      return true;
+    },
+    settle(observation: GroundObservation, decayDivisor: number): GroundConfirmation | null {
+      const current = read();
+      if (!current.attempt || current.result) return current.result;
+      const result = confirmGroundRelease(current.attempt, observation, decayDivisor);
+      if (result.status !== 'waiting') saveState(port, key, schema, { ...current, result });
+      return result;
+    },
+    acknowledge(id: string): void {
+      const current = read();
+      if (current.attempt?.id !== id || current.result?.status !== 'released') throw new Error('Ground release is not confirmed');
+      saveState(port, key, schema, { ...current, acknowledged: true });
+    },
+  };
+}
+function valid(value: unknown): value is GroundJournal {
+  if (!value || typeof value !== 'object') return false;
+  const journal = value as GroundJournal;
+  if (typeof journal.acknowledged !== 'boolean') return false;
+  if (journal.attempt === null) return journal.result === null && journal.acknowledged;
+  try { validateGroundAttempt(journal.attempt); } catch { return false; }
+  return validResult(journal.result, journal.attempt.amount) && (!journal.acknowledged || journal.result?.status === 'released');
+}
+function validResult(result: GroundConfirmation | null, amount: number): boolean {
+  if (result === null) return true;
+  return !!result && (result.status === 'unknown' || result.status === 'released' && result.amount === amount);
+}
