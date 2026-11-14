@@ -81,3 +81,13 @@ test('a seven-member renewal rotates every slot exactly once before the next tai
   expect(next.renew).toBe('unit5');
   expect(next.boost).toBeUndefined();
 });
+
+test('retirement prevents late rotation after an already-issued renewal crosses the completion threshold', () => {
+  const started = planUpgradeRotation(initialUpgradeRotation('W0N1'), observation(1)).state;
+  const retired = planUpgradeRotation(started, { ...observation(2, 1499), empireEnergy: 0 }).state;
+  const recovered = planUpgradeRotation(retired, observation(3, 1498));
+  expect(recovered.rotated).toBe(false);
+  expect(recovered.renew).toBeUndefined();
+  expect(recovered.boost).toBeUndefined();
+  expect(recovered.state.slots).toEqual([{ unit: 'old', slot: 6 }]);
+});

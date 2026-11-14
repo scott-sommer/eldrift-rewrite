@@ -34,6 +34,7 @@ function sameRoster(previous: UpgradeRotationState, ids: ReadonlySet<string>): b
   return previous.slots.length === ids.size && previous.slots.every(slot => ids.has(slot.unit));
 }
 function finishRenewal(state: UpgradeRotationState, members: readonly UpgradeMember[], threshold: number): boolean {
+  if (state.renewing && state.retiring.includes(state.renewing)) return false;
   if (!state.renewing || (members.find(member => member.id === state.renewing)?.ttl ?? 0) <= threshold) return false;
   if (!state.boosting.includes(state.renewing)) state.boosting.push(state.renewing);
   state.renewing = null;
