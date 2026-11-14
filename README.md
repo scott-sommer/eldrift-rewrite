@@ -31,3 +31,7 @@ TypeScript 7.0.2, esbuild 0.28.2, Vitest 5.1.0 and @types/screeps 3.4.0 are pinn
 npm run check:boundaries parses every production TypeScript file and rejects layer violations, external/aliased imports, computed module loading and game-global references in core. test/tooling is exercised by npm test; use npm test -- test/tooling/boundaries.test.mjs for targeted checks. Fixtures stay under ignored artifacts/.
 
 The checker uses the pinned typescript-ast alias for TypeScript 6's JavaScript compiler API; the TypeScript 7 compiler package did not expose the required createSourceFile/ScriptTarget API in the compatibility check. Type checking remains on TypeScript 7. This is a development-only parser dependency.
+
+## Mapping a runtime stack position
+
+Retain dist/main.js.map from the exact deployed build. Run npm run trace -- dist/main.js.map LINE COLUMN using the one-based generated line/column from the stack. The tool prints the original TypeScript file, line and column. It rejects unmapped/invalid positions. A different build's map is not valid evidence. The tooling test bundles a throwing TypeScript function, executes it, and maps its real exception location back to line 2. Mapping is local; no diagnostic library is shipped to the bot.
