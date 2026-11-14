@@ -106,3 +106,8 @@ Validation: targeted mining-replacement scenario passed (artifacts/engine-b9Kuxu
 ## Overlapping replacement contention
 Strengthened the production replacement scenario by extending incumbent life beyond replacement birth. The born replacement must spend at least five observed ticks waiting while the incumbent exists, with no replacement-held reservation and no tile overlap. After incumbent death it acquires the released lease and harvests; demand still creates exactly one replacement and leaves no queued excess.
 Validation: targeted25-tick engine scenario passed (artifacts/engine-SWLheD/evidence.json), quality/Lizard zero violations, broad smoke157ms. This supersedes the earlier scenario limitation that incumbent death preceded birth. It proves exclusive live-worker contention and eventual handover, but does not claim zero-gap production or optimal staging position.
+
+## Shared application dispatch
+Mining now receives its native execution function and dispatch activation callback through narrow ports. The application composition owns one action arbiter, movement service and empire spawn coordinator, allowing subsequent economy features to share ownership and contention handling. Feature activation retains the existing opt-in behavior; the application flush consumes activation before effects and runs after room features.
+
+Validation: quality checks passed (119 production files, zero Lizard violations); all 276 unit tests passed in 2.93s; packaged CommonJS/source-map check passed; all 30 real-engine scenarios passed in 27.87s, including owned energy/mineral production and overlapping miner replacement. This change establishes the shared composition boundary; it does not implement hauling or prove cross-feature logistics parity.

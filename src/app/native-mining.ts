@@ -5,21 +5,12 @@ import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
 import { createMiningCycle } from './mining-cycle';
 import { validMiningPayload } from './mining-task';
-import { createActionArbiter } from '../core/execution/action-arbiter';
-import { createMovementService } from '../adapters/screeps/movement-service';
-import { createNativeMiner } from '../adapters/screeps/mining';
+import type { createNativeMiner } from '../adapters/screeps/mining';
 import { observeMiningStations } from '../adapters/screeps/mining-stations';
 import { plannedHarvestRate } from '../adapters/screeps/mining-rates';
-import { createNativeSpawn } from '../adapters/screeps/spawn';
-import { populationMemory, observeSpawning } from '../adapters/screeps/population';
-import { createSpawnCoordinator } from '../features/population/spawn-coordinator';
 import { sourceMiner } from '../capabilities/spawning/economy-recipes';
-export function createNativeMiningFeature(state: StatePort) {
-  const arbiter = createActionArbiter(() => Game.time);
-  const movement = createMovementService(arbiter);
-  const mine = createNativeMiner(arbiter, movement);
-  const spawn = createSpawnCoordinator(state, { clock: () => Game.time, invoke: createNativeSpawn(populationMemory) }, observeSpawning, 'skip');
-  let activeTick = -1;
+interface MiningPorts { mine: ReturnType<typeof createNativeMiner>; activate(): void }
+export function createNativeMiningFeature(state: StatePort, { mine, activate }: MiningPorts) {
   const feature: RoomFeature = {
     id: 'mining', urgency: 'urgent', interval: 1,
     run({ room: view, config }) {
@@ -28,7 +19,7 @@ export function createNativeMiningFeature(state: StatePort) {
       if (!room?.controller?.my) return;
       const retreat = Object.values(Game.spawns).find(item => item.room.name === room.name)?.pos;
       if (!retreat) return;
-      activeTick = Game.time;
+      activate();
       const threats = room.find(FIND_HOSTILE_CREEPS).filter(creep => !config.values.allies.includes(creep.owner.username));
       const unsafe = threats.length > 0;
       const refuge = miningRetreat(retreat, threats);
@@ -51,9 +42,5 @@ export function createNativeMiningFeature(state: StatePort) {
       cycle.run([{ room: room.name, stations }], units);
     },
   };
-  return { feature, definitions: { mine: { phases: ['work'], validPayload: validMiningPayload } },
-    flush() { if (activeTick === Game.time) { spawn(); movement.flush(); } } };
+  return { feature, definitions: { mine: { phases: ['work'], validPayload: validMiningPayload } } };
 }
-
-
-

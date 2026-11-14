@@ -1,3 +1,5 @@
+import { createNativeDispatch } from './app/native-dispatch';
+import { createNativeMiner } from './adapters/screeps/mining';
 import { createNativeMiningFeature } from './app/native-mining';
 import { createCreepMaintenance } from './app/creep-maintenance';
 import { ownedCreepRoster } from './adapters/screeps/unit-roster';
@@ -10,12 +12,13 @@ import { createMemoryPort } from './adapters/screeps/memory';
 
 const ports = createGamePorts();
 const state = createMemoryPort(() => Memory);
-const mining = createNativeMiningFeature(state);
+const dispatch = createNativeDispatch(state);
+const mining = createNativeMiningFeature(state, {
+  mine: createNativeMiner(dispatch.arbiter, dispatch.movement), activate: dispatch.activate,
+});
 const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, mining.definitions);
 // Gameplay registration is separate from configuration-controlled activation.
 export const loop = createGameLoop([mining.feature], {
   ...ports,
   config: createPersistentConfiguration(state, () => ports.clock().tick),
-}, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), mining.flush);
-
-
+}, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), dispatch.flush);
