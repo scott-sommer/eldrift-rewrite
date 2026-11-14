@@ -1,0 +1,321 @@
+{
+  "kind": "synthetic-schema-capacity",
+  "node": "v24.22.1",
+  "platform": "win32",
+  "commit": "9807cbfc1638029c9b907387d91448f36f5681f5",
+  "dirty": true,
+  "fixtureBundleSha256": "49d7e2595f1815c3e7507db8a62d634810253f83936bf4120d782fcf28dda91b",
+  "timingScope": "Host wall time: plain-data validation, JSON copy and final stringify; excludes fixture construction and UTF-8 counting. Not engine Memory serialization CPU.",
+  "namespaceScope": "Envelope values only; full totals additionally include record keys and root framing.",
+  "cases": [
+    {
+      "rooms": 1,
+      "creeps": 20,
+      "tasks": 60,
+      "planEntries": 150,
+      "claims": 20,
+      "codeUnits": 25544,
+      "utf8Bytes": 25544,
+      "coldMilliseconds": 1.1107000000000085,
+      "warmMedianMilliseconds": 0.6029000000000053,
+      "warmMaximumMilliseconds": 0.9772999999999996,
+      "namespaces": {
+        "operator": {
+          "records": 1,
+          "envelopeBytes": 103
+        },
+        "colony": {
+          "records": 1,
+          "envelopeBytes": 131
+        },
+        "intel": {
+          "records": 1,
+          "envelopeBytes": 2135
+        },
+        "planning": {
+          "records": 1,
+          "envelopeBytes": 10751
+        },
+        "missions": {
+          "records": 1,
+          "envelopeBytes": 166
+        },
+        "tasks": {
+          "records": 20,
+          "envelopeBytes": 8390
+        },
+        "reservations": {
+          "records": 1,
+          "envelopeBytes": 2186
+        },
+        "units": {
+          "records": 1,
+          "envelopeBytes": 1048
+        }
+      },
+      "samples": [
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 1.1107000000000085
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.9772999999999996
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.6373999999999995
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.5831999999999908
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.5726999999999975
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.643100000000004
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.6217000000000041
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.5841000000000065
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.5673999999999921
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.5726999999999975
+        },
+        {
+          "codeUnits": 25544,
+          "utf8Bytes": 25544,
+          "elapsed": 0.714100000000002
+        }
+      ]
+    },
+    {
+      "rooms": 5,
+      "creeps": 100,
+      "tasks": 300,
+      "planEntries": 750,
+      "claims": 100,
+      "codeUnits": 126516,
+      "utf8Bytes": 126516,
+      "coldMilliseconds": 2.9313999999999965,
+      "warmMedianMilliseconds": 2.491499999999995,
+      "warmMaximumMilliseconds": 2.7158000000000015,
+      "namespaces": {
+        "operator": {
+          "records": 1,
+          "envelopeBytes": 103
+        },
+        "colony": {
+          "records": 5,
+          "envelopeBytes": 655
+        },
+        "intel": {
+          "records": 5,
+          "envelopeBytes": 10675
+        },
+        "planning": {
+          "records": 5,
+          "envelopeBytes": 53755
+        },
+        "missions": {
+          "records": 5,
+          "envelopeBytes": 830
+        },
+        "tasks": {
+          "records": 100,
+          "envelopeBytes": 41950
+        },
+        "reservations": {
+          "records": 1,
+          "envelopeBytes": 10706
+        },
+        "units": {
+          "records": 1,
+          "envelopeBytes": 5048
+        }
+      },
+      "samples": [
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.9313999999999965
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.7158000000000015
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.545500000000004
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.355000000000004
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.463000000000008
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.4808999999999912
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.5020999999999987
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.460499999999996
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.550600000000003
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.406400000000019
+        },
+        {
+          "codeUnits": 126516,
+          "utf8Bytes": 126516,
+          "elapsed": 2.6303999999999803
+        }
+      ]
+    },
+    {
+      "rooms": 20,
+      "creeps": 400,
+      "tasks": 1200,
+      "planEntries": 3000,
+      "claims": 400,
+      "codeUnits": 508261,
+      "utf8Bytes": 508261,
+      "coldMilliseconds": 11.909199999999998,
+      "warmMedianMilliseconds": 11.05449999999999,
+      "warmMaximumMilliseconds": 12.700700000000012,
+      "namespaces": {
+        "operator": {
+          "records": 1,
+          "envelopeBytes": 103
+        },
+        "colony": {
+          "records": 20,
+          "envelopeBytes": 2630
+        },
+        "intel": {
+          "records": 20,
+          "envelopeBytes": 43720
+        },
+        "planning": {
+          "records": 20,
+          "envelopeBytes": 215030
+        },
+        "missions": {
+          "records": 20,
+          "envelopeBytes": 3340
+        },
+        "tasks": {
+          "records": 400,
+          "envelopeBytes": 168600
+        },
+        "reservations": {
+          "records": 1,
+          "envelopeBytes": 43256
+        },
+        "units": {
+          "records": 1,
+          "envelopeBytes": 20448
+        }
+      },
+      "samples": [
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 11.909199999999998
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 11.384100000000018
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 11.140799999999984
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 10.968199999999996
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 12.700700000000012
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 12.355899999999963
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 10.637499999999989
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 10.567999999999984
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 10.789500000000032
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 11.14960000000002
+        },
+        {
+          "codeUnits": 508261,
+          "utf8Bytes": 508261,
+          "elapsed": 10.933299999999974
+        }
+      ]
+    }
+  ]
+}
