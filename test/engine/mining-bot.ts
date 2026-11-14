@@ -29,8 +29,9 @@ export function loop() {
     run: (worker, observed, tile, assigned, owner) => mine(worker, { owner, station: observed, tile, assigned,
       unsafe: observed.risk === 'hostile', retreat: { room: 'W0N1', x: 15, y: 16 }, policy }),
   }) };
-  assignMiningTask(state, behaviors, creep.name, { ...station, access: [{ room: 'W0N1', x: 20, y: 21 }] }, Game.time, 100);
+  assignMiningTask(state, behaviors, creep.name, station, Game.time, 100);
   evidence.outcomes.push(createTaskRunner(state, behaviors, () => Game.time)(creep.name, creep)!.status);
   movement.flush();
 }
+
 
