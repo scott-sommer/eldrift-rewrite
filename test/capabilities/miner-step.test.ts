@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { minerStep } from '../../src/capabilities/mining/step';
 import type { MinerView, MinerPorts } from '../../src/capabilities/mining/step';
-import { energyReadiness, mineralReadiness } from '../../src/capabilities/mining/production';
+import { energyReadiness, mineralReadiness, mineralCapacity } from '../../src/capabilities/mining/production';
 const view: MinerView = { tick: 1, spawning: false, unsafe: false, target: 'visible', assigned: true, atStation: true,
   carried: 0, energy: 0, freeCapacity: 50, carryCapacity: 50, establish: false, repair: false };
 function fixture() {
@@ -50,4 +50,13 @@ test('depleted stations hand off partial cargo before waiting, without flushing 
   const cooldown = mineralReadiness({ tick: 1, available: 100, readyAt: 1 }, 'ready', 5)!;
   expect(minerStep({ ...view, carried: 1, freeCapacity: 49, readiness: cooldown }, ports).status).toBe('blocked');
   expect(actions).toEqual(['handoff']);
+});
+
+test('partial mineral cargo is unloaded before a harvest would overflow the store', () => {
+  const { actions, ports } = fixture();
+  const readiness = mineralCapacity(1, 1000, 1, 3)!;
+  expect(minerStep({ ...view, carried: 49, freeCapacity: 1, readiness }, ports).status).toBe('running');
+  expect(actions).toEqual(['handoff']);
+  expect(mineralCapacity(1, 1, 1, 3)).toBeUndefined();
+  expect(mineralCapacity(1, 1000, 0, 1)).toMatchObject({ reason: 'mineral-capacity' });
 });

@@ -8,7 +8,7 @@ import type { Position } from '../../capabilities/movement/step';
 import type { RoutePolicy } from '../../capabilities/movement/room-route';
 import { createCreepActions } from './creep-actions';
 import type { createMovementService } from './movement-service';
-import { miningInfrastructure, miningReadiness, miningTarget } from './mining-observation';
+import { miningInfrastructure, miningReadiness, miningTarget, miningCapacity } from './mining-observation';
 export interface MinerCommand {
   owner: string;
   station: MiningStation;
@@ -28,7 +28,7 @@ export function createNativeMiner(arbiter: ReturnType<typeof createActionArbiter
     const actions = createCreepActions(creep, command.owner, arbiter);
     const rejected = (code: number): Outcome => ({ status: 'blocked', reason: 'mining-intent:' + code, retryAt: Game.time + 1 });
     const move = (destination: Position) => movement.move(creep, { owner: command.owner, destination, range: 0, policy: command.policy });
-    const readiness = target ? miningReadiness(target, station) : undefined;
+    const readiness = target ? miningReadiness(target, station) ?? miningCapacity(creep, target) : undefined;
     return minerStep({
       tick: Game.time, spawning: creep.spawning, unsafe: command.unsafe, assigned: command.assigned,
       target: target ? 'visible' : Game.rooms[station.position.room] ? 'missing' : 'unseen',
@@ -46,3 +46,4 @@ export function createNativeMiner(arbiter: ReturnType<typeof createActionArbiter
     });
   };
 }
+

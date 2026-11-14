@@ -65,7 +65,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--mining')) modules.main = await actionBundle(root, 'mining-bot');
   if (process.argv.includes('--specialist-mining')) modules.main = await actionBundle(root, 'specialist-mining-bot');
   if (process.argv.includes('--colony-mining')) modules.main = await actionBundle(root, 'colony-mining-bot');
-  if (process.argv.includes('--mineral-depletion')) modules.main = await actionBundle(root, 'mineral-depletion-bot');
+  if (process.argv.includes('--mineral-depletion') || process.argv.includes('--mineral-capacity')) modules.main = await actionBundle(root, 'mineral-depletion-bot');
   if (process.argv.includes('--mining-work')) modules.main = await actionBundle(root, 'mining-work-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
@@ -92,10 +92,16 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--mining')) await miningWorld(server, bot);
   if (process.argv.includes('--specialist-mining')) await specialistMiningWorld(server, bot);
   if (process.argv.includes('--colony-mining')) await colonyMiningWorld(server);
-  if (process.argv.includes('--mineral-depletion')) {
+  if (process.argv.includes('--mineral-depletion') || process.argv.includes('--mineral-capacity')) {
     await specialistMiningWorld(server, bot);
     const { db } = await server.world.load();
     await db['rooms.objects'].update({ room: 'W0N1', type: 'mineral', x: 30, y: 20 }, { $set: { mineralAmount: 1 } });
+    if (process.argv.includes('--mineral-capacity')) {
+      await db['rooms.objects'].update({ room: 'W0N1', type: 'mineral', x: 30, y: 20 }, { $set: { mineralAmount: 1000 } });
+      await db['rooms.objects'].update({ room: 'W0N1', name: 'mineral-miner' }, { $set: {
+        store: { H: 49 }, body: [{ type: 'work', hits: 100, boost: 'UO' }, { type: 'carry', hits: 100 }, { type: 'move', hits: 100 }],
+      } });
+    }
     await server.world.addRoomObject('W0N1', 'container', 30, 21, {
       store: {}, storeCapacity: 2000, hits: 250000, hitsMax: 250000, nextDecayTime: 1000,
     });
@@ -159,6 +165,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--colony-mining')) verifyColonyMining(memory);
   if (process.argv.includes('--mineral-depletion')) assert.deepEqual(memory.depletionEvidence, [[0, 0], [1, 0], [0, 1]]);
   if (process.argv.includes('--mining-work')) verifyMiningWork(memory);
+  if (process.argv.includes('--mineral-capacity')) assert.deepEqual(memory.depletionEvidence, [[49, 0], [0, 49], [3, 49]]);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -166,6 +173,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 

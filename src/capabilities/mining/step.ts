@@ -44,10 +44,11 @@ function workAtStation(view: MinerView, ports: MinerPorts): Outcome {
   return issuedOutcome(ports.harvest(), view.tick, ports.rejected);
 }
 
-function depleted(outcome: Outcome | undefined): boolean {
-  return outcome?.status === 'blocked' && ['source-depleted', 'mineral-depleted'].includes(outcome.reason);
+function unloadBeforeWaiting(outcome: Outcome | undefined): boolean {
+  return outcome?.status === 'blocked' && ['source-depleted', 'mineral-depleted', 'mineral-capacity'].includes(outcome.reason);
 }
 
 function needsHandoff(view: MinerView): boolean {
-  return view.carried > 0 && (view.freeCapacity === 0 || depleted(view.readiness));
+  return view.carried > 0 && (view.freeCapacity === 0 || unloadBeforeWaiting(view.readiness));
 }
+

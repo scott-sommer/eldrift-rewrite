@@ -16,3 +16,8 @@ export function mineralReadiness(view: ProductionView, extractor: 'ready' | 'mis
   return undefined;
 }
 
+
+export function mineralCapacity(tick: number, available: number, free: number, harvestPower: number): Outcome | undefined {
+  if (Math.min(available, harvestPower) > free) return { status: 'blocked', reason: 'mineral-capacity', retryAt: tick + 1 };
+  return undefined;
+}

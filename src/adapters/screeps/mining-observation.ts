@@ -1,5 +1,6 @@
+import { nativeHarvestRate } from './mining-rates';
 import type { MiningStation } from '../../capabilities/mining/station';
-import { energyReadiness, mineralReadiness } from '../../capabilities/mining/production';
+import { energyReadiness, mineralReadiness, mineralCapacity } from '../../capabilities/mining/production';
 export function miningTarget(station: MiningStation): Source | Mineral | null {
   const target = Game.getObjectById(station.target as Id<Source | Mineral>);
   if (!target) return null;
@@ -30,4 +31,10 @@ export function miningInfrastructure(creep: Creep, station: MiningStation) {
     item.structureType === STRUCTURE_CONTAINER && station.access.some(tile =>
       tile.room === item.pos.roomName && tile.x === item.pos.x && tile.y === item.pos.y) && creep.pos.inRangeTo(item, 3));
   return { sink, repair, site };
+}
+
+export function miningCapacity(creep: Creep, target: Source | Mineral) {
+  if ('energy' in target) return undefined;
+  const power = nativeHarvestRate(creep.body, 'mineral') * (EXTRACTOR_COOLDOWN + 1);
+  return mineralCapacity(Game.time, target.mineralAmount, creep.store.getFreeCapacity(), power);
 }
