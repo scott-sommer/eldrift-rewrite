@@ -1,0 +1,52 @@
+import { openState, saveState } from '../../persistence/versioned-state';
+import type { StatePort, StateSchema } from '../../persistence/versioned-state';
+import { stateKey } from '../../persistence/state-key';
+import { confirmTransfer, validateTransferAttempt } from '../../capabilities/logistics/confirmation';
+import type { TransferAttempt, TransferObservation, TransferConfirmation } from '../../capabilities/logistics/confirmation';
+interface Journal { acknowledged: boolean; attempt: TransferAttempt | null; result: TransferConfirmation | null }
+const schema: StateSchema<Journal> = {
+  owner: 'logistics', version: 1, initial: () => ({ acknowledged: true, attempt: null, result: null }), migrations: {}, valid,
+};
+/** Begin persists before invocation; a reconstructed caller cannot issue the pending attempt again. */
+export function createTransferJournal(port: StatePort, unit: string) {
+  const key = stateKey('logistics-attempts', unit);
+  const read = () => openState(port, key, schema);
+  return {
+    read,
+    begin(attempt: TransferAttempt): boolean {
+      validateTransferAttempt(attempt);
+      if (attempt.unit !== unit) throw new Error('Transfer journal unit mismatch');
+      const previous = read();
+      if (previous.attempt && (!previous.acknowledged || previous.attempt.tick >= attempt.tick)) return false;
+      saveState(port, key, schema, { acknowledged: false, attempt, result: null });
+      return true;
+    },
+    acknowledge(id: string): void {
+      const state = read();
+      if (state.attempt?.id !== id || !state.result) throw new Error('Transfer result is not ready to acknowledge');
+      saveState(port, key, schema, { ...state, acknowledged: true });
+    },
+    settle(observation: TransferObservation): TransferConfirmation | null {
+      const state = read();
+      if (!state.attempt || state.result) return state.result;
+      const result = confirmTransfer(state.attempt, observation);
+      if (result.status !== 'waiting') saveState(port, key, schema, { ...state, result });
+      return result;
+    },
+  };
+}
+function valid(value: unknown): value is Journal {
+  if (!value || typeof value !== 'object') return false;
+  const record = value as Journal;
+  if (typeof record.acknowledged !== 'boolean') return false;
+  if (record.attempt === null) return record.result === null && record.acknowledged;
+  try { validateTransferAttempt(record.attempt); } catch { return false; }
+  return validResult(record.result, record.attempt.amount) && (!record.acknowledged || record.result !== null);
+}
+function validResult(result: TransferConfirmation | null, maximum: number): boolean {
+  if (result === null) return true;
+  if (!result || typeof result !== 'object') return false;
+  return result.status === 'unknown' || (result.status === 'observed'
+    && Number.isSafeInteger(result.amount) && result.amount >= 0 && result.amount <= maximum);
+}
+
