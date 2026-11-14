@@ -3,6 +3,8 @@ export interface SpawnRequest {
   id: string;
   owner: string;
   room: string;
+  /** Optional population home when production occurs in a sponsoring room. */
+  home?: string;
   name: string;
   priority: number;
   readyAt: number;

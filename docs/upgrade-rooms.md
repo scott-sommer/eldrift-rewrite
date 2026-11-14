@@ -78,3 +78,33 @@ Fast regression:501tests/152files passed4.03s; quality249production/232testfiles
 Remote sponsoring-room fleet creation, the legacy >10M start / <5M stop spawning hysteresis, low-RCL newSpawner/bootstrap and supply-hauler paths, dedicated upgrade-master positioning and renewal, and configurable simulated RCL8 unclaim/reclaim remain incomplete. Source reference: spawner.js:1699 onward and role.upgradeMaster.js. This runtime is evidence for the renewal/work ring only; it does not close ED-22 or ED-31. Fleet generation must preserve target-room identity across a different spawn home and avoid normal TTL replacement overfilling the seven-station roster.
 
 Full native regression for the integrated feature:105 checks passed in165.58s, including renewal/boost reload, shortage recovery and expected error/timeout scenarios. Final aggregate evidence: artifacts/engine-suite.json.
+
+## Sponsored specialist fleet generation
+The production upgrade-fleet feature now generates the mature-room upgrader roster. It runs from owned spawning rooms and reconciles configured target rooms plus existing queued upgrade-room owners, so disabling/changing configuration or losing target ownership cancels that sponsor's pending work without touching other owners.
+
+Target-room configuration:
+- upgradeRoomSpawningEnabled defaults false and also requires upgradeRoomEnabled.
+- upgradeRoomSponsor defaults empty, meaning the target room itself; set a separate owned sponsoring room for the legacy remote-production pattern.
+- upgradeFleetTarget defaults7 and is bounded0..7.
+- upgradeFleetBodyBudget defaults4600; the existing remote-upgrader recipe produces42WORK/3CARRY/5MOVE when affordable. A full body normally requires an RCL8 sponsor; no cost or room-capacity check is bypassed.
+- upgradeFleetStartEnergy defaults10000000; upgradeFleetStopEnergy defaults5000000. Start is strictly greater, stop strictly less, and equality preserves state.
+- upgradeFleetStorageFloor defaults200000, also a strict greater-than requirement for mature-room spawning.
+
+Hysteresis is persisted per target room, permitting independent configuration instead of the legacy single global Memory.upgradeRoomSpawning flag. While configured, its energy observation continues even if target geometry/storage eligibility temporarily fails. Target eligibility separately requires current ownership, controller belowRCL8 and a valid active storage/spawn/lab ring. These gates intentionally do not stand in for the still-unported low-RCL bootstrap and reclaim lifecycle.
+
+SpawnRequest now optionally carries home, independently of room (the production room). populationMemory uses home when present and preserves the old room fallback otherwise; the additive field is validated and old version1 queue records remain readable. Specialist requests therefore spawn in the sponsor but retain population.home=<target> and population.owner=upgrade-room:<target>, allowing the existing runtime to move them to the target ring.
+
+Fleet demand counts all observed matching identities, including spawning, travelling and low-TTL units. It does not invoke ordinary TTL replacement for renewable specialists. Pending requests in other owned-room queues count toward the cap during sponsor changes. Expired, observed, incompatible and excess requests are reconciled by owner; ordinary queues are retained. Death opens a slot for a newly reserved unique identity. Reducing the configured target cancels excess pending work without deleting live creeps.
+
+### Fleet evidence
+Pure tests verify strict hysteresis boundaries/reset persistence, six live/spawning/low-TTL units plus one queued unit, repeated reconciliation without duplication, actual-death replacement with a new name, sponsor handover with another pending queue, owner-scoped cancellation, home-memory mapping and invalid configuration.
+
+Packaged --upgrade-fleet begins with no creeps, uses the actual production main loop and creates a50-part specialist at the W0N1 sponsor. Over240ticks it crosses into E0N1, reaches the east station(6,22), and advances the controller to2772 progress. The observed population never exceeds the configured target1 and the sponsor queue is empty at completion. Initial passing evidence: artifacts/engine-iHPjbO/evidence.json. The final suite additionally reloads the engine at tick51 while this same creep is still spawning and verifies its target home survives.
+
+Packaged --upgrade-fleet-loss leaves a request waiting for sponsor energy, removes target ownership at tick4, then restores sponsor energy at tick5. No creep spawns and the pending request is cancelled. Evidence: artifacts/engine-kHww5r/evidence.json.
+
+Fast validation:505tests/153files passed3.95s; quality252production/234testfiles with zero Lizard violations; packaged bundle validation passed. Full native regression is recorded below.
+
+Remaining: low-RCL newSpawner/bootstrap and supply-hauler policies, dedicated upgrade-master population/positioning/renewal, target ownership-loss handling for already-live specialists, configurable simulated RCL8 unclaim/reclaim, operator flag translation, and other open ED-22 requirements. Mature-ring fleet spawning is implemented; these other paths remain explicit parity work.
+
+Full native regression:107 checks passed in175.08s. Afterward the two fleet fixtures were strengthened to assert physical sponsor energy; both passed again with final quality checks. Final --upgrade-fleet evidence engine-MOfh9S proves5300→700 energy (4600 spent), reload during spawning, arrival and2772 controller progress. Final --upgrade-fleet-loss evidence engine-b3ayXK proves energy restored to5300 with zero spawned creeps and an empty queue. Production code was unchanged after the full suite.

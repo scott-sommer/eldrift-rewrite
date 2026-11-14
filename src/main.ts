@@ -1,3 +1,4 @@
+import { createNativeUpgradeFleet } from './app/native-upgrade-fleet';
 import { createNativeUpgradeRoom } from './app/native-upgrade-room';
 import { createNativeSupportFeature } from './app/native-support';
 import { resolveConfig } from './config/resolve';
@@ -22,7 +23,9 @@ const state = createMemoryPort(() => Memory);
 const dispatch = createNativeDispatch(state);
 const recovery = createNativeRecovery(state);
 const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
-const support = createNativeSupportFeature(state, dispatch, room => resolveConfig(configuration(room), Game.time).values, recovery);
+const runtimeConfig = (room: string) => resolveConfig(configuration(room), Game.time).values;
+const support = createNativeSupportFeature(state, dispatch, runtimeConfig, recovery);
+const upgradeFleet = createNativeUpgradeFleet(state, dispatch, runtimeConfig);
 const recovering = (room: Room, config: Parameters<typeof recovery>[1]) => recovery(room, config).active;
 const mining = createNativeMiningFeature(state, {
   mine: createNativeMiner(dispatch.arbiter, dispatch.movement), activate: dispatch.activate, recovering,
@@ -32,7 +35,7 @@ const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions
   recovering);
 const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions }, createLogisticsRetirement(state));
 // Gameplay registration is separate from configuration-controlled activation.
-export const loop = createGameLoop([mining.feature, logistics.feature, workers.feature, support.feature, createNativeUpgradeRoom(state, dispatch)], {
+export const loop = createGameLoop([mining.feature, logistics.feature, workers.feature, support.feature, upgradeFleet, createNativeUpgradeRoom(state, dispatch)], {
   ...ports,
   config: configuration,
 }, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), dispatch.flush);

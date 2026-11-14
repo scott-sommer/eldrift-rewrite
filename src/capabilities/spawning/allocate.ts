@@ -14,6 +14,7 @@ function validate(requests: readonly SpawnRequest[], slots: readonly SpawnSlot[]
 }
 export function validateRequest(request: SpawnRequest): void {
   if (![request.id, request.owner, request.room, request.name].every(value => typeof value === 'string' && value.length > 0) || !Number.isFinite(request.priority)) throw new Error('Invalid spawn identity');
+  if (!validHome(request.home)) throw new Error('Invalid population home');
   if (![request.readyAt, request.expiresAt].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid spawn timing');
   if (request.expiresAt <= request.readyAt) throw new Error('Empty spawn lifetime');
   if (!request.body.length || request.body.length > 50 || request.body.some(part => !Object.hasOwn(partCosts, part))) throw new Error('Invalid spawn body');
@@ -45,3 +46,5 @@ export function allocateSpawns(requests: readonly SpawnRequest[], slots: readonl
   return assignments;
 }
 
+
+function validHome(home: unknown): boolean { return home === undefined || (typeof home === 'string' && home.length > 0); }

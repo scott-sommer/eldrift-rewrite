@@ -4,7 +4,7 @@ declare global {
   interface CreepMemory { population?: { owner: string; home: string } }
 }
 export function populationMemory(request: SpawnRequest): CreepMemory {
-  return { population: { owner: request.owner, home: request.room } };
+  return { population: { owner: request.owner, home: request.home ?? request.room } };
 }
 /** Home is the demand scope, not the current room during remote work. */
 export function observePopulation(): PopulationUnit[] {
