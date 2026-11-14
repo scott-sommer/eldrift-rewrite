@@ -1,7 +1,8 @@
 import { loop as botLoop } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createActionArbiter } from '../../src/core/execution/action-arbiter';
-import { createCreepActions } from '../../src/adapters/screeps/creep-actions';
+import { createNativeTransfer } from '../../src/adapters/screeps/transfer';
+import { createMovementService } from '../../src/adapters/screeps/movement-service';
 import { observeTransfer } from '../../src/adapters/screeps/transfer-observation';
 import { createTransferJournal } from '../../src/features/logistics/transfer-journal';
 import { createLogisticsRequests } from '../../src/features/logistics/request-store';
@@ -30,12 +31,18 @@ export function loop() {
     const target = previous ? sink : source;
     const attempt = { id: kind + ':' + Game.time, unit: creep.id, target: target.id, room: creep.room.name,
       resource: RESOURCE_ENERGY, kind, tick: Game.time, amount: 30, cargoBefore: creep.store.energy } as const;
-    if (!journal.begin(attempt)) throw new Error('Initial attempt was not admitted');
+    const arbiter = createActionArbiter(() => Game.time);
+    const movement = createMovementService(arbiter);
+    const transfer = createNativeTransfer(arbiter, movement, journal.begin);
+    const result = transfer(creep, { owner: 'test', attemptId: attempt.id, target: target.id,
+      position: { room: target.pos.roomName, x: target.pos.x, y: target.pos.y },
+      resource: RESOURCE_ENERGY, kind, maximum: 30,
+      policy: { version: 'native-transfer-test', blockedRooms: [], costs: {}, maximumRooms: 4 } });
     evidence.duplicateBlocked &&= !createTransferJournal(state, creep.id).begin(attempt);
-    const actions = createCreepActions(creep, 'test', createActionArbiter(() => Game.time));
-    const result = kind === 'withdraw' ? actions.withdraw(source, RESOURCE_ENERGY, 30) : actions.transfer(sink, RESOURCE_ENERGY);
-    if (result.status !== 'issued') throw new Error('Expected accepted transfer intent');
+    if (result.status !== 'running') throw new Error('Expected native transfer execution');
+    movement.flush();
   }
   evidence.stores.push([source.store.energy, creep.store.energy, sink.store.energy]);
 }
+
 
