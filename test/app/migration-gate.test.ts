@@ -40,3 +40,50 @@ test('game loop defers configuration and observations until migrations are ready
   expect(reads).toBeGreaterThan(0);
   expect(errors).toEqual([]);
 });
+
+test('checkpoint failure blocks gameplay, retries after reset, and preserves original failure', () => {
+  let memory = {};
+  let failCheckpoint = true;
+  let tick = 1;
+  let reads = 0;
+  let writes = 0;
+  const failure = new Error('checkpoint interrupted');
+  const errors: unknown[] = [];
+  const ports = {
+    clock: () => ({ tick, tickLimit: 20, bucket: 10000 }), usedCpu: () => 0,
+    config: () => { reads++; return {}; },
+    observations: { visibleRooms: () => [], observeRoom: () => { throw new Error('unused'); } },
+    reportFailure: (value: { error: unknown }) => errors.push(value.error),
+  };
+  function buildLoop() {
+    const storage = createMemoryPort(() => memory);
+    const gate = createMigrationGate({
+      read: storage.read,
+      write: (key, value) => {
+        if (key === 'migrations/upgrade' && (value.data as { next: number }).next === 1 && failCheckpoint) throw failure;
+        storage.write(key, value);
+      },
+    }, [{ id: 'upgrade', keys: ['fixture/one'], migrate: key => {
+      // Idempotent record conversion models a write that completed before reset.
+      if (storage.read(key) === undefined) {
+        storage.write(key, { owner: 'fixture', version: 1, data: { converted: true } });
+        writes++;
+      }
+    } }], ports);
+    return createGameLoop([], ports, gate);
+  }
+  let loop = buildLoop();
+  loop();
+  loop();
+  expect(errors).toEqual([failure]);
+  expect(reads).toBe(0);
+  expect(writes).toBe(1);
+  memory = JSON.parse(JSON.stringify(memory));
+  failCheckpoint = false;
+  tick++;
+  loop = buildLoop();
+  loop();
+  expect(reads).toBeGreaterThan(0);
+  expect(writes).toBe(1);
+  expect(createMemoryPort(() => memory).read('migrations/upgrade')).toMatchObject({ data: { next: 1 } });
+});
