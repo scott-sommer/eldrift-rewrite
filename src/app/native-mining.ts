@@ -1,3 +1,4 @@
+import { miningRetreat } from '../adapters/screeps/mining-retreat';
 import { cancelMiningDemand } from '../features/mining/cancel-demand';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
@@ -27,7 +28,9 @@ export function createNativeMiningFeature(state: StatePort) {
       const retreat = Object.values(Game.spawns).find(item => item.room.name === room.name)?.pos;
       if (!retreat) return;
       activeTick = Game.time;
-      const unsafe = room.find(FIND_HOSTILE_CREEPS).some(creep => !config.values.allies.includes(creep.owner.username));
+      const threats = room.find(FIND_HOSTILE_CREEPS).filter(creep => !config.values.allies.includes(creep.owner.username));
+      const unsafe = threats.length > 0;
+      const refuge = miningRetreat(retreat, threats);
       if (unsafe) cancelMiningDemand(state, room.name);
       const stations = observeMiningStations(room.name, unsafe ? 'hostile' : 'safe')!.filter(station => station.kind === 'energy');
       const units = observeMiningPopulation('energy').filter(unit => unit.room === room.name && unit.owner.startsWith('mining:'));
@@ -37,8 +40,9 @@ export function createNativeMiningFeature(state: StatePort) {
         clock: () => Game.time, unit: creep => creep.name, context: name => Game.creeps[name]!, taskLifetime: 1600,
         plan: station => body ? { station, home: room.name, body, priority: 0, travelTicks: 25, marginTicks: 10, requestLifetime: 100 } : undefined,
         productionRate: (parts, station) => plannedHarvestRate(parts, station.kind),
-        run: (creep, station, tile, assigned, owner) => mine(creep, { station, tile, assigned, owner, unsafe,
-          retreat: { room: room.name, x: retreat.x, y: Math.min(48, retreat.y + 1) },
+        run: (creep, station, tile, assigned, owner) => unsafe && !refuge
+          ? { status: 'blocked', reason: 'no-retreat-position', retryAt: Game.time + 1 } : mine(creep, { station, tile, assigned, owner, unsafe,
+          retreat: refuge ?? { room: room.name, x: creep.pos.x, y: creep.pos.y },
           policy: { version: 'owned-mining', blockedRooms: [], costs: {}, maximumRooms: 4 } }),
       });
       cycle.run([{ room: room.name, stations }], units);
@@ -47,4 +51,5 @@ export function createNativeMiningFeature(state: StatePort) {
   return { feature, definitions: { mine: { phases: ['work'], validPayload: validMiningPayload } },
     flush() { if (activeTick === Game.time) { spawn(); movement.flush(); } } };
 }
+
 
