@@ -7,7 +7,7 @@ async function miningReplacementWorld(server, bot) {
   await server.world.addRoomObject('W0N1', 'creep', 17, 15, {
     name: 'incumbent', user: bot.id, body: ['work', 'carry', 'move'].map(type => ({ type, hits: 100 })),
     store: {}, storeCapacity: 50, hits: 300, hitsMax: 300, spawning: false,
-    fatigue: 0, ageTime: 6, notifyWhenAttacked: false,
+    fatigue: 0, ageTime: 18, notifyWhenAttacked: false,
   });
 }
 function verifyMiningReplacement(memory) {
@@ -16,9 +16,11 @@ function verifyMiningReplacement(memory) {
   assert.equal(evidence.replacements.length, 1, 'Replacement demand must not duplicate during spawning');
   assert.ok(evidence.harvested > 0, 'Replacement must acquire a station and harvest');
   assert.equal(evidence.queued, 0);
+  assert.ok(evidence.waitingTicks >= 5, 'Born replacement must wait while incumbent retains its station');
   assert.deepEqual(memory.eldrift.records['tasks/incumbent'].data.queue, []);
   const claims = memory.eldrift.records['reservations/empire'].data.claims;
   assert.ok(claims.some(claim => claim.holder === evidence.replacements[0]));
   assert.ok(claims.every(claim => claim.holder !== 'incumbent'));
 }
 module.exports = { miningReplacementWorld, verifyMiningReplacement };
+
