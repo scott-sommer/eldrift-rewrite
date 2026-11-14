@@ -1,5 +1,5 @@
 /** Owned-room energy supply observation; request policy stays outside the adapter. */
-export function observeEnergySupply(room: Room, pickupCapacity = 0) {
+export function observeEnergySupply(room: Room, pickupCapacity = 0, towerRefillFraction = 0.4) {
   const structures = room.find(FIND_STRUCTURES);
   const sources = structures.filter((item): item is StructureContainer | StructureStorage | StructureTerminal =>
     item.structureType === STRUCTURE_CONTAINER ||
@@ -9,11 +9,18 @@ export function observeEnergySupply(room: Room, pickupCapacity = 0) {
   sources.push(...room.find(FIND_RUINS).map(item => endpoint(item, item.store.getUsedCapacity(RESOURCE_ENERGY), -1)));
   const drops = pickupCapacity > 0 ? room.find(FIND_DROPPED_RESOURCES).filter(item => item.resourceType === RESOURCE_ENERGY)
     .map(item => ({ ...endpoint(item, item.amount, -3), minimumBatch: Math.min(item.amount, pickupCapacity) })) : [];
-  const sinks = structures.filter((item): item is StructureSpawn | StructureExtension =>
-    (item.structureType === STRUCTURE_SPAWN || item.structureType === STRUCTURE_EXTENSION) && item.my)
-    .map(item => endpoint(item, item.store.getFreeCapacity(RESOURCE_ENERGY), item.structureType === STRUCTURE_SPAWN ? 0 : 1));
+  const sinks = structures.flatMap(item => consumerDemand(item, towerRefillFraction));
   return { sources: [...drops, ...sources], sinks };
 }
 function endpoint(item: { id: string; pos: RoomPosition }, amount: number, priority: number) {
   return { id: item.id, position: { room: item.pos.roomName, x: item.pos.x, y: item.pos.y }, amount, priority };
+}
+
+function consumerDemand(item: AnyStructure, towerRefillFraction: number) {
+  if (!('my' in item) || !item.my) return [];
+  if (item.structureType === STRUCTURE_SPAWN) return [endpoint(item, item.store.getFreeCapacity(RESOURCE_ENERGY), 0)];
+  if (item.structureType === STRUCTURE_EXTENSION) return [endpoint(item, item.store.getFreeCapacity(RESOURCE_ENERGY), 1)];
+  if (item.structureType !== STRUCTURE_TOWER) return [];
+  if (item.store.getUsedCapacity(RESOURCE_ENERGY) >= item.store.getCapacity(RESOURCE_ENERGY) * towerRefillFraction) return [];
+  return [endpoint(item, item.store.getFreeCapacity(RESOURCE_ENERGY), 2)];
 }

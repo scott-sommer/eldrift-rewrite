@@ -284,3 +284,13 @@ Request records remain retained through their expiry tick; pending work still ex
 Native --expiry-delivery withdraws30, issues its delivery on the last valid request tick, and confirms the30 receipt at expiry. Exact stock history and empty task/reservation queues are asserted. Evidence: artifacts/engine-a60k2q/evidence.json. Unit coverage also submits another request on the expiry tick before confirming the original, checks replay rejection and rejects an intent issued at expiry.
 
 Validation:363 unit tests across111 files passed3.28s;final quality passed161 production/157 test files with zero Lizard violations;smoke162ms;all54 engine suite checks passed57.60s (artifacts/engine-suite.json).
+
+## Distributor tower supply
+
+Ported the active role.distributorV2.js evaluateTowers trigger: refill owned towers strictly below40% energy. towerRefillFraction is now a validated0..1 runtime setting, default0.4;0 disables new tower requests and1 permits refill below full. energyRequestsEnabled and logisticsEnabled retain their existing gates. Requested quantity uses actual free capacity and the ordinary bounded batch/stock budget, so an accepted batch can cross the trigger threshold, matching the legacy trigger-versus-delivery distinction.
+
+Tower energy consumers use priority2 after spawn0 and extension1. This is an explicit owned-economy ordering; threat-aware emergency reprioritization and tower combat execution belong to the later defense policy, not this supply adapter. Existing requests keep their identity and are not repeatedly recreated while waiting. Enemy towers are excluded. Observation extracts consumer demand independently from source selection and hauling execution.
+
+Native --tower-supply seeds no requests and delivers30 energy to a tower starting at390, ending420. Exact five-tick history, priority2, receipt30 and empty task/reservation queues are asserted. Evidence: artifacts/engine-kFBKOx/evidence.json. Unit tests cover strict threshold boundary, disabled/configured thresholds and ownership.
+
+Validation:364 unit tests across111 files passed3.34s;final quality passed161 production/158 test files,zero Lizard violations;smoke151ms;native tower scenario passed. Full engine suite now lists55 scenarios and was not rerun this increment. ED-21 still requires link-role policy, remaining courier/distributor fallbacks and lifecycle/multicourier acceptance evidence.

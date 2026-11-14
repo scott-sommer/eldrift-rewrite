@@ -15,3 +15,13 @@ test('only dropped energy is exposed and its minimum batch reflects courier capa
   expect(observeEnergySupply(room, 50).sources).toMatchObject([{ id: 'drop', amount: 1000, minimumBatch: 50, priority: -3 }]);
   expect(observeEnergySupply(room, 0).sources).toEqual([]);
 });
+
+test('tower supply respects ownership and the configurable strict refill threshold', () => {
+  for (const name of ['FIND_STRUCTURES', 'FIND_TOMBSTONES', 'FIND_RUINS', 'RESOURCE_ENERGY', 'STRUCTURE_CONTAINER', 'STRUCTURE_STORAGE', 'STRUCTURE_TERMINAL', 'STRUCTURE_SPAWN', 'STRUCTURE_EXTENSION', 'STRUCTURE_TOWER']) vi.stubGlobal(name, name);
+  const tower = (id: string, energy: number, my = true) => ({ id, my, structureType: 'STRUCTURE_TOWER', pos: { roomName: 'home', x: 10, y: 10 },
+    store: { getUsedCapacity: () => energy, getFreeCapacity: () => 1000 - energy, getCapacity: () => 1000 } });
+  const room = { find: (kind: string) => kind === 'FIND_STRUCTURES' ? [tower('low', 399), tower('threshold', 400), tower('enemy', 0, false)] : [] } as unknown as Room;
+  expect(observeEnergySupply(room).sinks).toMatchObject([{ id: 'low', amount: 601, priority: 2 }]);
+  expect(observeEnergySupply(room, 0, 0).sinks).toEqual([]);
+  expect(observeEnergySupply(room, 0, 0.5).sinks).toHaveLength(2);
+});

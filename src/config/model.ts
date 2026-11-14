@@ -3,6 +3,7 @@ export interface RuntimeConfig {
   courierSpawningEnabled: boolean;
   courierBodyBudget: number;
   energyRequestsEnabled: boolean;
+  towerRefillFraction: number;
   preservationEnabled: boolean;
   miningEnabled: boolean;
   mineralMiningEnabled: boolean;
@@ -18,6 +19,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   courierSpawningEnabled: false,
   courierBodyBudget: 300,
   energyRequestsEnabled: false,
+  towerRefillFraction: 0.4,
   preservationEnabled: false,
   miningEnabled: false,
   mineralMiningEnabled: false,

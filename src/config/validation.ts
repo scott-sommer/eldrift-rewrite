@@ -5,6 +5,7 @@ function bounded(value: unknown, maximum: number): boolean {
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   mineralMiningEnabled: value => typeof value === 'boolean',
   energyRequestsEnabled: value => typeof value === 'boolean',
+  towerRefillFraction: value => bounded(value, 1),
   preservationEnabled: value => typeof value === 'boolean',
   courierSpawningEnabled: value => typeof value === 'boolean',
   courierBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
