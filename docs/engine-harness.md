@@ -36,3 +36,5 @@ Measured on this machine: all9 checks passed in8.01s (scenario loop, build exclu
 The suite additionally includes --maintenance: a test fixture seeds reservation state and invokes production main over three ticks. It asserts exact-boundary expiry with a longer-lived claim retained. All ten checks passed in 8.71s after this addition (scenario execution, build excluded).
 
 The --retirement fixture adds an owned creep in a disposable world, invokes production main, and issues suicide. Subsequent ticks verify the local roster and task queue are cleared and only that creep's claim is released. Eleven scenarios passed in 9.58s with this case included. No live shard was contacted.
+
+--recovery uses six ticks (other current scenarios use three) and verifies repeated blockage followed by occupancy-aware rerouting around an unchanged stationary creep. The suite now contains13 checks and passed in11.60s. Reports include the scenario's actual tick count.

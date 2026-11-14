@@ -1,3 +1,4 @@
+const { recoveryWorld, verifyRecovery } = require('./recovery.cjs');
 const { movementWorld, verifyMovement } = require('./movement.cjs');
 const { resourceWorld, verifyResources } = require('./resources.cjs');
 const { workWorld, verifyWork } = require('./work.cjs');
@@ -43,6 +44,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--maintenance')) modules.main = await actionBundle(root, 'maintenance-bot');
   if (process.argv.includes('--retirement')) modules.main = await actionBundle(root, 'retirement-bot');
   if (process.argv.includes('--paths')) modules.main = await actionBundle(root, 'path-bot');
+  if (process.argv.includes('--recovery')) modules.main = await actionBundle(root, 'recovery-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -50,6 +52,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--work')) await workWorld(server, bot);
   if (process.argv.includes('--resources')) await resourceWorld(server, bot);
   if (process.argv.includes('--movement') || process.argv.includes('--paths')) await movementWorld(server, bot);
+  if (process.argv.includes('--recovery')) await recoveryWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -61,7 +64,8 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  for (let tick = 0; tick < 3; tick++) {
+  const tickCount = process.argv.includes('--recovery') ? 6 : 3;
+  for (let tick = 0; tick < tickCount; tick++) {
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
@@ -70,7 +74,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   }
   assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
-  assert.equal(Number(await server.world.gameTime), initial + 3);
+  assert.equal(Number(await server.world.gameTime), initial + tickCount);
   assert.equal(memory.eldrift.format, 1);
   assert.equal(memory.eldrift.records['operator/config'].owner, 'operator');
   if (process.argv.includes('--actions')) verifyActions(memory);
@@ -87,8 +91,9 @@ server.on('error', error => { console.error(error); finish(1, error); });
     assert.equal(memory.eldrift.records['reservations/empire'].data.claims[0].holder, 'unrelated');
   }
   if (process.argv.includes('--paths')) assert.deepEqual(memory.pathEvidence, { searches: [1, 1, 2], positions: [[20, 20], [21, 20], [21, 20]], statuses: ['complete', 'complete', 'complete'] });
+  if (process.argv.includes('--recovery')) verifyRecovery(memory);
   assert.deepEqual(messages, []);
-  const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
+  const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));
   clearTimeout(timeout);
