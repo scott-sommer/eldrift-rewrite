@@ -16,3 +16,22 @@ function verifyUnseen(memory) {
   });
 }
 module.exports = { unseenWorld, verifyUnseen };
+
+async function occupiedExitWorld(server, bot) {
+  await unseenWorld(server, bot);
+  await server.world.addRoomObject('E0N1', 'creep', 0, 20, {
+    name: 'edge-blocker', user: bot.id, body: [{ type: 'work', hits: 100 }],
+    store: {}, storeCapacity: 0, hits: 100, hitsMax: 100, spawning: false, fatigue: 0, ageTime: 1500,
+  });
+}
+function verifyOccupiedExit(memory) {
+  const evidence = memory.occupiedExit;
+  assert.deepEqual(evidence.reasons, Array(3).fill('dependency-blocked'));
+  assert.deepEqual(evidence.mover.map(JSON.parse), Array(3).fill({ room: 'W0N1', x: 48, y: 20 }));
+  assert.deepEqual(evidence.blocker.map(JSON.parse), [
+    { room: 'E0N1', x: 0, y: 20 }, { room: 'E0N1', x: 0, y: 20 }, { room: 'E0N1', x: 0, y: 20 },
+  ]);
+}
+module.exports.occupiedExitWorld = occupiedExitWorld;
+module.exports.verifyOccupiedExit = verifyOccupiedExit;
+
