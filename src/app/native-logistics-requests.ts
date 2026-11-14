@@ -1,3 +1,4 @@
+import { generateNativeStoreBalance } from './native-store-balance';
 import { generateNativeEnergyBanking } from './native-energy-banking';
 import { generateNativeMineralTransport } from './native-mineral-transport';
 import { generateNativeEnergyRequests } from './native-energy-supply';
@@ -7,5 +8,6 @@ import type { RuntimeConfig } from '../config/model';
 export function generateNativeLogisticsRequests(state: StatePort, room: Room, units: readonly Creep[], config: Readonly<RuntimeConfig>): void {
   if (config.energyRequestsEnabled || config.preservationEnabled) generateNativeEnergyRequests(state, room, units, config);
   if (config.mineralTransportEnabled) generateNativeMineralTransport(state, room, config);
+  generateNativeStoreBalance(state, room, config);
   if (config.energyBankingEnabled) generateNativeEnergyBanking(state, room, config);
 }

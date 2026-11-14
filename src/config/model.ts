@@ -10,6 +10,10 @@ export interface RuntimeConfig {
   courierBodyBudget: number;
   energyRequestsEnabled: boolean;
   energyBankingEnabled: boolean;
+  storeBalancingEnabled: boolean;
+  terminalEnergyLow: number;
+  terminalEnergyHigh: number;
+  storageEnergyReserve: number;
   towerRefillFraction: number;
   preservationEnabled: boolean;
   miningEnabled: boolean;
@@ -36,6 +40,10 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   courierBodyBudget: 300,
   energyRequestsEnabled: false,
   energyBankingEnabled: false,
+  storeBalancingEnabled: false,
+  terminalEnergyLow: 20000,
+  terminalEnergyHigh: 30000,
+  storageEnergyReserve: 70000,
   towerRefillFraction: 0.4,
   preservationEnabled: false,
   miningEnabled: false,

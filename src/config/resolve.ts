@@ -21,5 +21,6 @@ export function resolveConfig(input: ConfigInput, tick: number): EffectiveConfig
     const patch = validatePatch(temporary, 'temporary');
     if (tick < expiresAt) apply('temporary', patch);
   }
+  if (values.terminalEnergyLow >= values.terminalEnergyHigh) throw new Error('terminalEnergyLow must be below terminalEnergyHigh');
   return { values: Object.freeze(values), sources: Object.freeze(sources) };
 }
