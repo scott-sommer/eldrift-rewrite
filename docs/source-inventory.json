@@ -3055,10 +3055,10 @@
     "implementationStatus": "not ported",
     "evidence": [],
     "plannedIssues": [
-      null
+      "ED-21"
     ],
     "capabilityWork": [
-      null
+      "Port hauling, distribution, scavenging, and link logistics"
     ],
     "disposition": "characterize distinctive behavior; consolidate equivalent capabilities; do not retire until operator audit",
     "imports": [
@@ -3581,7 +3581,12 @@
     "disposition": "port and clean behind declared interfaces",
     "imports": [],
     "staticReachability": "reachable from main literal imports; not proof every handler executes",
-    "sourceSymbols": [],
+    "sourceSymbols": [
+      {
+        "line": 12,
+        "name": "module.exports.run"
+      }
+    ],
     "proposedOwner": "features/missions",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
