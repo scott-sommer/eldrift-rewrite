@@ -1,3 +1,4 @@
+const { miningSaturationWorld, reloadMiningSaturation, verifyMiningSaturation } = require('./mining-saturation.cjs');
 const { miningReplacementWorld, verifyMiningReplacement } = require('./mining-replacement.cjs');
 const { miningWorkWorld, verifyMiningWork } = require('./mining-work.cjs');
 const { colonyMiningWorld, verifyColonyMining, colonyMineralWorld } = require('./colony-mining.cjs');
@@ -70,6 +71,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--mining-work')) modules.main = await actionBundle(root, 'mining-work-bot');
   if (process.argv.includes('--colony-mineral')) modules.main = await actionBundle(root, 'colony-mineral-bot');
   if (process.argv.includes('--mining-replacement')) modules.main = await actionBundle(root, 'mining-replacement-bot');
+  if (process.argv.includes('--mining-saturation')) modules.main = await actionBundle(root, 'mining-saturation-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -112,6 +114,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--mining-work')) await miningWorkWorld(server, bot);
   if (process.argv.includes('--colony-mineral')) await colonyMineralWorld(server, bot);
   if (process.argv.includes('--mining-replacement')) await miningReplacementWorld(server, bot);
+  if (process.argv.includes('--mining-saturation')) await miningSaturationWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -123,10 +126,14 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  const tickCount = process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
+  const tickCount = process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
+      if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
+    }
+    if (process.argv.includes('--mining-saturation')) {
+      const reloaded = await reloadMiningSaturation(server, bot, modules, tick);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
     }
     samples.push(await sampleTick(server, bot));
@@ -173,6 +180,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--mineral-capacity')) assert.deepEqual(memory.depletionEvidence, [[49, 0], [0, 49], [3, 49]]);
   if (process.argv.includes('--colony-mineral')) assert.deepEqual(memory.colonyMineral, { workers: 1, queued: 0, delivered: 1 });
   if (process.argv.includes('--mining-replacement')) verifyMiningReplacement(memory);
+  if (process.argv.includes('--mining-saturation')) verifyMiningSaturation(memory, initial);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -180,6 +188,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
