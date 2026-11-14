@@ -14,10 +14,11 @@ export function loop() {
   const creep = Game.creeps.support!;
   creep.memory.population ??= { owner: upgradeSupplyOwner('W0N1', 'E0N1'), home: 'W0N1' };
   if (Game.creeps.master) Game.creeps.master.memory.population = { owner: 'upgrade-master:E0N1', home: 'E0N1' };
-  const outcome = cycle.run(creep, { home: 'W0N1', target: 'E0N1', anchor: { room: 'E0N1', x: 2, y: 20 }, reserve: 70, active: Game.time < 12 });
+  const outcome = cycle.run(creep, { home: 'W0N1', target: 'E0N1', anchor: { room: 'E0N1', x: 2, y: 20 }, reserve: 70, active: Game.time < 25 });
   dispatch.flush();
   const target = Game.rooms.E0N1!;
   const row = { tick: Game.time, outcome, owner: creep.memory.population.owner, cargo: creep.store.energy, room: creep.pos.roomName,
+    mineral: creep.store.getUsedCapacity('H'), recovered: Game.rooms.W0N1!.storage!.store.getUsedCapacity('H'),
     source: Game.rooms.W0N1!.storage!.store.energy, storage: target.storage!.store.energy, master: Game.creeps.master?.store.energy ?? 0,
     ground: target.find(FIND_DROPPED_RESOURCES).filter(item => item.resourceType === 'energy').reduce((sum, item) => sum + item.amount, 0),
     drop: createGroundJournal(state, creep.id).read(), transfer: createTransferJournal(state, creep.id).read() };

@@ -8,9 +8,10 @@ import { haulingOwner } from '../features/logistics/identity';
 import { observeUpgradeSupplyDestination } from './native-upgrade-supply-destination';
 import { createNativeGroundDelivery } from './native-ground-delivery';
 import { settleSupplyCycle } from './native-supply-settlement';
+import { recoverSupplyCargo } from './native-supply-cargo';
 import { executeSupplyTransfer } from './native-supply-transfer';
 const policy = { version: 'upgrade-supply-cycle', blockedRooms: [], costs: {}, maximumRooms: 16 };
-export interface NativeSupplyCyclePlan { home: string; target: string; anchor: Position; reserve: number; active: boolean }
+export interface NativeSupplyCyclePlan { home: string; target: string; anchor: Position; reserve: number; active: boolean; terminalFreeReserve?: number }
 export function createNativeUpgradeSupplyCycle(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>) {
   const ground = createNativeGroundDelivery(state, dispatch);
   const blocked = (reason: string): Outcome => ({ status: 'blocked', reason, retryAt: Game.time + 1 });
@@ -58,12 +59,19 @@ export function createNativeUpgradeSupplyCycle(state: StatePort, dispatch: Retur
     return { status: 'done' };
   }
   return { run(creep: Creep, plan: NativeSupplyCyclePlan): Outcome {
-    if (creep.spawning || upgradeSupplyTarget(creep.memory.population?.owner ?? '', plan.home) !== plan.target) return blocked('supply-unit-mismatch');
+    if (!eligibleSupplyUnit(creep, plan)) return blocked('supply-unit-mismatch');
     dispatch.activate();
     if (settleSupplyCycle(state, creep, ground)) return { status: 'running' };
-    if (creep.store.getUsedCapacity() !== creep.store.energy) return blocked('supply-foreign-cargo');
+    const cargo = recoverSupplyCargo(state, dispatch, creep, plan.home, plan.terminalFreeReserve ?? 0);
+    if (cargo) return cargo;
     if (creep.store.energy > 0) return deliver(creep, plan);
     if (plan.active) return collect(creep, plan);
     return returnEmpty(creep, plan.home);
   } };
+}
+
+function eligibleSupplyUnit(creep: Creep, plan: NativeSupplyCyclePlan): boolean {
+  const population = creep.memory.population;
+  return creep.my && !creep.spawning && population?.home === plan.home
+    && upgradeSupplyTarget(population.owner, plan.home) === plan.target;
 }
