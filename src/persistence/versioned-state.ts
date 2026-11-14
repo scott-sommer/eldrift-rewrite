@@ -43,3 +43,13 @@ function initialize<T>(port: StatePort, key: string, schema: StateSchema<T>): T 
   return data;
 }
 
+
+export function saveState<T>(port: StatePort, key: string, schema: StateSchema<T>, data: T): void {
+  const raw = port.read(key);
+  if (!envelope(raw)) throw new Error(`${key}: open state before saving`);
+  if (raw.owner !== schema.owner) throw new Error(`${key}: state owner mismatch`);
+  if (raw.version !== schema.version) throw new Error(`${key}: migrate state before saving`);
+  const snapshot = copyPlain(data);
+  if (!schema.valid(snapshot)) throw new Error(`${key}: invalid state data`);
+  port.write(key, { owner: schema.owner, version: schema.version, data: snapshot });
+}
