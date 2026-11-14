@@ -1,4 +1,4 @@
-import { generateNativeMineralTransport } from './native-mineral-transport';
+import { generateNativeLogisticsRequests } from './native-logistics-requests';
 import { generateNativeLinkService } from './native-link-service';
 import { runNativeLinks } from './native-links';
 import { settleHaulingTask } from './settle-hauling-task';
@@ -7,7 +7,6 @@ import { recoverNativeCargo } from './native-cargo-recovery';
 import { createNativeCourierRoutes } from './native-courier-routes';
 import { haulingOwner } from '../features/logistics/identity';
 import { maintainNativeCouriers, cancelCourierDemand } from './native-courier-population';
-import { generateNativeEnergyRequests } from './native-energy-supply';
 
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
@@ -41,8 +40,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
       }
-      if (config.values.energyRequestsEnabled || config.values.preservationEnabled) generateNativeEnergyRequests(state, Game.rooms[view.name]!, units, config.values);
-      if (config.values.mineralTransportEnabled) generateNativeMineralTransport(state, Game.rooms[view.name]!, config.values);
+      generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, config.values);
       maintainNativeCouriers(state, Game.rooms[view.name]!, config.values, observeRoutes);
     },
   };
