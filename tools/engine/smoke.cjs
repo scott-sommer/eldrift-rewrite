@@ -57,6 +57,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--occupied-exit')) modules.main = await actionBundle(root, 'occupied-exit-bot');
   if (process.argv.includes('--spawn')) modules.main = await actionBundle(root, 'spawn-bot');
   if (process.argv.includes('--spawn-contention')) modules.main = await actionBundle(root, 'spawn-contention-bot');
+  if (process.argv.includes('--stations')) modules.main = await actionBundle(root, 'stations-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -72,6 +73,13 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--occupied-exit')) await occupiedExitWorld(server, bot);
   if (process.argv.includes('--spawn')) await server.world.setTerrain('W0N1', new TerrainMatrix());
   if (process.argv.includes('--spawn-contention')) await contentionWorld(server, bot);
+  if (process.argv.includes('--stations')) {
+    await actionWorld(server, bot);
+    await server.world.setTerrain('W0N1', new TerrainMatrix());
+    await server.world.addRoomObject('W0N1', 'container', 21, 20, {
+      store: {}, storeCapacity: 2000, hits: 250000, hitsMax: 250000, nextDecayTime: 1000,
+    });
+  }
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -132,6 +140,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
