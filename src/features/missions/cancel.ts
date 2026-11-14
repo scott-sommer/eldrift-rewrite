@@ -1,0 +1,16 @@
+import { openState, saveState } from '../../persistence/versioned-state';
+import type { StatePort } from '../../persistence/versioned-state';
+import { createReservations } from '../../persistence/reservations/store';
+import { missionSchema } from './state';
+import type { StageContract } from './model';
+export function cancelMission(port: StatePort, id: string, contracts: Readonly<Record<string, StageContract>>): void {
+  const schema = missionSchema(id, contracts);
+  const key = `missions/${id}`;
+  const state = openState(port, key, schema);
+  if (state.status === 'completed') throw new Error('Completed mission cannot be cancelled');
+  // Release first; a reset before saving cancellation can safely replay this operation.
+  createReservations(port).releaseScope(`mission:${id}`);
+  state.status = 'cancelled';
+  state.units = [];
+  saveState(port, key, schema, state);
+}
