@@ -42,13 +42,14 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--movement')) modules.main = await actionBundle(root, 'movement-bot');
   if (process.argv.includes('--maintenance')) modules.main = await actionBundle(root, 'maintenance-bot');
   if (process.argv.includes('--retirement')) modules.main = await actionBundle(root, 'retirement-bot');
+  if (process.argv.includes('--paths')) modules.main = await actionBundle(root, 'path-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
   if (process.argv.includes('--retirement')) await actionWorld(server, bot);
   if (process.argv.includes('--work')) await workWorld(server, bot);
   if (process.argv.includes('--resources')) await resourceWorld(server, bot);
-  if (process.argv.includes('--movement')) await movementWorld(server, bot);
+  if (process.argv.includes('--movement') || process.argv.includes('--paths')) await movementWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -85,6 +86,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     assert.deepEqual(memory.eldrift.records['tasks/action-worker'].data.queue, []);
     assert.equal(memory.eldrift.records['reservations/empire'].data.claims[0].holder, 'unrelated');
   }
+  if (process.argv.includes('--paths')) assert.deepEqual(memory.pathEvidence, { searches: [1, 1, 2], positions: [[20, 20], [21, 20], [21, 20]], statuses: ['complete', 'complete', 'complete'] });
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));

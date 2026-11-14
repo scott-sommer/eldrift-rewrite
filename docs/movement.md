@@ -1,0 +1,18 @@
+# Movement implementation and adoption record
+
+ED-18 is in progress. Path search now has explicit complete/incomplete/no-route outcomes, plain position records and a native Screeps adapter. The adapter puts range on the goal (not search options), applies an explicit room allow-list before searching and in the room callback, and checks the final room-aware endpoint before reporting completion. An empty/partial budget-limited engine result remains incomplete; it is not proof that no route exists. No-route currently means a policy exclusion.
+
+Path cache keys include both room/coordinate endpoints, range, profile ID and concrete costs/budgets, topology version, policy version and canonical allowed-room set. Only complete results are cached. The heap cache has bounded capacity and TTL, explicit invalidation and detached returned paths. Reset reconstructs it empty. Callers must advance topology/policy versions when their matrix or safety assumptions change; automatic matrix revision tracking and stuck recovery remain unfinished. No raw creep.moveTo calls or RoomPosition prototype overrides are introduced.
+
+Legacy inspection: utilV2.js addOutpostShort takes the last PathFinder result without checking incomplete and puts range in search options. The new search boundary corrects these mechanics. waypointer.js owns waypoint selection and portal-stage bookkeeping and calls moveTo directly; preserve that operator behavior later behind the unified movement authority rather than copying the direct movement calls.
+
+Primary references:
+- Screeps PathFinder API: https://docs.screeps.com/api/#PathFinder.search documents partial paths, search limits and false room-callback exclusion.
+- Cartographer: https://github.com/screepers/screeps-cartographer describes caching, stuck recovery, traffic priority, intrashard portal routing and its requirement not to mix native prototype movement with its traffic reconciler.
+- Candidate metadata: https://raw.githubusercontent.com/screepers/screeps-cartographer/main/package.json currently declares version 1.8.16 and MIT. A root license file was not retrieved in this inspection; package metadata alone is not a completed source/license audit.
+
+Current decision: keep a narrow native PathFinder adapter as the measured baseline and preserve proven legacy policy selectively. Do not adopt Cartographer yet. Before adoption, pin an exact artifact/revision, inspect its distributed license/dependencies, compare CPU and behavior on the same engine fixtures, and ensure it becomes the single movement authority including formations. No candidate performance claim or final adopt/reject decision is made here.
+
+Evidence: 179 tests passed in 2.60s; quality/Lizard passed with 62 production files and zero violations. Twelve actual-engine scenarios passed in 10.60s. The new paths scenario searches a plain-room route, moves a creep to its observed endpoint, checks repeated cache reuse, then bumps topology version and verifies one additional search (counts 1,1,2). It also checks endpoint policy exclusion. After simplifying its search counter, the specific scenario passed again with engine CPU samples 6/1/1ms (tiny fixture/startup-inclusive, not representative travel cost).
+
+Still required: coordinate boundary and exit behavior, route policy, structural/dynamic cost matrices and visibility, damaged-body movement profiles, stuck/repath recovery, coordinated traffic/formation extension and wider engine coverage. The production composition does not yet dispatch movement requests; this milestone supplies the search/cache boundary consumed by the engine fixture.
