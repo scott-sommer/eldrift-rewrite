@@ -55,10 +55,10 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         recoverNativeCargo(state, definitions, creep, view.name, policy.terminalFreeReserve);
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request),
-        request => !isSupportScope(request.owner) && (!recoveryActive || request.resource === 'energy'));
+        request => !isSupportScope(request.owner) && (!recoveryActive || request.resource === 'energy') && (recoveryActive || !request.owner.endsWith(':recovery-bank')));
         execute(creep.name, creep);
       }
-      generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, policy);
+      generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, policy, recoveryActive);
       maintainNativeScavengers(state, room, policy, recoveryActive);
       maintainNativeCouriers(state, Game.rooms[view.name]!, policy, observeRoutes, recoveryActive);
     },
