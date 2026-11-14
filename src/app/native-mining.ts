@@ -1,3 +1,4 @@
+import { reconcileMiningDemand } from '../features/mining/reconcile-demand';
 import { configureMineralStation, miningPopulationFor } from './native-mining-policy';
 import { miningRetreat } from '../adapters/screeps/mining-retreat';
 import { cancelMiningDemand } from '../features/mining/cancel-demand';
@@ -29,6 +30,7 @@ export function createNativeMiningFeature(state: StatePort, { mine, activate }: 
       const budget = Math.min(config.values.miningBodyBudget, units.length ? room.energyCapacityAvailable : room.energyAvailable);
       const body = sourceMiner(budget)?.parts;
       const stations = observed.map(station => configureMineralStation(station, body, config.values.mineralMiningEnabled));
+      reconcileMiningDemand(state, room.name, room.name, stations);
       const cycle = createMiningCycle<Creep>(state, {
         clock: () => Game.time, unit: creep => creep.name, context: name => Game.creeps[name]!, taskLifetime: 1600,
         plan: station => body ? { station, home: room.name, body, priority: station.kind === 'energy' ? 0 : 10, travelTicks: 25, marginTicks: 10, requestLifetime: 100 } : undefined,
@@ -44,3 +46,4 @@ export function createNativeMiningFeature(state: StatePort, { mine, activate }: 
   };
   return { feature, definitions: { mine: { phases: ['work'], validPayload: validMiningPayload } } };
 }
+
