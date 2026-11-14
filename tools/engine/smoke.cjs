@@ -1,3 +1,5 @@
+const { storeBalanceWorld, verifyStoreBalance } = require('./store-balance.cjs');
+const storeBalanceMode = ['fill', 'drain', 'mineral'].find(mode => process.argv.includes('--store-' + mode));
 const { energyBankingWorld, verifyEnergyBanking } = require('./energy-banking.cjs');
 const { storageLossWorld, removeStorage, verifyStorageLoss } = require('./storage-loss.cjs');
 const { cargoDeathWorld, verifyCargoDeath } = require('./cargo-death.cjs');
@@ -111,6 +113,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--full-sink')) modules.main = await actionBundle(root, 'missing-sink-bot');
   if (process.argv.includes('--expiry-delivery')) modules.main = await actionBundle(root, 'expiry-delivery-bot');
   if (process.argv.includes('--mineral-recovery') || process.argv.includes('--mineral-recovery-fallback')) modules.main = await actionBundle(root, 'mineral-recovery-bot');
+  if (storeBalanceMode) modules.main = await actionBundle(root, 'store-balance-bot');
   if (process.argv.includes('--energy-banking')) modules.main = await actionBundle(root, 'energy-banking-bot');
   if (process.argv.includes('--storage-loss')) modules.main = await actionBundle(root, 'storage-loss-bot');
   if (process.argv.includes('--cargo-death')) modules.main = await actionBundle(root, 'cargo-death-bot');
@@ -189,6 +192,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--full-sink')) await cargoRecoveryWorld(server, bot);
   if (process.argv.includes('--expiry-delivery')) await cargoRecoveryWorld(server, bot);
   if (process.argv.includes('--mineral-recovery') || process.argv.includes('--mineral-recovery-fallback')) await mineralRecoveryWorld(server, bot, process.argv.includes('--mineral-recovery-fallback'));
+  if (storeBalanceMode) await storeBalanceWorld(server, bot, storeBalanceMode);
   if (process.argv.includes('--energy-banking')) await energyBankingWorld(server, bot);
   if (process.argv.includes('--storage-loss')) await storageLossWorld(server, bot);
   if (process.argv.includes('--cargo-death')) await cargoDeathWorld(server, bot);
@@ -227,7 +231,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  const tickCount = process.argv.includes('--energy-banking') ? 5 : process.argv.includes('--storage-loss') ? 4 : process.argv.includes('--cargo-death') ? 9 : process.argv.includes('--courier-death') ? 4 : (process.argv.includes('--mineral-transport') || process.argv.includes('--mineral-reload')) ? 9 : process.argv.includes('--link-reversal') ? 8 : process.argv.includes('--link-service') ? 4 : process.argv.includes('--link-contention') ? 4 : process.argv.includes('--controller-links') ? 4 : process.argv.includes('--tower-supply') ? 5 : process.argv.includes('--expiry-delivery') ? 4 : process.argv.includes('--full-sink') ? 4 : process.argv.includes('--preservation-decay') ? 8 : process.argv.includes('--preservation') ? 8 : process.argv.includes('--large-drop') ? 5 : process.argv.includes('--drop-supply') ? 5 : process.argv.includes('--source-loss') ? 6 : process.argv.includes('--remains-supply') ? 7 : process.argv.includes('--pickup-admission') ? 4 : process.argv.includes('--missing-sink') ? 4 : process.argv.includes('--unknown-delivery') ? 5 : process.argv.includes('--unknown-recovery') ? 5 : process.argv.includes('--expiry-recovery') ? 4 : process.argv.includes('--cargo-recovery') ? 4 : process.argv.includes('--empty-source') ? 6 : process.argv.includes('--colony-economy') ? 100 : process.argv.includes('--courier-bootstrap') ? 30 : process.argv.includes('--energy-logistics') ? 5 : process.argv.includes('--hauling-cycle') ? 6 : process.argv.includes('--transfer-confirmation') ? 4 : process.argv.includes('--mining-interrupted') ? 9 : process.argv.includes('--extractor-fault') ? 13 : process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
+  const tickCount = storeBalanceMode ? 6 : process.argv.includes('--energy-banking') ? 5 : process.argv.includes('--storage-loss') ? 4 : process.argv.includes('--cargo-death') ? 9 : process.argv.includes('--courier-death') ? 4 : (process.argv.includes('--mineral-transport') || process.argv.includes('--mineral-reload')) ? 9 : process.argv.includes('--link-reversal') ? 8 : process.argv.includes('--link-service') ? 4 : process.argv.includes('--link-contention') ? 4 : process.argv.includes('--controller-links') ? 4 : process.argv.includes('--tower-supply') ? 5 : process.argv.includes('--expiry-delivery') ? 4 : process.argv.includes('--full-sink') ? 4 : process.argv.includes('--preservation-decay') ? 8 : process.argv.includes('--preservation') ? 8 : process.argv.includes('--large-drop') ? 5 : process.argv.includes('--drop-supply') ? 5 : process.argv.includes('--source-loss') ? 6 : process.argv.includes('--remains-supply') ? 7 : process.argv.includes('--pickup-admission') ? 4 : process.argv.includes('--missing-sink') ? 4 : process.argv.includes('--unknown-delivery') ? 5 : process.argv.includes('--unknown-recovery') ? 5 : process.argv.includes('--expiry-recovery') ? 4 : process.argv.includes('--cargo-recovery') ? 4 : process.argv.includes('--empty-source') ? 6 : process.argv.includes('--colony-economy') ? 100 : process.argv.includes('--courier-bootstrap') ? 30 : process.argv.includes('--energy-logistics') ? 5 : process.argv.includes('--hauling-cycle') ? 6 : process.argv.includes('--transfer-confirmation') ? 4 : process.argv.includes('--mining-interrupted') ? 9 : process.argv.includes('--extractor-fault') ? 13 : process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
@@ -307,6 +311,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--expiry-delivery')) verifyExpiryDelivery(memory);
   if (process.argv.includes('--mineral-recovery') || process.argv.includes('--mineral-recovery-fallback')) verifyMineralRecovery(memory, process.argv.includes('--mineral-recovery-fallback'));
   if (process.argv.includes('--mineral-reload')) verifyMineralReload(memory, initial);
+  if (storeBalanceMode) verifyStoreBalance(memory, storeBalanceMode);
   if (process.argv.includes('--energy-banking')) verifyEnergyBanking(memory);
   if (process.argv.includes('--storage-loss')) verifyStorageLoss(memory);
   if (process.argv.includes('--cargo-death')) verifyCargoDeath(memory);
