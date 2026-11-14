@@ -36,6 +36,9 @@ function verifySupportTransport(memory, loss = false, reduced = false) {
     assert.ok(rows.some(row => row.source === 80 && row.cargo === 0 && row.reservedStock === 10), 'the booking shrinks before arrival and withdrawal');
   }
   assert.ok(rows.some(row => row.room === 'E0N1'), 'courier crosses into target room');
+  assert.equal(last.owner, 'logistics:"W0N1"');
+  assert.equal(last.room, 'W0N1');
+  assert.ok(last.x > 0 && last.x < 49, 'handoff occurs inside home, avoiding border bounce');
   if (loss) assert.equal(last.room, 'W0N1');
   else assert.ok(rows.some(row => row.room === 'E0N1'), 'shared movement crosses into target room');
   const records = memory.eldrift.records['logistics-requests/W0N1'].data.records;
