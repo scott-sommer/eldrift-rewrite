@@ -12,10 +12,10 @@ function allocate(inputs: readonly LinkView[], sink: LinkView, lossRatio: number
   if (!Number.isFinite(lossRatio) || lossRatio < 0 || lossRatio >= 1) throw new Error('Invalid link loss ratio');
   const transfers: LinkTransfer[] = [];
   const sent = new Set<string>();
-  let free = sink.capacity - sink.energy;
+  let free = freeCapacity(sink);
   for (const source of inputs) {
-    if (!source.active || source.cooldown > 0 || source.id === sink.id || sent.has(source.id)) continue;
-    const amount = Math.min(source.energy, free);
+    if (!canSend(source, sink, sent)) continue;
+    const amount = Math.min(availableStock(source), free);
     const expectedReceived = amount - Math.ceil(amount * lossRatio);
     if (expectedReceived <= 0) continue;
     transfers.push({ source: source.id, sink: sink.id, amount, expectedReceived });
@@ -23,4 +23,14 @@ function allocate(inputs: readonly LinkView[], sink: LinkView, lossRatio: number
     free -= amount;
   }
   return transfers;
+}
+
+function freeCapacity(link: LinkView): number {
+  return Math.min(link.capacity - link.energy, link.availableCapacity ?? Infinity);
+}
+function availableStock(link: LinkView): number {
+  return Math.min(link.energy, link.availableStock ?? Infinity);
+}
+function canSend(source: LinkView, sink: LinkView, sent: ReadonlySet<string>): boolean {
+  return source.active && source.cooldown === 0 && source.id !== sink.id && !sent.has(source.id);
 }

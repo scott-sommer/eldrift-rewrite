@@ -25,7 +25,7 @@ function sinkCapacity(sink: TransferObject | null, resource: ResourceConstant): 
   if (!sink || !('store' in sink) || !('structureType' in sink || 'body' in sink || 'powers' in sink)) return 0;
   return sink.store.getFreeCapacity(resource) ?? 0;
 }
-function capacityPool(id: string, sink: TransferObject | null, resource: ResourceConstant): string {
+export function capacityPool(id: string, sink: TransferObject | null, resource: ResourceConstant): string {
   if (!sink || !('store' in sink) || sink.store.getCapacity() !== null) return logisticsPool('capacity', id);
   const compartment = 'structureType' in sink && sink.structureType === 'lab' && resource !== 'energy' ? 'mineral' : resource;
   return logisticsPool('capacity', id, compartment);

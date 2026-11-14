@@ -1,5 +1,5 @@
 import type { Position } from '../../../capabilities/movement/step';
-export interface LinkView { id: string; position: Position; energy: number; capacity: number; cooldown: number; active: boolean }
+export interface LinkView { id: string; position: Position; energy: number; capacity: number; cooldown: number; active: boolean; availableStock?: number; availableCapacity?: number }
 export interface LinkRoom { sources: readonly Position[]; storage?: Position; controller?: Position; storageEnergy: number }
 export interface LinkRoles { inputs: readonly LinkView[]; storage?: LinkView; controllers: readonly LinkView[]; relays: readonly LinkView[] }
 export interface LinkPolicy { controllerTrigger: number; storageAssistTrigger: number; relayTrigger: number; lossRatio: number }
