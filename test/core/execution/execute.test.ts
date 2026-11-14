@@ -19,3 +19,14 @@ test('expiry, unknown phases and target failures remain explicit', () => {
   expect(execute(initial, {}, {}, 1).outcome).toEqual({ status: 'failed', reason: 'unknown-phase' });
   expect(execute(initial, { travel: () => ({ status: 'failed', reason: 'target-missing' }) }, {}, 1).outcome).toEqual({ status: 'failed', reason: 'target-missing' });
 });
+
+test('unknown transition at the evaluation limit fails without persisting an invalid phase', () => {
+  const result = execute(initial, { travel: () => ({ status: 'transition', phase: 'missing' }) }, {}, 1, 1);
+  expect(result.outcome).toEqual({ status: 'failed', reason: 'unknown-phase' });
+  expect(result.state.phase).toBe('travel');
+});
+test.each([NaN, Infinity, -1, 0.5])('invalid clock %s never invokes handlers', tick => {
+  let invoked = false;
+  expect(() => execute(initial, { travel: () => { invoked = true; return { status: 'done' }; } }, {}, tick)).toThrow('Invalid execution tick');
+  expect(invoked).toBe(false);
+});

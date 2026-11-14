@@ -10,6 +10,7 @@ function blocked(state: ExecutionState, outcome: Extract<Outcome, { status: 'blo
 export function execute<Context>(saved: ExecutionState, handlers: Handlers<Context>, context: Context, tick: number, maximum = 4, retryLimit = 5): ExecutionResult {
   if (!Number.isSafeInteger(maximum) || maximum < 1) throw new Error('Invalid transition limit');
   if (!Number.isSafeInteger(retryLimit) || retryLimit < 0) throw new Error('Invalid retry limit');
+  if (!Number.isSafeInteger(tick) || tick < 0) throw new Error('Invalid execution tick');
   if (!validExecution(saved)) throw new Error('Invalid execution checkpoint');
   const state = { ...saved };
   if (tick >= state.expiresAt) return { state, outcome: { status: 'failed', reason: 'expired' }, steps: 0 };
@@ -18,6 +19,7 @@ export function execute<Context>(saved: ExecutionState, handlers: Handlers<Conte
     if (!Object.hasOwn(handlers, state.phase)) return { state, outcome: { status: 'failed', reason: 'unknown-phase' }, steps: steps - 1 };
     const outcome = handlers[state.phase]!(context);
     if (outcome.status === 'transition') {
+      if (!Object.hasOwn(handlers, outcome.phase)) return { state, outcome: { status: 'failed', reason: 'unknown-phase' }, steps };
       state.phase = outcome.phase;
       continue;
     }
@@ -25,4 +27,5 @@ export function execute<Context>(saved: ExecutionState, handlers: Handlers<Conte
   }
   return { state, outcome: { status: 'running' }, steps: maximum };
 }
+
 
