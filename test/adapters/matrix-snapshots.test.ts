@@ -31,3 +31,23 @@ test('searches receive cloned matrices rather than mutable shared snapshots', ()
 
 });
 
+
+test('vision loss discards visible matrices and changes the path topology revision', () => {
+  let tick = 1;
+  let visible = true;
+  const matrix = { clone: () => ({ get: () => 255 }) } as unknown as CostMatrix;
+  const snapshots = createMatrixSnapshots(room => ({
+    matrix: visible ? matrix : undefined, visible, version: visible ? room + ':obstacle' : 'unseen:' + room,
+  }), () => tick);
+  const options = { roadCost: 1, avoidUnits: false };
+  const seen = snapshots.prepare(['W0N0'], options);
+  expect(seen.matrix('W0N0')!.get(20, 20)).toBe(255);
+  visible = false;
+  tick++;
+  const lost = snapshots.prepare(['W0N0'], options);
+  expect(lost.matrix('W0N0')).toBeUndefined();
+  expect(lost.version).not.toBe(seen.version);
+  visible = true;
+  tick++;
+  expect(snapshots.prepare(['W0N0'], options).version).toBe(seen.version);
+});
