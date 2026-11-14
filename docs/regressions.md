@@ -17,3 +17,8 @@ Evidence is source inspection and the original focused probes, not a full legacy
 Intentional policy change: compare eligible layout candidates after hard validation rather than accepting standard solely because it fits. Record chosen strategy and score reasons.
 
 No regression in this register has been verified against the new implementation yet.
+
+Additional control-review regressions:
+- defend.js:65: contradictory null/undefined conjunction prevents intended Safe trigger. Test no hostile, hostile inside/outside boundary, unavailable safe mode and non-owned controller.
+- controller.js:1566 vicinity: contradictory occupied-timer conjunction prevents occupied transition. Define invasion-to-occupation timing explicitly, test recovery and independent processing of multiple vassals.
+- consoleCommands.clearRoomData: destructive default and unclaimRoom alias need explicit adapter semantics and ownership/target validation; ordinary planning must never invoke them.
