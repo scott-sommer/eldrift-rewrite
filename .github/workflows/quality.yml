@@ -6,7 +6,7 @@ jobs:
   verify:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-24.04, windows-2022]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -31,3 +31,4 @@ jobs:
       - run: npm run quality
       - run: npm test
       - run: npm run check:bundle
+
