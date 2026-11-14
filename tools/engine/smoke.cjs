@@ -1,3 +1,4 @@
+const { specialistMiningWorld, verifySpecialistMining } = require('./specialist-mining.cjs');
 const { miningWorld, verifyMining } = require('./mining.cjs');
 const { contentionWorld, verifyContention } = require('./spawn-contention.cjs');
 const { unseenWorld, verifyUnseen, occupiedExitWorld, verifyOccupiedExit } = require('./unseen.cjs');
@@ -60,6 +61,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--spawn-contention')) modules.main = await actionBundle(root, 'spawn-contention-bot');
   if (process.argv.includes('--stations')) modules.main = await actionBundle(root, 'stations-bot');
   if (process.argv.includes('--mining')) modules.main = await actionBundle(root, 'mining-bot');
+  if (process.argv.includes('--specialist-mining')) modules.main = await actionBundle(root, 'specialist-mining-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -83,6 +85,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     });
   }
   if (process.argv.includes('--mining')) await miningWorld(server, bot);
+  if (process.argv.includes('--specialist-mining')) await specialistMiningWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -137,6 +140,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   }
   if (process.argv.includes('--spawn-contention')) verifyContention(memory);
   if (process.argv.includes('--mining')) verifyMining(memory);
+  if (process.argv.includes('--specialist-mining')) verifySpecialistMining(memory);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -144,6 +148,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
