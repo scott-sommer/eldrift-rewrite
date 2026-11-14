@@ -1,3 +1,4 @@
+import { abandonUnknownTransfer } from './abandon-unknown-transfer';
 import type { Outcome } from '../core/execution/model';
 import type { StatePort } from '../persistence/versioned-state';
 import { createQuantityReservations } from '../persistence/quantities/store';
@@ -19,7 +20,7 @@ export interface HaulingPorts {
 export function runHauling(state: StatePort, binding: HaulingBinding, view: HaulingView, ports: HaulingPorts): Outcome {
   if (![view.tick, view.cargo, view.freeCargo].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid hauling view');
   if (settlePending(state, binding, view, ports)) return wait(view.tick, 'transfer-pending');
-  if (createTransferJournal(state, binding.unit).read().result?.status === 'unknown') return wait(view.tick, 'transfer-evidence-lost');
+  if (abandonUnknownTransfer(state, binding, view.tick, view.cargo)) return { status: 'failed', reason: 'transfer-evidence-lost' };
   const request = pending(state, binding, view.tick);
   if (!request || (view.cargo === 0 && view.sourceStock === 0)) return finish(state, binding, view);
   const phase = view.cargo > 0 ? 'deliver' : 'collect';
@@ -56,4 +57,5 @@ function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingV
   });
   return settled?.status === 'waiting';
 }
+
 

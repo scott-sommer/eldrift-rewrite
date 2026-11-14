@@ -15,7 +15,7 @@ export function settleHaulingTransfer(state: StatePort, binding: HaulingSettleme
   const journal = createTransferJournal(state, binding.unit);
   const previous = journal.read();
   if (!previous.attempt || previous.acknowledged) return null;
-  validateBinding(previous.attempt, binding);
+  validateHaulingBinding(previous.attempt, binding);
   const result = journal.settle(observation);
   if (!result || result.status === 'waiting') return result;
   if (result.status === 'observed' && result.amount > 0 && previous.attempt.kind === 'transfer') {
@@ -26,11 +26,12 @@ export function settleHaulingTransfer(state: StatePort, binding: HaulingSettleme
   journal.acknowledge(previous.attempt.id);
   return result;
 }
-function validateBinding(attempt: TransferAttempt, binding: HaulingSettlement): void {
+export function validateHaulingBinding(attempt: TransferAttempt, binding: HaulingSettlement): void {
   const target = attempt.kind === 'transfer' ? binding.request.sink : binding.request.source;
   if (attempt.requestKey !== logisticsPool('request-binding', binding.home, binding.request.owner, binding.request.id)) throw new Error('Hauling request binding mismatch');
   if (attempt.unit !== binding.unit || attempt.target !== target || attempt.resource !== binding.request.resource) {
     throw new Error('Hauling attempt does not match request');
   }
 }
+
 

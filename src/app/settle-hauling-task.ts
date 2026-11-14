@@ -1,3 +1,4 @@
+import { abandonUnknownTransfer } from './abandon-unknown-transfer';
 import type { StatePort } from '../persistence/versioned-state';
 import { openState } from '../persistence/versioned-state';
 import { stateKey } from '../persistence/state-key';
@@ -17,7 +18,10 @@ export function settleHaulingTask(state: StatePort, definitions: Readonly<Record
   const task = openState(state, key, taskSchema(unit.name, definitions)).queue[0];
   if (!task || task.kind !== 'haul' || !validHaulingPayload(task.payload) || task.payload.unitId !== unit.id) return;
   const journal = createTransferJournal(state, unit.id).read();
-  if (!journal.attempt || journal.acknowledged) return;
-  settleHaulingTransfer(state, { home: task.payload.home, unit: unit.id, request: task.payload.request },
-    observe(journal.attempt), () => { createQuantityReservations(state).releaseScope(taskScope(unit.name, task.id)); });
+  if (!journal.attempt || (journal.acknowledged && journal.result?.status !== 'unknown')) return;
+  const binding = { home: task.payload.home, unit: unit.id, holder: unit.name, request: task.payload.request, scope: taskScope(unit.name, task.id) };
+  const observation = observe(journal.attempt);
+  settleHaulingTransfer(state, binding, observation, () => { createQuantityReservations(state).releaseScope(binding.scope); });
+  abandonUnknownTransfer(state, binding, observation.tick, observation.cargo ?? null);
 }
+

@@ -21,6 +21,11 @@ export function createTransferJournal(port: StatePort, unit: string) {
       saveState(port, key, schema, { acknowledged: false, attempt, result: null });
       return true;
     },
+    retireUnknown(id: string): void {
+      const current = read();
+      if (current.attempt?.id !== id || !current.acknowledged || current.result?.status !== 'unknown') throw new Error('Unknown transfer is not ready to retire');
+      saveState(port, key, schema, schema.initial());
+    },
     acknowledge(id: string): void {
       const state = read();
       if (state.attempt?.id !== id || !state.result) throw new Error('Transfer result is not ready to acknowledge');
@@ -49,4 +54,5 @@ function validResult(result: TransferConfirmation | null, maximum: number): bool
   return result.status === 'unknown' || (result.status === 'observed'
     && Number.isSafeInteger(result.amount) && result.amount >= 0 && result.amount <= maximum);
 }
+
 
