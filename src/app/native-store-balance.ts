@@ -15,6 +15,6 @@ function snapshot(item: StructureStorage | StructureTerminal | undefined, reserv
 }
 
 function balanceAllowed(room: Room, config: Readonly<RuntimeConfig>): boolean {
-  return config.storeBalancingEnabled && room.energyCapacityAvailable > 0
+  return config.storeBalancingEnabled && !config.upgradeRoomServiceEnabled && room.energyCapacityAvailable > 0
     && room.energyAvailable > room.energyCapacityAvailable * config.storeBalanceMinimumEnergyFraction;
 }

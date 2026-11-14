@@ -28,6 +28,11 @@ export interface RuntimeConfig {
   energyRequestsEnabled: boolean;
   energyReclamationEnabled: boolean;
   workerSupplyEnabled: boolean;
+  upgradeRoomServiceEnabled: boolean;
+  upgradeLabMineralTarget: number;
+  upgradeSpawnEnergyFloor: number;
+  upgradeStorageEnergyCeiling: number;
+  upgradeServiceBatch: number;
   workersEnabled: boolean;
   workerSpawningEnabled: boolean;
   workerBodyBudget: number;
@@ -95,6 +100,11 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   energyRequestsEnabled: false,
   energyReclamationEnabled: false,
   workerSupplyEnabled: false,
+  upgradeRoomServiceEnabled: false,
+  upgradeLabMineralTarget: 1300,
+  upgradeSpawnEnergyFloor: 100,
+  upgradeStorageEnergyCeiling: 990000,
+  upgradeServiceBatch: 200,
   workersEnabled: false,
   workerSpawningEnabled: false,
   workerBodyBudget: 1000,
