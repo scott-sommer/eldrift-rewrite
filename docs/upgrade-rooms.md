@@ -303,3 +303,12 @@ Actual --supply-cycle scenario: seeded 50-capacity courier collects 30 above don
 Still required: fleet recruitment/config/main registration, native terminal/full-destination/ownership-loss scenarios, long-route and replacement evidence, journal retirement cleanup for dead supply units, and foreign-cargo recovery (currently explicitly blocked). The cycle is not yet registered in the production room runtime. Full reset/reclaim/bootstrap/rebuild remains outstanding.
 
 Validation: quality passed (293 production / 261 test files, zero Lizard violations); all 564 tests / 171 files passed in 4.63s; bundle check passed; complete expanded native suite passed 120 checks in 208.36s (artifacts/engine-suite.json). This supersedes the older 114-case aggregate and includes all intervening bootstrap, supply transport, drop/recovery and low-RCL cycle scenarios.
+
+
+## Ground journal lifecycle retirement (ED-22, 2026-11-15)
+
+Ground journals now retire through the existing creep identity lifecycle callback alongside transfer journals. Retirement receives the old native ID, preserving a replacement creep that reuses the same name. Nonempty journals are archived before removal under ground-retired/empire; the archive retains at most 50 identities and counts discarded older entries. Pending, ambiguous and reconciled results remain evidence as recorded, without fabricated confirmation. Empty journals are removed without archive growth. An interrupted deletion replays idempotently because the archive entry already exists.
+
+Validation: quality passed (294 production / 262 test files, zero Lizard violations); 567 tests / 172 files passed in 4.49s. New lifecycle tests cover old/new identity isolation, archive-before-delete interruption, empty state and bounded retention. Existing --retirement native scenario passed (artifacts/engine-ESRzE2/evidence.json); it is a general lifecycle regression, not a new native dead-ground-hauler scenario. Full 120-case engine aggregate from the preceding milestone was not rerun.
+
+Remaining before supply runtime registration: foreign-cargo task ownership/settlement, fleet/config/recruitment and dedicated terminal/full/loss cases. Combined reset/reclaim/bootstrap/rebuild and the rest of ED-22 remain incomplete.

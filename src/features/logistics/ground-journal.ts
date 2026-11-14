@@ -2,7 +2,7 @@ import { openState, saveState, type StatePort, type StateSchema } from '../../pe
 import { stateKey } from '../../persistence/state-key';
 import { confirmGroundRelease, validateGroundAttempt, type GroundAttempt, type GroundObservation, type GroundConfirmation } from '../../capabilities/logistics/ground-confirmation';
 export type GroundResult = GroundConfirmation | { status: 'rejected'; code: number } | { status: 'reconciled'; tick: number; cargo: number };
-interface GroundJournal { attempt: GroundAttempt | null; result: GroundResult | null; acknowledged: boolean }
+export interface GroundJournal { attempt: GroundAttempt | null; result: GroundResult | null; acknowledged: boolean }
 const schema: StateSchema<GroundJournal> = {
   owner: 'ground-delivery', version: 1, migrations: {},
   initial: () => ({ attempt: null, result: null, acknowledged: true }), valid,
@@ -65,3 +65,5 @@ function validResult(result: GroundResult | null, amount: number): boolean {
 function acknowledgeable(result: GroundResult | null): boolean {
   return !!result && ['released', 'rejected', 'reconciled'].includes(result.status);
 }
+
+export { schema as groundJournalSchema };
