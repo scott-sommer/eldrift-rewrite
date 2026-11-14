@@ -1,3 +1,4 @@
+const { prepareReload, verifyReload } = require('./reload.cjs');
 const { provenance, sampleTick } = require('./report.cjs');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -40,12 +41,19 @@ server.on('error', error => { console.error(error); finish(1, error); });
   await server.start();
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  for (let tick = 0; tick < 3; tick++) samples.push(await sampleTick(server, bot));
+  for (let tick = 0; tick < 3; tick++) {
+    if (process.argv.includes('--reload')) {
+      const reloaded = await prepareReload(server, bot, modules, tick);
+      if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
+    }
+    samples.push(await sampleTick(server, bot));
+  }
   assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
   assert.equal(Number(await server.world.gameTime), initial + 3);
   assert.equal(memory.eldrift.format, 1);
   assert.equal(memory.eldrift.records['operator/config'].owner, 'operator');
+  if (process.argv.includes('--reload')) verifyReload(memory, initial);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -53,6 +61,8 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
+
 
 
 
