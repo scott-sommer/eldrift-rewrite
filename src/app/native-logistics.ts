@@ -1,3 +1,4 @@
+import { maintainNativeScavengers } from './native-scavenger-population';
 import { recoveryEconomy } from '../features/recovery/economy-policy';
 import type { RuntimeConfig } from '../config/model';
 import { settleNativeLinkTransfers } from './native-link-accounting';
@@ -9,8 +10,8 @@ import { settleHaulingTask } from './settle-hauling-task';
 import { observeTransfer } from '../adapters/screeps/transfer-observation';
 import { recoverNativeCargo } from './native-cargo-recovery';
 import { createNativeCourierRoutes } from './native-courier-routes';
-import { haulingOwner } from '../features/logistics/identity';
-import { maintainNativeCouriers, cancelCourierDemand } from './native-courier-population';
+import { isHaulingOwner } from '../features/logistics/identity';
+import { maintainNativeCouriers, cancelHaulingDemand } from './native-courier-population';
 
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
@@ -31,17 +32,17 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
     id: 'logistics', urgency: 'urgent', interval: 1,
     run({ room: view, config }) {
       const room = Game.rooms[view.name];
-      if (!room?.controller?.my) { cancelCourierDemand(state, view.name); return; }
+      if (!room?.controller?.my) { cancelHaulingDemand(state, view.name); return; }
       const recoveryActive = recovering(room, config.values) && config.values.recoveryEconomyEnabled;
       const policy = recoveryEconomy(config.values, recoveryActive);
       const units = Object.values(Game.creeps).filter(creep => !creep.spawning &&
-        creep.memory.population?.home === view.name && creep.memory.population.owner === haulingOwner(view.name))
+        creep.memory.population?.home === view.name && isHaulingOwner(creep.memory.population.owner, view.name))
         .sort((a, b) => a.name.localeCompare(b.name));
 
       settleNativeLinkTransfers(state, room);
       if (!policy.logisticsEnabled) {
         for (const creep of units) settleHaulingTask(state, definitions, creep, observeTransfer);
-        cancelCourierDemand(state, view.name);
+        cancelHaulingDemand(state, view.name);
         return;
       }
       dispatch.activate();
@@ -57,6 +58,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         execute(creep.name, creep);
       }
       generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, policy);
+      maintainNativeScavengers(state, room, policy, recoveryActive);
       maintainNativeCouriers(state, Game.rooms[view.name]!, policy, observeRoutes, recoveryActive);
     },
   };

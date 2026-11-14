@@ -6,12 +6,18 @@ import { observePopulation } from '../adapters/screeps/population';
 import { courier } from '../capabilities/spawning/economy-recipes';
 import { createLogisticsRequests } from '../features/logistics/request-store';
 import { createSpawnQueue } from '../features/population/spawn-queue';
-import { haulingOwner } from '../features/logistics/identity';
+import { haulingOwner, isHaulingOwner } from '../features/logistics/identity';
 import { applyCourierDemand, courierCapacity } from '../features/logistics/courier-demand';
 export function cancelCourierDemand(state: StatePort, room: string): void {
+  cancelDemand(state, room, owner => owner === haulingOwner(room));
+}
+export function cancelHaulingDemand(state: StatePort, room: string): void {
+  cancelDemand(state, room, owner => isHaulingOwner(owner, room));
+}
+function cancelDemand(state: StatePort, room: string, owns: (owner: string) => boolean): void {
   if (state.read(stateKey('spawning', room)) === undefined) return;
   const queue = createSpawnQueue(state, room);
-  for (const request of queue.list().filter(item => item.owner === haulingOwner(room))) queue.cancel(request.id, request.owner);
+  for (const request of queue.list().filter(item => owns(item.owner))) queue.cancel(request.id, request.owner);
 }
 /** Route capacity plus a pending-work bootstrap floor share the spawn queue. */
 export function maintainNativeCouriers(state: StatePort, room: Room, config: Readonly<RuntimeConfig>, observeRoutes: ReturnType<typeof createNativeCourierRoutes>, recoveryActive = false): void {

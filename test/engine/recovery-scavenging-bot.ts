@@ -8,7 +8,7 @@ import { haulingOwner } from '../../src/features/logistics/identity';
 export function loop() {
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
-  settings.empire = { recoveryEnabled: true, recoveryInterval: 1, recoveryEnterEnergy: 10, recoveryExitEnergy: 50 };
+  settings.empire = { recoveryEnabled: true, recoveryScavengerEnabled: false, recoveryInterval: 1, recoveryEnterEnergy: 10, recoveryExitEnergy: 50 };
   saveState(state, 'operator/config', operatorSchema, settings);
   Game.creeps['rescuer']!.memory.population = { owner: haulingOwner('W0N1'), home: 'W0N1' };
   if (state.read('recovery/W0N1') === undefined) {

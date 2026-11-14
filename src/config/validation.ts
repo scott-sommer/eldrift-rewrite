@@ -5,6 +5,8 @@ function bounded(value: unknown, maximum: number): boolean {
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   recoveryEnabled: value => typeof value === 'boolean',
   recoveryEconomyEnabled: value => typeof value === 'boolean',
+  recoveryScavengerEnabled: value => typeof value === 'boolean',
+  recoveryScavengerBodyBudget: value => bounded(value, 1600) && Number.isInteger(value) && Number(value) >= 100,
   recoveryMiningBodyBudget: value => bounded(value, 10000) && Number.isInteger(value) && Number(value) >= 200,
   recoveryCourierBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
   recoveryInterval: value => bounded(value, 100000) && Number.isInteger(value) && Number(value) >= 1,

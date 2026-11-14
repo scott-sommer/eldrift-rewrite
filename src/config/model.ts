@@ -1,6 +1,8 @@
 export interface RuntimeConfig {
   recoveryEnabled: boolean;
   recoveryEconomyEnabled: boolean;
+  recoveryScavengerEnabled: boolean;
+  recoveryScavengerBodyBudget: number;
   recoveryMiningBodyBudget: number;
   recoveryCourierBodyBudget: number;
   recoveryInterval: number;
@@ -60,6 +62,8 @@ export interface RuntimeConfig {
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   recoveryEnabled: false,
   recoveryEconomyEnabled: true,
+  recoveryScavengerEnabled: true,
+  recoveryScavengerBodyBudget: 1600,
   recoveryMiningBodyBudget: 200,
   recoveryCourierBodyBudget: 100,
   recoveryInterval: 250,
