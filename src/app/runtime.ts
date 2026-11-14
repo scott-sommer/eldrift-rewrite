@@ -20,7 +20,7 @@ export function createRuntime(features: readonly RoomFeature[], ports: RuntimePo
         const config = configs.get(room.name)!;
         return features.map(feature => ({
           id: `${room.name}/${feature.id}`, room: room.name,
-          urgency: feature.urgency, interval: feature.interval,
+          urgency: feature.urgency, interval: feature.interval, background: config.values,
           run: () => feature.run({ world, room, config }),
         }));
       });
@@ -30,3 +30,4 @@ export function createRuntime(features: readonly RoomFeature[], ports: RuntimePo
     },
   };
 }
+

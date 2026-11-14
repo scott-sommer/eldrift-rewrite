@@ -3,6 +3,7 @@ export interface ScheduledWork {
   room?: string;
   urgency: 'urgent' | 'background';
   interval: number;
+  background?: Pick<SchedulerBudget, 'backgroundEnabled' | 'backgroundCpuFraction' | 'minimumBucket'>;
   run(): void;
 }
 export interface SchedulerBudget {
@@ -27,3 +28,4 @@ export interface ScheduleEntry {
   work: ScheduledWork;
   due: number;
 }
+

@@ -32,8 +32,10 @@ export function createScheduler(work: readonly ScheduledWork[], ports: Scheduler
 function canRun(entry: ScheduleEntry, budget: SchedulerBudget, used: number): boolean {
   if (used >= budget.tickLimit) return false;
   if (entry.work.urgency === 'urgent') return true;
-  return budget.backgroundEnabled && budget.bucket >= budget.minimumBucket
-    && used < budget.tickLimit * budget.backgroundCpuFraction;
+  const policy = entry.work.background ?? budget;
+  return policy.backgroundEnabled && budget.bucket >= policy.minimumBucket
+    && used < budget.tickLimit * policy.backgroundCpuFraction;
 }
+
 
 
