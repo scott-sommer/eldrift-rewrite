@@ -1,6 +1,6 @@
 # Mining acceptance audit (ED-20)
 
-Status: incomplete. This is the current acceptance map; chronological entries in mining.md retain historical results and may describe gaps subsequently closed. Legacy reference: role.minerV2.js at f2bbf7e8c44addc7c426abb5458e393c9502ff5f. No live deployment or full rewrite parity is claimed.
+Status: ED-20 component accepted after criterion review through dbee051. Full legacy-role integration and rewrite parity remain incomplete. This is the current acceptance map; chronological entries in mining.md retain historical results and may describe gaps subsequently closed. Legacy reference: role.minerV2.js at f2bbf7e8c44addc7c426abb5458e393c9502ff5f. No live deployment or full rewrite parity is claimed.
 
 | Criterion | Current implementation and evidence | Remaining evidence/work |
 | --- | --- | --- |
@@ -25,5 +25,6 @@ Status: incomplete. This is the current acceptance map; chronological entries in
 Targeted engine scenario --mining-saturation passed after correcting the fixture to read reservation resource identities (not a nonexistent key property). Evidence: artifacts/engine-Alk8x6/evidence.json, including reload provenance. The earlier failed run was a fixture observation error and is not success evidence. Quality passed with zero Lizard violations before that field correction; rerun checks before committing. This scenario is registered in the full engine suite. Full suite execution for this addition is tracked below when run.
 
 Final validation: quality rerun passed (120 production files, zero Lizard violations); broad smoke passed in 182ms; full engine suite passed all 31 cases in 29.63s. Unit suite was unchanged and not rerun for this engine-fixture-only addition.
+
 
 
