@@ -13,12 +13,14 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:smoke": "vitest run test/smoke",
-    "check:bundle": "npm run build && node tools/check-bundle.mjs"
+    "check:bundle": "npm run build && node tools/check-bundle.mjs",
+    "check:boundaries": "node tools/check-boundaries.mjs"
   },
   "devDependencies": {
     "@types/screeps": "3.4.0",
     "esbuild": "0.28.2",
     "typescript": "7.0.2",
+    "typescript-ast": "npm:typescript@6.0.3",
     "vitest": "5.1.0"
   }
 }

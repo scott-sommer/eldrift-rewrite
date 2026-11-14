@@ -25,3 +25,9 @@ Read docs/goal-objective.md and docs/planning-acceptance.md. Jira ED owns curren
 ## Tool choice
 
 TypeScript 7.0.2, esbuild 0.28.2, Vitest 5.1.0 and @types/screeps 3.4.0 are pinned in package.json and package-lock.json. esbuild emits a neutral-platform CommonJS bundle; Vitest supplies the single unit runner. Sources: https://esbuild.github.io/api/ and https://vitest.dev/guide/ . Real-engine compatibility remains ED-14. Lizard/dependency enforcement remains ED-12.
+
+## Architecture verification
+
+npm run check:boundaries parses every production TypeScript file and rejects layer violations, external/aliased imports, computed module loading and game-global references in core. test/tooling is exercised by npm test; use npm test -- test/tooling/boundaries.test.mjs for targeted checks. Fixtures stay under ignored artifacts/.
+
+The checker uses the pinned typescript-ast alias for TypeScript 6's JavaScript compiler API; the TypeScript 7 compiler package did not expose the required createSourceFile/ScriptTarget API in the compatibility check. Type checking remains on TypeScript 7. This is a development-only parser dependency.
