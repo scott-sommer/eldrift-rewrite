@@ -5,11 +5,13 @@ export function observeEnergySupply(room: Room) {
     item.structureType === STRUCTURE_CONTAINER ||
     (item.structureType === STRUCTURE_STORAGE || item.structureType === STRUCTURE_TERMINAL) && item.my)
     .map(item => endpoint(item, item.store.getUsedCapacity(RESOURCE_ENERGY), 0));
+  sources.push(...room.find(FIND_TOMBSTONES).map(item => endpoint(item, item.store.getUsedCapacity(RESOURCE_ENERGY), -2)));
+  sources.push(...room.find(FIND_RUINS).map(item => endpoint(item, item.store.getUsedCapacity(RESOURCE_ENERGY), -1)));
   const sinks = structures.filter((item): item is StructureSpawn | StructureExtension =>
     (item.structureType === STRUCTURE_SPAWN || item.structureType === STRUCTURE_EXTENSION) && item.my)
     .map(item => endpoint(item, item.store.getFreeCapacity(RESOURCE_ENERGY), item.structureType === STRUCTURE_SPAWN ? 0 : 1));
   return { sources, sinks };
 }
-function endpoint(item: Structure, amount: number, priority: number) {
+function endpoint(item: { id: string; pos: RoomPosition }, amount: number, priority: number) {
   return { id: item.id, position: { room: item.pos.roomName, x: item.pos.x, y: item.pos.y }, amount, priority };
 }

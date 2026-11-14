@@ -29,7 +29,7 @@ export function generateEnergyRequests(state: StatePort, room: string, tick: num
 }
 function nearestSource(sources: readonly EnergyEndpoint[], sink: EnergyEndpoint, stock: ReadonlyMap<string, number>) {
   return sources.filter(source => source.id !== sink.id && (stock.get(source.id) ?? 0) > 0)
-    .sort((a, b) => distance(a, sink) - distance(b, sink) || a.id.localeCompare(b.id))[0];
+    .sort((a, b) => a.priority - b.priority || distance(a, sink) - distance(b, sink) || a.id.localeCompare(b.id))[0];
 }
 function distance(a: EnergyEndpoint, b: EnergyEndpoint): number {
   return Math.max(Math.abs(a.position.x - b.position.x), Math.abs(a.position.y - b.position.y));

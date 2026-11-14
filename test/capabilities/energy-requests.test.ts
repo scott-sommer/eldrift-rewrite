@@ -34,3 +34,12 @@ test('completed retained records apply queue backpressure until expiry without t
   expect(queue.availableSlots(3)).toBe(199);
 });
 
+
+test('source priority recovers perishable energy before nearer stock, then falls back when depleted', () => {
+  const { state, queue } = fixture();
+  const sources = [endpoint('stock', 100), { ...endpoint('tombstone', 30, -2), position: { room: 'home', x: 20, y: 20 } }, endpoint('ruin', 20, -1)];
+  expect(generateEnergyRequests(state, 'home', 1, sources, [endpoint('first', 30), endpoint('second', 20), endpoint('third', 50)], policy)).toBe(3);
+  expect(queue.pending(1).map(item => [item.sink, item.source, item.quantity])).toEqual([
+    ['first', 'tombstone', 30], ['second', 'ruin', 20], ['third', 'stock', 50],
+  ]);
+});
