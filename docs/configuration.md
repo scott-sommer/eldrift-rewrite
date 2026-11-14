@@ -11,3 +11,5 @@ Local checks: quality passed with zero Lizard violations; configuration + smoke 
 Owned-room mining is registered in production but opt-in during the rewrite: miningEnabled defaults to false; miningBodyBudget defaults to 800 and accepts integer values 200..10000. Set these through the existing empire/profile/room override layers. This activates energy mining and spawn demand only; hauling/bootstrap, complete safety policy and release validation are still being implemented.
 
 mineralMiningEnabled (boolean, default false) enables owned-room mineral demand when miningEnabled is also true. New demand requires a known container and active extractor, uses one miner per station, and receives lower spawn priority than energy mining. It shares miningBodyBudget. Disabling mineral work pauses its worker execution while threat retreat still takes precedence.
+
+logisticsEnabled (default false) enables execution of queued logistics requests by explicitly owned room couriers. It currently does not create requests or spawn couriers. See docs/logistics.md for identity, integration and pause/recovery limitations.
