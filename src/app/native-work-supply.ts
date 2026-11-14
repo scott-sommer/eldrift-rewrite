@@ -3,7 +3,7 @@ import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
 import { observeEnergySupply } from '../adapters/screeps/energy-supply';
 import { observeWorkSupply } from '../adapters/screeps/work-supply';
-import { workOwner } from '../features/work/identity';
+import { isWorkOwner } from '../features/work/identity';
 import { workSupplySinks } from '../features/logistics/work-supply';
 import { generateStockRequests } from '../features/logistics/stock-requests';
 import { haulingOwner } from '../features/logistics/identity';
@@ -13,7 +13,7 @@ export function generateNativeWorkSupply(state: StatePort, room: Room, units: re
     lifetime: 100, maximumQuantity: config.workerSupplyEnabled ? Math.max(200, nativePickupCapacity(room, units, config)) : 200, maximumNewRequests: 10 };
   if (!config.workerSupplyEnabled) { generateStockRequests(state, room.name, Game.time, [], [], policy); return; }
   const workers = Object.values(Game.creeps).filter(unit => unit.memory.population?.home === room.name &&
-    unit.memory.population.owner === workOwner(room.name));
+    isWorkOwner(unit.memory.population.owner, room.name));
   const observed = observeWorkSupply(room, workers);
   const supply = observeEnergySupply(room, nativePickupCapacity(room, units, config), config.towerRefillFraction);
   const sinks = workSupplySinks(observed, supply.sinks.some(item => item.amount > 0), config.controllerContainerTarget);
