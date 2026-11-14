@@ -1,3 +1,4 @@
+import { copyPlain } from './plain-data';
 export interface Envelope {
   version: number;
   owner: string;
@@ -25,19 +26,20 @@ export function openState<T>(port: StatePort, key: string, schema: StateSchema<T
   if (!envelope(raw)) throw new Error(`${key}: corrupt state envelope`);
   if (raw.owner !== schema.owner) throw new Error(`${key}: state owner mismatch`);
   if (raw.version > schema.version) throw new Error(`${key}: unsupported future version`);
-  let data: unknown = JSON.parse(JSON.stringify(raw.data));
+  let data: unknown = copyPlain(raw.data);
   for (let version = raw.version; version < schema.version; version++) {
     const migrate = schema.migrations[version];
     if (!migrate) throw new Error(`${key}: missing migration ${version}`);
     data = migrate(data);
   }
   if (!schema.valid(data)) throw new Error(`${key}: invalid state data`);
-  if (raw.version !== schema.version) port.write(key, { owner: schema.owner, version: schema.version, data });
+  if (raw.version !== schema.version) port.write(key, { owner: schema.owner, version: schema.version, data: copyPlain(data) });
   return data;
 }
 function initialize<T>(port: StatePort, key: string, schema: StateSchema<T>): T {
   const data = schema.initial();
   if (!schema.valid(data)) throw new Error(`${key}: invalid initial state`);
-  port.write(key, { owner: schema.owner, version: schema.version, data });
+  port.write(key, { owner: schema.owner, version: schema.version, data: copyPlain(data) });
   return data;
 }
+
