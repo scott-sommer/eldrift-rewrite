@@ -25,3 +25,9 @@ Every run reaching runner initialization now writes evidence.json on normal comp
 Timeout/cleanup evidence: --inject-timeout stalls after server start and uses a 1.5-second watchdog. The actual run exited1 with a timeout failure artifact; all three recorded child PIDs (storage, runner, processor) were absent after cleanup. A subsequent normal run reused the local port successfully. Child PIDs are now recorded in evidence.json for cleanup audits. This exercises an asynchronous stall, not an uninterruptible native/OS hang.
 
 Installed @screeps/storage/lib/index.js binds STORAGE_HOST or localhost; this harness does not override STORAGE_HOST. Its disposable directories are independent of any future persistent visual/soak server. No credentials are required for this local runner. Native Windows works, so a WSL installation is unnecessary for this route.
+
+## Repeatable scenario suite
+
+Run `npm run test:engine:suite` after installing root and tools/engine dependencies. It builds production once, runs scenarios serially on the shared local port, checks each evidence artifact and expected exit status, and writes artifacts/engine-suite.json. Included: packaged smoke, code reload, raw harvest/conflict, persisted harvest task, build/repair/upgrade, withdraw/delivery, movement, injected exception and watchdog timeout. Negative controls must fail for their expected reasons; a nonzero exit alone is insufficient. Outer process timeout is90s, above the runner's60s watchdog.
+
+Measured on this machine: all9 checks passed in8.01s (scenario loop, build excluded). Full fast suite169 tests passed in2.45s. These are small fixture scenarios, not parity or soak coverage. ED-12 remote CI/publication remains an unresolved prerequisite; local evidence does not satisfy remote checks.

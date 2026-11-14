@@ -25,6 +25,7 @@ function finish(code, error) {
   } finally {
     server.stop();
   }
+  console.log('ENGINE_EVIDENCE ' + path.join(directory, 'evidence.json'));
   process.exit(code);
 }
 const timeout = setTimeout(() => { console.error('Engine smoke exceeded 60 seconds', directory); finish(1, new Error('Engine smoke timeout')); }, process.argv.includes('--inject-timeout') ? 1500 : 60000);
@@ -81,6 +82,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 

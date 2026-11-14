@@ -20,7 +20,8 @@
     "check:lizard": "node tools/quality.mjs",
     "quality": "npm run typecheck && npm run lint && npm run check:boundaries && npm run check:lizard",
     "lint": "eslint src test --max-warnings 0",
-    "test:engine": "npm run build && node tools/engine/smoke.cjs"
+    "test:engine": "npm run build && node tools/engine/smoke.cjs",
+    "test:engine:suite": "npm run build && node tools/engine/suite.cjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
