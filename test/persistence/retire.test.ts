@@ -12,7 +12,7 @@ test('confirmed retirement clears tasks and only the retired unit claims across 
   const definitions = { mine: { phases: ['work'], validPayload: (value: unknown) => typeof value === 'string' } };
   const schema = taskSchema('miner', definitions);
   const state = openState(port, 'tasks/miner', schema);
-  state.queue.push({ id: 'mine', kind: 'mine', phase: 'work', payload: 'source', wakeAt: 0 });
+  state.queue.push({ id: 'mine', kind: 'mine', phase: 'work', payload: 'source', wakeAt: 0, retries: 0, expiresAt: 1000 });
   saveState(port, 'tasks/miner', schema, state);
   const claims = createReservations(port);
   claims.acquire({ resource: 'source', holder: 'miner', scope: 'colony', expiresAt: 100 }, 1);
@@ -24,3 +24,4 @@ test('confirmed retirement clears tasks and only the retired unit claims across 
   expect(openState(port, 'tasks/miner', schema).queue).toEqual([]);
   expect(openState(port, 'reservations/empire', reservationSchema).claims.map(claim => claim.holder)).toEqual(['hauler']);
 });
+

@@ -1,3 +1,4 @@
+import { validExecution } from './validation';
 import type { ExecutionResult, ExecutionState, Handlers, Outcome } from './model';
 function blocked(state: ExecutionState, outcome: Extract<Outcome, { status: 'blocked' }>, tick: number, retryLimit: number): ExecutionResult['outcome'] {
   if (!Number.isSafeInteger(outcome.retryAt) || outcome.retryAt <= tick) return { status: 'failed', reason: 'invalid-retry-tick' };
@@ -9,6 +10,7 @@ function blocked(state: ExecutionState, outcome: Extract<Outcome, { status: 'blo
 export function execute<Context>(saved: ExecutionState, handlers: Handlers<Context>, context: Context, tick: number, maximum = 4, retryLimit = 5): ExecutionResult {
   if (!Number.isSafeInteger(maximum) || maximum < 1) throw new Error('Invalid transition limit');
   if (!Number.isSafeInteger(retryLimit) || retryLimit < 0) throw new Error('Invalid retry limit');
+  if (!validExecution(saved)) throw new Error('Invalid execution checkpoint');
   const state = { ...saved };
   if (tick >= state.expiresAt) return { state, outcome: { status: 'failed', reason: 'expired' }, steps: 0 };
   if (tick < state.wakeAt) return { state, outcome: { status: 'blocked', retryAt: state.wakeAt, reason: 'sleeping' }, steps: 0 };
@@ -23,3 +25,4 @@ export function execute<Context>(saved: ExecutionState, handlers: Handlers<Conte
   }
   return { state, outcome: { status: 'running' }, steps: maximum };
 }
+
