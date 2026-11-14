@@ -1,3 +1,4 @@
+import { validateRequest } from '../../capabilities/spawning/allocate';
 import type { StatePort } from '../../persistence/versioned-state';
 import type { PopulationDemand, PopulationUnit } from '../../capabilities/spawning/demand';
 import { reconcileDemand } from '../../capabilities/spawning/demand';
@@ -12,8 +13,12 @@ export interface DemandPlan extends PopulationDemand {
 export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: readonly PopulationUnit[], tick: number) {
   if (plan.body.length !== plan.replacementParts) throw new Error('Replacement body differs from demand timing');
   if (!Number.isSafeInteger(plan.requestLifetime) || plan.requestLifetime < 1 || !Number.isSafeInteger(tick + plan.requestLifetime)) throw new Error('Invalid demand lifetime');
+  validateRequest({ id: 'validation', name: 'validation', owner: plan.owner, room: plan.room, priority: plan.priority,
+    readyAt: tick, expiresAt: tick + plan.requestLifetime, body: plan.body });
   const queue = createSpawnQueue(port, plan.room);
-  const decision = reconcileDemand(plan, units, queue.list(), tick);
+  const pending = queue.list();
+  const decision = reconcileDemand(plan, units, pending, tick);
+  if (pending.length - decision.cancel.length + decision.missing > 200) throw new Error('Spawn demand exceeds queue capacity');
   for (const id of decision.cancel) queue.cancel(id, plan.owner);
   const created: string[] = [];
   for (let index = 0; index < decision.missing; index++) {
@@ -24,3 +29,4 @@ export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: 
   }
   return { ...decision, created };
 }
+

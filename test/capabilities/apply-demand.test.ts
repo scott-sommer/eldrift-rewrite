@@ -21,3 +21,16 @@ test('repeated demand planning preserves pending identities and replaces aging u
   const remote = applyPopulationDemand(port, { ...plan, room: 'E0N0' }, [], 6).created[0]!;
   expect(remote).not.toBe(first);
 });
+
+test('invalid replacement plans cannot cancel existing demand or partially fill a queue', () => {
+  const records = new Map<string, Envelope>();
+  const port = { read: (key: string) => records.get(key), write: (key: string, value: Envelope) => { records.set(key, structuredClone(value)); } };
+  const plan = { owner: 'mining:source-a', room: 'W0N0', desired: 1, replacementParts: 1, travelTicks: 2,
+    marginTicks: 1, body: ['move' as const], priority: 0, requestLifetime: 20 };
+  applyPopulationDemand(port, plan, [], 1);
+  const before = JSON.stringify([...records]);
+  expect(() => applyPopulationDemand(port, { ...plan, desired: 0, priority: NaN }, [], 2)).toThrow('identity');
+  expect(JSON.stringify([...records])).toBe(before);
+  expect(() => applyPopulationDemand(port, { ...plan, desired: 201 }, [], 2)).toThrow('capacity');
+  expect(JSON.stringify([...records])).toBe(before);
+});

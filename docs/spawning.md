@@ -55,3 +55,8 @@ Validation: 241 tests passed in 2.77s; quality/Lizard zero violations. The integ
 ## Multi-spawn engine contention
 New RCL8 two-room fixture uses two spawns sharing 300 available energy in one room and a third spawn with 300 energy in another. Two 200-energy requests contend locally; only the highest-priority request is accepted, the second remains queued, and the other room accepts its independent request. A higher-priority cancelled request never appears. Observed spawning names retire accepted queues by the next tick.
 Validation: targeted scenario passed, quality/Lizard zero violations; full engine suite 21 checks passed in 20.24s. This covers mature-room spawn topology with deliberately scarce energy, not mature economy throughput. Production source unchanged in this milestone.
+
+## Validation and population identity handoff
+Demand application now validates the prospective request and aggregate queue capacity before cancellations or identity reservation, preventing invalid/oversized plans from partially modifying valid queues. Tests compare the complete stored records before/after rejection.
+The native population adapter supplies owner/home memory separately from bodies and observes population by home demand scope, not current travel room. It also supplies owned-room energy, spawn slots and all observed creep names to the coordinator. The birth fixture now uses these production adapters and asserts owner/home survives spawning.
+Validation: 242 tests passed in 2.81s before the adapter change; subsequent quality gates passed with 95 production files and zero Lizard violations, and the targeted 12-tick native spawn/identity scenario passed. Full engine suite not rerun for this change.
