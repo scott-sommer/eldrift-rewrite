@@ -1,7 +1,7 @@
 import type { Failure, ScheduleEntry, ScheduledWork, SchedulerBudget, SchedulerPorts } from './model';
 import { dueOrder, prepare } from './queue';
 export function createScheduler(work: readonly ScheduledWork[], ports: SchedulerPorts, startTick: number) {
-  const entries = prepare(work, startTick);
+  let entries = prepare(work, startTick);
   function execute(entry: ScheduleEntry, tick: number, failures: Failure[]): void {
     try {
       entry.work.run();
@@ -14,6 +14,10 @@ export function createScheduler(work: readonly ScheduledWork[], ports: Scheduler
     }
   }
   return {
+    synchronize(next: readonly ScheduledWork[], tick: number): void {
+      const previous = new Map(entries.map(entry => [entry.work.id, entry]));
+      entries = prepare(next, tick).map(entry => ({ ...entry, due: previous.get(entry.work.id)?.due ?? entry.due }));
+    },
     run(budget: SchedulerBudget): readonly Failure[] {
       const failures: Failure[] = [];
       const eligible = entries.filter(entry => entry.due <= budget.tick).sort(dueOrder);
@@ -31,4 +35,5 @@ function canRun(entry: ScheduleEntry, budget: SchedulerBudget, used: number): bo
   return budget.backgroundEnabled && budget.bucket >= budget.minimumBucket
     && used < budget.tickLimit * budget.backgroundCpuFraction;
 }
+
 
