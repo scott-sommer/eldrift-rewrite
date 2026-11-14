@@ -1,3 +1,5 @@
+import { selectBootstrapEnergy } from '../features/work/bootstrap-energy';
+import { harvestBootstrapEnergy } from './native-bootstrap-harvest';
 import { upgradeBootstrapOwner } from '../features/work/upgrade-identity';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
@@ -17,15 +19,18 @@ export function createNativeWorkerCollection(state: StatePort, dispatch: ReturnT
   return (creep: Creep, home: string, owner: string, config: Readonly<RuntimeConfig>): Outcome => {
     const room = Game.rooms[home];
     if (!room) return { status: 'blocked', reason: 'home-unseen', retryAt: Game.time + 1 };
+    const bootstrap = creep.memory.population?.owner === upgradeBootstrapOwner(home);
     const observed = observeLinks(room);
     const links = new Set(classifyLinks(observed.links, observed.room).controllers.map(link => link.id));
     const allocations = createQuantityReservations(state).list(Game.time).flatMap(claim => claim.allocations);
     const booked = (pool: string) => allocations.filter(item => item.pool === pool).reduce((sum, item) => sum + item.amount, 0);
-    const sources = observeWorkerEnergy(room, links, creep.memory.population?.owner === upgradeBootstrapOwner(home)).map(source => ({ ...source,
+    const sources = observeWorkerEnergy(room, links, bootstrap).map(source => ({ ...source,
       available: Math.max(0, source.stock - booked(logisticsPool('stock', source.id, 'energy'))) }));
     const free = creep.store.getFreeCapacity();
-    const order = selectProfileEnergy(sources, creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 }, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
+    const origin = creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 };
+    const order = bootstrap ? selectBootstrapEnergy(sources, origin, free, creep.store.getCapacity()) : selectProfileEnergy(sources, origin, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
       storageReserve: config.workerEnergyStorageReserve, holdStoragePosition: config.workerHoldStoragePosition });
+    if (!order && bootstrap) return harvestBootstrapEnergy(creep, room, owner, dispatch);
     if (!order) return creep.store.energy > 0 ? { status: 'done' } : { status: 'blocked', reason: 'worker-energy-unavailable', retryAt: Game.time + 1 };
     return collect(creep, order, owner, invoke => issueCollection(state, Game.time, { owner, holder: creep.name,
       sink: creep.id, source: order.source.id, resource: 'energy', stock: Math.max(0, order.source.stock - order.reserve),

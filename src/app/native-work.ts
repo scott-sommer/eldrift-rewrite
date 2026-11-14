@@ -1,3 +1,4 @@
+import { upgradeBootstrapOwner } from '../features/work/upgrade-identity';
 import { createNativeWorkerCargo } from './native-worker-cargo';
 import { maintainNativeWorkers } from './native-worker-population';
 import { createNativeWorkerCollection } from './native-worker-collection';
@@ -47,9 +48,10 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
   function runWorker(creep: Creep, room: Room, settings: Readonly<RuntimeConfig>, recoveryActive: boolean,
     assessment: ReturnType<typeof observeWorkAssessment>): void {
     if (cargo.run(creep, room.name, settings)) return;
+    const bootstrap = creep.memory.population?.owner === upgradeBootstrapOwner(room.name);
     const policy = { ...defaultWorkPolicy, wallHits: settings.workerWallHits, rampartHits: settings.workerRampartHits,
       downgradeThreshold: settings.workerDowngradeThreshold,
-      allowUpgrade: !recoveryActive && (!room.storage || room.storage.store.energy > settings.workerUpgradeReserve) };
+      allowUpgrade: bootstrap || !recoveryActive && (!room.storage || room.storage.store.energy > settings.workerUpgradeReserve) };
     const origin = creep.pos.roomName === room.name ? movementPosition(creep.pos) : { room: room.name, x: 25, y: 25 };
     reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: room.name }, Game.time,
       current => settings.workersEnabled ? selectWork(assessment, origin, settings.workerMode, policy, current?.id) : undefined);

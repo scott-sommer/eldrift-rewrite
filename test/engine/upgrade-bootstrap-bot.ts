@@ -10,9 +10,9 @@ export function loop() {
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
   const room = Game.rooms.W0N1!;
-  const row = { tick: Game.time, progress: room.controller!.progress, sites: room.find(FIND_MY_CONSTRUCTION_SITES).length,
-    roads: room.find(FIND_STRUCTURES).filter(item => item.structureType === STRUCTURE_ROAD).length,
-    units: Object.values(Game.creeps).map(creep => ({ owner: creep.memory.population?.owner, energy: creep.store.energy, spawning: creep.spawning })) };
+  const row = { sourceEnergy: room.find(FIND_SOURCES).reduce((sum, source) => sum + source.energy, 0), tick: Game.time, progress: room.controller!.progress, sites: room.find(FIND_MY_CONSTRUCTION_SITES).length,
+    siteProgress: room.find(FIND_MY_CONSTRUCTION_SITES).map(site => site.progress), roads: room.find(FIND_STRUCTURES).filter(item => item.structureType === STRUCTURE_ROAD).length,
+    units: Object.values(Game.creeps).map(creep => ({ x: creep.pos.x, y: creep.pos.y, owner: creep.memory.population?.owner, energy: creep.store.energy, spawning: creep.spawning })) };
   const memory = Memory as Memory & { bootstrap?: (typeof row)[] };
   (memory.bootstrap ??= []).push(row);
 }
