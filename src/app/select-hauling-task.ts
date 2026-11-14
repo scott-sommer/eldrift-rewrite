@@ -20,11 +20,13 @@ export interface HaulingAdmission {
 }
 /** Admit only idle, empty couriers. Existing cargo requires a separate recovery policy. */
 export function selectHaulingTask(state: StatePort, definitions: Readonly<Record<string, TaskDefinition>>,
-  unit: HaulingAdmission, observe: (request: LogisticsRequest) => HaulingView): boolean {
+  unit: HaulingAdmission, observe: (request: LogisticsRequest) => HaulingView,
+  accepts: (request: LogisticsRequest) => boolean = () => true): boolean {
   if (!Number.isSafeInteger(unit.cargoTotal) || unit.cargoTotal < 0) throw new Error('Invalid courier cargo');
   if (unit.cargoTotal > 0) return false;
   if (openState(state, stateKey('tasks', unit.name), taskSchema(unit.name, definitions)).queue.length) return false;
   for (const request of createLogisticsRequests(state, unit.home).pending(unit.tick)) {
+    if (!accepts(request)) continue;
     const view = observe(request);
     if (view.tick !== unit.tick || view.cargo !== 0) throw new Error('Inconsistent hauling admission observation');
     if (admit(state, definitions, unit, request, view)) return true;

@@ -44,6 +44,7 @@ export interface RuntimeConfig {
   storageEnergyReserve: number;
   towerRefillFraction: number;
   preservationEnabled: boolean;
+  preservationEnergyOnly: boolean;
   miningEnabled: boolean;
   mineralMiningEnabled: boolean;
   mineralTransportEnabled: boolean;
@@ -102,6 +103,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   storageEnergyReserve: 70000,
   towerRefillFraction: 0.4,
   preservationEnabled: false,
+  preservationEnergyOnly: false,
   miningEnabled: false,
   mineralMiningEnabled: false,
   mineralTransportEnabled: false,

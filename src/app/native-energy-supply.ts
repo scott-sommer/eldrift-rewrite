@@ -17,7 +17,8 @@ export function generateNativeEnergyRequests(state: StatePort, room: Room, units
   }
   if (config.preservationEnabled) {
     const recoverable = observeRecoverableResources(room, pickupCapacity);
-    preserveResources(state, room.name, Game.time, recoverable.sources, recoverable.sinks,
+    const sources = config.preservationEnergyOnly ? recoverable.sources.filter(source => source.resource === 'energy') : recoverable.sources;
+    preserveResources(state, room.name, Game.time, sources, recoverable.sinks,
       { owner: haulingOwner(room.name) + ':preserve', lifetime: 100, maximumQuantity: Math.max(200, pickupCapacity), maximumNewRequests: 10 });
   }
 }

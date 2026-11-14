@@ -6,7 +6,7 @@ test('active recovery derives a bootstrap energy economy without mutating operat
   const policy = recoveryEconomy(config, true);
   expect(policy).toMatchObject({ miningEnabled: true, miningBodyBudget: 200, logisticsEnabled: true,
     courierSpawningEnabled: true, courierBodyBudget: 100, energyRequestsEnabled: true, energyBankingEnabled: true,
-    energyReclamationEnabled: true, mineralMiningEnabled: false, mineralTransportEnabled: false, storeBalancingEnabled: false });
+    preservationEnabled: true, preservationEnergyOnly: true, energyReclamationEnabled: true, mineralMiningEnabled: false, mineralTransportEnabled: false, storeBalancingEnabled: false });
   expect(config.miningEnabled).toBe(false);
   expect(config.mineralMiningEnabled).toBe(true);
   expect(recoveryEconomy(config, false)).toBe(config);

@@ -43,6 +43,7 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   energyRequestsEnabled: value => typeof value === 'boolean',
   towerRefillFraction: value => bounded(value, 1),
   preservationEnabled: value => typeof value === 'boolean',
+  preservationEnergyOnly: value => typeof value === 'boolean',
   courierSpawningEnabled: value => typeof value === 'boolean',
   courierBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
   logisticsEnabled: value => typeof value === 'boolean',

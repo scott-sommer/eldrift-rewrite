@@ -75,3 +75,19 @@ test('a large courier leaves a small indivisible request for a courier that fits
     () => ({ ...view, sourceStock: 1000, minimumCollection: 50 }))).toBe(true);
   expect(createQuantityReservations(state).list(1)[0]?.allocations[0]?.amount).toBe(50);
 });
+
+test('an injected admission policy defers urgent minerals without observing or reserving them', () => {
+  const { state, queue, records } = fixture();
+  queue.submit({ ...request, id: 'mineral', resource: 'H', priority: -1 }, 1);
+  const seen: string[] = [];
+  expect(selectHaulingTask(state, definitions, unit, candidate => {
+    seen.push(candidate.id);
+    return view;
+  }, candidate => candidate.resource === 'energy')).toBe(true);
+  expect(seen).toEqual(['fill']);
+  expect(records.get('tasks/one')?.data).toMatchObject({ queue: [{ payload: { request: { id: 'fill' } } }] });
+  expect(createQuantityReservations(state).list(1)).toHaveLength(1);
+  expect(queue.pending(1).map(candidate => candidate.id)).toContain('mineral');
+  expect(selectHaulingTask(state, definitions, { ...unit, name: 'normal', unitId: 'normal-id' }, () => view)).toBe(true);
+  expect(records.get('tasks/normal')?.data).toMatchObject({ queue: [{ payload: { request: { id: 'mineral' } } }] });
+});
