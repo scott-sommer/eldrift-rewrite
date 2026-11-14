@@ -19,3 +19,25 @@ function verifyRecovery(memory) {
   assert.ok(evidence.blockers.every(pos => pos[0] === 21 && pos[1] === 20), 'Blocker must remain stationary');
 }
 module.exports = { recoveryWorld, verifyRecovery };
+
+async function loadedRecoveryWorld(server, bot) {
+  await recoveryWorld(server, bot);
+  const { db } = await server.world.load();
+  await db['rooms.objects'].update({ name: 'walker', type: 'creep' }, { $set: {
+    body: [{ type: 'move', hits: 100 }, { type: 'carry', hits: 100 }, { type: 'carry', hits: 100 }],
+    store: { energy: 100 }, storeCapacity: 100, hits: 300, hitsMax: 300,
+  } });
+}
+function verifyServiceRecovery(memory) {
+  const evidence = memory.serviceRecovery;
+  assert.deepEqual(evidence.positions.slice(0, 3), [[20, 20], [20, 20], [20, 20]]);
+  assert.deepEqual(evidence.issued.slice(0, 3), [0, 0, 1]);
+  assert.ok(evidence.positions.some(([x, y]) => x === 21 && y !== 20));
+  assert.ok(evidence.reasons.includes('fatigue'));
+  assert.ok(evidence.fatigue.some(value => value > 0));
+  assert.deepEqual(evidence.positions.at(-1), [22, 20]);
+  assert.deepEqual(evidence.statuses.slice(-2), ['done', 'done']);
+  assert.equal(evidence.reset, true);
+}
+module.exports.loadedRecoveryWorld = loadedRecoveryWorld;
+module.exports.verifyServiceRecovery = verifyServiceRecovery;
