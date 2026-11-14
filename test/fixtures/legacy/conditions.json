@@ -1,0 +1,30 @@
+{
+  "legacySha": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+  "evidence": "isolated predicate execution plus source inspection; surrounding runtime not executed",
+  "cases": [
+    {
+      "file": "role.hunter.js",
+      "line": 88,
+      "kind": "assignment",
+      "condition": "creep.pos.y = 49"
+    },
+    {
+      "file": "utilV2.js",
+      "line": 2547,
+      "kind": "nan",
+      "condition": "storageStartLength == NaN"
+    },
+    {
+      "file": "controller.js",
+      "line": 1031,
+      "kind": "generalDispatch",
+      "condition": "creep.memory.role == 'attacker' || creep.memory.role == 'defender' || creep.memory.role == 'demolisher'"
+    },
+    {
+      "file": "controller.js",
+      "line": 1122,
+      "kind": "specialDispatch",
+      "condition": "creep.memory.role == 'dismantler' || (creep.memory.role == 'attacker' && creep.memory.remoteDefenseType == 'invaderCoreClear')"
+    }
+  ]
+}
