@@ -1,3 +1,4 @@
+const { actionBundle, actionWorld, verifyActions } = require('./actions.cjs');
 const { prepareReload, verifyReload } = require('./reload.cjs');
 const { provenance, sampleTick } = require('./report.cjs');
 const assert = require('node:assert/strict');
@@ -29,9 +30,11 @@ server.on('error', error => { console.error(error); finish(1, error); });
   await server.world.reset();
   await server.world.stubWorld();
   const modules = { main: fs.readFileSync(path.join(root, 'dist/main.js'), 'utf8') };
+  if (process.argv.includes('--actions')) modules.main = await actionBundle(root);
   if (process.argv.includes('--inject-error')) modules.main += '\nconst original = module.exports.loop; module.exports = { loop: () => { original(); throw new Error("ENGINE_SENTINEL"); } };';
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
+  if (process.argv.includes('--actions')) await actionWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -55,6 +58,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   assert.equal(Number(await server.world.gameTime), initial + 3);
   assert.equal(memory.eldrift.format, 1);
   assert.equal(memory.eldrift.records['operator/config'].owner, 'operator');
+  if (process.argv.includes('--actions')) verifyActions(memory);
   if (process.argv.includes('--reload')) verifyReload(memory, initial);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
@@ -63,6 +67,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
