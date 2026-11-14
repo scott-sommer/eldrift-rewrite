@@ -9,3 +9,5 @@ Intel state records lastSeen and IDs. Unseen rooms retain prior intelligence; a 
 Current scope is infrastructure and intel. Colony/task/mission/plan/operator schemas, reservation cleanup, bounded cache reconstruction, production migration wiring and memory diagnostics remain ED-16 work. No legacy memory is automatically imported. Import compatibility and rollback must be rehearsed under ED-44 before release; RawMemory segments remain deferred until measured need.
 
 Latest persistence+smoke: 26 tests passed in 223ms; quality gates pass.
+
+Exclusive reservation schema/store now tracks resource key, holder, lifecycle scope and expiry. Contending holders/scopes are rejected; same-holder renewals are allowed. releaseHolder supports confirmed death/cancellation, releaseScope supports mission cancellation or colony ownership transfer, and expiry uses an exact tick boundary. Callers must supply confirmed lifecycle events; absence from room vision is not death. This is an exclusive-slot primitive, not a quantity reservation ledger. Runtime cleanup wiring and resource-quantity reservations remain capability work. Persistence/smoke 28 tests pass in 276ms; quality passes.
