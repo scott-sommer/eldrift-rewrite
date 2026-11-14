@@ -331,8 +331,8 @@ Target-room settings:
 - upgradeRoomEnabled and upgradeSupplyEnabled enable supply operation; supply defaults off.
 - upgradeSupplySpawningEnabled independently allows recruitment; defaults off.
 - upgradeRoomSponsor names the physical sponsor and supply courier logical home.
-- upgradeSupplyTarget is an integer 0–8, default 8.
-- upgradeSupplyReserve is retained source energy, integer 0–1,300,000, default 0.
+- upgradeSupplyTarget is an integer 0ï¿½8, default 8.
+- upgradeSupplyReserve is retained source energy, integer 0ï¿½1,300,000, default 0.
 - upgradeFleetStartEnergy/StopEnergy and upgradeFleetStorageFloor retain the shared legacy hysteresis and storage gates.
 - terminalFreeReserve controls foreign-cargo destination preference.
 
@@ -346,7 +346,7 @@ Quality passed (298 production / 264 test files, zero Lizard violations); 571 te
 
 Outstanding: native terminal/full-destination/loss and queued cancellation cases, sponsor-loss recovery, persisted plan anchors, long-route replacement, low-RCL master recruitment, and combined reset/reclaim/bootstrap/rebuild. ED-22 is not complete.
 
-Final legacy comparison preserved recruitment priorities 88 + roster index * 5 (spawner.js 1782–1811). Route-specific counting deliberately corrects the legacy room-wide hauler count: unrelated couriers no longer suppress supply recruitment. This priority-only correction was made after the 123-case run; final quality/fast checks and the native supply-fleet case were rerun before commit.
+Final legacy comparison preserved recruitment priorities 88 + roster index * 5 (spawner.js 1782ï¿½1811). Route-specific counting deliberately corrects the legacy room-wide hauler count: unrelated couriers no longer suppress supply recruitment. This priority-only correction was made after the 123-case run; final quality/fast checks and the native supply-fleet case were rerun before commit.
 
 
 ## Native supply endpoint and cancellation evidence (ED-22, 2026-11-15)
@@ -363,3 +363,18 @@ The first three exercise the real native cycle with controlled admission; queued
 Quality passed (298 production / 264 test files; zero Lizard violations); 571 fast tests / 173 files passed in 5.25s. New cases and existing ground-cycle/production-fleet regressions passed. Four scenarios are registered for the next full suite; the prior aggregate remains 123 checks and was not rerun for this fixture-only increment.
 
 Still outstanding: sponsor-loss recovery, long-route replacement, persisted plan anchors, low-RCL master recruitment, combined reset/reclaim/bootstrap/rebuild and remaining ED-22 colony parity.
+
+
+## Supply sponsor-loss recovery (ED-22, 2026-11-15)
+
+Fixed an actual runtime scheduling gap: the owned-room supply feature stopped servicing couriers after their sponsor became unowned. A separate visible-room feature now scans couriers by physical location. A visible controller that is no longer ours records a route-bound upgradeSupplyRecovery marker in creep memory; mere lack of visibility never proves loss. The marker survives subsequent loss of sponsor vision. It is removed after successful reassignment, and the normal supply cycle refuses marked units to avoid competing execution.
+
+Recovery settles the existing supply transfer/ground journal before moving or changing identity. Refuge selection uses owned visible rooms with logistics enabled and the shared cargo-destination policy for every carried resource; distance and room-name tie-breaking are deterministic. Without a refuge the courier retains cargo and ownership and retries. Shared movement brings the courier inside the selected room, then ordinary logistics takes ownership and performs confirmed cargo recovery. This keeps local hauling's four-room route limit out of the long approach: recovery movement supports up to sixteen rooms before handoff. This limit is configuration of existing movement, not evidence of a tested sixteen-room route.
+
+Visible lost sponsors cancel only their queued supply requests. Other owners remain untouched. Once a loss is recorded, a later reacquisition does not silently restart that route on the recovering unit; it completes recovery into an eligible owned logistics room.
+
+Actual --supply-sponsor-loss executes normal main: tick1 collects30; sponsor ownership is removed before next-tick confirmation; the pending withdrawal is still confirmed and acknowledged. No refuge has logistics enabled until tick10, so the courier retains30 without dropping it. Once enabled, it moves to E0N1, becomes ordinary hauling and confirms all30 deposited into storage. Source remains70, destination30, cargo0 and recovery marker is cleared (artifacts/engine-HoXnj7/evidence.json). No seeded cargo or synthetic delivery receipts.
+
+Unit tests cover unseen sponsor non-loss, recovery surviving sponsor vision loss, delayed refuge eligibility and owner-scoped queue cancellation. Quality passed (300 production /266 test files; zero Lizard violations);574 tests/174files passed in4.47s. Complete expanded native suite passed all128 checks in225.50s (artifacts/engine-suite.json), including the four endpoint/cancellation cases added in the previous increment.
+
+Remaining: long-route replacement/soak and refuge route-availability cases, persisted plan anchors, low-RCL master recruitment and combined reset/reclaim/bootstrap/rebuild. Sponsor loss without any observed ownership-loss tick remains unknown and deliberately does not trigger reassignment.

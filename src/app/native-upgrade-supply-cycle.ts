@@ -72,6 +72,6 @@ export function createNativeUpgradeSupplyCycle(state: StatePort, dispatch: Retur
 
 function eligibleSupplyUnit(creep: Creep, plan: NativeSupplyCyclePlan): boolean {
   const population = creep.memory.population;
-  return creep.my && !creep.spawning && population?.home === plan.home
+  return creep.my && !creep.spawning && !creep.memory.upgradeSupplyRecovery && population?.home === plan.home
     && upgradeSupplyTarget(population.owner, plan.home) === plan.target;
 }
