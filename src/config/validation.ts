@@ -3,6 +3,11 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
+  recoverySupportEnabled: value => typeof value === 'boolean',
+  recoverySupportReserve: value => bounded(value, 1300000) && Number.isInteger(value),
+  recoverySupportBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
+  recoverySupportTravelTicks: value => bounded(value, 1400) && Number.isInteger(value),
+  recoverySupportLifetime: value => bounded(value, 100000) && Number.isInteger(value) && Number(value) >= 1,
   recoveryEnabled: value => typeof value === 'boolean',
   recoveryEconomyEnabled: value => typeof value === 'boolean',
   recoveryScavengerEnabled: value => typeof value === 'boolean',

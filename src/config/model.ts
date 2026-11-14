@@ -1,4 +1,9 @@
 export interface RuntimeConfig {
+  recoverySupportEnabled: boolean;
+  recoverySupportReserve: number;
+  recoverySupportBodyBudget: number;
+  recoverySupportTravelTicks: number;
+  recoverySupportLifetime: number;
   recoveryEnabled: boolean;
   recoveryEconomyEnabled: boolean;
   recoveryScavengerEnabled: boolean;
@@ -60,6 +65,11 @@ export interface RuntimeConfig {
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
+  recoverySupportEnabled: true,
+  recoverySupportReserve: 0,
+  recoverySupportBodyBudget: 2600,
+  recoverySupportTravelTicks: 200,
+  recoverySupportLifetime: 1500,
   recoveryEnabled: false,
   recoveryEconomyEnabled: true,
   recoveryScavengerEnabled: true,

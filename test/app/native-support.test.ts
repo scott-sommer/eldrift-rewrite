@@ -1,0 +1,45 @@
+import { afterEach, expect, test, vi } from 'vitest';
+import { createNativeSupportFeature } from '../../src/app/native-support';
+import type { createNativeDispatch } from '../../src/app/native-dispatch';
+import type { FeatureContext } from '../../src/app/runtime-model';
+import { defaults } from '../../src/config/model';
+import { resolveConfig } from '../../src/config/resolve';
+import type { Envelope } from '../../src/persistence/versioned-state';
+import { createSpawnQueue } from '../../src/features/population/spawn-queue';
+import { createLogisticsRequests } from '../../src/features/logistics/request-store';
+import { initialRecovery } from '../../src/features/recovery/schema';
+import { supportOwner } from '../../src/features/recovery/support-identity';
+afterEach(() => vi.unstubAllGlobals());
+test('target policy drives demand; disabling donor cancels only its own route and missing targets retire queued work', () => {
+  const records = new Map<string, Envelope>();
+  const state = { read: (key: string) => records.get(key), write: (key: string, value: Envelope) => { records.set(key, structuredClone(value)); } };
+  const home = { name: 'W0N1', controller: { my: true }, energyCapacityAvailable: 300, find: () => [] };
+  const target = { name: 'E0N1', controller: { my: true }, find: () => [] };
+  const rooms: Record<string, unknown> = { W0N1: home, E0N1: target };
+  vi.stubGlobal('Game', { time: 1, rooms, creeps: {} });
+  vi.stubGlobal('FIND_STRUCTURES', 'structures');
+  const targetConfig = { ...defaults, recoveryEnabled: true, recoveryEnterEnergy: 12, recoverySupportBatch: 50 };
+  const recovery = vi.fn(() => ({ ...initialRecovery('E0N1'), active: true,
+    donors: [{ room: 'W0N1', distance: 1, requestedEnergy: 50 }] }));
+  const dispatch = { activate: vi.fn() } as unknown as ReturnType<typeof createNativeDispatch>;
+  const support = createNativeSupportFeature(state, dispatch, room => room === 'E0N1' ? targetConfig : defaults, recovery);
+  const run = (enabled: boolean) => support.feature.run({ room: { name: 'W0N1' },
+    config: resolveConfig({ empire: { recoverySupportEnabled: enabled } }, 1) } as FeatureContext);
+  run(true);
+  expect(recovery).toHaveBeenCalledWith(target, targetConfig);
+  const queue = createSpawnQueue(state, 'W0N1');
+  expect(queue.list()).toHaveLength(1);
+  const first = queue.list()[0]!;
+  queue.submit({ ...first, id: 'local', name: 'local', owner: 'local' });
+  run(false);
+  expect(queue.list().map(item => item.owner)).toEqual(['local']);
+  run(true);
+  expect(queue.list()).toHaveLength(2);
+  const owner = supportOwner('W0N1', 'E0N1');
+  const requests = createLogisticsRequests(state, 'W0N1');
+  requests.submit({ id: 'orphan', owner, source: 'source', sink: 'sink', resource: 'energy', quantity: 50, priority: 2, expiresAt: 100 }, 1);
+  delete rooms['E0N1'];
+  run(true);
+  expect(queue.list().map(item => item.owner)).toEqual(['local']);
+  expect(requests.pending(1)).toEqual([]);
+});

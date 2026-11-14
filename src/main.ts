@@ -1,3 +1,5 @@
+import { createNativeSupportFeature } from './app/native-support';
+import { resolveConfig } from './config/resolve';
 import { createNativeRecovery } from './app/native-recovery';
 import { createNativeWorkFeature } from './app/native-work';
 import { createLogisticsRetirement } from './app/logistics-retirement';
@@ -18,6 +20,8 @@ const ports = createGamePorts();
 const state = createMemoryPort(() => Memory);
 const dispatch = createNativeDispatch(state);
 const recovery = createNativeRecovery(state);
+const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
+const support = createNativeSupportFeature(state, dispatch, room => resolveConfig(configuration(room), Game.time).values, recovery);
 const recovering = (room: Room, config: Parameters<typeof recovery>[1]) => recovery(room, config).active;
 const mining = createNativeMiningFeature(state, {
   mine: createNativeMiner(dispatch.arbiter, dispatch.movement), activate: dispatch.activate, recovering,
@@ -27,8 +31,8 @@ const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions
   recovering);
 const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions }, createLogisticsRetirement(state));
 // Gameplay registration is separate from configuration-controlled activation.
-export const loop = createGameLoop([mining.feature, logistics.feature, workers.feature], {
+export const loop = createGameLoop([mining.feature, logistics.feature, workers.feature, support.feature], {
   ...ports,
-  config: createPersistentConfiguration(state, () => ports.clock().tick),
+  config: configuration,
 }, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), dispatch.flush);
 

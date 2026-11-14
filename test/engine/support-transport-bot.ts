@@ -1,7 +1,9 @@
 import { createNativeSupportCourier } from '../../src/app/native-support-courier';
 import { logisticsPool } from '../../src/capabilities/logistics/request';
 import { createQuantityReservations } from '../../src/persistence/quantities/store';
-import { loop as botLoop } from '../../src/main';
+import { createNativeLogisticsFeature } from '../../src/app/native-logistics';
+import { resolveConfig } from '../../src/config/resolve';
+import type { FeatureContext } from '../../src/app/runtime-model';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createNativeDispatch } from '../../src/app/native-dispatch';
 import { createLogisticsRequests } from '../../src/features/logistics/request-store';
@@ -11,6 +13,7 @@ import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 const state = createMemoryPort(() => Memory);
 const dispatch = createNativeDispatch(state);
+const local = createNativeLogisticsFeature(state, dispatch);
 const courier = createNativeSupportCourier(state, dispatch, () => 70);
 export function loop() {
   const creep = Game.creeps['support']!;
@@ -24,7 +27,7 @@ export function loop() {
   const sink = Game.rooms['E0N1']!.storage!;
   createLogisticsRequests(state, 'W0N1').submit({ id: 'shipment', owner, source: source.id, sink: sink.id,
     resource: 'energy', quantity: 50, priority: 2, expiresAt: 1000 }, Game.time);
-  botLoop();
+  local.feature.run({ room: { name: 'W0N1' }, config: resolveConfig({ empire: settings.empire }, Game.time) } as FeatureContext);
   courier.run(creep, Game.time < 12);
   dispatch.flush();
   const reservedStock = createQuantityReservations(state).list(Game.time).flatMap(claim => claim.allocations)
