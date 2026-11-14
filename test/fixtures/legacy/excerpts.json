@@ -199,6 +199,34 @@
       "line": 70,
       "source": "var runRecoverySupportCourier = function(creep) {\n    let support = creep.memory.energyRecoverySupport;\n    if(!support) return false;\n\n    let homeRoom = Game.rooms[creep.memory.homeRoom];\n    let targetRoom = Game.rooms[support.targetRoom];\n    let targetStillNeedsSupport = roomEnergyRecovery.isRecoveryActive(support.targetRoom);\n\n    if(!targetStillNeedsSupport && _.sum(creep.carry) == 0) {\n        if(creep.room.name != creep.memory.homeRoom) {\n            let fallback = homeRoom && homeRoom.storage ? homeRoom.storage.pos : new RoomPosition(25, 25, creep.memory.homeRoom);\n            creep.moveTo(fallback, {reusePath: 5, maxRooms: 16});\n            return true;\n        }\n\n        clearRecoverySupportMemory(creep);\n        return false;\n    }\n\n    if(_.sum(creep.carry) == 0) {\n        let source = getRecoveryEnergySource(homeRoom);\n        if(!source) return true;\n\n        if(creep.room.name != source.pos.roomName || creep.pos.getRangeTo(source) > 1) {\n            creep.moveTo(source, {reusePath: 10, maxRooms: 16});\n            return true;\n        }\n\n        creep.withdraw(source, RESOURCE_ENERGY);\n        return true;\n    }\n\n    let dropoff = getRecoveryEnergyDropoff(targetRoom);\n    if(!dropoff) {\n        creep.moveTo(new RoomPosition(25, 25, support.targetRoom), {reusePath: 10, maxRooms: 16});\n        return true;\n    }\n\n    if(creep.room.name != dropoff.pos.roomName || creep.pos.getRangeTo(dropoff) > 1) {\n        creep.moveTo(dropoff, {reusePath: 10, maxRooms: 16});\n        return true;\n    }\n\n    let transferResult = creep.transfer(dropoff, RESOURCE_ENERGY);\n    if(transferResult == ERR_FULL && targetRoom && targetRoom.storage && dropoff.id != targetRoom.storage.id) {\n        creep.transfer(targetRoom.storage, RESOURCE_ENERGY);\n    }\n\n    return true;\n};",
       "sha256": "4d0717fea1fb25053e2f04a0b080bfa63804c2c3ac052e65b25f1f74429dc442"
+    },
+    "oldSafeMode": {
+      "file": "defend.js",
+      "line": 55,
+      "source": "var oldSafeMode = function(room) {\n    var safeFlags = _.filter(room.flags, function (flag) {\n        return flag.pos.roomName == room.name && flag.name.indexOf('Safe') > -1;\n    });\n    if (safeFlags.length != 0) {\n\n        var safeFlag = safeFlags[0];\n\n        var safeRange = (Number(safeFlags[0].name.split(':')[1]));\n        var closestHostile = safeFlag.pos.findClosestByRange(FIND_HOSTILE_CREEPS);\n        if (closestHostile == null && closestHostile != undefined && safeFlag.pos.getRangeTo(closestHostile) < safeRange) {\n            room.controller.activateSafeMode();\n        }\n    }\n};",
+      "extraction": "function expression unchanged; binding renamed for isolated execution",
+      "sha256": "4a50ab02b31697286f51d3486b32b13b4e6507f5c3541ce27a9043d992d02da3"
+    },
+    "managerSafeMode": {
+      "file": "defenseManager.js",
+      "line": 23,
+      "source": "var managerSafeMode = function (room) {\n    var safeFlags = _.filter(room.flags, function (flag) {\n        return flag.pos.roomName == room.name && flag.name.indexOf('Safe') > -1;\n    });\n    if (safeFlags.length != 0) {\n\n        var safeFlag = safeFlags[0];\n\n        var safeRange = (Number(safeFlags[0].name.split(':')[1]));\n        var closestHostile = safeFlag.pos.findClosestByRange(FIND_HOSTILE_CREEPS);\n        if (closestHostile != undefined && safeFlag.pos.getRangeTo(closestHostile) < safeRange) {\n            room.controller.activateSafeMode();\n        }\n    }\n};",
+      "extraction": "function expression unchanged; binding renamed for isolated execution",
+      "sha256": "db77bf6476322ad6c87358bc04ce1e109fed9e4e8568c37ed07e5f2e49213c37"
+    },
+    "getLabRooms": {
+      "file": "resourceManager.js",
+      "line": 139,
+      "source": "var getLabRooms = function() {\n        var rooms = [];\n        for(var roomName in Memory.roomCache) {\n            // var labs = Memory.roomCache[roomName].labsV2;\n            // if(labs && labs.length == 10) rooms.push(Game.rooms[roomName]);\n            if (!Game.rooms[roomName]) {\n                Memory.roomCache[roomName] = undefined;\n                continue;\n            }\n            var labs = Game.rooms[roomName].getStructuresByType(STRUCTURE_LAB);\n            if(labs && labs.length > 2) rooms.push(Game.rooms[roomName]);\n        }\n        console.log('Lab Rooms: '+rooms.length);\n        return rooms;\n    };",
+      "extraction": "function expression unchanged; binding renamed for isolated execution",
+      "sha256": "441d125ba961b2e4692bf105bea0ed6898d7370f73d1f6dd12e563897aff6c32"
+    },
+    "get10LabRooms": {
+      "file": "resourceManager.js",
+      "line": 123,
+      "source": "var get10LabRooms = function() {\n        var rooms = [];\n        for(var roomName in Memory.roomCache) {\n            // var labs = Memory.roomCache[roomName].labsV2;\n            // if(labs && labs.length == 10) rooms.push(Game.rooms[roomName]);\n            if (!Game.rooms[roomName]) {\n                Memory.roomCache[roomName] = undefined;\n                continue;\n            }\n            var labs = Game.rooms[roomName].getStructuresByType(STRUCTURE_LAB);\n            if(labs && labs.length == 10) rooms.push(Game.rooms[roomName]);\n        }\n        console.log('10 Lab Rooms: '+rooms.length);\n        return rooms;\n    };",
+      "extraction": "function expression unchanged; binding renamed for isolated execution",
+      "sha256": "16e7a674697313a2677f1af039c719f0be5f1c2b2472d04c58bc3eb977b42544"
     }
   }
 }
