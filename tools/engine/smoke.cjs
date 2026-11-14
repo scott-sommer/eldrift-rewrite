@@ -13,6 +13,7 @@ let stopped = false;
 function finish(code, error) {
   if (stopped) return;
   stopped = true;
+  evidence.childPids = Object.values(server.processes).map(child => child.pid);
   evidence.status = code === 0 ? 'passed' : 'failed';
   if (error) evidence.failure = String(error.stack ?? error);
   try {
@@ -22,7 +23,7 @@ function finish(code, error) {
   }
   process.exit(code);
 }
-const timeout = setTimeout(() => { console.error('Engine smoke exceeded 60 seconds', directory); finish(1, new Error('Engine smoke timeout')); }, 60000);
+const timeout = setTimeout(() => { console.error('Engine smoke exceeded 60 seconds', directory); finish(1, new Error('Engine smoke timeout')); }, process.argv.includes('--inject-timeout') ? 1500 : 60000);
 server.on('error', error => { console.error(error); finish(1, error); });
 (async () => {
   await server.world.reset();
@@ -39,6 +40,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     if (payload.error) errors.push(payload.error);
   });
   await server.start();
+  if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
   for (let tick = 0; tick < 3; tick++) {
@@ -61,6 +63,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
