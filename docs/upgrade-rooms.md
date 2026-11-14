@@ -347,3 +347,19 @@ Quality passed (298 production / 264 test files, zero Lizard violations); 571 te
 Outstanding: native terminal/full-destination/loss and queued cancellation cases, sponsor-loss recovery, persisted plan anchors, long-route replacement, low-RCL master recruitment, and combined reset/reclaim/bootstrap/rebuild. ED-22 is not complete.
 
 Final legacy comparison preserved recruitment priorities 88 + roster index * 5 (spawner.js 1782–1811). Route-specific counting deliberately corrects the legacy room-wide hauler count: unrelated couriers no longer suppress supply recruitment. This priority-only correction was made after the 123-case run; final quality/fast checks and the native supply-fleet case were rerun before commit.
+
+
+## Native supply endpoint and cancellation evidence (ED-22, 2026-11-15)
+
+Four new native engine scenarios cover the remaining terminal/target-loss boundaries:
+
+- --supply-terminal: an RCL6 target has terminal, available storage and an available master. All 30 energy goes to the terminal, with a confirmed native transfer and no fallback/ground release (artifacts/engine-eJRxXb/evidence.json).
+- --supply-terminal-full: the terminal starts full of mineral. The courier retains its 30 energy while blocked. External mineral removal opens 10 capacity, then 20 more; exactly two confirmed deliveries of 10 and 20 complete the route. Storage/master remain empty and no ground pile is created (artifacts/engine-puqSaM/evidence.json). The fixture updates the complete store object while preserving its observed energy; a first dot-path update did not change mock storage and correctly left the courier blocked.
+- --supply-target-loss: after native collection and before target delivery, the target controller loses ownership. The loaded courier confirms 30 energy returned to sponsor storage, restoring source stock to 100, then returns to ordinary hauling; target terminal/storage/master and ground receive nothing (artifacts/engine-k4bl4F/evidence.json).
+- --supply-fleet-loss: normal production main queues a full supply courier while the sponsor lacks spawn energy. Target ownership is removed before restoring 2,900 sponsor spawn/extension energy. The queue is cancelled and no unit spawns across 12 ticks (artifacts/engine-lQV0oP/evidence.json).
+
+The first three exercise the real native cycle with controlled admission; queued cancellation exercises the production feature and scheduler. These scenarios exposed fixture issues, not a required production-code correction. Terminal exclusive priority and bounded delivery were already implemented.
+
+Quality passed (298 production / 264 test files; zero Lizard violations); 571 fast tests / 173 files passed in 5.25s. New cases and existing ground-cycle/production-fleet regressions passed. Four scenarios are registered for the next full suite; the prior aggregate remains 123 checks and was not rerun for this fixture-only increment.
+
+Still outstanding: sponsor-loss recovery, long-route replacement, persisted plan anchors, low-RCL master recruitment, combined reset/reclaim/bootstrap/rebuild and remaining ED-22 colony parity.
