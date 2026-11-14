@@ -1,3 +1,4 @@
+import type { MiningRepairPolicy } from '../../capabilities/mining/repair-policy';
 import type { Outcome } from '../../core/execution/model';
 import type { createActionArbiter } from '../../core/execution/action-arbiter';
 import { minerStep } from '../../capabilities/mining/step';
@@ -8,7 +9,7 @@ import type { Position } from '../../capabilities/movement/step';
 import type { RoutePolicy } from '../../capabilities/movement/room-route';
 import { createCreepActions } from './creep-actions';
 import type { createMovementService } from './movement-service';
-import { miningInfrastructure, miningReadiness, miningTarget, miningCapacity } from './mining-observation';
+import { miningInfrastructure, miningReadiness, miningTarget, miningCapacity, miningRepair } from './mining-observation';
 export interface MinerCommand {
   owner: string;
   station: MiningStation;
@@ -17,6 +18,7 @@ export interface MinerCommand {
   unsafe: boolean;
   retreat: Position;
   policy: RoutePolicy;
+  repairPolicy?: Readonly<MiningRepairPolicy>;
 }
 export function createNativeMiner(arbiter: ReturnType<typeof createActionArbiter>, movement: Pick<ReturnType<typeof createMovementService>, 'move'>) {
   return (creep: Creep, command: MinerCommand): Outcome => {
@@ -35,7 +37,7 @@ export function createNativeMiner(arbiter: ReturnType<typeof createActionArbiter
       atStation: creep.pos.roomName === tile.room && creep.pos.x === tile.x && creep.pos.y === tile.y,
       carried: creep.store.getUsedCapacity(), energy: creep.store.energy,
       freeCapacity: creep.store.getFreeCapacity(), carryCapacity: creep.store.getCapacity(),
-      establish: !!infrastructure.site, repair: !!infrastructure.repair, ...(readiness ? { readiness } : {}),
+      establish: !!infrastructure.site, repair: miningRepair(infrastructure.repair, target, creep.store.energy, command.repairPolicy), ...(readiness ? { readiness } : {}),
     }, {
       approach: () => move(tile), retreat: () => move(command.retreat),
       establish: () => issuedOutcome(actions.build(infrastructure.site!), Game.time, rejected),
@@ -46,4 +48,6 @@ export function createNativeMiner(arbiter: ReturnType<typeof createActionArbiter
     });
   };
 }
+
+
 

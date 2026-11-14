@@ -1,3 +1,5 @@
+import { shouldRepairMining } from '../../capabilities/mining/repair-policy';
+import type { MiningRepairPolicy } from '../../capabilities/mining/repair-policy';
 import { nativeHarvestRate } from './mining-rates';
 import type { MiningStation } from '../../capabilities/mining/station';
 import { energyReadiness, mineralReadiness, mineralCapacity } from '../../capabilities/mining/production';
@@ -38,3 +40,11 @@ export function miningCapacity(creep: Creep, target: Source | Mineral) {
   const power = nativeHarvestRate(creep.body, 'mineral') * (EXTRACTOR_COOLDOWN + 1);
   return mineralCapacity(Game.time, target.mineralAmount, creep.store.getFreeCapacity(), power);
 }
+
+export function miningRepair(structure: { hits: number; hitsMax: number } | undefined,
+  target: Source | Mineral | null, energy: number, policy?: Readonly<MiningRepairPolicy>): boolean {
+  if (!structure) return false;
+  const depleted = !!target && 'energy' in target && target.energy === 0;
+  return shouldRepairMining(structure.hits, structure.hitsMax, energy, depleted, policy);
+}
+

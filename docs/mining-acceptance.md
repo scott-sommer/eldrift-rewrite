@@ -17,7 +17,7 @@ Status: incomplete. This is the current acceptance map; chronological entries in
 - Source road/container site creation (initializeMining calling buildRoadsFromPath) belongs to desired-state planning/construction ED-23 through ED-27 and remote logistics ED-29. Existing-site building is not automatic infrastructure creation.
 - Legacy storage fallback as a dump target is not represented in current container/link station contracts; integrate explicitly with ED-21 logistics, with a regression for a station served by nearby storage.
 - Legacy mineral sink capacity pre-check and 70-percent transfer policy differ from current overflow-safe, full/depleted cargo handoff. ED-21 must establish reservation/backpressure policy and delivery evidence. Do not silently equate potential harvest rate with delivered rate.
-- Legacy mining repairs only below 20 percent while harvesting, then repairs during depletion. Current native miner prioritizes any reachable infrastructure damage. This is an unvalidated policy difference requiring an explicit policy decision and throughput regression, not assumed parity.
+- Mining repair priority now retains the legacy strict below-20-percent damage threshold and above-20-energy reserve during harvesting, with routine repair during energy-source depletion. A pure overrideable policy feeds native observation. The mining-work engine fixture verifies routine damage leaves harvesting active and a critically damaged container is repaired after the worker crosses the reserve threshold. General depletion-time resource acquisition remains ED-22 work.
 - Harvest statistics move to ED-40 diagnostics. Removed legacy suicide-on-missing-assignment behavior is replaced by explicit waiting/failure and lifecycle cleanup; no creep suicide is issued for transient assignment loss.
 
 ## Validation for saturation addition
@@ -25,3 +25,4 @@ Status: incomplete. This is the current acceptance map; chronological entries in
 Targeted engine scenario --mining-saturation passed after correcting the fixture to read reservation resource identities (not a nonexistent key property). Evidence: artifacts/engine-Alk8x6/evidence.json, including reload provenance. The earlier failed run was a fixture observation error and is not success evidence. Quality passed with zero Lizard violations before that field correction; rerun checks before committing. This scenario is registered in the full engine suite. Full suite execution for this addition is tracked below when run.
 
 Final validation: quality rerun passed (120 production files, zero Lizard violations); broad smoke passed in 182ms; full engine suite passed all 31 cases in 29.63s. Unit suite was unchanged and not rerun for this engine-fixture-only addition.
+
