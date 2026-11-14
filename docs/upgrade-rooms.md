@@ -243,3 +243,12 @@ Packaged --upgrade-supply-transport now proves the usable-storage branch at RCL4
 Validation: quality passed (284 production / 254 test files, zero Lizard violations); 548 tests / 166 files passed in 4.22s; bundle check passed. Native upgrade-supply-transport, support-transport, support-loss, support-reserve-change and automatic-support passed. Full expanded suite not rerun this increment.
 
 Next: represent deliberate ground delivery and master handoff with explicit outcomes/receipts rather than pretending they are storage transfers; select terminal/master/ground destinations according to legacy capability; wire supply demand/configuration and native feature into composition; prove recruitment, low-RCL supply, RCL5 cutoff, cancellation with cargo and combined reset/reclaim/bootstrap.
+
+
+## Supply destination policy (ED-22, 2026-11-15)
+
+Traced role.hauler.js 73-92 and 235-303. Added explicit destination outcomes in upgrade-supply-destination.ts: RCL6+ terminal transfer/wait takes precedence; otherwise an available target-owned upgrade master receives transfer/wait; otherwise return storage accepts transfer when capacity exists, and zero/missing storage selects ground delivery at the configured return anchor. Lost/unseen ownership yields hold, never ground delivery. Full terminal/master waits rather than falling through to dumping cargo. Source selection preserves terminal preference below 70000 sponsor storage energy and exact equality behavior, correcting the legacy missing-terminal dereference.
+
+Native observation is application composition (native-upgrade-supply-destination.ts), not a low-level adapter importing feature policy. It reads actual free capacity (null maps to zero), excludes spawning/wrong-home masters and chooses deterministically by name. Tests cover policy precedence, full endpoints, low-RCL storage, ownership loss, threshold boundaries and native observation.
+
+Validation: npm run quality passed (286 production / 256 test files, zero Lizard violations); npm test passed 554 tests / 168 files in 5.55s. This is tested selection/observation, not delivery execution: ground drop confirmation and master/terminal task binding are not wired into the courier yet. No new engine claim is made. Next: implement explicit ground delivery journal/settlement, connect selection to route execution and recruitment, then native low-RCL handoff and full lifecycle scenarios.
