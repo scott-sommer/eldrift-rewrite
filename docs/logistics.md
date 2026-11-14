@@ -86,3 +86,11 @@ Continuous blocked outcomes are retained as running work instead of spending the
 The native hauling-cycle scenario now admits and runs persisted haul tasks, reconstructs the behavior/runner every tick, and still verifies two deliveries around a full-sink wait. Completion leaves the task queue empty as well as releasing quantity claims. No separate hauling movement implementation was introduced.
 
 Validation: 318 unit tests passed in 2.99s; final quality checks passed (138 production files, zero Lizard violations); updated native hauling-cycle scenario passed (artifacts/engine-HKcAKR/evidence.json). Full engine suite was not rerun for this task binding increment. Automatic selection among requests, native endpoint observation composition, population policy and main-loop registration remain pending.
+
+## Native hauling composition
+
+The native hauling task now composes endpoint observation, request-bound journaling, transfer execution and the shared action/movement services in production code. The six-tick engine hauling fixture uses this composition instead of supplying its own endpoint logic. Visible moving targets use their current position when approached.
+
+Endpoint observations handle resource drops, structure/dead-object withdrawal and valid delivery stores. Missing endpoints expose no stock/capacity. General-purpose stores share one capacity pool across resources; specialized stores separate resource compartments, with one mineral compartment for labs. This prevents capacity overbooking but does not yet provide exclusive mineral-type scheduling for an empty lab; that policy remains part of lab integration. Unseen endpoint navigation and cargo recovery remain unfinished.
+
+Validation: npm run quality passed (140 production files, 130 test files, zero Lizard violations); npm test passed 321 tests across 99 files in 3.07 seconds; npm run test:engine -- --hauling-cycle passed with evidence artifacts/engine-ndDOnE/evidence.json. This proves the assigned native task cycle, not automatic courier population, request generation or full logistics parity.

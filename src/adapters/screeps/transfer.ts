@@ -18,7 +18,7 @@ export function createNativeTransfer(arbiter: ReturnType<typeof createActionArbi
       return { status: 'blocked', reason: 'pickup-exceeds-reservation', retryAt: Game.time + 1 };
     }
     return transferStep(nativeTransferView(creep, target, command, amounts), {
-      approach: () => movement.move(creep, { owner: command.owner, destination: command.position, range: 1, policy: command.policy }),
+      approach: () => movement.move(creep, { owner: command.owner, destination: target ? { room: target.pos.roomName, x: target.pos.x, y: target.pos.y } : command.position, range: 1, policy: command.policy }),
       transfer: amount => issue(creep, target!, command, amount, arbiter, begin),
       rejected: code => ({ status: 'blocked', reason: 'transfer-intent:' + code, retryAt: Game.time + 1 }),
     });
@@ -34,5 +34,6 @@ function issue(creep: Creep, target: TransferObject, command: NativeTransferComm
   if (command.kind === 'withdraw') return actions.withdraw(target as AnyStoreStructure | Tombstone | Ruin, command.resource, amount);
   return actions.transfer(target as AnyStoreStructure | Creep | PowerCreep, command.resource, amount);
 }
+
 
 
