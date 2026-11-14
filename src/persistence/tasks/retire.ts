@@ -1,7 +1,7 @@
 import { stateKey } from '../state-key';
 import type { StatePort } from '../versioned-state';
 import { openState, saveState } from '../versioned-state';
-import { createReservations } from '../reservations/store';
+import { createReservationCleanup } from '../reservation-cleanup';
 import { taskSchema } from './schema';
 import type { TaskDefinition } from './schema';
 
@@ -11,8 +11,9 @@ export function retireUnitTasks(port: StatePort, unit: string, definitions: Read
   const key = stateKey('tasks', unit);
   const state = openState(port, key, schema);
   // Release first so replay after a reset also cleans up claims.
-  createReservations(port).releaseHolder(unit);
+  createReservationCleanup(port).releaseHolder(unit);
   state.queue = [];
   saveState(port, key, schema, state);
 }
+
 

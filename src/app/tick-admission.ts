@@ -1,4 +1,4 @@
-import { createReservations } from '../persistence/reservations/store';
+import { createReservationCleanup } from '../persistence/reservation-cleanup';
 import type { StatePort } from '../persistence/versioned-state';
 
 /** Admit gameplay only after migrations and owned-state maintenance succeed. */
@@ -13,9 +13,10 @@ export function createTickAdmission(state: StatePort, migrate: () => boolean, cl
     ready = false;
     if (!migrate()) return false;
     // Avoid creating an unused namespace in colonies with no claims yet.
-    if (state.read('reservations/empire') !== undefined) createReservations(state).expire(tick);
+    createReservationCleanup(state).expire(tick);
     if (!maintain()) return false;
     ready = true;
     return true;
   };
 }
+

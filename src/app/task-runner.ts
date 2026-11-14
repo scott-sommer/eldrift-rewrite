@@ -5,7 +5,7 @@ import type { StatePort } from '../persistence/versioned-state';
 import { stateKey } from '../persistence/state-key';
 import { taskSchema } from '../persistence/tasks/schema';
 import type { TaskDefinition, TaskRecord } from '../persistence/tasks/schema';
-import { createReservations } from '../persistence/reservations/store';
+import { createReservationCleanup } from '../persistence/reservation-cleanup';
 export interface TaskBehavior<Context> extends TaskDefinition {
   handlers(task: Readonly<TaskRecord>): Handlers<Context>;
 }
@@ -27,7 +27,7 @@ export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<R
     if (!task) return undefined;
     const result = execute(task, behaviors[task.kind]!.handlers(task), context, tick);
     if (result.outcome.status === 'done' || result.outcome.status === 'failed') {
-      createReservations(port).releaseScope(taskScope(unit, task.id));
+      createReservationCleanup(port).releaseScope(taskScope(unit, task.id));
       state.queue.shift();
     } else {
       state.queue[0] = { ...task, ...result.state };
@@ -36,3 +36,4 @@ export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<R
     return result.outcome;
   };
 }
+
