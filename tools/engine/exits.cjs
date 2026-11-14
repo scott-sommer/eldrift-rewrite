@@ -26,3 +26,17 @@ function verifyExits(memory) {
   });
 }
 module.exports = { exitsWorld, verifyExits };
+
+function verifyNavigation(memory) {
+  const targets = { east: ['E0N1', 1, 20], west: ['W0N1', 48, 25], south: ['W1S0', 20, 1], north: ['W1N0', 25, 48] };
+  for (const [name, room, x, y] of starts) {
+    const samples = memory.exitEvidence[name];
+    assert.deepEqual(samples[0], [room, x, y]);
+    assert.deepEqual(samples[2], targets[name]);
+    assert.equal(samples[1][0], targets[name][0]);
+    const horizontal = name === 'east' || name === 'west';
+    assert.equal(samples[1][horizontal ? 1 : 2], name === 'east' || name === 'south' ? 0 : 49);
+    assert.ok(Math.abs(samples[1][horizontal ? 2 : 1] - (horizontal ? y : x)) <= 1);
+  }
+}
+module.exports.verifyNavigation = verifyNavigation;

@@ -1,4 +1,4 @@
-const { exitsWorld, verifyExits } = require('./exits.cjs');
+const { exitsWorld, verifyExits, verifyNavigation } = require('./exits.cjs');
 const { trafficWorld, verifyTraffic } = require('./traffic.cjs');
 const { recoveryWorld, verifyRecovery } = require('./recovery.cjs');
 const { movementWorld, verifyMovement } = require('./movement.cjs');
@@ -49,6 +49,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--recovery')) modules.main = await actionBundle(root, 'recovery-bot');
   if (process.argv.includes('--traffic')) modules.main = await actionBundle(root, 'traffic-bot');
   if (process.argv.includes('--exits')) modules.main = await actionBundle(root, 'exit-bot');
+  if (process.argv.includes('--navigation')) modules.main = await actionBundle(root, 'navigation-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -58,7 +59,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--movement') || process.argv.includes('--paths')) await movementWorld(server, bot);
   if (process.argv.includes('--recovery')) await recoveryWorld(server, bot);
   if (process.argv.includes('--traffic')) await trafficWorld(server, bot);
-  if (process.argv.includes('--exits')) await exitsWorld(server, bot);
+  if (process.argv.includes('--exits') || process.argv.includes('--navigation')) await exitsWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -100,6 +101,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--recovery')) verifyRecovery(memory);
   if (process.argv.includes('--traffic')) verifyTraffic(memory);
   if (process.argv.includes('--exits')) verifyExits(memory);
+  if (process.argv.includes('--navigation')) verifyNavigation(memory);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -107,4 +109,6 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
+
 
