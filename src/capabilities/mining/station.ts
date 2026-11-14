@@ -8,6 +8,7 @@ export interface MiningStation {
   access: readonly Position[];
   container?: string;
   link?: string;
+  storage?: string;
   extractor?: string;
   throughput: number;
   available: number;
@@ -22,7 +23,7 @@ export function stationTile(position: Position): string {
 export function validateStation(station: MiningStation): void {
   if (![station.id, station.target, station.resource].every(value => typeof value === 'string' && value.length > 0)) throw new Error('Missing station identity');
   if (!['energy', 'mineral'].includes(station.kind) || !['safe', 'unknown', 'hostile'].includes(station.risk)) throw new Error('Invalid station classification');
-  for (const id of [station.container, station.link, station.extractor]) {
+  for (const id of [station.container, station.link, station.storage, station.extractor]) {
     if (id !== undefined && (typeof id !== 'string' || !id)) throw new Error('Invalid infrastructure identity');
   }
   stationTile(station.position);

@@ -20,11 +20,9 @@ export function miningReadiness(target: Source | Mineral, station: MiningStation
   return mineralReadiness(view, extractor.isActive() ? 'ready' : 'inactive', extractor.cooldown);
 }
 export function miningInfrastructure(creep: Creep, station: MiningStation) {
-  const structures = [station.link, station.container].flatMap(id => {
-    const structure = id ? Game.getObjectById(id as Id<StructureContainer | StructureLink>) : null;
-    if (!structure || !creep.pos.inRangeTo(structure, 1)) return [];
-    if (structure.structureType === STRUCTURE_LINK && (!structure.my || !structure.isActive())) return [];
-    return structure.structureType === STRUCTURE_CONTAINER || structure.structureType === STRUCTURE_LINK ? [structure] : [];
+  const structures = [station.link, station.container, station.storage].flatMap(id => {
+    const structure = id ? Game.getObjectById(id as Id<StructureContainer | StructureLink | StructureStorage>) : null;
+    return usableSink(creep, structure) ? [structure!] : [];
   });
   const resource = station.resource as ResourceConstant;
   const sink = structures.find(structure => (structure.store.getFreeCapacity(resource) ?? 0) > 0);
@@ -48,3 +46,10 @@ export function miningRepair(structure: { hits: number; hitsMax: number } | unde
   return shouldRepairMining(structure.hits, structure.hitsMax, energy, depleted, policy);
 }
 
+
+function usableSink(creep: Creep, structure: StructureContainer | StructureLink | StructureStorage | null): boolean {
+  if (!structure || !creep.pos.inRangeTo(structure, 1)) return false;
+  if (structure.structureType === STRUCTURE_CONTAINER) return true;
+  if (structure.structureType !== STRUCTURE_LINK && structure.structureType !== STRUCTURE_STORAGE) return false;
+  return structure.my && structure.isActive();
+}

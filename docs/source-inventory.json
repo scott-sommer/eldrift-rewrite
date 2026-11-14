@@ -282,9 +282,12 @@
     "file": "controller.js",
     "sha256": "932A81B4F3FAEC8549FBAA1DA35F9215ECC831B598E9F397E0EEA4EA245DAC81",
     "physicalLines": 1658,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
       "ED-10",
       "ED-12",
@@ -3051,11 +3054,16 @@
     "file": "role.courier.js",
     "sha256": "C041C44E07F29F935EE16DF98E54E33AC5ED6889840076C23A1A7C27329C3834",
     "physicalLines": 112,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "dormant source reviewed; shared collection/delivery equivalents exist; operator modes and final parity remain open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
-      "ED-21"
+      "ED-21",
+      "ED-39",
+      "ED-42"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
@@ -3088,11 +3096,20 @@
     "file": "role.courierV2.js",
     "sha256": "098184F96F18891185D022830F3413E86207A24753C58EB5CAC2FBA9C52B111A",
     "physicalLines": 779,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
-      "ED-21"
+      "ED-21",
+      "ED-22",
+      "ED-27",
+      "ED-29",
+      "ED-39",
+      "ED-40",
+      "ED-42"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
@@ -3169,13 +3186,22 @@
     "file": "role.courierV3.js",
     "sha256": "07D4642F18F528971C00E4C9843EB71B54701AE73CB67959260F435368AF3132",
     "physicalLines": 464,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
       "ED-17",
       "ED-18",
-      "ED-21"
+      "ED-21",
+      "ED-22",
+      "ED-29",
+      "ED-31",
+      "ED-35",
+      "ED-40",
+      "ED-42"
     ],
     "capabilityWork": [
       "Implement bounded state machines, task outcomes, and action ownership",
@@ -3264,11 +3290,18 @@
     "file": "role.distributorV2.js",
     "sha256": "DE7E16B3B78C1BCA28EDF14E722B1CCE592A834A5F30761A49F14FB2C7D1E347",
     "physicalLines": 690,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
-      "ED-21"
+      "ED-21",
+      "ED-36",
+      "ED-38",
+      "ED-39",
+      "ED-42"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
@@ -3349,11 +3382,19 @@
     "file": "role.hauler.js",
     "sha256": "5F73608703A10089372ABBDF8520E5C89EE6AA2A94932CFD8D7FEFE43CD284C7",
     "physicalLines": 370,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
-      "ED-21"
+      "ED-21",
+      "ED-29",
+      "ED-31",
+      "ED-35",
+      "ED-39",
+      "ED-42"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
@@ -3437,12 +3478,16 @@
     "file": "role.mineralCourierV2.js",
     "sha256": "B0B32452B8C5245975F5B9B09BB9BE01A4E25757D3C4D777871DC266E48BB287",
     "physicalLines": 331,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
       "ED-21",
-      "ED-36"
+      "ED-36",
+      "ED-42"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics",
@@ -3505,12 +3550,21 @@
     "file": "role.minerV2.js",
     "sha256": "F9F094FA95365ECDD3DE443DCA024D8735CB5C9DC26A17483F3FB84F8966502C",
     "physicalLines": 355,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
       "ED-17",
-      "ED-20"
+      "ED-20",
+      "ED-21",
+      "ED-22",
+      "ED-27",
+      "ED-29",
+      "ED-40",
+      "ED-42"
     ],
     "capabilityWork": [
       "Implement bounded state machines, task outcomes, and action ownership",
@@ -3637,11 +3691,16 @@
     "file": "role.scavenger.js",
     "sha256": "458BC84726080301828943F191F41CD835FECAD1D3C99497694F29F333FBF801",
     "physicalLines": 138,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
-      "ED-21"
+      "ED-21",
+      "ED-22",
+      "ED-42"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics"
@@ -5596,9 +5655,12 @@
     "file": "utilV2.js",
     "sha256": "11BF335962648B19685B4B79D4AC682939C4723F2B962F4C878089E788169D5E",
     "physicalLines": 3636,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
+    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "evidence": [
+      "docs/logistics-acceptance.md",
+      "docs/logistics.md"
+    ],
     "plannedIssues": [
       "ED-12",
       "ED-13",
@@ -5610,7 +5672,8 @@
       "ED-35",
       "ED-38",
       "ED-39",
-      "ED-44"
+      "ED-44",
+      "ED-42"
     ],
     "capabilityWork": [
       "Enforce Lizard complexity and size limits in local checks and CI",

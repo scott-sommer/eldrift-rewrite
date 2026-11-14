@@ -1,6 +1,6 @@
 # ED-21 logistics acceptance audit
 
-Audit base: 1167841. Legacy reference: f2bbf7e8c44addc7c426abb5458e393c9502ff5f. This is a source-to-evidence assessment, not a completion certificate. Jira ED-21 remains In Progress.
+Audit base: 1167841. Legacy reference: f2bbf7e8c44addc7c426abb5458e393c9502ff5f. Local/shared logistics acceptance evidence is assembled below; final milestone validation and Jira transition are recorded at the end. Module-wide parity remains open under the explicitly listed feature issues.
 
 ## Acceptance evidence
 
@@ -29,14 +29,26 @@ Normal storage/terminal energy balancing uses configurable 20k/30k hysteresis an
 
 Dead-unit retirement archives at most 50 units and 10 uncertainty incidents per unit. It handles known roster removals and name reuse; it does not sweep historical orphan journals or prove all persistent state bounded. ED-43 must measure growth; ED-44 must account for historical state during migration.
 
-## Next closure work
+## Integration obligations beyond shared logistics
 
 1. Reclamation donor capability is implemented and tested; ED-22 must compose automatic recovery mode, including native link/industry coordination. Disabling currently retires unassigned work at the normal post-execution generation phase, not before same-tick admission.
 2. Controller-container/worker fallback is implemented with explicit work ownership and native no-storage evidence. ED-22 must integrate population, consumption and replenishment; mobile recipient loss remains bounded by request expiry where disappearance cannot be distinguished from unseen travel.
 3. Native link request/receipt semantics now have explicit journal, bounded retention and native contention evidence; see logistics.md for observed gross versus derived net quantities.
 4. Mineral fleet sizing has native route and population-queue evidence; retain remote fleet integration as ED-29 and sustained economy/soak evidence as ED-42/ED-43.
-5. Reconcile source rows and cross-issue obligations, run the full milestone checks once implementation gaps close, then assess ED-21 completion. Do not close it from test counts alone.
+5. Source-inventory rows now cite this evidence and remain explicitly partial for unported specialist/operator behavior. Final parity ED-42 must reconcile each named path; shared logistics completion is not whole-module parity.
 
 ## Cross-milestone obligation found during reconciliation
 
-ED-20 mining-acceptance.md explicitly assigns nearby-storage mining dump fallback to ED-21. Current station contracts and courier route observation still center on container/link infrastructure; the nearby-storage fallback needs source inspection, implementation and a native regression before ED-21 closure. This obligation must not be lost merely because the main request/receipt checklist now has evidence.
+The ED-20 nearby-storage handoff is now implemented. Station observation/validation, tile ranking and handoff accept owned active reachable storage; native --mining-storage proves delivery and continued harvesting with no container/link. Version1 station records without the optional storage field remain valid. See logistics.md for exact evidence.
+
+## Dormant source review
+
+role.courier.js has no literal-import path from main. Its collection delegates to utilV2.collectEnergyFromMiner (drops, remembered dump target, moving to miner, general dropped-resource fallback), not a native withdraw-from-creep operation. Shared supply/request transport covers the resource collection mechanism. Its spawn/extension -> tower -> storage sequence is represented by consumer/banking policy with documented configurable thresholds. The hard-coded missing-home fallback is not retained as a default. Memory.goAway and Wait-flag parking remain ED-39 operator behavior; external invocation remains unverified, so the module is not declared retired or fully ported. ED-42 must close that classification with the operator inventory.
+
+## Milestone validation
+
+ED-21 acceptance is met for its shared transport mechanisms and local logistics policies. The four issue criteria have concrete evidence in the table above: explicit descriptors/reservations (including native links); local consumer/store/mineral/scavenging/link fallbacks; per-source production and loaded/empty route sizing; and the named multi-tick loss/reset/contention cases. Nearby-storage mining handoff closes ED-20's explicit dependency. Source-inventory entries remain partial where the original later milestones own work, recovery, remote, combat/industry and operator orchestration.
+
+Final validation on this change: quality passed with193production/189testfiles and zero Lizard violations;412tests/127files in3.58s; packaged bundle passed; complete native engine suite78checks in90.12s (artifacts/engine-suite.json), including expected negative error/timeout cases. The legacy checkout and VES are unchanged. No live deployment occurred.
+
+The remaining obligations above are mandatory inputs to the later issues and final capability closure; none are assertions of completed whole-bot parity. Bounded request expiry for unseen mobile recipients, lack of urgent in-flight preemption, opt-in profile defaults, and historical orphan-state migration remain documented limitations to assess in the relevant integration/soak/release gates.

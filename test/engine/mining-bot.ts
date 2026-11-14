@@ -19,7 +19,7 @@ export function loop() {
   const mine = createNativeMiner(arbiter, movement);
   const creep = Game.creeps['miner']!;
   const station = observeMiningStations('W0N1', 'safe')!.find(item => item.position.x === 20 && item.position.y === 20)!;
-  const container = Game.getObjectById(station.container as Id<StructureContainer>)!;
+  const container = Game.getObjectById((station.container ?? station.storage) as Id<StructureContainer | StructureStorage>)!;
   evidence.fatigue.push(creep.fatigue);
   evidence.positions.push([creep.pos.x, creep.pos.y]);
   evidence.stores.push([creep.store.energy, container.store.energy]);
