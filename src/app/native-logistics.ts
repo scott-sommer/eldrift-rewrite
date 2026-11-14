@@ -1,3 +1,5 @@
+import { haulingOwner } from '../features/logistics/identity';
+import { maintainNativeCouriers, cancelCourierDemand } from './native-courier-population';
 import { observeEnergySupply } from '../adapters/screeps/energy-supply';
 import { generateEnergyRequests } from '../features/logistics/energy-requests';
 import type { StatePort } from '../persistence/versioned-state';
@@ -7,7 +9,7 @@ import { createNativeHaulingTask } from './native-hauling-task';
 import { selectHaulingTask } from './select-hauling-task';
 import { createTaskRunner } from './task-runner';
 import { observeHauling } from '../adapters/screeps/hauling-observation';
-export function haulingOwner(room: string): string { return `logistics:${JSON.stringify(room)}`; }
+export { haulingOwner } from '../features/logistics/identity';
 /** Executes explicit queued work for couriers owned by this room's logistics policy. */
 export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>) {
   const definitions = { haul: createNativeHaulingTask(state, dispatch,
@@ -16,7 +18,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
   const feature: RoomFeature = {
     id: 'logistics', urgency: 'urgent', interval: 1,
     run({ room: view, config }) {
-      if (!config.values.logisticsEnabled || !Game.rooms[view.name]?.controller?.my) return;
+      if (!config.values.logisticsEnabled || !Game.rooms[view.name]?.controller?.my) { cancelCourierDemand(state, view.name); return; }
       const units = Object.values(Game.creeps).filter(creep => !creep.spawning &&
         creep.memory.population?.home === view.name && creep.memory.population.owner === haulingOwner(view.name))
         .sort((a, b) => a.name.localeCompare(b.name));
@@ -32,8 +34,10 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         generateEnergyRequests(state, view.name, Game.time, supply.sources, supply.sinks,
           { owner: haulingOwner(view.name), lifetime: 100, maximumQuantity: 200, maximumNewRequests: 10 });
       }
+      maintainNativeCouriers(state, Game.rooms[view.name]!, config.values);
     },
   };
   return { feature, definitions };
 }
+
 

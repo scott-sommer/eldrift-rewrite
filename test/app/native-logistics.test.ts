@@ -13,7 +13,7 @@ test('native logistics respects activation, room ownership, population ownership
   const logistics = createNativeLogisticsFeature(state, dispatch);
   const creep = (name: string, home: string, owner: string, spawning = false) => ({ name, id: name, spawning,
     memory: { population: { home, owner } }, store: { getUsedCapacity: () => 0 } });
-  const room = { controller: { my: true } };
+  const room = { name: 'home', controller: { my: true } };
   vi.stubGlobal('Game', { time: 1, rooms: { home: room }, creeps: {
     courier: creep('courier', 'home', haulingOwner('home')),
     miner: creep('miner', 'home', 'mining:station'),
@@ -32,3 +32,4 @@ test('native logistics respects activation, room ownership, population ownership
   expect(activate).toHaveBeenCalledOnce();
   expect([...records.keys()].filter(key => key.startsWith('tasks/'))).toEqual(['tasks/courier']);
 });
+

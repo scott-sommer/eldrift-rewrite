@@ -1,5 +1,7 @@
 export interface RuntimeConfig {
   logisticsEnabled: boolean;
+  courierSpawningEnabled: boolean;
+  courierBodyBudget: number;
   energyRequestsEnabled: boolean;
   miningEnabled: boolean;
   mineralMiningEnabled: boolean;
@@ -12,6 +14,8 @@ export interface RuntimeConfig {
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   logisticsEnabled: false,
+  courierSpawningEnabled: false,
+  courierBodyBudget: 300,
   energyRequestsEnabled: false,
   miningEnabled: false,
   mineralMiningEnabled: false,
@@ -35,6 +39,7 @@ export interface EffectiveConfig {
   values: Readonly<RuntimeConfig>;
   sources: Readonly<Record<ConfigKey, ConfigLayer>>;
 }
+
 
 
 

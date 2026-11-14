@@ -120,3 +120,15 @@ Initial policy: spawns before extensions, nearest source by geometric range with
 Porting reference: legacy role.distributorV2.js and role.courierV3.js confirm spawn/extension delivery and storage/terminal collection as existing capabilities. Their broader fallback and balancing behavior is not claimed complete here.
 
 Validation: npm run quality passed (144 production files, 134 test files, zero Lizard violations); npm test passed 327 tests across 102 files in 3.13 seconds. New --energy-logistics native scenario passed: production observations generate a 30-energy request, the assigned courier withdraws and delivers it to an extension, one receipt is recorded, and task/reservation state clears. No request is seeded by the fixture. Evidence: artifacts/engine-3dNRGq/evidence.json. The fixture still seeds its courier; this is not population or complete colony-economy evidence.
+
+## Courier capacity and native bootstrap
+
+applyCourierDemand reconciles carry capacity rather than unit counts. Its target is the greater of an explicit minimum and the sum of per-route production times round-trip duration divided by utilization. Live capacity excludes workers within replacement spawn/travel/margin lead time; spawning workers count, while their observed names remove duplicate pending requests. Pending bodies contribute their own capacity, excess requests are cancelled by owner, and persistent spawn identities prevent reuse. Native observations supply actual store capacity; planned bodies use their CARRY count.
+
+courierSpawningEnabled (default false, requires logisticsEnabled) now bootstraps a courier for pending room work through this reconciler and the shared spawn dispatcher. courierBodyBudget defaults to 300, accepts integer budgets 100..2600, and uses current available room energy when no courier exists. The native bootstrap currently supplies an empty route list and a one-body capacity floor while work is pending; measured station-route throughput integration is still required for sustained and remote sizing. Replacement travel is initially 25 ticks plus a 10-tick margin, not yet a measured route. Disabling logistics/spawning cancels only its queued spawn requests, leaving live units and other population owners intact.
+
+Native --courier-bootstrap evidence starts with no couriers and no requests. The production loop generates work, spawns exactly one CARRY/MOVE courier, travels, collects and delivers 30 energy, records the receipt, and leaves no queued spawns after 30 ticks. This proves autonomous delivery bootstrap, not a self-sustaining mining/hauling colony or final throughput parity. Evidence: artifacts/engine-ZsjI0o/evidence.json.
+
+Unit validation: 329 tests across 103 files passed in 3.14 seconds, including mixed live/pending capacity, spawning-name deduplication, replacement timing and scoped cancellation. Quality passed with 147 production files, 136 test files and zero Lizard violations; bundle validation passed.
+
+Full integration regression: npm run test:engine:suite passed all 37 scenarios in 39.93 seconds; report artifacts/engine-suite.json.

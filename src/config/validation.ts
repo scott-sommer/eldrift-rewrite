@@ -5,6 +5,8 @@ function bounded(value: unknown, maximum: number): boolean {
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   mineralMiningEnabled: value => typeof value === 'boolean',
   energyRequestsEnabled: value => typeof value === 'boolean',
+  courierSpawningEnabled: value => typeof value === 'boolean',
+  courierBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
   logisticsEnabled: value => typeof value === 'boolean',
   miningEnabled: value => typeof value === 'boolean',
   miningBodyBudget: value => bounded(value, 10000) && Number.isInteger(value) && Number(value) >= 200,
@@ -24,6 +26,7 @@ export function validatePatch(input: unknown, layer: string): Partial<RuntimeCon
   }
   return patch;
 }
+
 
 
 
