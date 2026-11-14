@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": 1,
+  "project": "ED",
+  "cloudId": "f422c67b-2fbf-4bbb-b485-1ea88974595b",
+  "repository": "https://github.com/scott-sommer/eldrift-rewrite",
+  "workspace": "E:\\dev\\personal\\screeps\\eldrift-rewrite",
+  "legacyWorkspace": "E:\\dev\\personal\\screeps\\Eldrift-Directive",
+  "legacyRepository": "https://github.com/scott-sommer/Eldrift-Directive",
+  "legacyCommit": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+  "epics": [
+    {
+      "id": "M0",
+      "area": "foundation",
+      "title": "M0 - Establish the rewrite contract and local development loop",
+      "outcome": "A capability-preserving rewrite has a traceable scope, reproducible Windows build/test loop, enforceable Lizard limits, and a verified real-engine test route.",
+      "gate": "The capability inventory covers every legacy module and operator entrypoint. A clean checkout can build and run fast checks. A packaged bot completes a real-engine smoke scenario. If a required external prerequisite is blocked, record it and keep this milestone open; mocks alone do not close it.",
+      "key": "ED-1",
+      "url": "https://veskar.atlassian.net/browse/ED-1"
+    },
+    {
+      "id": "M1",
+      "area": "runtime",
+      "title": "M1 - Build the modular runtime and reusable execution framework",
+      "outcome": "A small composition root wires explicit dependencies, owned persistent state, bounded task execution, and a single movement boundary.",
+      "gate": "A multi-tick scenario survives a runtime reset, target loss, cancellation, and a room-local error without double-commanding creeps or losing unrelated state.",
+      "key": "ED-2",
+      "url": "https://veskar.atlassian.net/browse/ED-2"
+    },
+    {
+      "id": "M2",
+      "area": "economy",
+      "title": "M2 - Deliver a self-sustaining owned-room economy",
+      "outcome": "A colony spawns, mines, transports, builds, upgrades, and recovers through small configurable policies and reusable capabilities.",
+      "gate": "A seeded owned room sustains energy collection and delivery, replaces workers, advances controller/build work, and recovers from worker/energy loss in reproducible engine scenarios.",
+      "key": "ED-3",
+      "url": "https://veskar.atlassian.net/browse/ED-3"
+    },
+    {
+      "id": "M3",
+      "area": "planning",
+      "title": "M3 - Deliver assessment-driven layouts and construction",
+      "outcome": "Room assessment selects among validated layout strategies; versioned plans drive a separate construction reconciler with persistent manual constraints.",
+      "gate": "Open, constrained, irregular, and occupied room fixtures produce explained valid plans or explicit failure. Construction progresses across RCL changes and resets without duplicate sites, losing manual entries, or destructive replanning.",
+      "key": "ED-4",
+      "url": "https://veskar.atlassian.net/browse/ED-4"
+    },
+    {
+      "id": "M4",
+      "area": "expansion",
+      "title": "M4 - Restore scouting, remote operations, and expansion",
+      "outcome": "Freshness-aware intel drives remote mining economics and claim/bootstrap policy, with threat interruption and layout feasibility.",
+      "gate": "Scouting, reservation, remote mining/hauling, retreat/recovery, and a claim-to-working-colony scenario pass with unseen and hostile rooms represented explicitly.",
+      "key": "ED-5",
+      "url": "https://veskar.atlassian.net/browse/ED-5"
+    },
+    {
+      "id": "M5",
+      "area": "defense",
+      "title": "M5 - Restore defense, missions, and coordinated combat",
+      "outcome": "Threat policy, mission ownership, specialist tactics, and squad movement preserve the existing combat capability set.",
+      "gate": "Home and remote defense plus representative mission, controller, formation, keeper, and power-bank scenarios have explicit lifecycle and ownership evidence; tactical omissions remain visible in the parity inventory.",
+      "key": "ED-6",
+      "url": "https://veskar.atlassian.net/browse/ED-6"
+    },
+    {
+      "id": "M6",
+      "area": "industry",
+      "title": "M6 - Restore industry and inter-room resource operations",
+      "outcome": "Minerals, labs, boosts, terminal transfers, trade, and implemented advanced resource flows share explicit resource reservations and action allocation.",
+      "gate": "Resource and energy reservations prevent conflicting allocations; production, boosting, transfers, and trade recover from depletion, cooldowns, vision loss, and interruptions.",
+      "key": "ED-7",
+      "url": "https://veskar.atlassian.net/browse/ED-7"
+    },
+    {
+      "id": "M7",
+      "area": "operations",
+      "title": "M7 - Deliver operator controls and actionable diagnostics",
+      "outcome": "Documented flags, console operations, metrics, and planning diagnostics expose the same application operations used by automation.",
+      "gate": "Every retained operator command has an inventory entry and behavior test; effective configuration, failures, construction status, and CPU/memory costs are inspectable without unbounded overhead.",
+      "key": "ED-8",
+      "url": "https://veskar.atlassian.net/browse/ED-8"
+    },
+    {
+      "id": "M8",
+      "area": "release",
+      "title": "M8 - Prove capability parity and prepare a reversible release",
+      "outcome": "A tested candidate satisfies the capability inventory, measured operating budgets, persistence compatibility, and a rehearsed rollback procedure.",
+      "gate": "All required capabilities have evidence and no unapproved deferrals; packaged real-engine suites and bounded soak runs pass; CPU/memory budgets and migration/rollback are documented. Live deployment remains a separate user decision.",
+      "key": "ED-9",
+      "url": "https://veskar.atlassian.net/browse/ED-9"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "F1",
+      "epic": "M0",
+      "title": "Record the rewrite charter, capability inventory, and architecture decisions",
+      "scope": "Create versioned project guidance in the local rewrite checkout. Inventory the legacy at commit f2bbf7e8c44addc7c426abb5458e393c9502ff5f, including static imports, dynamic dispatch, flags, console calls, and partially implemented paths. The new implementation supersedes the earlier in-place-refactor proposal.",
+      "acceptance": [
+        "All 60 legacy JavaScript modules and documented operator entrypoints map to capabilities, implementation status (active/dormant/partial/placeholder), source symbols, intended owner, and a port/clean-up/rebuild decision.",
+        "Record the charter, dependency rules, state ownership, configuration precedence, roadmap, testing strategy, and ADR index; AGENTS.md names the local paths, ED tracking workflow, Lizard gates, and completion evidence.",
+        "Track known defects as deliberate corrections with regression cases; no implemented capability may be silently dropped or declared deferred without the user's agreement.",
+        "Create a reusable capability-to-test evidence format and reference the frozen legacy SHA; preserve source/license provenance for imported code and external algorithms."
+      ],
+      "sources": [
+        "readme.md",
+        "main.js",
+        "controller.js",
+        "consoleCommands.js",
+        "room.strategy.js"
+      ],
+      "deps": [],
+      "key": "ED-10",
+      "url": "https://veskar.atlassian.net/browse/ED-10",
+      "parent": "ED-1",
+      "prerequisites": []
+    },
+    {
+      "id": "F2",
+      "epic": "M0",
+      "title": "Scaffold the TypeScript bot and reproducible Windows build",
+      "scope": "Initialize the existing empty repository without replacing its Git metadata. Establish a small composition entrypoint, supported pinned toolchain, lockfile, deterministic bundling, and a primary unit-test runner.",
+      "acceptance": [
+        "From E:\\dev\\personal\\screeps\\eldrift-rewrite, documented commands install locked dependencies, typecheck, test, and build a Screeps-compatible main module with useful stack traces/source maps.",
+        "Fast development and build execution use the user's local checkout; build artifacts, caches, and secrets are ignored appropriately.",
+        "Architecture folders and import checks express pure core, shared capabilities, feature policies, world views, persistence, Screeps adapters, configuration, and application composition.",
+        "Upload is a separate explicit command with named environments; ordinary builds/tests never upload to a live shard."
+      ],
+      "sources": [
+        "main.js"
+      ],
+      "deps": [
+        "F1"
+      ],
+      "key": "ED-11",
+      "url": "https://veskar.atlassian.net/browse/ED-11",
+      "parent": "ED-1",
+      "prerequisites": [
+        "ED-10"
+      ]
+    },
+    {
+      "id": "F3",
+      "epic": "M0",
+      "title": "Enforce Lizard complexity and size limits in local checks and CI",
+      "scope": "Use Lizard as the authoritative size and cyclomatic-complexity analyzer for new production code. Pin the verified 1.22.2 baseline initially; any version change requires a recorded comparison.",
+      "acceptance": [
+        "A single quality command runs type checking, correctness/dependency linting, and Lizard; CI uses the same pinned rules as the Windows checkout.",
+        "Standard Lizard CCN fails above 10 (target <=8); function NLOC fails above 50; file NLOC fails above 300 (target <=250). NLOC excludes comments/blank lines. Do not mistake -L function span for file NLOC.",
+        "A small checked-in wrapper enforces file NLOC and emits actionable file/function reports plus machine-readable output; test fixtures prove below/above-threshold exit behavior and TypeScript parsing.",
+        "Legacy, dependencies, generated bundles, and vendor code are separately scoped. Exceptions name exact symbols/files, reason and review condition; no blanket warning suppression. Report test-code metrics separately.",
+        "Class/module extraction follows cohesive responsibility; method extraction follows understandable decisions; preserve readable formatting rather than compressing code to satisfy counts."
+      ],
+      "sources": [
+        "spawner.js",
+        "utilV2.js",
+        "jobs.js",
+        "controller.js"
+      ],
+      "deps": [
+        "F2"
+      ],
+      "key": "ED-12",
+      "url": "https://veskar.atlassian.net/browse/ED-12",
+      "parent": "ED-1",
+      "prerequisites": [
+        "ED-11"
+      ]
+    },
+    {
+      "id": "F4",
+      "epic": "M0",
+      "title": "Build legacy characterization fixtures and corrected behavior regressions",
+      "scope": "Capture representative legacy decisions and data shapes without depending on a fully emulated Game object. Keep actual legacy behavior distinct from intended fixes.",
+      "acceptance": [
+        "Fixtures cover spawn priorities/body recipes, task transitions, mining/hauling assignments, layout transforms/manual entries, threat decisions, recovery hysteresis, and operator parsing.",
+        "Regression cases address cross-room position equality/borders, original-method receiver binding, construction-site double counting, incomplete paths, assignment in hunter condition, NaN comparisons, shadowed invader-core dispatch, and room-cache loss on invisibility.",
+        "Each case states whether its evidence is source inspection, extracted-function execution, mocked contract, or real-engine behavior; do not describe source probes as full-game validation.",
+        "Use synthetic/checked-in room fixtures and versioned memory samples; retain legacy SHA and expected intentional deviations for later parity testing."
+      ],
+      "sources": [
+        "main.js",
+        "spawner.js",
+        "utilV2.js",
+        "room.layout.js",
+        "room.layout.shared.js",
+        "role.hunter.js",
+        "controller.js",
+        "resourceManager.js"
+      ],
+      "deps": [
+        "F1",
+        "F2"
+      ],
+      "key": "ED-13",
+      "url": "https://veskar.atlassian.net/browse/ED-13",
+      "parent": "ED-1",
+      "prerequisites": [
+        "ED-10",
+        "ED-11"
+      ]
+    },
+    {
+      "id": "F5",
+      "epic": "M0",
+      "title": "Establish a pinned local real-engine scenario runner",
+      "scope": "Validate the screeps-server-mockup/private-server compatibility route on this machine and establish disposable tick-stepped scenarios, while keeping the Windows fast loop independent.",
+      "acceptance": [
+        "Research current upstream compatibility and record Node, Screeps server/engine/driver, native dependencies, and selected harness versions; lock a working combination rather than assuming latest installs together.",
+        "Run the packaged main loop against the actual engine, step ticks, assert persisted world/memory outcomes, and exercise process timeouts, reset, cleanup, and reproducible fixtures.",
+        "Document a Linux/WSL/container route if native Windows dependencies require it; explain any unavoidable OS installation or restart and track that exact external blocker while continuing independent work.",
+        "Keep disposable test worlds separate from a persistent visual/soak server; bind local services appropriately and store credentials outside source control.",
+        "Measure warm fast-suite and smoke-scenario timings; initial feedback targets (<10s fast suite, approximately 10-30s small warm engine suite) are goals, not claimed results."
+      ],
+      "sources": [
+        "main.js"
+      ],
+      "deps": [
+        "F2",
+        "F3"
+      ],
+      "key": "ED-14",
+      "url": "https://veskar.atlassian.net/browse/ED-14",
+      "parent": "ED-1",
+      "prerequisites": [
+        "ED-11",
+        "ED-12"
+      ]
+    },
+    {
+      "id": "R1",
+      "epic": "M1",
+      "title": "Implement composition, configuration, tick views, and fault-isolated scheduling",
+      "scope": "Wire narrow ports through plain factories/constructors. Build bounded shared observations once per tick; give urgent actions precedence over staggered background work.",
+      "acceptance": [
+        "Core imports no Screeps globals or feature policies; capabilities do not import roles; the composition root is the explicit wiring point and no universal service-locator replaces globals.",
+        "Typed configuration resolves defaults -> environment -> empire -> room profile -> room override -> temporary override; validates enums/ranges, unknown keys, and legitimate zero/false values; reports effective source.",
+        "Tick views index owned rooms, units, structures and threats without serializing the entire world; ownership and diplomacy are configured rather than hard-coded usernames.",
+        "Feature/room exceptions preserve useful diagnostics and allow independent work to continue; deterministic staggering and tick-limit/bucket budgets bound background scheduling.",
+        "Unit and contract tests cover invalid configuration, multiple rooms, scheduling starvation, and isolated feature failure."
+      ],
+      "sources": [
+        "main.js",
+        "controller.js",
+        "room.properties.js"
+      ],
+      "deps": [
+        "F3",
+        "F4"
+      ],
+      "key": "ED-15",
+      "url": "https://veskar.atlassian.net/browse/ED-15",
+      "parent": "ED-2",
+      "prerequisites": [
+        "ED-12",
+        "ED-13"
+      ]
+    },
+    {
+      "id": "R2",
+      "epic": "M1",
+      "title": "Implement versioned persistence, ownership, and reconstructible caches",
+      "scope": "Assign one owner to each durable state namespace; store IDs/plain data and distinguish unseen observations from destroyed objects.",
+      "acceptance": [
+        "Schemas cover colony, creep tasks, missions, intel, plans and operator overrides; migrations are idempotent, resumable and tested with older/corrupt/unknown records.",
+        "Global reset reconstructs runtime handlers and bounded caches from persistent data; stale caches cannot delete another feature's state.",
+        "Death, cancellation and ownership transfer release reservations and claims; temporary vision loss retains intel with freshness metadata.",
+        "Record memory-size/serialization diagnostics and a compatibility policy for importing selected legacy state; defer RawMemory segments until measured need."
+      ],
+      "sources": [
+        "main.js",
+        "controller.js",
+        "resourceManager.js",
+        "jobs.js",
+        "mission.js"
+      ],
+      "deps": [
+        "R1"
+      ],
+      "key": "ED-16",
+      "url": "https://veskar.atlassian.net/browse/ED-16",
+      "parent": "ED-2",
+      "prerequisites": [
+        "ED-15"
+      ]
+    },
+    {
+      "id": "R3",
+      "epic": "M1",
+      "title": "Implement bounded state machines, task outcomes, and action ownership",
+      "scope": "Extract a small transition primitive and task executor reusable by creep behaviors and mission lifecycles. Keep their domain-specific state separate.",
+      "acceptance": [
+        "Tasks/states are serializable tagged records; handlers return running/done/blocked-with-retry/failed outcomes; unknown versions, invalid targets, expiry and retry limits are explicit.",
+        "Bound transitions per tick and enforce one behavior owner per creep plus compatible action budgets; an OK return records an issued intent and completion is confirmed from later observations.",
+        "Movement/resource/build/repair/upgrade actions compose without importing role policy; cancellation/death releases all associated reservations.",
+        "Multi-tick tests cover already-complete transitions, repeated blockage, target disappearance, reset and same-tick conflicting intents, with real-engine confirmation of action semantics."
+      ],
+      "sources": [
+        "jobs.js",
+        "creep.base.js",
+        "role.minerV2.js",
+        "role.courierV3.js",
+        "mission.js"
+      ],
+      "deps": [
+        "R2",
+        "F5"
+      ],
+      "key": "ED-17",
+      "url": "https://veskar.atlassian.net/browse/ED-17",
+      "parent": "ED-2",
+      "prerequisites": [
+        "ED-16",
+        "ED-14"
+      ]
+    },
+    {
+      "id": "R4",
+      "epic": "M1",
+      "title": "Unify movement, routing, path caches, and traffic handling",
+      "scope": "Place all ordinary movement behind one port; separate routing policy, matrices, path search/cache, stuck detection and traffic resolution. Evaluate external movement code only behind that contract.",
+      "acceptance": [
+        "Path results distinguish complete/incomplete/no-route; keys include endpoints, range, profile, topology and policy versions, with bounded cache lifetime and reconstructible heap data.",
+        "Tests include W0/E0 and N0/S0 boundaries, cross-room identity, exits, hostile-room exclusions, fatigue, damaged MOVE parts, vision loss, dynamic blockers, and resets.",
+        "One movement authority arbitrates interacting creeps; no uncoordinated mixing of native and alternate traffic resolvers. Formation movement can request coordinated behavior through an explicit extension.",
+        "Document keep/adapt/adopt decision for legacy path code and a candidate such as Cartographer; validate license, CPU cost and behavior before adoption.",
+        "Engine scenarios demonstrate arrival, recovery from repeated blockage, and cache invalidation without illegal position equivalence overrides."
+      ],
+      "sources": [
+        "utilV2.js",
+        "waypointer.js",
+        "jobs.js",
+        "main.js",
+        "role.courierV3.js"
+      ],
+      "deps": [
+        "R3"
+      ],
+      "key": "ED-18",
+      "url": "https://veskar.atlassian.net/browse/ED-18",
+      "parent": "ED-2",
+      "prerequisites": [
+        "ED-17"
+      ]
+    },
+    {
+      "id": "E1",
+      "epic": "M2",
+      "title": "Separate population demand, body recipes, spawn queues, and execution",
+      "scope": "Retain useful legacy recipes and demand behavior while separating room policy from pure sizing, queue lifecycle, allocation and the spawn adapter.",
+      "acceptance": [
+        "Pure recipes obey energy/part limits and deterministic ordering; role memory creation is separate from body composition.",
+        "Requests have stable identity, owner, priority, expiry and replacement timing; define lower-number-first legacy priority and policy for unaffordable head requests.",
+        "Multiple spawns reconcile demand without duplicate units; replacement accounts for body spawn time, travel and configurable margin.",
+        "Characterization and engine tests cover bootstrap energy, mature rooms, spawn contention, request cancellation, scarce energy and multi-room independence."
+      ],
+      "sources": [
+        "spawner.js",
+        "room.strategy.js"
+      ],
+      "deps": [
+        "R3"
+      ],
+      "key": "ED-19",
+      "url": "https://veskar.atlassian.net/browse/ED-19",
+      "parent": "ED-3",
+      "prerequisites": [
+        "ED-17"
+      ]
+    },
+    {
+      "id": "E2",
+      "epic": "M2",
+      "title": "Port mining stations and reusable extraction behaviors",
+      "scope": "Model energy/mineral stations independently from population policy. Port useful miner states through the shared task/movement framework.",
+      "acceptance": [
+        "Station records describe source/resource, room, access tile, container/link, throughput, availability and risk; assignments prevent overbooking.",
+        "Miner behavior supports travel, establishment, harvest, maintenance and retreat; depletion, missing infrastructure, target loss and replacement have explicit outcomes.",
+        "Energy harvesting and mineral extractor/cooldown rules have separate small handlers while sharing station and assignment contracts.",
+        "Fixtures and engine tests verify production, container/link handoff, interrupted travel, source saturation and reset recovery without role-owned pathing duplication."
+      ],
+      "sources": [
+        "role.minerV2.js",
+        "room.properties.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "R4",
+        "E1"
+      ],
+      "key": "ED-20",
+      "url": "https://veskar.atlassian.net/browse/ED-20",
+      "parent": "ED-3",
+      "prerequisites": [
+        "ED-18",
+        "ED-19"
+      ]
+    },
+    {
+      "id": "E3",
+      "epic": "M2",
+      "title": "Port hauling, distribution, scavenging, and link logistics",
+      "scope": "Use explicit supply/demand requests and reservations for couriers, distributors, haulers, scavengers and link transfers.",
+      "acceptance": [
+        "Requests declare source/sink/resource/quantity/priority/expiry/owner; stock and free-capacity reservations prevent competing allocations and release on loss/cancel.",
+        "Retain courier/distributor fallback behavior, dropped resources/tombstones/ruins, mineral transport, storage/terminal feeding and link roles found in the inventory.",
+        "Hauling demand sums each source's production times its own round-trip duration with utilization margin; tests vary source rates, terrain, load, delay and replacement travel.",
+        "Multi-tick/engine scenarios cover empty source, full sink, partial transfer, death, storage loss, reset and multiple couriers without oscillation or duplicated work."
+      ],
+      "sources": [
+        "role.courierV3.js",
+        "role.courierV2.js",
+        "role.distributorV2.js",
+        "role.hauler.js",
+        "role.scavenger.js",
+        "role.mineralCourierV2.js",
+        "controller.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "E2"
+      ],
+      "key": "ED-21",
+      "url": "https://veskar.atlassian.net/browse/ED-21",
+      "parent": "ED-3",
+      "prerequisites": [
+        "ED-20"
+      ]
+    },
+    {
+      "id": "E4",
+      "epic": "M2",
+      "title": "Port building, repairs, upgrading, and colony recovery",
+      "scope": "Compose work behaviors over shared actions; make investment priorities and emergency recovery configurable policies.",
+      "acceptance": [
+        "Builders, wall repairers, ordinary upgraders and dedicated upgrade-room/master behavior are traced to the inventory and exercised through shared resource/work actions.",
+        "Recovery uses explicit entry/exit hysteresis, donor selection, emergency spawning and reassignment through the ownership boundary.",
+        "Work selection respects critical structures, controller downgrade, resource reserves and construction dependency priorities without duplicating action execution.",
+        "An end-to-end owned-room scenario sustains collection/delivery, replaces a miner/hauler, advances construction and upgrading, and recovers after seeded worker/energy loss."
+      ],
+      "sources": [
+        "role.builder.js",
+        "role.wallBuilder.js",
+        "role.upgrader.js",
+        "role.upgraderV2.js",
+        "role.upgradeMaster.js",
+        "upgradeRoom.js",
+        "room.energy.recovery.js"
+      ],
+      "deps": [
+        "E3"
+      ],
+      "key": "ED-22",
+      "url": "https://veskar.atlassian.net/browse/ED-22",
+      "parent": "ED-3",
+      "prerequisites": [
+        "ED-21"
+      ]
+    },
+    {
+      "id": "P1",
+      "epic": "M3",
+      "title": "Extract room assessment, grid geometry, and planning constraints",
+      "scope": "Build a deterministic assessment from terrain, immutable objects, access requirements and existing infrastructure; share it with layout selection and expansion policy.",
+      "acceptance": [
+        "Assessment reports connected buildable regions, clearance, exit groups, terrain costs, sources/controller/mineral, work/access tiles, current anchors and locked/manual constraints.",
+        "Consolidate transforms/coordinates/adjacency into pure modules with all rotations/reflections and room-boundary tests.",
+        "Version the assessment fingerprint by fixed features and meaningful constraints; visibility freshness is explicit.",
+        "Fixtures include open, constrained, disconnected, swamp-heavy and occupied rooms; assessment performs no construction or destructive game action."
+      ],
+      "sources": [
+        "room.layout.shared.js",
+        "room.properties.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "R2",
+        "F4"
+      ],
+      "key": "ED-23",
+      "url": "https://veskar.atlassian.net/browse/ED-23",
+      "parent": "ED-4",
+      "prerequisites": [
+        "ED-16",
+        "ED-13"
+      ]
+    },
+    {
+      "id": "P2",
+      "epic": "M3",
+      "title": "Port standard and constrained layouts behind validated strategy contracts",
+      "scope": "Separate eligibility, incremental candidate generation, hard validation, scoring, commitment and preserve-existing policy. Bootstrap anchors must belong to the eventual plan.",
+      "acceptance": [
+        "Port both existing strategies and their transforms with characterization fixtures; compare eligible candidates rather than always accepting the first standard fit.",
+        "Hard validation precedes scoring: legal tiles/sharing, RCL counts, exits, spawn egress, source/controller/mineral access, lab geometry, connected service paths and complete path searches.",
+        "Score breakdowns cover hauling/service cost, capacity, swamps, defenses and migration cost with deterministic ties and stability hysteresis.",
+        "Resumable planning checkpoints survive resets/CPU exhaustion; failure explains why and retains the last valid plan. Preserve-existing mode locks valuable structures.",
+        "Plan versions/provenance and staged bootstrap-to-RCL8 layouts are serializable; tests show configuration can select a different viable strategy."
+      ],
+      "sources": [
+        "room.layout.js",
+        "room.layout.strategy.standard.js",
+        "room.layout.strategy.constrained.js",
+        "room.layout.scoring.js",
+        "room.layout.shared.js"
+      ],
+      "deps": [
+        "P1",
+        "R4"
+      ],
+      "key": "ED-24",
+      "url": "https://veskar.atlassian.net/browse/ED-24",
+      "parent": "ED-4",
+      "prerequisites": [
+        "ED-23",
+        "ED-18"
+      ]
+    },
+    {
+      "id": "P3",
+      "epic": "M3",
+      "title": "Add stamp composition for irregular rooms",
+      "scope": "Introduce a third strategy that composes cohesive hub, spawn, extension, lab and support stamps through the same assessment/validation/scoring pipeline.",
+      "acceptance": [
+        "Irregular-room fixtures that cannot fit a fixed core can generate a connected, serviceable staged layout or a bounded explained failure.",
+        "Stamp placement honors locked/manual structures, infrastructure corridors, lab ranges, spawn egress and RCL capacities; candidates use the same hard validator and comparable score breakdown.",
+        "Search order and checkpoints are deterministic and CPU bounded; tests cover reset/resume and rejection without destroying an existing plan.",
+        "Document the strategy extension contract with one additional small example; fully free-form adaptive placement remains a separately tracked future enhancement, not assumed parity."
+      ],
+      "sources": [
+        "room.layout.strategy.standard.js",
+        "room.layout.strategy.constrained.js",
+        "room.layout.shared.js"
+      ],
+      "deps": [
+        "P2"
+      ],
+      "scopeKind": "enhancement",
+      "key": "ED-25",
+      "url": "https://veskar.atlassian.net/browse/ED-25",
+      "parent": "ED-4",
+      "prerequisites": [
+        "ED-24"
+      ]
+    },
+    {
+      "id": "P4",
+      "epic": "M3",
+      "title": "Implement terrain-aware defensive planning and barrier validation",
+      "scope": "Replace placeholder defensive strategies with tested alternatives: a terrain-aware cut strategy and an exit-perimeter strategy, retaining the existing perimeter as a fallback.",
+      "acceptance": [
+        "Protected assets and attacker entry regions are explicit; diagonal flood-fill validates separation and legal wall/rampart positions.",
+        "Candidate costs account for maintenance, repair/gate access and tower coverage; report uncovered or intentionally unprotected infrastructure.",
+        "All defensive strategies use one contract and selection policy; fixtures cover open exits, narrow choke points, controller inclusion, disconnected regions and fallback.",
+        "Algorithms are deterministic, budgeted and provenance/license documented; barriers are staged with room economy and do not create sites directly."
+      ],
+      "sources": [
+        "room.rampart.strategy.terrainAwareCore.js",
+        "room.rampart.strategy.exitPerimeter.js",
+        "room.rampart.strategy.perimeterWithController.js",
+        "room.layout.shared.js"
+      ],
+      "deps": [
+        "P2"
+      ],
+      "scopeKind": "enhancement",
+      "key": "ED-26",
+      "url": "https://veskar.atlassian.net/browse/ED-26",
+      "parent": "ED-4",
+      "prerequisites": [
+        "ED-24"
+      ]
+    },
+    {
+      "id": "P5",
+      "epic": "M3",
+      "title": "Implement desired-state construction reconciliation",
+      "scope": "Turn committed plans and manual entries into bounded construction work, independently of strategy selection.",
+      "acceptance": [
+        "Entries resolve to built/site-existing/eligible/waiting-for-RCL/waiting-for-budget/temporarily-blocked/invalid with retry reasons; completed plans remain available to reconstruct lost structures.",
+        "Deduplicate automatic and manual entries by stable keys; preserve explicit manual precedence and account for existing sites once when enforcing global/room budgets.",
+        "Construction priority covers bootstrap spawn, extraction/delivery, extensions, defense and later infrastructure; remote roads/containers have an explicit policy.",
+        "RCL changes unlock a staged blueprint without needless replanning; occupied tiles and invalid locations do not retry forever; default migration is additive.",
+        "Real-engine scenarios cover pre-existing sites, caps, RCL progression, reset, rebuilding a lost structure and preserving the committed bootstrap anchor."
+      ],
+      "sources": [
+        "utilV2.js",
+        "room.layout.js",
+        "role.claimer.js"
+      ],
+      "deps": [
+        "P2",
+        "E4",
+        "F5"
+      ],
+      "key": "ED-27",
+      "url": "https://veskar.atlassian.net/browse/ED-27",
+      "parent": "ED-4",
+      "prerequisites": [
+        "ED-24",
+        "ED-22",
+        "ED-14"
+      ]
+    },
+    {
+      "id": "X1",
+      "epic": "M4",
+      "title": "Port scouting, observer intel, and the traversable room graph",
+      "scope": "Extract room summaries and observation policy into freshness-aware intel used by routing, expansion and remote operations.",
+      "acceptance": [
+        "Scouts/observers record controller/ownership/reservation/status, sources/mineral, exits, threats, keeper/highway flags and visit/failure timestamps without treating unseen as empty.",
+        "Traversal handles blocked/hostile rooms and real corner paths; ranking tests distinguish pathable room gaps from linear distance.",
+        "Observation/scout demand respects exploration depth and CPU/vision budgets; stale intel triggers refresh or conservative decisions.",
+        "Tests cover scout death, observation expiry, owner change, non-normal room status and temporary vision loss without clearing unrelated cache/state."
+      ],
+      "sources": [
+        "role.scout.js",
+        "expansion.manager.js",
+        "remote.manager.js",
+        "main.js"
+      ],
+      "deps": [
+        "R4",
+        "E1"
+      ],
+      "key": "ED-28",
+      "url": "https://veskar.atlassian.net/browse/ED-28",
+      "parent": "ED-5",
+      "prerequisites": [
+        "ED-18",
+        "ED-19"
+      ]
+    },
+    {
+      "id": "X2",
+      "epic": "M4",
+      "title": "Restore remote mining, reservation, and outpost logistics",
+      "scope": "Reuse extraction, hauling and demand capabilities while preserving remote selection, reservation and outpost behavior.",
+      "acceptance": [
+        "Remote scoring exposes expected net yield, per-source transport cost, spawn load, reservation state and configured risk/budget.",
+        "Mine/Reserve/Outpost inputs produce typed demand with stable identity; station assignments, road/container construction and home ownership remain explicit.",
+        "Reservation expiry, hostile pressure, travel interruption and lost vision suspend/retreat/recover appropriately with no stranded reservations.",
+        "Scenarios verify profitable and rejected remotes, differing travel distances, reserver replacement and return to service after a threat."
+      ],
+      "sources": [
+        "remote.manager.js",
+        "spawner.js",
+        "role.claimer.js",
+        "role.attacker.js",
+        "remote.defense.js"
+      ],
+      "deps": [
+        "X1",
+        "E4",
+        "P5"
+      ],
+      "key": "ED-29",
+      "url": "https://veskar.atlassian.net/browse/ED-29",
+      "parent": "ED-5",
+      "prerequisites": [
+        "ED-28",
+        "ED-22",
+        "ED-27"
+      ]
+    },
+    {
+      "id": "X3",
+      "epic": "M4",
+      "title": "Restore expansion selection, claiming, and colony bootstrap",
+      "scope": "Port strategic target scoring and the CreateRoom/NewSpawn lifecycle, incorporating layout feasibility and explicit GCL/capacity constraints.",
+      "acceptance": [
+        "Ranking preserves configurable spacing, adjacent remote/keeper value, ownership/status exclusions, failure blacklists and deterministic ties; diagnostic reasons are retained.",
+        "Eligibility uses room assessment/layout feasibility before commitment; donor capacity, available claim slots and duplicate target prevention are enforced.",
+        "CreateRoom/legacy NewSpawn and override semantics are documented; claim, initial spawn placement and continued support use one committed compatible plan.",
+        "Engine scenarios cover claim success, blocked/unclaimable targets, bootstrap interruption, failed initial placement, donor loss and eventual independent colony operation."
+      ],
+      "sources": [
+        "expansion.manager.js",
+        "spawner.js",
+        "role.claimer.js",
+        "role.builder.js",
+        "room.layout.js"
+      ],
+      "deps": [
+        "X2",
+        "P2"
+      ],
+      "key": "ED-30",
+      "url": "https://veskar.atlassian.net/browse/ED-30",
+      "parent": "ED-5",
+      "prerequisites": [
+        "ED-29",
+        "ED-24"
+      ]
+    },
+    {
+      "id": "X4",
+      "epic": "M4",
+      "title": "Port vassal coordination and specialist room modes",
+      "scope": "Inventory and restore the cross-room support and special operating modes that are easy to omit from a rewrite.",
+      "acceptance": [
+        "Trace Vassal flags/state and support roles to executed code and document active versus incomplete semantics.",
+        "Preserve implemented vassal/controller-room coordination, specialist upgrade-room interactions and support reassignment through typed ownership/configuration boundaries.",
+        "Tests cover controller/home disappearance, invalid flag targets, reset, conflicting support requests and recovery without hard-coded identity.",
+        "Any unimplemented or obsolete mode is explicitly classified in the parity inventory; implemented behavior has a test and new owner."
+      ],
+      "sources": [
+        "controller.js",
+        "spawner.js",
+        "consoleCommands.js",
+        "upgradeRoom.js",
+        "terminal.js"
+      ],
+      "deps": [
+        "X3"
+      ],
+      "key": "ED-31",
+      "url": "https://veskar.atlassian.net/browse/ED-31",
+      "parent": "ED-5",
+      "prerequisites": [
+        "ED-30"
+      ]
+    },
+    {
+      "id": "D1",
+      "epic": "M5",
+      "title": "Restore threat assessment, towers, safe mode, and remote response",
+      "scope": "Preserve the useful context/classifier/response split while consolidating home and remote defense under explicit diplomacy and action ownership.",
+      "acceptance": [
+        "Threat records distinguish NPC/player/keeper/invader-core situations, allies and stale observations; diplomacy is injected configuration.",
+        "Towers, defenders, safe-mode triggers and remote response requests have explicit priorities, resource budgets and testable decision outputs.",
+        "Invader-core behavior is reachable through the registry and the hunter border-condition defect has a regression.",
+        "Engine scenarios cover weak/strong threats, Safe flags, retreat and recovery, allied units, tower energy starvation and independent room failures."
+      ],
+      "sources": [
+        "defend.js",
+        "defenseManager.js",
+        "remote.defense.js",
+        "remote.defense.hostility.js",
+        "remote.defense.response.js",
+        "role.hunter.js",
+        "controller.js"
+      ],
+      "deps": [
+        "X2",
+        "E4"
+      ],
+      "key": "ED-32",
+      "url": "https://veskar.atlassian.net/browse/ED-32",
+      "parent": "ED-6",
+      "prerequisites": [
+        "ED-29",
+        "ED-22"
+      ]
+    },
+    {
+      "id": "D2",
+      "epic": "M5",
+      "title": "Restore mission lifecycle and specialist military behaviors",
+      "scope": "Separate mission orchestration, assignment, stage transitions and typed operator inputs from the execution of individual tactics.",
+      "acceptance": [
+        "Mission persistence reuses the transition primitive without merging mission and creep state; unit acquisition/release, replacement, cancellation and expiry are explicit.",
+        "Inventory and port attacker/defender/demolisher/outposter/dismantler/healer/patroller/golem/assault and controller-attack behavior where implemented, plus waypoint, sign and boost gates.",
+        "Down/Dismantle/Patrol and other combat controls map to application operations; tests cover malformed inputs, target loss, contested ownership and stage failure.",
+        "Unit and engine scenarios prove one owner per creep, compatible actions, reset recovery and cleanup of canceled missions."
+      ],
+      "sources": [
+        "mission.js",
+        "role.attacker.js",
+        "role.claimer.js",
+        "role.patroller.js",
+        "role.golem.js",
+        "assaultCreeps.js",
+        "controller.js",
+        "waypointer.js"
+      ],
+      "deps": [
+        "D1",
+        "R3"
+      ],
+      "key": "ED-33",
+      "url": "https://veskar.atlassian.net/browse/ED-33",
+      "parent": "ED-6",
+      "prerequisites": [
+        "ED-32",
+        "ED-17"
+      ]
+    },
+    {
+      "id": "D3",
+      "epic": "M5",
+      "title": "Port formations and coordinated squad movement",
+      "scope": "Preserve specialist formation behavior behind an explicit coordinated movement/tactics boundary.",
+      "acceptance": [
+        "Map formation.js, formations.js and squad.tnt.js consumers before consolidating; preserve each active capability and document superseded variants.",
+        "Formation positions, leader/follower state, attack/heal intents and reassembly are separate responsibilities with bounded functions.",
+        "Scenarios cover spawn assembly, border crossing, fatigue, missing/dead member, obstruction, retreat, split formation and reset.",
+        "Squad movement coordinates with the shared traffic authority and ordinary creeps; evidence shows no competing movement issuers."
+      ],
+      "sources": [
+        "formation.js",
+        "formations.js",
+        "squad.tnt.js"
+      ],
+      "deps": [
+        "D2",
+        "R4"
+      ],
+      "key": "ED-34",
+      "url": "https://veskar.atlassian.net/browse/ED-34",
+      "parent": "ED-6",
+      "prerequisites": [
+        "ED-33",
+        "ED-18"
+      ]
+    },
+    {
+      "id": "D4",
+      "epic": "M5",
+      "title": "Restore source-keeper and power-bank operations",
+      "scope": "Port specialized expedition coordination, risk checks, combat timing and hauling without embedding economy policy in squad execution.",
+      "acceptance": [
+        "Keeper and power-bank discovery/eligibility, travel, rally, combat, collection and return are explicit mission stages with deadlines and economic estimates.",
+        "Truck/trailer, keeper squad and power squad behaviors retain implemented healing/escort/haul coordination and avoid launching infeasible expeditions.",
+        "Tests cover keeper respawn timing, bank decay, absent haul capacity, squad casualties, target disappearance and reset.",
+        "Representative engine scenarios demonstrate safe interruption/recovery and collected-resource delivery; unsupported engine fixtures are documented rather than replaced by unlabelled mocks."
+      ],
+      "sources": [
+        "role.skSquad.js",
+        "role.powerSquad.js",
+        "squad.tnt.js",
+        "main.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "D3",
+        "X1",
+        "E3"
+      ],
+      "key": "ED-35",
+      "url": "https://veskar.atlassian.net/browse/ED-35",
+      "parent": "ED-6",
+      "prerequisites": [
+        "ED-34",
+        "ED-28",
+        "ED-21"
+      ]
+    },
+    {
+      "id": "I1",
+      "epic": "M6",
+      "title": "Restore resource planning, labs, and boost reservations",
+      "scope": "Separate production demand and stock policy from lab reactions, transport requests and per-creep boost orchestration.",
+      "acceptance": [
+        "Reaction planning uses game constants and explicit priorities/reserves; lab topology, input/output stock and reservations are validated.",
+        "Boost reservations coordinate resource/energy availability, creep ownership and mission gating without claiming success before next-tick observation.",
+        "Mineral extraction/courier integration uses shared extraction/logistics; visibility loss does not erase room intel or other feature state.",
+        "Scenarios cover reaction chains, incompatible lab layout, cooldown, depleted reagents, canceled boosts, lab destruction and reset."
+      ],
+      "sources": [
+        "resourceManager.js",
+        "labV2.js",
+        "booster.js",
+        "role.mineralCourierV2.js"
+      ],
+      "deps": [
+        "E4",
+        "R2"
+      ],
+      "key": "ED-36",
+      "url": "https://veskar.atlassian.net/browse/ED-36",
+      "parent": "ED-7",
+      "prerequisites": [
+        "ED-22",
+        "ED-16"
+      ]
+    },
+    {
+      "id": "I2",
+      "epic": "M6",
+      "title": "Restore terminal balancing, transfers, and market policy",
+      "scope": "Separate inter-room resource demand, trade decisions, transaction-cost policy and allocation of each terminal's actions.",
+      "acceptance": [
+        "Reserve terminal stock, energy and capacity across trade/transfer/industry demands; one allocator handles cooldown and action contention.",
+        "Retain implemented balancing, special upgrade-room supply, market order/deal behavior and configurable reserve/price/transaction policies.",
+        "Deterministic fixtures cover absent orders, poor liquidity, capacity shortage, transaction energy, stale observations and competing demand.",
+        "Exercise real-engine-supported transfers/cooldowns and clearly identify market behavior tested via contracts where a private server lacks public-market equivalents."
+      ],
+      "sources": [
+        "terminal.js",
+        "market.js",
+        "resourceManager.js",
+        "upgradeRoom.js"
+      ],
+      "deps": [
+        "I1",
+        "X4"
+      ],
+      "key": "ED-37",
+      "url": "https://veskar.atlassian.net/browse/ED-37",
+      "parent": "ED-7",
+      "prerequisites": [
+        "ED-36",
+        "ED-31"
+      ]
+    },
+    {
+      "id": "I3",
+      "epic": "M6",
+      "title": "Complete advanced resource and structure capability parity",
+      "scope": "Audit all remaining resource/structure paths so rarely used behavior is not silently omitted or invented as a requirement.",
+      "acceptance": [
+        "Inventory actual implemented factory, power-spawn/power processing, nuker supply, observer and other advanced structure behavior; distinguish construction support from an operating feature.",
+        "Port each implemented residual capability through shared configuration, resource reservations and scheduler/action boundaries; do not infer missing power-creep/factory automation solely from a structure type.",
+        "Test disabled/unavailable structure, cooldown, insufficient resources, reset and ownership changes; ensure remote power-bank output can feed implemented home processing.",
+        "Update the parity matrix with explicit evidence for every residual industry capability and separate future enhancements from current parity."
+      ],
+      "sources": [
+        "controller.js",
+        "resourceManager.js",
+        "terminal.js",
+        "main.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "I2",
+        "D4"
+      ],
+      "key": "ED-38",
+      "url": "https://veskar.atlassian.net/browse/ED-38",
+      "parent": "ED-7",
+      "prerequisites": [
+        "ED-37",
+        "ED-35"
+      ]
+    },
+    {
+      "id": "O1",
+      "epic": "M7",
+      "title": "Preserve flags and console controls through application operations",
+      "scope": "Implement typed input adapters and a documented operator API over the same operations used by automated policy.",
+      "acceptance": [
+        "Every flag/console entry in the baseline inventory maps to a retained operation, compatibility alias or explicit agreed change; include Mine/Reserve/Claim/Outpost/CreateRoom/NewSpawn/Upgrade/Build/Defend/Scout/Down/Steal/Transfer/Safe/Dismantle/Sign/Patrol/Vassal and squad controls where implemented.",
+        "Parsing, validation, authorization-by-game-ownership and effects are separate; malformed/ambiguous inputs report useful errors and repeated processing is idempotent.",
+        "Controls support effective configuration inspection, temporary override lifecycle, plan preview/selection, manual constraints, pause/resume of features and diagnostics as appropriate.",
+        "Tests prove operator and automatic paths share behavior and do not bypass ownership/reservation rules; register runtime helpers without per-tick duplication.",
+        "Document any new destructive structure-migration control separately with explicit user activation; normal replanning remains additive."
+      ],
+      "sources": [
+        "consoleCommands.js",
+        "readme.md",
+        "controller.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "X4",
+        "D4",
+        "I3",
+        "P5"
+      ],
+      "key": "ED-39",
+      "url": "https://veskar.atlassian.net/browse/ED-39",
+      "parent": "ED-8",
+      "prerequisites": [
+        "ED-31",
+        "ED-35",
+        "ED-38",
+        "ED-27"
+      ]
+    },
+    {
+      "id": "O2",
+      "epic": "M7",
+      "title": "Port metrics, CPU diagnostics, and room-planning visuals",
+      "scope": "Preserve useful Grafana-compatible measurements and visuals while making collection and rendering bounded and configurable.",
+      "acceptance": [
+        "Metrics cover colony energy, spawn demand, hauling throughput, task failures/retries, threats, construction progress, planner scores, CPU/bucket and serialized memory size.",
+        "Room visuals show committed/candidate layouts, invalidity reasons, protected regions, path/traffic issues and construction state with configurable detail.",
+        "Instrumentation is optional/sampleable and reports overhead; failure in telemetry cannot interrupt colony behavior.",
+        "Tests cover disabled metrics, unavailable targets and bounded retention; document optional profiler use and compare uninstrumented runs for performance acceptance."
+      ],
+      "sources": [
+        "grafana.js",
+        "visuals.js",
+        "room.layout.scoring.js"
+      ],
+      "deps": [
+        "O1",
+        "P3",
+        "P4"
+      ],
+      "key": "ED-40",
+      "url": "https://veskar.atlassian.net/browse/ED-40",
+      "parent": "ED-8",
+      "prerequisites": [
+        "ED-39",
+        "ED-25",
+        "ED-26"
+      ]
+    },
+    {
+      "id": "O3",
+      "epic": "M7",
+      "title": "Document configuration profiles and the strategy extension workflow",
+      "scope": "Provide tested examples for alternate colony policies, room planning and reusable capabilities without editing application orchestration.",
+      "acceptance": [
+        "Document all configuration groups, precedence, validation, effective-value inspection and supported runtime override persistence.",
+        "Provide at least two meaningful room profiles and a small strategy/behavior extension example wired at the composition boundary.",
+        "Developer runbooks cover the local commands, fixture/scenario creation, Lizard extraction workflow, and adding a capability with provenance, tests and ED tracking.",
+        "Operator documentation includes legacy-to-new control mapping and diagnostics for stuck tasks, rejected plans, resource starvation and safe recovery."
+      ],
+      "sources": [
+        "readme.md",
+        "consoleCommands.js",
+        "room.layout.js"
+      ],
+      "deps": [
+        "O2"
+      ],
+      "key": "ED-41",
+      "url": "https://veskar.atlassian.net/browse/ED-41",
+      "parent": "ED-8",
+      "prerequisites": [
+        "ED-40"
+      ]
+    },
+    {
+      "id": "V1",
+      "epic": "M8",
+      "title": "Close the capability matrix with packaged multi-tick parity scenarios",
+      "scope": "Verify the whole bot against the frozen legacy capability inventory and deliberate corrections; validate observable outcomes rather than internal implementation mirroring.",
+      "acceptance": [
+        "Every implemented baseline capability maps to a new owner, tests and port provenance, with no unapproved omission; dormant/placeholder code is classified explicitly.",
+        "Run packaged real-engine scenarios for bootstrap/economy, recovery, construction/RCL progression, remotes/claiming, defense/missions, industry and resets; targeted fixtures cover rare cases.",
+        "All regression cases from the audit have passing evidence at the appropriate layer; distinguish simulated, contract and source-only evidence.",
+        "Record exact commands, tool/engine versions, seeds, tick budgets, commit and artifacts. A failing or unexecuted required scenario keeps this task open."
+      ],
+      "sources": [
+        "readme.md",
+        "main.js",
+        "controller.js"
+      ],
+      "deps": [
+        "O3",
+        "F5"
+      ],
+      "key": "ED-42",
+      "url": "https://veskar.atlassian.net/browse/ED-42",
+      "parent": "ED-9",
+      "prerequisites": [
+        "ED-41",
+        "ED-14"
+      ]
+    },
+    {
+      "id": "V2",
+      "epic": "M8",
+      "title": "Measure CPU, memory, and colony progress under bounded soak tests",
+      "scope": "Use representative room counts and stress cases to establish acceptance budgets and optimize measured hotspots without eroding responsibility boundaries.",
+      "acceptance": [
+        "Before optimization, record environment, fixture, tick windows and measurable budgets for mean/tail CPU, bucket recovery, memory growth, spawn starvation, energy throughput and construction progress.",
+        "Run bounded multi-room tests including reset, CPU pressure, path churn, attack/recovery and planning; compare uninstrumented candidate runs and legacy where a compatible baseline is practical.",
+        "Fix measured regressions with focused tests, then rerun affected scenarios and Lizard; no fabricated baseline or portability claim from different environments.",
+        "Archive reproducible results and residual limitations; report pass/fail against the documented budgets rather than claiming perpetual stability."
+      ],
+      "sources": [
+        "grafana.js",
+        "controller.js",
+        "main.js"
+      ],
+      "deps": [
+        "V1"
+      ],
+      "key": "ED-43",
+      "url": "https://veskar.atlassian.net/browse/ED-43",
+      "parent": "ED-9",
+      "prerequisites": [
+        "ED-42"
+      ]
+    },
+    {
+      "id": "V3",
+      "epic": "M8",
+      "title": "Rehearse memory migration and rollback; prepare the release candidate",
+      "scope": "Finish a locally validated, reviewable candidate with an explicit state-compatibility and deployment plan. Production cutover is outside this backlog's autonomous completion boundary.",
+      "acceptance": [
+        "Define and test which legacy memory/flags/plans are imported, reset or retained; preserve recoverable snapshots and do not assume a code rollback reverses migrated memory.",
+        "Rehearse install/upgrade/reset and rollback on a disposable/private environment; verify core colony recovery and continued control compatibility.",
+        "Prepare reproducible build artifacts, configuration templates, release notes, known limitations, capability/quality/test evidence and exact deployment/rollback commands.",
+        "All required ED implementation work and acceptance gates are complete; live shard credentials/upload and destructive in-game migration await explicit user instruction."
+      ],
+      "sources": [
+        "main.js",
+        "consoleCommands.js",
+        "utilV2.js"
+      ],
+      "deps": [
+        "V2"
+      ],
+      "key": "ED-44",
+      "url": "https://veskar.atlassian.net/browse/ED-44",
+      "parent": "ED-9",
+      "prerequisites": [
+        "ED-43"
+      ]
+    }
+  ],
+  "masterIssue": "ED-1",
+  "deliveryContract": "Primary checkout for all development, builds and tests: `E:\\dev\\personal\\screeps\\eldrift-rewrite`.\nRewrite repository: https://github.com/scott-sommer/eldrift-rewrite\nRead-only legacy reference: `E:\\dev\\personal\\screeps\\Eldrift-Directive`, commit `f2bbf7e8c44addc7c426abb5458e393c9502ff5f`.\n\nThis is a new implementation using selectively ported/cleaned legacy code. It supersedes the earlier in-place-refactor recommendation. Preserve implemented capabilities and document deliberate bug corrections; no silent deferral of capabilities.\n\nArchitecture: plain composition/factory injection; pure mechanisms, reusable Screeps capabilities, feature-owned policies/state, and thin game adapters. Extract cohesive classes/modules as size grows and methods as decision complexity grows. Avoid a universal manager/service locator.\n\nQuality defaults: pinned Lizard standard CCN <=10 (aim <=8), function NLOC <=50, file NLOC <=300 (aim <=250). Meaningful tests, type checks and dependency checks accompany the metrics. Narrow exceptions require a versioned rationale.\n\nExecution: keep ED status current, link commits/PRs and exact test results, and record blocked prerequisites without marking unverified work done. Update repository guidance as architecture changes. Do not write to VES or modify the legacy bot. Live-shard deployment is a separate user decision.",
+  "masterDescription": "## Rewrite delivery plan\nBuild a new modular Screeps bot while retaining the implemented capability set of Eldrift-Directive. The legacy is a reference and selective porting source; the new implementation is delivered in tested increments. The user's rewrite decision and Lizard limits below supersede the earlier in-place-refactoring proposal.\n\n## Milestones\n- [ED-1](https://veskar.atlassian.net/browse/ED-1) — M0 - Establish the rewrite contract and local development loop\n- [ED-2](https://veskar.atlassian.net/browse/ED-2) — M1 - Build the modular runtime and reusable execution framework\n- [ED-3](https://veskar.atlassian.net/browse/ED-3) — M2 - Deliver a self-sustaining owned-room economy\n- [ED-4](https://veskar.atlassian.net/browse/ED-4) — M3 - Deliver assessment-driven layouts and construction\n- [ED-5](https://veskar.atlassian.net/browse/ED-5) — M4 - Restore scouting, remote operations, and expansion\n- [ED-6](https://veskar.atlassian.net/browse/ED-6) — M5 - Restore defense, missions, and coordinated combat\n- [ED-7](https://veskar.atlassian.net/browse/ED-7) — M6 - Restore industry and inter-room resource operations\n- [ED-8](https://veskar.atlassian.net/browse/ED-8) — M7 - Deliver operator controls and actionable diagnostics\n- [ED-9](https://veskar.atlassian.net/browse/ED-9) — M8 - Prove capability parity and prepare a reversible release\n\nThere are 35 implementation items under these nine epics. Follow issue-level Blocks links; milestone numbering expresses the delivery narrative, not a requirement to serialize all independent work. Source inventory discoveries may require refining or splitting ED issues while retaining traceability. Do not drop implemented capabilities to make the scope appear complete.\n\n## Start here\n- [ED-10](https://veskar.atlassian.net/browse/ED-10) — Record the rewrite charter, capability inventory, and architecture decisions\n- [ED-11](https://veskar.atlassian.net/browse/ED-11) — Scaffold the TypeScript bot and reproducible Windows build\n- [ED-12](https://veskar.atlassian.net/browse/ED-12) — Enforce Lizard complexity and size limits in local checks and CI\n- [ED-13](https://veskar.atlassian.net/browse/ED-13) — Build legacy characterization fixtures and corrected behavior regressions\n- [ED-14](https://veskar.atlassian.net/browse/ED-14) — Establish a pinned local real-engine scenario runner\n\n## M0 outcome\nA capability-preserving rewrite has a traceable scope, reproducible Windows build/test loop, enforceable Lizard limits, and a verified real-engine test route.\n\n## M0 exit gate\nThe capability inventory covers every legacy module and operator entrypoint. A clean checkout can build and run fast checks. A packaged bot completes a real-engine smoke scenario. If a required external prerequisite is blocked, record it and keep this milestone open; mocks alone do not close it.\n\n## Delivery contract\nPrimary checkout for all development, builds and tests: `E:\\dev\\personal\\screeps\\eldrift-rewrite`.\nRewrite repository: https://github.com/scott-sommer/eldrift-rewrite\nRead-only legacy reference: `E:\\dev\\personal\\screeps\\Eldrift-Directive`, commit `f2bbf7e8c44addc7c426abb5458e393c9502ff5f`.\n\nThis is a new implementation using selectively ported/cleaned legacy code. It supersedes the earlier in-place-refactor recommendation. Preserve implemented capabilities and document deliberate bug corrections; no silent deferral of capabilities.\n\nArchitecture: plain composition/factory injection; pure mechanisms, reusable Screeps capabilities, feature-owned policies/state, and thin game adapters. Extract cohesive classes/modules as size grows and methods as decision complexity grows. Avoid a universal manager/service locator.\n\nQuality defaults: pinned Lizard standard CCN <=10 (aim <=8), function NLOC <=50, file NLOC <=300 (aim <=250). Meaningful tests, type checks and dependency checks accompany the metrics. Narrow exceptions require a versioned rationale.\n\nExecution: keep ED status current, link commits/PRs and exact test results, and record blocked prerequisites without marking unverified work done. Update repository guidance as architecture changes. Do not write to VES or modify the legacy bot. Live-shard deployment is a separate user decision.\n\n## Durable record and evidence\nRepository documents own the charter, capability matrix, architecture/ADRs, test strategy and operating instructions. Jira ED owns work status, dependencies and acceptance evidence. Every implementation item supplies legacy source pointers, prerequisites and acceptance criteria. Completion records must identify commits/PRs, exact checks, outcomes and unresolved limitations; actual execution evidence is required before marking required checks complete. Keep epics open until their children and exit gate are satisfied.\n\n## Capability and enhancement boundary\nPreserve active and operator-invoked behavior, classify dormant/partial/placeholder code, and test intentional bug corrections. Enhanced stamp-based layouts and terrain-aware/exit-perimeter defenses are explicit items ED-25 and ED-26. Fully free-form adaptive placement is a potential later enhancement, not an implicit omission from legacy parity.\n\n## Local environment and access observations\nThe rewrite checkout existed and contained only Git metadata when this backlog was initialized. Lizard 1.22.2 was available through Python. The previous machine inspection found no installed WSL distribution and no Docker/Podman on PATH; ED-14 must recheck and establish a working engine route. GitHub access to the rewrite repository succeeded; the legacy GitHub repository returned 404 through the connector on 14 November 2026. The local legacy checkout remains readable and is sufficient for source analysis and porting. Do not claim remote credentials/build compatibility have been verified beyond these checks.\n\n## Overall completion boundary\nAll implemented baseline capabilities have tests and a new owner; required enhancements and quality checks pass; packaged engine and bounded soak evidence is recorded; memory migration and rollback are rehearsed; a reproducible release candidate and runbook are ready. A scaffold or first working colony is an intermediate milestone. Production upload and destructive in-game migration require a separate user instruction.",
+  "verification": {
+    "checkedAt": "2026-11-14",
+    "issueCount": 44,
+    "epics": 9,
+    "implementationItems": 35,
+    "dependencyCount": 61,
+    "allParentsCorrect": true,
+    "allInitiallyToDo": true,
+    "problems": []
+  }
+}
