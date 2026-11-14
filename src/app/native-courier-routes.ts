@@ -1,3 +1,4 @@
+import { isSupportScope } from '../features/recovery/support-identity';
 import { observeCourierEndpoints } from './native-courier-endpoints';
 import { defaults } from '../config/model';
 import type { RuntimeConfig } from '../config/model';
@@ -15,7 +16,7 @@ export function createNativeCourierRoutes(state: StatePort) {
   return (room: Room, body: readonly BodyPart[], config: Readonly<RuntimeConfig> = defaults) => {
     const spawns = Object.values(Game.spawns).filter(spawn => spawn.room.name === room.name).sort((a, b) => a.name.localeCompare(b.name));
     const stations = state.read(stateKey('mining-stations', room.name)) === undefined ? [] : createStationStore(state, room.name).read(Game.time).stations;
-    const pending = createLogisticsRequests(state, room.name).pending(Game.time);
+    const pending = createLogisticsRequests(state, room.name).pending(Game.time).filter(request => !isSupportScope(request.owner));
     const endpoints = observeCourierEndpoints(room, stations, pending, spawns, config);
     return estimateCourierRoutes(endpoints, {
       travel: (from, to, loaded) => travel(from, to, body, loaded ? courierCapacity(body) : 0),

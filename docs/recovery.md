@@ -68,3 +68,5 @@ Scavenger-population milestone checks: quality222production/211testfiles, zero L
 ## Donor support contracts
 
 Donor ownership, endpoint/reserve policy, heterogeneous fleet accounting and bounded request reconciliation are implemented and tested in [recovery-support.md](recovery-support.md). Native orchestration, courier return/reassignment and cross-room delivery evidence are still required; these contracts are not registered in main yet.
+
+The native support view now enforces reserve/target checks through the shared hauling task, with actual two-room transfer and cross-room cargo recovery evidence in recovery-support.md. Automatic donor mission orchestration remains open.

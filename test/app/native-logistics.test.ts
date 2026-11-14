@@ -33,3 +33,24 @@ test('native logistics respects activation, room ownership, population ownership
   expect([...records.keys()].filter(key => key.startsWith('tasks/'))).toEqual(['tasks/courier']);
 });
 
+
+test('donor-only work does not inflate local courier population demand', async () => {
+  const { maintainNativeCouriers } = await import('../../src/app/native-courier-population');
+  const { createLogisticsRequests } = await import('../../src/features/logistics/request-store');
+  const { createSpawnQueue } = await import('../../src/features/population/spawn-queue');
+  const { supportOwner } = await import('../../src/features/recovery/support-identity');
+  const records = new Map<string, Envelope>();
+  const state = { read: (key: string) => records.get(key), write: (key: string, value: Envelope) => { records.set(key, structuredClone(value)); } };
+  vi.stubGlobal('Game', { time: 1, creeps: {} });
+  const room = { name: 'W0N1', energyAvailable: 300, energyCapacityAvailable: 300 } as Room;
+  const config = resolveConfig({ empire: { courierSpawningEnabled: true } }, 1).values;
+  const queue = createLogisticsRequests(state, 'W0N1');
+  const request = { id: 'support', owner: supportOwner('W0N1', 'E0N1'), source: 'source', sink: 'sink', resource: 'energy', quantity: 100, priority: 2, expiresAt: 100 };
+  queue.submit(request, 1);
+  const routes = () => ({ routes: [], travelTicks: 0, unavailable: [] });
+  maintainNativeCouriers(state, room, config, routes);
+  expect(createSpawnQueue(state, 'W0N1').list()).toEqual([]);
+  queue.submit({ ...request, id: 'local', owner: 'local' }, 1);
+  maintainNativeCouriers(state, room, config, routes);
+  expect(createSpawnQueue(state, 'W0N1').list()).toHaveLength(1);
+});
