@@ -1,6 +1,6 @@
 import { createRuntime } from './runtime';
 import type { RoomFeature, RuntimePorts } from './runtime-model';
-export function createGameLoop(features: readonly RoomFeature[], ports: RuntimePorts): () => void {
+export function createGameLoop(features: readonly RoomFeature[], ports: RuntimePorts, beforeTick: () => boolean = () => true): () => void {
   const runtime = createRuntime(features, ports);
   function report(error: unknown, id: string, room?: string): void {
     try {
@@ -9,6 +9,7 @@ export function createGameLoop(features: readonly RoomFeature[], ports: RuntimeP
   }
   return () => {
     try {
+      if (!beforeTick()) return;
       const result = runtime.tick();
       for (const failure of result.world.failures) report(failure.error, 'observation', failure.room);
     } catch (error) {
@@ -16,3 +17,4 @@ export function createGameLoop(features: readonly RoomFeature[], ports: RuntimeP
     }
   };
 }
+

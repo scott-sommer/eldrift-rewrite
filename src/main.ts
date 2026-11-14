@@ -1,3 +1,4 @@
+import { createMigrationGate } from './app/migration-gate';
 import { createGameLoop } from './app/game-loop';
 import { createPersistentConfiguration } from './app/persistent-configuration';
 import { createGamePorts } from './adapters/screeps/runtime';
@@ -9,4 +10,5 @@ const state = createMemoryPort(() => Memory);
 export const loop = createGameLoop([], {
   ...ports,
   config: createPersistentConfiguration(state, () => ports.clock().tick),
-});
+}, createMigrationGate(state, [], ports));
+
