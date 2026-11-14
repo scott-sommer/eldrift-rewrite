@@ -1,0 +1,26 @@
+import { expect, test } from 'vitest';
+import { createSpawnQueue } from '../../src/features/population/spawn-queue';
+import type { Envelope } from '../../src/persistence/versioned-state';
+test('spawn queue survives serialization, defers attempts, and reconciles observed spawning names', () => {
+  const records = new Map<string, Envelope>();
+  const port = { read: (key: string) => records.get(key), write: (key: string, value: Envelope) => { records.set(key, JSON.parse(JSON.stringify(value)) as Envelope); } };
+  let queue = createSpawnQueue(port, 'W0N0');
+  const request = { id: 'miner', name: 'miner-1', owner: 'mining', room: 'W0N0', priority: 0, readyAt: 1, expiresAt: 10, body: ['move' as const] };
+  queue.submit(request);
+  queue.submit(request);
+  expect(queue.list()).toHaveLength(1);
+  expect(() => queue.cancel('miner', 'other')).toThrow('owner mismatch');
+  queue.defer(new Set(['miner']), 2);
+  queue = createSpawnQueue(port, 'W0N0');
+  expect(queue.list()[0]!.readyAt).toBe(3);
+  queue.reconcile(3, new Set());
+  expect(queue.list()).toHaveLength(1);
+  queue.reconcile(4, new Set(['miner-1']));
+  expect(queue.list()).toEqual([]);
+  queue.submit({ ...request, id: 'replacement', name: 'miner-2' });
+  expect(queue.cancel('replacement', 'mining')).toBe(true);
+  queue.submit(request);
+  queue.reconcile(10, new Set());
+  expect(queue.list()).toEqual([]);
+  expect(createSpawnQueue(port, 'E0N0').list()).toEqual([]);
+});
