@@ -43,3 +43,10 @@ test('source priority recovers perishable energy before nearer stock, then falls
     ['first', 'tombstone', 30], ['second', 'ruin', 20], ['third', 'stock', 50],
   ]);
 });
+
+test('disappeared unassigned supply is replaced immediately from another source', () => {
+  const { state, queue } = fixture();
+  generateEnergyRequests(state, 'home', 1, [endpoint('tombstone', 30)], [endpoint('spawn', 30)], policy);
+  expect(generateEnergyRequests(state, 'home', 2, [endpoint('container', 30)], [endpoint('spawn', 30)], policy)).toBe(1);
+  expect(queue.pending(2).map(item => item.source)).toEqual(['container']);
+});

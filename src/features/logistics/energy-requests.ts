@@ -1,3 +1,4 @@
+import { reconcileEnergySources } from './reconcile-energy-sources';
 import type { StatePort } from '../../persistence/versioned-state';
 import type { Position } from '../../capabilities/movement/step';
 import { logisticsPool } from '../../capabilities/logistics/request';
@@ -8,6 +9,7 @@ export interface EnergySupplyPolicy { owner: string; lifetime: number; maximumQu
 export function generateEnergyRequests(state: StatePort, room: string, tick: number,
   sources: readonly EnergyEndpoint[], sinks: readonly EnergyEndpoint[], policy: EnergySupplyPolicy): number {
   validate(policy, [...sources, ...sinks]);
+  reconcileEnergySources(state, room, policy.owner, tick, sources);
   const queue = createLogisticsRequests(state, room);
   const pending = queue.pending(tick).filter(request => request.resource === 'energy');
   const stock = new Map(sources.map(source => [source.id, Math.max(0, source.amount - pending
