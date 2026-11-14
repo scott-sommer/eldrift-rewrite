@@ -19,12 +19,19 @@ server.on('error', error => { console.error(error); finish(1); });
   await server.world.reset();
   await server.world.stubWorld();
   const modules = { main: fs.readFileSync(path.join(root, 'dist/main.js'), 'utf8') };
+  if (process.argv.includes('--inject-error')) modules.main += '\nconst original = module.exports.loop; module.exports = { loop: () => { original(); throw new Error("ENGINE_SENTINEL"); } };';
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   const messages = [];
-  bot.on('console', logs => messages.push(...logs));
+  const errors = [];
+  await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
+    const payload = JSON.parse(event);
+    messages.push(...(payload.messages?.log ?? []));
+    if (payload.error) errors.push(payload.error);
+  });
   await server.start();
   const initial = Number(await server.world.gameTime);
   for (let tick = 0; tick < 3; tick++) await server.tick();
+  assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
   assert.equal(Number(await server.world.gameTime), initial + 3);
   assert.equal(memory.eldrift.format, 1);
@@ -36,4 +43,7 @@ server.on('error', error => { console.error(error); finish(1); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1); });
+
+
+
 
