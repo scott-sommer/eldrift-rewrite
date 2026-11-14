@@ -1,3 +1,5 @@
+import { createGameLoop } from '../../src/app/game-loop';
+import { createGamePorts } from '../../src/adapters/screeps/runtime';
 import { createTrafficDispatch } from '../../src/capabilities/movement/traffic/dispatch';
 import { loop as productionLoop } from '../../src/main';
 import { createNativePathSearch } from '../../src/adapters/screeps/path-search';
@@ -36,8 +38,7 @@ const navigate = createNavigator({ paths,
   },
   rejected: code => ({ status: 'failed', reason: String(code) }),
 });
-export function loop(): void {
-  productionLoop();
+function planMovement(): void {
   const evidence = Memory.recoveryEvidence ??= { positions: [], avoidance: [], outcomes: [], blockers: [], issued: [] };
   const creep = Game.creeps['walker']!;
   const blocker = Game.creeps['blocker']!;
@@ -46,6 +47,18 @@ export function loop(): void {
   const outcome = navigate(creep.id, { tick: Game.time, position: { room: creep.pos.roomName, x: creep.pos.x, y: creep.pos.y },
     destination: { room: 'W0N1', x: 22, y: 20 }, range: 0, fatigue: creep.fatigue, allowPartial: false }, creep.getActiveBodyparts(MOVE) > 0);
   evidence.outcomes.push(outcome.status);
+}
+function flushMovement(): void {
+  const evidence = Memory.recoveryEvidence!;
   const batch = dispatch.flush();
   evidence.issued.push(batch?.outcomes.filter(result => 'intent' in result && result.intent.status === 'issued').length ?? 0);
+}
+
+const featureLoop = createGameLoop([
+  { id: 'movement-fixture', urgency: 'urgent', interval: 1, run: planMovement },
+], { ...createGamePorts(), config: () => ({}) }, () => true, flushMovement);
+export function loop(): void {
+  productionLoop();
+  featureLoop();
+  featureLoop(); // Same-tick entry cannot plan or issue twice.
 }
