@@ -1,5 +1,5 @@
-const { storeBalanceWorld, verifyStoreBalance } = require('./store-balance.cjs');
-const storeBalanceMode = ['fill', 'drain', 'mineral'].find(mode => process.argv.includes('--store-' + mode));
+const { storeBalanceWorld, verifyStoreBalance, restoreBalanceEnergy } = require('./store-balance.cjs');
+const storeBalanceMode = ['fill', 'drain', 'mineral', 'guard'].find(mode => process.argv.includes('--store-' + mode));
 const { energyBankingWorld, verifyEnergyBanking } = require('./energy-banking.cjs');
 const { storageLossWorld, removeStorage, verifyStorageLoss } = require('./storage-loss.cjs');
 const { cargoDeathWorld, verifyCargoDeath } = require('./cargo-death.cjs');
@@ -257,6 +257,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
     }
     if (process.argv.includes('--storage-loss')) await removeStorage(server, tick);
+    if (storeBalanceMode === 'guard') await restoreBalanceEnergy(server, tick);
     samples.push(await sampleTick(server, bot));
   }
   assert.deepEqual(errors, [], 'Engine reported bot exceptions');

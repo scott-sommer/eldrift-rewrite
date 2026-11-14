@@ -7,11 +7,13 @@ async function storeBalanceWorld(server, bot, mode) {
   const terminal = { energy: mode === 'drain' ? 30030 : mode === 'mineral' ? 25000 : 19970 };
   await db['rooms.objects'].update({ room: 'W0N1', type: 'storage' }, { $set: { store: storage } });
   await db['rooms.objects'].update({ room: 'W0N1', type: 'terminal' }, { $set: { store: terminal } });
+  if (mode === 'guard') await db['rooms.objects'].update({ room: 'W0N1', type: 'spawn' }, { $set: { store: { energy: 225 } } });
 }
 function verifyStoreBalance(memory, mode) {
   const expected = mode === 'drain' ? [70030, 30000, 0, 0, 0] : mode === 'mineral' ? [80000, 25000, 0, 30, 0] : [79970, 20000, 0, 0, 0];
   assert.deepEqual(memory.storeBalance.at(-1), expected);
   assert.deepEqual(memory.storeBalance.slice(-2), [expected, expected], 'Threshold boundary must remain stable');
+  if (mode === 'guard') assert.deepEqual(memory.storeBalance.slice(0, 2), [[80000, 19970, 0, 0, 0], [80000, 19970, 0, 0, 0]]);
   const records = memory.eldrift.records;
   const requests = records['logistics-requests/W0N1'].data.records;
   assert.equal(requests.length, 1);
@@ -22,3 +24,10 @@ function verifyStoreBalance(memory, mode) {
   assert.deepEqual(records['quantity-reservations/empire'].data.claims, []);
 }
 module.exports = { storeBalanceWorld, verifyStoreBalance };
+
+async function restoreBalanceEnergy(server, index) {
+  if (index !== 2) return;
+  const { db } = await server.world.load();
+  await db['rooms.objects'].update({ room: 'W0N1', type: 'spawn' }, { $set: { store: { energy: 300 } } });
+}
+module.exports.restoreBalanceEnergy = restoreBalanceEnergy;

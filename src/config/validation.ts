@@ -7,6 +7,7 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   terminalFreeReserve: value => bounded(value, 300000) && Number.isInteger(value),
   storageFreeReserve: value => bounded(value, 1000000) && Number.isInteger(value),
   mineralMiningEnabled: value => typeof value === 'boolean',
+  storeBalanceMinimumEnergyFraction: value => bounded(value, 1),
   storeBalancingEnabled: value => typeof value === 'boolean',
   terminalEnergyLow: value => bounded(value, 300000) && Number.isInteger(value),
   terminalEnergyHigh: value => bounded(value, 300000) && Number.isInteger(value),

@@ -11,6 +11,7 @@ export interface RuntimeConfig {
   energyRequestsEnabled: boolean;
   energyBankingEnabled: boolean;
   storeBalancingEnabled: boolean;
+  storeBalanceMinimumEnergyFraction: number;
   terminalEnergyLow: number;
   terminalEnergyHigh: number;
   storageEnergyReserve: number;
@@ -41,6 +42,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   energyRequestsEnabled: false,
   energyBankingEnabled: false,
   storeBalancingEnabled: false,
+  storeBalanceMinimumEnergyFraction: 0.75,
   terminalEnergyLow: 20000,
   terminalEnergyHigh: 30000,
   storageEnergyReserve: 70000,

@@ -1,3 +1,4 @@
+import { generateNativeStoreBalance } from './native-store-balance';
 import { generateNativeLogisticsRequests } from './native-logistics-requests';
 import { generateNativeLinkService } from './native-link-service';
 import { runNativeLinks } from './native-links';
@@ -33,6 +34,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
       dispatch.activate();
       if (config.values.linksEnabled) runNativeLinks(state, Game.rooms[view.name]!, dispatch.arbiter, config.values);
       generateNativeLinkService(state, Game.rooms[view.name]!, config.values);
+      generateNativeStoreBalance(state, Game.rooms[view.name]!, config.values);
       for (const creep of units) {
         settleHaulingTask(state, definitions, creep, observeTransfer);
         recoverNativeCargo(state, definitions, creep, view.name, config.values.terminalFreeReserve);
