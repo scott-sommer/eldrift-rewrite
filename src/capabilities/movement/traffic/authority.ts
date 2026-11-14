@@ -1,6 +1,6 @@
 import type { IntentResult } from '../../../core/execution/action-arbiter';
 import type { Occupant, TrafficRequest, TrafficResolution } from './model';
-import { tileKey } from './model';
+import { tileKey, trafficTargets } from './model';
 import { resolveTraffic } from './resolve';
 export interface TrafficBatch {
   resolution: TrafficResolution;
@@ -31,7 +31,7 @@ export function createTrafficAuthority(ports: TrafficPorts, maximum = 1000) {
       if (requests.has(request.unit)) return 'duplicate';
       if (requests.size >= maximum) return 'capacity';
       validateSubmission(request);
-      requests.set(request.unit, { ...request, from: { ...request.from }, to: { ...request.to } });
+      requests.set(request.unit, { ...request, from: { ...request.from }, to: { ...request.to }, ...(request.via ? { via: { ...request.via } } : {}) });
       return 'queued';
     },
     flush(): TrafficBatch | undefined {
@@ -50,5 +50,6 @@ export function createTrafficAuthority(ports: TrafficPorts, maximum = 1000) {
 }
 function validateSubmission(request: TrafficRequest): void {
   if (!request.unit || !request.owner || !Number.isFinite(request.priority)) throw new Error('Invalid traffic request');
-  tileKey(request.from); tileKey(request.to);
+  tileKey(request.from); trafficTargets(request);
 }
+

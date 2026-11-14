@@ -4,6 +4,8 @@ export interface TrafficRequest {
   owner: string;
   from: Position;
   to: Position;
+  /** Local exit tile when to is the remote landing. */
+  via?: Position;
   priority: number;
   mobile: boolean;
   group?: string;
@@ -15,4 +17,8 @@ export function tileKey(position: Position): string {
   if (!position.room || !Number.isInteger(position.x) || !Number.isInteger(position.y)
     || position.x < 0 || position.x > 49 || position.y < 0 || position.y > 49) throw new Error('Invalid traffic position');
   return JSON.stringify([position.room, position.x, position.y]);
+}
+
+export function trafficTargets(request: TrafficRequest): string[] {
+  return [...new Set([tileKey(request.to), ...(request.via ? [tileKey(request.via)] : [])])];
 }

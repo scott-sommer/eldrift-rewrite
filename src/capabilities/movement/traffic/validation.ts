@@ -1,5 +1,5 @@
 import type { Occupant, TrafficRequest } from './model';
-import { tileKey } from './model';
+import { tileKey, trafficTargets } from './model';
 export function trafficOccupancy(occupants: readonly Occupant[]): Map<string, string> {
   const occupied = new Map<string, string>();
   const units = new Set<string>();
@@ -15,7 +15,7 @@ function validateRequest(request: TrafficRequest, units: Set<string>, occupied: 
   if (!request.unit || !request.owner || !Number.isFinite(request.priority) || units.has(request.unit)) throw new Error('Invalid or duplicate traffic owner');
   if (request.group !== undefined && !request.group) throw new Error('Empty traffic group');
   if (occupied.get(tileKey(request.from)) !== request.unit) throw new Error('Traffic origin does not match observation');
-  tileKey(request.to);
+  trafficTargets(request);
   units.add(request.unit);
 }
 export function validateRequests(requests: readonly TrafficRequest[], occupied: ReadonlyMap<string, string>, maximum: number): void {
@@ -23,3 +23,4 @@ export function validateRequests(requests: readonly TrafficRequest[], occupied: 
   const units = new Set<string>();
   for (const request of requests) validateRequest(request, units, occupied);
 }
+

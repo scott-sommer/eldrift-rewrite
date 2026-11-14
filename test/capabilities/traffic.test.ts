@@ -28,3 +28,19 @@ test('room identity separates destination tiles and invalid origins/duplicates f
   expect(() => resolveTraffic([requests[0]!, requests[0]!], occupancy([requests[0]!]), () => true)).toThrow('duplicate');
   expect(resolveTraffic([requests[0]!], occupancy([requests[0]!]), () => false).denied).toEqual([{ unit: 'a', reason: 'invalid-step' }]);
 });
+
+test('exit transit and landing both contend with other destinations', () => {
+  const exit = { ...move('a', 48, 0), to: pos(0, 'E0N0'), via: pos(49) };
+  const local = move('b', 47, 49);
+  const remote = { ...move('c', 1, 0), from: pos(1, 'E0N0'), to: pos(0, 'E0N0') };
+  expect(accepted([exit, local, remote])).toEqual(['a']);
+  expect(accepted([exit], [{ unit: 'block', position: pos(49) }])).toEqual([]);
+  expect(accepted([exit], [{ unit: 'block', position: pos(0, 'E0N0') }])).toEqual([]);
+});
+
+test('exit dependencies allow a landing occupant to leave and propagate its blockage', () => {
+  const exit = { ...move('a', 48, 0), to: pos(0, 'E0N0'), via: pos(49) };
+  const inward = { ...move('b', 0, 1), from: pos(0, 'E0N0'), to: pos(1, 'E0N0') };
+  expect(accepted([exit, inward])).toEqual(['a', 'b']);
+  expect(accepted([exit, inward], [{ unit: 'block', position: pos(1, 'E0N0') }])).toEqual([]);
+});
