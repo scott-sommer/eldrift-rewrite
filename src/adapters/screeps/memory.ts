@@ -25,3 +25,8 @@ export function createMemoryPort(memory: () => MemoryRoot): StatePort {
     },
   };
 }
+
+declare global {
+  interface Memory { eldrift?: unknown }
+}
+
