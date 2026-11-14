@@ -1,3 +1,4 @@
+import { createNativeWorkerCargo } from './native-worker-cargo';
 import { maintainNativeWorkers } from './native-worker-population';
 import { createNativeWorkerCollection } from './native-worker-collection';
 import type { RuntimeConfig } from '../config/model';
@@ -14,7 +15,7 @@ import { selectWork } from '../features/work/select';
 import { createWorkTaskBehavior } from './work-task';
 import { reconcileWorkTask } from './reconcile-work-task';
 import { createTaskRunner } from './task-runner';
-/** Local worker execution owns no mining/hauling actions; energy supply remains a separate policy. */
+/** Work and cargo disposal share ownership; worker collection remains a separate capability. */
 export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>,
   otherDefinitions: Readonly<Record<string, TaskDefinition>> = {},
   recovering: (room: Room, config: Readonly<RuntimeConfig>) => boolean = () => false) {
@@ -26,7 +27,8 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     supply: { energy: ({ creep }) => creep.store.energy, free: ({ creep }) => creep.store.getFreeCapacity(),
       collect: ({ creep, config }, payload, owner) => collect(creep, payload.home, owner, config) },
   }) };
-  const schemas = { ...otherDefinitions, ...definitions };
+  const cargo = createNativeWorkerCargo(state, dispatch, { ...otherDefinitions, ...definitions });
+  const schemas = { ...otherDefinitions, ...definitions, ...cargo.definitions };
   const execute = createTaskRunner(state, definitions, () => Game.time, schemas);
   const feature: RoomFeature = { id: 'work', urgency: 'urgent', interval: 1, run({ room: view, config }) {
     const room = Game.rooms[view.name];
@@ -40,11 +42,12 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     const policy = { ...defaultWorkPolicy, wallHits: config.values.workerWallHits, rampartHits: config.values.workerRampartHits,
       downgradeThreshold: config.values.workerDowngradeThreshold, allowUpgrade: !recoveryActive && (!room.storage || room.storage.store.energy > config.values.workerUpgradeReserve) };
     for (const creep of workers) {
+      if (cargo.run(creep, view.name, config.values)) continue;
       reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: view.name }, Game.time,
         current => assessment ? selectWork(assessment, movementPosition(creep.pos), workModeFor(creep.memory.population!.owner, view.name, config.values.workerMode)!, policy, current?.id) : undefined);
       if (!config.values.workersEnabled) continue;
       dispatch.activate(); execute(creep.name, { creep, config: config.values });
     }
   } };
-  return { feature, definitions };
+  return { feature, definitions: { ...definitions, ...cargo.definitions } };
 }
