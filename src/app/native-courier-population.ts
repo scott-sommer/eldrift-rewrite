@@ -14,7 +14,7 @@ export function cancelCourierDemand(state: StatePort, room: string): void {
   for (const request of queue.list().filter(item => item.owner === haulingOwner(room))) queue.cancel(request.id, request.owner);
 }
 /** Route capacity plus a pending-work bootstrap floor share the spawn queue. */
-export function maintainNativeCouriers(state: StatePort, room: Room, config: Readonly<RuntimeConfig>, observeRoutes: ReturnType<typeof createNativeCourierRoutes>): void {
+export function maintainNativeCouriers(state: StatePort, room: Room, config: Readonly<RuntimeConfig>, observeRoutes: ReturnType<typeof createNativeCourierRoutes>, recoveryActive = false): void {
   if (!config.courierSpawningEnabled) { cancelCourierDemand(state, room.name); return; }
   const owner = haulingOwner(room.name);
   const units = observePopulation().filter(unit => unit.room === room.name && unit.owner === owner)
@@ -25,7 +25,7 @@ export function maintainNativeCouriers(state: StatePort, room: Room, config: Rea
   const work = createLogisticsRequests(state, room.name).pending(Game.time).length > 0;
   const routes = observeRoutes(room, body, config);
   applyCourierDemand(state, { owner, room: room.name, body, routes: routes.routes, utilization: 0.8,
-    minimumCapacity: work ? courierCapacity(body) : 0, travelTicks: routes.travelTicks, marginTicks: 10, priority: 1, requestLifetime: 100 }, units, Game.time);
+    minimumCapacity: work || recoveryActive ? courierCapacity(body) : 0, travelTicks: routes.travelTicks, marginTicks: 10, priority: 1, requestLifetime: 100 }, units, Game.time);
 }
 
 

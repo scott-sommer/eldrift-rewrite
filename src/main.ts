@@ -17,13 +17,14 @@ import { createMemoryPort } from './adapters/screeps/memory';
 const ports = createGamePorts();
 const state = createMemoryPort(() => Memory);
 const dispatch = createNativeDispatch(state);
-const mining = createNativeMiningFeature(state, {
-  mine: createNativeMiner(dispatch.arbiter, dispatch.movement), activate: dispatch.activate,
-});
-const logistics = createNativeLogisticsFeature(state, dispatch);
 const recovery = createNativeRecovery(state);
+const recovering = (room: Room, config: Parameters<typeof recovery>[1]) => recovery(room, config).active;
+const mining = createNativeMiningFeature(state, {
+  mine: createNativeMiner(dispatch.arbiter, dispatch.movement), activate: dispatch.activate, recovering,
+});
+const logistics = createNativeLogisticsFeature(state, dispatch, recovering);
 const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions, ...logistics.definitions },
-  (room, config) => recovery(room, config).active);
+  recovering);
 const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions }, createLogisticsRetirement(state));
 // Gameplay registration is separate from configuration-controlled activation.
 export const loop = createGameLoop([mining.feature, logistics.feature, workers.feature], {

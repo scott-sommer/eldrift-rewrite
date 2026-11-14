@@ -1,3 +1,5 @@
+import { recoveryEconomy } from '../features/recovery/economy-policy';
+import type { RuntimeConfig } from '../config/model';
 import { settleNativeLinkTransfers } from './native-link-accounting';
 import { generateNativeStoreBalance } from './native-store-balance';
 import { generateNativeLogisticsRequests } from './native-logistics-requests';
@@ -19,7 +21,8 @@ import { createTaskRunner } from './task-runner';
 import { observeHauling } from '../adapters/screeps/hauling-observation';
 export { haulingOwner } from '../features/logistics/identity';
 /** Executes explicit queued work for couriers owned by this room's logistics policy. */
-export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>) {
+export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>,
+  recovering: (room: Room, config: Readonly<RuntimeConfig>) => boolean = () => false) {
   const definitions = { haul: createNativeHaulingTask(state, dispatch,
     { version: 'owned-logistics', blockedRooms: [], costs: {}, maximumRooms: 4 }) };
   const observeRoutes = createNativeCourierRoutes(state);
@@ -27,25 +30,33 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
   const feature: RoomFeature = {
     id: 'logistics', urgency: 'urgent', interval: 1,
     run({ room: view, config }) {
-      if (!config.values.logisticsEnabled || !Game.rooms[view.name]?.controller?.my) { cancelCourierDemand(state, view.name); return; }
+      const room = Game.rooms[view.name];
+      if (!room?.controller?.my) { cancelCourierDemand(state, view.name); return; }
+      const recoveryActive = recovering(room, config.values) && config.values.recoveryEconomyEnabled;
+      const policy = recoveryEconomy(config.values, recoveryActive);
       const units = Object.values(Game.creeps).filter(creep => !creep.spawning &&
         creep.memory.population?.home === view.name && creep.memory.population.owner === haulingOwner(view.name))
         .sort((a, b) => a.name.localeCompare(b.name));
 
+      settleNativeLinkTransfers(state, room);
+      if (!policy.logisticsEnabled) {
+        for (const creep of units) settleHaulingTask(state, definitions, creep, observeTransfer);
+        cancelCourierDemand(state, view.name);
+        return;
+      }
       dispatch.activate();
-      settleNativeLinkTransfers(state, Game.rooms[view.name]!);
-      if (config.values.linksEnabled) runNativeLinks(state, Game.rooms[view.name]!, dispatch.arbiter, config.values);
-      generateNativeLinkService(state, Game.rooms[view.name]!, config.values);
-      generateNativeStoreBalance(state, Game.rooms[view.name]!, config.values);
+      if (policy.linksEnabled) runNativeLinks(state, Game.rooms[view.name]!, dispatch.arbiter, policy);
+      generateNativeLinkService(state, room, policy);
+      generateNativeStoreBalance(state, room, policy);
       for (const creep of units) {
         settleHaulingTask(state, definitions, creep, observeTransfer);
-        recoverNativeCargo(state, definitions, creep, view.name, config.values.terminalFreeReserve);
+        recoverNativeCargo(state, definitions, creep, view.name, policy.terminalFreeReserve);
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
       }
-      generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, config.values);
-      maintainNativeCouriers(state, Game.rooms[view.name]!, config.values, observeRoutes);
+      generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, policy);
+      maintainNativeCouriers(state, Game.rooms[view.name]!, policy, observeRoutes, recoveryActive);
     },
   };
   return { feature, definitions };

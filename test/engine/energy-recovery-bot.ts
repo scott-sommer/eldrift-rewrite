@@ -13,7 +13,7 @@ export function loop() {
   creep.memory.population = { owner: workOwner('W0N1', 'upgrader'), home: 'W0N1' };
   const settings = openState(state, 'operator/config', operatorSchema);
   settings.rooms = { W0N1: { override: { workersEnabled: true, workerSpawningEnabled: true, workerUpgraderTarget: 2,
-    workerBodyBudget: 250, workerUpgradeReserve: 0, recoveryEnabled: rows.length < 7, recoveryInterval: 1 } } };
+    workerBodyBudget: 250, workerUpgradeReserve: 0, recoveryEnabled: rows.length < 7, recoveryEconomyEnabled: false, recoveryInterval: 1 } } };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
   const recovery = openState(state, 'recovery/W0N1', recoverySchema('W0N1'));

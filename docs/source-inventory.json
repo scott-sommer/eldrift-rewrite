@@ -4236,12 +4236,13 @@
     "file": "room.energy.recovery.js",
     "sha256": "C10E838EC6EC54E5187D952D7252533B2537CE9EF1B61C25A6F06A4F16513C1D",
     "physicalLines": 196,
-    "reviewStatus": "ED-22 recovery source reviewed; thresholds/donor planning and worker investment integration evidenced in docs/work.md",
-    "implementationStatus": "recovery assessment selectively ported; donor execution/emergency economy/reassignment remain open",
+    "reviewStatus": "ED-22 recovery source reviewed; assessment/investment/emergency economy integration evidenced in docs/recovery.md",
+    "implementationStatus": "local recovery assessment and emergency economy ported; donor execution/reassignment remain open",
     "evidence": [
-      "docs/work.md",
+      "docs/recovery.md",
       "test/capabilities/recovery.test.ts",
-      "test/engine/energy-recovery-bot.ts"
+      "test/engine/energy-recovery-bot.ts",
+      "test/engine/recovery-economy-bot.ts"
     ],
     "plannedIssues": [
       "ED-22"
