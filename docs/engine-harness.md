@@ -1,10 +1,10 @@
 # Real-engine harness status
 
-ED-14 selects screeps-server-mockup 1.5.1 as an initial compatibility candidate, isolated in tools/engine with its own exact dependency lock. This is not yet a validated runner. Install scripts were deliberately skipped during dependency resolution; no engine tick has run.
+ED-14 uses screeps-server-mockup 1.5.1, isolated in tools/engine with its own exact dependency lock. Native Windows execution and the nine-scenario suite are verified below. Initial dependency resolution skipped install scripts; the subsequent native installation and actual engine runs establish compatibility.
 
 Primary source: https://github.com/screepers/screeps-server-mockup documents tick-by-tick private-server execution and native compiler prerequisites. The local machine has Visual Studio 2019 BuildTools with the C++ component. Node is 24.22.1. WSL lists no installed distribution; Docker was not found on PATH.
 
-Next: attempt native installation in this isolated folder, capture exact incompatibilities, then validate packaged bot execution with bounded ticks and explicit process cleanup. Retain the root fast test loop separately. Do not call dependency resolution or a VM bundle check real-engine evidence.
+The root fast test loop remains independent of native engine dependencies. Dependency resolution and VM bundle checks alone do not count as real-engine evidence.
 
 ## Native Windows route verified
 
@@ -30,4 +30,5 @@ Installed @screeps/storage/lib/index.js binds STORAGE_HOST or localhost; this ha
 
 Run `npm run test:engine:suite` after installing root and tools/engine dependencies. It builds production once, runs scenarios serially on the shared local port, checks each evidence artifact and expected exit status, and writes artifacts/engine-suite.json. Included: packaged smoke, code reload, raw harvest/conflict, persisted harvest task, build/repair/upgrade, withdraw/delivery, movement, injected exception and watchdog timeout. Negative controls must fail for their expected reasons; a nonzero exit alone is insufficient. Outer process timeout is90s, above the runner's60s watchdog.
 
-Measured on this machine: all9 checks passed in8.01s (scenario loop, build excluded). Full fast suite169 tests passed in2.45s. These are small fixture scenarios, not parity or soak coverage. ED-12 remote CI/publication remains an unresolved prerequisite; local evidence does not satisfy remote checks.
+Measured on this machine: all9 checks passed in8.01s (scenario loop, build excluded). Full fast suite169 tests passed in2.45s. These are small fixture scenarios, not parity or soak coverage. ED-12 remote checks subsequently passed on Windows and Linux in run 43588369374 at commit 8eb095c. This resolves that prerequisite; engine execution evidence is local Windows evidence, not an engine CI result.
+

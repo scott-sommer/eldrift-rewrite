@@ -8,7 +8,8 @@ Lizard uses standard CCN, maximum 10 per function; function NLOC maximum 50; fil
 
 There are no current exceptions. Before introducing an exception, record its exact file/function, measured value, justification and review condition in versioned configuration and extend the checker/tests to enforce that narrow allowance. Do not suppress all warnings or increase global limits for one algorithm.
 
-The CI workflow runs the same commands on Windows and Linux. Its remote execution remains unverified until the repository can be published using an authorized Git credential. It never uploads to Screeps.
+The CI workflow runs the same commands on Windows and Linux. Run 43588369374 passed on windows-2022 and ubuntu-24.04 at commit 8eb095c0543234ce57db8a9779ae3ebd98405a25: https://github.com/scott-sommer/eldrift-rewrite/actions/runs/43588369374. Both jobs installed the pinned tools and passed quality, unit/tooling tests, and packaged bundle checks. CI does not yet run the native engine suite and never uploads to Screeps.
 
 Dependency audit (2026-11-14): scoped override for @typescript-eslint/typescript-estree pins minimatch 11.0.8, correcting GHSA-g3hv-75wg-m249 (https://github.com/advisories/GHSA-g3hv-75wg-m249). Its sole runtime call uses the retained minimatch(filePath, pattern, { dot: true }) API. Clean npm ci and npm ls verify the override; npm audit reports zero vulnerabilities. Quality checks, all 15 tests (1.66s), and packaged bundle checks pass. Remove the override when the parser adopts a patched dependency upstream. This is a development dependency, absent from the game bundle.
+
 
