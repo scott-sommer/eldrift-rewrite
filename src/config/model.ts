@@ -4,6 +4,10 @@ export interface RuntimeConfig {
   recoverySupportBodyBudget: number;
   recoverySupportTravelTicks: number;
   recoverySupportLifetime: number;
+  distributorSpawningEnabled: boolean;
+  distributorTarget: number;
+  distributorBodyBudget: number;
+  recoveryDistributorRestartEnergy: number;
   recoveryEnabled: boolean;
   recoveryEconomyEnabled: boolean;
   recoveryScavengerEnabled: boolean;
@@ -89,6 +93,10 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   recoverySupportBodyBudget: 2600,
   recoverySupportTravelTicks: 200,
   recoverySupportLifetime: 1500,
+  distributorSpawningEnabled: false,
+  distributorTarget: 1,
+  distributorBodyBudget: 2100,
+  recoveryDistributorRestartEnergy: 12500,
   recoveryEnabled: false,
   recoveryEconomyEnabled: true,
   recoveryScavengerEnabled: true,

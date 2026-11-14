@@ -31,3 +31,10 @@ export function sourceMiner(budget: number): BodyPlan | undefined {
   }
   return undefined;
 }
+
+/** Legacy distributor ratio and RCL6 cap; never inflate an unaffordable budget. */
+export function distributor(budget: number, level: number): BodyPlan | undefined {
+  const capped = Math.min(budget, level === 6 ? 1150 : 2100);
+  const count = Math.floor(capped / 150);
+  return bodyPlan([...Array<BodyPart>(count * 2).fill('carry'), ...Array<BodyPart>(count).fill('move')], budget);
+}

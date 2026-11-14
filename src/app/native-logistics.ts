@@ -1,3 +1,5 @@
+import { maintainNativeDistributors } from './native-distributor-population';
+import { recoverNativeDistributors } from './native-distributor-recovery';
 import { acceptsLocalLogistics } from './native-logistics-admission';
 import { maintainNativeScavengers } from './native-scavenger-population';
 import { recoveryEconomy } from '../features/recovery/economy-policy';
@@ -36,6 +38,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
       if (!room?.controller?.my) { cancelHaulingDemand(state, view.name); return; }
       const recoveryActive = recovering(room, config.values) && config.values.recoveryEconomyEnabled;
       const policy = recoveryEconomy(config.values, recoveryActive);
+      recoverNativeDistributors(state, view.name, recoveryActive);
       const units = Object.values(Game.creeps).filter(creep => !creep.spawning &&
         creep.memory.population?.home === view.name && isHaulingOwner(creep.memory.population.owner, view.name))
         .sort((a, b) => a.name.localeCompare(b.name));
@@ -60,6 +63,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
       }
       generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, policy, recoveryActive);
       maintainNativeScavengers(state, room, policy, recoveryActive);
+      maintainNativeDistributors(state, room, policy, recoveryActive);
       maintainNativeCouriers(state, Game.rooms[view.name]!, policy, observeRoutes, recoveryActive);
     },
   };
