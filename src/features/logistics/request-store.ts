@@ -5,7 +5,7 @@ import { validateLogisticsRequest } from '../../capabilities/logistics/request';
 import type { LogisticsRequest } from '../../capabilities/logistics/request';
 import { delivered, logisticsQueueSchema } from './request-schema';
 import type { DeliveryReceipt, LogisticsRecord } from './request-schema';
-/** Completed/cancelled records remain until expiry, preventing replay from recreating their work. */
+/** Retain records through the expiry tick so last-tick intents can settle before pruning. */
 export function createLogisticsRequests(port: StatePort, room: string) {
   const key = stateKey('logistics-requests', room);
   const read = () => openState(port, key, logisticsQueueSchema);
@@ -13,13 +13,13 @@ export function createLogisticsRequests(port: StatePort, room: string) {
   return {
     availableSlots(tick: number): number {
       validTick(tick);
-      return 200 - read().records.filter(record => record.request.expiresAt > tick).length;
+      return 200 - read().records.filter(record => record.request.expiresAt >= tick).length;
     },
     submit(request: LogisticsRequest, tick: number): void {
       validTick(tick);
       validateLogisticsRequest(request);
       if (request.expiresAt <= tick) throw new Error('Expired logistics request');
-      const records = read().records.filter(record => record.request.expiresAt > tick);
+      const records = read().records.filter(record => record.request.expiresAt >= tick);
       const existing = records.find(record => matches(record, request.owner, request.id));
       if (existing) {
         if (!sameRequest(existing.request, request)) throw new Error('Logistics request identity conflict');
@@ -34,11 +34,13 @@ export function createLogisticsRequests(port: StatePort, room: string) {
         .filter(request => request.quantity > 0)
         .sort((a, b) => a.priority - b.priority || a.owner.localeCompare(b.owner) || a.id.localeCompare(b.id));
     },
-    confirm(owner: string, id: string, receipt: DeliveryReceipt, tick: number): boolean {
+    confirm(owner: string, id: string, receipt: DeliveryReceipt, tick: number, issuedAt = tick): boolean {
       validTick(tick);
       const state = read();
       const record = state.records.find(item => matches(item, owner, id));
-      if (!record || record.cancelled || record.request.expiresAt <= tick) return false;
+      validTick(issuedAt);
+      if (issuedAt > tick) throw new Error('Delivery issue tick is in the future');
+      if (!record || record.cancelled || record.request.expiresAt <= issuedAt) return false;
       if (!addReceipt(record, receipt)) return false;
       save(state.records);
       return true;

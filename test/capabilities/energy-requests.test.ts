@@ -30,8 +30,9 @@ test('completed retained records apply queue backpressure until expiry without t
   }
   const run = (tick: number) => generateEnergyRequests(state, 'home', tick, [endpoint('source', 50)], [endpoint('spawn', 50)], policy);
   expect(run(1)).toBe(0);
-  expect(run(3)).toBe(1);
-  expect(queue.availableSlots(3)).toBe(199);
+  expect(run(3)).toBe(0);
+  expect(run(4)).toBe(1);
+  expect(queue.availableSlots(4)).toBe(199);
 });
 
 

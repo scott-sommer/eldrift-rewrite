@@ -42,3 +42,15 @@ test('owner identity, priority, expiry and request parameters stay explicit', ()
   expect(queue.confirm('economy', 'fill', { id: 'late', amount: 10 }, 20)).toBe(false);
   expect(() => queue.submit(request, 20)).toThrow();
 });
+
+test('last-valid-tick delivery settles at expiry even after another request is submitted', () => {
+  const { queue } = fixture();
+  queue.submit(request, 1);
+  queue.submit({ ...request, id: 'new', expiresAt: 30 }, 20);
+  expect(queue.pending(20).map(item => item.id)).toEqual(['new']);
+  expect(queue.confirm('economy', 'fill', { id: 'last-delivery', amount: 100 }, 20, 19)).toBe(true);
+  expect(queue.confirm('economy', 'fill', { id: 'last-delivery', amount: 100 }, 20, 19)).toBe(false);
+  expect(queue.confirm('economy', 'fill', { id: 'expired-intent', amount: 1 }, 20, 20)).toBe(false);
+  expect(queue.availableSlots(20)).toBe(198);
+  expect(queue.availableSlots(21)).toBe(199);
+});

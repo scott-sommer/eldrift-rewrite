@@ -20,7 +20,7 @@ export function settleHaulingTransfer(state: StatePort, binding: HaulingSettleme
   if (!result || result.status === 'waiting') return result;
   if (result.status === 'observed' && result.amount > 0 && previous.attempt.kind === 'transfer') {
     createLogisticsRequests(state, binding.home).confirm(binding.request.owner, binding.request.id,
-      { id: previous.attempt.id, amount: result.amount }, observation.tick);
+      { id: previous.attempt.id, amount: result.amount }, observation.tick, previous.attempt.tick);
   }
   reconcile(previous.attempt, result);
   journal.acknowledge(previous.attempt.id);
