@@ -14,7 +14,7 @@ export function planMiningCapacity(station: MiningStation, live: readonly Mining
   let slots = Math.max(0, station.access.length - live.length);
   const cancel: string[] = [];
   for (const request of queued) {
-    if (slots === 0 || committedRate >= throughput) { cancel.push(request.id); continue; }
+    if (request.rate === 0 || slots === 0 || committedRate >= throughput) { cancel.push(request.id); continue; }
     slots--;
     committedRate += request.rate;
   }
@@ -27,3 +27,4 @@ function validateCapacity(workers: readonly MiningCapacity[], replacementRate: n
   if (workers.some(worker => !worker.id || !Number.isFinite(worker.rate) || worker.rate < 0)) throw new Error('Invalid mining capacity');
   if (new Set(workers.map(worker => worker.id)).size !== workers.length) throw new Error('Duplicate mining capacity identity');
 }
+
