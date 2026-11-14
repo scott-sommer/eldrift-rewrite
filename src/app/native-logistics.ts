@@ -1,3 +1,5 @@
+import { settleHaulingTask } from './settle-hauling-task';
+import { observeTransfer } from '../adapters/screeps/transfer-observation';
 import { recoverNativeCargo } from './native-cargo-recovery';
 import { createNativeCourierRoutes } from './native-courier-routes';
 import { haulingOwner } from '../features/logistics/identity';
@@ -28,6 +30,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
 
       dispatch.activate();
       for (const creep of units) {
+        settleHaulingTask(state, definitions, creep, observeTransfer);
         recoverNativeCargo(state, definitions, creep, view.name);
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
@@ -43,6 +46,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
   };
   return { feature, definitions };
 }
+
 
 
 

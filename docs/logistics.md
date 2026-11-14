@@ -168,3 +168,13 @@ Native recovery prefers owned storage, then terminal, then energy spawn/extensio
 The --cargo-recovery real-engine scenario cancels a 30-energy request immediately after withdrawal. The original destination remains empty and its cancelled request has no receipts; a separate recovery request delivers all 30 energy to storage, confirms one receipt and clears task/reservation state. Evidence: artifacts/engine-X4tyys/evidence.json. Unit tests additionally verify partial shared capacity (20 + 5), no competing third admission, and refusal to overwrite pending/unknown journals.
 
 Validation: 335 tests across 105 files passed in 3.43 seconds; quality passed (152 production files, 142 test files, zero Lizard violations). Ordinary --hauling-cycle and combined --colony-economy regressions also passed after the integration, evidence artifacts/engine-3TBI5g/evidence.json and artifacts/engine-fQVVQb/evidence.json. Full 41-case engine suite was not rerun this increment.
+
+## Settlement before expiry
+
+The native logistics loop now settles the previous transfer using the current task's validated request binding before invoking the generic task executor. The executor can then remove an expired task without losing the journal's matching context. Settlement releases old task-scoped quantity promises; active tasks rebook from current observations when they execute. Already-acknowledged attempts are not replayed, and unknown results remain explicitly unknown.
+
+The --expiry-recovery native scenario accepts a withdrawal on the request/task's last active tick. At expiry the withdrawal is confirmed and acknowledged before task removal. On the next tick an independent recovery task delivers all 30 energy to storage and records its own receipt; no tasks or quantity claims remain. Expired request records are pruned when the recovery request is submitted. Evidence: artifacts/engine-nMPZ6H/evidence.json.
+
+Validation: 336 unit tests across 106 files passed in 3.19 seconds; quality passed (153 production files, 144 test files, zero Lizard violations). This covers timely withdrawal confirmation at expiry, not missed event windows or journals whose original task binding was already removed. Request receipt acceptance still follows request expiry policy; late delivery attribution and unknown-result resolution remain separate accounting/recovery work.
+
+Full regression: all 42 engine scenarios passed in 47.42 seconds (artifacts/engine-suite.json).
