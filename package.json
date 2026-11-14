@@ -15,7 +15,8 @@
     "test:smoke": "vitest run test/smoke",
     "check:bundle": "npm run build && node tools/check-bundle.mjs",
     "check:boundaries": "node tools/check-boundaries.mjs",
-    "trace": "node tools/trace.mjs"
+    "trace": "node tools/trace.mjs",
+    "upload": "node tools/upload.mjs"
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "0.3.31",
