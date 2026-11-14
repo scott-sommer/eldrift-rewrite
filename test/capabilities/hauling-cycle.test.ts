@@ -43,3 +43,26 @@ test('cancelled requests with cargo are retained for recovery rather than silent
   expect(outcome).toMatchObject({ status: 'blocked', reason: 'orphaned-hauling-cargo' });
 });
 
+
+test('an empty courier releases a depleted source assignment without completing the request', () => {
+  const state = fixture();
+  const view = { tick: 1, cargo: 0, freeCargo: 50, sourceStock: 50, sinkFree: 100, sinkPool: 'sink-capacity' };
+  runHauling(state, binding, view, { observe: () => ({ tick: 1 }), execute: () => ({ status: 'running' }) });
+  expect(createQuantityReservations(state).list(1)).toHaveLength(1);
+  const outcome = runHauling(state, binding, { ...view, tick: 2, sourceStock: 0 }, {
+    observe: () => ({ tick: 2 }), execute: () => { throw new Error('Empty source must not issue'); },
+  });
+  expect(outcome).toEqual({ status: 'done' });
+  expect(createQuantityReservations(state).list(2)).toEqual([]);
+  expect(createLogisticsRequests(state, 'room').pending(2)[0]?.quantity).toBe(50);
+});
+
+test('a loaded courier still delivers after the source is depleted', () => {
+  const state = fixture();
+  const issued: string[] = [];
+  const outcome = runHauling(state, binding, { tick: 2, cargo: 20, freeCargo: 30, sourceStock: 0, sinkFree: 100, sinkPool: 'sink-capacity' }, {
+    observe: () => ({ tick: 2 }), execute: (_request, phase, amount) => { issued.push(phase + ':' + amount); return { status: 'running' }; },
+  });
+  expect(outcome).toEqual({ status: 'running' });
+  expect(issued).toEqual(['deliver:20']);
+});

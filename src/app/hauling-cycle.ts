@@ -18,17 +18,10 @@ export interface HaulingPorts {
 /** One assigned request's work cycle; callers own task admission, endpoint observations and native dispatch. */
 export function runHauling(state: StatePort, binding: HaulingBinding, view: HaulingView, ports: HaulingPorts): Outcome {
   if (![view.tick, view.cargo, view.freeCargo].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid hauling view');
-  const journal = createTransferJournal(state, binding.unit);
-  const previous = journal.read();
-  if (previous.attempt && !previous.acknowledged) {
-    const settled = settleHaulingTransfer(state, binding, ports.observe(previous.attempt), (_attempt, result) => {
-      if (result.status === 'observed') refreshCargoBooking(state, binding, view);
-    });
-    if (settled?.status === 'waiting') return wait(view.tick, 'transfer-pending');
-  }
-  if (journal.read().result?.status === 'unknown') return wait(view.tick, 'transfer-evidence-lost');
+  if (settlePending(state, binding, view, ports)) return wait(view.tick, 'transfer-pending');
+  if (createTransferJournal(state, binding.unit).read().result?.status === 'unknown') return wait(view.tick, 'transfer-evidence-lost');
   const request = pending(state, binding, view.tick);
-  if (!request) return finish(state, binding, view);
+  if (!request || (view.cargo === 0 && view.sourceStock === 0)) return finish(state, binding, view);
   const phase = view.cargo > 0 ? 'deliver' : 'collect';
   const amount = book(state, binding, request, view, phase);
   if (amount === 0) return wait(view.tick, 'logistics-capacity-unavailable');
@@ -53,3 +46,13 @@ function finish(state: StatePort, binding: HaulingBinding, view: HaulingView): O
   return view.cargo > 0 ? wait(view.tick, 'orphaned-hauling-cargo') : { status: 'done' };
 }
 function wait(tick: number, reason: string): Outcome { return { status: 'blocked', reason, retryAt: tick + 1 }; }
+
+
+function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingView, ports: HaulingPorts): boolean {
+  const previous = createTransferJournal(state, binding.unit).read();
+  if (!previous.attempt || previous.acknowledged) return false;
+  const settled = settleHaulingTransfer(state, binding, ports.observe(previous.attempt), (_attempt, result) => {
+    if (result.status === 'observed') refreshCargoBooking(state, binding, view);
+  });
+  return settled?.status === 'waiting';
+}

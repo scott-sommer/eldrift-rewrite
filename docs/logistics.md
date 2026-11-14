@@ -148,3 +148,13 @@ The --colony-economy native regression starts with no creeps, one source and an 
 At the midpoint the harness updates the actual code module and invalidates the engine code cache. A reload witness must record the expected tick, and confirmed delivery must continue afterward. Evidence: artifacts/engine-it5zm3/evidence.json. Quality passed with 150 production files, 139 test files and zero Lizard violations. The scenario joins the full engine suite (39 cases); the full suite was not rerun for this test-only increment.
 
 This is a bounded bootstrap/reinvestment regression. It does not cover creep lifetime replacement, source regeneration cycles, indefinite memory growth, cargo recovery or full self-sustaining colony behavior. Test history contributes deliberately growing evidence memory and is not a production memory profile. ED-21 and the later parity/performance/soak gates remain open.
+
+## Empty-source assignment recovery
+
+After settling any pending transfer evidence, an empty courier now completes its assignment when the observed source stock reaches zero. Task-scoped reservations are released, but the request's undelivered balance remains pending for future supply or expiry. Admission skips that empty source, allowing another available request to be selected next tick. A courier with cargo still follows its existing delivery obligation even when its source disappears or is emptied. Unknown transfer evidence remains blocked rather than being treated as a successful delivery.
+
+The six-tick --empty-source native regression removes the remaining source stock after the courier's first withdrawal. The courier delivers its 50 units, releases the original assignment, selects an alternate source and delivers another 20. The two requests record exactly 50 and 20 delivered, respectively, and the task queue and quantity reservations are empty at the end. Original outstanding quantity is not falsely completed. Evidence: artifacts/engine-2133Wt/evidence.json.
+
+Validation: 333 unit tests across 104 files passed in 3.21 seconds; quality passed (150 production files, 140 test files, zero Lizard violations). Transfer settlement was extracted from the hauling decision function to retain low complexity. This resolves assignment starvation from empty sources; expired/cancelled loaded cargo, missing sinks and uncertain transfer recovery still require implementation.
+
+Full engine regression passed all 40 scenarios in 45.71 seconds (artifacts/engine-suite.json).

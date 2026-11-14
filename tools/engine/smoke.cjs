@@ -1,3 +1,4 @@
+const { emptySourceWorld, drainSource, verifyEmptySource } = require('./empty-source.cjs');
 const { colonyEconomyWorld, verifyColonyEconomy, reloadColonyEconomy } = require('./colony-economy.cjs');
 const { courierRoutesWorld, improveCourierRoad, verifyCourierRoutes } = require('./courier-routes.cjs');
 const { courierBootstrapWorld, verifyCourierBootstrap } = require('./courier-bootstrap.cjs');
@@ -81,6 +82,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--mining-saturation')) modules.main = await actionBundle(root, 'mining-saturation-bot');
   if (process.argv.includes('--extractor-fault')) modules.main = await actionBundle(root, 'extractor-fault-bot');
   if (process.argv.includes('--transfer-confirmation')) modules.main = await actionBundle(root, 'transfer-confirmation-bot');
+  if (process.argv.includes('--empty-source')) modules.main = await actionBundle(root, 'empty-source-bot');
   if (process.argv.includes('--colony-economy')) modules.main = await actionBundle(root, 'colony-economy-bot');
   if (process.argv.includes('--courier-routes')) modules.main = await actionBundle(root, 'courier-routes-bot');
   if (process.argv.includes('--courier-bootstrap')) modules.main = await actionBundle(root, 'courier-bootstrap-bot');
@@ -132,6 +134,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--extractor-fault')) await extractorFaultWorld(server, bot);
   if (process.argv.includes('--mining-interrupted')) await interruptedMiningWorld(server, bot);
   if (process.argv.includes('--transfer-confirmation')) await transferConfirmationWorld(server, bot);
+  if (process.argv.includes('--empty-source')) await emptySourceWorld(server, bot);
   if (process.argv.includes('--colony-economy')) await colonyEconomyWorld(server, bot);
   if (process.argv.includes('--courier-routes')) await courierRoutesWorld(server, bot);
   if (process.argv.includes('--courier-bootstrap')) await courierBootstrapWorld(server, bot);
@@ -148,7 +151,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--inject-timeout')) await new Promise(() => {});
   const initial = Number(await server.world.gameTime);
   const samples = evidence.samples;
-  const tickCount = process.argv.includes('--colony-economy') ? 100 : process.argv.includes('--courier-bootstrap') ? 30 : process.argv.includes('--energy-logistics') ? 5 : process.argv.includes('--hauling-cycle') ? 6 : process.argv.includes('--transfer-confirmation') ? 4 : process.argv.includes('--mining-interrupted') ? 9 : process.argv.includes('--extractor-fault') ? 13 : process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
+  const tickCount = process.argv.includes('--empty-source') ? 6 : process.argv.includes('--colony-economy') ? 100 : process.argv.includes('--courier-bootstrap') ? 30 : process.argv.includes('--energy-logistics') ? 5 : process.argv.includes('--hauling-cycle') ? 6 : process.argv.includes('--transfer-confirmation') ? 4 : process.argv.includes('--mining-interrupted') ? 9 : process.argv.includes('--extractor-fault') ? 13 : process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
@@ -164,6 +167,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     }
     if (process.argv.includes('--extractor-fault')) await changeExtractor(server, bot, tick);
     if (process.argv.includes('--courier-routes')) await improveCourierRoad(server, tick);
+    if (process.argv.includes('--empty-source')) await drainSource(server, tick);
     if (process.argv.includes('--hauling-cycle')) await drainHaulingSink(server, tick);
     samples.push(await sampleTick(server, bot));
   }
@@ -213,6 +217,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--extractor-fault')) verifyExtractorFault(memory);
   if (process.argv.includes('--mining-interrupted')) verifyInterruptedMining(memory);
   if (process.argv.includes('--transfer-confirmation')) verifyTransferConfirmation(memory);
+  if (process.argv.includes('--empty-source')) verifyEmptySource(memory);
   if (process.argv.includes('--colony-economy')) verifyColonyEconomy(memory, initial);
   if (process.argv.includes('--courier-routes')) verifyCourierRoutes(memory);
   if (process.argv.includes('--courier-bootstrap')) verifyCourierBootstrap(memory);
@@ -225,6 +230,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
