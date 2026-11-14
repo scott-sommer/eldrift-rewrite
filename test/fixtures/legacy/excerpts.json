@@ -145,6 +145,60 @@
       "line": 18,
       "source": "var RECOVERY_SUPPORT_BATCH = 25000;",
       "sha256": "757a91d66aa5fff5630715cef9a8c1f208d496112b241f41feb0b0a18819ba72"
+    },
+    "processClaimFlags": {
+      "file": "utilV2.js",
+      "line": 3425,
+      "source": "var processClaimFlags = function() {\n    let claimFlags = _.filter(Game.flags, (flag) => flag.name.indexOf('CreateRoom') > -1);\n    for(let flag of claimFlags) {\n        let parts = flag.name.split(':');\n        if(parts.length < 2 || parts[0] != 'CreateRoom') continue;\n\n        let homeRoomName = parts[1];\n        if(!homeRoomName) continue;\n\n        let override = flag.name.indexOf('Override') > -1;\n        let queueResult = queueClaimIntent(homeRoomName, flag.pos, {\n            override: override,\n            auto: flag.name.indexOf('AutoExpand') > -1,\n            source: 'flag',\n            targetRoomName: flag.pos.roomName\n        });\n\n        if(queueResult == OK) {\n            console.log('CLAIM - Parsed ' + flag.name + ' into Memory.manager.claims for ' + homeRoomName + ' -> ' + flag.pos.roomName + '.');\n            flag.remove();\n        }\n    }\n};",
+      "sha256": "6aa6875556eaedf099723b434af610d3c9e07d26b1999cae60d8aa4a2ac0c366"
+    },
+    "processMiningFlags": {
+      "file": "utilV2.js",
+      "line": 870,
+      "source": "var processMiningFlags = function() {\n    let miningFlags = _.filter(Game.flags, (f)=>f.name.indexOf('Mine') > -1);\n    for(let m in miningFlags) {\n        let miningFlag = miningFlags[m];\n        let owner = miningFlag.name.split(':')[1];\n        let result = addSource(miningFlag.pos, owner);\n        if(result == OK) {\n            console.log('PROCESS MINING FLAGS - Processed '+miningFlag.name);\n            miningFlag.remove();\n            if(Memory.paths[miningFlag.name]) Memory.paths[miningFlag.name] = undefined;\n        } else if (result == -1) {\n            let targetRoom = miningFlag.pos.roomName;\n            console.log('PROCESS MINING FLAGS - Cannot process '+miningFlag.name+' because there is no visibility in '+targetRoom+'.');\n\n            if(queueVisibilityScout(owner, targetRoom)) {\n                console.log('PROCESS MINING FLAGS - Queued scout from '+owner+' to scout '+targetRoom+'.');\n            }\n        } else {\n            console.log('PROCESS MINING FLAGS - ERROR!!! Could not process '+miningFlag.name+' Returned error: '+result);\n        }\n    }\n};",
+      "sha256": "67e7ff5e4ad4d9964f915e6dc4274307dbce669554ef3914bd8821ef7d839769"
+    },
+    "isTrackedRemoteMiner": {
+      "file": "role.minerV2.js",
+      "line": 20,
+      "source": "var isTrackedRemoteMiner = function(creep) {\n    return !!(creep\n        && creep.memory\n        && creep.memory.role == 'miner'\n        && creep.memory.homeRoom\n        && creep.memory.assignedNode\n        && creep.memory.assignedNode.roomName\n        && creep.memory.assignedNode.roomName != creep.memory.homeRoom\n        && creep.memory.sourceId);\n};",
+      "sha256": "cfa6669bc624fe5bbc247ef1395c67a8d2d3d6549d2e654f5a51b12e77a66ed0"
+    },
+    "updateRemoteReachability": {
+      "file": "role.minerV2.js",
+      "line": 36,
+      "source": "var updateRemoteReachability = function(creep, reachedSource) {\n    if(!isTrackedRemoteMiner(creep)) return;\n\n    if(reachedSource) {\n        if(creep.memory.remoteSourceReached) return;\n        creep.memory.remoteSourceReached = true;\n        creep.memory.remoteReachabilityReported = 'success';\n        remoteManager.recordRemoteMinerReachability(\n            creep.memory.homeRoom,\n            creep.memory.sourceId,\n            creep.memory.assignedNode.roomName,\n            true\n        );\n        return;\n    }\n\n    if(creep.memory.remoteSourceReached) return;\n    if(creep.memory.remoteReachabilityReported == 'failure') return;\n    if(creep.spawning || creep.ticksToLive === undefined || creep.ticksToLive > 1) return;\n\n    creep.memory.remoteReachabilityReported = 'failure';\n    remoteManager.recordRemoteMinerReachability(\n        creep.memory.homeRoom,\n        creep.memory.sourceId,\n        creep.memory.assignedNode.roomName,\n        false\n    );\n};",
+      "sha256": "b7d4b4e6e035b16dcd55aa181003771b366f98b8a5ff5c13ea5ae54e61723e21"
+    },
+    "STATUS_IDLE": {
+      "file": "role.courierV3.js",
+      "line": 12,
+      "source": "const STATUS_IDLE = 0;",
+      "sha256": "8b3953f2d3de8ec02408e7c640e9ce7320d0eccb19212b91ce0a8f91bf231baf"
+    },
+    "clearRecoverySupportMemory": {
+      "file": "role.courierV3.js",
+      "line": 33,
+      "source": "var clearRecoverySupportMemory = function(creep) {\n    creep.memory.energyRecoverySupport = undefined;\n    creep.memory.jobs = undefined;\n    creep.memory.status = STATUS_IDLE;\n    creep.memory.assignedNode = undefined;\n    creep.memory.currentRoom = undefined;\n    creep.memory.currentPath = undefined;\n    creep.memory.pathIndex = undefined;\n};",
+      "sha256": "0a4e620883dfa4a3d44248b67c7b8fea1f025b81eaea3ab203c50b0495490c5a"
+    },
+    "getRecoveryEnergySource": {
+      "file": "role.courierV3.js",
+      "line": 43,
+      "source": "var getRecoveryEnergySource = function(homeRoom) {\n    if(homeRoom && homeRoom.storage && homeRoom.storage.store[RESOURCE_ENERGY] > 0) return homeRoom.storage;\n    if(homeRoom && homeRoom.terminal && homeRoom.terminal.store[RESOURCE_ENERGY] > 0) return homeRoom.terminal;\n};",
+      "sha256": "ce59d5f0e12f08f5cb20fb6a447e919604808a1032e77b1c54a013305c699eb4"
+    },
+    "getRecoveryEnergyDropoff": {
+      "file": "role.courierV3.js",
+      "line": 48,
+      "source": "var getRecoveryEnergyDropoff = function(targetRoom) {\n    if(!targetRoom) return;\n    if(targetRoom.storage) return targetRoom.storage;\n    if(targetRoom.terminal) return targetRoom.terminal;\n\n    let spawns = targetRoom.find(FIND_MY_SPAWNS, {\n        filter: (spawn) => spawn.energy < spawn.energyCapacity\n    });\n    if(spawns.length > 0) return spawns[0];\n\n    let extensions = targetRoom.find(FIND_MY_STRUCTURES, {\n        filter: (structure) => structure.structureType == STRUCTURE_EXTENSION && structure.energy < structure.energyCapacity\n    });\n    if(extensions.length > 0) return extensions[0];\n};",
+      "sha256": "2fee4a04dc9cabc4fc6532941061f5bbbfbba8d22351bd7ab8b4db514294262d"
+    },
+    "runRecoverySupportCourier": {
+      "file": "role.courierV3.js",
+      "line": 70,
+      "source": "var runRecoverySupportCourier = function(creep) {\n    let support = creep.memory.energyRecoverySupport;\n    if(!support) return false;\n\n    let homeRoom = Game.rooms[creep.memory.homeRoom];\n    let targetRoom = Game.rooms[support.targetRoom];\n    let targetStillNeedsSupport = roomEnergyRecovery.isRecoveryActive(support.targetRoom);\n\n    if(!targetStillNeedsSupport && _.sum(creep.carry) == 0) {\n        if(creep.room.name != creep.memory.homeRoom) {\n            let fallback = homeRoom && homeRoom.storage ? homeRoom.storage.pos : new RoomPosition(25, 25, creep.memory.homeRoom);\n            creep.moveTo(fallback, {reusePath: 5, maxRooms: 16});\n            return true;\n        }\n\n        clearRecoverySupportMemory(creep);\n        return false;\n    }\n\n    if(_.sum(creep.carry) == 0) {\n        let source = getRecoveryEnergySource(homeRoom);\n        if(!source) return true;\n\n        if(creep.room.name != source.pos.roomName || creep.pos.getRangeTo(source) > 1) {\n            creep.moveTo(source, {reusePath: 10, maxRooms: 16});\n            return true;\n        }\n\n        creep.withdraw(source, RESOURCE_ENERGY);\n        return true;\n    }\n\n    let dropoff = getRecoveryEnergyDropoff(targetRoom);\n    if(!dropoff) {\n        creep.moveTo(new RoomPosition(25, 25, support.targetRoom), {reusePath: 10, maxRooms: 16});\n        return true;\n    }\n\n    if(creep.room.name != dropoff.pos.roomName || creep.pos.getRangeTo(dropoff) > 1) {\n        creep.moveTo(dropoff, {reusePath: 10, maxRooms: 16});\n        return true;\n    }\n\n    let transferResult = creep.transfer(dropoff, RESOURCE_ENERGY);\n    if(transferResult == ERR_FULL && targetRoom && targetRoom.storage && dropoff.id != targetRoom.storage.id) {\n        creep.transfer(targetRoom.storage, RESOURCE_ENERGY);\n    }\n\n    return true;\n};",
+      "sha256": "4d0717fea1fb25053e2f04a0b080bfa63804c2c3ac052e65b25f1f74429dc442"
     }
   }
 }
