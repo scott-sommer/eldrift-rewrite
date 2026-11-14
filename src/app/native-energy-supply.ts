@@ -12,5 +12,5 @@ export function generateNativeEnergyRequests(state: StatePort, room: Room, units
   const pickupCapacity = capacities.length ? Math.min(...capacities) : planned ? courierCapacity(planned.parts) : 0;
   const supply = observeEnergySupply(room, pickupCapacity);
   generateEnergyRequests(state, room.name, Game.time, supply.sources, supply.sinks,
-    { owner: haulingOwner(room.name), lifetime: 100, maximumQuantity: 200, maximumNewRequests: 10 });
+    { owner: haulingOwner(room.name), lifetime: 100, maximumQuantity: Math.max(200, pickupCapacity), maximumNewRequests: 10 });
 }

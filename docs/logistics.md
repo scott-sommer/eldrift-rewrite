@@ -234,3 +234,11 @@ Unreserved automatic requests whose outstanding quantity falls below the newly o
 Native --drop-supply seeds a 1000-energy pile, a 50-capacity courier and an empty extension, with no logistics requests. The production loop generates and confirms one 50-energy delivery, leaving container stock untouched and no task/reservation behind. Final evidence: artifacts/engine-pbQVIJ/evidence.json. Existing courier bootstrap also passed (before the final stale-batch reconciliation extension), artifacts/engine-3BTziE/evidence.json.
 
 Validation: final quality passed (157 production files,152 test files,zero Lizard violations); 353 tests across109 files passed in3.32s; smoke passed155ms; final native drop-supply scenario passed. Suite now contains49 scenarios; full suite was not rerun this increment. Native energy generation composition is extracted into app/native-energy-supply.ts.
+
+## Large and mixed courier pickup capacity
+
+Native energy request limits now use max(200, feasible pickup capacity). The former fixed 200 limit made a 250-capacity courier unable to collect a large pile even for an empty 300-capacity spawn. Generation remains bounded by actual source stock and destination deficit. Mixed fleets still size the minimum batch from the smallest positive courier capacity; a larger courier cannot claim that indivisible pickup unless its actual amount fits, leaving the request for the smaller courier.
+
+Native --large-drop proves a 250-capacity courier automatically collects and delivers 250 energy to a spawn from a 1000-energy pile. Its exact observed spawn totals include passive native regeneration (0,0,1,252,253), while the sole delivery receipt remains exactly250. No task or claims remain. The first assertion expected no passive regeneration; it was corrected to account for engine behavior without increasing the delivery receipt. Evidence: artifacts/engine-iCkM1x/evidence.json.
+
+Validation: targeted admission plus broad smoke passed7 tests in233ms, including mixed-capacity admission. Final quality passed (157 production files,153 test files,zero Lizard violations). The new native scenario passed. Full unit and engine suites were not rerun for this focused correction; engine suite now lists50 scenarios. Remaining scope from the preceding sections is unchanged.

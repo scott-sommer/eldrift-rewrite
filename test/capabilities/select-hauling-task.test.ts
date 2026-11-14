@@ -64,3 +64,14 @@ test('competing couriers cannot partially reserve an indivisible pickup', () => 
   expect(selectHaulingTask(state, definitions, { ...unit, name: 'two', unitId: 'id-two' }, () => ({ ...view, minimumCollection: 50 }))).toBe(false);
   expect(createQuantityReservations(state).list(1)).toHaveLength(1);
 });
+
+test('a large courier leaves a small indivisible request for a courier that fits', () => {
+  const { state, queue } = fixture();
+  queue.cancel(request.owner, request.id);
+  queue.submit({ ...request, id: 'small-batch', quantity: 50 }, 1);
+  expect(selectHaulingTask(state, definitions, unit, () => ({ ...view, sourceStock: 1000, freeCargo: 250, minimumCollection: 250 }))).toBe(false);
+  expect(createQuantityReservations(state).list(1)).toEqual([]);
+  expect(selectHaulingTask(state, definitions, { ...unit, name: 'small', unitId: 'small-id' },
+    () => ({ ...view, sourceStock: 1000, minimumCollection: 50 }))).toBe(true);
+  expect(createQuantityReservations(state).list(1)[0]?.allocations[0]?.amount).toBe(50);
+});
