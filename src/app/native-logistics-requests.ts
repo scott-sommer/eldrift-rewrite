@@ -10,7 +10,7 @@ import type { RuntimeConfig } from '../config/model';
 export function generateNativeLogisticsRequests(state: StatePort, room: Room, units: readonly Creep[], config: Readonly<RuntimeConfig>, recoveryActive = false): void {
   if (config.energyRequestsEnabled || config.preservationEnabled) generateNativeEnergyRequests(state, room, units, config);
   generateNativeWorkSupply(state, room, units, config);
-  generateNativeUpgradeService(state, room, config, config.upgradeRoomServiceEnabled && !recoveryActive);
+  if (!config.upgradeMasterEnabled) generateNativeUpgradeService(state, room, config, config.upgradeRoomServiceEnabled && !recoveryActive);
   generateNativeRecoveryBanking(state, room, config, recoveryActive);
   if (config.mineralTransportEnabled) generateNativeMineralTransport(state, room, config);
   if (config.energyBankingEnabled) generateNativeEnergyBanking(state, room, config);

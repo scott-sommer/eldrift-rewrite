@@ -28,6 +28,9 @@ export interface RuntimeConfig {
   energyRequestsEnabled: boolean;
   energyReclamationEnabled: boolean;
   workerSupplyEnabled: boolean;
+  upgradeMasterEnabled: boolean;
+  upgradeMasterSpawningEnabled: boolean;
+  upgradeMasterRenewBelow: number;
   upgradeRoomSpawningEnabled: boolean;
   upgradeRoomSponsor: string;
   upgradeFleetTarget: number;
@@ -110,6 +113,9 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   energyRequestsEnabled: false,
   energyReclamationEnabled: false,
   workerSupplyEnabled: false,
+  upgradeMasterEnabled: false,
+  upgradeMasterSpawningEnabled: false,
+  upgradeMasterRenewBelow: 500,
   upgradeRoomSpawningEnabled: false,
   upgradeRoomSponsor: '',
   upgradeFleetTarget: 7,

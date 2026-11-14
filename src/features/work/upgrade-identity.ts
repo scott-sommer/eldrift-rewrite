@@ -2,6 +2,9 @@
 export const upgradeOwner = (room: string) => 'upgrade-room:' + room;
 
 export function upgradeTarget(owner: string): string | undefined {
-  const target = owner.startsWith('upgrade-room:') ? owner.slice('upgrade-room:'.length) : '';
+  const prefix = ['upgrade-room:', 'upgrade-master:'].find(prefix => owner.startsWith(prefix));
+  const target = prefix ? owner.slice(prefix.length) : '';
   return /^[WE]\d+[NS]\d+$/.test(target) ? target : undefined;
 }
+
+export const upgradeMasterOwner = (room: string) => 'upgrade-master:' + room;

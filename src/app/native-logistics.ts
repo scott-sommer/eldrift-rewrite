@@ -55,7 +55,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         recoverNativeCargo(state, definitions, creep, view.name, policy.terminalFreeReserve);
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request),
-        request => acceptsLocalLogistics(request, view.name, recoveryActive, policy.upgradeRoomServiceEnabled));
+        request => acceptsLocalLogistics(request, view.name, recoveryActive, policy.upgradeRoomServiceEnabled, policy.upgradeMasterEnabled));
         execute(creep.name, creep);
       }
       generateNativeLogisticsRequests(state, Game.rooms[view.name]!, units, policy, recoveryActive);

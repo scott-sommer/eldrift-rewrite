@@ -1,4 +1,4 @@
-import { isSupportScope } from '../features/recovery/support-identity';
+import { localLogisticsDemand } from './native-logistics-admission';
 import type { createNativeCourierRoutes } from './native-courier-routes';
 import { stateKey } from '../persistence/state-key';
 import type { StatePort } from '../persistence/versioned-state';
@@ -29,7 +29,7 @@ export function maintainNativeCouriers(state: StatePort, room: Room, config: Rea
   const budget = Math.min(config.courierBodyBudget, units.length ? room.energyCapacityAvailable : room.energyAvailable);
   const body = courier(budget)?.parts;
   if (!body) { cancelCourierDemand(state, room.name); return; }
-  const work = createLogisticsRequests(state, room.name).pending(Game.time).some(request => !isSupportScope(request.owner));
+  const work = createLogisticsRequests(state, room.name).pending(Game.time).some(request => localLogisticsDemand(request, room.name, config.upgradeMasterEnabled));
   const routes = observeRoutes(room, body, config);
   applyCourierDemand(state, { owner, room: room.name, body, routes: routes.routes, utilization: 0.8,
     minimumCapacity: work || recoveryActive ? courierCapacity(body) : 0, travelTicks: routes.travelTicks, marginTicks: 10, priority: 1, requestLifetime: 100 }, units, Game.time);
