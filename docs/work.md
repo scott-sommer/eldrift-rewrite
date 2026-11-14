@@ -2,11 +2,11 @@
 
 ## Current implementation
 
-`capabilities/work/assessment.ts` defines plain observed facts and work orders. `adapters/screeps/work-assessment.ts` snapshots owned construction, repairable structures and controller state; externally supplied blocked-site/excluded-repair IDs preserve planning/operator boundaries. `features/work` owns small policy, candidate and selection modules. Policy is injected as plain data, not a service locator. These components are not yet registered as a production room feature; the native fixture composes them with the existing workStep/action boundary to verify behavior before persistent execution is added.
+`capabilities/work/assessment.ts` defines plain observed facts and work orders. `adapters/screeps/work-assessment.ts` snapshots owned construction, repairable structures and controller state; externally supplied blocked-site/excluded-repair IDs preserve planning/operator boundaries. `features/work` owns small policy, candidate and selection modules. Policy is injected as plain data, not a service locator. The production room feature now composes these with persistent work tasks, the bounded task runner and shared movement/action dispatch. `workersEnabled` opts in; workers must carry population owner `work:<home>` and matching home. Room mode selects builder, fortifier or upgrader behavior. Population creation and energy acquisition are still separate unfinished work.
 
 Builder selection orders controller downgrade emergency, critically damaged ordinary structures, dependency-ready construction, routine repairs, ramparts, walls and ordinary upgrading. Construction types have a configurable priority list. Fortifiers build first, then rank barriers by hits plus distance weight (default20000); builders preserve rampart-before-wall fallback. Upgraders select controller work. Ordinary upgrading can be suppressed by the caller's energy/recovery policy, while downgrade prevention remains available. Builder/fortifier upgrade fallback stops at RCL8; dedicated upgraders can maintain RCL8 when permitted. Current valid targets are retained within the best priority tier, but emergencies preempt lower-priority work.
 
-Repair thresholds, wall/rampart targets, downgrade threshold, distance weight and construction ordering are injectable. Default barrier targets are50000, critical fraction0.2 and routine fraction0.8. Repair targets are capped to native maximum hits. Unowned controllers, hostile structures, excluded barriers, blocked construction, completed work and other-room targets are not selected. This policy does not yet implement resource acquisition, population, hysteresis, role switching, travel, target claims or task persistence.
+Repair thresholds, wall/rampart targets, downgrade threshold, distance weight and construction ordering are injectable. Default barrier targets are50000, critical fraction0.2 and routine fraction0.8. Repair targets are capped to native maximum hits. Unowned controllers, hostile structures, excluded barriers, blocked construction, completed work and other-room targets are not selected. The selector does not own resource acquisition, population, hysteresis or role switching. Production tasks approach targets through shared movement, retain identity despite changing scores, and replace expired or superseded work with cleanup. No exclusive target lease is acquired: multiple workers may cooperate on a site/controller.
 
 ## Source mapping and deliberate changes
 
@@ -25,8 +25,16 @@ The first native runs exposed that controller prototype hit accessors exist but 
 
 ## Next integration
 
-1. Persist owned work tasks and reconcile completion, disappearance, current target retention and emergency preemption through existing cleanup/ownership boundaries. Reuse one shared movement/action dispatch and bounded task runner.
+1. Extend persistent work execution with acquisition and population below. Runtime currently shares a room-wide worker mode; mixed roles need explicit per-worker assignment. Foreign task definitions are supplied at composition and preserved without execution; automatic ownership reassignment is not yet implemented.
 2. Add worker collection/delivery policy with reserves and runtime configuration, worker demand/body recipes, recovery state hysteresis/donor support and reassignment. Integrate Art exclusions and controller/fortification target profiles.
 3. Prove an owned-room scenario that consumes/replenishes energy, builds, repairs, upgrades, replaces miner/hauler/worker losses and recovers after seeded energy loss. Exercise dedicated upgrade/master behavior rather than treating ordinary upgrade selection as its substitute.
 
-ED-22 remains In Progress. Full fast/native suites were not rerun for these currently isolated new modules; the prior complete milestone remains412tests and78enginechecks at7a680c2.
+## Production worker runtime evidence
+
+`--worker-runtime` passed six actual engine ticks (artifacts/engine-nwVtka/evidence.json). The production main loop completes a road, repairs road3900->4000, and upgrades controller0->2. Upgrade task identity persists across ticks. Disabling workers clears the work task and stops energy consumption; reenabling creates a fresh task. Targets are in range and energy is seeded: replenishment, movement and recovery are not proven by this case.
+
+Four task regressions cover score-independent identity, repeated temporary blockage without retry exhaustion, expiry, preemption scope cleanup, disable/cancellation, foreign head preservation, replacement creep identity and invalid-selection rejection. The task runner can validate shared task schemas while executing only its own registered behaviors. Cleanup and task persistence remain separate state writes, not a transactional guarantee.
+
+Runtime configuration exposes workersEnabled (default false), workerMode (builder), workerWallHits/workerRampartHits (50000), workerDowngradeThreshold (5000), workerUpgradeReserve (50000). Ordinary upgrading is suppressed when owned-room storage is at/below the reserve; controller downgrade overrides that work-selection guard. Resource withdrawal limits still require acquisition policy.
+
+Quality:202production/194testfiles, zero violations. Full unit suite:423tests/130files in3.52s. Bundle loading passed. Full pinned engine suite:80checks in102.16s. ED-22 remains In Progress; remaining acquisition, population, recovery and specialist acceptance criteria are open.

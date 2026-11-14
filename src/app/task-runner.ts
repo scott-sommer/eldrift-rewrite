@@ -12,7 +12,8 @@ export interface TaskBehavior<Context> extends TaskDefinition {
 export function taskScope(unit: string, task: string): string {
   return `task:${JSON.stringify([unit, task])}`;
 }
-export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<Record<string, TaskBehavior<Context>>>, clock: () => number) {
+export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<Record<string, TaskBehavior<Context>>>, clock: () => number,
+  definitions: Readonly<Record<string, TaskDefinition>> = behaviors) {
   let lastTick: number | undefined;
   const visited = new Set<string>();
   return (unit: string, context: Context) => {
@@ -20,11 +21,11 @@ export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<R
     if (lastTick !== tick) { visited.clear(); lastTick = tick; }
     if (visited.has(unit)) return undefined;
     visited.add(unit);
-    const schema = taskSchema(unit, behaviors);
+    const schema = taskSchema(unit, definitions);
     const key = stateKey('tasks', unit);
     const state = openState(port, key, schema);
     const task = state.queue[0];
-    if (!task) return undefined;
+    if (!task || !Object.hasOwn(behaviors, task.kind)) return undefined;
     const result = execute(task, behaviors[task.kind]!.handlers(task), context, tick);
     if (result.outcome.status === 'done' || result.outcome.status === 'failed') {
       createReservationCleanup(port).releaseScope(taskScope(unit, task.id));

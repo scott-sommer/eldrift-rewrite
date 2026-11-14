@@ -11,6 +11,12 @@ export interface RuntimeConfig {
   energyRequestsEnabled: boolean;
   energyReclamationEnabled: boolean;
   workerSupplyEnabled: boolean;
+  workersEnabled: boolean;
+  workerMode: 'builder' | 'fortifier' | 'upgrader';
+  workerWallHits: number;
+  workerRampartHits: number;
+  workerDowngradeThreshold: number;
+  workerUpgradeReserve: number;
   controllerContainerTarget: number;
   energyBankingEnabled: boolean;
   storeBalancingEnabled: boolean;
@@ -45,6 +51,12 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   energyRequestsEnabled: false,
   energyReclamationEnabled: false,
   workerSupplyEnabled: false,
+  workersEnabled: false,
+  workerMode: 'builder',
+  workerWallHits: 50000,
+  workerRampartHits: 50000,
+  workerDowngradeThreshold: 5000,
+  workerUpgradeReserve: 50000,
   controllerContainerTarget: 1900,
   energyBankingEnabled: false,
   storeBalancingEnabled: false,
