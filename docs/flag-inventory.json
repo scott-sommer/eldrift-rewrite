@@ -1,0 +1,210 @@
+[
+  {
+    "pattern": "`Mine:<homeRoom>`",
+    "behavior": "Marks a remote mining source for `homeRoom`. Used to queue remote miners and couriers. Can also be processed manually into memory with `Game.processMiningFlags()`.",
+    "source": "`room.strategy.js`, `spawner.js`, `consoleCommands.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Reserve:<homeRoom>`",
+    "behavior": "Marks a remote controller that should be reserved by `homeRoom`.",
+    "source": "`room.strategy.js`, `spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Claim:<homeRoom>`",
+    "behavior": "Marks a controller that should be claimed.",
+    "source": "`room.strategy.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Outpost:<homeRoom>`",
+    "behavior": "Marks a remote room/position that should have an outposter assigned.",
+    "source": "`room.strategy.js`, `spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`NewSpawn:<homeRoom>`",
+    "behavior": "Legacy bootstrap/claim-and-build flag for a new room. Still used in some assignment paths for `newSpawner` creeps, but `CreateRoom` is the clearer expansion entrypoint.",
+    "source": "`room.strategy.js`, `spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`CreateRoom:<homeRoom>`",
+    "behavior": "Expansion bootstrap flag. Place it on the target room controller. `<homeRoom>` is the owned room that should supply the claimer and bootstrap creeps. Once the room is claimed, the claimer automatically queues the first spawn using the room planner's storage-centered layout fit, so a separate `Build:spawn` flag is no longer required for the initial spawn. The automation can also create `CreateRoom:<homeRoom>:AutoExpand:<targetRoom>` flags on its own when it selects an expansion target from scouting data.",
+    "source": "`spawner.js`, `role.claimer.js`, `room.layout.js`, `utilV2.js`, `expansion.manager.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`CreateRoom:<homeRoom>:...:OverrideClaim` or any `CreateRoom` / `NewSpawn` flag containing `Override`",
+    "behavior": "Bypasses some normal safety/claim gating when spawning expansion creeps.",
+    "source": "`spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Upgrade...`",
+    "behavior": "Special-case upgrade-room control. Presence of an `Upgrade` flag causes `controller.js` to mark the room as an upgrade room and run the dedicated upgrade-room logic. `spawner.js` also skips normal spawning for rooms with `Upgrade` flags.",
+    "source": "`controller.js`, `spawner.js`, `terminal.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Build:<structureType>:<roomName>[:rclLevel]`",
+    "behavior": "Queues a planned structure in `Memory.build` when processed by `Game.processBuildFlags()`. These manual entries now coexist with the automatic room planner and are preserved when room plans are synced into the build queue. Supported types include spawn, extension, road, wall, rampart, link, storage, tower, observer, power spawn, extractor, lab, terminal, container, nuker, and factory.",
+    "source": "`utilV2.js`, exposed from `consoleCommands.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Defend:<count>` in the room to defend",
+    "behavior": "Sets the desired number of defenders for that room.",
+    "source": "`room.strategy.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Patrol:<index>:<homeRoom>`",
+    "behavior": "Temporary patrol path points. `Game.processPatrol(patrolName)` consumes these flags into `Memory.patrols`.",
+    "source": "`consoleCommands.js`, `room.strategy.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Scout:<homeRoom>...`",
+    "behavior": "Marks a scouting target associated with `homeRoom`. The full name is stored in scout memory as `targetFlag`.",
+    "source": "`room.strategy.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Down:<homeRoom>` or `Down:<count>:<homeRoom>` depending path",
+    "behavior": "Triggers spawning of controller attackers/downers aimed at the flag position. There are two implementations in the repo; both key off `Down`.",
+    "source": "`room.strategy.js`, `spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Steal:...:<homeRoom>`",
+    "behavior": "Triggers hauler spawning for theft/loot flows. The flag position becomes the collection point.",
+    "source": "`spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Transfer:...:<homeRoom>`",
+    "behavior": "Triggers hauler spawning for transfer flows. The flag position becomes the return point.",
+    "source": "`spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Safe:<range>`",
+    "behavior": "Intended to auto-trigger safe mode if hostiles approach the flag position within `range`.",
+    "source": "`defend.js`, `defenseManager.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Dismantle1:<homeRoom>`",
+    "behavior": "Used by dismantler creeps as their explicit attack target / staging flag.",
+    "source": "`controller.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Sign`",
+    "behavior": "Used by signer creeps as the room to sign.",
+    "source": "`controller.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`<squadName>`",
+    "behavior": "TNT/power-farming trucks and trailers rally directly to a flag whose name exactly matches the squad name. For power farming, the code uses the power-bank id as the squad name.",
+    "source": "`squad.tnt.js`, `utilV2.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Vassal:<controllerRoom>:<vassalRoom>`",
+    "behavior": "Declares that `vassalRoom` is managed by `controllerRoom`. Also carries `invaded` / `occupied` state in flag memory to suppress unsafe spawning.",
+    "source": "`consoleCommands.js`, `controller.js`, `room.strategy.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Miss:<missionPlanId>:<stage>:<type>:...`",
+    "behavior": "Defines a mission plan that can be parsed by `Game.createMissionPlan(missionPlanId)`. Supported stage types include `Rally`, `Form`, `Train`, `Tar`, `Claim`, `Portal`, `Hunt`, and `Sign`. Some stage types require extra parameters such as formation id or direction.",
+    "source": "`mission.js`, exposed from `consoleCommands.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`formation`",
+    "behavior": "Special single flag read directly by the controller to run the formation module each tick.",
+    "source": "`controller.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Lab1:<inputMineral>:<roomName>`",
+    "behavior": "Generated by the lab setup helpers for the first input lab.",
+    "source": "`utilV2.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Lab2:<inputMineral>:<roomName>`",
+    "behavior": "Generated by the lab setup helpers for the second input lab.",
+    "source": "`utilV2.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Lab3+ :<targetCompound>:<roomName>`",
+    "behavior": "Generated by the lab setup helpers for output labs. Example: `Lab3:RESOURCE_X:<roomName>`.",
+    "source": "`utilV2.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  },
+  {
+    "pattern": "`Boost...`",
+    "behavior": "The code checks for flags containing `Boost` when deciding whether mineral couriers are needed for lab/boost servicing.",
+    "source": "`spawner.js`",
+    "evidence": "legacy README; verify against handlers",
+    "targetIssue": "ED-39",
+    "implementationStatus": "not ported"
+  }
+]

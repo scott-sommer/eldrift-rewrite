@@ -3,480 +3,5855 @@
     "file": "assaultCreeps.js",
     "sha256": "6A3FE03C00BAEED543832680E373A38E593CCE54D2330B22782AE5DF31282F34",
     "physicalLines": 281,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 5
+      },
+      {
+        "name": "runRanger",
+        "line": 7
+      },
+      {
+        "name": "runMelee",
+        "line": 11
+      },
+      {
+        "name": "runDismantler",
+        "line": 15
+      },
+      {
+        "name": "runHealer",
+        "line": 19
+      },
+      {
+        "name": "OVERHEAL_TARGET",
+        "line": 23
+      },
+      {
+        "name": "runSquad",
+        "line": 41
+      }
+    ]
   },
   {
     "file": "booster.js",
     "sha256": "F0A8EB8822CD221227FD3C511546C732B43FED145B035835AD31511C76A32D2C",
     "physicalLines": 163,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-36"
+    ],
+    "capabilityWork": [
+      "Restore resource planning, labs, and boost reservations"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "roleBooster",
+        "line": 11
+      },
+      {
+        "name": "findLabWithBoostForPart",
+        "line": 77
+      },
+      {
+        "name": "findLabWithResource",
+        "line": 131
+      }
+    ]
   },
   {
     "file": "consoleCommands.js",
     "sha256": "1CA17784D426A99D2D2C848D57A76EB2DE4B9F181829EC8F7E66C0BF3EC36FA2",
     "physicalLines": 760,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-10",
+      "ED-31",
+      "ED-39",
+      "ED-41",
+      "ED-44"
+    ],
+    "capabilityWork": [
+      "Record the rewrite charter, capability inventory, and architecture decisions",
+      "Port vassal coordination and specialist room modes",
+      "Preserve flags and console controls through application operations",
+      "Document configuration profiles and the strategy extension workflow",
+      "Rehearse memory migration and rollback; prepare the release candidate"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "labV2",
+      "mission",
+      "visuals",
+      "room.layout"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 8
+      },
+      {
+        "name": "labV2",
+        "line": 9
+      },
+      {
+        "name": "mission",
+        "line": 10
+      },
+      {
+        "name": "visuals",
+        "line": 11
+      },
+      {
+        "name": "roomLayout",
+        "line": 12
+      },
+      {
+        "name": "consoleResources",
+        "line": 14
+      },
+      {
+        "name": "processVassals",
+        "line": 104
+      },
+      {
+        "name": "processPatrol",
+        "line": 144
+      },
+      {
+        "name": "removeLabs",
+        "line": 178
+      },
+      {
+        "name": "removeAllLabs",
+        "line": 182
+      },
+      {
+        "name": "getRoomUpgradeProgress",
+        "line": 188
+      },
+      {
+        "name": "getUpgradeProgress",
+        "line": 200
+      },
+      {
+        "name": "sendResources",
+        "line": 210
+      },
+      {
+        "name": "exportTerrainLayouts",
+        "line": 225
+      },
+      {
+        "name": "getManufactureCompound",
+        "line": 271
+      },
+      {
+        "name": "printRoomProduction",
+        "line": 290
+      },
+      {
+        "name": "printRmProduction",
+        "line": 300
+      },
+      {
+        "name": "processMiningFlags",
+        "line": 304
+      },
+      {
+        "name": "setAllBoosts",
+        "line": 308
+      },
+      {
+        "name": "dismantleRoom",
+        "line": 319
+      },
+      {
+        "name": "clearDismantleRoom",
+        "line": 323
+      },
+      {
+        "name": "scheduleAttack",
+        "line": 331
+      },
+      {
+        "name": "addRemote",
+        "line": 391
+      },
+      {
+        "name": "checkPortals",
+        "line": 401
+      },
+      {
+        "name": "getSpawnRoomTasks",
+        "line": 420
+      },
+      {
+        "name": "removeSpawnTasksForRoom",
+        "line": 424
+      },
+      {
+        "name": "removeFlagsForRoom",
+        "line": 444
+      },
+      {
+        "name": "removeRoomPaths",
+        "line": 460
+      },
+      {
+        "name": "removeRoomNodes",
+        "line": 482
+      },
+      {
+        "name": "removeRoomReferencesFromMemory",
+        "line": 516
+      },
+      {
+        "name": "clearRoomData",
+        "line": 591
+      },
+      {
+        "name": "clearDismantledRoomMemory",
+        "line": 655
+      },
+      {
+        "name": "testFunction",
+        "line": 659
+      },
+      {
+        "name": "setUp",
+        "line": 693
+      }
+    ]
   },
   {
     "file": "controller.js",
     "sha256": "932A81B4F3FAEC8549FBAA1DA35F9215ECC831B598E9F397E0EEA4EA245DAC81",
     "physicalLines": 1658,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-10",
+      "ED-12",
+      "ED-13",
+      "ED-15",
+      "ED-16",
+      "ED-21",
+      "ED-31",
+      "ED-32",
+      "ED-33",
+      "ED-38",
+      "ED-39",
+      "ED-42",
+      "ED-43"
+    ],
+    "capabilityWork": [
+      "Record the rewrite charter, capability inventory, and architecture decisions",
+      "Enforce Lizard complexity and size limits in local checks and CI",
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Implement composition, configuration, tick views, and fault-isolated scheduling",
+      "Implement versioned persistence, ownership, and reconstructible caches",
+      "Port hauling, distribution, scavenging, and link logistics",
+      "Port vassal coordination and specialist room modes",
+      "Restore threat assessment, towers, safe mode, and remote response",
+      "Restore mission lifecycle and specialist military behaviors",
+      "Complete advanced resource and structure capability parity",
+      "Preserve flags and console controls through application operations",
+      "Close the capability matrix with packaged multi-tick parity scenarios",
+      "Measure CPU, memory, and colony progress under bounded soak tests"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "role.minerV2",
+      "role.courierV3",
+      "role.scavenger",
+      "role.mineralCourierV2",
+      "role.builder",
+      "role.wallBuilder",
+      "role.distributorV2",
+      "role.upgraderV2",
+      "role.claimer",
+      "role.attacker",
+      "role.golem",
+      "role.scout",
+      "role.hauler",
+      "defend",
+      "defenseManager",
+      "utilV2",
+      "formation",
+      "labV2",
+      "terminal",
+      "booster",
+      "creep.base",
+      "role.patroller",
+      "squad.tnt",
+      "spawner",
+      "waypointer",
+      "formations",
+      "mission",
+      "resourceManager",
+      "market",
+      "expansion.manager",
+      "remote.manager",
+      "remote.defense",
+      "room.energy.recovery",
+      "role.upgradeMaster",
+      "upgradeRoom",
+      "role.powerSquad",
+      "role.skSquad",
+      "role.hunter"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "roleMiner",
+        "line": 7
+      },
+      {
+        "name": "roleCourier3",
+        "line": 8
+      },
+      {
+        "name": "roleScavenger",
+        "line": 9
+      },
+      {
+        "name": "roleMineralCourier2",
+        "line": 10
+      },
+      {
+        "name": "roleBuilder",
+        "line": 11
+      },
+      {
+        "name": "roleWallBuilder",
+        "line": 12
+      },
+      {
+        "name": "roleDistributor2",
+        "line": 13
+      },
+      {
+        "name": "roleUpgrader2",
+        "line": 14
+      },
+      {
+        "name": "roleClaimer",
+        "line": 15
+      },
+      {
+        "name": "roleAttacker",
+        "line": 16
+      },
+      {
+        "name": "roleHealer",
+        "line": 17
+      },
+      {
+        "name": "roleScout",
+        "line": 18
+      },
+      {
+        "name": "roleHauler",
+        "line": 19
+      },
+      {
+        "name": "defend",
+        "line": 20
+      },
+      {
+        "name": "defenseManager",
+        "line": 21
+      },
+      {
+        "name": "util",
+        "line": 22
+      },
+      {
+        "name": "formation",
+        "line": 23
+      },
+      {
+        "name": "labV2",
+        "line": 24
+      },
+      {
+        "name": "terminal",
+        "line": 25
+      },
+      {
+        "name": "booster",
+        "line": 26
+      },
+      {
+        "name": "creepBase",
+        "line": 27
+      },
+      {
+        "name": "rolePatroller",
+        "line": 28
+      },
+      {
+        "name": "squadTnT",
+        "line": 29
+      },
+      {
+        "name": "spawner",
+        "line": 30
+      },
+      {
+        "name": "waypointer",
+        "line": 31
+      },
+      {
+        "name": "formations",
+        "line": 32
+      },
+      {
+        "name": "mission",
+        "line": 33
+      },
+      {
+        "name": "resourceManager",
+        "line": 34
+      },
+      {
+        "name": "market",
+        "line": 35
+      },
+      {
+        "name": "expansionManager",
+        "line": 36
+      },
+      {
+        "name": "remoteManager",
+        "line": 37
+      },
+      {
+        "name": "remoteDefense",
+        "line": 38
+      },
+      {
+        "name": "roomEnergyRecovery",
+        "line": 39
+      },
+      {
+        "name": "roleUpgradeMaster",
+        "line": 40
+      },
+      {
+        "name": "upgradeRoom",
+        "line": 41
+      },
+      {
+        "name": "powerSquad",
+        "line": 42
+      },
+      {
+        "name": "skSquad",
+        "line": 43
+      },
+      {
+        "name": "roleHunter",
+        "line": 44
+      },
+      {
+        "name": "processBuildFlags",
+        "line": 46
+      },
+      {
+        "name": "createCachedPaths",
+        "line": 161
+      },
+      {
+        "name": "setupMyRooms",
+        "line": 482
+      },
+      {
+        "name": "processRemoteRequests",
+        "line": 1213
+      },
+      {
+        "name": "logPerformance",
+        "line": 1259
+      },
+      {
+        "name": "performanceWrap",
+        "line": 1270
+      },
+      {
+        "name": "initRolePerformance",
+        "line": 1279
+      },
+      {
+        "name": "logPerformanceByRole",
+        "line": 1287
+      },
+      {
+        "name": "runDismantler",
+        "line": 1319
+      },
+      {
+        "name": "runSigner",
+        "line": 1381
+      },
+      {
+        "name": "evaluateScheduledAttacks",
+        "line": 1403
+      },
+      {
+        "name": "runLinks",
+        "line": 1424
+      },
+      {
+        "name": "INVASION_COOLDOWN",
+        "line": 1529
+      },
+      {
+        "name": "OCCUPIED_COOLDOWN",
+        "line": 1530
+      },
+      {
+        "name": "runVassals",
+        "line": 1531
+      }
+    ]
   },
   {
     "file": "creep.base.js",
     "sha256": "2AC2794592D94FA9A67E8087A5923680E86ADD5E994830F9A327F686C4734A36",
     "physicalLines": 433,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-17"
+    ],
+    "capabilityWork": [
+      "Implement bounded state machines, task outcomes, and action ownership"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      },
+      {
+        "name": "CONST_CREEP_PRE_MOVE_REGISTER",
+        "line": 12
+      },
+      {
+        "name": "CONST_CREEP_LOGIC_REGISTER_ACTION",
+        "line": 13
+      },
+      {
+        "name": "CONST_CREEP_LOGIC_REGISTER_DESTINATION_ACTION",
+        "line": 14
+      },
+      {
+        "name": "CONST_CREEP_LOGIC_REGISTER_DESTINATION_EVALUATION",
+        "line": 15
+      },
+      {
+        "name": "CONST_ACTION_DONE",
+        "line": 17
+      },
+      {
+        "name": "CONST_ACTION_IN_PROGRESS",
+        "line": 18
+      },
+      {
+        "name": "runCreep",
+        "line": 20
+      },
+      {
+        "name": "builderEvaluation",
+        "line": 50
+      },
+      {
+        "name": "upgraderEvaluation",
+        "line": 164
+      },
+      {
+        "name": "findEnergySource",
+        "line": 180
+      },
+      {
+        "name": "setWithdraw",
+        "line": 253
+      },
+      {
+        "name": "getTargetSource",
+        "line": 262
+      },
+      {
+        "name": "withdraw",
+        "line": 292
+      },
+      {
+        "name": "pickUpEnergy",
+        "line": 311
+      },
+      {
+        "name": "buildStructure",
+        "line": 319
+      },
+      {
+        "name": "repairStructure",
+        "line": 334
+      },
+      {
+        "name": "upgradeController",
+        "line": 349
+      },
+      {
+        "name": "creepFullCheck",
+        "line": 400
+      },
+      {
+        "name": "harvestDeposit",
+        "line": 411
+      }
+    ]
   },
   {
     "file": "defend.js",
     "sha256": "B9AFDE4F8FAAAD1C27A34A5A027494F0E537A82C9B5C23ECCFF9EB73851A10DA",
     "physicalLines": 287,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-32"
+    ],
+    "capabilityWork": [
+      "Restore threat assessment, towers, safe mode, and remote response"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "defendRoom",
+        "line": 3
+      },
+      {
+        "name": "checkSafeMode",
+        "line": 55
+      },
+      {
+        "name": "getClosestRampart",
+        "line": 71
+      },
+      {
+        "name": "getUndefendedRamparts",
+        "line": 85
+      },
+      {
+        "name": "getRange",
+        "line": 102
+      },
+      {
+        "name": "creepIsInRampart",
+        "line": 108
+      },
+      {
+        "name": "getRampartsToDefend",
+        "line": 132
+      },
+      {
+        "name": "runTowers",
+        "line": 184
+      }
+    ]
   },
   {
     "file": "defenseManager.js",
     "sha256": "59991603D68C78FF2DE0C296838DAF9F296B750C3A9937A6E61C9E1D330D6A5A",
     "physicalLines": 858,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-32"
+    ],
+    "capabilityWork": [
+      "Restore threat assessment, towers, safe mode, and remote response"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 12
+      },
+      {
+        "name": "clearWorkingInfo",
+        "line": 14
+      },
+      {
+        "name": "checkSafeMode",
+        "line": 23
+      },
+      {
+        "name": "evaluateRoom",
+        "line": 39
+      },
+      {
+        "name": "boostList",
+        "line": 122
+      },
+      {
+        "name": "setupLabs",
+        "line": 124
+      },
+      {
+        "name": "towerHealCivilians",
+        "line": 154
+      },
+      {
+        "name": "towerRepairStructures",
+        "line": 176
+      },
+      {
+        "name": "DEFENSE_LEVEL_MINIMUM",
+        "line": 213
+      },
+      {
+        "name": "DEFENSE_LEVEL_1",
+        "line": 214
+      },
+      {
+        "name": "DEFENSE_LEVEL_2",
+        "line": 215
+      },
+      {
+        "name": "DEFENSE_LEVEL_3",
+        "line": 216
+      },
+      {
+        "name": "DEFENSE_LEVEL_4",
+        "line": 217
+      },
+      {
+        "name": "DEFENSE_LEVEL_5",
+        "line": 218
+      },
+      {
+        "name": "DEFENSE_TIMEOUT",
+        "line": 220
+      },
+      {
+        "name": "DEFENSE_LEVEL_1_ESCALATION_TICKS",
+        "line": 221
+      },
+      {
+        "name": "DEFENSE_LEVEL_1_ESCALATION_WALL_HITS",
+        "line": 222
+      },
+      {
+        "name": "DEFENSE_LEVEL_2_ESCALATION_TICKS",
+        "line": 223
+      },
+      {
+        "name": "DEFENSE_LEVEL_2_ESCALATION_WALL_HITS",
+        "line": 224
+      },
+      {
+        "name": "DEFENSE_LEVEL_3_ESCALATION_WALL_HITS",
+        "line": 225
+      },
+      {
+        "name": "DEFENSE_LEVEL_4_ESCALATION_WALL_HITS",
+        "line": 226
+      },
+      {
+        "name": "DEFENSE_LEVEL_5_ESCALATION_WALL_HITS",
+        "line": 227
+      },
+      {
+        "name": "updateDefenseSession",
+        "line": 229
+      },
+      {
+        "name": "evaluateDefenseEscalation",
+        "line": 259
+      },
+      {
+        "name": "notifyDefenseEscalation",
+        "line": 330
+      },
+      {
+        "name": "getWeakestBarrier",
+        "line": 336
+      },
+      {
+        "name": "defendAgainstHostiles",
+        "line": 362
+      },
+      {
+        "name": "moveDefenders",
+        "line": 535
+      },
+      {
+        "name": "towerHealDefenders",
+        "line": 561
+      },
+      {
+        "name": "focusAttacks",
+        "line": 590
+      },
+      {
+        "name": "sprayAttacks",
+        "line": 636
+      },
+      {
+        "name": "shuffle",
+        "line": 709
+      },
+      {
+        "name": "alliesInRoom",
+        "line": 729
+      },
+      {
+        "name": "defendAgainstInvaders",
+        "line": 733
+      },
+      {
+        "name": "spawnRequiredDefenders",
+        "line": 755
+      },
+      {
+        "name": "preferRamparts",
+        "line": 836
+      }
+    ]
   },
   {
     "file": "expansion.manager.js",
     "sha256": "B133FA2FCC792B9D9C514976CE1BA46EAF7E9AC2E3713B0A40490E361AFFE431",
     "physicalLines": 751,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-28",
+      "ED-30"
+    ],
+    "capabilityWork": [
+      "Port scouting, observer intel, and the traversable room graph",
+      "Restore expansion selection, claiming, and colony bootstrap"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      },
+      {
+        "name": "LOCAL_SCOUT_DEPTH",
+        "line": 12
+      },
+      {
+        "name": "EXPANSION_SCOUT_DEPTH",
+        "line": 13
+      },
+      {
+        "name": "EXPANSION_MIN_RCL",
+        "line": 14
+      },
+      {
+        "name": "EXPANSION_MIN_ENERGY_CAPACITY",
+        "line": 15
+      },
+      {
+        "name": "MAX_CANDIDATES_PER_HOME",
+        "line": 16
+      },
+      {
+        "name": "SCOUT_DEATH_PENALTY_WINDOW",
+        "line": 17
+      },
+      {
+        "name": "AUTO_FLAG_MARKER",
+        "line": 18
+      },
+      {
+        "name": "PREFERRED_HOME_ROOM_GAP",
+        "line": 19
+      },
+      {
+        "name": "ROOM_GAP_SEARCH_LIMIT",
+        "line": 20
+      },
+      {
+        "name": "ROOM_GAP_TOO_CLOSE_PENALTY",
+        "line": 21
+      },
+      {
+        "name": "ROOM_GAP_LAST_RESORT_PENALTY",
+        "line": 22
+      },
+      {
+        "name": "ROOM_GAP_PREFERRED_BONUS",
+        "line": 23
+      },
+      {
+        "name": "ROOM_GAP_COMFORT_BONUS",
+        "line": 24
+      },
+      {
+        "name": "CLAIM_SOURCE_ENERGY_SCORE",
+        "line": 25
+      },
+      {
+        "name": "REMOTE_SOURCE_ENERGY_SCORE",
+        "line": 26
+      },
+      {
+        "name": "KEEPER_REMOTE_SOURCE_ENERGY_SCORE",
+        "line": 27
+      },
+      {
+        "name": "KEEPER_ADJACENCY_BONUS",
+        "line": 28
+      },
+      {
+        "name": "ROOM_NAME_PATTERN",
+        "line": 30
+      },
+      {
+        "name": "runtimeCache",
+        "line": 31
+      },
+      {
+        "name": "getRuntimeCache",
+        "line": 38
+      },
+      {
+        "name": "parseRoomName",
+        "line": 51
+      },
+      {
+        "name": "formatRoomName",
+        "line": 63
+      },
+      {
+        "name": "getOwnedUsername",
+        "line": 76
+      },
+      {
+        "name": "ensureExpansionMemory",
+        "line": 85
+      },
+      {
+        "name": "countOwnedRooms",
+        "line": 104
+      },
+      {
+        "name": "getOwnedRooms",
+        "line": 108
+      },
+      {
+        "name": "getCreateRoomFlags",
+        "line": 112
+      },
+      {
+        "name": "getCreateRoomFlagHomeRoom",
+        "line": 116
+      },
+      {
+        "name": "hasCreateRoomFlagForHomeRoom",
+        "line": 123
+      },
+      {
+        "name": "getOwnedRoomObject",
+        "line": 130
+      },
+      {
+        "name": "shouldUseExtendedScouting",
+        "line": 136
+      },
+      {
+        "name": "shouldAutoExpandFromRoom",
+        "line": 150
+      },
+      {
+        "name": "getScoutTargetRooms",
+        "line": 163
+      },
+      {
+        "name": "getRecentScoutDeaths",
+        "line": 195
+      },
+      {
+        "name": "hasRecentScoutDeathInRoom",
+        "line": 205
+      },
+      {
+        "name": "isBlacklistedClaimTarget",
+        "line": 209
+      },
+      {
+        "name": "getSafeRoomStatus",
+        "line": 214
+      },
+      {
+        "name": "summarizeRoom",
+        "line": 223
+      },
+      {
+        "name": "getPathableRoomNeighbors",
+        "line": 254
+      },
+      {
+        "name": "getPathableRoomGap",
+        "line": 331
+      },
+      {
+        "name": "recordScoutedRoom",
+        "line": 370
+      },
+      {
+        "name": "getScoutedRoomInfo",
+        "line": 378
+      },
+      {
+        "name": "isAvailableRemoteEnergyRoom",
+        "line": 390
+      },
+      {
+        "name": "getExpansionEnergyPotential",
+        "line": 407
+      },
+      {
+        "name": "getNearestOwnedRoomGap",
+        "line": 462
+      },
+      {
+        "name": "scoreCandidate",
+        "line": 494
+      },
+      {
+        "name": "getExpansionCandidates",
+        "line": 555
+      },
+      {
+        "name": "ensureClaimIntent",
+        "line": 577
+      },
+      {
+        "name": "updateHomeExpansionMemory",
+        "line": 601
+      },
+      {
+        "name": "getPendingExpansionIntents",
+        "line": 628
+      },
+      {
+        "name": "logPendingExpansionIntents",
+        "line": 663
+      },
+      {
+        "name": "run",
+        "line": 695
+      }
+    ]
   },
   {
     "file": "formation.js",
     "sha256": "D8CC56033615C15DF9B77D7FFA2DD353562EE6F5490A0448D0EF30DC46C4310D",
     "physicalLines": 136,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-34"
+    ],
+    "capabilityWork": [
+      "Port formations and coordinated squad movement"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "runBoxFormation",
+        "line": 28
+      }
+    ]
   },
   {
     "file": "formations.js",
     "sha256": "18A6727B0E68FD499F08AB653AB4835F52120BB1F10BEDD9825E761C7216ABD9",
     "physicalLines": 423,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-34"
+    ],
+    "capabilityWork": [
+      "Port formations and coordinated squad movement"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "assaultCreeps"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 5
+      },
+      {
+        "name": "assaultCreeps",
+        "line": 6
+      },
+      {
+        "name": "initialize",
+        "line": 8
+      },
+      {
+        "name": "runRallyCreeps",
+        "line": 93
+      },
+      {
+        "name": "runPortalCreeps",
+        "line": 108
+      },
+      {
+        "name": "formationPositionsAssigned",
+        "line": 129
+      },
+      {
+        "name": "assignFormationPositions",
+        "line": 139
+      },
+      {
+        "name": "formationMove",
+        "line": 185
+      },
+      {
+        "name": "trainPositionsAssigned",
+        "line": 247
+      },
+      {
+        "name": "assignTrainPositions",
+        "line": 258
+      },
+      {
+        "name": "trainMove",
+        "line": 304
+      },
+      {
+        "name": "getTargetPos",
+        "line": 356
+      },
+      {
+        "name": "runFormationCreeps",
+        "line": 394
+      },
+      {
+        "name": "runTrainCreeps",
+        "line": 405
+      }
+    ]
   },
   {
     "file": "grafana.js",
     "sha256": "B84EDCBA0E6747431A2ADF08AC2C03680260F0358E3616B06AA6099F14F7CB1D",
     "physicalLines": 225,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-40",
+      "ED-43"
+    ],
+    "capabilityWork": [
+      "Port metrics, CPU diagnostics, and room-planning visuals",
+      "Measure CPU, memory, and colony progress under bounded soak tests"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "tickStart",
+        "line": 10
+      },
+      {
+        "name": "tickEnd",
+        "line": 144
+      }
+    ]
   },
   {
     "file": "jobs.js",
     "sha256": "3B41157F39AC6CA206D4394BC068BEC8895F5D10744618F12E5FE880D22E551D",
     "physicalLines": 2067,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-12",
+      "ED-16",
+      "ED-17",
+      "ED-18"
+    ],
+    "capabilityWork": [
+      "Enforce Lizard complexity and size limits in local checks and CI",
+      "Implement versioned persistence, ownership, and reconstructible caches",
+      "Implement bounded state machines, task outcomes, and action ownership",
+      "Unify movement, routing, path caches, and traffic handling"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "role.courierV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 8
+      },
+      {
+        "name": "courierRole",
+        "line": 9
+      },
+      {
+        "name": "findResource",
+        "line": 11
+      },
+      {
+        "name": "targetHasResources",
+        "line": 50
+      },
+      {
+        "name": "energyStructureHasEnergy",
+        "line": 114
+      },
+      {
+        "name": "storeStructureHasResource",
+        "line": 118
+      },
+      {
+        "name": "JOB_COLLECT_RESOURCE",
+        "line": 122
+      },
+      {
+        "name": "JOB_DEPOSIT_RESOURCE",
+        "line": 123
+      },
+      {
+        "name": "JOB_REPAIR_STRUCTURE",
+        "line": 124
+      },
+      {
+        "name": "JOB_BUILD_STRUCTURE",
+        "line": 125
+      },
+      {
+        "name": "JOB_UPGRADE_CONTROLLER",
+        "line": 126
+      },
+      {
+        "name": "JOB_RESERVE_CONTROLLER",
+        "line": 127
+      },
+      {
+        "name": "JOB_COURIER_COLLECT",
+        "line": 128
+      },
+      {
+        "name": "JOB_COURIER_GRAB",
+        "line": 129
+      },
+      {
+        "name": "JOB_COURIER_DUMP",
+        "line": 130
+      },
+      {
+        "name": "JOB_FILL_ENERGY_STRUCTURE",
+        "line": 131
+      },
+      {
+        "name": "JOB_EMPTY_POWER",
+        "line": 132
+      },
+      {
+        "name": "JOB_EMPTY_ENERGY",
+        "line": 133
+      },
+      {
+        "name": "JOB_EMPTY_GHODIUM",
+        "line": 134
+      },
+      {
+        "name": "JOB_COURIER_DUMP_RESOURCE",
+        "line": 136
+      },
+      {
+        "name": "JOB_COURIER_NO_PATH_END",
+        "line": 137
+      },
+      {
+        "name": "JOB_COURIER_FOLLOW_END",
+        "line": 138
+      },
+      {
+        "name": "JOB_COURIER_END",
+        "line": 139
+      },
+      {
+        "name": "JOB_COURIER_COLLECT_RESOURCE",
+        "line": 140
+      },
+      {
+        "name": "JOB_COURIER_NO_PATH_START",
+        "line": 141
+      },
+      {
+        "name": "JOB_COURIER_FOLLOW_START",
+        "line": 142
+      },
+      {
+        "name": "JOB_COURIER_START",
+        "line": 143
+      },
+      {
+        "name": "clearJob",
+        "line": 145
+      },
+      {
+        "name": "queueJob",
+        "line": 149
+      },
+      {
+        "name": "runJob",
+        "line": 163
+      },
+      {
+        "name": "getJobCollectResource",
+        "line": 250
+      },
+      {
+        "name": "runJobCollectResource",
+        "line": 270
+      },
+      {
+        "name": "getJobDepositResource",
+        "line": 349
+      },
+      {
+        "name": "runJobDepositResource",
+        "line": 368
+      },
+      {
+        "name": "getJobRepairStructure",
+        "line": 410
+      },
+      {
+        "name": "runJobRepairStructure",
+        "line": 418
+      },
+      {
+        "name": "getJobBuildStructure",
+        "line": 438
+      },
+      {
+        "name": "runJobBuildStructure",
+        "line": 446
+      },
+      {
+        "name": "getJobUpgradeController",
+        "line": 481
+      },
+      {
+        "name": "runJobUpgradeController",
+        "line": 489
+      },
+      {
+        "name": "getJobReserveController",
+        "line": 559
+      },
+      {
+        "name": "runJobReserveController",
+        "line": 567
+      },
+      {
+        "name": "getJobCourierCollect",
+        "line": 614
+      },
+      {
+        "name": "runJobCourierCollect",
+        "line": 623
+      },
+      {
+        "name": "runCreepPositionTimer",
+        "line": 652
+      },
+      {
+        "name": "clearCreepPositionTimer",
+        "line": 670
+      },
+      {
+        "name": "getJobCourierStart",
+        "line": 675
+      },
+      {
+        "name": "runJobCourierStart",
+        "line": 682
+      },
+      {
+        "name": "getJobCourierFollowStart",
+        "line": 694
+      },
+      {
+        "name": "runJobCourierFollowStart",
+        "line": 701
+      },
+      {
+        "name": "getJobCourierNoPathStart",
+        "line": 787
+      },
+      {
+        "name": "runJobCourierNoPathStart",
+        "line": 794
+      },
+      {
+        "name": "getJobCourierCollectResource",
+        "line": 820
+      },
+      {
+        "name": "runJobCourierCollectResource",
+        "line": 828
+      },
+      {
+        "name": "getJobCourierEnd",
+        "line": 919
+      },
+      {
+        "name": "runJobCourierEnd",
+        "line": 926
+      },
+      {
+        "name": "getJobCourierFollowEnd",
+        "line": 944
+      },
+      {
+        "name": "runJobCourierFollowEnd",
+        "line": 951
+      },
+      {
+        "name": "getJobCourierNoPathEnd",
+        "line": 1070
+      },
+      {
+        "name": "runJobCourierNoPathEnd",
+        "line": 1077
+      },
+      {
+        "name": "getJobCourierDumpResource",
+        "line": 1130
+      },
+      {
+        "name": "runJobCourierDumpResource",
+        "line": 1137
+      },
+      {
+        "name": "getJobCourierGrab",
+        "line": 1291
+      },
+      {
+        "name": "MOVING_TO_START",
+        "line": 1300
+      },
+      {
+        "name": "FOLLOWING_START",
+        "line": 1301
+      },
+      {
+        "name": "GRABBING_RESOURCE",
+        "line": 1302
+      },
+      {
+        "name": "MOVING_TO_END",
+        "line": 1303
+      },
+      {
+        "name": "FOLLOWING_END",
+        "line": 1304
+      },
+      {
+        "name": "DUMPING_RESOURCE",
+        "line": 1305
+      },
+      {
+        "name": "NO_PATH_START",
+        "line": 1306
+      },
+      {
+        "name": "NO_PATH_END",
+        "line": 1307
+      },
+      {
+        "name": "runJobCourierGrab",
+        "line": 1309
+      },
+      {
+        "name": "getJobCourierDump",
+        "line": 1569
+      },
+      {
+        "name": "runJobCourierDump",
+        "line": 1576
+      },
+      {
+        "name": "getJobEmptyPower",
+        "line": 1884
+      },
+      {
+        "name": "runJobEmptyPower",
+        "line": 1892
+      },
+      {
+        "name": "getJobEmptyEnergy",
+        "line": 1910
+      },
+      {
+        "name": "runJobEmptyEnergy",
+        "line": 1918
+      },
+      {
+        "name": "getJobEmptyGhodium",
+        "line": 1936
+      },
+      {
+        "name": "runJobEmptyGhodium",
+        "line": 1944
+      },
+      {
+        "name": "getJobFillEnergyStructure",
+        "line": 1962
+      },
+      {
+        "name": "runJobFillEnergyStructure",
+        "line": 1970
+      }
+    ]
   },
   {
     "file": "labV2.js",
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-36"
+    ],
+    "capabilityWork": [
+      "Restore resource planning, labs, and boost reservations"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      },
+      {
+        "name": "INPUT_LAB",
+        "line": 12
+      },
+      {
+        "name": "OUTPUT_LAB",
+        "line": 13
+      },
+      {
+        "name": "BOOST_LAB",
+        "line": 14
+      },
+      {
+        "name": "COMPOUNDS",
+        "line": 16
+      },
+      {
+        "name": "runLabs",
+        "line": 53
+      },
+      {
+        "name": "getObjectsFromIds",
+        "line": 69
+      },
+      {
+        "name": "setBoosts",
+        "line": 77
+      },
+      {
+        "name": "setAllRoomBoosts",
+        "line": 87
+      },
+      {
+        "name": "setupLabs",
+        "line": 103
+      },
+      {
+        "name": "getOutputBoostLabs",
+        "line": 174
+      },
+      {
+        "name": "findNearest",
+        "line": 194
+      }
+    ]
   },
   {
     "file": "main.js",
     "sha256": "B520542885ED76B6195067BDD11CC43686793FC39AAA5E7FC47A7F50C90C2646",
     "physicalLines": 427,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-10",
+      "ED-11",
+      "ED-13",
+      "ED-14",
+      "ED-15",
+      "ED-16",
+      "ED-18",
+      "ED-28",
+      "ED-35",
+      "ED-38",
+      "ED-42",
+      "ED-43",
+      "ED-44"
+    ],
+    "capabilityWork": [
+      "Record the rewrite charter, capability inventory, and architecture decisions",
+      "Scaffold the TypeScript bot and reproducible Windows build",
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Establish a pinned local real-engine scenario runner",
+      "Implement composition, configuration, tick views, and fault-isolated scheduling",
+      "Implement versioned persistence, ownership, and reconstructible caches",
+      "Unify movement, routing, path caches, and traffic handling",
+      "Port scouting, observer intel, and the traversable room graph",
+      "Restore source-keeper and power-bank operations",
+      "Complete advanced resource and structure capability parity",
+      "Close the capability matrix with packaged multi-tick parity scenarios",
+      "Measure CPU, memory, and colony progress under bounded soak tests",
+      "Rehearse memory migration and rollback; prepare the release candidate"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "consoleCommands",
+      "grafana",
+      "visuals",
+      "room.properties",
+      "controller"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "consoleCommands",
+        "line": 2
+      },
+      {
+        "name": "grafana",
+        "line": 3
+      },
+      {
+        "name": "visuals",
+        "line": 4
+      },
+      {
+        "name": "commands",
+        "line": 8
+      },
+      {
+        "name": "hashCode",
+        "line": 24
+      },
+      {
+        "name": "originalFilter",
+        "line": 41
+      },
+      {
+        "name": "filterCache",
+        "line": 42
+      },
+      {
+        "name": "controller",
+        "line": 58
+      },
+      {
+        "name": "__isEqualTo",
+        "line": 60
+      },
+      {
+        "name": "constructBorderRamparts",
+        "line": 225
+      },
+      {
+        "name": "getRampartTiles",
+        "line": 295
+      },
+      {
+        "name": "getExitTiles",
+        "line": 354
+      },
+      {
+        "name": "isWalkable",
+        "line": 412
+      },
+      {
+        "name": "visualizeMatrix",
+        "line": 424
+      }
+    ]
   },
   {
     "file": "market.js",
     "sha256": "C84FEEAC1EA0414E7CBEEE8AF33FA9794C58749B0C4E732C8F3F3A762EC6E626",
     "physicalLines": 287,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-37"
+    ],
+    "capabilityWork": [
+      "Restore terminal balancing, transfers, and market policy"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "MINIMUM_AMOUNT",
+        "line": 3
+      },
+      {
+        "name": "BUY_AMOUNT",
+        "line": 4
+      },
+      {
+        "name": "MAXIMUM_AMOUNT",
+        "line": 5
+      },
+      {
+        "name": "SELL_AMOUNT",
+        "line": 6
+      },
+      {
+        "name": "BUY_INCREMENT",
+        "line": 7
+      },
+      {
+        "name": "SELL_INCREMENT",
+        "line": 8
+      },
+      {
+        "name": "MIN_CREDITS",
+        "line": 9
+      },
+      {
+        "name": "MIN_TRANSACTION_AMOUNT",
+        "line": 10
+      },
+      {
+        "name": "BASE_RESOURCES",
+        "line": 12
+      },
+      {
+        "name": "MAX_PRICES",
+        "line": 23
+      },
+      {
+        "name": "MIN_PRICES",
+        "line": 33
+      }
+    ]
   },
   {
     "file": "mission.js",
     "sha256": "DB2948AA12044204307CF84698801D6DBB542AEB7E1483983421F32197912B09",
     "physicalLines": 952,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-16",
+      "ED-17",
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Implement versioned persistence, ownership, and reconstructible caches",
+      "Implement bounded state machines, task outcomes, and action ownership",
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "formations"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 4
+      },
+      {
+        "name": "formationsModule",
+        "line": 5
+      },
+      {
+        "name": "CRITERIA_TYPE_RALLY",
+        "line": 7
+      },
+      {
+        "name": "CRITERIA_TYPE_TIME",
+        "line": 8
+      },
+      {
+        "name": "CRITERIA_TYPE_FORMATION",
+        "line": 9
+      },
+      {
+        "name": "CRITERIA_TYPE_TRAIN",
+        "line": 10
+      },
+      {
+        "name": "CRITERIA_TYPE_DESTROY",
+        "line": 11
+      },
+      {
+        "name": "CRITERIA_TYPE_GCL",
+        "line": 12
+      },
+      {
+        "name": "CRITERIA_TYPE_CLAIM",
+        "line": 13
+      },
+      {
+        "name": "CRITERIA_TYPE_HUNT",
+        "line": 14
+      },
+      {
+        "name": "CRITERIA_TYPE_SIGN",
+        "line": 15
+      },
+      {
+        "name": "createCriteria",
+        "line": 47
+      },
+      {
+        "name": "evaluateCriteria",
+        "line": 66
+      },
+      {
+        "name": "evaluateRallyCriteria",
+        "line": 101
+      },
+      {
+        "name": "evaluateTimeCriteria",
+        "line": 136
+      },
+      {
+        "name": "evaluateFormationCriteria",
+        "line": 140
+      },
+      {
+        "name": "evaluateTrainCriteria",
+        "line": 150
+      },
+      {
+        "name": "evaluateGCLCriteria",
+        "line": 160
+      },
+      {
+        "name": "evaluateClaimCriteria",
+        "line": 164
+      },
+      {
+        "name": "evaluateSignCriteria",
+        "line": 175
+      },
+      {
+        "name": "evaluateDestroyCriteria",
+        "line": 183
+      },
+      {
+        "name": "MISSION_STATE_NOT_STARTED",
+        "line": 206
+      },
+      {
+        "name": "MISSION_STATE_IN_PROGRESS",
+        "line": 207
+      },
+      {
+        "name": "MISSION_STATE_PASSED",
+        "line": 208
+      },
+      {
+        "name": "MISSION_STATE_FAILED",
+        "line": 209
+      },
+      {
+        "name": "MISSION_TYPE_BASE",
+        "line": 211
+      },
+      {
+        "name": "MISSION_TYPE_ATTACK",
+        "line": 212
+      },
+      {
+        "name": "MISSION_TYPE_CLAIM",
+        "line": 213
+      },
+      {
+        "name": "createMissionPlan",
+        "line": 215
+      },
+      {
+        "name": "createClaimMissionPlan",
+        "line": 228
+      },
+      {
+        "name": "createAttackMissionPlan",
+        "line": 233
+      },
+      {
+        "name": "beginMission",
+        "line": 252
+      },
+      {
+        "name": "validateBeginMissionArgs",
+        "line": 267
+      },
+      {
+        "name": "beginClaimMission",
+        "line": 293
+      },
+      {
+        "name": "beginAttackMission",
+        "line": 309
+      },
+      {
+        "name": "spawnCreepWave",
+        "line": 338
+      },
+      {
+        "name": "evaluateMissionState",
+        "line": 354
+      },
+      {
+        "name": "runMission",
+        "line": 367
+      },
+      {
+        "name": "runAttackMission",
+        "line": 398
+      },
+      {
+        "name": "STAGE_TYPE_RALLY",
+        "line": 494
+      },
+      {
+        "name": "STAGE_TYPE_FORMATION",
+        "line": 495
+      },
+      {
+        "name": "STAGE_TYPE_TRAIN",
+        "line": 496
+      },
+      {
+        "name": "STAGE_TYPE_CLAIM",
+        "line": 497
+      },
+      {
+        "name": "STAGE_TYPE_PORTAL",
+        "line": 498
+      },
+      {
+        "name": "STAGE_TYPE_HUNT",
+        "line": 499
+      },
+      {
+        "name": "createStage",
+        "line": 501
+      },
+      {
+        "name": "evaluateStage",
+        "line": 510
+      },
+      {
+        "name": "runMissions",
+        "line": 519
+      },
+      {
+        "name": "getRallyCriteria",
+        "line": 525
+      },
+      {
+        "name": "getRallyOptions",
+        "line": 535
+      },
+      {
+        "name": "getHuntCriteria",
+        "line": 543
+      },
+      {
+        "name": "getHuntOptions",
+        "line": 553
+      },
+      {
+        "name": "simpleCreateRallyStage",
+        "line": 560
+      },
+      {
+        "name": "simpleCreatePortalStage",
+        "line": 567
+      },
+      {
+        "name": "simpleCreateHuntStage",
+        "line": 573
+      },
+      {
+        "name": "getDestroyCriteria",
+        "line": 583
+      },
+      {
+        "name": "getFormationCriteria",
+        "line": 593
+      },
+      {
+        "name": "getGCLCriteria",
+        "line": 602
+      },
+      {
+        "name": "getFormationOptions",
+        "line": 611
+      },
+      {
+        "name": "simpleCreateFormationStage",
+        "line": 621
+      },
+      {
+        "name": "getTrainCriteria",
+        "line": 628
+      },
+      {
+        "name": "getTrainOptions",
+        "line": 637
+      },
+      {
+        "name": "getClaimCriteria",
+        "line": 646
+      },
+      {
+        "name": "getClaimOptions",
+        "line": 655
+      },
+      {
+        "name": "simpleCreateTrainStage",
+        "line": 661
+      },
+      {
+        "name": "simpleCreateClaimStage",
+        "line": 668
+      },
+      {
+        "name": "createMissionPlanFromFlags",
+        "line": 679
+      },
+      {
+        "name": "spawnMission",
+        "line": 793
+      },
+      {
+        "name": "Squad",
+        "line": 828
+      },
+      {
+        "name": "Criteria",
+        "line": 833
+      },
+      {
+        "name": "Stage",
+        "line": 875
+      },
+      {
+        "name": "Mission",
+        "line": 906
+      }
+    ]
   },
   {
     "file": "remote.defense.hostility.js",
     "sha256": "47A987F427516D2E797C76D1453E5E5D418183143CCC8FAAA80856F9D6CAF7DE",
     "physicalLines": 242,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-32"
+    ],
+    "capabilityWork": [
+      "Restore threat assessment, towers, safe mode, and remote response"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "HOSTILE_PLAYER_REASSESS_TICKS",
+        "line": 9
+      },
+      {
+        "name": "ensureHostilityMemory",
+        "line": 11
+      },
+      {
+        "name": "getMyUsername",
+        "line": 22
+      },
+      {
+        "name": "isIgnoredUsername",
+        "line": 40
+      },
+      {
+        "name": "isScoutVictim",
+        "line": 51
+      },
+      {
+        "name": "recordHostileIncident",
+        "line": 63
+      },
+      {
+        "name": "pruneExpiredHostility",
+        "line": 82
+      },
+      {
+        "name": "reviewAttackEvents",
+        "line": 98
+      },
+      {
+        "name": "reviewControllerEvents",
+        "line": 137
+      },
+      {
+        "name": "reviewRemoteController",
+        "line": 178
+      },
+      {
+        "name": "reviewVisibleContexts",
+        "line": 217
+      },
+      {
+        "name": "isPlayerHostile",
+        "line": 231
+      }
+    ]
   },
   {
     "file": "remote.defense.js",
     "sha256": "ECCEF454F5F487408768EE82F9669D5D2027B1AEBD3ED05856B3D89865E649B9",
     "physicalLines": 87,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-29",
+      "ED-32"
+    ],
+    "capabilityWork": [
+      "Restore remote mining, reservation, and outpost logistics",
+      "Restore threat assessment, towers, safe mode, and remote response"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "remote.manager",
+      "remote.defense.hostility",
+      "remote.defense.response"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "remoteManager",
+        "line": 8
+      },
+      {
+        "name": "hostility",
+        "line": 9
+      },
+      {
+        "name": "responsePlanner",
+        "line": 10
+      },
+      {
+        "name": "ensureRemoteDefenseMemory",
+        "line": 12
+      },
+      {
+        "name": "getHomeContexts",
+        "line": 24
+      },
+      {
+        "name": "getVisibleRemoteContexts",
+        "line": 44
+      },
+      {
+        "name": "run",
+        "line": 70
+      }
+    ]
   },
   {
     "file": "remote.defense.response.js",
     "sha256": "6AC6B77C0F340B1163BC26C0F881C79CBF93E18F90D8D068289E8E57BCEAC9DB",
     "physicalLines": 445,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-32"
+    ],
+    "capabilityWork": [
+      "Restore threat assessment, towers, safe mode, and remote response"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "spawner"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 7
+      },
+      {
+        "name": "spawner",
+        "line": 8
+      },
+      {
+        "name": "REMOTE_DEFENSE_PRIORITY",
+        "line": 10
+      },
+      {
+        "name": "REMOTE_DEFENSE_RESPONSE_PREFIX",
+        "line": 11
+      },
+      {
+        "name": "REMOTE_CORE_RESPONSE_PREFIX",
+        "line": 12
+      },
+      {
+        "name": "REMOTE_DEFENSE_STALE_TICKS",
+        "line": 13
+      },
+      {
+        "name": "REMOTE_CORE_BLACKLIST_TICKS",
+        "line": 14
+      },
+      {
+        "name": "REMOTE_CORE_FAILURE_WINDOW",
+        "line": 15
+      },
+      {
+        "name": "REMOTE_CORE_MAX_FAILURES",
+        "line": 16
+      },
+      {
+        "name": "ensureRemoteDefenseMemory",
+        "line": 18
+      },
+      {
+        "name": "getResponseMemory",
+        "line": 29
+      },
+      {
+        "name": "bodyCost",
+        "line": 39
+      },
+      {
+        "name": "getInvaderCore",
+        "line": 47
+      },
+      {
+        "name": "isInvaderControlledRemote",
+        "line": 54
+      },
+      {
+        "name": "summarizeInvaderThreat",
+        "line": 65
+      },
+      {
+        "name": "getDesiredHunterCount",
+        "line": 94
+      },
+      {
+        "name": "getHunterBodyScale",
+        "line": 107
+      },
+      {
+        "name": "getAssignedResponseUnits",
+        "line": 119
+      },
+      {
+        "name": "getCandidateSpawnRooms",
+        "line": 152
+      },
+      {
+        "name": "queueHunter",
+        "line": 187
+      },
+      {
+        "name": "queueCoreAttacker",
+        "line": 205
+      },
+      {
+        "name": "queueDowner",
+        "line": 219
+      },
+      {
+        "name": "getAssignedResponseUnitsByRole",
+        "line": 232
+      },
+      {
+        "name": "updateInvaderCoreAttemptState",
+        "line": 246
+      },
+      {
+        "name": "clearInvaderCoreResponse",
+        "line": 278
+      },
+      {
+        "name": "shouldBlacklistInvaderCoreRoom",
+        "line": 286
+      },
+      {
+        "name": "planInvaderCoreResponse",
+        "line": 297
+      },
+      {
+        "name": "planVisibleRemoteResponses",
+        "line": 372
+      }
+    ]
   },
   {
     "file": "remote.manager.js",
     "sha256": "1A8F7DA58D4BB77BDAA20515EB3053A0545C948716BE6628B5186F62E4CEF553",
     "physicalLines": 971,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-28",
+      "ED-29"
+    ],
+    "capabilityWork": [
+      "Port scouting, observer intel, and the traversable room graph",
+      "Restore remote mining, reservation, and outpost logistics"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "expansion.manager"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 8
+      },
+      {
+        "name": "expansionManager",
+        "line": 9
+      },
+      {
+        "name": "SCOUT_SWEEP_INTERVAL",
+        "line": 11
+      },
+      {
+        "name": "REMOTE_SUPPORT_INTERVAL",
+        "line": 12
+      },
+      {
+        "name": "DEFAULT_SUPPORTED_REMOTE_MINERS",
+        "line": 13
+      },
+      {
+        "name": "REMOTE_EVALUATION_INTERVAL",
+        "line": 14
+      },
+      {
+        "name": "KEEPER_REMOTE_MIN_RCL",
+        "line": 15
+      },
+      {
+        "name": "KEEPER_ROOM_REMOTE_MINERS_REQUIRED",
+        "line": 16
+      },
+      {
+        "name": "KEEPER_ROOM_PATROL_COST",
+        "line": 17
+      },
+      {
+        "name": "AUTO_KEEPER_PATROL_PREFIX",
+        "line": 18
+      },
+      {
+        "name": "SCOUT_DANGER_WINDOW",
+        "line": 19
+      },
+      {
+        "name": "SCOUT_DANGER_DEATHS",
+        "line": 20
+      },
+      {
+        "name": "UNDESIGNATED_KEEPER_ROUTE_COST",
+        "line": 21
+      },
+      {
+        "name": "NORMAL_REMOTE_ROOM_COMPLETION_BONUS",
+        "line": 22
+      },
+      {
+        "name": "REMOTE_PATH_DISTANCE_VERSION",
+        "line": 23
+      },
+      {
+        "name": "isRoomBlacklistedForRemoteMining",
+        "line": 31
+      },
+      {
+        "name": "ensureRemoteMiningMemory",
+        "line": 40
+      },
+      {
+        "name": "getOwnedRoomObject",
+        "line": 60
+      },
+      {
+        "name": "getAssignedRemoteRooms",
+        "line": 72
+      },
+      {
+        "name": "getHomeLogisticsAnchor",
+        "line": 91
+      },
+      {
+        "name": "getOrderedScoutTargetRooms",
+        "line": 106
+      },
+      {
+        "name": "getDangerousScoutRooms",
+        "line": 113
+      },
+      {
+        "name": "isKeeperMiningRoomForHome",
+        "line": 129
+      },
+      {
+        "name": "getScoutTravelRooms",
+        "line": 145
+      },
+      {
+        "name": "getPendingScoutRooms",
+        "line": 168
+      },
+      {
+        "name": "markRoomScouted",
+        "line": 194
+      },
+      {
+        "name": "getPathDistance",
+        "line": 200
+      },
+      {
+        "name": "summarizeKeeperLairs",
+        "line": 224
+      },
+      {
+        "name": "summarizeRoomObjects",
+        "line": 238
+      },
+      {
+        "name": "normalizeScoutedRoomPathDistances",
+        "line": 266
+      },
+      {
+        "name": "recordScoutedRoom",
+        "line": 284
+      },
+      {
+        "name": "hasRemoteNodeForSource",
+        "line": 310
+      },
+      {
+        "name": "isOwnedByMe",
+        "line": 324
+      },
+      {
+        "name": "isRoomAssignedToAnotherHome",
+        "line": 332
+      },
+      {
+        "name": "isRoomBlacklistedForHome",
+        "line": 357
+      },
+      {
+        "name": "isSourceBlacklistedForHome",
+        "line": 363
+      },
+      {
+        "name": "dropRemoteRoomForHome",
+        "line": 374
+      },
+      {
+        "name": "recordRemoteMinerReachability",
+        "line": 409
+      },
+      {
+        "name": "getSupportedRemoteMiners",
+        "line": 454
+      },
+      {
+        "name": "evaluateSupportedRemoteMiners",
+        "line": 465
+      },
+      {
+        "name": "scoreRemoteSourceCandidate",
+        "line": 498
+      },
+      {
+        "name": "buildRemoteSourceCandidates",
+        "line": 508
+      },
+      {
+        "name": "isClaimedOwnedRoom",
+        "line": 548
+      },
+      {
+        "name": "buildKeeperRoomCandidates",
+        "line": 563
+      },
+      {
+        "name": "buildNormalRoomCandidates",
+        "line": 610
+      },
+      {
+        "name": "selectRemoteSources",
+        "line": 665
+      },
+      {
+        "name": "syncRemoteReservations",
+        "line": 735
+      },
+      {
+        "name": "reconcileRemoteSources",
+        "line": 797
+      },
+      {
+        "name": "getAssignedKeeperRemoteRooms",
+        "line": 823
+      },
+      {
+        "name": "getKeeperPatrolName",
+        "line": 840
+      },
+      {
+        "name": "buildKeeperPatrolInfo",
+        "line": 849
+      },
+      {
+        "name": "syncKeeperRoomPatrols",
+        "line": 887
+      },
+      {
+        "name": "evaluateRemoteSources",
+        "line": 922
+      },
+      {
+        "name": "runRoom",
+        "line": 951
+      }
+    ]
   },
   {
     "file": "resourceManager.js",
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-13",
+      "ED-16",
+      "ED-36",
+      "ED-37",
+      "ED-38"
+    ],
+    "capabilityWork": [
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Implement versioned persistence, ownership, and reconstructible caches",
+      "Restore resource planning, labs, and boost reservations",
+      "Restore terminal balancing, transfers, and market policy",
+      "Complete advanced resource and structure capability parity"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "labV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "lab",
+        "line": 2
+      },
+      {
+        "name": "COMPOUNDS",
+        "line": 4
+      },
+      {
+        "name": "GRAFANA_PRODUCTION_MAPPING",
+        "line": 41
+      },
+      {
+        "name": "intermediateAmount",
+        "line": 55
+      },
+      {
+        "name": "init",
+        "line": 56
+      },
+      {
+        "name": "targets",
+        "line": 58
+      },
+      {
+        "name": "resourceManager",
+        "line": 68
+      }
+    ]
   },
   {
     "file": "role.attacker.js",
     "sha256": "DA27151302BE0D51BEDC2A96995B85618C7634BBAF82373336F500CFA92AA0C0",
     "physicalLines": 301,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-29",
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Restore remote mining, reservation, and outpost logistics",
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "roleAttacker",
+        "line": 3
+      }
+    ]
   },
   {
     "file": "role.builder.js",
     "sha256": "FFDB0F8FF030515BBA396C9889B779664139348911766414636DC423015056FC",
     "physicalLines": 643,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22",
+      "ED-30"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery",
+      "Restore expansion selection, claiming, and colony bootstrap"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "role.upgrader",
+      "role.courierV2",
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "roleUpgrader",
+        "line": 1
+      },
+      {
+        "name": "roleCourier",
+        "line": 2
+      },
+      {
+        "name": "util",
+        "line": 3
+      },
+      {
+        "name": "roleBuilder",
+        "line": 6
+      },
+      {
+        "name": "isArt",
+        "line": 631
+      }
+    ]
   },
   {
     "file": "role.claimer.js",
     "sha256": "645CF4FCC1FDB4D1137BDC2DDBA7D6C7D6A379C63D48EE3E204C287259141264",
     "physicalLines": 276,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-27",
+      "ED-29",
+      "ED-30",
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Implement desired-state construction reconciliation",
+      "Restore remote mining, reservation, and outpost logistics",
+      "Restore expansion selection, claiming, and colony bootstrap",
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "jobs",
+      "room.layout"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 8
+      },
+      {
+        "name": "jobs",
+        "line": 9
+      },
+      {
+        "name": "roomLayout",
+        "line": 10
+      },
+      {
+        "name": "getMatchingClaimIntent",
+        "line": 17
+      },
+      {
+        "name": "getClaimMoveOptions",
+        "line": 38
+      },
+      {
+        "name": "getBlockedClaimRooms",
+        "line": 47
+      },
+      {
+        "name": "getClaimerNextHop",
+        "line": 68
+      },
+      {
+        "name": "moveClaimerToTarget",
+        "line": 90
+      },
+      {
+        "name": "ensureBootstrapSpawnPlacement",
+        "line": 107
+      },
+      {
+        "name": "roleClaimer",
+        "line": 144
+      }
+    ]
   },
   {
     "file": "role.courier.js",
     "sha256": "C041C44E07F29F935EE16DF98E54E33AC5ED6889840076C23A1A7C27329C3834",
     "physicalLines": 112,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      null
+    ],
+    "capabilityWork": [
+      null
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "not reachable from main literal imports; external use not excluded",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "roleCourier",
+        "line": 3
+      }
+    ]
   },
   {
     "file": "role.courierV2.js",
     "sha256": "098184F96F18891185D022830F3413E86207A24753C58EB5CAC2FBA9C52B111A",
     "physicalLines": 779,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-21"
+    ],
+    "capabilityWork": [
+      "Port hauling, distribution, scavenging, and link logistics"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "SPAWNING",
+        "line": 5
+      },
+      {
+        "name": "MOVING_TO_START",
+        "line": 6
+      },
+      {
+        "name": "FOLLOWING_START",
+        "line": 7
+      },
+      {
+        "name": "COLLECTING_ENERGY",
+        "line": 8
+      },
+      {
+        "name": "MOVING_TO_END",
+        "line": 9
+      },
+      {
+        "name": "FOLLOWING_END",
+        "line": 10
+      },
+      {
+        "name": "DUMPING_ENERGY",
+        "line": 11
+      },
+      {
+        "name": "NO_PATH_START",
+        "line": 12
+      },
+      {
+        "name": "NO_PATH_END",
+        "line": 13
+      },
+      {
+        "name": "roleCourier",
+        "line": 15
+      },
+      {
+        "name": "repairThings",
+        "line": 691
+      },
+      {
+        "name": "grabEnergy",
+        "line": 745
+      }
+    ]
   },
   {
     "file": "role.courierV3.js",
     "sha256": "07D4642F18F528971C00E4C9843EB71B54701AE73CB67959260F435368AF3132",
     "physicalLines": 464,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-17",
+      "ED-18",
+      "ED-21"
+    ],
+    "capabilityWork": [
+      "Implement bounded state machines, task outcomes, and action ownership",
+      "Unify movement, routing, path caches, and traffic handling",
+      "Port hauling, distribution, scavenging, and link logistics"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "jobs",
+      "utilV2",
+      "room.energy.recovery"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "MAX_TERMINAL_STORE",
+        "line": 9
+      },
+      {
+        "name": "MAX_STORAGE_STORE",
+        "line": 10
+      },
+      {
+        "name": "STATUS_IDLE",
+        "line": 12
+      },
+      {
+        "name": "STATUS_GETTING_RESOURCES",
+        "line": 13
+      },
+      {
+        "name": "STATUS_FILLING_STRUCTURE",
+        "line": 14
+      },
+      {
+        "name": "STATUS_DUMPING_RESOURCES",
+        "line": 15
+      },
+      {
+        "name": "debug",
+        "line": 17
+      },
+      {
+        "name": "jobs",
+        "line": 19
+      },
+      {
+        "name": "util",
+        "line": 20
+      },
+      {
+        "name": "roomEnergyRecovery",
+        "line": 21
+      },
+      {
+        "name": "clearCourierJobsForPathError",
+        "line": 23
+      },
+      {
+        "name": "clearRecoverySupportMemory",
+        "line": 33
+      },
+      {
+        "name": "getRecoveryEnergySource",
+        "line": 43
+      },
+      {
+        "name": "getRecoveryEnergyDropoff",
+        "line": 48
+      },
+      {
+        "name": "runRecoverySupportCourier",
+        "line": 70
+      }
+    ]
   },
   {
     "file": "role.distributorV2.js",
     "sha256": "DE7E16B3B78C1BCA28EDF14E722B1CCE592A834A5F30761A49F14FB2C7D1E347",
     "physicalLines": 690,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-21"
+    ],
+    "capabilityWork": [
+      "Port hauling, distribution, scavenging, and link logistics"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "jobs",
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "jobs",
+        "line": 8
+      },
+      {
+        "name": "util",
+        "line": 9
+      },
+      {
+        "name": "performanceProtections",
+        "line": 11
+      },
+      {
+        "name": "renewOrSuicide",
+        "line": 29
+      },
+      {
+        "name": "containsLab",
+        "line": 56
+      },
+      {
+        "name": "performanceWrap",
+        "line": 63
+      }
+    ]
   },
   {
     "file": "role.golem.js",
     "sha256": "D1182DEA347AA72A1EBAB970D3C6B42ADD7D3189B02D10779DD778ED1499BE2E",
     "physicalLines": 110,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "roleGolem",
+        "line": 1
+      }
+    ]
   },
   {
     "file": "role.hauler.js",
     "sha256": "5F73608703A10089372ABBDF8520E5C89EE6AA2A94932CFD8D7FEFE43CD284C7",
     "physicalLines": 370,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-21"
+    ],
+    "capabilityWork": [
+      "Port hauling, distribution, scavenging, and link logistics"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      },
+      {
+        "name": "roleHauler",
+        "line": 12
+      },
+      {
+        "name": "repairThings",
+        "line": 319
+      },
+      {
+        "name": "grabEnergy",
+        "line": 357
+      }
+    ]
   },
   {
     "file": "role.hunter.js",
     "sha256": "193A24D9894C1E6FDA4BFEF85FD0619E04B314FC08732A6E600F46960F68C1BA",
     "physicalLines": 268,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-13",
+      "ED-32"
+    ],
+    "capabilityWork": [
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Restore threat assessment, towers, safe mode, and remote response"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 7
+      },
+      {
+        "name": "getInvaderStructures",
+        "line": 9
+      },
+      {
+        "name": "roleAttacker",
+        "line": 17
+      }
+    ]
   },
   {
     "file": "role.mineralCourierV2.js",
     "sha256": "B0B32452B8C5245975F5B9B09BB9BE01A4E25757D3C4D777871DC266E48BB287",
     "physicalLines": 331,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-21",
+      "ED-36"
+    ],
+    "capabilityWork": [
+      "Port hauling, distribution, scavenging, and link logistics",
+      "Restore resource planning, labs, and boost reservations"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "jobs",
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "MAX_TERMINAL_STORE",
+        "line": 10
+      },
+      {
+        "name": "MAX_STORAGE_STORE",
+        "line": 11
+      },
+      {
+        "name": "STATUS_IDLE",
+        "line": 13
+      },
+      {
+        "name": "STATUS_GETTING_RESOURCES",
+        "line": 14
+      },
+      {
+        "name": "STATUS_FILLING_STRUCTURE",
+        "line": 15
+      },
+      {
+        "name": "STATUS_DUMPING_RESOURCES",
+        "line": 16
+      },
+      {
+        "name": "debug",
+        "line": 18
+      },
+      {
+        "name": "jobs",
+        "line": 20
+      },
+      {
+        "name": "util",
+        "line": 21
+      }
+    ]
   },
   {
     "file": "role.minerV2.js",
     "sha256": "F9F094FA95365ECDD3DE443DCA024D8735CB5C9DC26A17483F3FB84F8966502C",
     "physicalLines": 355,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-17",
+      "ED-20"
+    ],
+    "capabilityWork": [
+      "Implement bounded state machines, task outcomes, and action ownership",
+      "Port mining stations and reusable extraction behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "remote.manager"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 7
+      },
+      {
+        "name": "remoteManager",
+        "line": 8
+      },
+      {
+        "name": "STATE_SPAWNING",
+        "line": 10
+      },
+      {
+        "name": "STATE_MOVING",
+        "line": 11
+      },
+      {
+        "name": "STATE_MINING",
+        "line": 12
+      },
+      {
+        "name": "STATE_BUILDING",
+        "line": 13
+      },
+      {
+        "name": "isTrackedRemoteMiner",
+        "line": 20
+      },
+      {
+        "name": "updateRemoteReachability",
+        "line": 36
+      }
+    ]
   },
   {
     "file": "role.patroller.js",
     "sha256": "C77BCC0CD5FE9D57044B8ABF638485CEA684B2F3888D5C3E6DF2007475D4EB6A",
     "physicalLines": 116,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": []
   },
   {
     "file": "role.powerSquad.js",
     "sha256": "04BCCC12A914E0ACE45F5289E8B783EF7CC264ACC77DFF0E2F6E8516304F2CF4",
     "physicalLines": 210,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-35"
+    ],
+    "capabilityWork": [
+      "Restore source-keeper and power-bank operations"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "powerSquad",
+        "line": 3
+      }
+    ]
   },
   {
     "file": "role.scavenger.js",
     "sha256": "458BC84726080301828943F191F41CD835FECAD1D3C99497694F29F333FBF801",
     "physicalLines": 138,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-21"
+    ],
+    "capabilityWork": [
+      "Port hauling, distribution, scavenging, and link logistics"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "jobs",
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "jobs",
+        "line": 8
+      },
+      {
+        "name": "util",
+        "line": 9
+      },
+      {
+        "name": "NON_ESSENTIAL_STRUCTURE_TYPES",
+        "line": 11
+      },
+      {
+        "name": "MAX_IMMEDIATE_JOB_RUNS",
+        "line": 17
+      },
+      {
+        "name": "getDropoffTarget",
+        "line": 19
+      },
+      {
+        "name": "getScavengeTarget",
+        "line": 38
+      },
+      {
+        "name": "evaluateNextTask",
+        "line": 84
+      }
+    ]
   },
   {
     "file": "role.scout.js",
     "sha256": "1E94FF029CB29F63BC995C7D68EB572991944E4DB5586FFCCA46408FB83278E8",
     "physicalLines": 751,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-28"
+    ],
+    "capabilityWork": [
+      "Port scouting, observer intel, and the traversable room graph"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "expansion.manager",
+      "remote.manager"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 8
+      },
+      {
+        "name": "expansionManager",
+        "line": 9
+      },
+      {
+        "name": "remoteManager",
+        "line": 10
+      },
+      {
+        "name": "SCOUT_COMPAT_TARGET_POS",
+        "line": 12
+      },
+      {
+        "name": "SCOUT_STABILIZE_TICKS",
+        "line": 13
+      },
+      {
+        "name": "SCOUT_ENTRY_OFFSET",
+        "line": 14
+      },
+      {
+        "name": "SCOUT_HOSTILE_AVOID_RANGE",
+        "line": 15
+      },
+      {
+        "name": "SCOUT_STALE_INTEL_TICKS",
+        "line": 16
+      },
+      {
+        "name": "SCOUT_TEMP_AVOID_TICKS",
+        "line": 17
+      },
+      {
+        "name": "SCOUT_ROUTE_FAILURE_AVOID_TICKS",
+        "line": 18
+      },
+      {
+        "name": "SCOUT_STUCK_THRESHOLD",
+        "line": 19
+      },
+      {
+        "name": "SCOUT_OSCILLATION_THRESHOLD",
+        "line": 20
+      },
+      {
+        "name": "SCOUT_RESPONSIVE_REUSE_PATH",
+        "line": 21
+      },
+      {
+        "name": "SCOUT_CROSS_ROOM_REUSE_PATH",
+        "line": 22
+      },
+      {
+        "name": "SCOUT_SAME_ROOM_REUSE_PATH",
+        "line": 23
+      },
+      {
+        "name": "getScoutHostiles",
+        "line": 25
+      },
+      {
+        "name": "buildAvoidanceMatrix",
+        "line": 35
+      },
+      {
+        "name": "markRoomExplored",
+        "line": 78
+      },
+      {
+        "name": "ensureTempAvoidRooms",
+        "line": 83
+      },
+      {
+        "name": "pruneTempAvoidRooms",
+        "line": 88
+      },
+      {
+        "name": "addTempAvoidRoom",
+        "line": 99
+      },
+      {
+        "name": "isRoomTemporarilyAvoided",
+        "line": 110
+      },
+      {
+        "name": "getRoomStatus",
+        "line": 118
+      },
+      {
+        "name": "roomStatusIsNormal",
+        "line": 127
+      },
+      {
+        "name": "clearRouteMemory",
+        "line": 132
+      },
+      {
+        "name": "clearObjectiveMemory",
+        "line": 138
+      },
+      {
+        "name": "resetFallbackCycle",
+        "line": 145
+      },
+      {
+        "name": "markFallbackRoomSeen",
+        "line": 150
+      },
+      {
+        "name": "fallbackRoomSeenThisCycle",
+        "line": 156
+      },
+      {
+        "name": "getFallbackTargetRoom",
+        "line": 166
+      },
+      {
+        "name": "assignTargetRoom",
+        "line": 212
+      },
+      {
+        "name": "completeAssignedTarget",
+        "line": 228
+      },
+      {
+        "name": "completeFallbackTarget",
+        "line": 241
+      },
+      {
+        "name": "abandonCurrentTarget",
+        "line": 245
+      },
+      {
+        "name": "ensureScoutObjective",
+        "line": 262
+      },
+      {
+        "name": "updateTransitionState",
+        "line": 299
+      },
+      {
+        "name": "updateMovementTracking",
+        "line": 326
+      },
+      {
+        "name": "isStableInCurrentRoom",
+        "line": 347
+      },
+      {
+        "name": "shouldRecordCurrentRoom",
+        "line": 354
+      },
+      {
+        "name": "recordCurrentRoomIntel",
+        "line": 358
+      },
+      {
+        "name": "getEntryStabilizeTarget",
+        "line": 369
+      },
+      {
+        "name": "getReusePath",
+        "line": 383
+      },
+      {
+        "name": "moveWithinRoom",
+        "line": 400
+      },
+      {
+        "name": "moveToStabilize",
+        "line": 431
+      },
+      {
+        "name": "getExitDirectionToRoom",
+        "line": 439
+      },
+      {
+        "name": "getExitGoalsToRoom",
+        "line": 448
+      },
+      {
+        "name": "escapeCurrentRoom",
+        "line": 456
+      },
+      {
+        "name": "getCurrentRouteRoom",
+        "line": 464
+      },
+      {
+        "name": "routeStepIsAdjacent",
+        "line": 474
+      },
+      {
+        "name": "routeRoomsAreValid",
+        "line": 483
+      },
+      {
+        "name": "buildRouteToTarget",
+        "line": 498
+      },
+      {
+        "name": "handleRouteFailure",
+        "line": 548
+      },
+      {
+        "name": "ensureValidRoute",
+        "line": 568
+      },
+      {
+        "name": "completeCurrentRoomProgress",
+        "line": 602
+      },
+      {
+        "name": "rebuildRouteAfterEscape",
+        "line": 619
+      },
+      {
+        "name": "recoverFromMovementFailure",
+        "line": 634
+      },
+      {
+        "name": "moveToNextRouteExit",
+        "line": 665
+      },
+      {
+        "name": "runAssignedFlagFallback",
+        "line": 676
+      },
+      {
+        "name": "roleScout",
+        "line": 684
+      }
+    ]
   },
   {
     "file": "role.skSquad.js",
     "sha256": "2FB438D36FDE91942F14DAFE2F467ED9D551FDD2290D62E4005ED85688FFB824",
     "physicalLines": 382,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-35"
+    ],
+    "capabilityWork": [
+      "Restore source-keeper and power-bank operations"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 7
+      },
+      {
+        "name": "skSquad",
+        "line": 9
+      }
+    ]
   },
   {
     "file": "role.upgradeMaster.js",
     "sha256": "180AC0220E05469850795B5484743C1E6095F0F476DBDC36570D1BBBB7646F93",
     "physicalLines": 215,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      },
+      {
+        "name": "LAB_MINERAL_AMOUNT",
+        "line": 12
+      }
+    ]
   },
   {
     "file": "role.upgrader.js",
     "sha256": "C7EB1B431A63851638D6EAC7D6DB66E5C3C17E9AD96B52E1688223AD17648080",
     "physicalLines": 76,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "roleUpgrader",
+        "line": 3
+      }
+    ]
   },
   {
     "file": "role.upgraderV2.js",
     "sha256": "023AF653193D91C5C29E1A52312FD84CF7608450C7ACC7EEA7557B0673FB5FEF",
     "physicalLines": 104,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "jobs",
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "jobs",
+        "line": 10
+      },
+      {
+        "name": "util",
+        "line": 11
+      }
+    ]
   },
   {
     "file": "role.wallBuilder.js",
     "sha256": "06634A3F0D02455C2C48023ACEE9CBC35AB811F5741BB0193FA9DD612508287C",
     "physicalLines": 158,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "jobs",
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "jobs",
+        "line": 10
+      },
+      {
+        "name": "util",
+        "line": 11
+      },
+      {
+        "name": "RANGE_HEURISTIC",
+        "line": 13
+      },
+      {
+        "name": "isArt",
+        "line": 15
+      },
+      {
+        "name": "findLowestHits",
+        "line": 148
+      }
+    ]
   },
   {
     "file": "room.energy.recovery.js",
     "sha256": "C10E838EC6EC54E5187D952D7252533B2537CE9EF1B61C25A6F06A4F16513C1D",
     "physicalLines": 196,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      },
+      {
+        "name": "RECOVERY_CHECK_INTERVAL",
+        "line": 12
+      },
+      {
+        "name": "RECOVERY_TRIGGER_ENERGY",
+        "line": 13
+      },
+      {
+        "name": "RECOVERY_EXIT_ENERGY",
+        "line": 14
+      },
+      {
+        "name": "RECOVERY_DISTRIBUTOR_ENABLE_ENERGY",
+        "line": 15
+      },
+      {
+        "name": "RECOVERY_DONOR_MIN_ENERGY",
+        "line": 16
+      },
+      {
+        "name": "RECOVERY_DONOR_MAX_DISTANCE",
+        "line": 17
+      },
+      {
+        "name": "RECOVERY_SUPPORT_BATCH",
+        "line": 18
+      },
+      {
+        "name": "ensureRecoveryMemory",
+        "line": 20
+      },
+      {
+        "name": "getStoredEnergy",
+        "line": 27
+      },
+      {
+        "name": "isEligibleRecoveryRoom",
+        "line": 36
+      },
+      {
+        "name": "getDonorRooms",
+        "line": 40
+      },
+      {
+        "name": "refreshRecoveryStates",
+        "line": 60
+      },
+      {
+        "name": "reassignDistributorsForRecovery",
+        "line": 106
+      },
+      {
+        "name": "run",
+        "line": 128
+      },
+      {
+        "name": "getRecoveryState",
+        "line": 141
+      },
+      {
+        "name": "isRecoveryActive",
+        "line": 146
+      },
+      {
+        "name": "applySpawnRecoveryTargets",
+        "line": 157
+      },
+      {
+        "name": "getCourierSupportRequests",
+        "line": 170
+      }
+    ]
   },
   {
     "file": "room.layout.js",
     "sha256": "8FAD77478C4BDD824C97F5E3A345161D7AF482FBF2568E76FFF9A5E48FE56F06",
     "physicalLines": 185,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-13",
+      "ED-24",
+      "ED-27",
+      "ED-30",
+      "ED-41"
+    ],
+    "capabilityWork": [
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Port standard and constrained layouts behind validated strategy contracts",
+      "Implement desired-state construction reconciliation",
+      "Restore expansion selection, claiming, and colony bootstrap",
+      "Document configuration profiles and the strategy extension workflow"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "room.layout.shared",
+      "room.layout.strategy.standard",
+      "room.layout.strategy.constrained",
+      "room.rampart.strategy.perimeterWithController",
+      "room.rampart.strategy.exitPerimeter",
+      "room.rampart.strategy.terrainAwareCore"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "shared",
+        "line": 8
+      },
+      {
+        "name": "standardCoreLayoutStrategy",
+        "line": 9
+      },
+      {
+        "name": "constrainedSpaceLayoutStrategy",
+        "line": 10
+      },
+      {
+        "name": "perimeterWithControllerRampartStrategy",
+        "line": 11
+      },
+      {
+        "name": "exitPerimeterRampartStrategy",
+        "line": 12
+      },
+      {
+        "name": "terrainAwareCoreRampartStrategy",
+        "line": 13
+      },
+      {
+        "name": "ROOM_LAYOUT_STRATEGIES",
+        "line": 15
+      },
+      {
+        "name": "RAMPART_LAYOUT_STRATEGIES",
+        "line": 20
+      },
+      {
+        "name": "selectRoomLayoutStrategy",
+        "line": 32
+      },
+      {
+        "name": "selectRampartLayoutStrategy",
+        "line": 51
+      },
+      {
+        "name": "shouldRefreshRoomPlan",
+        "line": 68
+      },
+      {
+        "name": "generateRoomPlan",
+        "line": 87
+      },
+      {
+        "name": "getBootstrapSpawnPlan",
+        "line": 114
+      },
+      {
+        "name": "planRoom",
+        "line": 124
+      },
+      {
+        "name": "syncRoomPlanToBuildQueue",
+        "line": 138
+      }
+    ]
   },
   {
     "file": "room.layout.scoring.js",
     "sha256": "3475C1AB4D18EFCD0D169EABFC2A6A284776E45D886795DFB4D0638D316B478A",
     "physicalLines": 51,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-24",
+      "ED-40"
+    ],
+    "capabilityWork": [
+      "Port standard and constrained layouts behind validated strategy contracts",
+      "Port metrics, CPU diagnostics, and room-planning visuals"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "room.layout.shared"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "shared",
+        "line": 7
+      },
+      {
+        "name": "STRUCTURE_SERVICE_WEIGHTS",
+        "line": 9
+      },
+      {
+        "name": "scoreDistributorServicing",
+        "line": 19
+      }
+    ]
   },
   {
     "file": "room.layout.shared.js",
     "sha256": "FBF48E6CC9664DC0FD69F0B7700463B4774D974E7D0F196AF491A4B8BB2352F4",
     "physicalLines": 1024,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-13",
+      "ED-23",
+      "ED-24",
+      "ED-25",
+      "ED-26"
+    ],
+    "capabilityWork": [
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Extract room assessment, grid geometry, and planning constraints",
+      "Port standard and constrained layouts behind validated strategy contracts",
+      "Add stamp composition for irregular rooms",
+      "Implement terrain-aware defensive planning and barrier validation"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "PLAN_VERSION",
+        "line": 8
+      },
+      {
+        "name": "CORE_MIN",
+        "line": 9
+      },
+      {
+        "name": "CORE_MAX",
+        "line": 10
+      },
+      {
+        "name": "RAMPART_LEVEL",
+        "line": 11
+      },
+      {
+        "name": "CORE_ROAD_LEVEL",
+        "line": 12
+      },
+      {
+        "name": "SOURCE_CONTAINER_LEVEL",
+        "line": 13
+      },
+      {
+        "name": "ROOM_PLAN_TYPES",
+        "line": 15
+      },
+      {
+        "name": "CORE_SINGLETON_LEVELS",
+        "line": 33
+      },
+      {
+        "name": "CORE_TYPE_PRIORITIES",
+        "line": 43
+      },
+      {
+        "name": "HIGH_VALUE_TEMPLATE_TYPES",
+        "line": 60
+      },
+      {
+        "name": "FACTORY_TARGETS",
+        "line": 72
+      },
+      {
+        "name": "EXTRA_LINK_TARGETS",
+        "line": 79
+      },
+      {
+        "name": "RAW_TEMPLATE",
+        "line": 84
+      },
+      {
+        "name": "TRANSFORMS",
+        "line": 130
+      },
+      {
+        "name": "TEMPLATE_STORAGE",
+        "line": 141
+      },
+      {
+        "name": "runtimeCache",
+        "line": 142
+      },
+      {
+        "name": "posKey",
+        "line": 147
+      },
+      {
+        "name": "buildKey",
+        "line": 151
+      },
+      {
+        "name": "clonePos",
+        "line": 155
+      },
+      {
+        "name": "isInsideRoom",
+        "line": 163
+      },
+      {
+        "name": "getRange",
+        "line": 167
+      },
+      {
+        "name": "normalizeCoreTemplate",
+        "line": 171
+      },
+      {
+        "name": "CORE_TEMPLATE",
+        "line": 182
+      },
+      {
+        "name": "transformRelative",
+        "line": 184
+      },
+      {
+        "name": "worldFromRelative",
+        "line": 188
+      },
+      {
+        "name": "anchorFromWorld",
+        "line": 192
+      },
+      {
+        "name": "flattenTemplatePoints",
+        "line": 199
+      },
+      {
+        "name": "FLAT_TEMPLATE",
+        "line": 209
+      },
+      {
+        "name": "getTemplateWorldPositions",
+        "line": 211
+      },
+      {
+        "name": "getTemplateBounds",
+        "line": 218
+      },
+      {
+        "name": "ensureRoomPlanMemory",
+        "line": 230
+      },
+      {
+        "name": "getTileIndex",
+        "line": 245
+      },
+      {
+        "name": "ensureTileSummary",
+        "line": 249
+      },
+      {
+        "name": "getRoomAnalysis",
+        "line": 270
+      },
+      {
+        "name": "createEmptyPlan",
+        "line": 344
+      },
+      {
+        "name": "saveRoomPlan",
+        "line": 366
+      },
+      {
+        "name": "getFirstAvailableRcl",
+        "line": 394
+      },
+      {
+        "name": "sortEntries",
+        "line": 406
+      },
+      {
+        "name": "addPlanEntry",
+        "line": 416
+      },
+      {
+        "name": "roomHasStructureTypeAt",
+        "line": 432
+      },
+      {
+        "name": "terrainBlocks",
+        "line": 438
+      },
+      {
+        "name": "roomHasBlockingObject",
+        "line": 443
+      },
+      {
+        "name": "getRoomSources",
+        "line": 466
+      },
+      {
+        "name": "getRoomMinerals",
+        "line": 470
+      },
+      {
+        "name": "isBuildableTile",
+        "line": 474
+      },
+      {
+        "name": "reservePos",
+        "line": 480
+      },
+      {
+        "name": "reserveTemplatePositions",
+        "line": 484
+      },
+      {
+        "name": "isTemplateTileViable",
+        "line": 490
+      },
+      {
+        "name": "findExactExistingStructure",
+        "line": 496
+      },
+      {
+        "name": "getBuildConflictPenalty",
+        "line": 500
+      },
+      {
+        "name": "countAdjacentRoads",
+        "line": 519
+      },
+      {
+        "name": "getCandidateSeedStructures",
+        "line": 530
+      },
+      {
+        "name": "getCentralAnchorCandidates",
+        "line": 534
+      },
+      {
+        "name": "scoreCorePlacement",
+        "line": 544
+      },
+      {
+        "name": "chooseCorePlacement",
+        "line": 579
+      },
+      {
+        "name": "countOpenTilesAround",
+        "line": 640
+      },
+      {
+        "name": "scoreBootstrapSpawnPos",
+        "line": 653
+      },
+      {
+        "name": "chooseBootstrapFallbackSpawnPos",
+        "line": 671
+      },
+      {
+        "name": "assignProgressiveLevels",
+        "line": 691
+      },
+      {
+        "name": "addCoreTemplate",
+        "line": 715
+      },
+      {
+        "name": "findClosestByScore",
+        "line": 740
+      },
+      {
+        "name": "findAdjacentContainer",
+        "line": 754
+      },
+      {
+        "name": "findNearbyUtilityTile",
+        "line": 791
+      },
+      {
+        "name": "findSourceLinkTile",
+        "line": 818
+      },
+      {
+        "name": "planControllerInfrastructure",
+        "line": 849
+      },
+      {
+        "name": "planSourceInfrastructure",
+        "line": 865
+      },
+      {
+        "name": "planMineralInfrastructure",
+        "line": 887
+      },
+      {
+        "name": "planFactoryAndAuxLinks",
+        "line": 900
+      },
+      {
+        "name": "buildRoadPath",
+        "line": 928
+      },
+      {
+        "name": "planUtilityRoads",
+        "line": 957
+      },
+      {
+        "name": "finalizePlan",
+        "line": 977
+      }
+    ]
   },
   {
     "file": "room.layout.strategy.constrained.js",
     "sha256": "A22F95232219E1B7DA05CB6D239133624CD48D84C91D581027F99D3009906350",
     "physicalLines": 621,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-24",
+      "ED-25"
+    ],
+    "capabilityWork": [
+      "Port standard and constrained layouts behind validated strategy contracts",
+      "Add stamp composition for irregular rooms"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "room.layout.shared",
+      "room.layout.scoring"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "shared",
+        "line": 9
+      },
+      {
+        "name": "scoring",
+        "line": 10
+      },
+      {
+        "name": "debug",
+        "line": 11
+      },
+      {
+        "name": "MAX_CONSTRAINED_ANCHORS",
+        "line": 12
+      },
+      {
+        "name": "MAX_CONSTRAINED_SUCCESSFUL_PLANS",
+        "line": 13
+      },
+      {
+        "name": "TRANSFORMS",
+        "line": 15
+      },
+      {
+        "name": "LOCAL_CORE_STRUCTURES",
+        "line": 26
+      },
+      {
+        "name": "LOCAL_LABS",
+        "line": 31
+      },
+      {
+        "name": "LOCAL_ROADS",
+        "line": 44
+      },
+      {
+        "name": "SERVICE_STRUCTURE_PLANS",
+        "line": 54
+      },
+      {
+        "name": "UTILITY_STRUCTURE_PLANS",
+        "line": 60
+      },
+      {
+        "name": "runtimeCache",
+        "line": 66
+      },
+      {
+        "name": "getRuntimeCache",
+        "line": 72
+      },
+      {
+        "name": "transformOffset",
+        "line": 84
+      },
+      {
+        "name": "toWorldPos",
+        "line": 88
+      },
+      {
+        "name": "addCandidateAnchor",
+        "line": 93
+      },
+      {
+        "name": "getCandidateAnchors",
+        "line": 107
+      },
+      {
+        "name": "getPlannedRoadKeys",
+        "line": 144
+      },
+      {
+        "name": "getPlannedRoadPositions",
+        "line": 148
+      },
+      {
+        "name": "getServiceCandidateCacheKey",
+        "line": 152
+      },
+      {
+        "name": "getServiceCandidatePool",
+        "line": 170
+      },
+      {
+        "name": "countAdjacentPlannedRoads",
+        "line": 226
+      },
+      {
+        "name": "applyConstrainedCore",
+        "line": 243
+      },
+      {
+        "name": "getAnchorTargets",
+        "line": 297
+      },
+      {
+        "name": "addRoadPathEntries",
+        "line": 311
+      },
+      {
+        "name": "planHeavyTrafficRoads",
+        "line": 326
+      },
+      {
+        "name": "collectStructureCandidates",
+        "line": 355
+      },
+      {
+        "name": "scoreServiceCandidate",
+        "line": 365
+      },
+      {
+        "name": "scoreUtilityCandidate",
+        "line": 376
+      },
+      {
+        "name": "selectCandidatePositions",
+        "line": 382
+      },
+      {
+        "name": "planCompactServiceStructures",
+        "line": 398
+      },
+      {
+        "name": "buildRampartBounds",
+        "line": 444
+      },
+      {
+        "name": "tryBuildConstrainedPlan",
+        "line": 482
+      },
+      {
+        "name": "getBestConstrainedPlan",
+        "line": 532
+      },
+      {
+        "name": "canFitRoom",
+        "line": 564
+      },
+      {
+        "name": "getSuitabilityScore",
+        "line": 569
+      },
+      {
+        "name": "buildBasePlan",
+        "line": 581
+      },
+      {
+        "name": "getBootstrapSpawnPlan",
+        "line": 590
+      }
+    ]
   },
   {
     "file": "room.layout.strategy.standard.js",
     "sha256": "2125FE820B1F3267BFC9D69A007CFE9656470A825F5869177501797F300179FE",
     "physicalLines": 110,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-24",
+      "ED-25"
+    ],
+    "capabilityWork": [
+      "Port standard and constrained layouts behind validated strategy contracts",
+      "Add stamp composition for irregular rooms"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "room.layout.shared",
+      "room.layout.scoring"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "shared",
+        "line": 8
+      },
+      {
+        "name": "scoring",
+        "line": 9
+      },
+      {
+        "name": "canFitRoom",
+        "line": 16
+      },
+      {
+        "name": "getSuitabilityScore",
+        "line": 21
+      },
+      {
+        "name": "buildBasePlan",
+        "line": 36
+      },
+      {
+        "name": "getBootstrapSpawnPlan",
+        "line": 70
+      }
+    ]
   },
   {
     "file": "room.properties.js",
     "sha256": "441F54A338E526565AF2B7C6CADBA0EF5F5C9FE42B8962A1D9F46D10A2CD35A3",
     "physicalLines": 437,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-15",
+      "ED-20",
+      "ED-23"
+    ],
+    "capabilityWork": [
+      "Implement composition, configuration, tick views, and fault-isolated scheduling",
+      "Port mining stations and reusable extraction behaviors",
+      "Extract room assessment, grid geometry, and planning constraints"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      }
+    ]
   },
   {
     "file": "room.rampart.strategy.exitPerimeter.js",
     "sha256": "1EC5D2E405AF1AFA79FE6906DE4E03FA889D71A60962F75B7B60ACCF309C2BCB",
     "physicalLines": 28,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "placeholder: canPlanRamparts returns false; applyRamparts returns unchanged plan",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-26"
+    ],
+    "capabilityWork": [
+      "Implement terrain-aware defensive planning and barrier validation"
+    ],
+    "disposition": "implement enhancement under ED-26",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "canPlanRamparts",
+        "line": 7
+      },
+      {
+        "name": "getRampartCount",
+        "line": 11
+      },
+      {
+        "name": "applyRamparts",
+        "line": 19
+      }
+    ]
   },
   {
     "file": "room.rampart.strategy.perimeterWithController.js",
     "sha256": "DFD11BA162BD5B9A0AE9C00B20C69EC979D3C7268D423DDF72F366DA5B9BAD44",
     "physicalLines": 101,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-26"
+    ],
+    "capabilityWork": [
+      "Implement terrain-aware defensive planning and barrier validation"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "room.layout.shared"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "shared",
+        "line": 7
+      },
+      {
+        "name": "collectRampartEntries",
+        "line": 14
+      },
+      {
+        "name": "canPlanRamparts",
+        "line": 66
+      },
+      {
+        "name": "getRampartCount",
+        "line": 75
+      },
+      {
+        "name": "applyRamparts",
+        "line": 84
+      }
+    ]
   },
   {
     "file": "room.rampart.strategy.terrainAwareCore.js",
     "sha256": "ADE84C5F94B93259EA9FE8A36C0654A014003A93D1FC350FBD45D61D18DB6CD4",
     "physicalLines": 28,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "placeholder: canPlanRamparts returns false; applyRamparts returns unchanged plan",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-26"
+    ],
+    "capabilityWork": [
+      "Implement terrain-aware defensive planning and barrier validation"
+    ],
+    "disposition": "implement enhancement under ED-26",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "canPlanRamparts",
+        "line": 7
+      },
+      {
+        "name": "getRampartCount",
+        "line": 11
+      },
+      {
+        "name": "applyRamparts",
+        "line": 19
+      }
+    ]
   },
   {
     "file": "room.strategy.js",
     "sha256": "EC845D036DE21C02041B9B6C7683DE6104300C9536610B308089AB8E84C7AD77",
     "physicalLines": 1627,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-10",
+      "ED-19"
+    ],
+    "capabilityWork": [
+      "Record the rewrite charter, capability inventory, and architecture decisions",
+      "Separate population demand, body recipes, spawn queues, and execution"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "not reachable from main literal imports; external use not excluded",
+    "sourceSymbols": [
+      {
+        "name": "getRequiredCouriers",
+        "line": 51
+      },
+      {
+        "name": "getRequiredMineralMiners",
+        "line": 69
+      },
+      {
+        "name": "setPopulationTargets",
+        "line": 74
+      },
+      {
+        "name": "getAvailableSpawn",
+        "line": 175
+      },
+      {
+        "name": "spawnCreep",
+        "line": 184
+      },
+      {
+        "name": "executeTask",
+        "line": 823
+      },
+      {
+        "name": "setTasks",
+        "line": 951
+      },
+      {
+        "name": "safeToSpawnIntoVassal",
+        "line": 1550
+      },
+      {
+        "name": "nextConsumerSource",
+        "line": 1566
+      },
+      {
+        "name": "getTaskName",
+        "line": 1582
+      }
+    ]
   },
   {
     "file": "spawner.js",
     "sha256": "E4904EA6AB199A064B71BEDF81F60E0DBD5E1A821A9B01AEF0924A05DADFF5B8",
     "physicalLines": 2766,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-12",
+      "ED-13",
+      "ED-19",
+      "ED-29",
+      "ED-30",
+      "ED-31"
+    ],
+    "capabilityWork": [
+      "Enforce Lizard complexity and size limits in local checks and CI",
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Separate population demand, body recipes, spawn queues, and execution",
+      "Restore remote mining, reservation, and outpost logistics",
+      "Restore expansion selection, claiming, and colony bootstrap",
+      "Port vassal coordination and specialist room modes"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2",
+      "expansion.manager",
+      "remote.manager",
+      "room.energy.recovery"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 8
+      },
+      {
+        "name": "expansionManager",
+        "line": 9
+      },
+      {
+        "name": "remoteManager",
+        "line": 10
+      },
+      {
+        "name": "roomEnergyRecovery",
+        "line": 11
+      },
+      {
+        "name": "isRemoteEconomySuppressed",
+        "line": 19
+      },
+      {
+        "name": "RCL_1_POP",
+        "line": 28
+      },
+      {
+        "name": "RCL_2_POP",
+        "line": 38
+      },
+      {
+        "name": "RCL_3_POP",
+        "line": 46
+      },
+      {
+        "name": "RCL_4_POP",
+        "line": 54
+      },
+      {
+        "name": "RCL_5_POP",
+        "line": 62
+      },
+      {
+        "name": "RCL_6_POP",
+        "line": 70
+      },
+      {
+        "name": "RCL_7_POP",
+        "line": 80
+      },
+      {
+        "name": "RCL_8_POP",
+        "line": 90
+      },
+      {
+        "name": "setup",
+        "line": 100
+      },
+      {
+        "name": "manualSpawnTask",
+        "line": 143
+      },
+      {
+        "name": "spawnTnT",
+        "line": 160
+      },
+      {
+        "name": "spawnTask",
+        "line": 205
+      },
+      {
+        "name": "evaluateRoomWithOverrides",
+        "line": 222
+      },
+      {
+        "name": "getCarryCapacityForBody",
+        "line": 412
+      },
+      {
+        "name": "buildRoadScavengerBody",
+        "line": 427
+      },
+      {
+        "name": "getScavengerBodyProfile",
+        "line": 453
+      },
+      {
+        "name": "getScavengerCreepProfile",
+        "line": 473
+      },
+      {
+        "name": "isFullSizeScavengerProfile",
+        "line": 491
+      },
+      {
+        "name": "queueRecoverySupportCouriers",
+        "line": 504
+      },
+      {
+        "name": "queueRecoveryScavenger",
+        "line": 551
+      },
+      {
+        "name": "getOrderedReservationTargets",
+        "line": 610
+      },
+      {
+        "name": "getBody",
+        "line": 648
+      },
+      {
+        "name": "getTwoBodyAssaultStructure",
+        "line": 1174
+      },
+      {
+        "name": "getTwoBodyStructure",
+        "line": 1255
+      },
+      {
+        "name": "SPAWN_PRIORITIES",
+        "line": 1270
+      },
+      {
+        "name": "clearAutoSpawnTasks",
+        "line": 1288
+      },
+      {
+        "name": "countQueuedAutoSpawnTasks",
+        "line": 1297
+      },
+      {
+        "name": "hasClaimerForDestination",
+        "line": 1326
+      },
+      {
+        "name": "popRoles",
+        "line": 1364
+      },
+      {
+        "name": "getRequiredCouriers",
+        "line": 1384
+      },
+      {
+        "name": "hasScoutForRoom",
+        "line": 1402
+      },
+      {
+        "name": "isPathableAdjacentMiningTile",
+        "line": 1410
+      },
+      {
+        "name": "getAvailableMiningTiles",
+        "line": 1439
+      },
+      {
+        "name": "shouldSpawnExplorationScout",
+        "line": 1452
+      },
+      {
+        "name": "queueExplorationScout",
+        "line": 1459
+      },
+      {
+        "name": "evaluateRoom",
+        "line": 1477
+      },
+      {
+        "name": "safeToSpawnIntoVassal",
+        "line": 2449
+      },
+      {
+        "name": "nextConsumerSource",
+        "line": 2481
+      },
+      {
+        "name": "getAvailableSpawn",
+        "line": 2496
+      },
+      {
+        "name": "applyBoosts",
+        "line": 2529
+      },
+      {
+        "name": "applyTaskMemory",
+        "line": 2566
+      },
+      {
+        "name": "getRoomSpawnTasks",
+        "line": 2584
+      },
+      {
+        "name": "processSpawnTasks",
+        "line": 2603
+      },
+      {
+        "name": "roleTextColours",
+        "line": 2696
+      },
+      {
+        "name": "getRoleText",
+        "line": 2711
+      },
+      {
+        "name": "wakeUpDistributors",
+        "line": 2719
+      },
+      {
+        "name": "getNumCreepsUnderTTL",
+        "line": 2728
+      },
+      {
+        "name": "getCreepsUnderTTL",
+        "line": 2747
+      }
+    ]
   },
   {
     "file": "squad.tnt.js",
     "sha256": "34B2B26FE3EE47A5E7298EEA292ED42457B9F27827FED6F6008719FF177BD743",
     "physicalLines": 289,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-34",
+      "ED-35"
+    ],
+    "capabilityWork": [
+      "Port formations and coordinated squad movement",
+      "Restore source-keeper and power-bank operations"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "squadTruckAndTrailor",
+        "line": 17
+      }
+    ]
   },
   {
     "file": "terminal.js",
     "sha256": "923162AFC5A9740DD1BE033E8327C6BB510AA69E489ACE808B7861836F3AFE18",
     "physicalLines": 429,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-31",
+      "ED-37",
+      "ED-38"
+    ],
+    "capabilityWork": [
+      "Port vassal coordination and specialist room modes",
+      "Restore terminal balancing, transfers, and market policy",
+      "Complete advanced resource and structure capability parity"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "sendResourceAmount",
+        "line": 1
+      },
+      {
+        "name": "minResourceAmount",
+        "line": 2
+      },
+      {
+        "name": "excessResourceAmount",
+        "line": 3
+      },
+      {
+        "name": "sendPowerAmount",
+        "line": 5
+      },
+      {
+        "name": "minPowerAmount",
+        "line": 6
+      },
+      {
+        "name": "excessPowerAmount",
+        "line": 7
+      },
+      {
+        "name": "terminal",
+        "line": 9
+      }
+    ]
   },
   {
     "file": "upgradeRoom.js",
     "sha256": "7B382CF2DC4B903F5094F8ED6CB096D681C9967FF4211231BABA10B6A8409682",
     "physicalLines": 135,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-22",
+      "ED-31",
+      "ED-37"
+    ],
+    "capabilityWork": [
+      "Port building, repairs, upgrading, and colony recovery",
+      "Port vassal coordination and specialist room modes",
+      "Restore terminal balancing, transfers, and market policy"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 1
+      },
+      {
+        "name": "run",
+        "line": 3
+      }
+    ]
   },
   {
     "file": "utilV2.js",
     "sha256": "11BF335962648B19685B4B79D4AC682939C4723F2B962F4C878089E788169D5E",
     "physicalLines": 3636,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-12",
+      "ED-13",
+      "ED-18",
+      "ED-20",
+      "ED-21",
+      "ED-23",
+      "ED-27",
+      "ED-35",
+      "ED-38",
+      "ED-39",
+      "ED-44"
+    ],
+    "capabilityWork": [
+      "Enforce Lizard complexity and size limits in local checks and CI",
+      "Build legacy characterization fixtures and corrected behavior regressions",
+      "Unify movement, routing, path caches, and traffic handling",
+      "Port mining stations and reusable extraction behaviors",
+      "Port hauling, distribution, scavenging, and link logistics",
+      "Extract room assessment, grid geometry, and planning constraints",
+      "Implement desired-state construction reconciliation",
+      "Restore source-keeper and power-bank operations",
+      "Complete advanced resource and structure capability parity",
+      "Preserve flags and console controls through application operations",
+      "Rehearse memory migration and rollback; prepare the release candidate"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "room.layout"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "roomLayout",
+        "line": 8
+      },
+      {
+        "name": "STALE_CONSTRUCTION_CHECK_INTERVAL",
+        "line": 9
+      },
+      {
+        "name": "STALE_CONSTRUCTION_MAX_AGE",
+        "line": 10
+      },
+      {
+        "name": "COURIER_PATH_INVALIDATION_INTERVAL",
+        "line": 11
+      },
+      {
+        "name": "COURIER_PATH_MAX_AGE",
+        "line": 12
+      },
+      {
+        "name": "isAllied",
+        "line": 14
+      },
+      {
+        "name": "isNeutral",
+        "line": 55
+      },
+      {
+        "name": "withdrawFromTarget",
+        "line": 83
+      },
+      {
+        "name": "findMyMiner",
+        "line": 103
+      },
+      {
+        "name": "collectEnergyFromMiner",
+        "line": 150
+      },
+      {
+        "name": "lookForStructuresInArea",
+        "line": 193
+      },
+      {
+        "name": "lookForStructuresInRange",
+        "line": 205
+      },
+      {
+        "name": "lookForRuinsInRange",
+        "line": 227
+      },
+      {
+        "name": "lookForRampartsInArea",
+        "line": 249
+      },
+      {
+        "name": "lookForHostilesInArea",
+        "line": 261
+      },
+      {
+        "name": "getMyRoom",
+        "line": 273
+      },
+      {
+        "name": "getMyRoom2",
+        "line": 292
+      },
+      {
+        "name": "readPositionFromMemory",
+        "line": 301
+      },
+      {
+        "name": "lookForInRange",
+        "line": 307
+      },
+      {
+        "name": "concat",
+        "line": 331
+      },
+      {
+        "name": "isKeeperRoom",
+        "line": 336
+      },
+      {
+        "name": "isHighwayRoom",
+        "line": 350
+      },
+      {
+        "name": "flee",
+        "line": 364
+      },
+      {
+        "name": "createCostMatrix",
+        "line": 409
+      },
+      {
+        "name": "tabulate",
+        "line": 420
+      },
+      {
+        "name": "updateCreepCache",
+        "line": 456
+      },
+      {
+        "name": "clearCreepCache",
+        "line": 477
+      },
+      {
+        "name": "SCOUT_VISIBILITY_PRIORITY",
+        "line": 484
+      },
+      {
+        "name": "SPAWN_UTILIZATION_WINDOW",
+        "line": 485
+      },
+      {
+        "name": "getRoomScoutingMemory",
+        "line": 487
+      },
+      {
+        "name": "getRoomSpawnUsageMemory",
+        "line": 510
+      },
+      {
+        "name": "pruneRoomSpawnUsage",
+        "line": 526
+      },
+      {
+        "name": "recordSpawnUsage",
+        "line": 544
+      },
+      {
+        "name": "recordSpawnStarvation",
+        "line": 556
+      },
+      {
+        "name": "clearSpawnStarvation",
+        "line": 582
+      },
+      {
+        "name": "getRoomSpawnUtilization",
+        "line": 594
+      },
+      {
+        "name": "getRoomSpawnLoad",
+        "line": 619
+      },
+      {
+        "name": "recordScoutHeartbeat",
+        "line": 655
+      },
+      {
+        "name": "recordScoutDeath",
+        "line": 672
+      },
+      {
+        "name": "recordClaimerDeath",
+        "line": 704
+      },
+      {
+        "name": "ensureMaintenanceMemory",
+        "line": 748
+      },
+      {
+        "name": "cleanupStaleConstructionSites",
+        "line": 768
+      },
+      {
+        "name": "invalidateOldCourierPaths",
+        "line": 817
+      },
+      {
+        "name": "queueVisibilityScout",
+        "line": 836
+      },
+      {
+        "name": "processMiningFlags",
+        "line": 870
+      },
+      {
+        "name": "clearDeadCreeps",
+        "line": 893
+      },
+      {
+        "name": "getCreeps",
+        "line": 938
+      },
+      {
+        "name": "COMPOUNDS",
+        "line": 962
+      },
+      {
+        "name": "getInputLabs",
+        "line": 999
+      },
+      {
+        "name": "getLabConfiguration",
+        "line": 1022
+      },
+      {
+        "name": "setupLabs",
+        "line": 1055
+      },
+      {
+        "name": "observeRooms",
+        "line": 1089
+      },
+      {
+        "name": "observeRoom",
+        "line": 1109
+      },
+      {
+        "name": "monitorObservations",
+        "line": 1128
+      },
+      {
+        "name": "createPowerBank",
+        "line": 1201
+      },
+      {
+        "name": "monitorPowerBanks",
+        "line": 1230
+      },
+      {
+        "name": "manualSpawnTask",
+        "line": 1353
+      },
+      {
+        "name": "spawnTask",
+        "line": 1370
+      },
+      {
+        "name": "spawnTnT",
+        "line": 1387
+      },
+      {
+        "name": "getNextId",
+        "line": 1432
+      },
+      {
+        "name": "processPower",
+        "line": 1438
+      },
+      {
+        "name": "getBodyPotential",
+        "line": 1452
+      },
+      {
+        "name": "getMeleePotential",
+        "line": 1479
+      },
+      {
+        "name": "getDismantlePotential",
+        "line": 1483
+      },
+      {
+        "name": "getBuildPotential",
+        "line": 1487
+      },
+      {
+        "name": "getRangedPotential",
+        "line": 1491
+      },
+      {
+        "name": "getHealPotential",
+        "line": 1495
+      },
+      {
+        "name": "getRangedHealPotential",
+        "line": 1499
+      },
+      {
+        "name": "getHitpointsPotential",
+        "line": 1503
+      },
+      {
+        "name": "getLowestHitCreep",
+        "line": 1523
+      },
+      {
+        "name": "BODY_HITS",
+        "line": 1539
+      },
+      {
+        "name": "getBodyHpPotential",
+        "line": 1541
+      },
+      {
+        "name": "getKillPotential",
+        "line": 1563
+      },
+      {
+        "name": "getTowerDamage",
+        "line": 1575
+      },
+      {
+        "name": "getTowersDamage",
+        "line": 1589
+      },
+      {
+        "name": "isWorthRangedMassAttack",
+        "line": 1598
+      },
+      {
+        "name": "getAvailableSpawn",
+        "line": 1620
+      },
+      {
+        "name": "reversePath",
+        "line": 1629
+      },
+      {
+        "name": "reverseDirections",
+        "line": 1649
+      },
+      {
+        "name": "creepDetails",
+        "line": 1657
+      },
+      {
+        "name": "getInputLabInfos",
+        "line": 1664
+      },
+      {
+        "name": "getInputLabsV2",
+        "line": 1679
+      },
+      {
+        "name": "getOutputLabInfos",
+        "line": 1694
+      },
+      {
+        "name": "getOutputLabsV2",
+        "line": 1710
+      },
+      {
+        "name": "getBoostLabInfos",
+        "line": 1725
+      },
+      {
+        "name": "getBoostLabsV2",
+        "line": 1741
+      },
+      {
+        "name": "accountForExitPositions",
+        "line": 1756
+      },
+      {
+        "name": "positionIsOnExit",
+        "line": 1780
+      },
+      {
+        "name": "getRelativeDirection",
+        "line": 1784
+      },
+      {
+        "name": "getPositionInDirection",
+        "line": 1815
+      },
+      {
+        "name": "getRoomInDirection",
+        "line": 1875
+      },
+      {
+        "name": "getClosest",
+        "line": 1926
+      },
+      {
+        "name": "getAllInRange",
+        "line": 1947
+      },
+      {
+        "name": "getRange",
+        "line": 1965
+      },
+      {
+        "name": "isReachable",
+        "line": 1972
+      },
+      {
+        "name": "keepAway",
+        "line": 1987
+      },
+      {
+        "name": "isPosFree",
+        "line": 2030
+      },
+      {
+        "name": "buildPath",
+        "line": 2039
+      },
+      {
+        "name": "getSourcePathForRoom",
+        "line": 2275
+      },
+      {
+        "name": "addSource",
+        "line": 2293
+      },
+      {
+        "name": "removeSource",
+        "line": 2327
+      },
+      {
+        "name": "auditSourceNodes",
+        "line": 2341
+      },
+      {
+        "name": "addSourceNode",
+        "line": 2365
+      },
+      {
+        "name": "addScoutedSourceNode",
+        "line": 2381
+      },
+      {
+        "name": "updateSourceNodes",
+        "line": 2418
+      },
+      {
+        "name": "updateSourceNode",
+        "line": 2426
+      },
+      {
+        "name": "calculateRoomCourierSpawn",
+        "line": 2471
+      },
+      {
+        "name": "calculateRequiredCarryParts",
+        "line": 2500
+      },
+      {
+        "name": "getCourierBody",
+        "line": 2572
+      },
+      {
+        "name": "buildRoadsFromPath",
+        "line": 2591
+      },
+      {
+        "name": "buildRemoteRoads",
+        "line": 2627
+      },
+      {
+        "name": "updateKeeperRoomsMineralStatus",
+        "line": 2639
+      },
+      {
+        "name": "getCreepsByNames",
+        "line": 2662
+      },
+      {
+        "name": "getManufactureCompound",
+        "line": 2672
+      },
+      {
+        "name": "getRoomSpawnTasks",
+        "line": 2691
+      },
+      {
+        "name": "globalResources",
+        "line": 2710
+      },
+      {
+        "name": "repairThings",
+        "line": 2771
+      },
+      {
+        "name": "grabResources",
+        "line": 2830
+      },
+      {
+        "name": "addReservation",
+        "line": 2843
+      },
+      {
+        "name": "removeReservation",
+        "line": 2856
+      },
+      {
+        "name": "removeReservations",
+        "line": 2868
+      },
+      {
+        "name": "addOutpost",
+        "line": 2872
+      },
+      {
+        "name": "addOutpostShort",
+        "line": 2882
+      },
+      {
+        "name": "removeOutpost",
+        "line": 2918
+      },
+      {
+        "name": "removeOutposts",
+        "line": 2930
+      },
+      {
+        "name": "findStructureInRange",
+        "line": 2934
+      },
+      {
+        "name": "checkPortalsFollowup",
+        "line": 2940
+      },
+      {
+        "name": "runCreepPositionTimer",
+        "line": 2958
+      },
+      {
+        "name": "clearCreepPositionTimer",
+        "line": 2976
+      },
+      {
+        "name": "isInRampart",
+        "line": 2981
+      },
+      {
+        "name": "getObjectsById",
+        "line": 2997
+      },
+      {
+        "name": "processBuildFlags",
+        "line": 3007
+      },
+      {
+        "name": "queuePlannedStructure",
+        "line": 3073
+      },
+      {
+        "name": "shouldDeferPlannedSourceContainer",
+        "line": 3118
+      },
+      {
+        "name": "checkPlannedConstructions",
+        "line": 3135
+      },
+      {
+        "name": "doRoomPlanning",
+        "line": 3234
+      },
+      {
+        "name": "checkBuildMemory",
+        "line": 3243
+      },
+      {
+        "name": "planRoomExtractor",
+        "line": 3249
+      },
+      {
+        "name": "planRoomMining",
+        "line": 3261
+      },
+      {
+        "name": "ensureClaimIntentMemory",
+        "line": 3305
+      },
+      {
+        "name": "normalizeClaimIntent",
+        "line": 3315
+      },
+      {
+        "name": "ensureExpansionMemoryForHome",
+        "line": 3326
+      },
+      {
+        "name": "getClaimIntents",
+        "line": 3346
+      },
+      {
+        "name": "getClaimIntent",
+        "line": 3359
+      },
+      {
+        "name": "getClaimIntentForTargetRoom",
+        "line": 3364
+      },
+      {
+        "name": "queueClaimIntent",
+        "line": 3374
+      },
+      {
+        "name": "cancelClaimIntent",
+        "line": 3404
+      },
+      {
+        "name": "processClaimFlags",
+        "line": 3425
+      },
+      {
+        "name": "newSpawnTransition",
+        "line": 3449
+      },
+      {
+        "name": "getBoosts",
+        "line": 3504
+      }
+    ]
   },
   {
     "file": "visuals.js",
     "sha256": "1CB889572CE6D979390AA8B3C98FA228C1D5AD228BC201F9FEF534F065077C7D",
     "physicalLines": 180,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-40"
+    ],
+    "capabilityWork": [
+      "Port metrics, CPU diagnostics, and room-planning visuals"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "initialize",
+        "line": 5
+      },
+      {
+        "name": "showVisuals",
+        "line": 9
+      },
+      {
+        "name": "spawnInfo",
+        "line": 16
+      },
+      {
+        "name": "moveTo",
+        "line": 30
+      },
+      {
+        "name": "moveByPath",
+        "line": 55
+      },
+      {
+        "name": "visualizeRoom",
+        "line": 76
+      },
+      {
+        "name": "drawVisuals",
+        "line": 85
+      },
+      {
+        "name": "drawBuildPlan",
+        "line": 89
+      },
+      {
+        "name": "drawStructure",
+        "line": 105
+      }
+    ]
   },
   {
     "file": "waypointer.js",
     "sha256": "3D0FC661A68D62FCC4CBC85E412282A575974659946BAD940FB728FDC2791B36",
     "physicalLines": 64,
-    "reviewStatus": "pending capability classification",
+    "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": []
+    "evidence": [],
+    "plannedIssues": [
+      "ED-18",
+      "ED-33"
+    ],
+    "capabilityWork": [
+      "Unify movement, routing, path caches, and traffic handling",
+      "Restore mission lifecycle and specialist military behaviors"
+    ],
+    "disposition": "selectively port and clean; verify behavior per capability",
+    "imports": [
+      "utilV2"
+    ],
+    "staticReachability": "reachable from main literal imports; not proof every handler executes",
+    "sourceSymbols": [
+      {
+        "name": "util",
+        "line": 10
+      }
+    ]
   }
 ]
