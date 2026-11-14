@@ -2924,9 +2924,13 @@
     "file": "role.builder.js",
     "sha256": "FFDB0F8FF030515BBA396C9889B779664139348911766414636DC423015056FC",
     "physicalLines": 643,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
+    "implementationStatus": "selective work and energy strategies ported; module-wide parity remains open",
+    "evidence": [
+      "docs/work.md",
+      "test/capabilities/worker-energy-profiles.test.ts",
+      "test/engine/worker-profile-bot.ts"
+    ],
     "plannedIssues": [
       "ED-22",
       "ED-30"
@@ -4095,9 +4099,13 @@
     "file": "role.upgrader.js",
     "sha256": "C7EB1B431A63851638D6EAC7D6DB66E5C3C17E9AD96B52E1688223AD17648080",
     "physicalLines": 76,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
+    "implementationStatus": "selective work and energy strategies ported; module-wide parity remains open",
+    "evidence": [
+      "docs/work.md",
+      "test/capabilities/worker-energy-profiles.test.ts",
+      "test/engine/worker-profile-bot.ts"
+    ],
     "plannedIssues": [
       "ED-22"
     ],
@@ -4132,9 +4140,13 @@
     "file": "role.upgraderV2.js",
     "sha256": "023AF653193D91C5C29E1A52312FD84CF7608450C7ACC7EEA7557B0673FB5FEF",
     "physicalLines": 104,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
+    "implementationStatus": "selective work and energy strategies ported; module-wide parity remains open",
+    "evidence": [
+      "docs/work.md",
+      "test/capabilities/worker-energy-profiles.test.ts",
+      "test/engine/worker-profile-bot.ts"
+    ],
     "plannedIssues": [
       "ED-22"
     ],
@@ -4170,9 +4182,13 @@
     "file": "role.wallBuilder.js",
     "sha256": "06634A3F0D02455C2C48023ACEE9CBC35AB811F5741BB0193FA9DD612508287C",
     "physicalLines": 158,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
+    "implementationStatus": "selective work and energy strategies ported; module-wide parity remains open",
+    "evidence": [
+      "docs/work.md",
+      "test/capabilities/worker-energy-profiles.test.ts",
+      "test/engine/worker-profile-bot.ts"
+    ],
     "plannedIssues": [
       "ED-22"
     ],

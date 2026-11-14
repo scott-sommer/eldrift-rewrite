@@ -40,3 +40,15 @@ test('resolved configuration is isolated between rooms and from caller mutation'
     expect(() => resolveConfig({ empire: patch }, 1)).toThrow();
   }
 });
+
+test('worker energy strategy and position hold are independently configurable', () => {
+  const config = resolveConfig({ empire: { workerEnergyProfile: 'builder' }, roomOverride: {
+    workerEnergyProfile: 'upgrader-v2', workerHoldStoragePosition: true, workerEnergyStorageReserve: 0,
+  } }, 1);
+  expect(config.values.workerEnergyProfile).toBe('upgrader-v2');
+  expect(config.values.workerHoldStoragePosition).toBe(true);
+  expect(config.values.workerEnergyStorageReserve).toBe(0);
+  for (const patch of [{ workerEnergyProfile: 'missing' }, { workerHoldStoragePosition: 1 }]) {
+    expect(() => resolveConfig({ empire: patch }, 1)).toThrow();
+  }
+});

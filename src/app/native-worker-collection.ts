@@ -6,7 +6,7 @@ import { observeLinks } from '../adapters/screeps/links';
 import { classifyLinks } from '../features/logistics/links/roles';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
 import { createNativeCollection } from '../adapters/screeps/collection-execution';
-import { selectWorkerEnergy, defaultWorkerEnergyPolicy } from '../features/work/energy-selection';
+import { selectProfileEnergy } from '../features/work/energy-profiles';
 import { createQuantityReservations } from '../persistence/quantities/store';
 import { logisticsPool } from '../capabilities/logistics/request';
 import { issueCollection } from '../features/logistics/collect-intent';
@@ -23,8 +23,8 @@ export function createNativeWorkerCollection(state: StatePort, dispatch: ReturnT
     const sources = observeWorkerEnergy(room, links).map(source => ({ ...source,
       available: Math.max(0, source.stock - booked(logisticsPool('stock', source.id, 'energy'))) }));
     const free = creep.store.getFreeCapacity();
-    const order = selectWorkerEnergy(sources, creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 }, free, { ...defaultWorkerEnergyPolicy,
-      storageReserve: config.workerEnergyStorageReserve });
+    const order = selectProfileEnergy(sources, creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 }, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
+      storageReserve: config.workerEnergyStorageReserve, holdStoragePosition: config.workerHoldStoragePosition });
     if (!order) return creep.store.energy > 0 ? { status: 'done' } : { status: 'blocked', reason: 'worker-energy-unavailable', retryAt: Game.time + 1 };
     return collect(creep, order, owner, invoke => issueCollection(state, Game.time, { owner, holder: creep.name,
       sink: creep.id, source: order.source.id, resource: 'energy', stock: Math.max(0, order.source.stock - order.reserve),

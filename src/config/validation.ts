@@ -18,6 +18,8 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   workerWallHits: value => bounded(value, 300000000) && Number.isInteger(value),
   workerRampartHits: value => bounded(value, 300000000) && Number.isInteger(value),
   workerDowngradeThreshold: value => bounded(value, 200000) && Number.isInteger(value),
+  workerEnergyProfile: value => typeof value === 'string' && ['balanced', 'builder', 'fortifier', 'upgrader', 'upgrader-v2'].includes(value),
+  workerHoldStoragePosition: value => typeof value === 'boolean',
   workerEnergyStorageReserve: value => bounded(value, 1000000) && Number.isInteger(value),
   workerUpgradeReserve: value => bounded(value, 1000000) && Number.isInteger(value),
   workerSupplyEnabled: value => typeof value === 'boolean',

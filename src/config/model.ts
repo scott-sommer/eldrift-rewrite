@@ -18,6 +18,8 @@ export interface RuntimeConfig {
   workerDowngradeThreshold: number;
   workerUpgradeReserve: number;
   workerEnergyStorageReserve: number;
+  workerEnergyProfile: 'balanced' | 'builder' | 'fortifier' | 'upgrader' | 'upgrader-v2';
+  workerHoldStoragePosition: boolean;
   controllerContainerTarget: number;
   energyBankingEnabled: boolean;
   storeBalancingEnabled: boolean;
@@ -59,6 +61,8 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   workerDowngradeThreshold: 5000,
   workerUpgradeReserve: 50000,
   workerEnergyStorageReserve: 50000,
+  workerEnergyProfile: 'balanced',
+  workerHoldStoragePosition: false,
   controllerContainerTarget: 1900,
   energyBankingEnabled: false,
   storeBalancingEnabled: false,
