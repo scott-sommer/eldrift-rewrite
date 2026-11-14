@@ -1,9 +1,10 @@
+import { observeCostMatrix } from '../../src/adapters/screeps/cost-matrix';
 import { loop as productionLoop } from '../../src/main';
 import { createNativePathSearch } from '../../src/adapters/screeps/path-search';
 import { createPathService } from '../../src/capabilities/movement/path-service';
 import { createCreepActions } from '../../src/adapters/screeps/creep-actions';
 import { createActionArbiter } from '../../src/core/execution/action-arbiter';
-const nativeSearch = createNativePathSearch(() => undefined);
+const nativeSearch = createNativePathSearch(room => observeCostMatrix(room, { roadCost: 1, avoidUnits: true, ignoreUnitId: Game.creeps['walker']!.id }).matrix);
 let searches = 0;
 const paths = createPathService(request => { searches++; return nativeSearch(request); }, () => Game.time);
 const arbiter = createActionArbiter(() => Game.time);
@@ -12,6 +13,12 @@ export function loop(): void {
   productionLoop();
   const evidence = Memory.pathEvidence ??= { searches: [], positions: [], statuses: [] };
   const creep = Game.creeps['walker']!;
+  const snapshot = observeCostMatrix(creep.room.name, { roadCost: 1, avoidUnits: true, ignoreUnitId: creep.id });
+  if (snapshot.matrix?.get(15, 15) !== 255) throw new Error('Spawn must block movement');
+  if (snapshot.matrix.get(creep.pos.x, creep.pos.y) === 255) throw new Error('Mover blocked its own tile');
+  const occupied = observeCostMatrix(creep.room.name, { roadCost: 1, avoidUnits: true });
+  if (occupied.matrix?.get(creep.pos.x, creep.pos.y) !== 255) throw new Error('Occupancy overlay missing');
+  if (observeCostMatrix('W50N50', { roadCost: 1, avoidUnits: true }).visible) throw new Error('Unseen room became visible');
   const request = {
     origin: { room: 'W0N1', x: 20, y: 20 }, destination: { room: 'W0N1', x: 21, y: 20 }, range: 0,
     profile: { id: 'walker', plainCost: 1, swampCost: 5, maxOps: 2000, maxRooms: 1 },
