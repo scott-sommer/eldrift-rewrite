@@ -1,3 +1,4 @@
+import { cancelMiningDemand } from '../features/mining/cancel-demand';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
 import { createMiningCycle } from './mining-cycle';
@@ -20,13 +21,14 @@ export function createNativeMiningFeature(state: StatePort) {
   const feature: RoomFeature = {
     id: 'mining', urgency: 'urgent', interval: 1,
     run({ room: view, config }) {
-      if (!config.values.miningEnabled) return;
+      if (!config.values.miningEnabled) { cancelMiningDemand(state, view.name); return; }
       const room = Game.rooms[view.name];
       if (!room?.controller?.my) return;
       const retreat = Object.values(Game.spawns).find(item => item.room.name === room.name)?.pos;
       if (!retreat) return;
       activeTick = Game.time;
       const unsafe = room.find(FIND_HOSTILE_CREEPS).some(creep => !config.values.allies.includes(creep.owner.username));
+      if (unsafe) cancelMiningDemand(state, room.name);
       const stations = observeMiningStations(room.name, unsafe ? 'hostile' : 'safe')!.filter(station => station.kind === 'energy');
       const units = observeMiningPopulation('energy').filter(unit => unit.room === room.name && unit.owner.startsWith('mining:'));
       const budget = Math.min(config.values.miningBodyBudget, units.length ? room.energyCapacityAvailable : room.energyAvailable);
@@ -45,3 +47,4 @@ export function createNativeMiningFeature(state: StatePort) {
   return { feature, definitions: { mine: { phases: ['work'], validPayload: validMiningPayload } },
     flush() { if (activeTick === Game.time) { spawn(); movement.flush(); } } };
 }
+
