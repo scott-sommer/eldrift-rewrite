@@ -1,6 +1,7 @@
 import { loop as botLoop } from '../../src/main';
 import { createNativeHaulingTask } from '../../src/app/native-hauling-task';
-import { assignHaulingTask } from '../../src/app/assign-hauling-task';
+import { selectHaulingTask } from '../../src/app/select-hauling-task';
+import { observeHauling } from '../../src/adapters/screeps/hauling-observation';
 import { createTaskRunner } from '../../src/app/task-runner';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createActionArbiter } from '../../src/core/execution/action-arbiter';
@@ -20,7 +21,8 @@ export function loop() {
   const movement = createMovementService(arbiter);
   const behaviors = { haul: createNativeHaulingTask(state, { arbiter, movement },
     { version: 'hauling-cycle', blockedRooms: [], costs: {}, maximumRooms: 4 }) };
-  assignHaulingTask(state, behaviors, creep.name, 'haul:' + Game.time, { home: 'W0N1', unitId: creep.id, request }, Game.time, 100);
+  selectHaulingTask(state, behaviors, { home: 'W0N1', name: creep.name, unitId: creep.id, tick: Game.time,
+    cargoTotal: creep.store.getUsedCapacity() }, candidate => observeHauling(creep, candidate));
   const outcome = createTaskRunner(state, behaviors, () => Game.time)(creep.name, creep)!;
   movement.flush();
   const memory = Memory as Memory & { haulingCycle?: { statuses: string[]; outstanding: number[]; stores: number[][] } };
@@ -29,5 +31,6 @@ export function loop() {
   evidence.outstanding.push(queue.pending(Game.time)[0]?.quantity ?? 0);
   evidence.stores.push([source.store.energy, creep.store.energy, sink.store.energy]);
 }
+
 
 
