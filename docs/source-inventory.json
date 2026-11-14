@@ -4236,9 +4236,13 @@
     "file": "room.energy.recovery.js",
     "sha256": "C10E838EC6EC54E5187D952D7252533B2537CE9EF1B61C25A6F06A4F16513C1D",
     "physicalLines": 196,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "ED-22 recovery source reviewed; thresholds/donor planning and worker investment integration evidenced in docs/work.md",
+    "implementationStatus": "recovery assessment selectively ported; donor execution/emergency economy/reassignment remain open",
+    "evidence": [
+      "docs/work.md",
+      "test/capabilities/recovery.test.ts",
+      "test/engine/energy-recovery-bot.ts"
+    ],
     "plannedIssues": [
       "ED-22"
     ],

@@ -3,6 +3,13 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
+  recoveryEnabled: value => typeof value === 'boolean',
+  recoveryInterval: value => bounded(value, 100000) && Number.isInteger(value) && Number(value) >= 1,
+  recoveryEnterEnergy: value => bounded(value, 1300000) && Number.isInteger(value),
+  recoveryExitEnergy: value => bounded(value, 1300000) && Number.isInteger(value),
+  recoveryDonorMinimumEnergy: value => bounded(value, 1300000) && Number.isInteger(value),
+  recoveryDonorMaximumDistance: value => bounded(value, 100) && Number.isInteger(value),
+  recoverySupportBatch: value => bounded(value, 1300000) && Number.isInteger(value) && Number(value) >= 1,
   mineralTransportEnabled: value => typeof value === 'boolean',
   terminalFreeReserve: value => bounded(value, 300000) && Number.isInteger(value),
   storageFreeReserve: value => bounded(value, 1000000) && Number.isInteger(value),

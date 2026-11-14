@@ -52,3 +52,11 @@ test('worker energy strategy and position hold are independently configurable', 
     expect(() => resolveConfig({ empire: patch }, 1)).toThrow();
   }
 });
+
+test('recovery configuration validates the combined entry and exit thresholds across layers', () => {
+  expect(resolveConfig({ empire: { recoveryEnabled: true }, roomOverride: { recoveryInterval: 1 } }, 1).values.recoveryInterval).toBe(1);
+  for (const patch of [{ recoveryInterval: 0 }, { recoverySupportBatch: 0 }, { recoveryDonorMaximumDistance: -1 }]) {
+    expect(() => resolveConfig({ empire: patch }, 1)).toThrow();
+  }
+  expect(() => resolveConfig({ empire: { recoveryEnterEnergy: 20000 }, roomOverride: { recoveryExitEnergy: 20000 } }, 1)).toThrow('entry');
+});

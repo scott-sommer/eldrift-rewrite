@@ -1,4 +1,11 @@
 export interface RuntimeConfig {
+  recoveryEnabled: boolean;
+  recoveryInterval: number;
+  recoveryEnterEnergy: number;
+  recoveryExitEnergy: number;
+  recoveryDonorMinimumEnergy: number;
+  recoveryDonorMaximumDistance: number;
+  recoverySupportBatch: number;
   logisticsEnabled: boolean;
   linksEnabled: boolean;
   linkServiceEnabled: boolean;
@@ -47,6 +54,13 @@ export interface RuntimeConfig {
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
+  recoveryEnabled: false,
+  recoveryInterval: 250,
+  recoveryEnterEnergy: 10000,
+  recoveryExitEnergy: 50000,
+  recoveryDonorMinimumEnergy: 75000,
+  recoveryDonorMaximumDistance: 4,
+  recoverySupportBatch: 25000,
   logisticsEnabled: false,
   linksEnabled: false,
   linkServiceEnabled: false,
