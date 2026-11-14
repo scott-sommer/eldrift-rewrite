@@ -31,6 +31,120 @@
       "line": 60,
       "source": "var __isEqualTo = RoomPosition.prototype.isEqualTo;\r\nRoomPosition.prototype.isEqualTo = function(x, y) {\r\n\r\n    if(x && x.constructor == RoomPosition) {\r\n        var roomName = x.roomName;\r\n        y = x.y;\r\n        x = x.x;\r\n        var xEqual = false;\r\n        if (this.x == 0 || this.x == 49) {\r\n            xEqual = x == 0 || x == 49;\r\n        } else {\r\n            xEqual = this.x == x;\r\n        }\r\n\r\n        var yEqual = false;\r\n        if (this.y == 0 || this.y == 49) {\r\n            yEqual = y == 0 || y == 49;\r\n        } else {\r\n            yEqual = this.y == y;\r\n        }\r\n\r\n        return xEqual && yEqual;\r\n    } else {\r\n        return __isEqualTo(x, y);\r\n    }\r\n};\r\n\r\n",
       "sha256": "f07db8e530d0a1ec95a86db19cd56c049c753f4a15e48d93d28fe857e14d8539"
+    },
+    "TRANSFORMS": {
+      "file": "room.layout.shared.js",
+      "line": 130,
+      "source": "const TRANSFORMS = [\n    function(point) { return { x: point.x, y: point.y }; },\n    function(point) { return { x: -point.y, y: point.x }; },\n    function(point) { return { x: -point.x, y: -point.y }; },\n    function(point) { return { x: point.y, y: -point.x }; },\n    function(point) { return { x: -point.x, y: point.y }; },\n    function(point) { return { x: point.x, y: -point.y }; },\n    function(point) { return { x: point.y, y: point.x }; },\n    function(point) { return { x: -point.y, y: -point.x }; }\n];",
+      "sha256": "7a68047c70e6d866fbc436d2561c8bd6e5ec122948e72d2b2496769d89abe2c6"
+    },
+    "transformRelative": {
+      "file": "room.layout.shared.js",
+      "line": 184,
+      "source": "var transformRelative = function(point, transformIndex) {\n    return TRANSFORMS[transformIndex](point);\n};",
+      "sha256": "759611e63487dc01f1b1505a56d67148c0d92a236d79454dc3b18a883953910f"
+    },
+    "normalizeCoreTemplate": {
+      "file": "room.layout.shared.js",
+      "line": 171,
+      "source": "var normalizeCoreTemplate = function(template, storagePos) {\n    let normalized = {};\n    for(let structureType in template) {\n        normalized[structureType] = template[structureType].map((pos) => ({\n            x: pos.x - storagePos.x,\n            y: pos.y - storagePos.y\n        }));\n    }\n    return normalized;\n};",
+      "sha256": "4954306a4f6ba9cde532357cc5495fa684ebccf60d282dd116d9d417e636a5ae"
+    },
+    "worldFromRelative": {
+      "file": "room.layout.shared.js",
+      "line": 188,
+      "source": "var worldFromRelative = function(anchor, point, roomName) {\n    return new RoomPosition(anchor.x + point.x, anchor.y + point.y, roomName);\n};",
+      "sha256": "e273b4d9ade4dd850e8be641e840d35ac3ea457d390736f3a46d1a3f23b55e5a"
+    },
+    "anchorFromWorld": {
+      "file": "room.layout.shared.js",
+      "line": 192,
+      "source": "var anchorFromWorld = function(pos, relative) {\n    return {\n        x: pos.x - relative.x,\n        y: pos.y - relative.y\n    };\n};",
+      "sha256": "b5e29bf7aac4f5ae162f90f9c4387f7c248a67e6a821f95a4d817b31e4b9d58b"
+    },
+    "sortEntries": {
+      "file": "room.layout.shared.js",
+      "line": 406,
+      "source": "var sortEntries = function(entries) {\n    entries.sort((a, b) => {\n        if(a.level != b.level) return a.level - b.level;\n        if((a.distance || 0) != (b.distance || 0)) return (a.distance || 0) - (b.distance || 0);\n        if((a.priority || 0) != (b.priority || 0)) return (a.priority || 0) - (b.priority || 0);\n        return buildKey(a.t, a.pos).localeCompare(buildKey(b.t, b.pos));\n    });\n    return entries;\n};",
+      "sha256": "f8e57a8adbd2bd45d630120e9c2792a87692dd6b8deca5ca9ca2eba88063e923"
+    },
+    "buildKey": {
+      "file": "room.layout.shared.js",
+      "line": 151,
+      "source": "var buildKey = function(type, pos) {\n    return type + ':' + pos.x + ':' + pos.y;\n};",
+      "sha256": "bcbe96624c8c7297e289d03597b6e7de095ed7d3709e52a43e7059008c052455"
+    },
+    "buildRoadScavengerBody": {
+      "file": "spawner.js",
+      "line": 427,
+      "source": "var buildRoadScavengerBody = function(budget) {\n    let body = [];\n    let cappedBudget = budget;\n    if(cappedBudget > 1600) cappedBudget = 1600;\n\n    let triads = Math.min(Math.floor(cappedBudget / 150), 16);\n    for(let i = 0; i < triads; i++) {\n        body.push(CARRY, CARRY, MOVE);\n    }\n\n    let remainder = cappedBudget - triads * 150;\n    if(body.length == 0 && cappedBudget >= 100) {\n        body.push(CARRY, MOVE);\n    } else if(remainder >= 100 && body.length <= 48) {\n        body.push(CARRY, MOVE);\n    }\n\n    return body;\n};",
+      "sha256": "1902da01530168662079312cb90208c150688731750ac463c2a3b67767255a79"
+    },
+    "getCarryCapacityForBody": {
+      "file": "spawner.js",
+      "line": 412,
+      "source": "var getCarryCapacityForBody = function(body) {\n    let carryParts = 0;\n    for(let part of body || []) {\n        if(part == CARRY) carryParts++;\n    }\n    return carryParts * CARRY_CAPACITY;\n};",
+      "sha256": "18b3df21b3a9173654a07c21d3987acfa7fe833604b7f5a4d9e93cecf7827098"
+    },
+    "ensureRecoveryMemory": {
+      "file": "room.energy.recovery.js",
+      "line": 20,
+      "source": "var ensureRecoveryMemory = function() {\n    if(!Memory.manager) Memory.manager = {};\n    if(!Memory.manager.energyRecovery) Memory.manager.energyRecovery = {};\n    if(!Memory.manager.energyRecovery.rooms) Memory.manager.energyRecovery.rooms = {};\n    return Memory.manager.energyRecovery;\n};",
+      "sha256": "ae712930209bfbf6e5711495b5b822d01c71c8d205243ef90418c9e0576a8ca8"
+    },
+    "getStoredEnergy": {
+      "file": "room.energy.recovery.js",
+      "line": 27,
+      "source": "var getStoredEnergy = function(room) {\n    if(!room) return 0;\n\n    let total = 0;\n    if(room.storage && room.storage.store) total += room.storage.store[RESOURCE_ENERGY] || 0;\n    if(room.terminal && room.terminal.store) total += room.terminal.store[RESOURCE_ENERGY] || 0;\n    return total;\n};",
+      "sha256": "0fb006b1580739a7eafa57aa9e84be8660b42e17409fbbc1a8a1fd03f0a3a11d"
+    },
+    "isEligibleRecoveryRoom": {
+      "file": "room.energy.recovery.js",
+      "line": 36,
+      "source": "var isEligibleRecoveryRoom = function(room) {\n    return !!(room && room.controller && room.controller.my && room.controller.level >= 5);\n};",
+      "sha256": "578152a6096c84e1181aabbb9aa3bfd4ad1c22240d78e948b87948858f838df7"
+    },
+    "getDonorRooms": {
+      "file": "room.energy.recovery.js",
+      "line": 40,
+      "source": "var getDonorRooms = function(targetRoom, ownedRooms) {\n    return ownedRooms\n        .filter((room) => room.name != targetRoom.name)\n        .filter((room) => Game.map.getRoomLinearDistance(room.name, targetRoom.name) <= RECOVERY_DONOR_MAX_DISTANCE)\n        .filter((room) => getStoredEnergy(room) > RECOVERY_DONOR_MIN_ENERGY)\n        .sort((a, b) => {\n            let distanceDifference = Game.map.getRoomLinearDistance(a.name, targetRoom.name)\n                - Game.map.getRoomLinearDistance(b.name, targetRoom.name);\n            if(distanceDifference != 0) return distanceDifference;\n            return getStoredEnergy(b) - getStoredEnergy(a);\n        });\n};",
+      "sha256": "ef18791b7937879d2482b5dabdcbe71cd6a3e7544cf7e2da27c3120b6c972a47"
+    },
+    "refreshRecoveryStates": {
+      "file": "room.energy.recovery.js",
+      "line": 60,
+      "source": "var refreshRecoveryStates = function(ownedRooms) {\n    let recoveryMemory = ensureRecoveryMemory();\n    let activeTargets = new Set();\n\n    for(let room of ownedRooms) {\n        if(!isEligibleRecoveryRoom(room)) {\n            delete recoveryMemory.rooms[room.name];\n            continue;\n        }\n\n        let storedEnergy = getStoredEnergy(room);\n        let currentState = recoveryMemory.rooms[room.name] || {};\n        let isActive = currentState.active\n            ? storedEnergy < RECOVERY_EXIT_ENERGY\n            : storedEnergy < RECOVERY_TRIGGER_ENERGY;\n\n        recoveryMemory.rooms[room.name] = {\n            roomName: room.name,\n            active: isActive,\n            checkedAt: Game.time,\n            storedEnergy: storedEnergy,\n            donorRequests: isActive\n                ? getDonorRooms(room, ownedRooms).map((donorRoom) => ({\n                    donorRoom: donorRoom.name,\n                    targetRoom: room.name,\n                    requestedEnergy: RECOVERY_SUPPORT_BATCH\n                }))\n                : []\n        };\n\n        if(isActive) activeTargets.add(room.name);\n    }\n\n    for(let roomName in recoveryMemory.rooms) {\n        if(!activeTargets.has(roomName) && recoveryMemory.rooms[roomName]) {\n            recoveryMemory.rooms[roomName].donorRequests = [];\n        }\n    }\n};",
+      "sha256": "5940e1b4b4d11a1b15b885ca802c3cf485232c302fc9c8306f2f76866d9ecc9f"
+    },
+    "RECOVERY_TRIGGER_ENERGY": {
+      "file": "room.energy.recovery.js",
+      "line": 13,
+      "source": "var RECOVERY_TRIGGER_ENERGY = 10000;",
+      "sha256": "bdd66b9330f68684baaa36c192456e4af25a3ad9c96c606b799329f4212235e7"
+    },
+    "RECOVERY_EXIT_ENERGY": {
+      "file": "room.energy.recovery.js",
+      "line": 14,
+      "source": "var RECOVERY_EXIT_ENERGY = 50000;",
+      "sha256": "a6aa48246b4f1811d8905202078affb94bf72295bcd5bc3c044d49402d93d2c7"
+    },
+    "RECOVERY_DONOR_MAX_DISTANCE": {
+      "file": "room.energy.recovery.js",
+      "line": 17,
+      "source": "var RECOVERY_DONOR_MAX_DISTANCE = 4;",
+      "sha256": "65681ef72ffa9295b962671b8649263d4749e6fed947d46e4fd04ca852fa9e28"
+    },
+    "RECOVERY_DONOR_MIN_ENERGY": {
+      "file": "room.energy.recovery.js",
+      "line": 16,
+      "source": "var RECOVERY_DONOR_MIN_ENERGY = 75000;",
+      "sha256": "a8d1168881acd54e8963f73a202135e73c24b4b6db327c62b30fe3f9e600ac19"
+    },
+    "RECOVERY_SUPPORT_BATCH": {
+      "file": "room.energy.recovery.js",
+      "line": 18,
+      "source": "var RECOVERY_SUPPORT_BATCH = 25000;",
+      "sha256": "757a91d66aa5fff5630715cef9a8c1f208d496112b241f41feb0b0a18819ba72"
     }
   }
 }
