@@ -41,3 +41,13 @@ test('energy and mineral readiness have explicit independent depletion/cooldown 
   expect(minerStep({ ...view, readiness: energyReadiness(production)! }, ports).status).toBe('blocked');
   expect(actions).toEqual([]);
 });
+
+test('depleted stations hand off partial cargo before waiting, without flushing on ordinary cooldown', () => {
+  const { actions, ports } = fixture();
+  const readiness = mineralReadiness({ tick: 1, available: 0, readyAt: 500 }, 'ready', 5)!;
+  expect(readiness).toMatchObject({ reason: 'mineral-depleted' });
+  expect(minerStep({ ...view, carried: 1, freeCapacity: 49, readiness }, ports).status).toBe('running');
+  const cooldown = mineralReadiness({ tick: 1, available: 100, readyAt: 1 }, 'ready', 5)!;
+  expect(minerStep({ ...view, carried: 1, freeCapacity: 49, readiness: cooldown }, ports).status).toBe('blocked');
+  expect(actions).toEqual(['handoff']);
+});

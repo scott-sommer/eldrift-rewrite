@@ -37,9 +37,17 @@ export function minerStep(view: MinerView, ports: MinerPorts): Outcome {
 function workAtStation(view: MinerView, ports: MinerPorts): Outcome {
   if (view.establish && view.energy > 0) return approachOutcome(ports.establish());
   if (view.repair && view.energy > 0) return issuedOutcome(ports.repair(), view.tick, ports.rejected);
-  if (view.carried > 0 && view.freeCapacity === 0) return issuedOutcome(ports.handoff(), view.tick, ports.rejected);
+  if (needsHandoff(view)) return issuedOutcome(ports.handoff(), view.tick, ports.rejected);
   if (view.readiness) return view.readiness;
   // Zero-CARRY miners may harvest directly to the ground/container below them.
   if (view.carryCapacity > 0 && view.freeCapacity === 0) return { status: 'blocked', reason: 'store-full', retryAt: view.tick + 1 };
   return issuedOutcome(ports.harvest(), view.tick, ports.rejected);
+}
+
+function depleted(outcome: Outcome | undefined): boolean {
+  return outcome?.status === 'blocked' && ['source-depleted', 'mineral-depleted'].includes(outcome.reason);
+}
+
+function needsHandoff(view: MinerView): boolean {
+  return view.carried > 0 && (view.freeCapacity === 0 || depleted(view.readiness));
 }
