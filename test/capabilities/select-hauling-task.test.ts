@@ -47,3 +47,20 @@ test('a failed task write releases its admission reservation', () => {
   expect(() => selectHaulingTask(fault, definitions, unit, () => view)).toThrow('write failed');
   expect(createQuantityReservations(state).list(1)).toEqual([]);
 });
+
+test('indivisible pickups skip partial capacity without reserving or blocking other work', () => {
+  const { state, queue, records } = fixture();
+  queue.submit({ ...request, id: 'drop', priority: -1, source: 'drop' }, 1);
+  expect(selectHaulingTask(state, definitions, unit, candidate => ({ ...view,
+    minimumCollection: candidate.id === 'drop' ? 50 : 0, sinkFree: candidate.id === 'drop' ? 30 : 100,
+  }))).toBe(true);
+  expect(records.get('tasks/one')?.data).toMatchObject({ queue: [{ payload: { request: { id: 'fill' } } }] });
+  expect(createQuantityReservations(state).list(1)).toHaveLength(1);
+});
+
+test('competing couriers cannot partially reserve an indivisible pickup', () => {
+  const { state } = fixture();
+  expect(selectHaulingTask(state, definitions, unit, () => ({ ...view, minimumCollection: 50 }))).toBe(true);
+  expect(selectHaulingTask(state, definitions, { ...unit, name: 'two', unitId: 'id-two' }, () => ({ ...view, minimumCollection: 50 }))).toBe(false);
+  expect(createQuantityReservations(state).list(1)).toHaveLength(1);
+});

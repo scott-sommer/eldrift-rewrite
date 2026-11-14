@@ -8,9 +8,9 @@ export function observeHauling(creep: Creep, request: LogisticsRequest, expected
   const resource = request.resource as ResourceConstant;
   const source = logisticsEndpoint(request.source);
   const sink = logisticsEndpoint(request.sink);
-  const sinkRoom = sink ? ('structureType' in sink ? sink.pos?.roomName : undefined) : expectedSinkRoom;
-  const sinkStatus = sink ? 'visible' as const : sinkRoom && Game.rooms[sinkRoom] ? 'missing' as const : 'unseen' as const;
-  return { sinkStatus, ...(sinkRoom ? { sinkRoom } : {}), tick: Game.time, cargo: creep.store.getUsedCapacity(resource) ?? 0,
+  const { sinkRoom, sinkStatus } = destinationStatus(sink, expectedSinkRoom);
+  const minimumCollection = pickupMinimum(source, resource, creep.store.getFreeCapacity(resource) ?? 0);
+  return { minimumCollection, sinkStatus, ...(sinkRoom ? { sinkRoom } : {}), tick: Game.time, cargo: creep.store.getUsedCapacity(resource) ?? 0,
     freeCargo: creep.store.getFreeCapacity(resource) ?? 0,
     sourceStock: sourceStock(source, resource), sinkFree: sinkCapacity(sink, resource),
     sinkPool: capacityPool(request.sink, sink, resource) };
@@ -29,4 +29,13 @@ function capacityPool(id: string, sink: TransferObject | null, resource: Resourc
   if (!sink || !('store' in sink) || sink.store.getCapacity() !== null) return logisticsPool('capacity', id);
   const compartment = 'structureType' in sink && sink.structureType === 'lab' && resource !== 'energy' ? 'mineral' : resource;
   return logisticsPool('capacity', id, compartment);
+}
+
+function pickupMinimum(source: TransferObject | null, resource: ResourceConstant, free: number): number {
+  return source && 'resourceType' in source ? Math.min(sourceStock(source, resource), free) : 0;
+}
+function destinationStatus(sink: TransferObject | null, expectedRoom?: string) {
+  const sinkRoom = sink ? ('structureType' in sink ? sink.pos?.roomName : undefined) : expectedRoom;
+  const sinkStatus = sink ? 'visible' as const : sinkRoom && Game.rooms[sinkRoom] ? 'missing' as const : 'unseen' as const;
+  return { sinkRoom, sinkStatus };
 }

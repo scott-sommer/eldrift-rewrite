@@ -29,7 +29,7 @@ export function runHauling(state: StatePort, binding: HaulingBinding, view: Haul
   if (!request || (view.cargo === 0 && view.sourceStock === 0)) return finish(state, binding, view);
   const phase = view.cargo > 0 ? 'deliver' : 'collect';
   const amount = book(state, binding, request, view, phase);
-  if (amount === 0) return wait(view.tick, 'logistics-capacity-unavailable');
+  if (amount === 0) return unavailable(state, binding, view);
   const requestKey = logisticsPool('request-binding', binding.home, request.owner, request.id);
   return ports.execute(request, phase, amount, logisticsPool('attempt', binding.unit, binding.scope, String(view.tick)), requestKey);
 }
@@ -60,4 +60,9 @@ function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingV
     if (result.status === 'observed') refreshCargoBooking(state, binding, view);
   });
   return settled?.status === 'waiting';
+}
+
+function unavailable(state: StatePort, binding: HaulingBinding, view: HaulingView): Outcome {
+  if (view.cargo === 0 && (view.minimumCollection ?? 0) > 0) return finish(state, binding, view);
+  return wait(view.tick, 'logistics-capacity-unavailable');
 }

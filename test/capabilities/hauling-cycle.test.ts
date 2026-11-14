@@ -78,3 +78,15 @@ test('a missing destination cancels work for cargo recovery but loss of vision r
   expect(createLogisticsRequests(state, 'room').pending(2)).toEqual([]);
   expect(createQuantityReservations(state).list(2)).toEqual([]);
 });
+
+test('a growing drop releases an existing assignment when its indivisible amount no longer fits', () => {
+  const state = fixture();
+  const view = { tick: 1, cargo: 0, freeCargo: 50, sourceStock: 30, minimumCollection: 30, sinkFree: 30, sinkPool: 'sink' };
+  runHauling(state, binding, view, { observe: () => ({ tick: 1 }), execute: () => ({ status: 'running' }) });
+  expect(createQuantityReservations(state).list(1)).toHaveLength(1);
+  expect(runHauling(state, binding, { ...view, tick: 2, sourceStock: 50, minimumCollection: 50 }, {
+    observe: () => ({ tick: 2 }), execute: () => { throw new Error('Oversized pickup must not issue'); },
+  })).toEqual({ status: 'done' });
+  expect(createQuantityReservations(state).list(2)).toEqual([]);
+  expect(createLogisticsRequests(state, 'room').pending(2)[0]?.quantity).toBe(50);
+});

@@ -55,3 +55,12 @@ test('mobile destinations do not persist a room as proof of destruction', () => 
   expect(observeHauling(creep, request).sinkRoom).toBeUndefined();
   expect(observeHauling(creep, request).sinkStatus).toBe('visible');
 });
+
+test('pickup observations expose the unthrottled native amount, unlike withdrawals', () => {
+  world({ resourceType: 'energy', amount: 70 }, null);
+  expect(observeHauling(creep, request).minimumCollection).toBe(40);
+  world({ resourceType: 'energy', amount: 20 }, null);
+  expect(observeHauling(creep, request).minimumCollection).toBe(20);
+  world({ store: store(2000) }, null);
+  expect(observeHauling(creep, request).minimumCollection).toBe(0);
+});
