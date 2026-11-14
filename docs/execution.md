@@ -11,3 +11,7 @@ Action arbitration now tracks one behavior owner per unit per tick and injected 
 Six execution/smoke tests passed in199ms; quality/Lizard passed with zero violations.
 
 Task schema v2 persists retries and expiresAt alongside phase/wakeAt. Version1 migration supplies zero retries and MAX_SAFE_INTEGER expiry to preserve prior unlimited lifetime; subsequent opens preserve accumulated retry state. Both persisted task validation and execution entry use the same checkpoint validator. Regression covers v1 migration, serialized reset, preserved nonzero retry count and rejected negative counters. 44 relevant tests passed; full lifecycle executor wiring remains pending.
+
+App task runner now opens/migrates the unit queue, executes only its head with bounded transitions, persists running/blocked checkpoints, and removes done/failed tasks after releasing their exact task scope. Scope IDs encode the unit/task pair without delimiter collisions. A per-tick visited set prevents repeated execution in the same runner, including retries after exceptions; callers share one runner instance. Each subsequent queue task waits until a later tick. Global reset reconstructs the runner while persistent wake/retry state remains. Action adapters still need to use the shared arbiter; no game actions are wired yet.
+
+Integration test covers actual Memory adapter serialization, blocked wake timing, same-tick suppression, retained retry count, completion and claim release. 54 relevant tests passed in470ms; quality/Lizard passed.
