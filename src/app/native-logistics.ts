@@ -36,7 +36,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
       generateNativeLinkService(state, Game.rooms[view.name]!, config.values);
       for (const creep of units) {
         settleHaulingTask(state, definitions, creep, observeTransfer);
-        recoverNativeCargo(state, definitions, creep, view.name);
+        recoverNativeCargo(state, definitions, creep, view.name, config.values.terminalFreeReserve);
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
