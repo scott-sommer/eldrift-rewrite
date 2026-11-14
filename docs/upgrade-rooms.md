@@ -272,3 +272,10 @@ Packaged --ground-delivery seeds 80 energy on a courier and a 1000-energy ground
 Validation: quality passed (290 production / 260 test files, zero Lizard violations); 562 tests / 171 files passed in 4.46s; bundle check passed; targeted native ground/reload scenario passed. Full expanded engine suite not rerun this increment.
 
 Still required before upgrade supply integration: recovery policy for unknown or rejected native drops; connect release outcomes to ground-specific delivery demand (not storage transfer receipts); master/terminal bindings; native fleet/config registration; low-RCL supply and complete reset/reclaim/rebuild evidence. The isolated native drop capability is not yet an enabled upgrade-hauler behavior.
+
+
+## Definitive ground rejection recovery (ED-22, 2026-11-15)
+
+Ground journals now distinguish a definitive negative native return code from ambiguous execution. Native drop rejection records {status: rejected, code} and closes that attempt for retry on a later tick; same-tick reconstruction remains blocked by the persisted attempt tick. Rejected outcomes cannot be acknowledged as released receipts. Exceptions still leave pending evidence because execution may be uncertain; missing/skipped observations remain unknown and are not silently retried.
+
+Validation: quality passed (290 production / 260 test files, zero Lizard violations); 563 tests / 171 files in 5.67s. Mocked native rejection regression proves negative-code recording, no receipt, same-tick suppression and later retry. Actual --ground-delivery code-reload/decay regression passed (artifacts/engine-R8EGcO/evidence.json); this native case exercises successful release, not engine rejection. Remaining: explicit unknown-result reconciliation and ground-demand settlement, then integrate with supply fleet and low-RCL room lifecycle.

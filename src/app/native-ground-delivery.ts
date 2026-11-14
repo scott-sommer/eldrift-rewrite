@@ -24,7 +24,9 @@ export function createNativeGroundDelivery(state: StatePort, dispatch: ReturnTyp
         cargoBefore: creep.store.getUsedCapacity(resource), hitsBefore: creep.hits, groundBefore: groundStock(creep.pos, resource) };
       return dispatch.arbiter.issue(creep.name, owner, slots, () => {
         if (!journal.begin(attempt)) return ERR_BUSY;
-        return creep.drop(resource, amount);
+        const code = creep.drop(resource, amount);
+        if (code !== OK) journal.reject(id, code);
+        return code;
       }, code => code === OK);
     },
   };

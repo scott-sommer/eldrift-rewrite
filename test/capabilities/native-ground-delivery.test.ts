@@ -43,3 +43,17 @@ test('a throwing native call retains the attempt and prevents a reconstructed re
   expect(createGroundJournal(f.state, 'id').begin({ id: 'retry', unit: 'id', resource: 'energy', tick: 2,
     position: { room: 'E0N1', x: 20, y: 21 }, amount: 50, cargoBefore: 50, hitsBefore: 100, groundBefore: 0 })).toBe(false);
 });
+
+test('a definitive native rejection is recorded without delivery and allows retry only on a later tick', () => {
+  const f = fixture();
+  f.drop.mockReturnValue(-6);
+  expect(f.delivery.issue(f.creep, 'owner', 'release', 'energy', 50)).toEqual({ status: 'rejected', code: -6 });
+  expect(createGroundJournal(f.state, 'id').read()).toMatchObject({ acknowledged: true, result: { status: 'rejected', code: -6 } });
+  expect(f.delivery.issue(f.creep, 'owner', 'same-tick', 'energy', 50).status).toBe('blocked');
+  expect(() => createGroundJournal(f.state, 'id').acknowledge('release')).toThrow();
+  vi.stubGlobal('Game', { time: 2 });
+  f.drop.mockReturnValue(0);
+  expect(createNativeGroundDelivery(f.state, { arbiter: createActionArbiter(() => 2) } as ReturnType<typeof createNativeDispatch>)
+    .issue(f.creep, 'owner', 'retry', 'energy', 50).status).toBe('issued');
+  expect(createGroundJournal(f.state, 'id').read()).toMatchObject({ acknowledged: false, result: null, attempt: { id: 'retry', tick: 2 } });
+});

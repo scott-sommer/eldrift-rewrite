@@ -1,7 +1,8 @@
 import { openState, saveState, type StatePort, type StateSchema } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
 import { confirmGroundRelease, validateGroundAttempt, type GroundAttempt, type GroundObservation, type GroundConfirmation } from '../../capabilities/logistics/ground-confirmation';
-interface GroundJournal { attempt: GroundAttempt | null; result: GroundConfirmation | null; acknowledged: boolean }
+export type GroundResult = GroundConfirmation | { status: 'rejected'; code: number };
+interface GroundJournal { attempt: GroundAttempt | null; result: GroundResult | null; acknowledged: boolean }
 const schema: StateSchema<GroundJournal> = {
   owner: 'ground-delivery', version: 1, migrations: {},
   initial: () => ({ attempt: null, result: null, acknowledged: true }), valid,
@@ -19,7 +20,12 @@ export function createGroundJournal(port: StatePort, unit: string) {
       saveState(port, key, schema, { attempt, result: null, acknowledged: false });
       return true;
     },
-    settle(observation: GroundObservation, decayDivisor: number): GroundConfirmation | null {
+    reject(id: string, code: number): void {
+      const current = read();
+      if (current.attempt?.id !== id || current.result || !Number.isSafeInteger(code) || code >= 0) throw new Error('Invalid ground rejection');
+      saveState(port, key, schema, { ...current, result: { status: 'rejected', code }, acknowledged: true });
+    },
+    settle(observation: GroundObservation, decayDivisor: number): GroundResult | null {
       const current = read();
       if (!current.attempt || current.result) return current.result;
       const result = confirmGroundRelease(current.attempt, observation, decayDivisor);
@@ -39,9 +45,10 @@ function valid(value: unknown): value is GroundJournal {
   if (typeof journal.acknowledged !== 'boolean') return false;
   if (journal.attempt === null) return journal.result === null && journal.acknowledged;
   try { validateGroundAttempt(journal.attempt); } catch { return false; }
-  return validResult(journal.result, journal.attempt.amount) && (!journal.acknowledged || journal.result?.status === 'released');
+  return validResult(journal.result, journal.attempt.amount) && (!journal.acknowledged || journal.result?.status === 'released' || journal.result?.status === 'rejected');
 }
-function validResult(result: GroundConfirmation | null, amount: number): boolean {
+function validResult(result: GroundResult | null, amount: number): boolean {
   if (result === null) return true;
+  if (result?.status === 'rejected') return Number.isSafeInteger(result.code) && result.code < 0;
   return !!result && (result.status === 'unknown' || result.status === 'released' && result.amount === amount);
 }
