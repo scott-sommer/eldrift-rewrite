@@ -290,3 +290,16 @@ New --ground-recovery actual-engine case drops 50 from 80, reloads code, intenti
 Validation: quality passed (290 production / 260 test files, zero Lizard violations); 564 tests / 171 files in 5.54s; bundle passed; targeted native ground-recovery and ground-delivery passed. Full expanded suite not rerun. Lizard initially caught complexity growth in issue/schema validation; extracted coherent validation helpers and reran successfully.
 
 Next: supply orchestration must treat reconciled outcomes as uncertain consumption and plan from live stock/cargo, never confirm the unknown original request. Ground-specific demand accounting, master/terminal task binding, fleet/config registration, low-RCL supply, and combined reset/reclaim/rebuild remain outstanding.
+
+
+## Native low-RCL supply cycle (ED-22, 2026-11-15)
+
+Added a supply cycle composed from shared native transfer, transfer journals, quantity reservations, movement, destination policy and ground journals. It settles pending actions before planning from live cargo. Empty active couriers choose sponsor storage/terminal using the legacy source policy and reserve; loaded couriers dynamically choose terminal, master, storage or deliberate ground release. Full terminal/master waits. Lost target ownership returns cargo to owned sponsor storage. Empty cancelled couriers return inside the home room and hand ownership to ordinary hauling. This cycle is intended as the fleet executor; do not also invoke the older storage-request courier on the same unit.
+
+Each native collection/transfer reserves real stock/capacity only for the actual intent tick. A ground drop is a ground release, not a fictitious storage request or storage receipt. The cycle uses live-cargo loops rather than generating an unreachable storage commitment at RCL2. Shared transfer unknown handling retires ambiguous attempts after settlement and plans from live cargo; ground unknown handling records the explicit reconciled result. Receipt evidence remains in the respective latest journals; no cumulative delivery metric is invented.
+
+Actual --supply-cycle scenario: seeded 50-capacity courier collects 30 above donor reserve 70, crosses W0N1→E0N1, deliberately drops near retained inactive RCL2 storage, confirms released 30, then returns/reassigns after cancellation. Target storage stays at zero. Evidence artifacts/engine-UWCbMd/evidence.json. --supply-master uses the same route but confirms a 30-energy transfer to a target-owned master, with no ground pile; artifacts/engine-wG18ba/evidence.json.
+
+Still required: fleet recruitment/config/main registration, native terminal/full-destination/ownership-loss scenarios, long-route and replacement evidence, journal retirement cleanup for dead supply units, and foreign-cargo recovery (currently explicitly blocked). The cycle is not yet registered in the production room runtime. Full reset/reclaim/bootstrap/rebuild remains outstanding.
+
+Validation: quality passed (293 production / 261 test files, zero Lizard violations); all 564 tests / 171 files passed in 4.63s; bundle check passed; complete expanded native suite passed 120 checks in 208.36s (artifacts/engine-suite.json). This supersedes the older 114-case aggregate and includes all intervening bootstrap, supply transport, drop/recovery and low-RCL cycle scenarios.
