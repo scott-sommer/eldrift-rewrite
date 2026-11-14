@@ -279,3 +279,14 @@ Still required before upgrade supply integration: recovery policy for unknown or
 Ground journals now distinguish a definitive negative native return code from ambiguous execution. Native drop rejection records {status: rejected, code} and closes that attempt for retry on a later tick; same-tick reconstruction remains blocked by the persisted attempt tick. Rejected outcomes cannot be acknowledged as released receipts. Exceptions still leave pending evidence because execution may be uncertain; missing/skipped observations remain unknown and are not silently retried.
 
 Validation: quality passed (290 production / 260 test files, zero Lizard violations); 563 tests / 171 files in 5.67s. Mocked native rejection regression proves negative-code recording, no receipt, same-tick suppression and later retry. Actual --ground-delivery code-reload/decay regression passed (artifacts/engine-R8EGcO/evidence.json); this native case exercises successful release, not engine rejection. Remaining: explicit unknown-result reconciliation and ground-demand settlement, then integrate with supply fleet and low-RCL room lifecycle.
+
+
+## Unknown ground-result reconciliation (ED-22, 2026-11-15)
+
+Added an explicit reconciliation outcome for unknown ground attempts. The caller must provide the same live unit's current cargo at a later tick; native recover reads it directly from the owned creep. Reconciliation records remaining cargo and observation tick without a delivered amount, and cannot be acknowledged as a released receipt. It closes the previous attempt for new work only after the reconciliation tick. New native drops remain bounded by actual current cargo. This does not retrospectively resolve the original delivery.
+
+New --ground-recovery actual-engine case drops 50 from 80, reloads code, intentionally skips the immediate confirmation, observes unknown on tick 3, records cargo 30 through recovery, then drops only that remainder on tick 4 and confirms its 30-energy release on tick 5. Evidence: artifacts/engine-RQUwxH/evidence.json. Standard ground drop/reload case also passes (engine-p72q3h).
+
+Validation: quality passed (290 production / 260 test files, zero Lizard violations); 564 tests / 171 files in 5.54s; bundle passed; targeted native ground-recovery and ground-delivery passed. Full expanded suite not rerun. Lizard initially caught complexity growth in issue/schema validation; extracted coherent validation helpers and reran successfully.
+
+Next: supply orchestration must treat reconciled outcomes as uncertain consumption and plan from live stock/cargo, never confirm the unknown original request. Ground-specific demand accounting, master/terminal task binding, fleet/config registration, low-RCL supply, and combined reset/reclaim/rebuild remain outstanding.

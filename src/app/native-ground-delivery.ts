@@ -13,12 +13,21 @@ export function createNativeGroundDelivery(state: StatePort, dispatch: ReturnTyp
       const current = journal.read();
       return current.attempt ? journal.settle(observeGroundRelease(current.attempt), ENERGY_DECAY) : null;
     },
+    recover(creep: Creep): boolean {
+      const journal = createGroundJournal(state, creep.id);
+      const current = journal.read();
+      if (!creep.my || !current.attempt || current.result?.status !== 'unknown') return false;
+      journal.reconcileUnknown(current.attempt.id, { unit: creep.id, tick: Game.time,
+        cargo: creep.store.getUsedCapacity(current.attempt.resource as ResourceConstant) });
+      return true;
+    },
     issue(creep: Creep, owner: string, id: string, resource: ResourceConstant, amount: number): IntentResult {
-      if (!creep.my || creep.spawning || !Number.isSafeInteger(amount) || amount <= 0 || amount > creep.store.getUsedCapacity(resource)) {
+      if (invalidDrop(creep, resource, amount)) {
         return { status: 'rejected', code: ERR_INVALID_ARGS };
       }
       const journal = createGroundJournal(state, creep.id);
       const previous = journal.read();
+      if (previous.result?.status === 'reconciled' && previous.result.tick >= Game.time) return { status: 'blocked', reason: 'action-conflict' };
       if (previous.attempt && (!previous.acknowledged || previous.attempt.tick >= Game.time)) return { status: 'blocked', reason: 'action-conflict' };
       const attempt = { id, unit: creep.id, resource, amount, tick: Game.time, position: movementPosition(creep.pos),
         cargoBefore: creep.store.getUsedCapacity(resource), hitsBefore: creep.hits, groundBefore: groundStock(creep.pos, resource) };
@@ -30,4 +39,8 @@ export function createNativeGroundDelivery(state: StatePort, dispatch: ReturnTyp
       }, code => code === OK);
     },
   };
+}
+
+function invalidDrop(creep: Creep, resource: ResourceConstant, amount: number): boolean {
+  return !creep.my || creep.spawning || !Number.isSafeInteger(amount) || amount <= 0 || amount > creep.store.getUsedCapacity(resource);
 }

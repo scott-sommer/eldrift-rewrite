@@ -9,10 +9,13 @@ export function loop() {
   openState(state, 'operator/config', operatorSchema);
   const creep = Game.creeps.dropper!;
   const delivery = createNativeGroundDelivery(state, createNativeDispatch(state));
-  const result = delivery.settle(creep.id);
+  const recovering = !!(Memory as Memory & { groundUnknown?: boolean }).groundUnknown;
+  const result = recovering && Game.time === 2 ? null : delivery.settle(creep.id);
+  const recovered = recovering && Game.time === 3 ? delivery.recover(creep) : false;
+  const resumed = recovering && Game.time === 4 ? delivery.issue(creep, 'ground-test', 'remaining', 'energy', creep.store.energy) : null;
   const issued = Game.time === 1 ? delivery.issue(creep, 'ground-test', 'release', 'energy', 50) : null;
   const duplicate = Game.time === 1 ? createNativeGroundDelivery(state, createNativeDispatch(state)).issue(creep, 'ground-test', 'duplicate', 'energy', 50) : null;
-  const row = { tick: Game.time, cargo: creep.store.energy, result, issued, duplicate, journal: createGroundJournal(state, creep.id).read(),
+  const row = { recovered, resumed, tick: Game.time, cargo: creep.store.energy, result, issued, duplicate, journal: createGroundJournal(state, creep.id).read(),
     ground: creep.pos.lookFor(LOOK_RESOURCES).reduce((sum, item) => sum + item.amount, 0) };
   const memory = Memory as Memory & { groundDelivery?: (typeof row)[] };
   (memory.groundDelivery ??= []).push(row);

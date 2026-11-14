@@ -26,3 +26,16 @@ test('ambiguous ground results remain unresolved and cannot fabricate an acknowl
   expect(createGroundJournal(state, 'u').begin({ ...attempt, tick: 13 })).toBe(false);
   expect(() => createGroundJournal(state, 'other').begin(attempt)).toThrow();
 });
+
+test('unknown recovery records remaining cargo without a delivery receipt and waits until a later tick', () => {
+  const state = fixture(), journal = createGroundJournal(state, 'u');
+  journal.begin(attempt);
+  journal.settle({ tick: 12 }, 1000);
+  expect(() => journal.reconcileUnknown('drop', { unit: 'replacement', tick: 12, cargo: 30 })).toThrow();
+  expect(() => journal.reconcileUnknown('drop', { unit: 'u', tick: 10, cargo: 30 })).toThrow();
+  journal.reconcileUnknown('drop', { unit: 'u', tick: 12, cargo: 30 });
+  expect(journal.read().result).toEqual({ status: 'reconciled', tick: 12, cargo: 30 });
+  expect(() => journal.acknowledge('drop')).toThrow();
+  expect(journal.begin({ ...attempt, tick: 12 })).toBe(false);
+  expect(createGroundJournal(state, 'u').begin({ ...attempt, id: 'remaining', tick: 13, amount: 30, cargoBefore: 30 })).toBe(true);
+});
