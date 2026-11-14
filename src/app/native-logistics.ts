@@ -36,7 +36,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
       }
-      if (config.values.energyRequestsEnabled) generateNativeEnergyRequests(state, Game.rooms[view.name]!, units, config.values);
+      if (config.values.energyRequestsEnabled || config.values.preservationEnabled) generateNativeEnergyRequests(state, Game.rooms[view.name]!, units, config.values);
       maintainNativeCouriers(state, Game.rooms[view.name]!, config.values, observeRoutes);
     },
   };
