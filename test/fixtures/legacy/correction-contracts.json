@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "legacySha": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+  "status": "expected contracts; production verification pending",
+  "contracts": [
+    { "id": "position-room", "owner": "ED-18", "input": [[10,10,"W1N1"],[10,10,"W2N2"]], "expectedEqual": false },
+    { "id": "position-border", "owner": "ED-18", "input": [[0,10,"W1N1"],[49,10,"W1N1"]], "expectedEqual": false },
+    { "id": "position-receiver", "owner": "ED-18", "expectation": "Numeric overload invokes original method with original position receiver and arguments" },
+    { "id": "construction-count", "owner": "ED-27", "existingSites": 3, "plannedTotal": 4, "roomCap": 5, "globalSlots": 1, "expectedNewSites": 1 },
+    { "id": "incomplete-path", "owner": "ED-23", "incomplete": true, "nonemptyPath": true, "expectedConnected": false },
+    { "id": "hunter-predicate", "owner": "ED-18", "expectation": "Border checks never write position coordinates" },
+    { "id": "invalid-distance", "owner": "ED-21", "expectation": "Reject non-finite path metrics explicitly; no NaN enters demand or queue priority" },
+    { "id": "invader-dispatch", "owner": "ED-33", "role": "attacker", "remoteDefenseType": "invaderCoreClear", "expectation": "Specialized core-clear handler owns dispatch" },
+    { "id": "unseen-cache", "owner": "ED-16", "expectation": "Loss of visibility preserves unrelated room state and marks observation stale" },
+    { "id": "layout-scoring", "owner": "ED-24", "expectation": "Hard-validate eligible candidates then compare configured scores; record selection reasons" }
+  ]
+}

@@ -1,6 +1,6 @@
 # Legacy characterization evidence
 
-ED-13 is in progress. The fixture excerpts are copied without semantic edits from legacy commit f2bbf7e8c44addc7c426abb5458e393c9502ff5f. Each excerpt records source file, line and SHA-256; tests use synthetic adapter stubs. These are extracted-function executions, not full-game or real-engine validation. Fixtures are checked in so CI does not require access to the legacy repository.
+ED-13 characterization foundation is accepted; see characterization-acceptance.md. The fixture excerpts are copied without semantic edits from legacy commit f2bbf7e8c44addc7c426abb5458e393c9502ff5f. Each excerpt records source file, line and SHA-256; tests use synthetic adapter stubs. These are extracted-function executions, not full-game or real-engine validation. Fixtures are checked in so CI does not require access to the legacy repository.
 
 Run `npx vitest run test/characterization test/smoke` for the focused loop.
 
@@ -29,3 +29,4 @@ Isolated predicate evidence: hunter bottom-border condition performs a coordinat
 Latest validation: all 53 tests passed in 1.94s; quality passed. The fixture suite is still incomplete against ED-13 acceptance and is not evidence of rewrite gameplay implementation.
 
 Versioned synthetic room/memory fixture added (room-memory-v1.json), used by queue and manual-build tests. Spawn records retain priority, boost, manual marker, timestamp and specialist memory. Actual processSpawnTasks execution confirms lowest numeric priority is attempted first and an energy shortage retains tasks without trying the next candidate. Manual construction uses flag-position room, preserves string RCL and priority -1000, and leaves capped requests unconsumed. Full suite: 57 passed; quality passes. Acceptance review and explicit correction contracts remain pending.
+
