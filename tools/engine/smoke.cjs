@@ -40,6 +40,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--work')) modules.main = await actionBundle(root, 'work-bot');
   if (process.argv.includes('--resources')) modules.main = await actionBundle(root, 'resource-bot');
   if (process.argv.includes('--movement')) modules.main = await actionBundle(root, 'movement-bot');
+  if (process.argv.includes('--maintenance')) modules.main = await actionBundle(root, 'maintenance-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -75,6 +76,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--work')) verifyWork(memory);
   if (process.argv.includes('--resources')) verifyResources(memory);
   if (process.argv.includes('--movement')) verifyMovement(memory);
+  if (process.argv.includes('--maintenance')) assert.deepEqual(memory.maintenanceEvidence.remaining, [['short', 'long'], ['long'], ['long']]);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -82,18 +84,3 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

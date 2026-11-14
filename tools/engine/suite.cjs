@@ -2,7 +2,7 @@ const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
-const cases = ['', '--reload', '--actions', '--tasks', '--work', '--resources', '--movement', '--inject-error', '--inject-timeout'];
+const cases = ['', '--reload', '--actions', '--tasks', '--work', '--resources', '--movement', '--maintenance', '--inject-error', '--inject-timeout'];
 const results = [];
 const start = performance.now();
 for (const scenario of cases) {

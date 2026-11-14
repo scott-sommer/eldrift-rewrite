@@ -32,3 +32,5 @@ Run `npm run test:engine:suite` after installing root and tools/engine dependenc
 
 Measured on this machine: all9 checks passed in8.01s (scenario loop, build excluded). Full fast suite169 tests passed in2.45s. These are small fixture scenarios, not parity or soak coverage. ED-12 remote checks subsequently passed on Windows and Linux in run 43588369374 at commit 8eb095c. This resolves that prerequisite; engine execution evidence is local Windows evidence, not an engine CI result.
 
+
+The suite additionally includes --maintenance: a test fixture seeds reservation state and invokes production main over three ticks. It asserts exact-boundary expiry with a longer-lived claim retained. All ten checks passed in 8.71s after this addition (scenario execution, build excluded).

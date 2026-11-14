@@ -1,3 +1,4 @@
+import { createTickAdmission } from './app/tick-admission';
 import { createMigrationGate } from './app/migration-gate';
 import { createGameLoop } from './app/game-loop';
 import { createPersistentConfiguration } from './app/persistent-configuration';
@@ -10,5 +11,4 @@ const state = createMemoryPort(() => Memory);
 export const loop = createGameLoop([], {
   ...ports,
   config: createPersistentConfiguration(state, () => ports.clock().tick),
-}, createMigrationGate(state, [], ports));
-
+}, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick));
