@@ -11,6 +11,8 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   courierBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
   logisticsEnabled: value => typeof value === 'boolean',
   linksEnabled: value => typeof value === 'boolean',
+  linkServiceEnabled: value => typeof value === 'boolean',
+  linkStorageTarget: value => bounded(value, 1),
   linkControllerTrigger: value => bounded(value, 1),
   linkStorageAssistTrigger: value => bounded(value, 1),
   linkRelayTrigger: value => bounded(value, 800) && Number.isInteger(value),

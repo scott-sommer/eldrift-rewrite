@@ -18,3 +18,5 @@ energyRequestsEnabled (default false) adds owned-room spawn/extension requests w
 
 courierSpawningEnabled (default false) enables bootstrap courier demand when logisticsEnabled is active. courierBodyBudget defaults to 300 (integer 100..2600); the first courier is limited by currently available room energy. Native sizing combines a pending-work bootstrap floor with static per-station route estimates for safe, visible owned-room container mining. Remote routing and measured traffic delays remain unfinished. Disabling either logistics or courier spawning cancels its unissued spawn requests.
 
+
+Link courier service is opt-in with `linkServiceEnabled: true` alongside `logisticsEnabled` and `linksEnabled`. `linkStorageTarget` is a validated fraction (default 0.75), while `linkStorageAssistTrigger` controls controller need. The service creates bounded fill/drain work for existing couriers; courier spawning remains separately controlled. Disabling service cancels unassigned service requests and lets admitted cargo settle.

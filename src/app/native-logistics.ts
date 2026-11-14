@@ -1,3 +1,4 @@
+import { generateNativeLinkService } from './native-link-service';
 import { runNativeLinks } from './native-links';
 import { settleHaulingTask } from './settle-hauling-task';
 import { observeTransfer } from '../adapters/screeps/transfer-observation';
@@ -31,6 +32,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
 
       dispatch.activate();
       if (config.values.linksEnabled) runNativeLinks(state, Game.rooms[view.name]!, dispatch.arbiter, config.values);
+      generateNativeLinkService(state, Game.rooms[view.name]!, config.values);
       for (const creep of units) {
         settleHaulingTask(state, definitions, creep, observeTransfer);
         recoverNativeCargo(state, definitions, creep, view.name);
