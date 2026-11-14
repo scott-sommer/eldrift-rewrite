@@ -8,7 +8,7 @@ export function createObservationSource(game: Pick<Game, 'rooms'>): ObservationS
       return {
         name,
         owned: room.controller?.my === true,
-        units: room.find(FIND_CREEPS).map(unit => ({ id: unit.id, owner: unit.owner.username, owned: unit.my })),
+        units: [...room.find(FIND_CREEPS), ...room.find(FIND_POWER_CREEPS)].map(unit => ({ id: unit.id, owner: unit.owner.username, owned: unit.my })),
         structures: room.find(FIND_STRUCTURES).map(structure => ({
           id: structure.id,
           type: structure.structureType,
@@ -18,3 +18,4 @@ export function createObservationSource(game: Pick<Game, 'rooms'>): ObservationS
     },
   };
 }
+
