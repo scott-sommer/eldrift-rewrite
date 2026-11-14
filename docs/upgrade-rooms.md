@@ -1,5 +1,7 @@
 # Upgrade-room service and remaining specialist parity
 
+Current status: the production runtime includes specialist upgrader/master fleets, bootstrap workers, lifecycle/parking and the opt-in supply fleet. The sections below record incremental implementation evidence; early limitations are historical where a later section explicitly supersedes them. Combined reset/reclaim/bootstrap/rebuild, additional failure scenarios, and full specialist parity remain incomplete. See the latest supply runtime section for configuration.
+
 ## Ported service policy
 The pure upgrade-service planner selectively ports role.upgradeMaster.js into one desired shipment per observation. It first clears non-energy storage stock into terminal, then services the first active owned lab, then energy demand. Native selection uses deterministic structure IDs instead of incidental enumeration. Existing shared service reconciliation retains admitted cargo through direction changes; local couriers execute using standard quantity reservations, lab mineral compartment capacity, native transfer journal and movement.
 
@@ -320,3 +322,28 @@ Supply couriers now unload non-energy cargo at their owned sponsor before resumi
 Actual --supply-cargo starts with 20 hydrogen and 10 energy, confirms 20 hydrogen delivered to sponsor storage, releases the initial 10 energy in the target, collects only 30 above sponsor reserve 70, releases that additional 30, and returns/reassigns after cancellation. Evidence artifacts/engine-gROCM8/evidence.json. --supply-cargo-hold fills the sponsor store: all 40 observed ticks retain both cargo resources, no transfer/drop journal is opened, and the route owner remains unchanged (artifacts/engine-SCYKWJ/evidence.json).
 
 Validation: quality passed (295 production / 262 test files; zero Lizard violations); 567 tests / 172 files passed in 4.46s. Native ground and master supply regressions also passed after extending the fixture to 40 ticks. The prior full 120-case aggregate was not rerun; two new cases are registered for the next full run. Runtime/fleet integration, terminal/ownership-loss and long-route replacement scenarios, and combined reset/reclaim/bootstrap/rebuild remain incomplete.
+
+## Production supply runtime and recruitment (ED-22, 2026-11-15)
+
+The normal main loop now registers a dedicated upgrade-supply room feature. Route discovery combines visible configured targets with queued requests and live route-owned couriers, so disabling configuration or losing target vision does not orphan an existing route. Assessment reuses bootstrap supply demand and the shared empire-energy hysteresis. The target's configuration selects its sponsor; self-supply routes are excluded.
+
+Target-room settings:
+- upgradeRoomEnabled and upgradeSupplyEnabled enable supply operation; supply defaults off.
+- upgradeSupplySpawningEnabled independently allows recruitment; defaults off.
+- upgradeRoomSponsor names the physical sponsor and supply courier logical home.
+- upgradeSupplyTarget is an integer 0–8, default 8.
+- upgradeSupplyReserve is retained source energy, integer 0–1,300,000, default 0.
+- upgradeFleetStartEnergy/StopEnergy and upgradeFleetStorageFloor retain the shared legacy hysteresis and storage gates.
+- terminalFreeReserve controls foreign-cargo destination preference.
+
+Recruitment uses the exact 2,500-energy 17 MOVE / 33 CARRY body, never a silently smaller body. The common roster reconciler counts spawning, travelling and low-TTL units until actual death, keeping a fixed roster; predictive replacement on long routes is not yet evidenced. Sponsor identity remains distinct from target-owned bootstrap and upgrade workers. An unaffordable body, disabled spawning, lost target ownership or stopped demand cancels this route's pending requests without touching other owners. Already loaded units finish delivery or return cargo on ownership loss, then empty cancelled units return inside the sponsor and become ordinary haulers. Disabling recruitment alone leaves existing service active.
+
+When the destination is visible, the anchor is retained storage position or controller position; unseen targets use room centre only as an approach waypoint and are reassessed on visibility. Planning integration should replace this fallback with the persisted room plan. No storage means no new legacy supply demand.
+
+Actual --supply-fleet uses the production main loop, no seeded creeps, a sponsor spawn and 26 extensions. It pays exactly 2,500 energy, creates one full-size courier, travels into the RCL2 target, confirms a 30-energy ground release while retaining donor reserve 70, and after disabling supply returns/reassigns to ordinary hauling. Evidence artifacts/engine-ECfDKJ/evidence.json, 270 ticks. Fixture corrections: skip journal observation before a newly spawning creep receives its native ID; keep enough sponsor spawn/extension energy after recruitment to avoid passive regeneration obscuring the measured cost.
+
+Quality passed (298 production / 264 test files, zero Lizard violations); 571 tests / 173 files passed in 5.34s. Added behavior tests cover queue cancellation, unaffordable body, target ownership loss, disabled-route discovery without vision, sponsor identity and configuration bounds. Complete native suite passed 123 checks in 219.51s (artifacts/engine-suite.json).
+
+Outstanding: native terminal/full-destination/loss and queued cancellation cases, sponsor-loss recovery, persisted plan anchors, long-route replacement, low-RCL master recruitment, and combined reset/reclaim/bootstrap/rebuild. ED-22 is not complete.
+
+Final legacy comparison preserved recruitment priorities 88 + roster index * 5 (spawner.js 1782–1811). Route-specific counting deliberately corrects the legacy room-wide hauler count: unrelated couriers no longer suppress supply recruitment. This priority-only correction was made after the 123-case run; final quality/fast checks and the native supply-fleet case were rerun before commit.
