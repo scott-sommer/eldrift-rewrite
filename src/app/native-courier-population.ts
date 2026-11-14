@@ -23,7 +23,7 @@ export function maintainNativeCouriers(state: StatePort, room: Room, config: Rea
   const body = courier(budget)?.parts;
   if (!body) { cancelCourierDemand(state, room.name); return; }
   const work = createLogisticsRequests(state, room.name).pending(Game.time).length > 0;
-  const routes = observeRoutes(room, body);
+  const routes = observeRoutes(room, body, config);
   applyCourierDemand(state, { owner, room: room.name, body, routes: routes.routes, utilization: 0.8,
     minimumCapacity: work ? courierCapacity(body) : 0, travelTicks: routes.travelTicks, marginTicks: 10, priority: 1, requestLifetime: 100 }, units, Game.time);
 }
