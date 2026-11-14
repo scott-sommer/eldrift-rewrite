@@ -12,7 +12,7 @@ import { assignHaulingTask } from './assign-hauling-task';
 import { taskScope } from './task-runner';
 export interface CargoRecovery {
   home: string; name: string; unitId: string; tick: number;
-  resource: string; quantity: number; sink: string; sinkFree: number; sinkPool: string;
+  resource: string; quantity: number; sink: string; sinkRoom?: string; sinkFree: number; sinkPool: string;
 }
 /** Recovery gets its own receipt identity; it never credits abandoned work. */
 export function assignCargoRecovery(state: StatePort, definitions: Readonly<Record<string, TaskDefinition>>, cargo: CargoRecovery): boolean {
@@ -32,7 +32,7 @@ export function assignCargoRecovery(state: StatePort, definitions: Readonly<Reco
   try {
     queue.submit(request, cargo.tick);
     const assigned = assignHaulingTask(state, definitions, cargo.name, id,
-      { home: cargo.home, unitId: cargo.unitId, request }, cargo.tick, request.expiresAt);
+      { home: cargo.home, unitId: cargo.unitId, request, ...(cargo.sinkRoom ? { sinkRoom: cargo.sinkRoom } : {}) }, cargo.tick, request.expiresAt);
     if (!assigned) { queue.cancel(request.owner, id); createQuantityReservations(state).releaseScope(scope); }
     return assigned;
   } catch (error) {

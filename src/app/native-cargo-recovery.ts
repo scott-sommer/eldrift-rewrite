@@ -17,7 +17,7 @@ export function recoverNativeCargo(state: StatePort, definitions: Readonly<Recor
         resource, quantity, priority: -1, expiresAt: Game.time + 100 });
       if (view.sinkFree === 0) continue;
       if (assignCargoRecovery(state, definitions, { home, name: creep.name, unitId: creep.id, tick: Game.time,
-        resource, quantity, sink: sink.id, sinkFree: view.sinkFree, sinkPool: view.sinkPool })) return true;
+        resource, quantity, sink: sink.id, sinkRoom: home, sinkFree: view.sinkFree, sinkPool: view.sinkPool })) return true;
     }
   }
   return false;

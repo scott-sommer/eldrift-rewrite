@@ -11,7 +11,7 @@ export function createNativeHaulingTask(state: StatePort,
   dispatch: Pick<ReturnType<typeof createNativeDispatch>, 'arbiter' | 'movement'>, policy: RoutePolicy) {
   return createHaulingTaskBehavior<Creep>(state, {
     identity: creep => ({ id: creep.id, name: creep.name }),
-    view: (creep, payload) => observeHauling(creep, payload.request),
+    view: (creep, payload) => observeHauling(creep, payload.request, payload.sinkRoom),
     execution: (creep, binding) => {
       const transfer = createNativeTransfer(dispatch.arbiter, dispatch.movement, createTransferJournal(state, creep.id).begin);
       return { observe: observeTransfer, execute: (request, phase, amount, attemptId, requestKey) => {

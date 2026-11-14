@@ -41,3 +41,17 @@ test('transfer approach follows current visible target position rather than an o
   expect(begin).not.toHaveBeenCalled();
 });
 
+
+test('missing destination requires its known room to be visible', () => {
+  world(null, null);
+  expect(observeHauling(creep, request, 'W0N1').sinkStatus).toBe('unseen');
+  vi.stubGlobal('Game', { time: 5, rooms: { W0N1: {} }, getObjectById: () => null });
+  expect(observeHauling(creep, request, 'W0N1').sinkStatus).toBe('missing');
+  expect(observeHauling(creep, request).sinkStatus).toBe('unseen');
+});
+
+test('mobile destinations do not persist a room as proof of destruction', () => {
+  world(null, { body: [], store: store(50), pos: { roomName: 'W0N1' } });
+  expect(observeHauling(creep, request).sinkRoom).toBeUndefined();
+  expect(observeHauling(creep, request).sinkStatus).toBe('visible');
+});

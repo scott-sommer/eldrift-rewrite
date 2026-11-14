@@ -67,3 +67,14 @@ test('a loaded courier still delivers after the source is depleted', () => {
   expect(issued).toEqual(['deliver:20']);
 });
 
+
+test('a missing destination cancels work for cargo recovery but loss of vision retains it', () => {
+  const view = { tick: 2, cargo: 20, freeCargo: 30, sourceStock: 0, sinkFree: 0, sinkPool: 'sink-capacity' };
+  const ports = { observe: () => ({ tick: 2 }), execute: () => { throw new Error('No destination'); } };
+  const state = fixture();
+  expect(runHauling(state, binding, { ...view, sinkStatus: 'unseen' }, ports)).toMatchObject({ status: 'blocked' });
+  expect(createLogisticsRequests(state, 'room').pending(2)).toHaveLength(1);
+  expect(runHauling(state, binding, { ...view, sinkStatus: 'missing' }, ports)).toMatchObject({ status: 'failed', reason: 'orphaned-hauling-cargo' });
+  expect(createLogisticsRequests(state, 'room').pending(2)).toEqual([]);
+  expect(createQuantityReservations(state).list(2)).toEqual([]);
+});

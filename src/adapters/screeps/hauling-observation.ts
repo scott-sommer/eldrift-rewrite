@@ -4,11 +4,13 @@ import type { TransferObject } from './transfer-target';
 export function logisticsEndpoint(id: string): TransferObject | null {
   return Game.getObjectById(id as Id<TransferObject>);
 }
-export function observeHauling(creep: Creep, request: LogisticsRequest) {
+export function observeHauling(creep: Creep, request: LogisticsRequest, expectedSinkRoom?: string) {
   const resource = request.resource as ResourceConstant;
   const source = logisticsEndpoint(request.source);
   const sink = logisticsEndpoint(request.sink);
-  return { tick: Game.time, cargo: creep.store.getUsedCapacity(resource) ?? 0,
+  const sinkRoom = sink ? ('structureType' in sink ? sink.pos?.roomName : undefined) : expectedSinkRoom;
+  const sinkStatus = sink ? 'visible' as const : sinkRoom && Game.rooms[sinkRoom] ? 'missing' as const : 'unseen' as const;
+  return { sinkStatus, ...(sinkRoom ? { sinkRoom } : {}), tick: Game.time, cargo: creep.store.getUsedCapacity(resource) ?? 0,
     freeCargo: creep.store.getFreeCapacity(resource) ?? 0,
     sourceStock: sourceStock(source, resource), sinkFree: sinkCapacity(sink, resource),
     sinkPool: capacityPool(request.sink, sink, resource) };

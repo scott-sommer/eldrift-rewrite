@@ -40,7 +40,7 @@ function admit(state: StatePort, definitions: Readonly<Record<string, TaskDefini
   if (amount === 0) return false;
   try {
     const assigned = assignHaulingTask(state, definitions, unit.name, id,
-      { home: unit.home, unitId: unit.unitId, request }, unit.tick, request.expiresAt);
+      { home: unit.home, unitId: unit.unitId, request, ...(view.sinkRoom ? { sinkRoom: view.sinkRoom } : {}) }, unit.tick, request.expiresAt);
     if (!assigned) createQuantityReservations(state).releaseScope(scope);
     return assigned;
   } catch (error) {

@@ -5,7 +5,7 @@ import type { TaskBehavior } from './task-runner';
 import { taskScope } from './task-runner';
 import { runHauling } from './hauling-cycle';
 import type { HaulingBinding, HaulingPorts, HaulingView } from './hauling-cycle';
-export interface HaulingTaskPayload { home: string; unitId: string; request: LogisticsRequest }
+export interface HaulingTaskPayload { home: string; unitId: string; sinkRoom?: string; request: LogisticsRequest }
 export interface HaulingTaskPorts<Context> {
   identity(context: Context): { id: string; name: string };
   view(context: Context, payload: HaulingTaskPayload): HaulingView;
@@ -15,6 +15,7 @@ export function validHaulingPayload(value: unknown): value is HaulingTaskPayload
   if (!value || typeof value !== 'object') return false;
   const payload = value as HaulingTaskPayload;
   if (![payload.home, payload.unitId].every(item => typeof item === 'string' && item.length > 0)) return false;
+  if (payload.sinkRoom !== undefined && (typeof payload.sinkRoom !== 'string' || !payload.sinkRoom)) return false;
   try { validateLogisticsRequest(payload.request); return true; } catch { return false; }
 }
 /** Continuous hauling waits retain the task; expiry and explicit terminal failures remain bounded by the runner. */

@@ -11,7 +11,7 @@ import type { LogisticsRequest } from '../capabilities/logistics/request';
 import type { TransferAttempt, TransferObservation } from '../capabilities/logistics/confirmation';
 import { settleHaulingTransfer } from './settle-hauling-transfer';
 export interface HaulingBinding { home: string; unit: string; holder: string; scope: string; request: LogisticsRequest }
-export interface HaulingView extends TransferAvailability { tick: number; cargo: number; freeCargo: number }
+export interface HaulingView extends TransferAvailability { tick: number; cargo: number; freeCargo: number; sinkRoom?: string; sinkStatus?: 'visible' | 'missing' | 'unseen' }
 export interface HaulingPorts {
   observe(attempt: TransferAttempt): TransferObservation;
   execute(request: LogisticsRequest, phase: 'collect' | 'deliver', amount: number, attemptId: string, requestKey: string): Outcome;
@@ -21,6 +21,10 @@ export function runHauling(state: StatePort, binding: HaulingBinding, view: Haul
   if (![view.tick, view.cargo, view.freeCargo].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid hauling view');
   if (settlePending(state, binding, view, ports)) return wait(view.tick, 'transfer-pending');
   if (abandonUnknownTransfer(state, binding, view.tick, view.cargo)) return { status: 'failed', reason: 'transfer-evidence-lost' };
+  if (view.sinkStatus === 'missing') {
+    createLogisticsRequests(state, binding.home).cancel(binding.request.owner, binding.request.id);
+    return finish(state, binding, view);
+  }
   const request = pending(state, binding, view.tick);
   if (!request || (view.cargo === 0 && view.sourceStock === 0)) return finish(state, binding, view);
   const phase = view.cargo > 0 ? 'deliver' : 'collect';
@@ -57,5 +61,3 @@ function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingV
   });
   return settled?.status === 'waiting';
 }
-
-
