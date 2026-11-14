@@ -18,3 +18,26 @@ function verifyMining(memory) {
   assert.deepEqual(memory.miningEvidence.outcomes, Array(5).fill('running'));
 }
 module.exports = { miningWorld, verifyMining };
+
+async function interruptedMiningWorld(server, bot) {
+  await miningWorld(server, bot);
+  const { db } = await server.world.load();
+  await db['rooms.objects'].update({ room: 'W0N1', name: 'miner' }, { $set: { fatigue: 6 } });
+  await require('@screeps/driver').activateRoom('W0N1');
+}
+function verifyInterruptedMining(memory) {
+  const evidence = memory.miningEvidence;
+  assert.deepEqual(evidence.fatigue.slice(0, 4), [6, 4, 2, 0]);
+  assert.deepEqual(evidence.positions.slice(0, 3), Array(3).fill([20, 22]));
+  assert.deepEqual(evidence.positions.at(-1), [20, 21], JSON.stringify(evidence));
+  assert.deepEqual(evidence.outcomes, Array(9).fill('running'));
+  assert.equal(evidence.stores.at(-1)[1], 50, 'Miner must resume travel and deliver after fatigue clears');
+  assert.ok(evidence.stores.at(-1)[0] > 0, 'Miner must resume production after delivery');
+  assert.equal(memory.eldrift.records['tasks/miner'].data.queue.length, 1);
+  assert.equal(memory.eldrift.records['tasks/miner'].data.queue[0].retries, 0);
+}
+module.exports.interruptedMiningWorld = interruptedMiningWorld;
+module.exports.verifyInterruptedMining = verifyInterruptedMining;
+
+
+

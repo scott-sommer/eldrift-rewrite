@@ -12,14 +12,15 @@ import { observeMiningStations } from '../../src/adapters/screeps/mining-station
 const policy = { version: 'mining-engine', blockedRooms: [], costs: {}, maximumRooms: 4 };
 export function loop() {
   botLoop();
-  const memory = Memory as Memory & { miningEvidence?: { positions: number[][]; stores: number[][]; outcomes: string[] } };
-  const evidence = memory.miningEvidence ??= { positions: [], stores: [], outcomes: [] };
+  const memory = Memory as Memory & { miningEvidence?: { fatigue: number[]; positions: number[][]; stores: number[][]; outcomes: string[] } };
+  const evidence = memory.miningEvidence ??= { fatigue: [], positions: [], stores: [], outcomes: [] };
   const arbiter = createActionArbiter(() => Game.time);
   const movement = createMovementService(arbiter);
   const mine = createNativeMiner(arbiter, movement);
   const creep = Game.creeps['miner']!;
   const station = observeMiningStations('W0N1', 'safe')!.find(item => item.position.x === 20 && item.position.y === 20)!;
   const container = Game.getObjectById(station.container as Id<StructureContainer>)!;
+  evidence.fatigue.push(creep.fatigue);
   evidence.positions.push([creep.pos.x, creep.pos.y]);
   evidence.stores.push([creep.store.energy, container.store.energy]);
   const state = createMemoryPort(() => Memory);
@@ -33,5 +34,6 @@ export function loop() {
   evidence.outcomes.push(createTaskRunner(state, behaviors, () => Game.time)(creep.name, creep)!.status);
   movement.flush();
 }
+
 
 
