@@ -11,12 +11,12 @@ function inspect(value: unknown, depth: number, budget: WalkBudget): void {
   inspectObject(value, depth, budget);
 }
 function inspectObject(value: object, depth: number, budget: WalkBudget): void {
-  const prototype = Object.getPrototypeOf(value);
-  if (!Array.isArray(value) && prototype !== Object.prototype && prototype !== null) throw new Error('State requires plain objects');
+  validatePrototype(value);
   if (budget.ancestors.has(value)) throw new Error('State contains a cycle');
   budget.ancestors.add(value);
   for (const key of Reflect.ownKeys(value)) {
     if (Array.isArray(value) && key === 'length') continue;
+    if (Array.isArray(value)) validateArrayKey(key, value.length);
     inspect(propertyValue(value, key), depth + 1, budget);
   }
   if (Array.isArray(value) && Object.keys(value).length !== value.length) throw new Error('State contains sparse or extended array');
@@ -29,3 +29,12 @@ function propertyValue(value: object, key: string | symbol): unknown {
   return descriptor.value;
 }
 
+function validateArrayKey(key: string | symbol, length: number): void {
+  if (typeof key !== 'string') throw new Error('State contains non-data properties');
+  const index = Number(key);
+  if (!Number.isInteger(index) || index < 0 || index >= length || String(index) !== key) throw new Error('State contains extended array');
+}
+function validatePrototype(value: object): void {
+  const prototype = Object.getPrototypeOf(value);
+  if (!Array.isArray(value) && prototype !== Object.prototype && prototype !== null) throw new Error('State requires plain objects');
+}

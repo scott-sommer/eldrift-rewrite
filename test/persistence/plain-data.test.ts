@@ -23,3 +23,11 @@ test('initial state returned to caller cannot mutate persisted data', () => {
   state.count = 42;
   expect(stored).toEqual({ owner: 'test', version: 1, data: { count: 0 } });
 });
+
+test('rejects a sparse array whose extra property masks its missing index', () => {
+  const value = [1, 2];
+  Reflect.deleteProperty(value, '0');
+  Object.assign(value, { extra: 3 });
+  expect(() => copyPlain(value)).toThrow('extended array');
+  expect(copyPlain([1, 2])).toEqual([1, 2]);
+});
