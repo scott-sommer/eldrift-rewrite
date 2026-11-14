@@ -1,3 +1,4 @@
+import { configureMineralStation, miningPopulationFor } from './native-mining-policy';
 import { miningRetreat } from '../adapters/screeps/mining-retreat';
 import { cancelMiningDemand } from '../features/mining/cancel-demand';
 import type { StatePort } from '../persistence/versioned-state';
@@ -8,7 +9,7 @@ import { createActionArbiter } from '../core/execution/action-arbiter';
 import { createMovementService } from '../adapters/screeps/movement-service';
 import { createNativeMiner } from '../adapters/screeps/mining';
 import { observeMiningStations } from '../adapters/screeps/mining-stations';
-import { observeMiningPopulation, plannedHarvestRate } from '../adapters/screeps/mining-rates';
+import { plannedHarvestRate } from '../adapters/screeps/mining-rates';
 import { createNativeSpawn } from '../adapters/screeps/spawn';
 import { populationMemory, observeSpawning } from '../adapters/screeps/population';
 import { createSpawnCoordinator } from '../features/population/spawn-coordinator';
@@ -32,15 +33,17 @@ export function createNativeMiningFeature(state: StatePort) {
       const unsafe = threats.length > 0;
       const refuge = miningRetreat(retreat, threats);
       if (unsafe) cancelMiningDemand(state, room.name);
-      const stations = observeMiningStations(room.name, unsafe ? 'hostile' : 'safe')!.filter(station => station.kind === 'energy');
-      const units = observeMiningPopulation('energy').filter(unit => unit.room === room.name && unit.owner.startsWith('mining:'));
+      const observed = observeMiningStations(room.name, unsafe ? 'hostile' : 'safe')!;
+      const units = miningPopulationFor(room.name, observed);
       const budget = Math.min(config.values.miningBodyBudget, units.length ? room.energyCapacityAvailable : room.energyAvailable);
       const body = sourceMiner(budget)?.parts;
+      const stations = observed.map(station => configureMineralStation(station, body, config.values.mineralMiningEnabled));
       const cycle = createMiningCycle<Creep>(state, {
         clock: () => Game.time, unit: creep => creep.name, context: name => Game.creeps[name]!, taskLifetime: 1600,
-        plan: station => body ? { station, home: room.name, body, priority: 0, travelTicks: 25, marginTicks: 10, requestLifetime: 100 } : undefined,
+        plan: station => body ? { station, home: room.name, body, priority: station.kind === 'energy' ? 0 : 10, travelTicks: 25, marginTicks: 10, requestLifetime: 100 } : undefined,
         productionRate: (parts, station) => plannedHarvestRate(parts, station.kind),
-        run: (creep, station, tile, assigned, owner) => unsafe && !refuge
+        run: (creep, station, tile, assigned, owner) => !unsafe && station.kind === 'mineral' && !config.values.mineralMiningEnabled
+          ? { status: 'blocked', reason: 'mineral-mining-disabled', retryAt: Game.time + 1 } : unsafe && !refuge
           ? { status: 'blocked', reason: 'no-retreat-position', retryAt: Game.time + 1 } : mine(creep, { station, tile, assigned, owner, unsafe,
           retreat: refuge ?? { room: room.name, x: creep.pos.x, y: creep.pos.y },
           policy: { version: 'owned-mining', blockedRooms: [], costs: {}, maximumRooms: 4 } }),
@@ -51,5 +54,6 @@ export function createNativeMiningFeature(state: StatePort) {
   return { feature, definitions: { mine: { phases: ['work'], validPayload: validMiningPayload } },
     flush() { if (activeTick === Game.time) { spawn(); movement.flush(); } } };
 }
+
 
 

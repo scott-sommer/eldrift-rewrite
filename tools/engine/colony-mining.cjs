@@ -18,3 +18,14 @@ function verifyColonyMining(memory) {
 module.exports = { colonyMiningWorld, verifyColonyMining };
 
 
+
+async function colonyMineralWorld(server, bot) {
+  await colonyMiningWorld(server);
+  const { db } = await server.world.load();
+  await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'source' });
+  await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'mineral' });
+  await db['rooms.objects'].update({ room: 'W0N1', type: 'controller' }, { $set: { user: bot.id, level: 8, downgradeTime: 100000 } });
+  await server.world.addRoomObject('W0N1', 'mineral', 18, 15, { mineralType: 'H', mineralAmount: 1, density: 1 });
+  await server.world.addRoomObject('W0N1', 'extractor', 18, 15, { user: bot.id, hits: 500, hitsMax: 500, cooldown: 0 });
+}
+module.exports.colonyMineralWorld = colonyMineralWorld;

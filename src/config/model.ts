@@ -1,5 +1,6 @@
 export interface RuntimeConfig {
   miningEnabled: boolean;
+  mineralMiningEnabled: boolean;
   miningBodyBudget: number;
   backgroundEnabled: boolean;
   backgroundCpuFraction: number;
@@ -9,6 +10,7 @@ export interface RuntimeConfig {
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   miningEnabled: false,
+  mineralMiningEnabled: false,
   miningBodyBudget: 800,
   backgroundEnabled: true,
   backgroundCpuFraction: 0.5,
@@ -29,4 +31,5 @@ export interface EffectiveConfig {
   values: Readonly<RuntimeConfig>;
   sources: Readonly<Record<ConfigKey, ConfigLayer>>;
 }
+
 
