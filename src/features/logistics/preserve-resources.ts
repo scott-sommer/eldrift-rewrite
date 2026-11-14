@@ -1,3 +1,4 @@
+import { reconcilePreservationSinks } from './reconcile-preservation-sinks';
 import { reconcileSupplySources } from './reconcile-supply-sources';
 import type { StatePort } from '../../persistence/versioned-state';
 import { createLogisticsRequests } from './request-store';
@@ -9,6 +10,7 @@ export interface PreservationPolicy { owner: string; lifetime: number; maximumQu
 export function preserveResources(state: StatePort, room: string, tick: number, sources: readonly RecoverableStock[],
   sinks: readonly PreservationSink[], policy: PreservationPolicy): number {
   reconcileSupplySources(state, room, policy.owner, tick, sources);
+  reconcilePreservationSinks(state, room, policy.owner, tick, sinks);
   const queue = createLogisticsRequests(state, room);
   const pending = queue.pending(tick);
   const free = new Map(sinks.map(sink => [sink.id, Math.max(0, sink.free - pending.filter(item => item.sink === sink.id)

@@ -49,3 +49,11 @@ test('different resource remaining in a tombstone does not keep depleted mineral
   preserveResources(state, 'home', 2, [{ id: 'tomb', resource: 'energy', amount: 30, minimumBatch: 0, priority: 0 }], sinks, policy);
   expect(queue.pending(2).map(item => item.resource)).toEqual(['energy']);
 });
+
+test('unassigned work switches from newly full storage to terminal without waiting for expiry', () => {
+  const { state, queue } = fixture();
+  const sources = [{ id: 'tomb', resource: 'H', amount: 30, minimumBatch: 0, priority: 0 }];
+  preserveResources(state, 'home', 1, sources, [{ id: 'storage', free: 30, priority: 0 }], policy);
+  expect(preserveResources(state, 'home', 2, sources, [{ id: 'storage', free: 0, priority: 0 }, { id: 'terminal', free: 30, priority: 1 }], policy)).toBe(1);
+  expect(queue.pending(2).map(item => item.sink)).toEqual(['terminal']);
+});

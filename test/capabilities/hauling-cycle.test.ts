@@ -90,3 +90,23 @@ test('a growing drop releases an existing assignment when its indivisible amount
   expect(createQuantityReservations(state).list(2)).toEqual([]);
   expect(createLogisticsRequests(state, 'room').pending(2)[0]?.quantity).toBe(50);
 });
+
+test('a visibly full destination cancels loaded work without inventing delivery', () => {
+  const state = fixture();
+  const view = { tick: 1, cargo: 0, freeCargo: 50, sourceStock: 50, sinkFree: 50, sinkPool: 'sink-capacity', sinkStatus: 'visible' as const };
+  runHauling(state, binding, view, { observe: () => ({ tick: 1 }), execute: () => ({ status: 'running' }) });
+  expect(createQuantityReservations(state).list(1)).toHaveLength(1);
+  expect(runHauling(state, binding, { ...view, tick: 2, cargo: 30, freeCargo: 20, sinkFree: 0 }, {
+    observe: () => ({ tick: 2 }), execute: () => { throw new Error('Full sink must not issue'); },
+  })).toMatchObject({ status: 'failed', reason: 'orphaned-hauling-cargo' });
+  expect(createLogisticsRequests(state, 'room').pending(2)).toEqual([]);
+  expect(createQuantityReservations(state).list(2)).toEqual([]);
+});
+
+test('an empty courier waiting for a full sink retains the request', () => {
+  const state = fixture();
+  expect(runHauling(state, binding, { tick: 1, cargo: 0, freeCargo: 50, sourceStock: 50, sinkFree: 0, sinkPool: 'sink', sinkStatus: 'visible' }, {
+    observe: () => ({ tick: 1 }), execute: () => { throw new Error('No capacity'); },
+  })).toMatchObject({ status: 'blocked' });
+  expect(createLogisticsRequests(state, 'room').pending(1)).toHaveLength(1);
+});

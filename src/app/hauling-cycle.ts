@@ -21,7 +21,7 @@ export function runHauling(state: StatePort, binding: HaulingBinding, view: Haul
   if (![view.tick, view.cargo, view.freeCargo].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid hauling view');
   if (settlePending(state, binding, view, ports)) return wait(view.tick, 'transfer-pending');
   if (abandonUnknownTransfer(state, binding, view.tick, view.cargo)) return { status: 'failed', reason: 'transfer-evidence-lost' };
-  if (view.sinkStatus === 'missing') {
+  if (unusableDestination(view)) {
     createLogisticsRequests(state, binding.home).cancel(binding.request.owner, binding.request.id);
     return finish(state, binding, view);
   }
@@ -65,4 +65,8 @@ function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingV
 function unavailable(state: StatePort, binding: HaulingBinding, view: HaulingView): Outcome {
   if (view.cargo === 0 && (view.minimumCollection ?? 0) > 0) return finish(state, binding, view);
   return wait(view.tick, 'logistics-capacity-unavailable');
+}
+
+function unusableDestination(view: HaulingView): boolean {
+  return view.sinkStatus === 'missing' || (view.sinkStatus === 'visible' && view.sinkFree === 0 && view.cargo > 0);
 }
