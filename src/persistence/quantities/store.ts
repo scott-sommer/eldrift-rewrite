@@ -26,6 +26,15 @@ export function createQuantityReservations(port: StatePort) {
       saveState(port, key, quantitySchema, { claims: [...retained, claim] });
       return true;
     },
+    releasePool(identity: Pick<QuantityClaim, 'id' | 'owner' | 'holder' | 'scope'>, pool: string): void {
+      const state = read();
+      const claim = state.claims.find(item => item.id === identity.id);
+      if (!claim) return;
+      if (!sameOwner(claim, identity)) throw new Error('Quantity claim identity conflict');
+      claim.allocations = claim.allocations.filter(item => item.pool !== pool);
+      state.claims = state.claims.filter(item => item.allocations.length > 0);
+      saveState(port, key, quantitySchema, state);
+    },
     list(tick: number): QuantityClaim[] {
       validTick(tick);
       return read().claims.filter(claim => claim.expiresAt > tick);
@@ -35,7 +44,7 @@ export function createQuantityReservations(port: StatePort) {
     expire(tick: number): number { validTick(tick); return release(claim => claim.expiresAt <= tick); },
   };
 }
-function sameOwner(a: QuantityClaim, b: QuantityClaim): boolean {
+function sameOwner(a: Pick<QuantityClaim, 'owner' | 'holder' | 'scope'>, b: Pick<QuantityClaim, 'owner' | 'holder' | 'scope'>): boolean {
   return a.owner === b.owner && a.holder === b.holder && a.scope === b.scope;
 }
 function fits(claim: QuantityClaim, others: QuantityClaim[], capacities: Readonly<Record<string, number>>): boolean {
@@ -50,3 +59,4 @@ function fits(claim: QuantityClaim, others: QuantityClaim[], capacities: Readonl
 function validTick(tick: number): void {
   if (!Number.isSafeInteger(tick) || tick < 0) throw new Error('Invalid quantity reservation tick');
 }
+
