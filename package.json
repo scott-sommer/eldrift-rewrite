@@ -1,0 +1,24 @@
+{
+  "name": "eldrift-rewrite",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "packageManager": "npm@11.19.1",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "node tools/build.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:smoke": "vitest run test/smoke",
+    "check:bundle": "npm run build && node tools/check-bundle.mjs"
+  },
+  "devDependencies": {
+    "@types/screeps": "3.4.0",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}
