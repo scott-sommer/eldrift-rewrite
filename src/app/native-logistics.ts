@@ -30,7 +30,7 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
         .sort((a, b) => a.name.localeCompare(b.name));
 
       dispatch.activate();
-      if (config.values.linksEnabled) runNativeLinks(Game.rooms[view.name]!, dispatch.arbiter);
+      if (config.values.linksEnabled) runNativeLinks(Game.rooms[view.name]!, dispatch.arbiter, config.values);
       for (const creep of units) {
         settleHaulingTask(state, definitions, creep, observeTransfer);
         recoverNativeCargo(state, definitions, creep, view.name);

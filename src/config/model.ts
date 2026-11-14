@@ -1,6 +1,9 @@
 export interface RuntimeConfig {
   logisticsEnabled: boolean;
   linksEnabled: boolean;
+  linkControllerTrigger: number;
+  linkStorageAssistTrigger: number;
+  linkRelayTrigger: number;
   courierSpawningEnabled: boolean;
   courierBodyBudget: number;
   energyRequestsEnabled: boolean;
@@ -18,6 +21,9 @@ export interface RuntimeConfig {
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   logisticsEnabled: false,
   linksEnabled: false,
+  linkControllerTrigger: 0.75,
+  linkStorageAssistTrigger: 0.5,
+  linkRelayTrigger: 500,
   courierSpawningEnabled: false,
   courierBodyBudget: 300,
   energyRequestsEnabled: false,

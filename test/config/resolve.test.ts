@@ -29,3 +29,14 @@ test('resolved configuration is isolated between rooms and from caller mutation'
   expect(Object.isFrozen(first.values)).toBe(true);
   expect(Object.isFrozen(first.values.allies)).toBe(true);
 });
+
+ test('link thresholds use ordinary configuration precedence and reject invalid values', () => {
+  const resolved = resolveConfig({ empire: { linkControllerTrigger: 0.75, linkRelayTrigger: 500 }, roomOverride: { linkControllerTrigger: 0, linkStorageAssistTrigger: 0.25 } }, 1);
+  expect(resolved.values.linkControllerTrigger).toBe(0);
+  expect(resolved.sources.linkControllerTrigger).toBe('roomOverride');
+  expect(resolved.values.linkStorageAssistTrigger).toBe(0.25);
+  expect(resolved.values.linkRelayTrigger).toBe(500);
+  for (const patch of [{ linkControllerTrigger: 1.1 }, { linkStorageAssistTrigger: -1 }, { linkRelayTrigger: 801 }, { linkRelayTrigger: 0.5 }]) {
+    expect(() => resolveConfig({ empire: patch }, 1)).toThrow();
+  }
+});

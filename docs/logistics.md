@@ -306,3 +306,11 @@ Native --link-supply runs the production room loop with two full source links an
 Validation:368 unit tests across112 files passed3.28s;quality passed166 production/160 test files,zero Lizard violations;native link scenario passed. Earlier focused planning+smoke passed5 tests in244ms before native integration; full unit run includes smoke afterward. Full engine suite now lists56 scenarios and was not rerun this increment.
 
 ED-21 is not complete: courier servicing of storage/controller links, cross-mode resource coordination, structured link outcome accounting, configurable role/threshold overrides, remaining fallback policies and acceptance scenarios still need work. The new flow is opt-in and has not been deployed live.
+
+## Layered link thresholds
+
+Native link planning now consumes the effective room configuration: linkControllerTrigger (default0.75, range0..1), linkStorageAssistTrigger (default0.5, range0..1), and linkRelayTrigger (default500, integer0..800). These are strict below-threshold triggers;0 disables the corresponding demand/assistance condition. Storage assistance still requires controller demand to be selected, so raising assistance above the controller trigger does not create independent demand. Geometry roles and native LINK_LOSS_RATIO remain separate from these policy settings.
+
+Native --controller-links starts with controller routing disabled (threshold0), then changes it to0.75 through persistent operator configuration. No first-tick intent occurs; the next tick routes800 from a source to the controller link, yielding776 after loss. Further transfers stop above the trigger. Exact source/storage/controller histories verify that the full storage link remains untouched. Evidence: artifacts/engine-RSovo8/evidence.json. Configuration tests verify room override precedence and reject out-of-range/fractional relay values. Native storage assistance and explicit role overrides remain separate evidence/work.
+
+Validation:369 unit tests across112 files passed3.47s;quality passed166 production/161 test files,zero Lizard violations;native controller-routing scenario passed. Full unit run includes smoke. Full engine suite now lists57 scenarios and was not rerun this increment. Remaining ED-21 scope is unchanged except these threshold controls are now implemented.
