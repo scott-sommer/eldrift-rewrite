@@ -1,3 +1,4 @@
+const { contentionWorld, verifyContention } = require('./spawn-contention.cjs');
 const { unseenWorld, verifyUnseen, occupiedExitWorld, verifyOccupiedExit } = require('./unseen.cjs');
 const { exitsWorld, verifyExits, verifyNavigation } = require('./exits.cjs');
 const { trafficWorld, verifyTraffic } = require('./traffic.cjs');
@@ -55,6 +56,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--unseen')) modules.main = await actionBundle(root, 'unseen-navigation-bot');
   if (process.argv.includes('--occupied-exit')) modules.main = await actionBundle(root, 'occupied-exit-bot');
   if (process.argv.includes('--spawn')) modules.main = await actionBundle(root, 'spawn-bot');
+  if (process.argv.includes('--spawn-contention')) modules.main = await actionBundle(root, 'spawn-contention-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
@@ -69,6 +71,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--unseen')) await unseenWorld(server, bot);
   if (process.argv.includes('--occupied-exit')) await occupiedExitWorld(server, bot);
   if (process.argv.includes('--spawn')) await server.world.setTerrain('W0N1', new TerrainMatrix());
+  if (process.argv.includes('--spawn-contention')) await contentionWorld(server, bot);
   const messages = evidence.messages;
   const errors = evidence.errors;
   await server.common.storage.pubsub.subscribe(`user:${bot.id}/console`, event => {
@@ -121,6 +124,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     assert.ok(memory.spawnEvidence.spawning.includes(true));
     assert.equal(memory.spawnEvidence.spawning.at(-1), false);
   }
+  if (process.argv.includes('--spawn-contention')) verifyContention(memory);
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: tickCount, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
@@ -128,6 +132,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   clearTimeout(timeout);
   finish(0);
 })().catch(error => { console.error(error); clearTimeout(timeout); finish(1, error); });
+
 
 
 
