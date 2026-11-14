@@ -9,7 +9,7 @@ function store(root: MemoryRoot): Store {
   return value as Store;
 }
 function validKey(key: string): void {
-  if (!/^[a-z][a-zA-Z0-9-]*\/[a-zA-Z0-9_-]+$/.test(key)) throw new Error(`Invalid state key: ${key}`);
+  if (!/^[a-z][a-zA-Z0-9-]*\/(?:[a-zA-Z0-9_-]|%[0-9a-f]{4})+$/.test(key)) throw new Error(`Invalid state key: ${key}`);
 }
 export function createMemoryPort(memory: () => MemoryRoot): StatePort {
   return {
@@ -29,4 +29,5 @@ export function createMemoryPort(memory: () => MemoryRoot): StatePort {
 declare global {
   interface Memory { eldrift?: unknown }
 }
+
 
