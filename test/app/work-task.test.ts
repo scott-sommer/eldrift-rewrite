@@ -74,3 +74,31 @@ test('replacement identity starts fresh and invalid selection leaves previous wo
   expect(createTaskRunner(state, definitions, () => 3)(unit.name, unit)?.status).toBe('failed');
   expect(read().queue).toEqual([]);
 });
+
+test('refill phase survives runner reconstruction, fills before work and resumes partial energy when sources exhaust', () => {
+  const { state } = fixture();
+  let energy = 0;
+  let collections = 0;
+  let work = 0;
+  let exhausted = false;
+  const behavior = createWorkTaskBehavior<typeof unit>({ identity: value => value,
+    run: () => { work++; return { status: 'running' }; }, supply: {
+      energy: () => energy, free: () => 50 - energy,
+      collect: () => { collections++; return exhausted ? { status: 'done' } : { status: 'running' }; },
+    } });
+  const definitions = { work: behavior };
+  reconcileWorkTask(state, definitions, unit, 1, () => order);
+  createTaskRunner(state, definitions, () => 1)(unit.name, unit);
+  expect(openState(state, 'tasks/worker', taskSchema(unit.name, definitions)).queue[0]!.phase).toBe('collect');
+  energy = 20;
+  createTaskRunner(state, definitions, () => 2)(unit.name, unit);
+  expect(collections).toBe(2); expect(work).toBe(0);
+  exhausted = true;
+  createTaskRunner(state, definitions, () => 3)(unit.name, unit);
+  expect(work).toBe(1);
+  energy = 0; exhausted = false;
+  createTaskRunner(state, definitions, () => 4)(unit.name, unit);
+  energy = 50;
+  createTaskRunner(state, definitions, () => 5)(unit.name, unit);
+  expect(work).toBe(2);
+});

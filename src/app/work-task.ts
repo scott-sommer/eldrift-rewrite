@@ -18,15 +18,34 @@ function validOrder(order: WorkOrder | undefined, home: string): boolean {
 function validRepairLimit(order: WorkOrder): boolean {
   return order.kind !== 'repair' || Number.isSafeInteger(order.targetHits) && order.targetHits! > 0;
 }
-export function createWorkTaskBehavior<Context>(ports: {
+export interface WorkTaskPorts<Context> {
   identity(context: Context): { name: string; id: string };
   run(context: Context, payload: WorkTaskPayload, owner: string): Outcome;
-}): TaskBehavior<Context> {
-  return { phases: ['work'], validPayload: validWorkPayload, handlers: task => ({ work: context => {
+  supply?: {
+    energy(context: Context): number;
+    free(context: Context): number;
+    collect(context: Context, payload: WorkTaskPayload, owner: string): Outcome;
+  };
+}
+export function createWorkTaskBehavior<Context>(ports: WorkTaskPorts<Context>): TaskBehavior<Context> {
+  return { phases: ['work', 'collect'], validPayload: validWorkPayload, handlers: task => {
     const payload = task.payload as WorkTaskPayload;
-    const unit = ports.identity(context);
-    if (unit.id !== payload.unitId) return { status: 'failed', reason: 'worker-replaced' };
-    const result = ports.run(context, payload, taskScope(unit.name, task.id));
-    return result.status === 'blocked' ? { status: 'running' } : result;
-  } }) };
+    function guarded(context: Context, action: (owner: string) => Outcome): Outcome {
+      const unit = ports.identity(context);
+      if (unit.id !== payload.unitId) return { status: 'failed', reason: 'worker-replaced' };
+      const result = action(taskScope(unit.name, task.id));
+      return result.status === 'blocked' ? { status: 'running' } : result;
+    }
+    return {
+      work: context => guarded(context, owner => ports.supply?.energy(context) === 0
+        ? { status: 'transition', phase: 'collect' } : ports.run(context, payload, owner)),
+      collect: context => guarded(context, owner => collectWorkEnergy(ports, context, payload, owner)),
+    };
+  } };
+}
+function collectWorkEnergy<Context>(ports: WorkTaskPorts<Context>, context: Context, payload: WorkTaskPayload, owner: string): Outcome {
+  if (!ports.supply) return { status: 'failed', reason: 'worker-supply-unavailable' };
+  if (ports.supply.free(context) === 0) return { status: 'transition', phase: 'work' };
+  const result = ports.supply.collect(context, payload, owner);
+  return result.status === 'done' ? { status: 'transition', phase: 'work' } : result;
 }

@@ -1,3 +1,5 @@
+import { createNativeWorkerCollection } from './native-worker-collection';
+import type { RuntimeConfig } from '../config/model';
 import type { TaskDefinition } from '../persistence/tasks/schema';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
@@ -15,8 +17,13 @@ import { createTaskRunner } from './task-runner';
 export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>,
   otherDefinitions: Readonly<Record<string, TaskDefinition>> = {}) {
   const work = createNativeWork(dispatch.arbiter, dispatch.movement);
-  const definitions = { work: createWorkTaskBehavior<Creep>({ identity: creep => ({ name: creep.name, id: creep.id }),
-    run: (creep, payload, owner) => work(creep, payload.order, owner) }) };
+  const collect = createNativeWorkerCollection(state, dispatch);
+  const definitions = { work: createWorkTaskBehavior<{ creep: Creep; config: Readonly<RuntimeConfig> }>({
+    identity: ({ creep }) => ({ name: creep.name, id: creep.id }),
+    run: ({ creep }, payload, owner) => work(creep, payload.order, owner),
+    supply: { energy: ({ creep }) => creep.store.energy, free: ({ creep }) => creep.store.getFreeCapacity(),
+      collect: ({ creep, config }, payload, owner) => collect(creep, payload.home, owner, config) },
+  }) };
   const schemas = { ...otherDefinitions, ...definitions };
   const execute = createTaskRunner(state, definitions, () => Game.time, schemas);
   const feature: RoomFeature = { id: 'work', urgency: 'urgent', interval: 1, run({ room: view, config }) {
@@ -31,7 +38,7 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
       reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: view.name }, Game.time,
         current => assessment ? selectWork(assessment, movementPosition(creep.pos), config.values.workerMode, policy, current?.id) : undefined);
       if (!config.values.workersEnabled) continue;
-      dispatch.activate(); execute(creep.name, creep);
+      dispatch.activate(); execute(creep.name, { creep, config: config.values });
     }
   } };
   return { feature, definitions };

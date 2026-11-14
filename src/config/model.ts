@@ -17,6 +17,7 @@ export interface RuntimeConfig {
   workerRampartHits: number;
   workerDowngradeThreshold: number;
   workerUpgradeReserve: number;
+  workerEnergyStorageReserve: number;
   controllerContainerTarget: number;
   energyBankingEnabled: boolean;
   storeBalancingEnabled: boolean;
@@ -57,6 +58,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   workerRampartHits: 50000,
   workerDowngradeThreshold: 5000,
   workerUpgradeReserve: 50000,
+  workerEnergyStorageReserve: 50000,
   controllerContainerTarget: 1900,
   energyBankingEnabled: false,
   storeBalancingEnabled: false,
