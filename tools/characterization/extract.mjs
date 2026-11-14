@@ -10,11 +10,11 @@ const data = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
 const sha = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 if (sha !== data.legacySha) throw new Error('Legacy baseline differs');
 const specs = {
-  'utilV2.js': ['processClaimFlags', 'processMiningFlags'],
+  'utilV2.js': ['processClaimFlags', 'processMiningFlags', 'processBuildFlags', 'getRoomSpawnTasks'],
   'role.minerV2.js': ['isTrackedRemoteMiner', 'updateRemoteReachability'],
   'role.courierV3.js': ['STATUS_IDLE', 'clearRecoverySupportMemory', 'getRecoveryEnergySource', 'getRecoveryEnergyDropoff', 'runRecoverySupportCourier'],
   'room.layout.shared.js': ['TRANSFORMS', 'transformRelative', 'normalizeCoreTemplate', 'worldFromRelative', 'anchorFromWorld', 'sortEntries', 'buildKey'],
-  'spawner.js': ['buildRoadScavengerBody', 'getCarryCapacityForBody'],
+  'spawner.js': ['buildRoadScavengerBody', 'getCarryCapacityForBody', 'manualSpawnTask', 'spawnTask', 'processSpawnTasks'],
   'room.energy.recovery.js': ['ensureRecoveryMemory', 'getStoredEnergy', 'isEligibleRecoveryRoom', 'getDonorRooms', 'refreshRecoveryStates', 'RECOVERY_TRIGGER_ENERGY', 'RECOVERY_EXIT_ENERGY', 'RECOVERY_DONOR_MAX_DISTANCE', 'RECOVERY_DONOR_MIN_ENERGY', 'RECOVERY_SUPPORT_BATCH'],
 };
 for (const [file, symbols] of Object.entries(specs)) {
@@ -29,4 +29,6 @@ for (const [file, symbols] of Object.entries(specs)) {
   }
 }
 fs.writeFileSync(path.resolve(fixturePath), JSON.stringify(data, null, 2) + '\n');
+
+
 
