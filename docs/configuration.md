@@ -13,3 +13,5 @@ Owned-room mining is registered in production but opt-in during the rewrite: min
 mineralMiningEnabled (boolean, default false) enables owned-room mineral demand when miningEnabled is also true. New demand requires a known container and active extractor, uses one miner per station, and receives lower spawn priority than energy mining. It shares miningBodyBudget. Disabling mineral work pauses its worker execution while threat retreat still takes precedence.
 
 logisticsEnabled (default false) enables execution of queued logistics requests by explicitly owned room couriers. It currently does not create requests or spawn couriers. See docs/logistics.md for identity, integration and pause/recovery limitations.
+
+energyRequestsEnabled (default false) adds owned-room spawn/extension requests when logisticsEnabled is also enabled. Sources are containers and owned storage/terminals. Initial generation policy and remaining resource/fallback scope are documented in docs/logistics.md; courier population is not yet automatic.

@@ -11,6 +11,10 @@ export function createLogisticsRequests(port: StatePort, room: string) {
   const read = () => openState(port, key, logisticsQueueSchema);
   const save = (records: LogisticsRecord[]) => saveState(port, key, logisticsQueueSchema, { records });
   return {
+    availableSlots(tick: number): number {
+      validTick(tick);
+      return 200 - read().records.filter(record => record.request.expiresAt > tick).length;
+    },
     submit(request: LogisticsRequest, tick: number): void {
       validTick(tick);
       validateLogisticsRequest(request);
@@ -69,3 +73,4 @@ function sameRequest(a: LogisticsRequest, b: LogisticsRequest): boolean {
 function validTick(tick: number): void {
   if (!Number.isSafeInteger(tick) || tick < 0) throw new Error('Invalid logistics tick');
 }
+

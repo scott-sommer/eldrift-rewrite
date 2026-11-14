@@ -1,3 +1,5 @@
+import { observeEnergySupply } from '../adapters/screeps/energy-supply';
+import { generateEnergyRequests } from '../features/logistics/energy-requests';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
 import type { createNativeDispatch } from './native-dispatch';
@@ -18,14 +20,20 @@ export function createNativeLogisticsFeature(state: StatePort, dispatch: ReturnT
       const units = Object.values(Game.creeps).filter(creep => !creep.spawning &&
         creep.memory.population?.home === view.name && creep.memory.population.owner === haulingOwner(view.name))
         .sort((a, b) => a.name.localeCompare(b.name));
-      if (!units.length) return;
+
       dispatch.activate();
       for (const creep of units) {
         selectHaulingTask(state, definitions, { home: view.name, name: creep.name, unitId: creep.id,
           tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request));
         execute(creep.name, creep);
       }
+      if (config.values.energyRequestsEnabled) {
+        const supply = observeEnergySupply(Game.rooms[view.name]!);
+        generateEnergyRequests(state, view.name, Game.time, supply.sources, supply.sinks,
+          { owner: haulingOwner(view.name), lifetime: 100, maximumQuantity: 200, maximumNewRequests: 10 });
+      }
     },
   };
   return { feature, definitions };
 }
+

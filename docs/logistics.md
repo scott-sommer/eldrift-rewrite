@@ -110,3 +110,13 @@ The six-tick hauling engine fixture now sets configuration and population identi
 Disabling the feature suspends task execution. Disabling between an accepted transfer and its next-tick confirmation can lose the narrow confirmation window; uncertain-transfer/cargo recovery is still an explicit unfinished requirement, not a completed pause/resume guarantee.
 
 Registration validation: npm run quality passed (142 production files, 132 test files, zero Lizard violations); npm test passed 325 tests across 101 files in 3.09 seconds; npm run check:bundle passed; npm run test:engine:suite passed all 35 scenarios in 36.93 seconds (artifacts/engine-suite.json). Targeted production-loop hauling evidence: artifacts/engine-3XFUw9/evidence.json.
+
+## Generated owned-room energy requests
+
+energyRequestsEnabled (default false, requires logisticsEnabled) observes containers and owned storage/terminals as energy sources and owned spawns/extensions as sinks. Generation is a separate policy from native observations and task execution. It runs after couriers so settled receipts are reflected before creating fresh work. Pending requests retain identity and block duplicate sink work; their outstanding quantities reduce planned source availability. This is conservative when some requested energy is already in transit.
+
+Initial policy: spawns before extensions, nearest source by geometric range with deterministic ID ties, at most ten new requests per tick, 200 energy per request, 100-tick expiry. The generator takes an injected policy object. Queue retention capacity applies backpressure instead of throwing when 200 unexpired records are retained. This first policy does not yet include tower thresholds, links, storage/terminal balancing, scavenging or mineral delivery, and geometric range is not a path-cost/reachability proof. Courier spawning and expired/cancelled cargo recovery remain required.
+
+Porting reference: legacy role.distributorV2.js and role.courierV3.js confirm spawn/extension delivery and storage/terminal collection as existing capabilities. Their broader fallback and balancing behavior is not claimed complete here.
+
+Validation: npm run quality passed (144 production files, 134 test files, zero Lizard violations); npm test passed 327 tests across 102 files in 3.13 seconds. New --energy-logistics native scenario passed: production observations generate a 30-energy request, the assigned courier withdraws and delivers it to an extension, one receipt is recorded, and task/reservation state clears. No request is seeded by the fixture. Evidence: artifacts/engine-3dNRGq/evidence.json. The fixture still seeds its courier; this is not population or complete colony-economy evidence.
