@@ -41,9 +41,11 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--resources')) modules.main = await actionBundle(root, 'resource-bot');
   if (process.argv.includes('--movement')) modules.main = await actionBundle(root, 'movement-bot');
   if (process.argv.includes('--maintenance')) modules.main = await actionBundle(root, 'maintenance-bot');
+  if (process.argv.includes('--retirement')) modules.main = await actionBundle(root, 'retirement-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
+  if (process.argv.includes('--retirement')) await actionWorld(server, bot);
   if (process.argv.includes('--work')) await workWorld(server, bot);
   if (process.argv.includes('--resources')) await resourceWorld(server, bot);
   if (process.argv.includes('--movement')) await movementWorld(server, bot);
@@ -77,6 +79,12 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--resources')) verifyResources(memory);
   if (process.argv.includes('--movement')) verifyMovement(memory);
   if (process.argv.includes('--maintenance')) assert.deepEqual(memory.maintenanceEvidence.remaining, [['short', 'long'], ['long'], ['long']]);
+  if (process.argv.includes('--retirement')) {
+    assert.deepEqual(memory.retirementEvidence, { counts: [2, 1, 1], requested: 0 });
+    assert.deepEqual(memory.eldrift.records['units/creeps'].data.units, []);
+    assert.deepEqual(memory.eldrift.records['tasks/action-worker'].data.queue, []);
+    assert.equal(memory.eldrift.records['reservations/empire'].data.claims[0].holder, 'unrelated');
+  }
   assert.deepEqual(messages, []);
   const report = { provenance: provenance(root, modules.main), samples, ticks: 3, initial, final: Number(await server.world.gameTime), memoryBytes: Buffer.byteLength(JSON.stringify(memory)), directory };
   fs.writeFileSync(path.join(directory, 'result.json'), JSON.stringify(report, null, 2));
