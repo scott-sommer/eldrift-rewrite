@@ -1,3 +1,4 @@
+import { createNativeControllerActions } from '../adapters/screeps/controller-actions';
 import { createActionArbiter } from '../core/execution/action-arbiter';
 import { createMovementService } from '../adapters/screeps/movement-service';
 import { createNativeStructureActions } from '../adapters/screeps/structure-actions';
@@ -19,7 +20,7 @@ export function createNativeDispatch(state: StatePort) {
     { clock: () => Game.time, invoke: structures.spawn }, observe, 'skip');
   let activeTick = -1;
   return {
-    arbiter, movement, structures,
+    arbiter, movement, structures, controllers: createNativeControllerActions(state, arbiter),
     activate() { activeTick = Game.time; },
     flush() {
       if (activeTick !== Game.time) return;

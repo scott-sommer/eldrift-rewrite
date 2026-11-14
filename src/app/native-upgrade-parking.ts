@@ -20,7 +20,7 @@ export function createNativeUpgradeParking(state: StatePort, dispatch: ReturnTyp
     const units = roster.filter(creep => creep.memory.population!.owner === upgradeOwner(room.name) && config.values.upgradeRoomEnabled
       || creep.memory.population!.owner === upgradeMasterOwner(room.name) && config.values.upgradeMasterEnabled);
     if (!units.length) return;
-    const stations = parkingStations(room, units);
+    const stations = observeUpgradeParking(room, units);
     dispatch.activate();
     for (const creep of units) {
       const destination = stations.get(creep.id);
@@ -30,7 +30,7 @@ export function createNativeUpgradeParking(state: StatePort, dispatch: ReturnTyp
     }
   } };
 }
-function parkingStations(room: Room, units: readonly Creep[]) {
+export function observeUpgradeParking(room: Room, units: readonly Creep[]) {
   const controller = movementPosition(room.controller!.pos);
   const spawn = room.find(FIND_STRUCTURES).filter(item => item.structureType === STRUCTURE_SPAWN).sort((a, b) => a.id.localeCompare(b.id))[0];
   const anchor = spawn ? movementPosition(spawn.pos) : { ...controller, x: Math.min(46, controller.x + 2), y: Math.min(46, controller.y + 2) };

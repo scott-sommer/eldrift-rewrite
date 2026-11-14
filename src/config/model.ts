@@ -8,6 +8,9 @@ export interface RuntimeConfig {
   distributorTarget: number;
   distributorBodyBudget: number;
   recoveryDistributorRestartEnergy: number;
+  upgradeLifecycleEnabled: boolean;
+  upgradeCycleAtRcl8: boolean;
+  upgradeClaimerMinimumTtl: number;
   recoveryEnabled: boolean;
   recoveryEconomyEnabled: boolean;
   recoveryScavengerEnabled: boolean;
@@ -97,6 +100,9 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   distributorTarget: 1,
   distributorBodyBudget: 2100,
   recoveryDistributorRestartEnergy: 12500,
+  upgradeLifecycleEnabled: false,
+  upgradeCycleAtRcl8: false,
+  upgradeClaimerMinimumTtl: 50,
   recoveryEnabled: false,
   recoveryEconomyEnabled: true,
   recoveryScavengerEnabled: true,
