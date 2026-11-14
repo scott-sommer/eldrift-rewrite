@@ -11,13 +11,16 @@ export interface TaskDefinition {
   phases: readonly string[];
   validPayload(value: unknown): boolean;
 }
+function nonempty(value: unknown): value is string {
+  return typeof value === 'string' && value.length > 0;
+}
 function validWake(value: unknown): boolean {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 }
 function validTask(value: unknown, definitions: Readonly<Record<string, TaskDefinition>>): value is TaskRecord {
   if (!value || typeof value !== 'object') return false;
   const task = value as Partial<TaskRecord>;
-  if (typeof task.id !== 'string' || !task.id || typeof task.kind !== 'string') return false;
+  if (!nonempty(task.id) || !nonempty(task.kind)) return false;
   if (!Object.hasOwn(definitions, task.kind)) return false;
   const definition = definitions[task.kind]!;
   return definition.phases.includes(task.phase ?? '') && definition.validPayload(task.payload)
@@ -35,4 +38,5 @@ export function taskSchema(unit: string, definitions: Readonly<Record<string, Ta
     },
   };
 }
+
 
