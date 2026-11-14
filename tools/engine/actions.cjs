@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const { build } = require('esbuild');
-async function actionBundle(root) {
-  const result = await build({ entryPoints: [`${root}/test/engine/action-bot.ts`], bundle: true, format: 'cjs', platform: 'neutral', target: 'es2022', write: false });
+async function actionBundle(root, entry = 'action-bot') {
+  const result = await build({ entryPoints: [`${root}/test/engine/${entry}.ts`], bundle: true, format: 'cjs', platform: 'neutral', target: 'es2022', write: false });
   return result.outputFiles[0].text;
 }
 async function actionWorld(server, bot) {
@@ -15,4 +15,10 @@ async function actionWorld(server, bot) {
 function verifyActions(memory) {
   assert.deepEqual(memory.actionEvidence, { before: 0, afterIssue: 0, issued: 'issued', conflict: 'blocked', observed: 2 });
 }
-module.exports = { actionBundle, actionWorld, verifyActions };
+function verifyTasks(memory) {
+  assert.deepEqual(memory.taskEvidence, ['running', 'done', 'idle']);
+  assert.deepEqual(memory.eldrift.records['tasks/action-worker'].data.queue, []);
+  assert.deepEqual(memory.eldrift.records['reservations/empire'].data.claims, []);
+}
+module.exports = { actionBundle, actionWorld, verifyActions, verifyTasks };
+
