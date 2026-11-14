@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
 async function colonyMiningWorld(server) {
+  const { db } = await server.world.load();
+  await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'source' });
   await server.world.setTerrain('W0N1', new TerrainMatrix());
   await server.world.addRoomObject('W0N1', 'source', 18, 15, { energy: 600, energyCapacity: 600 });
   await server.world.addRoomObject('W0N1', 'container', 17, 15, {
@@ -14,4 +16,5 @@ function verifyColonyMining(memory) {
   assert.ok(memory.colonyMining.delivered >= 50, 'Spawned miner must travel, harvest and deliver');
 }
 module.exports = { colonyMiningWorld, verifyColonyMining };
+
 

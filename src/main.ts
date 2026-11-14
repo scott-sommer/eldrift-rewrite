@@ -1,3 +1,4 @@
+import { createNativeMiningFeature } from './app/native-mining';
 import { createCreepMaintenance } from './app/creep-maintenance';
 import { ownedCreepRoster } from './adapters/screeps/unit-roster';
 import { createTickAdmission } from './app/tick-admission';
@@ -9,9 +10,12 @@ import { createMemoryPort } from './adapters/screeps/memory';
 
 const ports = createGamePorts();
 const state = createMemoryPort(() => Memory);
-const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, {});
-// Gameplay features are registered here as their capability work is completed.
-export const loop = createGameLoop([], {
+const mining = createNativeMiningFeature(state);
+const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, mining.definitions);
+// Gameplay registration is separate from configuration-controlled activation.
+export const loop = createGameLoop([mining.feature], {
   ...ports,
   config: createPersistentConfiguration(state, () => ports.clock().tick),
-}, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps));
+}, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), mining.flush);
+
+

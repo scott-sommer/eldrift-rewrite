@@ -3,6 +3,8 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
+  miningEnabled: value => typeof value === 'boolean',
+  miningBodyBudget: value => bounded(value, 10000) && Number.isInteger(value) && Number(value) >= 200,
   backgroundEnabled: value => typeof value === 'boolean',
   backgroundCpuFraction: value => bounded(value, 1),
   minimumBucket: value => bounded(value, 10000) && Number.isInteger(value),
@@ -19,3 +21,4 @@ export function validatePatch(input: unknown, layer: string): Partial<RuntimeCon
   }
   return patch;
 }
+

@@ -7,3 +7,5 @@ Each effective key reports its winning source. Unknown keys, invalid enum/range/
 Initial settings: backgroundEnabled=true, backgroundCpuFraction=0.5 (0..1), minimumBucket=1000 (integer 0..10000), layoutStrategy=auto (auto/standard/constrained/stamps), allies=[]. Feature-specific settings will be introduced with their owning capabilities instead of creating speculative knobs. Diplomacy configuration is data; no username is hard-coded.
 
 Local checks: quality passed with zero Lizard violations; configuration + smoke 13 tests passed in 228ms. Remaining ED-15: composition wiring, bounded tick observations, scheduler budget/fairness and fault isolation. ED-12 remote CI evidence is still open; its validated local gates are used for this work.
+
+Owned-room mining is registered in production but opt-in during the rewrite: miningEnabled defaults to false; miningBodyBudget defaults to 800 and accepts integer values 200..10000. Set these through the existing empire/profile/room override layers. This activates energy mining and spawn demand only; hauling/bootstrap, complete safety policy and release validation are still being implemented.
