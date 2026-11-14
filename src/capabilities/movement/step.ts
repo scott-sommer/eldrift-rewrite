@@ -11,9 +11,10 @@ export interface MovementView {
   fatigue: number;
   allowPartial: boolean;
 }
+export type MovementIntent = IntentResult | { status: 'queued' } | { status: 'blocked'; reason: string };
 export interface MovementPorts {
   route(): RouteStep;
-  move(direction: number): IntentResult;
+  move(direction: number): MovementIntent;
   rejected(code: number): Outcome;
 }
 function arrived(view: MovementView): boolean {
@@ -27,5 +28,10 @@ export function movementStep(view: MovementView, ports: MovementPorts): Outcome 
   if (route.status === 'unavailable') return { status: 'blocked', reason: route.reason, retryAt: route.retryAt };
   if (route.incomplete && !view.allowPartial) return { status: 'blocked', reason: 'incomplete-path', retryAt: view.tick + 1 };
   if (!Number.isInteger(route.direction) || route.direction < 1 || route.direction > 8) return { status: 'failed', reason: 'invalid-direction' };
-  return issuedOutcome(ports.move(route.direction), view.tick, ports.rejected);
+  return movementOutcome(ports.move(route.direction), view.tick, ports.rejected);
+}
+function movementOutcome(intent: MovementIntent, tick: number, rejected: MovementPorts['rejected']): Outcome {
+  if (intent.status === 'queued') return { status: 'running' };
+  if (intent.status === 'blocked') return { status: 'blocked', reason: intent.reason, retryAt: tick + 1 };
+  return issuedOutcome(intent, tick, rejected);
 }

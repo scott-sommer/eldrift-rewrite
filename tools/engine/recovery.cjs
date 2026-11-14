@@ -10,6 +10,7 @@ async function recoveryWorld(server, bot) {
 }
 function verifyRecovery(memory) {
   const evidence = memory.recoveryEvidence;
+  assert.deepEqual(evidence.issued.slice(0, 3), [0, 0, 1]);
   assert.deepEqual(evidence.positions.slice(0, 3), [[20, 20], [20, 20], [20, 20]]);
   assert.deepEqual(evidence.avoidance.slice(0, 3), [false, false, true]);
   assert.deepEqual(evidence.positions.at(-1), [22, 20]);

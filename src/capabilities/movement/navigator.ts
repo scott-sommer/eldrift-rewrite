@@ -1,22 +1,21 @@
 import { createMovementProgress } from './progress';
 import { movementStep } from './step';
-import type { MovementView, MovementPorts, Position } from './step';
+import type { MovementView, MovementPorts, MovementIntent, Position } from './step';
 import type { PathRequest } from './path-model';
 import { withinRange } from './path-model';
-import type { IntentResult } from '../../core/execution/action-arbiter';
 import type { createPathService } from './path-service';
 interface NavigationPorts {
   paths: ReturnType<typeof createPathService>;
   request(view: MovementView, avoidUnits: boolean): PathRequest;
   direction(origin: Position, next: Position): number;
-  move(unit: string, direction: number): IntentResult;
+  move(unit: string, direction: number): MovementIntent;
   rejected: MovementPorts['rejected'];
 }
 /** Caller owns shared movement arbitration; this service never invokes native moveTo. */
 export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
   if (!Number.isSafeInteger(repathAfter) || repathAfter < 1) throw new Error('Invalid repath threshold');
   const progress = createMovementProgress();
-  return (unit: string, view: MovementView, mobile = true) => {
+  const navigate = (unit: string, view: MovementView, mobile = true) => {
     const failures = progress.observe(unit, view.position, view.tick, mobile && view.fatigue === 0);
     if (withinRange(view.position, view.destination, view.range)) {
       progress.forget(unit);
@@ -44,4 +43,10 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
     if (result.status === 'done') progress.forget(unit);
     return result;
   };
+  return Object.assign(navigate, {
+    settle(unit: string, tick: number, outcome: 'issued' | 'traffic-blocked'): void {
+      if (outcome === 'issued') progress.issued(unit, tick);
+      else progress.trafficBlocked(unit, tick);
+    },
+  });
 }
