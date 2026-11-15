@@ -131,3 +131,9 @@ Tests cover exact ties, target attraction, road preference, reserved-tile reject
 container-placement.ts ports findAdjacentContainer with storage-distance cost, adjacent-road credit, neighbouring open-tile credit and x-major tie precedence. Buildability/reservations and open-space interpretation are injected; room borders are excluded and no suitable tile yields no placement. This keeps reusable selection separate from source/mineral policy and room observation.
 
 Tests cover exact tie/storage preference, road/open-space effects, reservations, unavailable positions and edge clipping. npm run quality passed (350 production files, zero Lizard violations); npm test passed 672 tests / 206 files in 6.37s. Full infrastructure attachment and native layout integration remain pending.
+
+## Resource infrastructure composition
+
+resource-infrastructure.ts composes controller links, source containers/links and mineral extractors/containers with shared private reservations. It preserves legacy minimum levels, priorities and tags, deliberately keeps controller containers absent, and reports missing type/object placements explicitly. Objects are processed controller/source/mineral then stable ID, making source iteration deterministic. All observed minerals are handled rather than silently selecting only the first. Positions are cloned and caller reservations unchanged.
+
+Output minimumRcl fields are proposals, not final construction stages. Core/controller/source/auxiliary links must be scheduled against shared room capacity after composition; this avoids repeating the legacy independent-group staging issue. Tests cover a controller/two-source/mineral composition, reservation uniqueness, stable order, metadata and total placement failure. Quality passed (351 production files, zero violations); 674 tests / 207 files passed in 6.12s. Factory/auxiliary placement, road connection, shared capacity scheduling and native complete-plan integration remain pending.
