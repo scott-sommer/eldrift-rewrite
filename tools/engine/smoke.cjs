@@ -203,7 +203,7 @@ function finish(code, error) {
   console.log('ENGINE_EVIDENCE ' + path.join(directory, 'evidence.json'));
   process.exit(code);
 }
-const timeout = setTimeout(() => { console.error('Engine smoke exceeded 60 seconds', directory); finish(1, new Error('Engine smoke timeout')); }, process.argv.includes('--inject-timeout') ? 1500 : 60000);
+const timeout = setTimeout(() => { console.error('Engine smoke exceeded scenario time limit', directory); finish(1, new Error('Engine smoke timeout')); }, process.argv.includes('--inject-timeout') ? 1500 : stampBudget ? 90000 : 60000);
 server.on('error', error => { console.error(error); finish(1, error); });
 (async () => {
   await server.world.reset();

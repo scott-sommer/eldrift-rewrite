@@ -3,6 +3,7 @@ import { nativePlanningLimits } from '../adapters/screeps/planning-limits';
 import { createCandidateEvaluator } from '../features/planning/candidate-evaluator';
 import type { CandidateEvaluatorOptions } from '../features/planning/candidate-evaluator';
 import { createLayoutStrategies } from '../features/planning/layout-strategies';
+import type { AssessmentProvider } from '../capabilities/planning/assessment-cache';
 import { createAssessmentCache } from '../capabilities/planning/assessment-cache';
 import { createEvaluationCache } from '../capabilities/planning/evaluation-cache';
 import { prepareEvaluation } from '../capabilities/planning/evaluate-draft';
@@ -11,6 +12,7 @@ import type { PlanEntry } from '../features/planning/plan-model';
 import { planningRoadSearch } from '../adapters/screeps/planning-road-search';
 import type { StampStrategyOptions } from '../features/planning/stamp-layout-strategy';
 export interface NativePlanningEvaluatorOptions {
+  assess?: AssessmentProvider;
   stampOptions?: StampStrategyOptions;
   stampReplayCache?: StampReplayCache;
   room: string; observation: AssessmentInput; observationIdentity: string; policyIdentity: string;
@@ -29,7 +31,7 @@ export function createNativePlanningEvaluator(options: NativePlanningEvaluatorOp
     canContinue: options.canContinue, tick: () => Game.time,
     prepare: createEvaluationCache(options.prepare ?? prepareEvaluation),
     strategies: createLayoutStrategies({
-      observation: options.observation, limits, assess: createAssessmentCache(),
+      observation: options.observation, limits, assess: options.assess ?? createAssessmentCache(),
       blocksMovement: type => (OBSTACLE_OBJECT_TYPES as readonly string[]).includes(type),
       search: costs => planningRoadSearch(options.room, costs, options.maximumPathOps),
     }, options.versions, options.operatorEntries, options.stampOptions, options.stampReplayCache),

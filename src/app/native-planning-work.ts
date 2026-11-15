@@ -1,3 +1,4 @@
+import type { AssessmentProvider } from '../capabilities/planning/assessment-cache';
 import type { StampReplayCache } from '../capabilities/planning/stamp-replay-cache';
 import { createNativePlanningAdmission } from './native-planning-admission';
 import { createNativePlanningEvaluator } from './native-planning-evaluator';
@@ -15,7 +16,7 @@ export interface NativePlanningPolicy extends Omit<NativeCommitPolicy, 'currentP
   prepareScore(observation: AssessmentInput): NativePlanningEvaluatorOptions['prepareScore'];
 }
 /** Called only after scheduler admission; scoring/defense policy is supplied by the composition root. */
-export function createNativePlanningWork(state: StatePort, room: string, readPolicy: () => NativePlanningPolicy, stampReplayCache?: StampReplayCache) {
+export function createNativePlanningWork(state: StatePort, room: string, readPolicy: () => NativePlanningPolicy, stampReplayCache?: StampReplayCache, assess?: AssessmentProvider) {
   return (canContinue: () => boolean) => {
     if (!canContinue()) return { status: 'deferred' as const };
     const policy = readPolicy(), revision = policyRevision(policy);
@@ -29,6 +30,7 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
     let score: ReturnType<NativePlanningPolicy['prepareScore']> | undefined;
     const step = createNativePlanningEvaluator({
       ...(stampReplayCache ? { stampReplayCache } : {}),
+      ...(assess ? { assess } : {}),
       room, observation: admitted.request.observation, observationIdentity: admitted.observationIdentity,
       policyIdentity: admitted.policyIdentity, operatorEntries: admitted.request.operatorEntries,
       versions: policy.versions, searchRevision: policy.searchRevision, maximumPathOps: policy.maximumPathOps,

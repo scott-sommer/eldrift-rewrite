@@ -139,3 +139,18 @@ Native --stamp-failure engine-X7loeS passed: natural commitment, policy-change
 search-limit rejection, reload and identical retained plan. Full unit suite
 941 tests/269 files passed8.31s. Quality448 production/400 test files, zero
 violations. Full native aggregate has not been rerun for cache wiring.
+
+## Retained room assessment
+
+Bounded native room caches now also retain the existing immutable single-observation
+assessment cache. The shared draft and infrastructure callers receive that same
+provider across ticks; changed observations and room eviction recompute assessment.
+Tests verify same-observation reuse, changed-constraint invalidation and eviction.
+Full unit942/269 files passed9.67s; quality448 production/400 test files passed.
+
+This did NOT resolve default-budget routing: engine-aId0pQ reached27 stamps but
+still had zero connections at1600 and failed its commitment assertion. Earlier
+engine-JOmry2 hit the60-second harness deadline at1599; the opt-in1600-tick
+diagnostic now has90 seconds of wall time. Gameplay budgets remain unchanged.
+Next isolate/reuse infrastructure attachment and route-preparation products;
+assessment reuse alone is not claimed as a demonstrated native speed improvement.

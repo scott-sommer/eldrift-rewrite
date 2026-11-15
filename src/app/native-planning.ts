@@ -19,7 +19,8 @@ export function createNativePlanningFeature(
     usedCpu: () => Game.cpu.getUsed(), tickLimit: () => Game.cpu.tickLimit,
     prepare(context, canContinue) {
       const room = context.room.name;
-      const result = createNativePlanningWork(state, room, () => policy(room, readConfig(room)), caches(room))(canContinue);
+      const cache = caches(room);
+      const result = createNativePlanningWork(state, room, () => policy(room, readConfig(room)), cache.replay, cache.assess)(canContinue);
       return result.status === 'ready' ? result.work : undefined;
     },
     report: options.report ?? (() => {}),

@@ -1,11 +1,12 @@
 import { createStampReplayCache } from '../capabilities/planning/stamp-replay-cache';
-import type { StampReplayCache } from '../capabilities/planning/stamp-replay-cache';
+import { createAssessmentCache } from '../capabilities/planning/assessment-cache';
+export interface PlanningRoomCache { replay: ReturnType<typeof createStampReplayCache>; assess: ReturnType<typeof createAssessmentCache> }
 /** Bounded room-owned heap accelerators; eviction changes performance, never persisted correctness. */
 export function createPlanningRoomCaches(limit = 32) {
   if (!Number.isSafeInteger(limit) || limit < 1) throw new Error('Invalid planning cache limit');
-  const rooms = new Map<string, StampReplayCache>();
-  return (room: string): StampReplayCache => {
-    const cache = rooms.get(room) ?? createStampReplayCache();
+  const rooms = new Map<string, PlanningRoomCache>();
+  return (room: string): PlanningRoomCache => {
+    const cache = rooms.get(room) ?? { replay: createStampReplayCache(), assess: createAssessmentCache() };
     rooms.delete(room);
     rooms.set(room, cache);
     if (rooms.size > limit) rooms.delete(rooms.keys().next().value!);
