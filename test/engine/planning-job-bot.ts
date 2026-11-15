@@ -1,3 +1,4 @@
+import { commitPlanOnce } from '../../src/features/planning/commit-plan-once';
 import { loop as botLoop } from '../../src/main';
 import { advancePlanningJob } from '../../src/features/planning/planning-job';
 import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
@@ -14,7 +15,7 @@ const limits = { ...planningLimits, rampart: [0, 0, 0, 2500, 2500, 2500, 2500, 2
 let calls = 0;
 export function loop() {
   botLoop();
-  const memory = Memory as Memory & { jobRows?: unknown[]; jobCommitted?: boolean };
+  const memory = Memory as Memory & { jobRows?: unknown[]; jobCommitted?: boolean; recoveredCommit?: boolean };
   const store = createPlanStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
   const jobs = createPlanningJobStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
   let job = jobs.read();
@@ -33,11 +34,13 @@ export function loop() {
     job = saved.record;
     if (result.done) {
       if (!('proposal' in result) || !result.proposal) throw new Error('No selected native plan');
-      const committed = store.commit(0, result.proposal,
+      const committed = commitPlanOnce(store, 0, result.proposal,
         { tick: Game.time, observation: JSON.stringify(planningObservation()), policy: 'fixture-v1' },
         plan => valid({ ...plan, strategy: plan.strategy!, provenance: plan.provenance! }));
       if (!committed.ok) throw new Error('Selected plan failed commit: ' + committed.reason);
-      memory.jobCommitted = true;
+      // Deliberately leave completion unacknowledged on the first successful write.
+      memory.jobCommitted = committed.recovered;
+      memory.recoveredCommit = committed.recovered;
     }
   }
   const plan = store.read();

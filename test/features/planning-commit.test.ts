@@ -1,4 +1,5 @@
-import { expect, test } from 'vitest';
+import { commitPlanOnce } from '../../src/features/planning/commit-plan-once';
+import { expect, test, vi } from 'vitest';
 import { createPlanStore } from '../../src/features/planning/plan-store';
 import type { PlanProposal } from '../../src/features/planning/plan-store';
 import type { Envelope } from '../../src/persistence/versioned-state';
@@ -64,4 +65,35 @@ test('a competing commit during validation prevents overwriting the newer revisi
   });
   expect(result).toMatchObject({ ok: false, reason: 'revision' });
   expect(store.read().strategy).toBe('constrained');
+});
+
+test('retry after a completed write acknowledges the exact proposal without validation or another revision', () => {
+  const { port, store } = setup(), draft = proposal();
+  expect(commitPlanOnce(store, 0, draft, context, () => true)).toMatchObject({ ok: true, recovered: false });
+  const before = store.read();
+  const recreated = createPlanStore(port, 'W0N1', ['spawn', 'storage', 'road']);
+  const validate = vi.fn(() => false);
+  expect(commitPlanOnce(recreated, 0, draft, { ...context, tick: 9 }, validate)).toMatchObject({ ok: true, recovered: true });
+  expect(validate).not.toHaveBeenCalled();
+  expect(recreated.read()).toEqual(before);
+});
+test('recovery requires every proposal field, correct context and exactly the next revision', () => {
+  const { store } = setup(), draft = proposal();
+  store.commit(0, draft, context, () => true);
+  const before = store.read();
+  const variants = [structuredClone(draft), structuredClone(draft), structuredClone(draft)];
+  variants[0]!.entries[0]!.priority++;
+  variants[1]!.provenance.costs.hauling++;
+  variants[2]!.provenance.generatedAt++;
+  for (const changed of variants) expect(commitPlanOnce(store, 0, changed, context, () => true)).toMatchObject({ reason: 'revision' });
+  expect(commitPlanOnce(store, 0, draft, { ...context, policy: 'changed' }, () => true)).toMatchObject({ reason: 'stale' });
+  expect(store.read()).toEqual(before);
+  store.commit(1, draft, context, () => true);
+  expect(commitPlanOnce(store, 0, draft, context, () => true)).toMatchObject({ reason: 'revision' });
+});
+test('recovery compares object contents independent of property insertion order', () => {
+  const { store } = setup(), draft = proposal();
+  store.commit(0, draft, context, () => true);
+  draft.entries = draft.entries.map(entry => Object.fromEntries(Object.entries(entry).reverse()) as typeof entry);
+  expect(commitPlanOnce(store, 0, draft, context, () => true)).toMatchObject({ ok: true, recovered: true });
 });

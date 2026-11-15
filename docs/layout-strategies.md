@@ -464,3 +464,26 @@ revision conflicts, explicit identity reset, committed-plan preservation, future
 envelopes, invalid evaluator payloads and retained proposal/schema failures.
 Production scheduling, job invalidation/retirement policy, commit-window recovery,
 complete candidate enumeration and incremental score evaluation remain open.
+
+### Recovery after plan write, before acknowledgement (ED-24)
+commitPlanOnce wraps the existing guarded plan store. A normal write still goes through
+schema, preservation, freshness and fresh validation checks. If the caller retries from
+the old expected revision, recovery succeeds only at exactly expectedRevision + 1 and
+when strategy, ordered entries and all proposal provenance values match the stored plan.
+The stored committedAt is retained. Object property insertion order is irrelevant; array
+order and values are significant. Different proposals, later revisions and changed
+observation/policy context are rejected. Recovery acknowledges an existing write and
+does not revalidate or rewrite it; it is not approval to apply new world actions.
+
+Native --planning-job engine-AXnuAq deliberately saves the selected plan at tick 67
+without acknowledging completion, then reloads code before tick 68. The resumed job
+recovers the exact stored commit, acknowledges completion, and retains plan revision one
+and committedAt 67 through tick 90. Its job progress revision becomes 68; the earlier
+reloads at ticks 6 and 36 still pass. Errors/messages empty. This exercises the
+write/acknowledgement window, not actual hard CPU termination during Memory serialization.
+
+Quality passed: 395 production / 350 test files, zero Lizard violations. 773 unit tests /
+232 files passed in 7.26s. Recovery tests verify no validator invocation or revision bump
+on exact retry, full proposal mismatch rejection, stale context, later revision rejection
+and property-order independence. Automatic runtime scheduling, job retirement/invalidation,
+full candidate enumeration, bounded scoring and hard termination evidence remain open.
