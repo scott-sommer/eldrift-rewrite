@@ -1,0 +1,1466 @@
+{
+  "commit": "e0b2763795a0f4bfc6ae3b0ee04411948df80e41",
+  "checks": 161,
+  "seconds": 528.9593362,
+  "scenarios": [
+    {
+      "scenario": "packaged-smoke",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ac7ba77099f5f6f552aa018ecf3e346613562870a27c2867b52e76d79dce3e3f",
+      "milliseconds": 990.7133000000001
+    },
+    {
+      "scenario": "--reload",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ac7ba77099f5f6f552aa018ecf3e346613562870a27c2867b52e76d79dce3e3f",
+      "milliseconds": 1110.3456999999999
+    },
+    {
+      "scenario": "--actions",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d5e4aeb0265262bd91315f818012d4caa20d18a50f62dd6fec88d69442cc4eb9",
+      "milliseconds": 1113.5949
+    },
+    {
+      "scenario": "--stations",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7faa18ca2bc21e4a263347cd5fb9e5b02a2ffbdd955930565b405607c0649b97",
+      "milliseconds": 1079.6511999999998
+    },
+    {
+      "scenario": "--mining",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "9ea886402b8f66d9809fba15aa82c7cbc9916980ac5a4e9d23564c683559c352",
+      "milliseconds": 1176.7186000000002
+    },
+    {
+      "scenario": "--mining-storage",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "9ea886402b8f66d9809fba15aa82c7cbc9916980ac5a4e9d23564c683559c352",
+      "milliseconds": 1193.7722999999996
+    },
+    {
+      "scenario": "--mining-work",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "fbdfab4de31366bbc583e9df22514209ad0b270212866b560b9ead9c479fd5fb",
+      "milliseconds": 1140.4368999999997
+    },
+    {
+      "scenario": "--colony-mining",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "9edfbcaafbe72702f808079acaaeb459b17f79fbc31e54ec637a26cb0f213178",
+      "milliseconds": 2747.6867999999995
+    },
+    {
+      "scenario": "--colony-mineral",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "46674da42c75a39305d2663269e10601ea633dbb422b9b788e4bb200e3710c11",
+      "milliseconds": 1612.3790000000008
+    },
+    {
+      "scenario": "--mining-replacement",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "60f711fdd5b8833f26c4bc6cd4bfdc45a52b65ccf89aaec8b26968671f5811f8",
+      "milliseconds": 1926.180699999999
+    },
+    {
+      "scenario": "--mining-saturation",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "6801fb3c22a6ce70730f8fb53e8e171534375f3ace04a21be8835c02546b7a6f",
+      "milliseconds": 1514.428100000001
+    },
+    {
+      "scenario": "--extractor-fault",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "1995a1d4cf20ceb86475d3bf074c8886aac7e9a7d33a5804c328249d3b09cd30",
+      "milliseconds": 1360.8945000000003
+    },
+    {
+      "scenario": "--mining-interrupted",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "9ea886402b8f66d9809fba15aa82c7cbc9916980ac5a4e9d23564c683559c352",
+      "milliseconds": 1289.0865999999987
+    },
+    {
+      "scenario": "--specialist-mining",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "8909820fe477b6effa56f348b68c93b69f809e5519ecc99d17d5358b52af23f7",
+      "milliseconds": 1206.7667999999976
+    },
+    {
+      "scenario": "--mineral-depletion",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7ceb02a78d42a7ba8bdbacc19164aa9ed5f3cdd14ed9d610630327176066201d",
+      "milliseconds": 1115.8945999999996
+    },
+    {
+      "scenario": "--mineral-capacity",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7ceb02a78d42a7ba8bdbacc19164aa9ed5f3cdd14ed9d610630327176066201d",
+      "milliseconds": 1092.0091999999968
+    },
+    {
+      "scenario": "--spawn",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b97d9200073244e0edcbbd89773e0dd3b3d426996dc2819189732e7933ad3011",
+      "milliseconds": 1287.0161999999982
+    },
+    {
+      "scenario": "--spawn-contention",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "6a038e614662c59934470087cf1734004831322c523b6c9e0e60a78236612096",
+      "milliseconds": 2308.0044000000016
+    },
+    {
+      "scenario": "--tasks",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "46375fafd2a5bdc26554292773cb411c0680111fc0acfd88e9fe01fd4cfc9394",
+      "milliseconds": 3479.0337999999974
+    },
+    {
+      "scenario": "--work",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "c344ab623cfa34eb53a19a43aa49710aa1a290fa078ac0a9f14c2920cc08c534",
+      "milliseconds": 3191.042700000002
+    },
+    {
+      "scenario": "--work-selection",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0ed01d10c9f25856d9636f0f8a087f3e050ecd970dff45baea081f7ccd115ee4",
+      "milliseconds": 1259.4768000000004
+    },
+    {
+      "scenario": "--room-assessment",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d2c5aeac3dfc6f75d771002c0f437e82797276bf4daca1afb3e13b6f822234d0",
+      "milliseconds": 1645.2435000000041
+    },
+    {
+      "scenario": "--layout-placement",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d7af139e7be111f4976a098c433889a7accef0139895de40fb043ab1aa2ce860",
+      "milliseconds": 1498.6935999999987
+    },
+    {
+      "scenario": "--planning-route-resume",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "2494618f30813cda2864ad38a0b5ae0df8d7720034a5e690d54533db48f5a19e",
+      "milliseconds": 1231.5764999999956
+    },
+    {
+      "scenario": "--planning-route-reload",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "2494618f30813cda2864ad38a0b5ae0df8d7720034a5e690d54533db48f5a19e",
+      "milliseconds": 1280.5492000000013
+    },
+    {
+      "scenario": "--planning-commit",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4b48c234474116aa026d211bdcd64e08b2b42f598eafdd1e4a4d396daf006d47",
+      "milliseconds": 1449.1879999999946
+    },
+    {
+      "scenario": "--standard-draft-resume",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "57cbed00ac6167363e43dbaceebcd3e29ee43051eef38db7bdf8a5810437d48b",
+      "milliseconds": 1591.657699999996
+    },
+    {
+      "scenario": "--constrained-draft-resume",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4a261ab60935b508416ef3c14d831a720e021255ee03691a7a68f53850b25930",
+      "milliseconds": 4327.300600000002
+    },
+    {
+      "scenario": "--planning-job",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "032907965a148a1304cdf84364e2899b76167502a6097c7f2d22b5eb9d057350",
+      "milliseconds": 18006.584199999998
+    },
+    {
+      "scenario": "--planning-cpu",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [
+        "Script execution timed out.\n    at interruptibleEvaluation (main:11362:5)\n"
+      ],
+      "messages": [],
+      "bundleSha256": "20cd57e3bfde9ab7f8db7322685a5e6676a4e85ed22cd5d3f51f8237af599120",
+      "milliseconds": 18704.731200000002
+    },
+    {
+      "scenario": "--planning-runtime",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "15691c4a074a29dcf572714a946894a8e2b0e88629c3d20fd1c62a675e123223",
+      "milliseconds": 1153.546000000002
+    },
+    {
+      "scenario": "--planning-budget",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "f48a7ce459bcddca7d97c4bd7759f6462fccedc20e7461140a538ccc7d2fb9c1",
+      "milliseconds": 4236.863599999997
+    },
+    {
+      "scenario": "--planning-room",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "a48505af9606fcfcab84a798a0e55bd74d6b9d3d3d12bace5b84306e8fd3f8f3",
+      "milliseconds": 30909.4801
+    },
+    {
+      "scenario": "--work-dependencies",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "e1254e246f279ebc64567447f212771cde555c3483c8a710115a71853b93c419",
+      "milliseconds": 1207.9079000000056
+    },
+    {
+      "scenario": "--worker-runtime",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "733de24c1be5490ebb9f86bb867f967aa36ccbfd442fea232d091ee21fc32267",
+      "milliseconds": 1176.6998000000021
+    },
+    {
+      "scenario": "--worker-population",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "c378ccfecc970342ef2de9891142914b06ff432d290f9b8df341c5c843751d2c",
+      "milliseconds": 1914.366599999994
+    },
+    {
+      "scenario": "--mixed-workers",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "2b2bc805e328a22c9e9e98064ae5601a974f3dc94d49ece0c98dfd201aea2ebd",
+      "milliseconds": 1115.824999999997
+    },
+    {
+      "scenario": "--fortifier-work",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7043ddaf7e8a0e86b9cfc7fb74aba7327e717f48781b94694590d84d46c07040",
+      "milliseconds": 1282.414499999999
+    },
+    {
+      "scenario": "--legacy-fortifier",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7043ddaf7e8a0e86b9cfc7fb74aba7327e717f48781b94694590d84d46c07040",
+      "milliseconds": 1321.3858000000037
+    },
+    {
+      "scenario": "--art-region",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [
+        "Art region W0N1: expected-one-BL-and-one-TR; barrier repairs suspended"
+      ],
+      "bundleSha256": "6d9700ef42851d3e1a1acb8c75abff9e769e92c77d6af65f73a981cf4e2a32cd",
+      "milliseconds": 1481.630799999999
+    },
+    {
+      "scenario": "--art-builder",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [
+        "Art region W0N1: expected-one-BL-and-one-TR; barrier repairs suspended"
+      ],
+      "bundleSha256": "6d9700ef42851d3e1a1acb8c75abff9e769e92c77d6af65f73a981cf4e2a32cd",
+      "milliseconds": 1424.4777999999933
+    },
+    {
+      "scenario": "--energy-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "8c229d6edb08868867eda8a8db2d43a490bd13e9361fdf84bba7d7703df777e1",
+      "milliseconds": 1245.51890000001
+    },
+    {
+      "scenario": "--recovery-economy",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "69c2ef52b6d7e13fece737a66f0d839c1d1dc2059c255810965deea95d044c40",
+      "milliseconds": 6668.3988000000245
+    },
+    {
+      "scenario": "--recovery-scavenging",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4cf42d484bb13b46dc18db7aae34becf1a63120fa807f9bbb8160c82d6b5c97e",
+      "milliseconds": 1457.1394000000146
+    },
+    {
+      "scenario": "--recovery-scavenger-spawn",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "e726ca72bcbd5035c910d2b9ec8f456ee92de7550a309ddce6c4be9d5039a35c",
+      "milliseconds": 8650.867099999974
+    },
+    {
+      "scenario": "--recovery-banking",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "924d7c2ea8c7eeef2e6b7ed0a4d4e8600fd3e735b33e562104fda03c56bcc413",
+      "milliseconds": 5762.914699999994
+    },
+    {
+      "scenario": "--distributor-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "1998a094a4034af8fd2bb031ad37ca68a5fbe779e05d764fe51ca7fb6a6d1525",
+      "milliseconds": 4752.776600000012
+    },
+    {
+      "scenario": "--automatic-support",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4038914322d0c879e1cfdb700bf52e84de833b03b511b70fd9daf858def0e665",
+      "milliseconds": 5514.415100000013
+    },
+    {
+      "scenario": "--supply-replacement",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0d91fd83bf4d97adb85bb4950a085601fa96b3af4c64c94e30e83acc7f361ea1",
+      "milliseconds": 41763.48610000001
+    },
+    {
+      "scenario": "--supply-sponsor-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "858c6864f2d2a0cc8c6216222b9ae163c9617bac8d7e44366ca3e2e32d7a36ee",
+      "milliseconds": 2393.81289999999
+    },
+    {
+      "scenario": "--supply-terminal",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 1634.7864000000118
+    },
+    {
+      "scenario": "--supply-terminal-full",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 1793.5757999999914
+    },
+    {
+      "scenario": "--supply-target-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 2353.5076999999874
+    },
+    {
+      "scenario": "--supply-fleet",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b7991c4ec828262489b311063a9a9a2799a562e907161d79549c82b091879437",
+      "milliseconds": 14412.722500000003
+    },
+    {
+      "scenario": "--supply-fleet-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b7991c4ec828262489b311063a9a9a2799a562e907161d79549c82b091879437",
+      "milliseconds": 1579.4740999999922
+    },
+    {
+      "scenario": "--supply-cycle",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 2364.7476000000024
+    },
+    {
+      "scenario": "--supply-cargo",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 1713.0321000000113
+    },
+    {
+      "scenario": "--supply-cargo-hold",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 1347.5197000000044
+    },
+    {
+      "scenario": "--supply-master",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0f07a25097f92f70bf616ab5c5f7ac18a78c12e1c21f485c306a9a8a81a2dedd",
+      "milliseconds": 2037.1511000000173
+    },
+    {
+      "scenario": "--ground-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "f1d4f7a6a1cd88b4501617957f978f4db5323b21996a5108542408f95fafa165",
+      "milliseconds": 1425.1786000000138
+    },
+    {
+      "scenario": "--ground-delivery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "42a12f1a8c3a690863d75e6b89b7f713afedbcbe70f7d616d17f554e96aa2ded",
+      "milliseconds": 1068.9635000000126
+    },
+    {
+      "scenario": "--upgrade-supply-transport",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "98d77f7829cd6aae1c121a83c507a1e2e6e908cfed4011aa5576ac202f15fe9d",
+      "milliseconds": 1400.3703000000096
+    },
+    {
+      "scenario": "--support-transport",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4ba94d5725cae58e3c81b4199388224979874a0e593e8bf5290e4cbab4da1c4a",
+      "milliseconds": 1980.5456000000122
+    },
+    {
+      "scenario": "--support-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4ba94d5725cae58e3c81b4199388224979874a0e593e8bf5290e4cbab4da1c4a",
+      "milliseconds": 3257.462599999999
+    },
+    {
+      "scenario": "--support-reserve-change",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4ba94d5725cae58e3c81b4199388224979874a0e593e8bf5290e4cbab4da1c4a",
+      "milliseconds": 1966.8899000000092
+    },
+    {
+      "scenario": "--upgrade-service",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "3cb12a4a8912f62d6941164a0bf1d0adeee384bc405d1784e77647e3b887e3da",
+      "milliseconds": 9517.580000000016
+    },
+    {
+      "scenario": "--structure-actions",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "34b98905f260b082061d1e2a242f5b6ce2ee6cc1d1cd88cca04eea920bf6eeaa",
+      "milliseconds": 1063.3971999999776
+    },
+    {
+      "scenario": "--master-bootstrap",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b5fcf5349aa966d71becf171964717aaffc0fafe0e863202283fbe31d50ab78e",
+      "milliseconds": 9031.289100000024
+    },
+    {
+      "scenario": "--upgrade-master",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "26f9c778bbda351f1906c40e9c4613127795015437673614a93ad086c3419f7b",
+      "milliseconds": 4726.000100000005
+    },
+    {
+      "scenario": "--master-layout-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "26f9c778bbda351f1906c40e9c4613127795015437673614a93ad086c3419f7b",
+      "milliseconds": 5844.873599999992
+    },
+    {
+      "scenario": "--master-storage-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "26f9c778bbda351f1906c40e9c4613127795015437673614a93ad086c3419f7b",
+      "milliseconds": 6931.746400000004
+    },
+    {
+      "scenario": "--master-loaded-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "26f9c778bbda351f1906c40e9c4613127795015437673614a93ad086c3419f7b",
+      "milliseconds": 6735.681299999997
+    },
+    {
+      "scenario": "--upgrade-master-contention",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "26f9c778bbda351f1906c40e9c4613127795015437673614a93ad086c3419f7b",
+      "milliseconds": 1297.7028999999748
+    },
+    {
+      "scenario": "--upgrade-fleet",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "93aa180c2535e7dfdec273f9fef0e654c4ac36a7e4f153edc9cc8cf23fc34b70",
+      "milliseconds": 15259.271899999992
+    },
+    {
+      "scenario": "--upgrade-fleet-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "93aa180c2535e7dfdec273f9fef0e654c4ac36a7e4f153edc9cc8cf23fc34b70",
+      "milliseconds": 1306.079700000002
+    },
+    {
+      "scenario": "--upgrade-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "684e19c003ba445edb9eb5cacde17e40cb10d2e3e6de6aa2026946afe2bf6630",
+      "milliseconds": 7930.895100000023
+    },
+    {
+      "scenario": "--bootstrap-harvest",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ccb9b20c68a052da00611dd5e89bf2985ddd226ebbb72d97ad58430c3f88ae49",
+      "milliseconds": 13678.505099999951
+    },
+    {
+      "scenario": "--bootstrap-assignment",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0e7cf205060e2a592527db47ae6124b1de1fc85013b7a4c3717c4c3e802ad07f",
+      "milliseconds": 1493.2751999999746
+    },
+    {
+      "scenario": "--bootstrap-salvage",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "c42ab623e5daeb72db296dd4406e9415fa6551cd2c081e4e88a6763414d4bd37",
+      "milliseconds": 2009.9910000000382
+    },
+    {
+      "scenario": "--bootstrap-salvage-disabled",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "c42ab623e5daeb72db296dd4406e9415fa6551cd2c081e4e88a6763414d4bd37",
+      "milliseconds": 1698.3520000000135
+    },
+    {
+      "scenario": "--bootstrap-salvage-depleted",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "c42ab623e5daeb72db296dd4406e9415fa6551cd2c081e4e88a6763414d4bd37",
+      "milliseconds": 1471.0789000000223
+    },
+    {
+      "scenario": "--upgrade-bootstrap",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ccb9b20c68a052da00611dd5e89bf2985ddd226ebbb72d97ad58430c3f88ae49",
+      "milliseconds": 7315.161100000027
+    },
+    {
+      "scenario": "--upgrade-rebuild",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b00615984285e2da9ef6c7b8df811afbbecc325dcc8021d5a8045f4b8a835838",
+      "milliseconds": 30750.18339999998
+    },
+    {
+      "scenario": "--upgrade-cycle",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "60b27e1372c06bb304b6363137e3a13f2a9f97af922749d79af253dedca80900",
+      "milliseconds": 2694.905700000003
+    },
+    {
+      "scenario": "--upgrade-claim",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "bc584042ccbb60e7ba0e58a436320e328f36c9a2286f816d62435a68acbd9d11",
+      "milliseconds": 3901.951599999971
+    },
+    {
+      "scenario": "--upgrade-room",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "a8e94f77146ca1586c25e7cff6e97c7d0786e842c3b2321061f0c933ee652269",
+      "milliseconds": 2223.7583999999915
+    },
+    {
+      "scenario": "--upgrade-room-shortage",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "a8e94f77146ca1586c25e7cff6e97c7d0786e842c3b2321061f0c933ee652269",
+      "milliseconds": 2032.290399999998
+    },
+    {
+      "scenario": "--worker-cargo",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "07f46844f5f2bbec6778fc65d5abf567552de049fcd29da09f4af8b22c56fcbf",
+      "milliseconds": 1372.4260000000359
+    },
+    {
+      "scenario": "--worker-cargo-drop",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "07f46844f5f2bbec6778fc65d5abf567552de049fcd29da09f4af8b22c56fcbf",
+      "milliseconds": 1623.6322999999975
+    },
+    {
+      "scenario": "--worker-cargo-hold",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "07f46844f5f2bbec6778fc65d5abf567552de049fcd29da09f4af8b22c56fcbf",
+      "milliseconds": 1293.8104999999632
+    },
+    {
+      "scenario": "--worker-collection",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4e0d341afdd908c1617d022be3e279d0ad097b271d8e4e8e69ff1579e2b7a775",
+      "milliseconds": 1228.7674000000115
+    },
+    {
+      "scenario": "--worker-miner",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4a7217b698637b1ec927b753f42b739f1844b578377f0abdf7f3a25009410058",
+      "milliseconds": 1441.6313999999547
+    },
+    {
+      "scenario": "--worker-miner-automatic",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4a7217b698637b1ec927b753f42b739f1844b578377f0abdf7f3a25009410058",
+      "milliseconds": 1720.1304000000237
+    },
+    {
+      "scenario": "--worker-miner-replacement",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4a7217b698637b1ec927b753f42b739f1844b578377f0abdf7f3a25009410058",
+      "milliseconds": 1446.2437999999966
+    },
+    {
+      "scenario": "--worker-miner-travel",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "48ff4542866aa31845d4c9e2b7f733bc25537347d020424b987fbd5f392c03fb",
+      "milliseconds": 3070.484599999967
+    },
+    {
+      "scenario": "--worker-pickup",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "fa905b235051808da615b0eb5fb10273a6cad2b675e2d577a522c75a7406d325",
+      "milliseconds": 1261.111499999999
+    },
+    {
+      "scenario": "--worker-profile-builder",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cd4c997145f1bd84ff8bd00482c54455258f1c480d552e7dad42ef73cd209582",
+      "milliseconds": 1131.7221000000136
+    },
+    {
+      "scenario": "--worker-profile-fortifier",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cd4c997145f1bd84ff8bd00482c54455258f1c480d552e7dad42ef73cd209582",
+      "milliseconds": 1172.5010000000475
+    },
+    {
+      "scenario": "--worker-profile-upgrader",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cd4c997145f1bd84ff8bd00482c54455258f1c480d552e7dad42ef73cd209582",
+      "milliseconds": 1162.6165000000037
+    },
+    {
+      "scenario": "--worker-profile-upgrader-v2",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cd4c997145f1bd84ff8bd00482c54455258f1c480d552e7dad42ef73cd209582",
+      "milliseconds": 1123.642899999977
+    },
+    {
+      "scenario": "--worker-profile-hold",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cd4c997145f1bd84ff8bd00482c54455258f1c480d552e7dad42ef73cd209582",
+      "milliseconds": 1056.6421999999438
+    },
+    {
+      "scenario": "--worker-profile-flag-hold",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cd4c997145f1bd84ff8bd00482c54455258f1c480d552e7dad42ef73cd209582",
+      "milliseconds": 1124.4574999999604
+    },
+    {
+      "scenario": "--resources",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "fde44a9b6ae120ae127771afe9861c886d95860737eb4d807db0b9fe90f0f38a",
+      "milliseconds": 1094.3775000000023
+    },
+    {
+      "scenario": "--transfer-confirmation",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "0dd8094ea67cd4386e80e89bbd6eaa8f13d1e6abdef4d1f1a279f7b3b5022a84",
+      "milliseconds": 1150.4079999999958
+    },
+    {
+      "scenario": "--hauling-cycle",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "f4b281a15d75df4b0e51fb6a15124518bade699fd5cdb57451a55011bf9e5d16",
+      "milliseconds": 1263.50900000002
+    },
+    {
+      "scenario": "--energy-logistics",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b52b28848cf4579b3ec195edba6628b9bf62f966d31d583d9efec80919b9b1cc",
+      "milliseconds": 1503.7517000000225
+    },
+    {
+      "scenario": "--reclamation",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ec7a36d1d1d1b9f54b4c7bd62ab60debb7615ee0cf5e90c1c11eab2bd1516f9b",
+      "milliseconds": 1232.007500000007
+    },
+    {
+      "scenario": "--work-supply",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d483a00d2b0d679c81c583868f31f828596b8d7296b7c5aa30dd638302be5836",
+      "milliseconds": 1272.840599999996
+    },
+    {
+      "scenario": "--tower-supply",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7a5f6e18d232c0ff77a9493023a74b60020b763926277b6fbc8dfc12874359c3",
+      "milliseconds": 1266.7481000000262
+    },
+    {
+      "scenario": "--link-supply",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "1eb98b4f9bf8effd741187676b52981e8343cd594fa341d15079177f116ee315",
+      "milliseconds": 1106.8162000000011
+    },
+    {
+      "scenario": "--controller-links",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "e06c0a16e06f50fea35016865105cbd2abf4d0866023291515554c5d195e0bcf",
+      "milliseconds": 1103.9042999999947
+    },
+    {
+      "scenario": "--link-contention",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4a1481d52ebdbd18839f3336e20b84445db746926ffe090903a131bcc7347c3f",
+      "milliseconds": 1483.9500000000116
+    },
+    {
+      "scenario": "--link-service",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "4009230b5efdd008b4626191fc41bea5664c759fea9958d7ffcf85bc09e4431c",
+      "milliseconds": 1271.7649000000092
+    },
+    {
+      "scenario": "--link-reversal",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "bb09f2caa792953fbdcdecfa36976e15a7074a900c3c6f42f44415c296e46409",
+      "milliseconds": 1204.4802999999956
+    },
+    {
+      "scenario": "--mineral-transport",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "174e34a234b88f329dee16b25ec0208673032986700e3c46c79523faae4851ab",
+      "milliseconds": 1194.20140000002
+    },
+    {
+      "scenario": "--courier-death",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "6b14330120d0710fd678dc522c20f218b8e628b1c9d9c270012a9ff1271b9a33",
+      "milliseconds": 1104.4875000000466
+    },
+    {
+      "scenario": "--cargo-death",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "77c9455aa0ed41252a8c1b67db32bf6e5f304659f17c337f97051eaabb36e91c",
+      "milliseconds": 1230.0836000000127
+    },
+    {
+      "scenario": "--storage-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "cc0ad68ac633ca1db7a82032fbb3127c3a168cfc7b8a6c22588f718c51594ebc",
+      "milliseconds": 1126.3523999999743
+    },
+    {
+      "scenario": "--energy-banking",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "87bc9b4a8fb1fe3348b32e5a35c4540783792a3df396ac40bd8c9118aaa0550e",
+      "milliseconds": 1141.1412000000128
+    },
+    {
+      "scenario": "--banking-fallback",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "87bc9b4a8fb1fe3348b32e5a35c4540783792a3df396ac40bd8c9118aaa0550e",
+      "milliseconds": 1153.253400000045
+    },
+    {
+      "scenario": "--banking-demand",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "3940e50cb23a7358944d8e2552e9393e9497da46fda40d55df910de1b9544992",
+      "milliseconds": 1205.5909999999567
+    },
+    {
+      "scenario": "--store-fill",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "274959ea3f6a443e74dc5578d76140f3855b678dc606a3f2418f2d49512d0f5b",
+      "milliseconds": 1234.1993999999831
+    },
+    {
+      "scenario": "--store-guard",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "274959ea3f6a443e74dc5578d76140f3855b678dc606a3f2418f2d49512d0f5b",
+      "milliseconds": 1227.7970000000205
+    },
+    {
+      "scenario": "--store-drain",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "274959ea3f6a443e74dc5578d76140f3855b678dc606a3f2418f2d49512d0f5b",
+      "milliseconds": 1182.1147999999812
+    },
+    {
+      "scenario": "--store-mineral",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "274959ea3f6a443e74dc5578d76140f3855b678dc606a3f2418f2d49512d0f5b",
+      "milliseconds": 1198.9098999999696
+    },
+    {
+      "scenario": "--mineral-reload",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "174e34a234b88f329dee16b25ec0208673032986700e3c46c79523faae4851ab",
+      "milliseconds": 1437.8930999999866
+    },
+    {
+      "scenario": "--mineral-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b07fd6858ad51db175597d7593dfe424526500c9e489ae8099cb8fead3bbacab",
+      "milliseconds": 1140.8643999999622
+    },
+    {
+      "scenario": "--mineral-recovery-fallback",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b07fd6858ad51db175597d7593dfe424526500c9e489ae8099cb8fead3bbacab",
+      "milliseconds": 1450.5729000000283
+    },
+    {
+      "scenario": "--courier-bootstrap",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "38dce858ce59b73c6150bf1e2fc51dadd5c018cda7ce736520cafb82e163e933",
+      "milliseconds": 1968.2087000000174
+    },
+    {
+      "scenario": "--courier-routes",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "92a24efa8b20b0313ae71b84b725bcf821a555f2d71f7aeed86176c011c166da",
+      "milliseconds": 1134.0555000000168
+    },
+    {
+      "scenario": "--mineral-routes",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "92a24efa8b20b0313ae71b84b725bcf821a555f2d71f7aeed86176c011c166da",
+      "milliseconds": 1071.7479999999632
+    },
+    {
+      "scenario": "--colony-resilience",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "e94518b9bea49568a2e93cfce2c15cff421c521703dcc6babfeb41f3c7ddb833",
+      "milliseconds": 45708.92969999998
+    },
+    {
+      "scenario": "--colony-economy",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "fc572f844836af74c63837f645c5effe4a6d4614f8ce64f01d465a8b8b350866",
+      "milliseconds": 4675.854500000016
+    },
+    {
+      "scenario": "--empty-source",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "32367af9c60388e37079f7fbaeb28b0bbd5d8765bc44a76a70d7fe526dd87d87",
+      "milliseconds": 1117.1521000000066
+    },
+    {
+      "scenario": "--cargo-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "c917d859db4a059ef2bcc147e168665574462e46fb684c65ff55c947ec0f416c",
+      "milliseconds": 1070.547499999986
+    },
+    {
+      "scenario": "--expiry-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "95fe627e8b7c21298ebb9ec4a4932a5327ef047f7af1e805229e9be0e16dbd10",
+      "milliseconds": 1077.9646000000066
+    },
+    {
+      "scenario": "--expiry-delivery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "7081a904cd27ffa6833bfb3de935e5ca9c38aecfe67d134f740569724bcfe652",
+      "milliseconds": 1095.5933000000077
+    },
+    {
+      "scenario": "--unknown-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "909f789a3898e9a4d7ac50ce91b6b681a713275fe3a8c9485d51f3bc4b026faf",
+      "milliseconds": 1124.9326
+    },
+    {
+      "scenario": "--unknown-delivery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "89e0659b95f77efbea6e2c1167b9b443acd85bdfd02d2da3f593fda222d46a15",
+      "milliseconds": 1137.4186999999802
+    },
+    {
+      "scenario": "--missing-sink",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "dee439ae22fb1509490bde619774383da24a2b6d3a2522ee38f58296fc4f7958",
+      "milliseconds": 1145.784799999965
+    },
+    {
+      "scenario": "--pickup-admission",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "1050ab7b4dc457c0a08e214e3ee4a5bf6bcef7a62638a4a89c76dc55ef2eab4d",
+      "milliseconds": 1108.3938000000198
+    },
+    {
+      "scenario": "--remains-supply",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "2a4e50a82ff55455dc207750965b643c85275fe85705faa8b38ddd1f2bad3f95",
+      "milliseconds": 1473.2237000000314
+    },
+    {
+      "scenario": "--drop-supply",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b52b28848cf4579b3ec195edba6628b9bf62f966d31d583d9efec80919b9b1cc",
+      "milliseconds": 1223.4989999999525
+    },
+    {
+      "scenario": "--large-drop",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "76b1f3bab226a91a01b442c6088834f47ec8c51e9e9a8b92c14fb41bb1e9bbbd",
+      "milliseconds": 1239.719700000016
+    },
+    {
+      "scenario": "--preservation",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d09453924a36a4b79d97289c2e3ff38a4d01cc5561822af843ecabb8fd9fbe2d",
+      "milliseconds": 1257.1702000000514
+    },
+    {
+      "scenario": "--full-sink",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "dee439ae22fb1509490bde619774383da24a2b6d3a2522ee38f58296fc4f7958",
+      "milliseconds": 1167.5590000000084
+    },
+    {
+      "scenario": "--preservation-decay",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d09453924a36a4b79d97289c2e3ff38a4d01cc5561822af843ecabb8fd9fbe2d",
+      "milliseconds": 1260.3629000000074
+    },
+    {
+      "scenario": "--source-loss",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b52b28848cf4579b3ec195edba6628b9bf62f966d31d583d9efec80919b9b1cc",
+      "milliseconds": 1250.3905999999843
+    },
+    {
+      "scenario": "--movement",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "1cbf0e313181ee8aa21748aef7fee9ea3035a6ff4968eeaef25229e3721ed307",
+      "milliseconds": 1180.032200000016
+    },
+    {
+      "scenario": "--maintenance",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "a645d43818ac3b4b29990d13619143b3158455b91e9ba689be2fc3a4c28d2807",
+      "milliseconds": 1123.7729999999865
+    },
+    {
+      "scenario": "--retirement",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ea917064ff1d9bc0f06ad4d7e422221a4e3f0210a4f34f3c091bda36a7d82dd7",
+      "milliseconds": 1119.646400000027
+    },
+    {
+      "scenario": "--paths",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b4a54ff29e9a61d2fee8cef96db3d6bddfea1f9171065f24a68fb6225d9f1ffc",
+      "milliseconds": 1241.5602000000072
+    },
+    {
+      "scenario": "--recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "1488ca3e7f56eac41db47fce78e9a4e72bcd2183155feace9be4d24aee5c589e",
+      "milliseconds": 1232.4588999999687
+    },
+    {
+      "scenario": "--traffic",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "d76f6bd9ff6b25d81d1db542996c5f6454a058b9b67f7e32df1888799e500344",
+      "milliseconds": 1125.2535000000498
+    },
+    {
+      "scenario": "--exits",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "9735084a915c5bd04c7e556f9a427b90ace34423768c8d7fd47469abbc2acea4",
+      "milliseconds": 1217.905700000003
+    },
+    {
+      "scenario": "--navigation",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "2727a615c66d8257222a8a20175a98cda5ce175f1b008767238d4c6023bd0363",
+      "milliseconds": 1229.2684000000008
+    },
+    {
+      "scenario": "--unseen",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "3026a6e61fa13da2c00e11965cd8cec21627ef79067376ba28333d9dcb521324",
+      "milliseconds": 1169.0104000000283
+    },
+    {
+      "scenario": "--occupied-exit",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "47a20c6a5fe81c637552d95298edad089cbee9c6dceb8707b00ed596eb47d9aa",
+      "milliseconds": 1111.6337000000058
+    },
+    {
+      "scenario": "--service-recovery",
+      "status": "passed",
+      "expectedFailure": false,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "b2c34eb27688c20c67fdb92ad28734236bc62c0a0b6baf72695b7a4f3c94111a",
+      "milliseconds": 1315.8564999999944
+    },
+    {
+      "scenario": "--inject-error",
+      "status": "failed",
+      "expectedFailure": true,
+      "errors": [
+        "Error: ENGINE_SENTINEL\n    at Object.loop (main:11167:90)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n",
+        "Error: ENGINE_SENTINEL\n    at Object.loop (main:11167:90)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n",
+        "Error: ENGINE_SENTINEL\n    at Object.loop (main:11167:90)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n"
+      ],
+      "messages": [],
+      "bundleSha256": "7bb0ebf9c339e37f116a20f50ef22df98ed357d6fcfc6cf9d98a2f72bedce529",
+      "milliseconds": 931.6380999999819
+    },
+    {
+      "scenario": "--inject-timeout",
+      "status": "failed",
+      "expectedFailure": true,
+      "errors": [],
+      "messages": [],
+      "bundleSha256": "ac7ba77099f5f6f552aa018ecf3e346613562870a27c2867b52e76d79dce3e3f",
+      "milliseconds": 1814.7132999999449
+    }
+  ]
+}
