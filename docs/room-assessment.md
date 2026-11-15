@@ -60,3 +60,13 @@ The full signature trades memory for exact comparison; performance/memory gates 
 assessmentFreshness reports current only when visible and observed this tick. Older observations within an inclusive maximumAge are remembered; greater age is stale; absent observation is unknown. Future/invalid times are rejected. Visibility alone does not refresh an old observation. This metadata does not authorize construction against stale observations.
 
 Tests verify order/tick independence, default normalization, meaningful feature/policy invalidation, room identity, exact freshness boundary and future timestamp rejection.608tests/186files pass4.99s; quality323production/289testfiles zero Lizard violations. Native observation, runtime consumption and real-engine assessment evidence remain pending; prior149native aggregate unchanged.
+
+## Native room observations
+
+adapters/screeps/room-assessment.ts reads visible room terrain, sources/minerals/controller, structures and construction sites into the pure snapshot boundary. Hidden rooms return undefined rather than claiming an empty room or refreshing previous observations. Existing sites become locked constraints with their actual IDs/types/positions; caller constraints are additive. Terrain wall bits take precedence over swamp bits.
+
+Structure walkability is shared with movement cost-matrix observation through structure-walkability.ts, including owned/public rampart access and native obstacle types. Infrastructure observations are based on current objects; no construction, destruction or ownership mutation is called by assessment. Dynamic creep occupancy is deliberately excluded from stable layout assessment.
+
+Native --room-assessment calls production main with default disabled work features, then invokes the observer for three ticks over an occupied room. It checks road passability vs footprint occupancy, source/controller presence, anchors, site reservations, hidden-room absence, stable fingerprint with increasing timestamps and unchanged construction-site IDs/progress. Final evidence engine-ufafXx. First run omitted production main and failed the harness's required Memory format assertion; fixture initialization was corrected. This is adapter execution evidence, not a production scheduler registration or cache implementation.
+
+608tests/186files pass4.80s; quality325production/290testfiles zero Lizard violations before the fixture initialization correction. Scenario registered; last full native aggregate149 remains unchanged. Runtime consumer/cache ownership and broader native invalidation/freshness evidence remain follow-up work.

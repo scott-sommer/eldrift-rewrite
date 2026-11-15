@@ -1,13 +1,10 @@
+import { blocksMovement } from './structure-walkability';
 import type { CostObservation, CostTile } from '../../capabilities/movement/costs';
 import { movementCosts, costRevision } from '../../capabilities/movement/costs';
 export interface MatrixOptions { roadCost: number; avoidUnits: boolean; ignoreUnitId?: string }
-function blocked(structure: AnyStructure): boolean {
-  if (structure.structureType === STRUCTURE_RAMPART) return !structure.my && !structure.isPublic;
-  return (OBSTACLE_OBJECT_TYPES as readonly string[]).includes(structure.structureType);
-}
 function observe(room: Room, ignoreUnitId?: string): CostObservation {
   const structures = room.find(FIND_STRUCTURES);
-  const obstacles: CostTile[] = structures.filter(blocked).map(item => item.pos);
+  const obstacles: CostTile[] = structures.filter(blocksMovement).map(item => item.pos);
   obstacles.push(...room.find(FIND_SOURCES).map(item => item.pos));
   obstacles.push(...room.find(FIND_MINERALS).map(item => item.pos));
   obstacles.push(...room.find(FIND_DEPOSITS).map(item => item.pos));
