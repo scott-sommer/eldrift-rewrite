@@ -658,3 +658,27 @@ placement-invalidation case; all five cache tests then passed in 0.292s. Tests c
 dependency changes, mutable blocker behavior, detached diagnostics, exceptions,
 runtime recreation and rejecting a newly obstructed previously valid layout.
 Runtime scheduling, bounded cold preparation and live-room qualification remain open.
+
+### Owned candidate enumeration persistence (ED-24)
+Candidate generation now has a separate planning-candidates owner, v1 envelope and
+per-room revision-guarded store. Save/clear reject stale writers; changing enumeration
+identity requires an explicit guarded clear. Checkpoints and reads are detached.
+Corrupt, foreign and future-version records remain untouched on failed reads.
+Structural validation checks candidate coordinates/transforms/IDs, uniqueness, cursor
+history and candidate membership in that history. Strategy-specific signatures and
+cursor bounds remain checked by the existing enumerators when resumed. These checks
+do not authenticate arbitrary externally rewritten but internally consistent history.
+
+The native route-reload fixture now uses this production store instead of a direct
+Memory.enumeration field. engine-wu11BB passed with empty errors/messages: batches
+400, 400 and 376 preserve all 1,176 ordered candidates across runtime reload, expose
+the source only after completion and finish at store revision three. Existing route
+and road resume checks also passed. Fixture CPU samples were 43, 44 and 29 ms; final
+total fixture Memory was 138,254 bytes. This is reset evidence, not a CPU bound.
+
+Quality passed: 405 production / 358 test files, zero Lizard violations. Targeted
+enumeration/store plus broad smoke tests passed nine tests in 0.449s; full fast suite
+passed 806 tests / 238 files in 7.37s. Tests cover exact uninterrupted equivalence,
+detachment, stale writers, explicit restart, invalid state preservation and committed
+plan isolation. Automatic request lifecycle/scheduling and retirement of enumeration
+history after scoring still require integration; ED-24 remains in progress.

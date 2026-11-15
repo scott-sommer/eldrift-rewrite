@@ -13,7 +13,12 @@ function verifyPlanningRouteResume(memory, reloaded = false) {
     { done: false, attempts: 400, candidates: 800, exposedSource: false },
     { done: true, attempts: 376, candidates: 1176, exposedSource: true },
   ]);
-  assert.equal(new Set(memory.enumeration.candidates.map(candidate => candidate.id)).size, 1176);
+  const enumeration = memory.eldrift.records['planning-candidates/W0N1'];
+  assert.equal(enumeration.owner, 'planning-candidates');
+  assert.equal(enumeration.version, 1);
+  assert.equal(enumeration.data.revision, 3);
+  assert.equal(memory.enumeration, undefined);
+  assert.equal(new Set(enumeration.data.checkpoint.candidates.map(candidate => candidate.id)).size, 1176);
   assert.deepEqual(memory.roadBatchRows, [
     { done: false, searches: 1, completed: 1, roads: 4 },
     { done: true, searches: 1, completed: 2, roads: 4 },

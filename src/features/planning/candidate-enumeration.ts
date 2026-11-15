@@ -1,3 +1,4 @@
+import { validEnumeration } from './enumeration-state';
 import { standardCandidateBatch } from '../../capabilities/planning/standard-candidate-batch';
 import { constrainedCandidateBatch } from '../../capabilities/planning/constrained-candidate-batch';
 import type { CandidateSeeds, CoreCandidate } from '../../capabilities/planning/standard-candidates';
@@ -19,7 +20,7 @@ export function enumeratePlanningCandidates(
   const signature = 'planning-candidates-v1:' + JSON.stringify(options);
   const checkpoint = previous ? copyPlain(previous) : { version: 1 as const, signature, candidates: [] };
   if (checkpoint.version !== 1 || checkpoint.signature !== signature) throw new Error('Stale candidate enumeration');
-  validateCandidates(checkpoint.candidates);
+  if (!validEnumeration(checkpoint)) throw new Error('Invalid candidate enumeration');
   let attempts = 0;
   if (options.standard) {
     const result = standardCandidateBatch(options.standard, checkpoint.standard, maximumAttempts, canContinue);
@@ -44,15 +45,6 @@ function append(target: PlanningCandidate[], strategy: string, candidates: reado
 }
 function candidateId(strategy: string, candidate: CoreCandidate): string {
   return strategy + ':' + candidate.anchor.x + ':' + candidate.anchor.y + ':' + candidate.transform;
-}
-function validateCandidates(candidates: readonly PlanningCandidate[]): void {
-  if (!Array.isArray(candidates) || candidates.length > 10000) throw new Error('Invalid enumerated candidates');
-  const ids = new Set<string>();
-  for (const candidate of candidates) {
-    if (!['standard', 'constrained'].includes(candidate.strategy) || candidate.id !== candidateId(candidate.strategy, candidate)
-      || ids.has(candidate.id)) throw new Error('Invalid enumerated candidate identity');
-    ids.add(candidate.id);
-  }
 }
 function candidateSource(checkpoint: EnumerationCheckpoint): PlanningJobInput['source'] {
   const candidates = copyPlain(checkpoint.candidates);
