@@ -120,3 +120,22 @@ Nine targeted composition/cache/smoke tests passed255ms. Quality447 production/
 lifecycle; no default-budget improvement is claimed until that wiring and engine
 measurement are complete. Signature semantics must continue to bind observation,
 movement policy and all composition inputs through the caller's revision.
+
+## Native replay-cache ownership
+
+The native planning feature now owns at most32 room caches with least-recently-used
+eviction, and injects each cache through work/evaluator/strategy/draft composition.
+It persists across ordinary ticks but not code reloads. No durable state depends
+on it. Unit coverage checks room isolation/reuse/eviction and fresh ownership.
+
+Unchanged default-budget diagnostic engine-IBnvgz reached all27 stamps and9131
+attempts by1050, compared with15 stamps/3366 attempts at1600 previously.
+It still FAILED commitment: road connections remained0 from1050 through1600.
+The next bottleneck is preparation between composition and routing; do not
+claim default-budget completion. Trace/provenance saved in
+docs/evidence/stamp-cached-budget.json.
+
+Native --stamp-failure engine-X7loeS passed: natural commitment, policy-change
+search-limit rejection, reload and identical retained plan. Full unit suite
+941 tests/269 files passed8.31s. Quality448 production/400 test files, zero
+violations. Full native aggregate has not been rerun for cache wiring.

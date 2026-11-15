@@ -1,3 +1,4 @@
+import type { StampReplayCache } from './stamp-replay-cache';
 import { composeStamps } from './stamp-composition';
 import type { StampCompositionInput, StampCompositionCheckpoint } from './stamp-composition';
 import { attachInfrastructure } from './attach-infrastructure';
@@ -11,12 +12,12 @@ export interface StampDraftCheckpoint { version: 1; composition: StampCompositio
 /** Composition, resource attachment and shared final road/access validation remain separate phases. */
 export function stampDraftBatch(
   input: StampDraftInput, revision: string, previous: StampDraftCheckpoint | undefined,
-  maximumAttempts: number, maximumSearches: number, guard: () => boolean = () => true,
+  maximumAttempts: number, maximumSearches: number, guard: () => boolean = () => true, cache?: StampReplayCache,
 ) {
   if (previous && previous.version !== 1) throw new Error('Invalid stamp draft checkpoint');
   const composed = composeStamps({ ...input.composition, revision,
     observation: input.observation, limits: input.limits, blocksMovement: input.blocksMovement },
-  previous?.composition, maximumAttempts, guard);
+  previous?.composition, maximumAttempts, guard, cache);
   const checkpoint: StampDraftCheckpoint = { version: 1, composition: composed.checkpoint,
     ...(previous?.roads ? { roads: copyRoads(previous.roads) } : {}) };
   if (composed.status === 'rejected') return { ok: false as const, phase: 'composition' as const,
