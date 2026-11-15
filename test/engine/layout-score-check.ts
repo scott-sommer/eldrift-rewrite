@@ -1,3 +1,5 @@
+import { createPlanProposal } from '../../src/features/planning/plan-proposal';
+import { planSchema } from '../../src/features/planning/plan-state';
 import { evaluateDraft } from '../../src/capabilities/planning/evaluate-draft';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
 import type { StagedTile } from '../../src/capabilities/planning/template';
@@ -6,7 +8,7 @@ import { planningLimits } from '../fixtures/planning-limits';
 export function measuredLayout(id: string, entries: readonly StagedTile[], observation: AssessmentInput) {
   const protectedTypes = ['spawn', 'extension', 'storage', 'terminal', 'lab', 'tower', 'factory', 'powerSpawn', 'nuker', 'observer'];
   const protectedEntries = entries.filter(entry => protectedTypes.includes(entry.type));
-  const defended = [...entries, ...protectedEntries.map(entry => ({ type: 'rampart', position: entry.position, rcl: 4 }))];
+  const defended = [...entries, ...protectedEntries.map(entry => ({ type: 'rampart', position: entry.position, rcl: 4, priority: -100 }))];
   const limits = { ...planningLimits, rampart: [0, 0, 0, 2500, 2500, 2500, 2500, 2500, 2500] };
   const weights = Object.fromEntries(defended.map(entry => [entry.type, 1]));
   const result = evaluateDraft({
@@ -20,5 +22,13 @@ export function measuredLayout(id: string, entries: readonly StagedTile[], obser
   });
   if (!result.ok) throw new Error('Score failed: ' + id + ':' + JSON.stringify(result));
   if (!Object.values(result.costs).every(cost => Number.isFinite(cost) && cost >= 0)) throw new Error('Invalid measured scores');
+  const proposal = createPlanProposal({
+    strategy: id, entries: defended, provenance: { candidateId: id + ':25:25:0', strategyVersion: 'fixture-v1',
+      observation: JSON.stringify(observation), policy: 'fixture-v1', generatedAt: Game.time,
+      anchor: { x: 25, y: 25 }, transform: 0, costs: result.costs },
+  });
+  const record = { room: 'W0N1', revision: 1, ...proposal, provenance: { ...proposal.provenance, committedAt: Game.time } };
+  if (!planSchema('W0N1', Object.keys(limits)).valid(record)) throw new Error('Generated proposal failed schema');
+  if (!proposal.entries.some(entry => entry.tag === 'source' && entry.objectId === 's1')) throw new Error('Lost source association');
   return { id, costs: result.costs };
 }

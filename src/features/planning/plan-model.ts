@@ -7,6 +7,8 @@ export interface PlanEntry {
   priority: number;
   source: 'strategy' | 'operator';
   dependencies?: string[];
+  tag?: string;
+  objectId?: string;
 }
 export interface PlanState {
   room: string;
@@ -22,7 +24,7 @@ export function validEntry(value: unknown, types: ReadonlySet<string>): value is
   if (!value || typeof value !== 'object') return false;
   const entry = value as Partial<PlanEntry>;
   return validPlacement(entry, types) && typeof entry.priority === 'number' && Number.isFinite(entry.priority)
-    && (entry.source === 'strategy' || entry.source === 'operator') && validDependencies(entry.dependencies);
+    && (entry.source === 'strategy' || entry.source === 'operator') && validDependencies(entry.dependencies) && validMetadata(entry);
 }
 function validPlacement(entry: Partial<PlanEntry>, types: ReadonlySet<string>): boolean {
   return typeof entry.type === 'string' && types.has(entry.type) && integer(entry.x, 0, 49)
@@ -32,4 +34,8 @@ function validPlacement(entry: Partial<PlanEntry>, types: ReadonlySet<string>): 
 function validDependencies(value: unknown): boolean {
   return value === undefined || Array.isArray(value) && value.length <= 100
     && value.every(item => typeof item === 'string') && new Set(value).size === value.length;
+}
+
+function validMetadata(entry: Partial<PlanEntry>): boolean {
+  return [entry.tag, entry.objectId].every(value => value === undefined || typeof value === 'string' && value.length > 0);
 }
