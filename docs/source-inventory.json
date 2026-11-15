@@ -2925,14 +2925,15 @@
     "sha256": "FFDB0F8FF030515BBA396C9889B779664139348911766414636DC423015056FC",
     "physicalLines": 643,
     "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "work, collection profiles, cargo disposal and UpgradeRoom bootstrap including assigned source/salvage exercised; expansion/operator parity remains open",
+    "implementationStatus": "shared work, collection, cargo, Art wall-only exclusion and UpgradeRoom bootstrap exercised; expansion/operator and final policy reconciliation remain open",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
       "test/engine/worker-profile-bot.ts",
       "docs/work-acceptance.md",
       "test/engine/bootstrap-assignment-bot.ts",
-      "test/engine/bootstrap-salvage-bot.ts"
+      "test/engine/bootstrap-salvage-bot.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22",
@@ -4071,7 +4072,8 @@
       "docs/upgrade-rooms.md",
       "test/engine/upgrade-master-bot.ts",
       "test/engine/upgrade-master-bootstrap-bot.ts",
-      "test/engine/upgrade-rebuild-bot.ts"
+      "test/engine/upgrade-rebuild-bot.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22"
@@ -4115,7 +4117,8 @@
       "test/engine/worker-profile-bot.ts",
       "docs/work-acceptance.md",
       "test/engine/worker-miner-bot.ts",
-      "test/engine/worker-miner-travel-bot.ts"
+      "test/engine/worker-miner-travel-bot.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22"
@@ -4152,11 +4155,12 @@
     "sha256": "023AF653193D91C5C29E1A52312FD84CF7608450C7ACC7EEA7557B0673FB5FEF",
     "physicalLines": 104,
     "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "selective work and energy strategies ported; module-wide parity remains open",
+    "implementationStatus": "energy profile and native Transfer hold exercised; sleep/operator and final action-policy reconciliation remain open",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
-      "test/engine/worker-profile-bot.ts"
+      "test/engine/worker-profile-bot.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22"
@@ -4204,7 +4208,8 @@
       "test/capabilities/legacy-fortification.test.ts",
       "test/engine/fortifier-work-bot.ts",
       "test/engine/art-region-bot.ts",
-      "test/capabilities/art-region.test.ts"
+      "test/capabilities/art-region.test.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22"
@@ -4267,7 +4272,8 @@
       "docs/work-acceptance.md",
       "test/engine/automatic-support-bot.ts",
       "test/engine/distributor-recovery-bot.ts",
-      "test/engine/colony-resilience-bot.ts"
+      "test/engine/colony-resilience-bot.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22"
@@ -5665,7 +5671,8 @@
     "evidence": [
       "docs/upgrade-rooms.md",
       "test/engine/upgrade-rebuild-bot.ts",
-      "test/engine/upgrade-bootstrap-bot.ts"
+      "test/engine/upgrade-bootstrap-bot.ts",
+      "docs/work-role-audit.md"
     ],
     "plannedIssues": [
       "ED-22",
