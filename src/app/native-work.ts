@@ -1,3 +1,4 @@
+import { assignNativeWorkerSource } from './native-worker-assignment';
 import { upgradeBootstrapOwner } from '../features/work/upgrade-identity';
 import { createNativeWorkerCargo } from './native-worker-cargo';
 import { maintainNativeWorkers } from './native-worker-population';
@@ -47,6 +48,7 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
   } };
   function runWorker(creep: Creep, room: Room, settings: Readonly<RuntimeConfig>, recoveryActive: boolean,
     assessment: ReturnType<typeof assessNativeWork>): void {
+    assignNativeWorkerSource(creep, room, settings);
     if (cargo.run(creep, room.name, settings)) return;
     const bootstrap = creep.memory.population?.owner === upgradeBootstrapOwner(room.name);
     const policy = { ...defaultWorkPolicy, wallHits: settings.workerWallHits, rampartHits: settings.workerRampartHits,

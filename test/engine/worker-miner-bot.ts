@@ -4,11 +4,11 @@ import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 import { movementPosition } from '../../src/adapters/screeps/movement-traffic';
 export function loop() {
-  const creep = Game.creeps.build!;
+  const creep = Object.values(Game.creeps)[0]!;
   if (Game.time === 1) {
     const source = creep.room.find(FIND_SOURCES)[0]!;
     creep.memory.population = { owner: 'work:W0N1:upgrader', home: 'W0N1' };
-    creep.memory.workerSource = { source: source.id, position: movementPosition(source.pos) };
+    if (creep.name !== 'automatic') creep.memory.workerSource = { source: source.id, position: movementPosition(source.pos) };
   }
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
@@ -17,7 +17,7 @@ export function loop() {
   botLoop();
   const containers = creep.room.find(FIND_STRUCTURES).filter((item): item is StructureContainer => item.structureType === STRUCTURE_CONTAINER);
   const deposit = containers.find(item => item.pos.x !== 18);
-  const row = { tick: Game.time, depositId: deposit?.id ?? null, depositX: deposit?.pos.x ?? null, energy: creep.store.energy, cargoHydrogen: creep.store.H ?? 0,
+  const row = { assigned: !!creep.memory.workerSource, tick: Game.time, depositId: deposit?.id ?? null, depositX: deposit?.pos.x ?? null, energy: creep.store.energy, cargoHydrogen: creep.store.H ?? 0,
     depositEnergy: deposit?.store.energy ?? null, hydrogen: deposit?.store.H ?? null,
     unrelated: containers.find(item => item.pos.x === 18)!.store.energy, progress: creep.room.controller!.progress };
   const memory = Memory as Memory & { workerMiner?: (typeof row)[] };

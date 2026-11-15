@@ -17,6 +17,7 @@ function verifyWorkerMiner(memory, messages) {
   console.log('WORKER_MINER_SUMMARY ' + JSON.stringify({ first: rows[0], last }));
   assert.ok(messages.every(message => !message.includes('Error:')));
   assert.equal(rows[0].energy, 0);
+  assert.ok(rows.every(row => row.assigned), 'source assignment is retained');
   assert.ok(rows.some(row => row.energy === 50), 'assigned deposit fills worker');
   assert.equal(last.depositEnergy, 0);
   assert.ok(rows.every(row => row.hydrogen === 30 && row.cargoHydrogen === 0 && row.unrelated === 500));
@@ -46,3 +47,10 @@ function verifyWorkerMinerReplacement(memory, messages) {
 }
 module.exports.replaceWorkerDeposit = replaceWorkerDeposit;
 module.exports.verifyWorkerMinerReplacement = verifyWorkerMinerReplacement;
+
+async function workerMinerAutomaticWorld(server, bot) {
+  await workerMinerWorld(server, bot);
+  const { db } = await server.world.load();
+  await db['rooms.objects'].update({ type: 'creep', name: 'build' }, { $set: { name: 'automatic' } });
+}
+module.exports.workerMinerAutomaticWorld = workerMinerAutomaticWorld;
