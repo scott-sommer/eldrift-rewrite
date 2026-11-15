@@ -1,0 +1,209 @@
+{
+  "status": "failed",
+  "failure": "AssertionError [ERR_ASSERTION]: default allowances must eventually commit the stamp plan\n+ actual - expected\n\n+ undefined\n- 'committed'\n\n    at verifyStampBudget (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\stamp-budget.cjs:12:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:630:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "provenance": {
+    "commit": "599c2dd859b990a4fc0371a37a9a742707c17612",
+    "dirty": true,
+    "bundleSha256": "ef02a16bb7a9fec78e3bc9371e8d41d52713230250a7a04f9dae65e17bff862b",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "errors": [],
+  "trace": [
+    {
+      "tick": 50,
+      "phase": "draft",
+      "attempts": 365,
+      "depth": 5
+    },
+    {
+      "tick": 100,
+      "phase": "draft",
+      "attempts": 848,
+      "depth": 8
+    },
+    {
+      "tick": 150,
+      "phase": "draft",
+      "attempts": 954,
+      "depth": 8
+    },
+    {
+      "tick": 200,
+      "phase": "draft",
+      "attempts": 1260,
+      "depth": 9
+    },
+    {
+      "tick": 250,
+      "phase": "draft",
+      "attempts": 1558,
+      "depth": 10
+    },
+    {
+      "tick": 300,
+      "phase": "draft",
+      "attempts": 1890,
+      "depth": 11
+    },
+    {
+      "tick": 350,
+      "phase": "draft",
+      "attempts": 2003,
+      "depth": 11
+    },
+    {
+      "tick": 400,
+      "phase": "draft",
+      "attempts": 2100,
+      "depth": 12
+    },
+    {
+      "tick": 450,
+      "phase": "draft",
+      "attempts": 2289,
+      "depth": 12
+    },
+    {
+      "tick": 500,
+      "phase": "draft",
+      "attempts": 2451,
+      "depth": 13
+    },
+    {
+      "tick": 550,
+      "phase": "draft",
+      "attempts": 2527,
+      "depth": 13
+    },
+    {
+      "tick": 600,
+      "phase": "draft",
+      "attempts": 2765,
+      "depth": 14
+    },
+    {
+      "tick": 650,
+      "phase": "draft",
+      "attempts": 2884,
+      "depth": 14
+    },
+    {
+      "tick": 700,
+      "phase": "draft",
+      "attempts": 2982,
+      "depth": 14
+    },
+    {
+      "tick": 750,
+      "phase": "draft",
+      "attempts": 3029,
+      "depth": 14
+    },
+    {
+      "tick": 800,
+      "phase": "draft",
+      "attempts": 3060,
+      "depth": 14
+    },
+    {
+      "tick": 850,
+      "phase": "draft",
+      "attempts": 3114,
+      "depth": 15
+    },
+    {
+      "tick": 900,
+      "phase": "draft",
+      "attempts": 3118,
+      "depth": 15
+    },
+    {
+      "tick": 950,
+      "phase": "draft",
+      "attempts": 3133,
+      "depth": 15
+    },
+    {
+      "tick": 1000,
+      "phase": "draft",
+      "attempts": 3161,
+      "depth": 15
+    },
+    {
+      "tick": 1050,
+      "phase": "draft",
+      "attempts": 3169,
+      "depth": 15
+    },
+    {
+      "tick": 1100,
+      "phase": "draft",
+      "attempts": 3176,
+      "depth": 15
+    },
+    {
+      "tick": 1150,
+      "phase": "draft",
+      "attempts": 3212,
+      "depth": 15
+    },
+    {
+      "tick": 1200,
+      "phase": "draft",
+      "attempts": 3243,
+      "depth": 15
+    },
+    {
+      "tick": 1250,
+      "phase": "draft",
+      "attempts": 3255,
+      "depth": 15
+    },
+    {
+      "tick": 1300,
+      "phase": "draft",
+      "attempts": 3256,
+      "depth": 15
+    },
+    {
+      "tick": 1350,
+      "phase": "draft",
+      "attempts": 3264,
+      "depth": 15
+    },
+    {
+      "tick": 1400,
+      "phase": "draft",
+      "attempts": 3276,
+      "depth": 15
+    },
+    {
+      "tick": 1450,
+      "phase": "draft",
+      "attempts": 3323,
+      "depth": 15
+    },
+    {
+      "tick": 1500,
+      "phase": "draft",
+      "attempts": 3349,
+      "depth": 15
+    },
+    {
+      "tick": 1550,
+      "phase": "draft",
+      "attempts": 3357,
+      "depth": 15
+    },
+    {
+      "tick": 1600,
+      "phase": "draft",
+      "attempts": 3366,
+      "depth": 15
+    }
+  ]
+}

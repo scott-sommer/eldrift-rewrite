@@ -78,3 +78,27 @@ Full unit suite938/267 files passed8.22s; targeted seven tests passed1.11s.
 Quality446 production/397 test files, zero violations. The full166-case native
 baseline predates this optimization; default-budget and broader native regression
 remain to qualify before closing the CPU work.
+
+## Default-budget diagnostic: not yet qualified
+
+The opt-in --stamp-budget scenario uses all resolved default settings, changing
+only planningEnabled=true and layoutStrategy=stamps. In particular CPU5,
+candidate attempts100, evaluation steps1, searches1, outer anchors36 and inner
+stamp defaults remain unchanged. It uses the actual observed-room main loop and
+reloads6/101. Its assertion requires commitment; it is deliberately not added
+to the passing regression suite until the requirement is met.
+
+400-tick runs engine-7EOOx6 and engine-DTT1nx failed to commit, reaching2087/2638
+attempts and12/13 stamps. A1600-tick run engine-ouWWEZ also failed:3366 attempts,
+15 of27 stamps, still drafting. Its50-tick trace shows progress slowing:
+attempts3060 at800,3161 at1000,3243 at1200,3276 at1400,3366 at1600.
+This demonstrates inadequate completion under the tested defaults, not an
+absolute permanent stall or isolated proof of which operation dominates CPU.
+
+Preparation repeats per advance; composeStamps reconstructs all chosen placements
+with legality/capacity checks before exploring the next attempt. These are the
+next optimization targets. Do not increase defaults or weaken the commitment
+assertion to report this as a pass. Preserve bounded work and reset correctness
+when retaining reconstructible caches or making replay incremental.
+Quality passed446 production/398 test files, zero violations. Native diagnostic
+failure is an open acceptance finding, not a successful engine test.
