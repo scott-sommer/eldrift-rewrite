@@ -257,3 +257,11 @@ measureRouteBatch checkpoints completed independent journeys, bounds searches pe
 Unit evidence: 725 tests / 222 files passed in 6.85s, including serialized resume equivalence, no replay, yielding, exception safety, stale networks and corrupted measurements. Final quality passed with 375 production / 334 test files, zero Lizard violations. Dedicated native --planning-route-resume passed engine-Xi3kjH (one search in tick 1, one in tick 2, none in tick 3; final cost 20). Native --layout-placement passed engine-ZjKnDh. Both have errors/messages empty. Adding checkpoint work to the already large layout fixture initially caused a script timeout; scenarios were separated rather than increasing the timeout, and the new scenario is registered in the full suite.
 
 This proves native cross-tick Memory persistence, not forced VM reset or hard CPU-termination recovery. Full candidate orchestration and build checkpoints are still pending under ED-24. Network revision construction and storage ownership must be integrated by the planning coordinator.
+
+### Native reload of planning checkpoints
+
+The dedicated --planning-route-reload scenario updates bot code and invalidates native cached script data between ticks 1 and 2. A module-local call counter changes from [1,2,3] in the ordinary-resume control to [1,1,2] under reload, proving module state was recreated. A load-time witness observes one saved route and candidate ordinal 2 before the resumed loop. Candidate enumeration then reaches ordinals [2,4,6], and route searches remain [1,1,0] with final cost 20.
+
+Quality passed unchanged production limits (375 production / 334 test files, zero Lizard violations). Reload scenario engine-zYRdJD passed with reload provenance recorded; ordinary control engine-xejiSi passed without reload provenance. Both errors/messages empty. Both scenarios are registered in the full native suite. No production behavior changed, so verification focused on quality and these native cases rather than repeating the unchanged unit suite.
+
+This establishes code/module reload survival for enumeration and route-score checkpoints. It does not yet prove hard CPU termination recovery, an entire resumable candidate build, preservation/commitment of the last valid plan, or live automatic planning. ED-24's combined checkpoint criterion remains open.

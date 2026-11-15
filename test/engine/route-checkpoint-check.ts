@@ -1,8 +1,13 @@
+import { standardCandidateBatch } from '../../src/capabilities/planning/standard-candidate-batch';
+import type { CandidateCheckpoint } from '../../src/capabilities/planning/candidate-batch';
 import { measureRouteBatch } from '../../src/capabilities/planning/route-cost-batch';
 import type { RouteCheckpoint } from '../../src/capabilities/planning/route-checkpoint';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
 export function verifyRouteCheckpoint(): void {
-  const memory = Memory as Memory & { routeCheckpoint?: RouteCheckpoint; routeBatchRows?: unknown[] };
+  const memory = Memory as Memory & { routeCheckpoint?: RouteCheckpoint; routeBatchRows?: unknown[]; candidateCheckpoint?: CandidateCheckpoint; candidateOrdinals?: number[] };
+  const candidates = standardCandidateBatch({ structures: [] }, memory.candidateCheckpoint, 2);
+  memory.candidateCheckpoint = candidates.checkpoint;
+  (memory.candidateOrdinals ??= []).push(candidates.checkpoint.next);
   const costs = Array<number>(2500).fill(255);
   for (let x = 10; x <= 15; x++) costs[10 * 50 + x] = 2;
   const result = measureRouteBatch({

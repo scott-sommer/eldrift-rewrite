@@ -1,5 +1,6 @@
-const planningRouteResume = process.argv.includes('--planning-route-resume');
-const { verifyPlanningRouteResume } = require('./planning-route-resume.cjs');
+const planningRouteReload = process.argv.includes('--planning-route-reload');
+const planningRouteResume = planningRouteReload || process.argv.includes('--planning-route-resume');
+const { verifyPlanningRouteResume, reloadPlanningRoutes } = require('./planning-route-resume.cjs');
 const layoutPlacement = process.argv.includes('--layout-placement');
 const { verifyLayoutPlacement } = require('./layout-placement.cjs');
 const roomAssessment = process.argv.includes('--room-assessment');
@@ -477,6 +478,10 @@ server.on('error', error => { console.error(error); finish(1, error); });
     }
     if (process.argv.includes('--energy-recovery')) await changeRecoveryEnergy(server, tick);
     if (process.argv.includes('--worker-population')) await loseWorker(server, tick);
+    if (planningRouteReload) {
+      const reloaded = await reloadPlanningRoutes(server, bot, modules, tick);
+      if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
+    }
     if (process.argv.includes('--reload')) {
       const reloaded = await prepareReload(server, bot, modules, tick);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
@@ -560,7 +565,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) verifyWorkerPickup(memory);
   if (process.argv.includes('--worker-collection')) verifyWorkerCollection(memory);
   if (process.argv.includes('--worker-runtime')) verifyWorkerRuntime(memory);
-  if (planningRouteResume) verifyPlanningRouteResume(memory);
+  if (planningRouteResume) verifyPlanningRouteResume(memory, planningRouteReload);
   if (layoutPlacement) verifyLayoutPlacement(memory);
   if (roomAssessment) verifyRoomAssessment(memory);
   if (process.argv.includes('--work-selection')) verifyWorkSelection(memory);
