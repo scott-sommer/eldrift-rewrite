@@ -1,6 +1,9 @@
 const assert = require('node:assert/strict');
 function verifyLayoutPlacement(memory) {
   assert.ok(memory.assembledDraft.validated);
+  assert.equal(memory.assembledDraft.serviceChoice.id, 'standard');
+  assert.equal(memory.assembledDraft.haulingChoice.id, 'constrained');
+  console.log('LAYOUT_COSTS ' + JSON.stringify(memory.assembledDraft.candidates));
   assert.equal(memory.assembledDraft.connections, 10);
   assert.ok(memory.assembledDraft.count > 138);
   assert.equal(memory.layoutPlacement.length, 3);
