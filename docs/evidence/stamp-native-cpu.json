@@ -1,0 +1,89 @@
+{
+  "scope": "Whole bot CPU samples from elevated-budget functional scenarios, including fixture telemetry. Not isolated planner costs, hard ceiling proof, or soak evidence.",
+  "scenarios": [
+    {
+      "scenario": "stamp-room",
+      "evidence": "artifacts\\engine-3UIoa8\\evidence.json",
+      "status": "passed",
+      "throughTick": 39,
+      "sampleCount": 38,
+      "meanWholeBotCpu": 111.42105263157895,
+      "maxWholeBotCpu": 155,
+      "errors": [],
+      "messages": [],
+      "provenance": {
+        "commit": "08d48c04880c23cb74d1056bd95f157faf9229c6",
+        "dirty": true,
+        "bundleSha256": "e218d7360bc2d6cae5f96b187077a4896e96fcd7a96dd717e865d6f30b425ac9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "auto-stamp-room",
+      "evidence": "artifacts\\engine-2pChza\\evidence.json",
+      "status": "passed",
+      "throughTick": 163,
+      "sampleCount": 162,
+      "meanWholeBotCpu": 73.22839506172839,
+      "maxWholeBotCpu": 145,
+      "errors": [],
+      "messages": [],
+      "provenance": {
+        "commit": "751be046a305f2c0c8802477e6174bf5d412b1e8",
+        "dirty": true,
+        "bundleSha256": "f2b54c6dfdac4ce7b592294ede39b2e3ffc741c6eb35eac61f033cc22a297dc2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "irregular-stamp-room",
+      "evidence": "artifacts\\engine-ylVNBG\\evidence.json",
+      "status": "passed",
+      "throughTick": 31,
+      "sampleCount": 30,
+      "meanWholeBotCpu": 110.3,
+      "maxWholeBotCpu": 145,
+      "errors": [],
+      "messages": [],
+      "provenance": {
+        "commit": "143cca61fe2f683c48ac511d312661a7a977a2d0",
+        "dirty": true,
+        "bundleSha256": "697b6e405097aa02e1582d03a30323bc7908e3843f84b78b757114c63658ccbe",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "stamp-failure",
+      "evidence": "artifacts\\engine-zML5Ki\\evidence.json",
+      "status": "passed",
+      "throughTick": 100,
+      "sampleCount": 99,
+      "meanWholeBotCpu": 43.98989898989899,
+      "maxWholeBotCpu": 173,
+      "errors": [],
+      "messages": [],
+      "provenance": {
+        "commit": "c53bc04b96859fdc32f83b2f5ccdea5228c87528",
+        "dirty": true,
+        "bundleSha256": "d8409c72bab9421eecb85322b660e0c197c1319c96d5474a2c8a1311c8f44ad0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    }
+  ]
+}

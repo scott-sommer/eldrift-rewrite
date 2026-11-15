@@ -31,3 +31,19 @@ Current search also stops at the first fully placed composition before routing.
 If whole-draft routing/validation rejects it, the outer hub candidate is rejected;
 it does not enumerate every alternative composition at that hub. Failure remains
 bounded and explained, but this limits solution coverage.
+
+## Measured CPU evidence
+
+docs/evidence/stamp-native-cpu.json preserves whole-bot CPU aggregates and
+bundle/engine provenance from the completed functional runs. Through commitment,
+explicit stamp-room mean111.42/max155, automatic room mean73.23/max145,
+and irregular room mean110.30/max145. These include telemetry, persistence and
+other main-loop work; they are not isolated planner timings. The failure scenario
+window through100 includes idle ticks and is not comparable as active-search cost.
+
+Inspection found prepareStampComposition calls stampAnchors separately for every
+non-hub stamp; each call allocates and sorts the full interior room grid. The
+adapter repeats this preparation on each advance before composeStamps checks its
+guard. This is a concrete optimization target, not a measured attribution of the
+whole-bot CPU above. Preserve deterministic anchor order and preservation-derived
+priority when optimizing, and measure default-budget progress after the change.
