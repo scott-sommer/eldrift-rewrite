@@ -11,3 +11,14 @@ test('economy adapter blocks suppressed work while preserving movement and upgra
   expect(actions.upgrade({} as StructureController).status).toBe('issued');
   expect(calls).toEqual(['harvest', 'move', 'upgrade']);
 });
+
+test('dismantle and other WORK actions share admission, without requiring carried energy', () => {
+  const calls: string[] = [];
+  const creep = { name: 'salvager', dismantle: () => { calls.push('dismantle'); return 0; },
+    harvest: () => { calls.push('harvest'); return 0; }, repair: () => { calls.push('repair'); return 0; } } as unknown as Creep;
+  const actions = createCreepActions(creep, 'bootstrap', createActionArbiter(() => 1));
+  expect(actions.dismantle({} as Structure).status).toBe('issued');
+  expect(actions.harvest({} as Source).status).toBe('blocked');
+  expect(actions.repair({} as Structure).status).toBe('blocked');
+  expect(calls).toEqual(['dismantle']);
+});

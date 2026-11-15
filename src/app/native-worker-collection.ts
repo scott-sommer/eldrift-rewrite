@@ -30,7 +30,7 @@ export function createNativeWorkerCollection(state: StatePort, dispatch: ReturnT
     const origin = creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 };
     const order = bootstrap ? selectBootstrapEnergy(sources, origin, free, creep.store.getCapacity()) : selectProfileEnergy(sources, origin, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
       storageReserve: config.workerEnergyStorageReserve, holdStoragePosition: config.workerHoldStoragePosition });
-    if (!order && bootstrap) return harvestBootstrapEnergy(creep, room, owner, dispatch);
+    if (!order && bootstrap) return harvestBootstrapEnergy(creep, room, owner, dispatch, config.upgradeBootstrapDismantleEnabled);
     if (!order) return creep.store.energy > 0 ? { status: 'done' } : { status: 'blocked', reason: 'worker-energy-unavailable', retryAt: Game.time + 1 };
     return collect(creep, order, owner, invoke => issueCollection(state, Game.time, { owner, holder: creep.name,
       sink: creep.id, source: order.source.id, resource: 'energy', stock: Math.max(0, order.source.stock - order.reserve),

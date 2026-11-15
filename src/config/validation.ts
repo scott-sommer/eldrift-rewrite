@@ -56,6 +56,7 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   upgradeFleetStartEnergy: value => bounded(value, 1000000000) && Number.isInteger(value),
   upgradeFleetStopEnergy: value => bounded(value, 1000000000) && Number.isInteger(value),
   upgradeFleetStorageFloor: value => bounded(value, 1000000) && Number.isInteger(value),
+  upgradeBootstrapDismantleEnabled: value => typeof value === 'boolean',
   upgradeRoomEnabled: value => typeof value === 'boolean',
   upgradeRoomEmpireReserve: value => bounded(value, 1000000000) && Number.isInteger(value),
   upgradeRoomOtherReserve: value => bounded(value, 1000000000) && Number.isInteger(value),

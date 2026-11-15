@@ -50,6 +50,7 @@ export interface RuntimeConfig {
   upgradeFleetStartEnergy: number;
   upgradeFleetStopEnergy: number;
   upgradeFleetStorageFloor: number;
+  upgradeBootstrapDismantleEnabled: boolean;
   upgradeRoomEnabled: boolean;
   upgradeRoomEmpireReserve: number;
   upgradeRoomOtherReserve: number;
@@ -147,6 +148,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   upgradeFleetStartEnergy: 10000000,
   upgradeFleetStopEnergy: 5000000,
   upgradeFleetStorageFloor: 200000,
+  upgradeBootstrapDismantleEnabled: true,
   upgradeRoomEnabled: false,
   upgradeRoomEmpireReserve: 2600000,
   upgradeRoomOtherReserve: 100000,

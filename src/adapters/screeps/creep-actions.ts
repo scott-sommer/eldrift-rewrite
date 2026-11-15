@@ -1,9 +1,9 @@
 import type { createActionArbiter } from '../../core/execution/action-arbiter';
 type Arbiter = ReturnType<typeof createActionArbiter>;
-export type EconomyAction = 'move' | 'harvest' | 'build' | 'repair' | 'upgradeController' | 'transfer' | 'withdraw' | 'pickup' | 'drop';
-/** Engine 4.3.2 suppresses harvest/build/repair against each other. */
+export type EconomyAction = 'move' | 'dismantle' | 'harvest' | 'build' | 'repair' | 'upgradeController' | 'transfer' | 'withdraw' | 'pickup' | 'drop';
+/** Engine 4.3.2 suppresses harvest/build/repair/dismantle against each other. */
 export function economySlots(action: EconomyAction): readonly string[] {
-  if (action === 'harvest' || action === 'build' || action === 'repair') return ['primary-work'];
+  if (action === 'harvest' || action === 'build' || action === 'repair' || action === 'dismantle') return ['primary-work'];
   return [action];
 }
 export function createCreepActions(creep: Creep, owner: string, arbiter: Arbiter) {
@@ -13,6 +13,7 @@ export function createCreepActions(creep: Creep, owner: string, arbiter: Arbiter
   return {
     move: (direction: DirectionConstant) => issue('move', () => creep.move(direction)),
     harvest: (target: Source | Mineral | Deposit) => issue('harvest', () => creep.harvest(target)),
+    dismantle: (target: Structure) => issue('dismantle', () => creep.dismantle(target)),
     build: (target: ConstructionSite) => issue('build', () => creep.build(target)),
     repair: (target: Structure) => issue('repair', () => creep.repair(target)),
     upgrade: (target: StructureController) => issue('upgradeController', () => creep.upgradeController(target)),
