@@ -102,3 +102,24 @@ Validation: 13 stamp tests across three files pass in 314ms; smoke in 179ms;
 quality passes (439 production / 383 test files, zero violations). New regression
 adopts a manual spawn once, rejects duplicate capacity, accepts a distinct
 second location and proves the original branch remains unchanged.
+
+## Composition search
+
+composeStamps performs deterministic depth-first composition with backtracking.
+Each successful stamp contributes distinct claims and reserves its road ports
+against later blockers. Combined draft capacity is checked after every placement.
+A compact checkpoint stores chosen ordinals and per-depth cursors, not copies
+of every partial layout. Resumption reconstructs and validates the branch from
+the same revision-bound input before continuing.
+
+Per-call attempts and a cooperative guard bound search work; reconstruction
+also checks the guard between stamps. Input is capped at 64 stamps and 2500
+anchors. Repeated calls can explore a large search tree: a total search ceiling,
+production anchor ordering and performance qualification remain integration work.
+Completion means every supplied stamp fits; it does not certify inter-stamp
+routing, whole-room access, defenses or a committable candidate.
+
+Tests demonstrate serialized single-attempt equivalence, actual backtracking
+when only the first anchor can hold a later storage stamp, failure preservation,
+stale/corrupt cursor rejection and combined RCL capacity rejection.
+Quality passes (440 production / 384 test files, zero violations); smoke passes.
