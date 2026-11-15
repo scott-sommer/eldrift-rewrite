@@ -1,3 +1,6 @@
+import { prepareConfiguredPlanningRequest } from '../../src/features/planning/configured-planning-request';
+import { resolveConfig } from '../../src/config/resolve';
+import { planningObservation } from '../fixtures/planning-observation';
 import { expect, test, vi } from 'vitest';
 import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
 import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
@@ -66,4 +69,24 @@ test('a newer plan supersedes an unstarted request without evaluating candidates
   ports.plans.commit(0, proposal, { tick: 1, observation: 'obs', policy: 'policy' }, () => true);
   expect(runPlanningCycle(ports, input, 2, 1)).toMatchObject({ status: 'superseded' });
   expect(input.step).not.toHaveBeenCalled();
+});
+
+test('configured refresh retries a completed failed request while budget tuning keeps it idle', () => {
+  const { ports, input } = setup();
+  input.step = vi.fn(() => ({ status: 'rejected' as const, reason: 'blocked' }));
+  const identity = (patch: Record<string, unknown>) => {
+    const request = prepareConfiguredPlanningRequest(planningObservation(), ports.plans.read(),
+      resolveConfig({ roomOverride: patch }, 1).values, ['spawn', 'storage']);
+    if (!request.ok) throw new Error(request.reason);
+    return request.policyIdentity;
+  };
+  input.policy = identity({});
+  expect(runPlanningCycle(ports, input, 1, 1)).toMatchObject({ status: 'finished', outcome: 'no-valid-candidate' });
+  input.policy = identity({ planningSearches: 4, planningCpuBudget: 10 });
+  expect(runPlanningCycle(ports, input, 2, 1)).toMatchObject({ status: 'idle' });
+  input.policy = identity({ planningRefreshRevision: 1 });
+  expect(runPlanningCycle(ports, input, 3, 1)).toMatchObject({ status: 'finished', outcome: 'no-valid-candidate' });
+  expect(runPlanningCycle(ports, input, 4, 1)).toMatchObject({ status: 'idle' });
+  expect(input.step).toHaveBeenCalledTimes(2);
+  expect(ports.plans.read().revision).toBe(0);
 });

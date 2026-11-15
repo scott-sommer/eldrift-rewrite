@@ -10,6 +10,7 @@ export interface PlanningRequestPolicy {
   preserveExisting: boolean;
   valuableTypes: readonly string[];
   constrainedAnchorLimit: number;
+  refreshRevision?: number;
 }
 /** Prepare detached policy inputs; eligibility and when to start remain caller responsibilities. */
 export function preparePlanningRequest(observed: AssessmentInput, plan: PlanState, policy: PlanningRequestPolicy) {
@@ -59,6 +60,9 @@ function previousCandidate(plan: PlanState) {
 }
 
 function validatePolicy(policy: PlanningRequestPolicy): void {
+  if (policy.refreshRevision !== undefined && (!Number.isSafeInteger(policy.refreshRevision) || policy.refreshRevision < 0)) {
+    throw new Error('Invalid planning refresh revision');
+  }
   if (!['auto', 'standard', 'constrained'].includes(policy.strategy)) throw new Error('Invalid planning strategy');
   if (!Number.isSafeInteger(policy.constrainedAnchorLimit) || policy.constrainedAnchorLimit < 1
     || policy.constrainedAnchorLimit > 2500) throw new Error('Invalid anchor limit');

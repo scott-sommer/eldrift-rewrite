@@ -878,3 +878,22 @@ Full unit suite passed 839 tests / 244 files in 7.99s. Tests verify bounds, prov
 temporary expiry and per-room enablement, including a temporary zero-CPU override that
 suppresses preparation until expiry. Native planning configuration remains unqualified
 until native composition and request preparation are connected.
+
+### Configured request policy and explicit refresh (ED-24)
+prepareConfiguredPlanningRequest maps resolved strategy, preservation, anchor limit and
+refresh revision into the prepared request. Refresh revisions are validated nonnegative
+safe integers and become part of policy identity. Execution CPU/attempt/step/search budgets
+are deliberately excluded: adjusting how fast a request runs does not change its desired
+plan or invalidate its receipt.
+
+Tests confirm policy mapping and automatic lock behavior without erasing observed
+infrastructure. An integrated durable lifecycle test completes a failed request, tunes
+search/CPU allowance and observes idleness, then increments refresh revision and observes
+one new evaluation/completion followed by idleness. Plan revision remains unchanged.
+This establishes explicit retry identity semantics; native request admission and preserving
+the original base revision across successful commit/recovery still need composition.
+
+Quality passed: 415 production / 365 test files, zero Lizard violations. Targeted configured
+request, request policy, lifecycle, operator, configuration and smoke tests passed 29 tests /
+6 files in 0.482s. Full unit/native suites were not repeated for this policy-only change.
+Native main-loop registration remains open.
