@@ -20,3 +20,13 @@ Tests enumerate all2500 local indices, validate adjacency uniqueness/bounds, che
 - Keep observations and assessment separate from construction, destructive actions and strategy selection.
 
 No ED-23 acceptance checkbox is completed by geometry primitives alone. Native suite begun at374a549 does not exercise these new, currently unconnected modules.
+
+## Connected regions and clearance
+
+capabilities/planning/grid-analysis.ts consumes a validated2500-cell boolean eligibility mask. Eight-connected components have stable IDs equal to their smallest row-major index and sorted member indices. Region traversal is iterative, with each accepted tile visited once.
+
+Clearance is Chebyshev distance to the nearest ineligible tile or outside-room cell. Blocked cells have0, free edge cells1; an open room's central cells have25. A square footprint with radius clearance-1 fits within eligible cells. This convention is explicit to avoid confusing clearance with footprint width. Regions/clearance describe the supplied mask; they do not yet claim that terrain-only passability equals buildability.
+
+Fixtures cover open, divided, diagonal-only, obstructed and fully blocked masks. An independent direct-distance oracle checks every tile against three obstacles and the room boundary. Input is not mutated; wrong-sized, nonboolean and sparse masks are rejected.599tests/183files initially pass4.91s; quality319production/286testfiles zero Lizard violations. Final sparse-mask validation is included in the recorded final checks.
+
+Terrain costs, exits, object/access/anchor constraints, fingerprint/freshness and native observation remain pending. No construction/action API is used. The prior149-check engine aggregate is unchanged; these pure modules are not yet runtime consumers.
