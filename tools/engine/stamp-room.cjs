@@ -1,8 +1,8 @@
 const assert = require('node:assert/strict');
-function verifyStampRoom(memory) {
+function verifyStampRoom(memory, automatic = false) {
   const rows = memory.planningRoomRows;
   assert.equal(rows.length, 400);
-  assert.deepEqual(memory.stampReloads, [21, 101]);
+  assert.deepEqual(memory.stampReloads, automatic ? [21, 101, 201] : [21, 101]);
   assert.ok(rows.some(row => row.tick < 21 && row.pending));
   console.log('STAMP_ROOM_PROGRESS ' + JSON.stringify(rows.slice(-3)));
   const records = memory.eldrift.records;
@@ -10,10 +10,16 @@ function verifyStampRoom(memory) {
   const job = records['planning-jobs/W0N1'].data;
   console.log('STAMP_ROOM_JOB ' + JSON.stringify({ outcome: job.receipt?.outcome, completedAt: job.receipt?.completedAt, diagnostics: job.receipt?.diagnostics }));
   assert.equal(job.receipt?.outcome, 'committed');
-  assert.equal(plan.strategy, 'stamps');
+  if (!automatic) assert.equal(plan.strategy, 'stamps');
+  if (automatic) {
+    const ids = records['planning-candidates/W0N1'].data.checkpoint.candidates;
+    for (const strategy of ['standard', 'constrained', 'stamps']) assert.ok(ids.some(id => id.startsWith(strategy + ':')));
+    assert.equal(job.receipt.diagnostics.evaluated, ids.length);
+    assert.ok(rows.some(row => row.pending?.startsWith('stamps:')));
+  }
   assert.equal(plan.revision, 1);
-  assert.ok(job.receipt.completedAt > 21 && job.receipt.completedAt < 100);
-  assert.equal(job.receipt.diagnostics.rejected, 0);
+  assert.ok(job.receipt.completedAt > 21 && job.receipt.completedAt < (automatic ? 200 : 100));
+  if (!automatic) assert.equal(job.receipt.diagnostics.rejected, 0);
   for (const [type, count] of Object.entries({ spawn: 3, tower: 6, link: 6,
     storage: 1, terminal: 1, factory: 1, observer: 1, nuker: 1, powerSpawn: 1, extractor: 1 })) {
     assert.equal(plan.entries.filter(entry => entry.type === type).length, count, type);

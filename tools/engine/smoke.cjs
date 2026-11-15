@@ -1,4 +1,5 @@
-const stampRoom = process.argv.includes('--stamp-room');
+const autoStampRoom = process.argv.includes('--auto-stamp-room');
+const stampRoom = autoStampRoom || process.argv.includes('--stamp-room');
 const { verifyStampRoom } = require('./stamp-room.cjs');
 const stampDraft = process.argv.includes('--stamp-draft');
 const { verifyStampDraft, reloadStampDraft } = require('./stamp-draft.cjs');
@@ -246,7 +247,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) modules.main = await actionBundle(root, 'worker-pickup-bot');
   if (process.argv.includes('--worker-collection')) modules.main = await actionBundle(root, 'worker-collection-bot');
   if (process.argv.includes('--worker-runtime')) modules.main = await actionBundle(root, 'worker-runtime-bot');
-  if (stampRoom) modules.main = await actionBundle(root, 'stamp-room-bot');
+  if (stampRoom) modules.main = await actionBundle(root, autoStampRoom ? 'auto-stamp-room-bot' : 'stamp-room-bot');
   if (planningRoom) modules.main = await actionBundle(root, 'planning-room-bot');
   if (planningBudget) modules.main = await actionBundle(root, 'planning-budget-bot');
   if (planningRuntime) modules.main = await actionBundle(root, 'planning-runtime-bot');
@@ -467,7 +468,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   const tickCount = stampRoom ? 400 : stampDraft ? 160 : planningRoom ? 400 : planningBudget ? 80 : planningRuntime ? 8 : planningJob ? 230 : constrainedDraftResume ? 70 : standardDraftResume ? 12 : roomAssessment ? 8 : artRegion ? 20 : fortifierWork ? 12 : workerMinerTravel ? 40 : workerMiner ? 20 : workDependencies ? 6 : bootstrapAssignment ? 25 : bootstrapSalvage ? 25 : colonyResilience ? 1100 : upgradeRebuild ? 700 : masterBootstrap ? 140 : supplyReplacement ? 900 : sponsorLoss ? 40 : supplyFleetLoss ? 12 : supplyFleet ? 270 : supplyCycle ? 40 : groundRecovery ? 5 : bootstrapHarvest ? 250 : upgradeBootstrap ? 150 : upgradeClaim ? 60 : upgradeCycle ? 55 : upgradeLoss ? 160 : distributorRecovery ? 45 : masterContention ? 8 : upgradeMaster ? 120 : upgradeFleetLoss ? 8 : upgradeFleet ? 240 : upgradeRoom ? 24 : upgradeService ? 150 : workerCargoMode ? 15 : recoveryBanking ? 100 : automaticSupport ? 100 : supportTransport ? 20 : process.argv.includes('--recovery-scavenger-spawn') ? 160 : process.argv.includes('--recovery-scavenging') ? 20 : process.argv.includes('--recovery-economy') ? 180 : process.argv.includes('--energy-recovery') ? 8 : process.argv.includes('--worker-population') ? 44 : process.argv.includes('--worker-pickup') ? 6 : process.argv.includes('--worker-collection') ? 10 : process.argv.includes('--worker-runtime') ? 6 : process.argv.includes('--work-selection') ? 4 : process.argv.includes('--mining-storage') ? 5 : process.argv.includes('--work-supply') ? 10 : process.argv.includes('--reclamation') ? 7 : process.argv.includes('--banking-demand') ? 8 : storeBalanceMode ? 6 : (process.argv.includes('--energy-banking') || process.argv.includes('--banking-fallback')) ? 5 : process.argv.includes('--storage-loss') ? 4 : process.argv.includes('--cargo-death') ? 9 : process.argv.includes('--courier-death') ? 4 : (process.argv.includes('--mineral-transport') || process.argv.includes('--mineral-reload')) ? 9 : process.argv.includes('--link-reversal') ? 8 : process.argv.includes('--link-service') ? 4 : process.argv.includes('--link-contention') ? 4 : process.argv.includes('--controller-links') ? 4 : process.argv.includes('--tower-supply') ? 5 : process.argv.includes('--expiry-delivery') ? 4 : process.argv.includes('--full-sink') ? 4 : process.argv.includes('--preservation-decay') ? 8 : process.argv.includes('--preservation') ? 8 : process.argv.includes('--large-drop') ? 5 : process.argv.includes('--drop-supply') ? 5 : process.argv.includes('--source-loss') ? 6 : process.argv.includes('--remains-supply') ? 7 : process.argv.includes('--pickup-admission') ? 4 : process.argv.includes('--missing-sink') ? 4 : process.argv.includes('--unknown-delivery') ? 5 : process.argv.includes('--unknown-recovery') ? 5 : process.argv.includes('--expiry-recovery') ? 4 : process.argv.includes('--cargo-recovery') ? 4 : process.argv.includes('--empty-source') ? 6 : process.argv.includes('--colony-economy') ? 100 : process.argv.includes('--courier-bootstrap') ? 30 : process.argv.includes('--energy-logistics') ? 5 : process.argv.includes('--hauling-cycle') ? 6 : process.argv.includes('--transfer-confirmation') ? 4 : process.argv.includes('--mining-interrupted') ? 9 : process.argv.includes('--extractor-fault') ? 13 : process.argv.includes('--mining-saturation') ? 12 : process.argv.includes('--mining-replacement') ? 25 : process.argv.includes('--colony-mineral') ? 25 : process.argv.includes('--colony-mining') ? 45 : process.argv.includes('--specialist-mining') ? 8 : process.argv.includes('--mining') ? 5 : process.argv.includes('--spawn') ? 12 : process.argv.includes('--service-recovery') ? 8 : process.argv.includes('--recovery') ? 6 : 3;
   for (let tick = 0; tick < tickCount; tick++) {
     if (stampDraft || stampRoom) {
-      const reloaded = await reloadStampDraft(server, bot, modules, tick);
+      const reloaded = await reloadStampDraft(server, bot, modules, tick, autoStampRoom ? [20, 100, 200] : undefined);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
     }
     if (planningRoom) {
@@ -621,7 +622,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) verifyWorkerPickup(memory);
   if (process.argv.includes('--worker-collection')) verifyWorkerCollection(memory);
   if (process.argv.includes('--worker-runtime')) verifyWorkerRuntime(memory);
-  if (stampRoom) verifyStampRoom(memory);
+  if (stampRoom) verifyStampRoom(memory, autoStampRoom);
   if (stampDraft) verifyStampDraft(memory);
   if (planningRoom) verifyPlanningRoom(memory);
   if (planningBudget) verifyPlanningBudget(memory);

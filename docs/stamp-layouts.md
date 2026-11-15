@@ -323,3 +323,31 @@ Targeted configuration/native-work tests passed; broad smoke passed (207 ms).
 Quality passed (445 production/392 test files, zero violations).
 Automatic participation, irregular-room qualification and the extension example
 remain outstanding; no full native suite rerun is claimed for this change.
+
+## Automatic strategy participation
+
+Auto now enumerates standard, constrained and stamp candidates, retaining explicit
+single-strategy modes. All proposals use common validation/scoring/hysteresis.
+Planning request identity advances to v3 so old completed receipts cannot suppress
+the expanded candidate search. Existing committed plans remain until replacement.
+
+Native --auto-stamp-room passed 400 ticks (engine-2pChza), with one outer stamp
+hub and runtime reloads at 21,101,201. All 904 candidates were evaluated;
+899 rejected, commitment at tick 163. Stamp evaluation is observed in persisted
+pending progress. Full structure capacity, existing spawn/storage preservation,
+no construction sites and stable final revision are asserted. Errors/messages empty.
+This case is registered in the full native suite.
+
+The existing 36-anchor --planning-room scenario initially remained pending at
+tick 400 (engine-0omciI) while composing hubs incompatible with locked storage.
+An early adapter constraint now rejects such anchors before composition/routing.
+A regression proves rejection even with zero placement allowance, and admission
+when the anchor matches. The original scenario then passed unchanged
+(engine-xqMNem): 1219 candidates, standard winner at tick 348, reload after
+commitment at 351, complete service capacity and empty errors/messages.
+This is elevated-budget open-room evidence, not irregular-room or CPU-soak proof.
+
+Quality passed: 445 production/393 test files, zero violations.
+The full unit suite and native scenario results are recorded with the commit.
+Irregular-room qualification and the extension example remain open under ED-25.
+The expanded full native suite has not yet been rerun.

@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
-async function reloadStampDraft(server, bot, modules, index) {
-  if (![20, 100].includes(index)) return;
+async function reloadStampDraft(server, bot, modules, index, indices = [20, 100]) {
+  if (!indices.includes(index)) return;
   const { db, env } = server.common.storage;
   const main = modules.main + '\n(Memory.stampReloads ??= []).push(Game.time);';
   await db['users.code'].update({ user: bot.id }, { $set: { modules: { ...modules, main }, timestamp: Date.now() } });

@@ -14,6 +14,10 @@ export function createStampLayoutStrategy(
   const entries = operatorEntries.map(entry => ({ ...entry, position: { x: entry.x, y: entry.y } }));
   return { version, advance(candidate, revision, checkpoint, searches, guard) {
     if (candidate.transform !== 0) return { status: 'rejected', reason: 'stamp-candidate-transform-must-be-zero' };
+    const lockedStorage = input.observation.constraints.filter(item => item.kind === 'locked' && item.type === 'storage');
+    if (lockedStorage.some(item => item.position.x !== candidate.anchor.x || item.position.y !== candidate.anchor.y)) {
+      return { status: 'rejected', reason: 'stamp-hub-conflicts-with-locked-storage' };
+    }
     const composition = prepareStampComposition(candidate.anchor, input.observation, input.limits, options.anchorLimit, entries);
     const result = stampDraftBatch({ ...input, storage: candidate.anchor,
       composition: { ...composition, maximumTotalAttempts: options.totalAttempts } },

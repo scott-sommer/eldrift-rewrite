@@ -26,3 +26,15 @@ test('registered stamp strategy resumes and rejects unsupported outer transforms
   expect(registry.stamps!.advance({ ...candidate, transform: 1 }, 'revision', undefined, 0, () => true))
     .toMatchObject({ status: 'rejected', reason: 'stamp-candidate-transform-must-be-zero' });
 });
+
+test('locked storage rejects incompatible hubs before spending composition or route budget', () => {
+  const request = input();
+  request.observation.constraints = [{ id: 'storage', kind: 'locked', type: 'storage', position: { x: 26, y: 25 } }];
+  const registry = createLayoutStrategies(request, { standard: 's1', constrained: 'c1', stamps: 'p1' }, [],
+    { anchorLimit: 200, attemptsPerStep: 0, totalAttempts: 100000 });
+  expect(registry.stamps!.advance(candidate, 'v1', undefined, 0, () => true)).toEqual({
+    status: 'rejected', reason: 'stamp-hub-conflicts-with-locked-storage' });
+  expect(request.search).not.toHaveBeenCalled();
+  request.observation.constraints[0]!.position.x = 25;
+  expect(registry.stamps!.advance(candidate, 'v2', undefined, 0, () => true)).toMatchObject({ status: 'pending' });
+});

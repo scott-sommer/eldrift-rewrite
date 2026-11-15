@@ -7,5 +7,5 @@ export function planningPolicyIdentity(policy: PlanningRequestPolicy, entries: r
   const operators = entries.map(entry => [entry.type, entry.x, entry.y, entry.rcl, entry.priority,
     entry.source, entry.tag ?? null, entry.objectId ?? null, [...(entry.dependencies ?? [])].sort()]);
   operators.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
-  return 'planning-request-v2:' + JSON.stringify([settings, operators]);
+  return 'planning-request-v3:' + JSON.stringify([settings, operators]);
 }

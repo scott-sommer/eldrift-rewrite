@@ -5,10 +5,11 @@ import { operatorSchema } from '../../src/features/operator/state';
 import type { Envelope } from '../../src/persistence/versioned-state';
 import type { PlanningJobRecord } from '../../src/features/planning/planning-job-schema';
 import type { PlanState } from '../../src/features/planning/plan-model';
-export function loop() {
+export function loop() { runRoomPlanning('stamps'); }
+export function runRoomPlanning(strategy: 'auto' | 'stamps') {
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
-  settings.empire = { layoutStrategy: 'stamps', planningAnchorLimit: 1, planningEnabled: true, planningCpuBudget: 100, planningCandidateAttempts: 1000,
+  settings.empire = { layoutStrategy: strategy, planningAnchorLimit: 1, planningEnabled: true, planningCpuBudget: 100, planningCandidateAttempts: 1000,
     planningEvaluationSteps: 20, planningSearches: 4 };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();

@@ -21,7 +21,7 @@ function setup() {
     config: resolveConfig({ empire: { planningEnabled: true, planningSearches: 0 } }, 1).values,
     valuableTypes: ['storage'], implementationRevision: 'v1', constraints: [],
     protectedTypes: ['storage'], barrierCosts: { rampart: 1, constructedWall: 1 },
-    versions: { standard: 'v1', constrained: 'v1' }, searchRevision: 'v1', scoreRevision: 'v1', maximumPathOps: 10000,
+    versions: { standard: 'v1', constrained: 'v1', stamps: 'v1' }, searchRevision: 'v1', scoreRevision: 'v1', maximumPathOps: 10000,
     weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
     minimumImprovement: 0, prepareScore: vi.fn(() => () => { throw new Error('Unused scoring'); }),
   };
@@ -43,7 +43,7 @@ test('native work connects current identity, both strategies, persisted completi
   const ready = prepare(() => true);
   if (ready.status !== 'ready') throw new Error(ready.status);
   const { work } = ready, plan = proposal(work);
-  expect(Object.keys(work.enumeration)).toEqual(['standard', 'constrained']);
+  expect(Object.keys(work.enumeration)).toEqual(['standard', 'constrained', 'stamps']);
   expect(policy.prepareScore).not.toHaveBeenCalled();
   expect(work.input.validate(plan)).toBe(true);
   expect(work.input.step({ id: 'unknown', strategy: 'unknown', anchor: { x: 25, y: 25 }, transform: 0 }, undefined))

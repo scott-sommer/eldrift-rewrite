@@ -14,9 +14,11 @@ function setup() {
     { type: 'road', x: 20, y: 20, rcl: 2, priority: 0, source: 'operator' }] };
   return { observation, plan };
 }
-test('auto prepares both strategies using owned infrastructure and locks valuable and operator entries', () => {
+test('auto prepares all three strategies using owned infrastructure and locks valuable and operator entries', () => {
   const { observation, plan } = setup(), result = preparePlanningRequest(observation, plan, policy);
   if (!result.ok) throw new Error(result.reason);
+  expect(Object.keys(result.options)).toEqual(['standard', 'constrained', 'stamps']);
+  expect(result.options.stamps).toEqual(result.options.constrained);
   expect(result.options.standard?.structures).toEqual([{ type: 'storage', position: { x: 25, y: 25 } }]);
   expect(result.options.constrained).toEqual({ controller: { x: 40, y: 40 }, preferred: [{ x: 25, y: 25 }], limit: 36 });
   expect(validatePlanningConstraints([], result.observation.constraints)).toEqual([

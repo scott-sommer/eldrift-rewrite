@@ -34,7 +34,7 @@ export function preparePlanningRequest(observed: AssessmentInput, plan: PlanStat
     controller: controller.position, limit: policy.constrainedAnchorLimit,
     preferred: [...(previous ? [previous.anchor] : []), ...(storage ? [storage] : [])],
   };
-  if (policy.strategy === 'stamps') options.stamps = {
+  if (policy.strategy === 'auto' || policy.strategy === 'stamps') options.stamps = {
     controller: controller.position, limit: policy.constrainedAnchorLimit,
     preferred: [...(previous ? [previous.anchor] : []), ...(storage ? [storage] : [])],
   };
