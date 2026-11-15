@@ -1,5 +1,6 @@
+const irregularStampRoom = process.argv.includes('--irregular-stamp-room');
 const autoStampRoom = process.argv.includes('--auto-stamp-room');
-const stampRoom = autoStampRoom || process.argv.includes('--stamp-room');
+const stampRoom = irregularStampRoom || autoStampRoom || process.argv.includes('--stamp-room');
 const { verifyStampRoom } = require('./stamp-room.cjs');
 const stampDraft = process.argv.includes('--stamp-draft');
 const { verifyStampDraft, reloadStampDraft } = require('./stamp-draft.cjs');
@@ -325,7 +326,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--hauling-cycle')) modules.main = await actionBundle(root, 'hauling-cycle-bot');
   evidence.provenance = provenance(root, modules.main);
   const bot = await server.world.addBot({ username: 'eldrift-smoke', room: 'W0N1', x: 15, y: 15, modules });
-  if (planningRoom || stampRoom) await planningRoomWorld(server, bot);
+  if (planningRoom || stampRoom) await planningRoomWorld(server, bot, irregularStampRoom);
   if (process.argv.includes('--actions') || process.argv.includes('--tasks')) await actionWorld(server, bot);
   if (process.argv.includes('--retirement')) await actionWorld(server, bot);
   if (structureActions) await structureActionsWorld(server, bot);

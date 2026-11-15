@@ -1,8 +1,10 @@
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
-async function planningRoomWorld(server, bot) {
+async function planningRoomWorld(server, bot, irregular = false) {
   const { db } = await server.world.load();
-  await server.world.setTerrain('W0N1', new TerrainMatrix());
+  const terrain = new TerrainMatrix();
+  if (irregular) for (const [x, y] of [[25, 21], [25, 29], [21, 25], [29, 25]]) terrain.set(x, y, 'wall');
+  await server.world.setTerrain('W0N1', terrain);
   await db['rooms.objects'].removeWhere({ room: 'W0N1', type: { $nin: ['controller', 'spawn'] } });
   await db['rooms.objects'].update({ room: 'W0N1', type: 'controller' }, { $set: { x: 40, y: 40, level: 8, downgradeTime: 20000 } });
   await db['rooms.objects'].update({ room: 'W0N1', type: 'spawn' }, { $set: { x: 22, y: 24 } });

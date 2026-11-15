@@ -351,3 +351,23 @@ Quality passed: 445 production/393 test files, zero violations.
 The full unit suite and native scenario results are recorded with the commit.
 Irregular-room qualification and the extension example remain open under ED-25.
 The expanded full native suite has not yet been rerun.
+
+## Irregular terrain qualification
+
+The outcrop fixture has rock tiles at (25,21), (25,29), (21,25), (29,25)
+around preserved storage (25,25). The geometry regression checks all eight
+standard-core orientations and proves each collides with terrain at this required
+hub. The full stamp catalog instead composes all 60 extensions and ten labs
+around those obstructions, with serialized incremental search checkpoints.
+
+Native --irregular-stamp-room uses those same rock coordinates in the actual
+room terrain and the ordinary explicit stamp main-loop scenario. No assessment,
+candidate or plan is injected. engine-ylVNBG passed 400 ticks, commitment at31,
+one evaluated candidate and no rejections. Reloads21/101 cover pending/committed
+state. Shared hard validation, native routes, scoring and fresh commitment all
+execute. Existing spawn22,24/storage25,25 are preserved; the verifier checks
+complete service counts, ramparts, no construction sites and stable revision.
+Costs: hauling67, service315, capacity shortfall0, swamps0, defense102,
+migration1246702. This is a local-outcrop room at a locked anchor, not proof that
+standard cores cannot fit anywhere in an unconstrained room or that arbitrary
+terrain is solvable. The scenario is registered in the expanded native suite.
