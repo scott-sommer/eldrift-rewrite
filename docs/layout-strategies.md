@@ -711,3 +711,29 @@ Full fast suite: 813 tests / 239 files in 7.59s. Automatic room request scheduli
 enumeration-history retirement after scoring, bounded cold work and full live-room
 qualification remain open. Completed history is retained to reproduce the exact
 source identity needed by scoring receipts and lost-acknowledgement recovery.
+
+### Strategy and preservation request preparation (ED-24)
+Legacy room.layout.js refreshes missing/incomplete plans or accepts force, gates planRoom
+to visible owned controller rooms, and keeps manual build queue entries when syncing.
+The rewrite now has preparePlanningRequest as a pure feature policy boundary, preparing
+detached observation constraints and enumeration options from an existing plan.
+Auto enables both current strategies; explicit standard/constrained enables only that
+strategy. Stamps returns unsupported-strategy explicitly until ED-25 implements it.
+Missing controller observations return missing-controller.
+
+Owned infrastructure supplies candidate seeds. Previous anchors seed constrained search;
+previous standard orientation also seeds standard search. Observation lists sort by ID,
+so irrelevant collection ordering cannot change candidate order. Preserve-existing
+adds exact type/tile locks for configurable valuable owned structures. Existing observed
+constraints and operator plan entries remain locked even when automatic preservation is
+disabled. Reserved constraint ID collisions fail explicitly instead of losing a lock.
+Prepared options, observations and prior anchors are detached from caller-owned data.
+
+Quality passed: 408 production / 360 test files, zero Lizard violations after extracting
+policy validation (the first version exceeded CCN 10). Full fast suite passed 819 tests /
+240 files in 7.27s. Tests cover explicit strategy selection, ownership, missing controllers,
+constraint collisions, preservation opt-out, deterministic ordering, detached state and
+previous anchors/orientations. This is pure policy evidence; no new native scenario was
+run. Runtime triggering and wiring remain open. Operator entries are constrained here;
+preserving their source/priority/dependency metadata through draft merging before scoring
+still requires integration. No automatic demolition or live deployment is enabled.

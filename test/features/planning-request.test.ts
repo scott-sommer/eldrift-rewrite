@@ -1,0 +1,80 @@
+import { expect, test } from 'vitest';
+import { preparePlanningRequest } from '../../src/features/planning/planning-request';
+import { validatePlanningConstraints } from '../../src/capabilities/planning/preservation';
+import { planningObservation } from '../fixtures/planning-observation';
+import type { PlanState } from '../../src/features/planning/plan-model';
+const policy = { strategy: 'auto' as const, preserveExisting: true, valuableTypes: ['spawn', 'storage'], constrainedAnchorLimit: 36 };
+function setup() {
+  const observation = planningObservation();
+  observation.infrastructure = [
+    { id: 'storage', type: 'storage', position: { x: 25, y: 25 }, owned: true, walkable: false },
+    { id: 'enemy', type: 'spawn', position: { x: 10, y: 20 }, owned: false, walkable: false },
+  ];
+  const plan: PlanState = { room: 'W0N1', revision: 0, strategy: null, entries: [
+    { type: 'road', x: 20, y: 20, rcl: 2, priority: 0, source: 'operator' }] };
+  return { observation, plan };
+}
+test('auto prepares both strategies using owned infrastructure and locks valuable and operator entries', () => {
+  const { observation, plan } = setup(), result = preparePlanningRequest(observation, plan, policy);
+  if (!result.ok) throw new Error(result.reason);
+  expect(result.options.standard?.structures).toEqual([{ type: 'storage', position: { x: 25, y: 25 } }]);
+  expect(result.options.constrained).toEqual({ controller: { x: 40, y: 40 }, preferred: [{ x: 25, y: 25 }], limit: 36 });
+  expect(validatePlanningConstraints([], result.observation.constraints)).toEqual([
+    { id: 'operator:road:20:20', reason: 'missing-lock' }, { id: 'preserve:storage', reason: 'missing-lock' }]);
+  result.options.standard!.storage!.x = 0;
+  expect(result.observation.infrastructure.find(item => item.id === 'storage')?.position.x).toBe(25);
+  result.observation.infrastructure[0]!.position.x = 1;
+  expect(observation.infrastructure.find(item => item.id === 'enemy')?.position.x).toBe(10);
+  expect(observation.constraints).toEqual([]);
+});
+test('explicit strategies restrict enumeration and stamps remains explicitly unsupported', () => {
+  const { observation, plan } = setup();
+  for (const strategy of ['standard', 'constrained'] as const) {
+    const result = preparePlanningRequest(observation, plan, { ...policy, strategy });
+    if (!result.ok) throw new Error(result.reason);
+    expect(Object.keys(result.options)).toEqual([strategy]);
+  }
+  expect(preparePlanningRequest(observation, plan, { ...policy, strategy: 'stamps' }))
+    .toEqual({ ok: false, reason: 'unsupported-strategy' });
+});
+test('disabling automatic preservation retains explicit observed and operator constraints', () => {
+  const { observation, plan } = setup();
+  observation.constraints = [{ id: 'manual', kind: 'keep-clear', position: { x: 21, y: 21 } }];
+  const result = preparePlanningRequest(observation, plan, { ...policy, preserveExisting: false });
+  if (!result.ok) throw new Error(result.reason);
+  expect(result.observation.constraints.map(item => item.id)).toEqual(['manual', 'operator:road:20:20']);
+});
+test('observation ordering does not change the prepared candidate order or identity', () => {
+  const { observation, plan } = setup();
+  const first = preparePlanningRequest(observation, plan, policy);
+  const reordered = { ...observation, objects: [...observation.objects].reverse(), infrastructure: [...observation.infrastructure].reverse() };
+  expect(preparePlanningRequest(reordered, plan, policy)).toEqual(first);
+});
+test('missing controllers and conflicting reserved constraint IDs never create a request', () => {
+  const { observation, plan } = setup();
+  expect(preparePlanningRequest({ ...observation, objects: [] }, plan, policy)).toEqual({ ok: false, reason: 'missing-controller' });
+  observation.constraints = [{ id: 'preserve:storage', kind: 'blocked', position: { x: 1, y: 1 } }];
+  expect(() => preparePlanningRequest(observation, plan, policy)).toThrow('constraint IDs');
+  expect(() => preparePlanningRequest(observation, plan, { ...policy, constrainedAnchorLimit: 0 })).toThrow('anchor limit');
+});
+
+test('previous plan anchors seed both strategies while orientation seeds only its standard strategy', () => {
+  const { observation, plan } = setup();
+  plan.strategy = 'standard';
+  plan.provenance = { candidateId: 'old', strategyVersion: 'v1', observation: 'obs', policy: 'policy',
+    generatedAt: 1, committedAt: 2, anchor: { x: 24, y: 24 }, transform: 3,
+    bootstrap: { spawn: 'spawn:24:25', storage: 'storage:24:24' },
+    costs: { hauling: 0, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 } };
+  const result = preparePlanningRequest(observation, plan, policy);
+  if (!result.ok) throw new Error(result.reason);
+  expect(result.options.standard?.previous).toEqual({ anchor: { x: 24, y: 24 }, transform: 3 });
+  expect(result.options.constrained?.preferred).toEqual([{ x: 24, y: 24 }, { x: 25, y: 25 }]);
+  result.options.standard!.previous!.anchor.x = 0;
+  expect(plan.provenance.anchor.x).toBe(24);
+  plan.strategy = 'constrained';
+  const changed = preparePlanningRequest(observation, plan, policy);
+  if (!changed.ok) throw new Error(changed.reason);
+  expect(changed.options.standard).not.toHaveProperty('previous');
+  plan.provenance.transform = 8;
+  expect(() => preparePlanningRequest(observation, plan, policy)).toThrow('previous transform');
+});
