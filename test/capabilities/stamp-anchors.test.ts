@@ -35,3 +35,16 @@ test('hostile infrastructure is not promoted and output is bounded and detached'
   expect(center.x).toBe(25);
   expect(() => stampAnchors(stamp, center, observation, 0)).toThrow('policy');
 });
+
+test('ordinary anchors exactly match distance then row-major ordering at interior and boundary hubs', () => {
+  const observation = planningObservation();
+  const tiles = Array.from({ length: 2500 }, (_, index) => ({ x: index % 50, y: Math.floor(index / 50) }))
+    .filter(tile => tile.x >= 2 && tile.x <= 47 && tile.y >= 2 && tile.y <= 47);
+  for (const center of [{ x: 0, y: 0 }, { x: 49, y: 49 }, { x: 2, y: 25 }, { x: 25, y: 25 }, { x: 47, y: 2 }]) {
+    const distance = (tile: { x: number; y: number }) => Math.max(Math.abs(tile.x - center.x), Math.abs(tile.y - center.y));
+    const expected = [...tiles].sort((a, b) => distance(a) - distance(b) || a.y - b.y || a.x - b.x);
+    for (const limit of [1, 9, 200, 2500]) {
+      expect(stampAnchors(stamp, center, observation, limit)).toEqual(expected.slice(0, limit));
+    }
+  }
+});
