@@ -1,8 +1,6 @@
-import { insideRoom } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 import type { TransformIndex } from '../../core/geometry/transforms';
-import { constrainedTemplate } from './constrained-template';
-import { placeTemplate } from './template';
+import { constrainedFootprint } from './constrained-footprint';
 import { stageReactionLabs } from './lab-staging';
 import { stagePositions } from './staging';
 import type { CorePlacement, StructureLimits } from './core-model';
@@ -17,11 +15,8 @@ const settings = [
 export function stageConstrainedCore(
   anchor: Tile, transform: TransformIndex, limits: StructureLimits,
 ): CorePlacement[] | undefined {
-  if (!insideRoom(anchor, 3)) return undefined;
-  const placed = placeTemplate(constrainedTemplate, anchor, transform, 1);
-  if (!placed || placed.some(entry => ['terminal', 'link'].includes(entry.type) && !insideRoom(entry.position, 2))) {
-    return undefined;
-  }
+  const placed = constrainedFootprint(anchor, transform);
+  if (!placed) return undefined;
   return settings.flatMap(setting => {
     const capacity = limits[setting.type];
     if (!capacity) throw new Error('Missing structure limits: ' + setting.type);
