@@ -1,4 +1,6 @@
-export interface RuntimeConfig {
+import { planningDefaults } from './planning';
+import type { PlanningConfig } from './planning';
+export interface RuntimeConfig extends PlanningConfig {
   recoverySupportEnabled: boolean;
   recoverySupportReserve: number;
   recoverySupportBodyBudget: number;
@@ -99,6 +101,7 @@ export interface RuntimeConfig {
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
+  ...planningDefaults,
   recoverySupportEnabled: true,
   recoverySupportReserve: 0,
   recoverySupportBodyBudget: 2600,

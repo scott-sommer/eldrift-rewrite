@@ -857,3 +857,24 @@ and not yet registered in the native main composition. Native request preparatio
 trigger policy/configuration and final feature registration remain required.
 Cooperative checks cannot preempt synchronous work; cold preparation and persistence
 overhead still require native budget qualification.
+
+### Layered planning settings (ED-24)
+Planning settings now live in a cohesive config/planning module composed into the shared
+runtime schema. Defaults: planningEnabled=false, planningCpuBudget=5,
+planningCandidateAttempts=100, planningEvaluationSteps=1, planningSearches=1,
+planningPreserveExisting=true, planningAnchorLimit=36 and planningRefreshRevision=0.
+Normal environment/empire/profile/room/temporary precedence, provenance and expiry apply.
+Finite CPU allowance is restricted to 0..1000; integer attempt/step/search counts to
+0..10000; anchor limit to 1..2500; refresh revision to nonnegative safe integers.
+
+createConfiguredPlanningFeature binds scheduler feature enablement and CPU/attempt/step
+budgets to resolved room configuration. Search, preservation, anchor and explicit refresh
+settings are defined for the forthcoming native request preparer; they are not yet
+consumed there. No main-loop registration or automatic planning activation occurs here.
+
+Quality passed: 414 production / 364 test files, zero Lizard violations. Targeted config,
+runtime, planning-feature and smoke tests passed 29 tests / 6 files in 0.382s.
+Full unit suite passed 839 tests / 244 files in 7.99s. Tests verify bounds, provenance,
+temporary expiry and per-room enablement, including a temporary zero-CPU override that
+suppresses preparation until expiry. Native planning configuration remains unqualified
+until native composition and request preparation are connected.
