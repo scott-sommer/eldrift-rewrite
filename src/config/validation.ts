@@ -43,6 +43,7 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   upgradeServiceBatch: value => bounded(value, 1000000) && Number.isInteger(value) && Number(value) >= 1,
   upgradeMasterEnabled: value => typeof value === 'boolean',
   upgradeMasterSpawningEnabled: value => typeof value === 'boolean',
+  upgradeMasterStorageThreshold: value => bounded(value, 1000000) && Number.isInteger(value),
   upgradeMasterRenewBelow: value => bounded(value, 1400) && Number.isInteger(value),
   upgradeSupplyEnabled: value => typeof value === 'boolean',
   upgradeSupplySpawningEnabled: value => typeof value === 'boolean',

@@ -14,8 +14,8 @@ function observe(room: Room) {
   const structures = room.find(FIND_MY_STRUCTURES).filter(item => item.isActive()).sort((a, b) => a.id.localeCompare(b.id));
   const lab = structures.find((item): item is StructureLab => item.structureType === STRUCTURE_LAB);
   const spawn = structures.find((item): item is StructureSpawn => item.structureType === STRUCTURE_SPAWN);
-  const storage = activeStock(room.storage);
-  const terminal = activeStock(room.terminal);
+  const storage = retainedStock(room.storage);
+  const terminal = retainedStock(room.terminal);
   return { level: room.controller?.level ?? 0,
     ...(storage ? { storage } : {}),
     ...(terminal ? { terminal } : {}),
@@ -24,10 +24,10 @@ function observe(room: Room) {
       mineralCapacity: 3000, energy: lab.store.energy, energyCapacity: lab.store.getCapacity('energy') ?? 0 } } : {}),
     ...(spawn ? { spawn: { id: spawn.id, energy: spawn.store.energy, capacity: spawn.store.getCapacity('energy') } } : {}) };
 }
-function activeStock(item: StructureStorage | StructureTerminal | undefined) {
-  return item?.my && item.isActive() ? stock(item) : undefined;
+function retainedStock(item: StructureStorage | StructureTerminal | undefined) {
+  return item?.my ? stock(item) : undefined;
 }
 function stock(item: StructureStorage | StructureTerminal) {
-  return { id: item.id, free: item.store.getFreeCapacity(),
+  return { id: item.id, free: item.isActive() ? item.store.getFreeCapacity() ?? 0 : 0,
     stock: Object.fromEntries(Object.keys(item.store).map(resource => [resource, item.store.getUsedCapacity(resource as ResourceConstant)])) };
 }

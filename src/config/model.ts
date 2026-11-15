@@ -38,6 +38,7 @@ export interface RuntimeConfig {
   upgradeMasterEnabled: boolean;
   upgradeMasterSpawningEnabled: boolean;
   upgradeMasterRenewBelow: number;
+  upgradeMasterStorageThreshold: number;
   upgradeSupplyEnabled: boolean;
   upgradeSupplySpawningEnabled: boolean;
   upgradeSupplyTarget: number;
@@ -134,6 +135,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   upgradeMasterEnabled: false,
   upgradeMasterSpawningEnabled: false,
   upgradeMasterRenewBelow: 500,
+  upgradeMasterStorageThreshold: 260000,
   upgradeSupplyEnabled: false,
   upgradeSupplySpawningEnabled: false,
   upgradeSupplyTarget: 8,

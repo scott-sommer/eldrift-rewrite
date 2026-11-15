@@ -391,3 +391,18 @@ Final evidence: artifacts/engine-83HLSR/evidence.json. The scenario rejects caug
 Quality passed (300 production /267 test files; zero Lizard violations);574 tests/174files passed in4.72s. Final long-route scenario passed. It is registered for the next full native suite; the preceding128-case aggregate was not rerun for this fixture-only addition. This900-tick case is not the release CPU/memory/soak gate.
 
 Next specialist parity work: low-RCL master recruitment and combined reset/reclaim/bootstrap/rebuild. Persisted plan anchors and refuge route-availability tests also remain open.
+
+
+## Low-RCL retained master recruitment and service (ED-22, 2026-11-15)
+
+Source review found an omitted legacy path: spawner.js1743–1745 recruits a master when retained storage energy is strictly greater than260,000, or at RCL6+ with storage and terminal. role.upgradeMaster.js positions using retained structure coordinates regardless of activity and can withdraw storage energy to fill the spawn below RCL6. The rewrite's active-storage/terminal/lab layout gate excluded this post-reset path.
+
+Extracted pure master demand policy and added upgradeMasterStorageThreshold (integer0–1,000,000, default260,000). Low-RCL equality does not recruit; strictly greater does. Mature terminal-backed rooms remain eligible at RCL6–8, restoring the legacy RCL8 master path previously suppressed by the rewrite's blanket level8 exclusion. Existing enable/spawning/service switches and empire hysteresis still apply.
+
+Master station geometry now uses owned retained storage, terminal and lab coordinates, while requiring an active owned spawn and a valid standable station. Inactive stores expose retained stock as a collection source with zero advertised receiving capacity. Inactive labs remain excluded from service generation. Shared native hauling reservations, journals and confirmations handle retained-source transfers. Missing endpoints still block layout readiness, correcting the legacy ability to recruit an unusable master that could never establish its station.
+
+Actual --master-bootstrap runs production main for140ticks, sponsoring a new full19-part master in W0N1 for950 energy and travelling to an owned RCL2 retained layout in E0N1. Storage and terminal remain inactive throughout. Master reaches lab+1,+1 at2,21 and confirms200 energy delivered from retained storage to the active spawn. Final retained storage299,800, master cargo0 and cumulative service receipts200. Evidence artifacts/engine-ik5M6g/evidence.json.
+
+Validation: quality passed (301 production /269 test files; zero Lizard violations);576 tests/175files passed in4.53s. New strict-threshold/mature policy tests pass. Targeted native regressions --upgrade-master, --upgrade-master-contention, --upgrade-service, --upgrade-loss and --upgrade-cycle all pass. The new case is registered for the next full suite; the preceding128-case aggregate was not rerun in this increment.
+
+Next: combined reset/reclaim/bootstrap/rebuild with these specialist paths interacting. Persisted plan anchors, refuge route-availability and remaining colony parity remain open; ED-22 is incomplete.
