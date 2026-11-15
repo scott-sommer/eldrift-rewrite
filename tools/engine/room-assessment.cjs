@@ -5,6 +5,14 @@ async function changeAssessmentSites(server, tick) {
   await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'constructionSite' });
 }
 function verifyRoomAssessment(memory) {
+  const admitted = memory.planningAdmissionRows;
+  assert.equal(admitted.length, 8);
+  assert.deepEqual(admitted.map(row => row.revision), [1, 1, 1, 2, 2, 3, 3, 4]);
+  assert.deepEqual(admitted.map(row => row.reused), [false, true, true, false, true, false, true, false]);
+  assert.equal(admitted[0].reused, false);
+  assert.ok(admitted.some(row => row.reused));
+  assert.ok(admitted.every(row => row.baseRevision === 0));
+  assert.equal(memory.eldrift.records['planning-requests/E9S9'], undefined);
   const rows = memory.assessmentRows;
   assert.equal(rows.length, 8);
   assert.ok(rows.every(row => row.roadWalkable && !row.roadAvailable && row.hiddenAbsent && row.inputRoundTrip));

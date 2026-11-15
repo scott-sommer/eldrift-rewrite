@@ -963,3 +963,24 @@ lifecycle, request-store and smoke tests passed 17 tests / 4 files in 0.323s, in
 new-road observation stability, explicit refresh and missing/stale/failed receipt cases.
 Full unit/native suites were not repeated for this isolated admission policy change.
 Main-loop registration and native end-to-end admission remain open.
+
+### Native observation and store admission (ED-24)
+createNativePlanningAdmission connects real room observations, configured request policy,
+controller structure types and the owned plan/job/candidate/request stores. Disabled,
+hidden, foreign and controllerless rooms return unavailable before touching persistence.
+Owned visible rooms include observed construction constraints and explicit caller constraints,
+then pass the current validated plan and owned completion receipt to admission.
+
+The existing native room-assessment scenario now exercises this adapter with real terrain,
+controller, source, spawn and construction-site observations. engine-GMirWx passed eight
+ticks with empty errors/messages. Exact request revisions were 1,1,1,2,2,3,3,4 and reuse
+flags false,true,true,false,true,false,true,false as sites/manual constraints changed.
+Every base revision remained zero; hidden-room request state was absent; preservation
+included the observed owned spawn. Existing assessment round-trip/occupancy assertions
+still passed.
+
+Quality passed: 418 production / 369 test files, zero Lizard violations. Targeted native
+admission, policy admission and smoke: 11 tests / 3 files in 0.331s. Unit checks confirm
+all ineligible-room cases avoid both reads and writes. Full suites were not repeated.
+This is native admission, not native planning execution: evaluator/scoring/defense
+composition and main-loop registration remain open. No live deployment occurred.
