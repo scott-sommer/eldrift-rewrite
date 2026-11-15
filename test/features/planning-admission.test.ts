@@ -61,3 +61,36 @@ test('unavailable planning and capture conflicts never expose ready work', () =>
   store.capture = () => ({ ok: false, reason: 'revision' });
   expect(admitPlanningRequest(store, observation, plan, config, [], 'v1')).toEqual({ status: 'conflict' });
 });
+
+test('completed matching policy stays idle during construction but explicit refresh admits new work', () => {
+  const { store, plan, config } = setup(), observation = planningObservation();
+  const admitted = admitPlanningRequest(store, observation, plan, config, [], 'v1');
+  if (admitted.status !== 'ready') throw new Error('Missing request');
+  const current: PlanState = { room: 'W0N1', revision: 1, strategy: 'standard', entries: [
+    { type: 'spawn', x: 24, y: 25, rcl: 1, priority: -430, source: 'strategy' },
+    { type: 'storage', x: 25, y: 25, rcl: 4, priority: -500, source: 'strategy' }],
+    provenance: { candidateId: 'standard:25:25:0', strategyVersion: 'v1', observation: admitted.observationIdentity,
+      policy: admitted.policyIdentity, generatedAt: 1, committedAt: 2, anchor: { x: 25, y: 25 }, transform: 0,
+      bootstrap: { spawn: 'spawn:24:25', storage: 'storage:25:25' },
+      costs: { hauling: 0, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 } } };
+  const completion = { signature: 'completed-job', planRevision: 1, completedAt: 2, outcome: 'committed' as const };
+  observation.infrastructure = [{ id: 'new-road', type: 'road', position: { x: 26, y: 25 }, owned: true, walkable: true }];
+  const before = store.read();
+  expect(admitPlanningRequest(store, observation, current, config, [], 'v1', completion))
+    .toEqual({ status: 'idle', planRevision: 1 });
+  expect(store.read()).toEqual(before);
+  for (const unsettled of [undefined, { ...completion, planRevision: 0 },
+    { ...completion, outcome: 'no-valid-candidate' as const }]) {
+    expect(admitPlanningRequest(store, observation, current, config, [], 'v1', unsettled))
+      .toMatchObject({ status: 'ready' });
+  }
+  expect(admitPlanningRequest(store, observation, current, { ...config, planningRefreshRevision: 1 }, [], 'v1', completion))
+    .toMatchObject({ status: 'ready', baseRevision: 1, reused: false });
+});
+test('failed completion receipts do not suppress observation-driven retries', () => {
+  const { store, plan, config } = setup(), observation = planningObservation();
+  const completion = { signature: 'failed-job', planRevision: 0, completedAt: 2, outcome: 'no-valid-candidate' as const };
+  expect(admitPlanningRequest(store, observation, plan, config, [], 'v1', completion)).toMatchObject({ status: 'ready' });
+  const changed = { ...observation, margin: 3 };
+  expect(admitPlanningRequest(store, changed, plan, config, [], 'v1', completion)).toMatchObject({ status: 'ready', reused: false });
+});

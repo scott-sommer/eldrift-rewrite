@@ -943,3 +943,23 @@ using admitted identities throughout the evaluator/commit path, main registratio
 qualification remain open. Observation changes currently create a new identity; completed
 plan refresh admission still needs a policy that avoids unnecessary replanning during
 ordinary construction.
+
+### Completed-plan refresh admission (ED-24)
+Admission accepts an optional completion receipt. A committed receipt for the current
+plan revision plus matching current plan provenance policy returns idle before capturing
+a new request. Ordinary construction/observation changes therefore do not continually
+reselect an already committed layout. Explicit refresh, manual/request policy or
+implementation revision changes still permit admission. Failed receipts do not suppress
+observation-driven retries; missing or stale-revision receipts do not suppress unfinished
+work/recovery.
+
+This follows the legacy stable-plan intent: a completed plan remains selected until
+policy/refresh changes. It is not automatic damaged-plan diagnosis or a construction
+repair controller. Downstream construction validation must still guard actual actions.
+Native composition must supply the owned job receipt and current validated plan together.
+
+Quality passed: 417 production / 367 test files, zero Lizard violations. Admission,
+lifecycle, request-store and smoke tests passed 17 tests / 4 files in 0.323s, including
+new-road observation stability, explicit refresh and missing/stale/failed receipt cases.
+Full unit/native suites were not repeated for this isolated admission policy change.
+Main-loop registration and native end-to-end admission remain open.
