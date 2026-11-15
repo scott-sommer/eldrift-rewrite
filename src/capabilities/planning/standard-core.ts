@@ -5,12 +5,7 @@ import { stageReactionLabs } from './lab-staging';
 import type { PlacedTile } from './template';
 import type { Tile } from '../../core/geometry/local-grid';
 import type { TransformIndex } from '../../core/geometry/transforms';
-export interface CorePlacement extends PlacedTile {
-  rcl: number;
-  priority: number;
-  tag: 'core' | 'storage';
-}
-export type StructureLimits = Readonly<Record<string, readonly number[]>>;
+import type { CorePlacement, StructureLimits } from './core-model';
 interface Recipe { type: string; minimum: number; priority: number; tag: 'core' | 'storage' }
 const recipes: readonly Recipe[] = [
   { type: 'storage', minimum: 4, priority: -500, tag: 'core' },
