@@ -4,15 +4,16 @@ import { parseArtRegion } from '../features/operator/art-region';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
 const diagnostics = new Map<string, string>();
 /** Flags are input only. Invalid regions protect all barriers until their corners are corrected. */
-export function nativeFortifierAssessment(room: Room, view: WorkAssessment): WorkAssessment {
+export function nativeArtAssessment(room: Room, view: WorkAssessment, mode: 'builder' | 'fortifier'): WorkAssessment {
+  const types = mode === 'builder' ? ['constructedWall'] : ['constructedWall', 'rampart'];
   const result = parseArtRegion(room.name, room.find(FIND_FLAGS).map(flag => ({ name: flag.name, position: movementPosition(flag.pos) })));
   if (result.status !== 'invalid') {
     diagnostics.delete(room.name);
-    return excludeBarrierRepairs(view, result.status === 'valid' ? result.region : undefined);
+    return excludeBarrierRepairs(view, result.status === 'valid' ? result.region : undefined, types);
   }
   if (diagnostics.get(room.name) !== result.reason) {
     console.log('Art region ' + room.name + ': ' + result.reason + '; barrier repairs suspended');
     diagnostics.set(room.name, result.reason);
   }
-  return excludeBarrierRepairs(view, 'all');
+  return excludeBarrierRepairs(view, 'all', types);
 }

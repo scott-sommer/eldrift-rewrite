@@ -21,4 +21,8 @@ test('inclusive region excludes both barrier types while retaining other work an
   expect(excludeBarrierRepairs(view, region).structures.map(item => item.excluded)).toEqual([true, true, false, false]);
   expect(excludeBarrierRepairs(view, 'all').structures.map(item => item.excluded)).toEqual([true, true, true, false]);
   expect(excludeBarrierRepairs(view, undefined)).toBe(view);
+  expect(excludeBarrierRepairs(view, region, ['constructedWall']).structures.map(item => item.excluded))
+    .toEqual([true, false, false, false]);
+  expect(excludeBarrierRepairs(view, 'all', ['constructedWall']).structures.map(item => item.excluded))
+    .toEqual([true, false, true, false]);
 });

@@ -3,11 +3,11 @@ import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 export function loop() {
-  const creep = Game.creeps.build!;
+  const creep = (Game.creeps.build ?? Game.creeps.builder)!;
   if (Game.time === 1) {
     creep.room.createFlag(18, 21, 'ArtBL');
     creep.room.createFlag(20, 21, 'ArtTR');
-    creep.memory.population = { owner: 'work:W0N1:fortifier', home: 'W0N1' };
+    creep.memory.population = { owner: 'work:W0N1:' + (creep.name === 'builder' ? 'builder' : 'fortifier'), home: 'W0N1' };
     return;
   }
   if (Game.time === 5) Game.flags.ArtTR!.setPosition(19, 21);
