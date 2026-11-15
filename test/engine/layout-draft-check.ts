@@ -1,3 +1,4 @@
+import { draftRouteCosts } from '../../src/capabilities/planning/draft-route-costs';
 import { constrainedDraft } from '../../src/capabilities/planning/constrained-draft';
 import { standardDraft } from '../../src/capabilities/planning/standard-draft';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
@@ -19,6 +20,15 @@ export function verifyAssembledDraft(): void {
     search: costs => planningRoadSearch('W0N1', costs, 10000),
   });
   if (!result.ok) throw new Error('Draft failed: ' + JSON.stringify(result));
+  const measured = draftRouteCosts({
+    entries: result.entries, storage, observation, limits: planningLimits,
+    hauling: observation.objects.map(object => ({ id: object.id, position: object.position, weight: 1 })),
+    serviceWeights: { spawn: 8, extension: 1 },
+    blocksMovement: type => OBSTACLE_OBJECT_TYPES.some(obstacle => obstacle === type),
+    search: costs => planningRoadSearch('W0N1', costs, 10000),
+  });
+  if (!measured.ok || measured.service.routes.length !== 63 || measured.hauling.routes.length !== 4
+    || measured.service.total <= 0 || measured.hauling.total <= 0) throw new Error('Missing measured layout journeys');
   if (result.entries.length <= 138 || result.connections.length !== 10) throw new Error('Missing logistics roads');
   for (let transform = 0; transform < 8; transform++) {
     const compact = constrainedDraft({
@@ -32,7 +42,7 @@ export function verifyAssembledDraft(): void {
     }
   }
   (Memory as Memory & { assembledDraft?: unknown }).assembledDraft = {
-    count: result.entries.length, connections: result.connections.length, validated: true,
+    routeCosts: measured, count: result.entries.length, connections: result.connections.length, validated: true,
   };
 }
 
