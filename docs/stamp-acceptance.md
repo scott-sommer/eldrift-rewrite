@@ -2,20 +2,20 @@
 
 Audit baseline: db270a0. Production stamp planning, automatic comparison and
 configuration are implemented. Default-budget completion and broad native
-regression pass. ED-25 remains In Progress for late cold-reset qualification.
+regression pass. ED-25 remains In Progress pending the final full native suite after the cold-replay fix.
 
 | Requirement | Evidence inspected | Assessment |
 | --- | --- | --- |
 | Irregular staged room or explained failure | stamp-irregular.test.ts; native irregular-stamp-room, full counts/shared validation/real routing | Four outcrops around locked storage qualify; not universal solvability |
 | Locks/manual entries and corridors | stamp-placement tests and native observed spawn/storage preservation | Evidenced |
 | Labs, egress, RCL capacity, common score | catalog transform/RCL tests, shared final validator, native complete-room cases | Evidenced |
-| Determinism and reset/resume | serialized incremental/backtracking tests, elevated native reloads, early default reloads6/101 | Late default-budget cold replay remains unverified |
+| Determinism and reset/resume | serialized incremental/backtracking tests, elevated native reloads, early default reloads6/101 | Late composition/routing/scoring resets now pass; final full-suite rerun pending |
 | Rejection preserves prior plan | native stamp-failure, complete plan-envelope equality after exhaustion and reload | Evidenced |
-| CPU bounded | finite domain/attempt/search limits, cooperative guard; default case commits at790 | Default completion evidenced; late reset liveness remains open; allowance is not a hard millisecond ceiling |
+| CPU bounded | finite domain/attempt/search limits, cooperative guard; default case commits at790 | Default and late-reset completion evidenced; allowance is not a hard millisecond ceiling |
 | Extension contract and example | layout-strategies.md and executable blueprint strategy example | Evidenced at evaluator boundary; example is not a full production colony strategy |
 | Free-form future work | ED-45 | Separately tracked post-release enhancement |
 
-Full unit960 tests/277 files passed7.54s. Full native167 checks passed587.88s
+Current full unit963 tests/278 files passed7.25s. Baseline native167 checks passed587.88s
 against clean db270a0 for every scenario. The default-budget case now also
 executes shared full inventory assertions. Evidence and per-case provenance:
 docs/evidence/stamp-default-engine-suite.json. Audit found only the expected
@@ -24,10 +24,11 @@ and single Art repair-suspension diagnostic in each Art scenario.
 
 CPU qualification must distinguish cooperative finite work from a hard ceiling:
 anchor preparation, validation and persistence include synchronous work. ED-43
-retains broader CPU/memory/soak qualification. Cold composition replay currently
-starts from the root; a late reset can require more work than one normal slice,
-so this liveness risk needs a deterministic regression and native phase-triggered
-reload test before closing ED-25.
+retains broader CPU/memory/soak qualification. Cold composition replay now retains
+only validated branch prefixes across slices. Native phase-triggered resets
+qualify deep composition, partial road construction and partial service scoring.
+Loss of heap state rebuilds these accelerators; their contents are never trusted
+from persistent memory.
 
 The first complete composition is routed and validated. If it fails, the outer
 hub candidate is rejected; alternate complete compositions at the same hub are
@@ -250,3 +251,35 @@ composition/routing/scoring remain unverified. In particular, cold branch replay
 currently reconstructs from the root and may need incremental reconstruction
 across ticks when a deep branch cannot fit one normal allowance. ED-25 remains open.
 Native bounded-failure retention engine-GEnmLe also passed with no runtime errors/messages; committed plans survived rejected replacement and reload.
+
+## Late cold-reset qualification
+
+Two new tests first failed on the unmodified production baseline: a completed deep
+branch could not restore across small CPU slices, and yielding at a completed
+attempt cap was misclassified as search exhaustion. Native engine-beQmHp reached
+its composition reset but never reached routing/scoring reset triggers by1600;
+runtime errors/messages were empty.
+
+Replay now caches only the validated prefix of the exact signature/choice branch.
+A later slice resumes that prefix; divergent or shorter branches and changed
+signatures miss it. Returned data and choice arrays remain detached. No persisted
+draft is trusted and no schema change is required. A full branch awaiting
+reconstruction stays pending at the attempt cap instead of being rejected.
+
+Full963 unit tests/278 files passed7.25s; quality455 production/409 test files
+passed. Native phase-triggered run engine-qovSfE committed at814 after resets
+during composition, routing and scoring. The captured qualification pair then
+committed at773 (engine-KV82Td, ordinary reloads6/101) and804 (engine-nzIyh2,
+additional phase resets256/561/684). Both evaluated36/rejected35 and retained full
+inventory with construction disabled. Their complete physical plans, metadata,
+object associations and scores match. Comparison normalizes only timestamps
+and run-generated IDs; observed object/constraint geometry remains compared.
+Negative controls changing geometry, service cost or object references failed.
+
+All six focused native cases also passed: stamp-draft, stamp-room, auto-stamp-room,
+irregular-stamp-room, stamp-failure and planning-room. No runtime errors/messages
+occurred in these eight final qualification runs. Embedded provenance, plans,
+reset events and traces are in evidence/stamp-late-reset.json.
+The full native suite now registers168 cases and compares default/late-reset plans.
+Its final clean run after this fix remains pending before ED-25 closes.
+

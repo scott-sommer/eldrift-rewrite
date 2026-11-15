@@ -31,7 +31,7 @@ export function composeStamps(
     if (ordinal >= anchorsAt(input, depth).length * 8) {
       if (!depth) { checkpoint.exhausted = true; break; }
       checkpoint.choices.pop(); checkpoint.cursors.pop();
-      draft = replay(input, checkpoint.choices, guard);
+      draft = replay(input, checkpoint, guard, cache);
       continue;
     }
     checkpoint.cursors[depth] = ordinal + 1; attempts++; checkpoint.totalAttempts++;
@@ -45,7 +45,7 @@ export function composeStamps(
 }
 function compositionResult(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint, draft: Draft | undefined, attempts: number) {
   const done = !!draft && checkpoint.choices.length === input.stamps.length;
-  const limited = checkpoint.totalAttempts >= totalLimit(input);
+  const limited = checkpoint.totalAttempts >= totalLimit(input) && checkpoint.choices.length < input.stamps.length;
   const rejected = checkpoint.exhausted || limited;
   return { checkpoint, attempts, status: done ? 'complete' as const
     : rejected ? 'rejected' as const : 'pending' as const,
@@ -62,14 +62,22 @@ function attempt(input: StampCompositionInput, draft: Draft, depth: number, ordi
   return { ok: true as const, draft: { entries: placed.entries, claimed: placed.claimed,
     corridors: [...draft.corridors, ...placed.ports] } };
 }
-function replay(input: StampCompositionInput, choices: readonly number[], guard: () => boolean): Draft | undefined {
-  let draft: Draft = { entries: input.entries, corridors: input.corridors, claimed: input.claimed ?? [] };
-  for (let depth = 0; depth < choices.length; depth++) {
-    if (!guard()) return undefined;
+function replay(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint,
+  guard: () => boolean, cache?: StampReplayCache): Draft | undefined {
+  const { choices, signature } = checkpoint;
+  const prefix = cache?.readPrefix?.(signature, choices);
+  const start = prefix?.depth ?? 0;
+  let draft: Draft = prefix?.draft ?? { entries: input.entries, corridors: input.corridors, claimed: input.claimed ?? [] };
+  for (let depth = start; depth < choices.length; depth++) {
+    if (!guard()) {
+      if (depth > start) cache?.write(signature, choices.slice(0, depth), draft);
+      return undefined;
+    }
     const placed = attempt(input, draft, depth, choices[depth]!);
     if (!placed.ok) throw new Error('Invalid stamp composition branch');
     draft = placed.draft;
   }
+  cache?.write(signature, choices, draft);
   return draft;
 }
 function restore(input: StampCompositionInput, saved: StampCompositionCheckpoint | undefined, budget: number, cache?: StampReplayCache) {
@@ -137,11 +145,9 @@ function validateExhausted(saved: StampCompositionCheckpoint, count: number): vo
 
 function cachedReplay(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint,
   guard: () => boolean, cache?: StampReplayCache): Draft | undefined {
-  if (!cache) return replay(input, checkpoint.choices, guard);
+  if (!cache) return replay(input, checkpoint, guard);
   if (!guard()) return undefined;
   const cached = cache.read(checkpoint.signature, checkpoint.choices);
   if (cached) return cached;
-  const draft = replay(input, checkpoint.choices, guard);
-  if (draft) cache.write(checkpoint.signature, checkpoint.choices, draft);
-  return draft;
+  return replay(input, checkpoint, guard, cache);
 }

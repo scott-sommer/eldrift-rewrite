@@ -37,3 +37,16 @@ test('cache is single-branch, detached and bound to exact revision signature and
   cache.write('v2', [1], draft);
   expect(cache.read('v1', [0])).toBeUndefined();
 });
+
+test('prefix restoration requires the same branch and returns detached validated work', () => {
+  const cache = createStampReplayCache(), choices = [0, 3];
+  cache.write('revision', choices, { entries: [], corridors: [{ x: 20, y: 20 }], claimed: [] });
+  choices[0] = 7;
+  expect(cache.readPrefix!('revision', [0, 3, 4])?.depth).toBe(2);
+  expect(cache.read('revision', [0, 3, 4])).toBeUndefined();
+  for (const branch of [[0], [0, 2], [7, 3, 4]]) expect(cache.readPrefix!('revision', branch)).toBeUndefined();
+  expect(cache.readPrefix!('changed', [0, 3, 4])).toBeUndefined();
+  const prefix = cache.readPrefix!('revision', [0, 3, 4])!;
+  prefix.draft.corridors[0]!.x = 0;
+  expect(cache.readPrefix!('revision', [0, 3, 4])?.draft.corridors[0]!.x).toBe(20);
+});

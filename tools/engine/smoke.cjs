@@ -1,5 +1,8 @@
-const stampBudget = process.argv.includes('--stamp-budget');
-const { verifyStampBudget } = require('./stamp-budget.cjs');
+const stampLateReset = process.argv.includes('--stamp-late-reset');
+const { createStampLateReload, verifyStampLateReload } = require('./stamp-late-reload.cjs');
+const reloadLateStamp = createStampLateReload();
+const stampBudget = stampLateReset || process.argv.includes('--stamp-budget');
+const { verifyStampBudget, captureStampBudget } = require('./stamp-budget.cjs');
 const stampFailure = process.argv.includes('--stamp-failure');
 const { verifyStampFailure } = require('./stamp-failure.cjs');
 const irregularStampRoom = process.argv.includes('--irregular-stamp-room');
@@ -476,6 +479,10 @@ server.on('error', error => { console.error(error); finish(1, error); });
       const reloaded = await reloadStampDraft(server, bot, modules, tick, autoStampRoom ? [20, 100, 200] : stampRoom ? [5, 100] : undefined);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
     }
+    if (stampLateReset) {
+      const reloaded = await reloadLateStamp(server, bot, modules, tick);
+      if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
+    }
     if (planningRoom) {
       const reloaded = await reloadPlanningRoom(server, bot, modules, tick);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
@@ -627,7 +634,9 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) verifyWorkerPickup(memory);
   if (process.argv.includes('--worker-collection')) verifyWorkerCollection(memory);
   if (process.argv.includes('--worker-runtime')) verifyWorkerRuntime(memory);
-  if (stampBudget) verifyStampBudget(memory);
+  if (stampBudget) evidence.stampPlanning = captureStampBudget(memory);
+  if (stampLateReset) verifyStampLateReload(memory);
+  if (stampBudget) verifyStampBudget(memory, stampLateReset);
   else if (stampFailure) verifyStampFailure(memory);
   else if (stampRoom) verifyStampRoom(memory, autoStampRoom);
   if (stampDraft) verifyStampDraft(memory);
