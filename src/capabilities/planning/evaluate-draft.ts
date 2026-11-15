@@ -15,8 +15,15 @@ export type EvaluateDraftInput = DraftRouteCostsInput &
   };
 /** Structural and barrier failures never acquire a score. All six dimensions share one draft. */
 export function evaluateDraft(input: EvaluateDraftInput) {
+  const prepared = prepareEvaluation(input);
+  if (!prepared.ok) return prepared;
+  const routes = draftRouteCosts(input);
+  if (!routes.ok) return { ok: false as const, phase: routes.phase, details: routes };
+  return completeEvaluation(input, prepared.defense, routes);
+}
+export function prepareEvaluation(input: EvaluateDraftInput) {
   const validation = validateDraft({
-    assessment: assessRoom(input.observation), entries: input.entries, limits: input.limits,
+    assessment: (input.assess ?? assessRoom)(input.observation), entries: input.entries, limits: input.limits,
     constraints: input.observation.constraints, blocksMovement: input.blocksMovement,
     placementFailures: entries => placementFailures(entries, input.observation),
   });
@@ -27,8 +34,12 @@ export function evaluateDraft(input: EvaluateDraftInput) {
     protectedAssets: input.entries.filter(entry => input.protectedTypes.includes(entry.type)),
   });
   if (!defense.ok) return { ok: false as const, phase: 'defense' as const, details: defense };
-  const routes = draftRouteCosts(input);
-  if (!routes.ok) return { ok: false as const, phase: routes.phase, details: routes };
+  return { ok: true as const, defense };
+}
+export function completeEvaluation(
+  input: EvaluateDraftInput, defense: Extract<ReturnType<typeof barrierCost>, { ok: true }>,
+  routes: Extract<ReturnType<typeof draftRouteCosts>, { ok: true }>,
+) {
   const footprint = footprintCosts(input);
   const costs: LayoutCosts = { hauling: routes.hauling.total, service: routes.service.total,
     capacityShortfall: footprint.capacityShortfall, swamps: footprint.swamps,

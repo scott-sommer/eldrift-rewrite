@@ -487,3 +487,31 @@ Quality passed: 395 production / 350 test files, zero Lizard violations. 773 uni
 on exact retry, full proposal mismatch rejection, stale context, later revision rejection
 and property-order independence. Automatic runtime scheduling, job retirement/invalidation,
 full candidate enumeration, bounded scoring and hard termination evidence remain open.
+
+### Incremental six-dimension score evaluation (ED-24)
+Hauling and service measurements now share one bounded route-search budget through
+draftRouteBatch. Partial results expose checkpoints, not completed score totals.
+Both phases bind the draft/observation/cost field and scoring weights; failed routes
+remain candidate failures. Search counts include work consumed before a later-phase
+failure. evaluateDraftBatch shares structural/barrier validation and final score assembly
+with synchronous evaluation, emitting six-dimensional costs only after all routes finish.
+Non-route scoring policy is included in the checkpoint revision. Both paths accept the
+caller-owned assessment cache.
+
+The native planning job now advances scoring one route search per evaluator invocation.
+Engine-V9HBf8 passed 230 ticks, including reloads before ticks 6, 40, 91, 160 and 200:
+both candidate generation and both in-progress scoring phases survived reloads.
+Constrained committed at tick 199 and recovered its unacknowledged commit at 200.
+All costs match the previous synchronous result exactly:
+hauling 64, service 337, capacityShortfall 0, swamps 0, defense 85, migration 303.
+Eight-orientation synchronous regression engine-WQPZuh also passed; both evidence files
+have empty errors/messages. Final job fixture Memory 159,849 bytes; CPU averaged
+26.97 ms (7–94 ms). Route count is bounded, but repeated structural/barrier validation
+and persistence remain material costs. This is not a whole-planner CPU guarantee.
+
+Quality: 397 production / 351 test files, zero Lizard violations. Full suite passed
+777 tests / 233 files in 7.32s before a final failure-accounting test; all five affected
+route-batch tests then passed in 343 ms. Coverage includes exact JSON-resumed breakdowns,
+weight/terrain invalidation, guard yielding, empty routes, late failure and cross-phase
+search accounting. Runtime scheduling, full enumeration, validation/preparation budgeting,
+job retirement and hard CPU termination remain open.

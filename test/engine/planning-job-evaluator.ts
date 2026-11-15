@@ -8,14 +8,16 @@ import { createAssessmentCache } from '../../src/capabilities/planning/assessmen
 import type { PlanningCandidate, CandidateStep } from '../../src/features/planning/planning-job-model';
 import { planningObservation } from '../fixtures/planning-observation';
 import { planningLimits } from '../fixtures/planning-limits';
-import { measuredProposal } from './layout-score-check';
+import { measurementInput, scoredProposal } from './layout-score-check';
+import { evaluateDraftBatch } from '../../src/capabilities/planning/evaluate-draft-batch';
+import type { DraftRouteCheckpoint } from '../../src/capabilities/planning/draft-route-batch';
 const assess = createAssessmentCache();
 type Progress = { phase: 'draft'; checkpoint: RoadCheckpoint | ConstrainedDraftCheckpoint }
-  | { phase: 'score'; entries: StagedTile[] };
+  | { phase: 'score'; entries: StagedTile[]; checkpoint?: DraftRouteCheckpoint };
 export function evaluateJobCandidate(candidate: PlanningCandidate, saved: unknown): CandidateStep {
   const progress = saved as Progress | undefined;
   const observation = planningObservation();
-  if (progress?.phase === 'score') return { status: 'complete', proposal: measuredProposal(candidate.strategy, progress.entries, observation) };
+  if (progress?.phase === 'score') return measureCandidate(candidate, progress);
   const input = { candidate, observation, limits: planningLimits, assess,
     blocksMovement: (type: string) => OBSTACLE_OBJECT_TYPES.some(item => item === type),
     search: (costs: readonly number[]) => planningRoadSearch('W0N1', costs, 10000) };
@@ -26,4 +28,12 @@ export function evaluateJobCandidate(candidate: PlanningCandidate, saved: unknow
   return { status: 'pending', checkpoint: result.done
     ? { phase: 'score', entries: result.entries }
     : { phase: 'draft', checkpoint: result.checkpoint } };
+}
+
+function measureCandidate(candidate: PlanningCandidate, progress: Extract<Progress, { phase: 'score' }>): CandidateStep {
+  const input = measurementInput(progress.entries, planningObservation());
+  const result = evaluateDraftBatch(input, 'native-score-v1', progress.checkpoint, 1);
+  if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };
+  if (!result.done) return { status: 'pending', checkpoint: { ...progress, checkpoint: result.checkpoint } };
+  return { status: 'complete', proposal: scoredProposal(candidate.strategy, input, result.costs) };
 }
