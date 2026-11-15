@@ -17,7 +17,9 @@ function priority(source: CollectionSource, capacity: number): number {
   }
 }
 export interface BootstrapSource { id: string; position: Position; energy: number; regeneration: number }
-export function selectBootstrapSource(sources: readonly BootstrapSource[], position: Position): BootstrapSource | undefined {
+export function selectBootstrapSource(sources: readonly BootstrapSource[], position: Position, assigned?: string): BootstrapSource | undefined {
+  const retained = sources.find(source => source.id === assigned && source.position.room === position.room && source.energy > 0);
+  if (retained) return retained;
   return [...sources].filter(source => source.position.room === position.room).sort((a, b) =>
     Number(b.energy > 0) - Number(a.energy > 0) ||
     (a.energy > 0 ? 0 : a.regeneration - b.regeneration) ||

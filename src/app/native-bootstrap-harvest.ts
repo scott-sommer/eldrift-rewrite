@@ -5,11 +5,17 @@ import { selectBootstrapSource } from '../features/work/bootstrap-energy';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
 import { createCreepActions } from '../adapters/screeps/creep-actions';
 import { harvestStep } from '../capabilities/harvesting/step';
+declare global {
+  interface CreepMemory { bootstrapSource?: { room: string; id: string } }
+}
 export function harvestBootstrapEnergy(creep: Creep, room: Room, owner: string, dispatch: ReturnType<typeof createNativeDispatch>, salvage = true): Outcome {
   const origin = creep.pos.roomName === room.name ? movementPosition(creep.pos) : { room: room.name, x: 25, y: 25 };
   const sources = room.find(FIND_SOURCES);
   const selected = selectBootstrapSource(sources.map(source => ({ id: source.id, position: movementPosition(source.pos),
-    energy: source.energy, regeneration: source.ticksToRegeneration ?? 0 })), origin);
+    energy: source.energy, regeneration: source.ticksToRegeneration ?? 0 })), origin,
+    creep.memory.bootstrapSource?.room === room.name ? creep.memory.bootstrapSource.id : undefined);
+  if (selected) creep.memory.bootstrapSource = { room: room.name, id: selected.id };
+  else delete creep.memory.bootstrapSource;
   const source = sources.find(source => source.id === selected?.id);
   if (!source) return salvageBootstrapWall(creep, room, owner, dispatch, salvage);
   const actions = createCreepActions(creep, owner, dispatch.arbiter);

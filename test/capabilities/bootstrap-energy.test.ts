@@ -28,3 +28,13 @@ test('harvesting selects available energy before proximity and earliest regenera
   expect(selectBootstrapSource([near, { ...far, energy: 0, regeneration: 10 }], position)?.id).toBe('far');
   expect(selectBootstrapSource([{ ...near, position: { ...position, room: 'E0N1' } }], position)).toBeUndefined();
 });
+
+test('bootstrap source assignment survives proximity changes but releases depleted, missing and foreign sources', () => {
+  const position = { room: 'W0N1', x: 10, y: 10 };
+  const near = { id: 'near', position, energy: 100, regeneration: 0 };
+  const assigned = { id: 'assigned', position: { ...position, x: 20 }, energy: 100, regeneration: 0 };
+  expect(selectBootstrapSource([near, assigned], position, assigned.id)?.id).toBe('assigned');
+  expect(selectBootstrapSource([near, { ...assigned, energy: 0 }], position, assigned.id)?.id).toBe('near');
+  expect(selectBootstrapSource([near], position, assigned.id)?.id).toBe('near');
+  expect(selectBootstrapSource([near, { ...assigned, position: { ...position, room: 'E0N1' } }], position, assigned.id)?.id).toBe('near');
+});
