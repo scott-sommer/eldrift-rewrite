@@ -1,3 +1,4 @@
+import type { PlanProvenance } from './plan-provenance';
 export interface PlanEntry {
   type: string;
   x: number;
@@ -12,6 +13,7 @@ export interface PlanState {
   revision: number;
   strategy: string | null;
   entries: PlanEntry[];
+  provenance?: PlanProvenance;
 }
 export function integer(value: unknown, min: number, max: number): boolean {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= min && value <= max;

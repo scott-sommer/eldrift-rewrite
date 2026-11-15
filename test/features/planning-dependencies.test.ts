@@ -26,5 +26,5 @@ test('version one plans migrate without inventing dependencies or losing operato
   const previous = plan([{ ...road, priority: -100, source: 'operator' }]);
   port.write('planning/W0N1', { owner: 'planning', version: 1, data: previous });
   expect(openState(port, 'planning/W0N1', schema)).toEqual(previous);
-  expect(port.read('planning/W0N1')).toMatchObject({ version: 2, data: previous });
+  expect(port.read('planning/W0N1')).toMatchObject({ version: 3, data: previous });
 });
