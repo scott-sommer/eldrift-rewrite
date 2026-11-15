@@ -1,3 +1,4 @@
+import { validScorePlacements } from './score-placement-validation';
 import { mergeOperatorPlacements } from './operator-placements';
 import type { PlanEntry } from './plan-model';
 import type { prepareEvaluation } from '../../capabilities/planning/evaluate-draft';
@@ -51,6 +52,9 @@ function scoreCandidate(
   options: CandidateEvaluatorOptions, candidate: PlanningCandidate, version: string, progress: Progress,
 ): CandidateStep {
   const input = scoreInput(options, candidate, progress.entries!);
+  if (!validScorePlacements(input.entries, Object.keys(input.limits))) {
+    return { status: 'rejected', reason: 'invalid-plan-entries' };
+  }
   const result = evaluateDraftBatch(input, progress.signature, progress.checkpoint as DraftRouteCheckpoint | undefined,
     options.maximumSearches, options.canContinue, options.prepare);
   if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };

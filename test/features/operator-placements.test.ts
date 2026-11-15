@@ -1,3 +1,7 @@
+import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
+import { createPlanStore } from '../../src/features/planning/plan-store';
+import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
+import type { Envelope } from '../../src/persistence/versioned-state';
 import { expect, test, vi } from 'vitest';
 import { mergeOperatorPlacements } from '../../src/features/planning/operator-placements';
 import { createCandidateEvaluator } from '../../src/features/planning/candidate-evaluator';
@@ -68,4 +72,47 @@ test('operator edits invalidate saved evaluation even when caller policy is unch
   if (first.status !== 'pending') throw new Error('Missing checkpoint');
   config.operatorEntries = [{ ...manual, priority: -999 }];
   expect(() => createCandidateEvaluator(config)(candidate, first.checkpoint)).toThrow('Stale');
+});
+
+test('invalid manual dependency graphs and metadata reject before scoring preparation', () => {
+  const invalid: PlanEntry[][] = [
+    [{ ...manual, dependencies: ['road:1:1'] }],
+    [{ ...manual, dependencies: ['storage:25:25'] }],
+    [manual, { type: 'spawn', x: 24, y: 25, rcl: 1, priority: -430, source: 'operator', dependencies: ['storage:25:25'] }],
+    [{ ...manual, dependencies: ['spawn:24:25', 'spawn:24:25'] }],
+    [{ ...manual, priority: Number.NaN }],
+    [{ ...manual, rcl: 9 }],
+  ];
+  for (const entries of invalid) {
+    const config = options(), prepare = vi.fn();
+    config.operatorEntries = entries;
+    config.prepare = prepare;
+    const evaluate = createCandidateEvaluator(config), first = evaluate(candidate, undefined);
+    if (first.status !== 'pending') throw new Error('Missing score phase');
+    if (Number.isNaN(entries[0]!.priority)) {
+      expect(() => evaluate(candidate, first.checkpoint)).toThrow();
+      expect(prepare).not.toHaveBeenCalled();
+      continue;
+    }
+    expect(evaluate(candidate, first.checkpoint)).toEqual({ status: 'rejected', reason: 'invalid-plan-entries' });
+    expect(prepare).not.toHaveBeenCalled();
+  }
+});
+
+test('invalid manual dependency becomes a persisted rejection and completion receipt', () => {
+  const records: Record<string, unknown> = {};
+  const port = { read: (key: string) => records[key], write: (key: string, value: Envelope) => { records[key] = value; } };
+  const config = options();
+  config.operatorEntries = [{ ...manual, dependencies: ['missing:1:1'] }];
+  const input = { observation: 'obs', policy: 'policy', baseRevision: 0,
+    source: { revision: 'fixture', count: 1, at: () => candidate },
+    weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
+    minimumImprovement: 0, step: createCandidateEvaluator(config), validate: () => true };
+  const ports = { jobs: createPlanningJobStore(port, 'W0N1', Object.keys(planningLimits)),
+    plans: createPlanStore(port, 'W0N1', Object.keys(planningLimits)), validateCommit: () => true };
+  expect(runPlanningCycle(ports, input, 1, 1)).toMatchObject({ status: 'pending' });
+  expect(runPlanningCycle(ports, input, 2, 1)).toMatchObject({ status: 'finished', outcome: 'no-valid-candidate' });
+  expect(ports.jobs.read().receipt?.outcome).toBe('no-valid-candidate');
+  expect(ports.plans.read().revision).toBe(0);
+  expect(runPlanningCycle(ports, input, 3, 1)).toMatchObject({ status: 'idle' });
 });

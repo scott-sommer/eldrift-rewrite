@@ -793,3 +793,24 @@ It does not make every arbitrary manual placement feasible: core/infrastructure 
 and constrained traffic layout still precede final amendment. Conflicting placements or
 excess capacity reject the candidate rather than rearranging the generated footprint.
 Runtime request wiring, native qualification of additions, and CPU bounds remain open.
+
+### Reject invalid entry metadata before scoring (ED-24)
+Review found that a candidate could satisfy geometry checks while its manual dependency
+references were missing or cyclic. Such a proposal could then fail the planning-job
+persistence schema instead of recording a normal candidate rejection.
+The evaluator now reuses the plan persistence entry/uniqueness/dependency contract before
+scoring preparation. Conversion of staged placements and schema validation are shared
+with proposal construction and plan storage, rather than a second dependency checker.
+Invalid serializable entries return invalid-plan-entries. Existing plain-data errors
+for non-JSON values still throw at the merge boundary.
+
+Tests cover missing references, self/two-entry cycles, duplicate dependencies, invalid
+RCL, and the distinct non-finite-value boundary. An integrated planning-cycle test proves
+a malformed dependency becomes a normal no-valid-candidate completion receipt, leaves
+plan revision unchanged, and remains idle afterward instead of trapping persistence.
+
+Quality passed for 411 production / 362 test files, zero Lizard violations. Full unit
+suite: 830 tests / 242 files in 9.35s. Native --planning-job engine-FOyF3P passed all
+230-tick planning/reload/recovery/manual-metadata assertions with empty errors/messages.
+This closes an entry-validation gap; runtime scheduling and the broader remaining
+ED-24 acceptance criteria are still open.

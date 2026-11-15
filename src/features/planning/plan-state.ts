@@ -14,16 +14,16 @@ export function planSchema(room: string, structureTypes: readonly string[]): Sta
       if (state.room !== room || !integer(state.revision, 0, Number.MAX_SAFE_INTEGER)) return false;
       if (state.strategy !== null && typeof state.strategy !== 'string') return false;
       if (!Array.isArray(state.entries) || state.entries.length > 10000) return false;
-      return validEntries(state.entries, types)
+      return validPlanEntries(state.entries, types)
         && optionalProvenance(state);
     },
   };
 }
-function uniqueEntries(entries: PlanState['entries']): boolean {
+function uniqueEntries(entries: readonly PlanState['entries'][number][]): boolean {
   return new Set(entries.map(entry => `${entry.type}:${entry.x}:${entry.y}`)).size === entries.length;
 }
 
-function validEntries(entries: PlanState['entries'], types: ReadonlySet<string>): boolean {
+export function validPlanEntries(entries: readonly PlanState['entries'][number][], types: ReadonlySet<string>): boolean {
   return entries.every(entry => validEntry(entry, types)) && uniqueEntries(entries) && validDependencyGraph(entries);
 }
 

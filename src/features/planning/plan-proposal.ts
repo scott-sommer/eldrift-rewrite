@@ -24,7 +24,7 @@ export function createPlanProposal(input: ProposalInput): PlanProposal {
   return copyPlain({ strategy: input.strategy, entries, provenance: { ...input.provenance,
     bootstrap: { spawn: placementKey(spawns[0]!), storage: placementKey(storage[0]!) } } });
 }
-function planEntry(entry: ProposalPlacement): PlanEntry {
+export function planEntry(entry: ProposalPlacement): PlanEntry {
   if (entry.priority === undefined || !Number.isFinite(entry.priority)) throw new Error('Missing plan placement priority');
   return { type: entry.type, x: entry.position.x, y: entry.position.y, rcl: entry.rcl,
     priority: entry.priority, source: entry.source ?? 'strategy',
