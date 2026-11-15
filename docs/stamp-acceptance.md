@@ -16,9 +16,16 @@ qualification and the CPU-bound interpretation/evidence below.
 | Free-form future work separately tracked | ED-45 https://veskar.atlassian.net/browse/ED-45 | Deferred post-release enhancement, not an initial RC prerequisite |
 
 Final full unit run: 937 tests across267 files passed9.35s.
-Expanded engine suite launched against d0aec0b; result is pending and must be
-read from the completed process and evidence before any acceptance claim.
-Do not use an older artifacts/engine-suite.json as the current run's result.
+Expanded native suite completed: all166 checks passed in608.35s.
+docs/evidence/stamp-engine-suite.json preserves every referenced evidence result
+and provenance. Production code stayed unchanged from d0aec0b while documentation
+and an anchor-order regression were committed during the run. Per-scenario
+provenance records those differing Git heads; no production implementation change
+occurred. Evidence audit found no unexpected status or runtime error: planning-cpu
+has its asserted intentional timeout, injected-error has its sentinel errors,
+injected-timeout has the expected failed status/timeout, and the two Art cases
+have their expected single repair-suspension diagnostic.
+CPU qualification remains open; functional regression success does not close it.
 
 CPU caveat: preparing stamp anchor lists, reconstructing compact choices and
 serializing persistence perform synchronous work. Cooperative guard checks and
