@@ -8,7 +8,7 @@ import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
 import type { createNativeDispatch } from './native-dispatch';
 import { createNativeWork } from '../adapters/screeps/work-execution';
-import { observeWorkAssessment } from '../adapters/screeps/work-assessment';
+import { assessNativeWork } from './native-work-assessment';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
 import { nativeWorkerSettings } from './native-worker-settings';
 import { defaultWorkPolicy } from '../features/work/policy';
@@ -39,14 +39,14 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     if (config.values.workersEnabled) dispatch.activate();
     const workers = Object.values(Game.creeps).filter(creep => !creep.spawning && creep.memory.population?.home === view.name)
       .sort((a, b) => a.name.localeCompare(b.name));
-    const assessment = observeWorkAssessment(room);
+    const assessment = assessNativeWork(state, room);
     for (const creep of workers) {
       const settings = nativeWorkerSettings(creep.memory.population!.owner, view.name, config.values);
       if (settings) runWorker(creep, room, settings, recoveryActive, assessment);
     }
   } };
   function runWorker(creep: Creep, room: Room, settings: Readonly<RuntimeConfig>, recoveryActive: boolean,
-    assessment: ReturnType<typeof observeWorkAssessment>): void {
+    assessment: ReturnType<typeof assessNativeWork>): void {
     if (cargo.run(creep, room.name, settings)) return;
     const bootstrap = creep.memory.population?.owner === upgradeBootstrapOwner(room.name);
     const policy = { ...defaultWorkPolicy, wallHits: settings.workerWallHits, rampartHits: settings.workerRampartHits,

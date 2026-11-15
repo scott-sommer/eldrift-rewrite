@@ -26,6 +26,19 @@ The five focused recovery/distributor/support policy test files pass17tests in22
 
 Role inventory reconciliation remains incomplete, including operator assignment translation and expansion-related builder paths. The combined ordinary-colony criterion already has its separate1,100-tick evidence in work.md.
 
-Work selection has tests for critical repair, downgrade precedence, resource reserves and dependency-ready filtering. However, app/native-work.ts currently calls observeWorkAssessment(room) without a blocked-site set; the adapter consequently marks all native sites ready. Selection-level dependency tests alone do not establish production construction dependency integration. Keep that criterion unchecked until dependency state is connected and tested through production composition. Do not relax the criterion to match the current adapter.
+The initial audit found that native-work marked every site ready. The integration below resolves that dependency gap. Final work-selection acceptance reconciliation and a broader native regression remain outstanding; the criterion is not automatically checked by this increment.
 
 This audit verifies only the recovery acceptance criterion; ED-22 and the overall rewrite remain incomplete.
+
+
+## Construction dependency integration
+
+Plan schema version2 adds optional dependencies, referencing same-plan placements by type:x:y. Validation rejects unknown prerequisite keys, duplicate edges, self references and cycles using nonrecursive graph traversal. Version1 migrates identically: old entries retain priorities, source ownership, revision and strategy without invented dependencies. Each entry is bounded to100 prerequisites within the existing10,000-entry plan limit.
+
+app/native-work-assessment.ts composes planning state with native observations before work selection. Completed prerequisites must be actual matching structures with friendly or neutral ownership. A site or an issued build action does not count as completion. Planned sites remain blocked below their required RCL or while prerequisites are absent; rebuilding a destroyed prerequisite blocks dependent work again. Unplanned sites retain ordinary behavior. Rooms without planning state do not initialize an empty plan. The existing worker task reconciliation and shared build executor remain responsible for actions.
+
+Native --work-dependencies runs production main with an extension site that would normally outrank a road. Its persisted plan requires the road first. Observations: road290/extension195; road295/extension195; road built/extension195; both built. The dependency therefore blocks native selection and releases on observed completion, not on accepted intent. Evidence artifacts/engine-mKXz5U/evidence.json; no caught runtime errors. Native regressions worker-runtime (engine-dSe3LC), work-selection (engine-sNwOlo) and bootstrap-harvest (engine-dXiDbI) pass.
+
+All581 tests/176files pass in4.64s. Final quality305 production/275 test files passes with zero Lizard violations. Initial graph/schema functions exceeded CCN; dependency indexing and entry validation were extracted, without exceptions. Full native aggregate has not been rerun for this increment.
+
+This is dependency consumption by workers, not automatic layout strategy generation or construction-site creation. Those remain required planning work. Schema rollback to code supporting only version1 is not safe after migration; the release migration/rollback rehearsal must account for version2.
