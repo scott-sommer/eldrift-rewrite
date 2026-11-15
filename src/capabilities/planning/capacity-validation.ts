@@ -1,5 +1,5 @@
 import { tileIndex } from '../../core/geometry/local-grid';
-import type { StagedTile } from './access-validation';
+import type { StagedTile } from './template';
 import type { StructureLimits } from './core-model';
 import { validateLimits } from './staging';
 export type CapacityFailure =

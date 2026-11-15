@@ -2,8 +2,7 @@ import { adjacentTiles, tileAt } from '../../core/geometry/local-grid';
 import { layoutConnectivity } from './connectivity';
 import type { AccessRequirement, ConnectivityResult } from './connectivity';
 import type { assessRoom } from './assessment';
-import type { PlacedTile } from './template';
-export interface StagedTile extends PlacedTile { rcl: number }
+import type { PlacedTile, StagedTile } from './template';
 export interface StageAccessResult extends ConnectivityResult { rcl: number }
 type Assessment = ReturnType<typeof assessRoom>;
 const unserviced = new Set(['road', 'rampart', 'constructedWall']);
