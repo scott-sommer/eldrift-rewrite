@@ -1,3 +1,4 @@
+import type { InfrastructureProvider } from '../../capabilities/planning/infrastructure-cache';
 import type { StampReplayCache } from '../../capabilities/planning/stamp-replay-cache';
 import { createStampLayoutStrategy } from './stamp-layout-strategy';
 import type { StampStrategyOptions } from './stamp-layout-strategy';
@@ -23,14 +24,14 @@ export function createLayoutStrategies(
   input: Omit<ConstrainedDraftInput, 'candidate'>, versions: { standard: string; constrained: string; stamps?: string },
   operatorEntries: readonly PlanEntry[] = [],
   stampOptions: StampStrategyOptions = { anchorLimit: 200, attemptsPerStep: 100, totalAttempts: 100000 },
-  stampReplayCache?: StampReplayCache,
+  stampReplayCache?: StampReplayCache, attach?: InfrastructureProvider,
 ): Readonly<Record<string, LayoutStrategy>> {
   if (operatorEntries.length) input = { ...input, amendDraft: createOperatorDraftAmendment(operatorEntries) };
   return {
     ...(versions.stamps ? { stamps: createStampLayoutStrategy({ ...input, search: costs => {
       const search = input.search(costs);
       return (start, goal, roads) => search(start, goal, roads, []);
-    } }, versions.stamps, operatorEntries, stampOptions, stampReplayCache) } : {}),
+    } }, versions.stamps, operatorEntries, stampOptions, stampReplayCache, attach) } : {}),
     standard: { version: versions.standard, advance: (candidate, revision, checkpoint, searches, guard) =>
       strategyStep(standardDraftBatch({ ...input, candidate, search: costs => {
         const search = input.search(costs);

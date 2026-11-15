@@ -154,3 +154,18 @@ engine-JOmry2 hit the60-second harness deadline at1599; the opt-in1600-tick
 diagnostic now has90 seconds of wall time. Gameplay budgets remain unchanged.
 Next isolate/reuse infrastructure attachment and route-preparation products;
 assessment reuse alone is not claimed as a demonstrated native speed improvement.
+
+## Infrastructure attachment reuse
+
+A caller-owned single-result infrastructure cache now reuses identical placement,
+storage, observation and capacity inputs, returning detached plain results.
+It lives within the existing32-room bound and rebuilds after eviction/reload.
+Tests verify reuse, result isolation, changed-constraint invalidation and cold
+reconstruction equivalence. This adds no persistent schema.
+
+Native default-budget run engine-1UztOh still FAILED: composition completed by800,
+but zero roads through1600. Removing repeated attachment alone is insufficient;
+route preparation and checkpoint work must be investigated next. Variation in
+composition timing is not attributed to this downstream cache.
+Full unit943/270 files passed8.43s; quality449 production/401 test files passes.
+No default-budget completion or full native regression claim is made.

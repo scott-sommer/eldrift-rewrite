@@ -1,3 +1,4 @@
+import type { InfrastructureProvider } from '../capabilities/planning/infrastructure-cache';
 import type { StampReplayCache } from '../capabilities/planning/stamp-replay-cache';
 import { nativePlanningLimits } from '../adapters/screeps/planning-limits';
 import { createCandidateEvaluator } from '../features/planning/candidate-evaluator';
@@ -13,6 +14,7 @@ import { planningRoadSearch } from '../adapters/screeps/planning-road-search';
 import type { StampStrategyOptions } from '../features/planning/stamp-layout-strategy';
 export interface NativePlanningEvaluatorOptions {
   assess?: AssessmentProvider;
+  attach?: InfrastructureProvider;
   stampOptions?: StampStrategyOptions;
   stampReplayCache?: StampReplayCache;
   room: string; observation: AssessmentInput; observationIdentity: string; policyIdentity: string;
@@ -34,7 +36,7 @@ export function createNativePlanningEvaluator(options: NativePlanningEvaluatorOp
       observation: options.observation, limits, assess: options.assess ?? createAssessmentCache(),
       blocksMovement: type => (OBSTACLE_OBJECT_TYPES as readonly string[]).includes(type),
       search: costs => planningRoadSearch(options.room, costs, options.maximumPathOps),
-    }, options.versions, options.operatorEntries, options.stampOptions, options.stampReplayCache),
+    }, options.versions, options.operatorEntries, options.stampOptions, options.stampReplayCache, options.attach),
     prepareScore: options.prepareScore,
   });
 }

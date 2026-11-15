@@ -1,3 +1,4 @@
+import type { InfrastructureProvider } from '../../capabilities/planning/infrastructure-cache';
 import type { StampReplayCache } from '../../capabilities/planning/stamp-replay-cache';
 import { prepareStampComposition } from '../../capabilities/planning/stamp-composition-policy';
 import { stampDraftBatch } from '../../capabilities/planning/stamp-draft-batch';
@@ -9,7 +10,7 @@ export interface StampStrategyOptions { anchorLimit: number; attemptsPerStep: nu
 /** Adapter only: common evaluator retains hard validation, scoring and proposal ownership. */
 export function createStampLayoutStrategy(
   input: Omit<FinishDraftInput, 'entries' | 'storage' | 'anchors'>, version: string,
-  operatorEntries: readonly PlanEntry[], options: StampStrategyOptions, cache?: StampReplayCache,
+  operatorEntries: readonly PlanEntry[], options: StampStrategyOptions, cache?: StampReplayCache, attach?: InfrastructureProvider,
 ): LayoutStrategy {
   validateOptions(version, options);
   const entries = operatorEntries.map(entry => ({ ...entry, position: { x: entry.x, y: entry.y } }));
@@ -20,7 +21,7 @@ export function createStampLayoutStrategy(
       return { status: 'rejected', reason: 'stamp-hub-conflicts-with-locked-storage' };
     }
     const composition = prepareStampComposition(candidate.anchor, input.observation, input.limits, options.anchorLimit, entries);
-    const result = stampDraftBatch({ ...input, storage: candidate.anchor,
+    const result = stampDraftBatch({ ...input, ...(attach ? { attach } : {}), storage: candidate.anchor,
       composition: { ...composition, maximumTotalAttempts: options.totalAttempts } },
     revision, checkpoint as StampDraftCheckpoint | undefined, options.attemptsPerStep, searches, guard, cache);
     if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };

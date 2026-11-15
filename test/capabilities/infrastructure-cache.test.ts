@@ -1,0 +1,21 @@
+import { expect, test, vi } from 'vitest';
+import { createInfrastructureCache } from '../../src/capabilities/planning/infrastructure-cache';
+import { attachInfrastructure } from '../../src/capabilities/planning/attach-infrastructure';
+import { planningObservation } from '../fixtures/planning-observation';
+import { planningLimits } from '../fixtures/planning-limits';
+test('infrastructure cache reuses exact inputs, detaches results and invalidates changed constraints', () => {
+  const attach = vi.fn(attachInfrastructure), cached = createInfrastructureCache(attach);
+  const entries = [{ type: 'storage', position: { x: 25, y: 25 }, rcl: 4 }];
+  const storage = { x: 25, y: 25 }, observation = planningObservation();
+  const first = cached(entries, storage, observation, planningLimits);
+  expect(first.ok).toBe(true);
+  const expected = JSON.parse(JSON.stringify(first));
+  if (!first.ok) throw new Error('Expected attachment');
+  first.entries[0]!.position.x = 0;
+  expect(cached(entries, storage, JSON.parse(JSON.stringify(observation)), planningLimits)).toEqual(expected);
+  expect(attach).toHaveBeenCalledTimes(1);
+  observation.constraints = [{ id: 'blocked', kind: 'blocked', position: { x: 27, y: 27 } }];
+  expect(cached(entries, storage, observation, planningLimits)).toEqual(attachInfrastructure(entries, storage, observation, planningLimits));
+  expect(attach).toHaveBeenCalledTimes(2);
+  expect(createInfrastructureCache()(entries, storage, observation, planningLimits)).toEqual(cached(entries, storage, observation, planningLimits));
+});

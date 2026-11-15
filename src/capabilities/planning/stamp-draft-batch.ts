@@ -6,6 +6,7 @@ import { finishDraftBatch } from './finish-draft-batch';
 import type { FinishDraftInput } from './finish-draft';
 import type { RoadCheckpoint } from './road-checkpoint';
 export interface StampDraftInput extends Omit<FinishDraftInput, 'entries' | 'anchors'> {
+  attach?: typeof attachInfrastructure;
   composition: Pick<StampCompositionInput, 'stamps' | 'anchors' | 'anchorsByStamp' | 'entries' | 'corridors' | 'claimed' | 'maximumTotalAttempts'>;
 }
 export interface StampDraftCheckpoint { version: 1; composition: StampCompositionCheckpoint; roads?: RoadCheckpoint }
@@ -27,7 +28,7 @@ export function stampDraftBatch(
   if (!entries.some(entry => entry.type === 'storage' && entry.position.x === input.storage.x && entry.position.y === input.storage.y)) {
     return { ok: false as const, phase: 'storage' as const, reason: 'anchor-mismatch' };
   }
-  const attached = attachInfrastructure(entries, input.storage, input.observation, input.limits, input.assess);
+  const attached = (input.attach ?? attachInfrastructure)(entries, input.storage, input.observation, input.limits, input.assess);
   if (!attached.ok) return { ok: false as const, phase: 'infrastructure' as const, reason: JSON.stringify(attached.failure) };
   if (attached.missing.length) return { ok: false as const, phase: 'infrastructure' as const, reason: attached.missing.join(',') };
   const anchors = attached.entries.filter(entry => entry.type !== 'road').map(entry => entry.position);
