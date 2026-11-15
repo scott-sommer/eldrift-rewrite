@@ -1743,9 +1743,9 @@
     "pattern": "Art region: first room flag containing Art and BL, paired with first containing Art and TR",
     "behavior": "Exclude walls/ramparts inside the inclusive rectangle BL.x <= x <= TR.x and TR.y <= y <= BL.y from legacy wallBuilder selection. Names use substring matching; missing-corner behavior needs a deliberate validated correction.",
     "source": "role.wallBuilder.js",
-    "evidence": "source audit at frozen baseline f2bbf7e8c44addc7c426abb5458e393c9502ff5f; not a README-derived entry",
+    "evidence": "docs/work-acceptance.md; test/capabilities/art-region.test.ts; test/engine/art-region-bot.ts; artifacts/engine-OgqZp9/evidence.json",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported; pure excluded-repair support exists but native region input is unconnected",
+    "implementationStatus": "validated legacy marker parsing and native fortifier exclusions implemented; broader operator API remains ED-39",
     "sourceCandidates": [
       {
         "file": "role.wallBuilder.js",
@@ -1763,7 +1763,7 @@
         "text": "if(lAmount < lowest.amount && !isArt(s, blPos, trPos))"
       }
     ],
-    "verification": "active source path inspected; region conversion and native exclusion evidence remain required",
+    "verification": "source semantics plus native creation/movement/missing-corner/removal lifecycle verified",
     "requiredTests": [
       "both wall and rampart exclusion including rectangle boundaries",
       "missing/reversed/multiple corner markers produce explicit deterministic validation",

@@ -1,3 +1,4 @@
+import { nativeFortifierAssessment } from './native-fortifier-assessment';
 import { assignNativeWorkerSource } from './native-worker-assignment';
 import { nativeWorkerWorkPolicy, retainedWorkerTarget } from './native-worker-work-policy';
 import { createNativeWorkerCargo } from './native-worker-cargo';
@@ -49,6 +50,7 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     assessment: ReturnType<typeof assessNativeWork>): void {
     assignNativeWorkerSource(creep, room, settings);
     if (cargo.run(creep, room.name, settings)) return;
+    if (settings.workerMode === 'fortifier') assessment = nativeFortifierAssessment(room, assessment);
     const policy = nativeWorkerWorkPolicy(creep, room, settings, recoveryActive);
     const origin = creep.pos.roomName === room.name ? movementPosition(creep.pos) : { room: room.name, x: 25, y: 25 };
     reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: room.name }, Game.time,

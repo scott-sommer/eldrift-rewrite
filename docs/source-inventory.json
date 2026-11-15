@@ -4194,7 +4194,7 @@
     "sha256": "06634A3F0D02455C2C48023ACEE9CBC35AB811F5741BB0193FA9DD612508287C",
     "physicalLines": 158,
     "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "fixed and legacy RCL-derived fortification selection/repair batches and resource profile exercised; Art-region native input remains open",
+    "implementationStatus": "fixed and legacy fortification, resource profile and Art-region native exclusions exercised; final source reconciliation remains open",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
@@ -4202,7 +4202,9 @@
       "docs/work-acceptance.md",
       "src/features/work/legacy-fortification.ts",
       "test/capabilities/legacy-fortification.test.ts",
-      "test/engine/fortifier-work-bot.ts"
+      "test/engine/fortifier-work-bot.ts",
+      "test/engine/art-region-bot.ts",
+      "test/capabilities/art-region.test.ts"
     ],
     "plannedIssues": [
       "ED-22"
