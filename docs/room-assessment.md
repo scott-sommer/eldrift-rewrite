@@ -50,3 +50,13 @@ Keep-clear constraints reserve building space without blocking movement. Blocked
 Each source/mineral exposes walkable adjacent work tiles; controllers expose adjacent access separately from range3 work tiles. Empty access lists remain explicit. Current owned spawn/storage/terminal observations become candidate anchors; strategy selection is not performed. Returned anchors/constraints clone position data to avoid mutating inputs.
 
 Fixtures cover fixed-object exclusion, source/controller work ranges, walkable occupied roads, blocking spawns, each constraint type, anchor ownership, copying, inaccessible mineral and malformed/duplicate entries.605tests/185files pass4.96s; quality322production/288testfiles zero Lizard violations. Fingerprint/freshness, native observation and end-to-end assessment scenarios remain required;149-native aggregate unchanged.
+
+## Versioned snapshots and freshness
+
+assessmentSnapshot validates/computes assessment and returns version1, room, observedAt, fingerprint and assessment. The fingerprint is a lossless canonical JSON signature rather than a collision-prone short hash. Terrain is encoded as2500single-character cells; record lists are normalized to explicit fields and sorted serialized tuples. It includes room, fixed-object identities/positions, infrastructure identity/type/position/walkability/ownership, manual constraints, normalized margin and terrain-cost policy. Observation tick is deliberately excluded. Future assessment semantic changes must increment assessmentVersion.
+
+The full signature trades memory for exact comparison; performance/memory gates must measure its use before persistent caching is chosen. No CPU or memory saving is claimed. Including infrastructure IDs conservatively invalidates replacement structures even at the same coordinates, because the assessment exposes identities.
+
+assessmentFreshness reports current only when visible and observed this tick. Older observations within an inclusive maximumAge are remembered; greater age is stale; absent observation is unknown. Future/invalid times are rejected. Visibility alone does not refresh an old observation. This metadata does not authorize construction against stale observations.
+
+Tests verify order/tick independence, default normalization, meaningful feature/policy invalidation, room identity, exact freshness boundary and future timestamp rejection.608tests/186files pass4.99s; quality323production/289testfiles zero Lizard violations. Native observation, runtime consumption and real-engine assessment evidence remain pending; prior149native aggregate unchanged.
