@@ -11,7 +11,7 @@ export function applyLegacyPerimeterDefense(candidate: PlanningCandidate, entrie
     ? placeTemplate(standardTemplate, candidate.anchor, candidate.transform)
     : entries.filter(entry => !['road', 'rampart'].includes(entry.type)
       && !['source', 'controller', 'mineral'].includes(entry.tag ?? ''));
-  if (!['standard', 'constrained'].includes(candidate.strategy) || !footprint?.length) throw new Error('Missing legacy defense footprint');
+  if (!['standard', 'constrained', 'stamps'].includes(candidate.strategy) || !footprint?.length) throw new Error('Missing legacy defense footprint');
   const bounds = { minX: Math.min(...footprint.map(entry => entry.position.x)), maxX: Math.max(...footprint.map(entry => entry.position.x)),
     minY: Math.min(...footprint.map(entry => entry.position.y)), maxY: Math.max(...footprint.map(entry => entry.position.y)) };
   const controller = observation.objects.find(object => object.kind === 'controller')?.position;

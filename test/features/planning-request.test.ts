@@ -27,15 +27,17 @@ test('auto prepares both strategies using owned infrastructure and locks valuabl
   expect(observation.infrastructure.find(item => item.id === 'enemy')?.position.x).toBe(10);
   expect(observation.constraints).toEqual([]);
 });
-test('explicit strategies restrict enumeration and stamps remains explicitly unsupported', () => {
+test('explicit strategies restrict enumeration including independent stamp hubs', () => {
   const { observation, plan } = setup();
   for (const strategy of ['standard', 'constrained'] as const) {
     const result = preparePlanningRequest(observation, plan, { ...policy, strategy });
     if (!result.ok) throw new Error(result.reason);
     expect(Object.keys(result.options)).toEqual([strategy]);
   }
-  expect(preparePlanningRequest(observation, plan, { ...policy, strategy: 'stamps' }))
-    .toEqual({ ok: false, reason: 'unsupported-strategy' });
+  const stamps = preparePlanningRequest(observation, plan, { ...policy, strategy: 'stamps' });
+  if (!stamps.ok) throw new Error(stamps.reason);
+  expect(Object.keys(stamps.options)).toEqual(['stamps']);
+  expect(stamps.options.stamps?.preferred).toContainEqual({ x: 25, y: 25 });
 });
 test('disabling automatic preservation retains explicit observed and operator constraints', () => {
   const { observation, plan } = setup();

@@ -15,7 +15,6 @@ export interface PlanningRequestPolicy {
 }
 /** Prepare detached policy inputs; eligibility and when to start remain caller responsibilities. */
 export function preparePlanningRequest(observed: AssessmentInput, plan: PlanState, policy: PlanningRequestPolicy) {
-  if (policy.strategy === 'stamps') return { ok: false as const, reason: 'unsupported-strategy' as const };
   validatePolicy(policy);
   const observation = copyPlain(observed);
   const controller = observation.objects.find(item => item.kind === 'controller');
@@ -27,11 +26,15 @@ export function preparePlanningRequest(observed: AssessmentInput, plan: PlanStat
   const storage = owned.find(item => item.type === 'storage')?.position;
   const previous = previousCandidate(plan);
   const options: EnumerationOptions = {};
-  if (policy.strategy !== 'constrained') options.standard = {
+  if (policy.strategy === 'auto' || policy.strategy === 'standard') options.standard = {
     structures: owned.map(item => ({ type: item.type, position: item.position })),
     ...(storage ? { storage } : {}), ...(previous && plan.strategy === 'standard' ? { previous } : {}),
   };
-  if (policy.strategy !== 'standard') options.constrained = {
+  if (policy.strategy === 'auto' || policy.strategy === 'constrained') options.constrained = {
+    controller: controller.position, limit: policy.constrainedAnchorLimit,
+    preferred: [...(previous ? [previous.anchor] : []), ...(storage ? [storage] : [])],
+  };
+  if (policy.strategy === 'stamps') options.stamps = {
     controller: controller.position, limit: policy.constrainedAnchorLimit,
     preferred: [...(previous ? [previous.anchor] : []), ...(storage ? [storage] : [])],
   };
@@ -64,7 +67,7 @@ function validatePolicy(policy: PlanningRequestPolicy): void {
   if (policy.refreshRevision !== undefined && (!Number.isSafeInteger(policy.refreshRevision) || policy.refreshRevision < 0)) {
     throw new Error('Invalid planning refresh revision');
   }
-  if (!['auto', 'standard', 'constrained'].includes(policy.strategy)) throw new Error('Invalid planning strategy');
+  if (!['auto', 'standard', 'constrained', 'stamps'].includes(policy.strategy)) throw new Error('Invalid planning strategy');
   if (!Number.isSafeInteger(policy.constrainedAnchorLimit) || policy.constrainedAnchorLimit < 1
     || policy.constrainedAnchorLimit > 2500) throw new Error('Invalid anchor limit');
 }

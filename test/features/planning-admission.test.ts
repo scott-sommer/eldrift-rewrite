@@ -55,8 +55,8 @@ test('budget changes and observation collection order preserve request identity'
 });
 test('unavailable planning and capture conflicts never expose ready work', () => {
   const { store, plan, config, records } = setup(), observation = planningObservation();
-  expect(admitPlanningRequest(store, observation, plan, { ...config, layoutStrategy: 'stamps' }, [], 'v1'))
-    .toEqual({ status: 'unavailable', reason: 'unsupported-strategy' });
+  expect(admitPlanningRequest(store, { ...observation, objects: [] }, plan, config, [], 'v1'))
+    .toEqual({ status: 'unavailable', reason: 'missing-controller' });
   expect(records).toEqual({});
   store.capture = () => ({ ok: false, reason: 'revision' });
   expect(admitPlanningRequest(store, observation, plan, config, [], 'v1')).toEqual({ status: 'conflict' });
@@ -93,4 +93,12 @@ test('failed completion receipts do not suppress observation-driven retries', ()
   expect(admitPlanningRequest(store, observation, plan, config, [], 'v1', completion)).toMatchObject({ status: 'ready' });
   const changed = { ...observation, margin: 3 };
   expect(admitPlanningRequest(store, changed, plan, config, [], 'v1', completion)).toMatchObject({ status: 'ready', reused: false });
+});
+
+test('explicit stamp policy captures a ready request with only stamp hub candidates', () => {
+  const { store, plan, config } = setup();
+  const result = admitPlanningRequest(store, planningObservation(), plan, { ...config, layoutStrategy: 'stamps' }, [], 'v1');
+  expect(result.status).toBe('ready');
+  if (result.status !== 'ready') throw new Error('Expected stamp admission');
+  expect(Object.keys(result.request.options)).toEqual(['stamps']);
 });

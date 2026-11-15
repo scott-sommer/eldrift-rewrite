@@ -52,12 +52,13 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
 /** Operational search count may vary; search semantics, scoring and protection change the desired plan. */
 function policyRevision(policy: NativePlanningPolicy): string {
   if (![policy.implementationRevision, policy.versions.standard, policy.versions.constrained,
+    ...(policy.versions.stamps === undefined ? [] : [policy.versions.stamps]),
     policy.searchRevision, policy.scoreRevision].every(value => value.length > 0)) throw new Error('Missing native planning revision');
   if (!Number.isSafeInteger(policy.maximumPathOps) || policy.maximumPathOps < 1) throw new Error('Invalid native planning path budget');
   if (![...scoreDimensions.map(key => policy.weights[key]), policy.minimumImprovement,
     policy.barrierCosts.rampart, policy.barrierCosts.constructedWall]
     .every(value => Number.isFinite(value) && value >= 0)) throw new Error('Invalid native planning costs');
-  return JSON.stringify([policy.implementationRevision, policy.versions.standard, policy.versions.constrained,
+  return JSON.stringify([policy.implementationRevision, policy.versions.standard, policy.versions.constrained, policy.versions.stamps ?? null,
     policy.searchRevision, policy.scoreRevision, policy.maximumPathOps,
     scoreDimensions.map(key => policy.weights[key]), policy.minimumImprovement,
     [...new Set(policy.protectedTypes)].sort(), policy.barrierCosts.rampart, policy.barrierCosts.constructedWall]);

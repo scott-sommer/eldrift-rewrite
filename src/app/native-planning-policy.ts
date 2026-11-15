@@ -10,7 +10,7 @@ export function nativePlanningPolicy(room: string, config: Readonly<RuntimeConfi
     maximumPathOps: config.planningMaximumPathOps, protectedTypes, barrierCosts,
   });
   return { config, implementationRevision: 'native-planning-v1:legacy-perimeter-v1',
-    versions: { standard: 'standard-v1', constrained: 'constrained-v1' }, searchRevision: 'native-roads-v1',
+    versions: { standard: 'standard-v1', constrained: 'constrained-v1', stamps: 'stamps-v1' }, searchRevision: 'native-roads-v1',
     scoreRevision: score.revision, maximumPathOps: config.planningMaximumPathOps,
     valuableTypes: protectedTypes, protectedTypes, barrierCosts, constraints: [],
     minimumImprovement: config.planningMinimumImprovement,

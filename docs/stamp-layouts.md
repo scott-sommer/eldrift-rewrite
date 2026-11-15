@@ -254,3 +254,29 @@ Thirteen enumeration/store tests across three files pass in567ms, including
 serialized resume and shared budget ordering; smoke passes. Quality:
 445 production /391 test files, zero violations. Production request/policy
 enablement and native scored commitment remain next.
+
+## Explicit native stamp requests
+
+layoutStrategy=stamps now prepares only stamp hub candidates and captures a
+normal ready planning request. Native policy registers stamps-v1; native work
+identity binds that version and validates nonempty optional stamp revisions.
+The existing perimeter fallback accepts stamp placements using the same
+non-resource structure bounds used for constrained layouts. Terrain-aware
+defense alternatives remain ED-26.
+
+Planning stays disabled by default. Auto currently compares standard and
+constrained only; automatic stamp participation is still outstanding.
+Hub candidate count uses planningAnchorLimit; inner composition currently uses
+adapter defaults (200 anchors,100 attempts per step,100000 total attempts).
+Exposing those inner settings through runtime config is remaining work.
+
+The native policy identity tuple now includes stamp version, so development
+requests created with the old tuple restart through existing identity guards.
+Committed plans are retained until a validated replacement is available.
+No live deployment or memory migration was performed.
+
+Quality passes (445 production /391 test files, zero violations). Full unit
+suite:929 tests /265 files passed8.58s. One obsolete unsupported-strategy test
+initially failed; replaced with missing-controller failure coverage and added
+explicit ready stamp admission. Native observed-room score/commit qualification
+has not yet been run for this activation.
