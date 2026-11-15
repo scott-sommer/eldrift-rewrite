@@ -102,3 +102,21 @@ assertion to report this as a pass. Preserve bounded work and reset correctness
 when retaining reconstructible caches or making replay incremental.
 Quality passed446 production/398 test files, zero violations. Native diagnostic
 failure is an open acceptance finding, not a successful engine test.
+
+## Reconstructible branch cache boundary
+
+createStampReplayCache provides a caller-owned single-branch heap cache keyed by
+the validated composition signature and exact choices. composeStamps accepts it
+optionally, checks restored checkpoint shape/identity first, and avoids replaying
+a matching branch. Both cache writes and reads detach all plain metadata.
+Misses and runtime resets use the existing validated reconstruction path; guards
+can still defer work. No persisted schema changes or global cache were introduced.
+
+Tests prove matching branches skip placement validation, returned-output mutation
+cannot poison later reads, changed signatures/choices miss, replacing the sole
+entry evicts the previous branch, and a fresh cache reconstructs identical output.
+Nine targeted composition/cache/smoke tests passed255ms. Quality447 production/
+399 test files, zero violations. This cache is not yet connected to native room
+lifecycle; no default-budget improvement is claimed until that wiring and engine
+measurement are complete. Signature semantics must continue to bind observation,
+movement policy and all composition inputs through the caller's revision.

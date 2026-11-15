@@ -1,3 +1,4 @@
+import type { StampReplayCache } from './stamp-replay-cache';
 import { insideRoom } from '../../core/geometry/local-grid';
 import { placeStamp } from './stamp-placement';
 import type { LayoutStamp, StampPlacementInput } from './stamp-placement';
@@ -18,10 +19,10 @@ type Draft = Pick<StampPlacementInput, 'entries' | 'corridors' | 'claimed'>;
 /** Depth-first search with compact branch cursors; drafts are reconstructed, never trusted from memory. */
 export function composeStamps(
   input: StampCompositionInput, previous: StampCompositionCheckpoint | undefined,
-  maximumAttempts: number, guard: () => boolean = () => true,
+  maximumAttempts: number, guard: () => boolean = () => true, cache?: StampReplayCache,
 ) {
   const checkpoint = restore(input, previous, maximumAttempts);
-  let draft = replay(input, checkpoint.choices, guard), attempts = 0;
+  let draft = cachedReplay(input, checkpoint, guard, cache), attempts = 0;
   while (draft && !checkpoint.exhausted && checkpoint.choices.length < input.stamps.length
     && attempts < maximumAttempts && checkpoint.totalAttempts < totalLimit(input) && guard()) {
     const depth = checkpoint.choices.length, ordinal = checkpoint.cursors[depth]!;
@@ -37,6 +38,7 @@ export function composeStamps(
     checkpoint.choices.push(ordinal); checkpoint.cursors.push(0);
     draft = placed.draft;
   }
+  if (draft) cache?.write(checkpoint.signature, checkpoint.choices, draft);
   return compositionResult(input, checkpoint, draft, attempts);
 }
 function compositionResult(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint, draft: Draft | undefined, attempts: number) {
@@ -127,4 +129,11 @@ function validCursors(cursors: readonly number[], counts: readonly number[]): bo
 
 function validateExhausted(saved: StampCompositionCheckpoint, count: number): void {
   if (saved.exhausted && (saved.choices.length || saved.cursors[0] !== count)) throw new Error('Invalid exhausted composition');
+}
+
+function cachedReplay(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint,
+  guard: () => boolean, cache?: StampReplayCache): Draft | undefined {
+  if (!cache) return replay(input, checkpoint.choices, guard);
+  if (!guard()) return undefined;
+  return cache.read(checkpoint.signature, checkpoint.choices) ?? replay(input, checkpoint.choices, guard);
 }
