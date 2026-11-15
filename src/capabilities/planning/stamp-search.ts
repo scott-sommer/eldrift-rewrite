@@ -22,7 +22,7 @@ export function searchStampBatch(
 ) {
   validateSearch(input);
   const signature = JSON.stringify(['stamp-search-v1', input.revision, input.stamp,
-    input.anchors, input.entries, input.corridors]);
+    input.anchors, input.entries, input.corridors, input.claimed ?? []]);
   const matches: StampMatch[] = [];
   let lastRejection: { candidate: CoreCandidate; reason: string } | undefined;
   const source = { count: input.anchors.length * 8, at: (ordinal: number): CoreCandidate => ({

@@ -40,6 +40,7 @@ test('changed placement inputs or observation revision cannot resume old search'
   const request = input(), checkpoint = searchStampBatch(request, undefined, 1).checkpoint;
   for (const changed of [{ ...request, revision: 'room-v2' },
     { ...request, corridors: [{ x: 25, y: 25 }] },
+    { ...request, claimed: ['spawn:1275'] },
     { ...request, anchors: [...request.anchors].reverse() },
     { ...request, stamp: { ...request.stamp, id: 'new-definition' } }]) {
     expect(() => searchStampBatch(changed, checkpoint, 1)).toThrow('Stale');

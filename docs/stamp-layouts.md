@@ -83,3 +83,22 @@ smoke passes in 189ms; quality passes for 438 production / 383 test files with
 zero violations. This is pure geometry/staging evidence. Whole-room reachability,
 composition/backtracking, shared-inventory accounting and native registration
 remain outstanding; no claim of complete irregular-room planning is made.
+
+## Shared structure accounting
+
+Stamp placement now returns a detached list of claimed type/tile keys.
+Composition must pass these claims to the next placement. An existing/manual
+structure may satisfy the first matching stamp while retaining its metadata;
+a later stamp cannot count that same physical structure again. Roads and
+ramparts remain shareable. Claims participate in search identity, so a saved
+search cannot resume against a different partial allocation.
+
+Rejected alternatives never mutate previous claims or entries. Backtracking
+can restore an earlier draft/claim pair. This establishes allocation ownership;
+the composition layer still needs to carry it across branches, reserve prior
+ports, enforce aggregate RCL capacities, and connect final routes.
+
+Validation: 13 stamp tests across three files pass in 314ms; smoke in 179ms;
+quality passes (439 production / 383 test files, zero violations). New regression
+adopts a manual spawn once, rejects duplicate capacity, accepts a distinct
+second location and proves the original branch remains unchanged.

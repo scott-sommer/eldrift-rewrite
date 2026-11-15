@@ -61,3 +61,19 @@ test('matching manual structures retain metadata and duplicate stamp cells rejec
   request.stamp = { ...request.stamp, tiles: [...request.stamp.tiles, request.stamp.tiles[0]!] };
   expect(placeStamp(request)).toMatchObject({ ok: false, reason: 'duplicate-structure' });
 });
+
+test('existing structure can satisfy one stamp but cannot supply repeated capacity', () => {
+  const request = input();
+  request.entries = [{ type: 'spawn', position: { x: 25, y: 25 }, rcl: 1, tag: 'manual' }];
+  const first = placeStamp(request);
+  if (!first.ok) throw new Error(first.reason);
+  expect(first.claimed).toEqual(['spawn:1275']);
+  const prior = JSON.stringify(first);
+  expect(placeStamp({ ...request, entries: first.entries, claimed: first.claimed }))
+    .toMatchObject({ ok: false, reason: 'claimed-structure' });
+  const next = placeStamp({ ...request, entries: first.entries, claimed: first.claimed, anchor: { x: 30, y: 25 } });
+  if (!next.ok) throw new Error(next.reason);
+  expect(next.claimed).toEqual(['spawn:1275', 'spawn:1280']);
+  expect(JSON.stringify(first)).toBe(prior);
+  expect(placeStamp(request).ok).toBe(true);
+});

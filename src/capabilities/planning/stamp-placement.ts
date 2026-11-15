@@ -1,3 +1,4 @@
+import { claimStampTiles } from './stamp-claims';
 import { placeOffset } from '../../core/geometry/transforms';
 import type { TransformIndex } from '../../core/geometry/transforms';
 import { tileIndex } from '../../core/geometry/local-grid';
@@ -11,6 +12,7 @@ export interface LayoutStamp { id: string; tiles: readonly StampTile[]; ports: r
 export interface StampPlacementInput {
   stamp: LayoutStamp; anchor: Tile; transform: TransformIndex; observation: AssessmentInput;
   entries: readonly StagedTile[]; corridors: readonly Tile[];
+  claimed?: readonly string[];
   blocksMovement: (type: string) => boolean;
 }
 /** Atomic geometry admission only; whole-plan capacity/access/scoring remain separate. */
@@ -21,18 +23,20 @@ export function placeStamp(input: StampPlacementInput) {
   const ports = stamp.ports.map(offset => placeOffset(anchor, offset, transform, 2));
   if (placed.some(tile => !tile) || ports.some(tile => !tile)) return rejected('bounds');
   const tiles = placed as StagedTile[], roads = ports as Tile[];
+  const claimed = claimStampTiles(tiles, input.claimed ?? []);
+  if (!claimed) return rejected('claimed-structure');
   const entries = mergeStampEntries(input.entries, tiles);
   if (!entries) return rejected('duplicate-structure');
-  return admitStamp(entries, roads, input);
+  return admitStamp(entries, roads, claimed, input);
 }
-function admitStamp(entries: StagedTile[], roads: Tile[], input: StampPlacementInput) {
+function admitStamp(entries: StagedTile[], roads: Tile[], claimed: string[], input: StampPlacementInput) {
   const failures = placementFailures(entries, input.observation);
   if (failures.length) return rejected(failures[0]!);
   const violations = stampConstraints(entries, input.observation);
   if (violations.length) return rejected(violations[0]!.id + ':' + violations[0]!.reason);
   if (!validPorts(roads, entries, input)) return rejected('blocked-port');
   if (input.corridors.some(position => blocked(position, entries, input))) return rejected('blocked-corridor');
-  return { ok: true as const, entries, ports: roads };
+  return { ok: true as const, entries, ports: roads, claimed };
 }
 function mergeStampEntries(existing: readonly StagedTile[], tiles: readonly StagedTile[]) {
   const entries = existing.map(entry => ({ ...entry, position: { ...entry.position } }));
