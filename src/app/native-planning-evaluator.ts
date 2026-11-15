@@ -1,3 +1,4 @@
+import { nativePlanningLimits } from '../adapters/screeps/planning-limits';
 import { createCandidateEvaluator } from '../features/planning/candidate-evaluator';
 import type { CandidateEvaluatorOptions } from '../features/planning/candidate-evaluator';
 import { createLayoutStrategies } from '../features/planning/layout-strategies';
@@ -17,8 +18,7 @@ export interface NativePlanningEvaluatorOptions {
 }
 /** Native mechanics are composed here; scoring and defensive-layout policy remain explicit inputs. */
 export function createNativePlanningEvaluator(options: NativePlanningEvaluatorOptions) {
-  const limits = Object.fromEntries(Object.entries(CONTROLLER_STRUCTURES).map(([type, levels]) =>
-    [type, Array.from({ length: 9 }, (_, level) => levels[level] ?? 0)]));
+  const limits = nativePlanningLimits();
   return createCandidateEvaluator({
     observation: options.observationIdentity, policy: options.policyIdentity, searchRevision: options.searchRevision,
     operatorEntries: options.operatorEntries, maximumSearches: options.maximumSearches,

@@ -1,3 +1,4 @@
+import { identifyPlanningRequest } from './planning-identity';
 import type { PlanningReceipt } from './planning-receipt';
 import { prepareConfiguredPlanningRequest } from './configured-planning-request';
 import type { createPlanningRequestStore } from './planning-request-store';
@@ -13,13 +14,11 @@ export function admitPlanningRequest(
   if (!implementationRevision) throw new Error('Missing planning implementation revision');
   const prepared = prepareConfiguredPlanningRequest(observation, current, config, valuableTypes);
   if (!prepared.ok) return { status: 'unavailable' as const, reason: prepared.reason };
-  const observationIdentity = JSON.stringify(prepared.observation);
-  const policyIdentity = JSON.stringify([implementationRevision, prepared.policyIdentity]);
+  const { observationIdentity, policyIdentity, identity } = identifyPlanningRequest(prepared, implementationRevision, current.room);
   if (completion?.outcome === 'committed' && completion.planRevision === current.revision
     && current.provenance?.policy === policyIdentity) {
     return { status: 'idle' as const, planRevision: current.revision };
   }
-  const identity = JSON.stringify([observationIdentity, policyIdentity]);
   const saved = store.read();
   const captured = store.capture(saved.revision, identity, current);
   if (!captured.ok) return { status: 'conflict' as const };

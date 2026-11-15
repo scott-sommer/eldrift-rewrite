@@ -1025,3 +1025,28 @@ in 8.18s. Native validation in this scenario still reads its controlled observat
 fixture through the fresh callback. The final native runtime must connect that callback
 to current room observation/configuration and admitted identity. Production scoring/defense
 policy and main-loop registration remain open.
+
+### Native fresh commit snapshot and canonical identity (ED-24)
+createNativePlanningCommitValidator now rereads room visibility/ownership, resolved
+activation/configuration, manual/current-plan policy, explicit constraints and native
+terrain/infrastructure before invoking commit validation. A caller-owned policy reader
+supplies current plan/config and scoring-defense policy; the validator performs no
+admission writes. Controller limits are shared with native evaluator composition.
+
+Adapter tests exposed a false mismatch when equivalent observations had different object
+property insertion order (constraints supplied versus defaulted). Admission and native
+commit validation now share identifyPlanningRequest, using the existing assessment
+canonical fingerprint with room identity rather than raw observation JSON. This also
+avoids repeating a second canonicalizer. New request identities intentionally differ
+from the prior raw-JSON format; reopening old in-flight requests restarts them through
+the existing guarded capture/job identity path, without rewriting committed plans.
+
+Quality passed: 423 production / 371 test files, zero Lizard violations. Native adapter
+tests with controlled Game surfaces verify a matching proposal passes and changed terrain,
+refresh/config, constraints, ownership, visibility and activation reject. Targeted checks:
+16 tests / 5 files in 0.437s. Full unit suite: 864 tests / 250 files in 8.14s.
+Native --room-assessment engine-c3BtXA passed exact admission reuse/revision assertions
+with empty errors/messages after the identity change. This native scenario exercises
+observation/admission identity, not a successful live-room plan commit through the new
+validator. That broader qualification, production scoring/defense composition and
+main-loop registration remain open.

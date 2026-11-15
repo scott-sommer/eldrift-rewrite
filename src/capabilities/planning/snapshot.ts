@@ -4,10 +4,10 @@ export const assessmentVersion = 1;
 export function assessmentSnapshot(room: string, input: AssessmentInput, observedAt: number) {
   if (!room || !Number.isSafeInteger(observedAt) || observedAt < 0) throw new Error('Invalid assessment observation');
   const assessment = assessRoom(input);
-  return { version: assessmentVersion, room, observedAt, fingerprint: fingerprint(room, input), assessment };
+  return { version: assessmentVersion, room, observedAt, fingerprint: assessmentFingerprint(room, input), assessment };
 }
 /** Lossless canonical signature: avoids collision-based cache reuse; never includes the observation tick. */
-function fingerprint(room: string, input: AssessmentInput): string {
+export function assessmentFingerprint(room: string, input: AssessmentInput): string {
   const objects = input.objects.map(item => [item.id, item.kind, item.position.x, item.position.y]);
   const structures = input.infrastructure.map(item => [item.id, item.type, item.position.x, item.position.y, item.walkable, item.owned]);
   const constraints = input.constraints.map(item => [item.id, item.kind, item.position.x, item.position.y, item.type ?? null]);
