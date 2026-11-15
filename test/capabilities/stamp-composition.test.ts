@@ -49,3 +49,16 @@ test('combined capacity rejects individually legal stamps and corrupted cursors 
   expect(() => composeStamps(request, { ...paused.checkpoint, cursors: [0, 0] }, 1)).toThrow('choice');
   expect(() => composeStamps(request, { ...paused.checkpoint, exhausted: true }, 1)).toThrow('exhausted');
 });
+
+test('total search limit persists across calls and successful final attempts still complete', () => {
+  const request = { ...input(), maximumTotalAttempts: 2 };
+  const first = composeStamps(request, undefined, 1);
+  expect(first.checkpoint.totalAttempts).toBe(1);
+  const second = composeStamps(request, JSON.parse(JSON.stringify(first.checkpoint)), 1);
+  expect(second).toMatchObject({ status: 'rejected', reason: 'search-limit',
+    checkpoint: { totalAttempts: 2 } });
+  expect(composeStamps(request, second.checkpoint, 99)).toMatchObject({ attempts: 0, status: 'rejected' });
+  expect(() => composeStamps({ ...request, maximumTotalAttempts: 3 }, second.checkpoint, 1)).toThrow('Stale');
+  const single = { ...input(), maximumTotalAttempts: 1, stamps: [input().stamps[0]!] };
+  expect(composeStamps(single, undefined, 1)).toMatchObject({ status: 'complete', checkpoint: { totalAttempts: 1 } });
+});

@@ -5,10 +5,11 @@ import type { TransformIndex } from '../../core/geometry/transforms';
 import { validateLayoutCapacity } from './capacity-validation';
 import type { StructureLimits } from './core-model';
 export interface StampCompositionInput extends Omit<StampPlacementInput, 'stamp' | 'anchor' | 'transform'> {
+  maximumTotalAttempts?: number;
   revision: string; stamps: readonly LayoutStamp[]; anchors: readonly Tile[]; limits: StructureLimits;
 }
 export interface StampCompositionCheckpoint {
-  version: 1; signature: string; choices: number[]; cursors: number[];
+  version: 2; totalAttempts: number; signature: string; choices: number[]; cursors: number[];
   exhausted: boolean; lastReason?: string;
 }
 type Draft = Pick<StampPlacementInput, 'entries' | 'corridors' | 'claimed'>;
@@ -20,7 +21,7 @@ export function composeStamps(
   const checkpoint = restore(input, previous, maximumAttempts);
   let draft = replay(input, checkpoint.choices, guard), attempts = 0;
   while (draft && !checkpoint.exhausted && checkpoint.choices.length < input.stamps.length
-    && attempts < maximumAttempts && guard()) {
+    && attempts < maximumAttempts && checkpoint.totalAttempts < totalLimit(input) && guard()) {
     const depth = checkpoint.choices.length, ordinal = checkpoint.cursors[depth]!;
     if (ordinal >= input.anchors.length * 8) {
       if (!depth) { checkpoint.exhausted = true; break; }
@@ -28,17 +29,24 @@ export function composeStamps(
       draft = replay(input, checkpoint.choices, guard);
       continue;
     }
-    checkpoint.cursors[depth] = ordinal + 1; attempts++;
+    checkpoint.cursors[depth] = ordinal + 1; attempts++; checkpoint.totalAttempts++;
     const placed = attempt(input, draft, depth, ordinal);
     if (!placed.ok) { checkpoint.lastReason = placed.reason; continue; }
     checkpoint.choices.push(ordinal); checkpoint.cursors.push(0);
     draft = placed.draft;
   }
-  const done = !!draft && checkpoint.choices.length === input.stamps.length;
-  return { checkpoint, attempts, status: done ? 'complete' as const
-    : checkpoint.exhausted ? 'rejected' as const : 'pending' as const,
-    ...(done ? { entries: draft!.entries, corridors: draft!.corridors } : {}) };
+  return compositionResult(input, checkpoint, draft, attempts);
 }
+function compositionResult(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint, draft: Draft | undefined, attempts: number) {
+  const done = !!draft && checkpoint.choices.length === input.stamps.length;
+  const limited = checkpoint.totalAttempts >= totalLimit(input);
+  const rejected = checkpoint.exhausted || limited;
+  return { checkpoint, attempts, status: done ? 'complete' as const
+    : rejected ? 'rejected' as const : 'pending' as const,
+    ...(done ? { entries: draft!.entries, corridors: draft!.corridors } : {}),
+    ...(!done && limited ? { reason: 'search-limit' as const } : {}) };
+}
+
 function attempt(input: StampCompositionInput, draft: Draft, depth: number, ordinal: number) {
   const placed = placeStamp({ ...input, ...draft, stamp: input.stamps[depth]!,
     anchor: input.anchors[Math.floor(ordinal / 8)]!, transform: (ordinal % 8) as TransformIndex });
@@ -61,14 +69,15 @@ function replay(input: StampCompositionInput, choices: readonly number[], guard:
 function restore(input: StampCompositionInput, saved: StampCompositionCheckpoint | undefined, budget: number) {
   if (!Number.isSafeInteger(budget) || budget < 0) throw new Error('Invalid composition budget');
   if (!input.revision || input.stamps.length > 64 || input.anchors.length > 2500) throw new Error('Invalid composition input');
-  const signature = JSON.stringify(['stamp-composition-v1', input.revision, input.stamps, input.anchors,
-    input.entries, input.corridors, input.claimed ?? [], input.limits]);
-  if (!saved) return { version: 1 as const, signature, choices: [], cursors: [0], exhausted: false };
+  const signature = JSON.stringify(['stamp-composition-v2', input.revision, input.stamps, input.anchors,
+    input.entries, input.corridors, input.claimed ?? [], input.limits, totalLimit(input)]);
+  if (!saved) return { version: 2 as const, totalAttempts: 0, signature, choices: [], cursors: [0], exhausted: false };
   validateSaved(saved, signature, input.stamps.length, input.anchors.length * 8);
+  validateTotal(saved, totalLimit(input));
   return { ...saved, choices: [...saved.choices], cursors: [...saved.cursors] };
 }
 function validateSaved(saved: StampCompositionCheckpoint, signature: string, depth: number, count: number): void {
-  if (saved.version !== 1 || saved.signature !== signature || typeof saved.exhausted !== 'boolean') throw new Error('Stale composition');
+  if (saved.version !== 2 || saved.signature !== signature || typeof saved.exhausted !== 'boolean') throw new Error('Stale composition');
   if (!validShape(saved, depth)) throw new Error('Invalid composition cursor');
   if (!saved.cursors.every(value => Number.isSafeInteger(value) && value >= 0 && value <= count)) throw new Error('Invalid composition cursor');
   if (!validChoices(saved, count)) throw new Error('Invalid composition choice');
@@ -83,4 +92,15 @@ function validChoices(saved: StampCompositionCheckpoint, count: number): boolean
 function validShape(saved: StampCompositionCheckpoint, depth: number): boolean {
   return Array.isArray(saved.choices) && saved.choices.length <= depth
     && Array.isArray(saved.cursors) && saved.cursors.length === saved.choices.length + 1;
+}
+
+function totalLimit(input: StampCompositionInput): number {
+  const limit = input.maximumTotalAttempts ?? 100000;
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > 1000000) throw new Error('Invalid total search limit');
+  return limit;
+}
+
+function validateTotal(saved: StampCompositionCheckpoint, limit: number): void {
+  if (!Number.isSafeInteger(saved.totalAttempts) || saved.totalAttempts < saved.choices.length
+    || saved.totalAttempts > limit) throw new Error('Invalid composition total');
 }

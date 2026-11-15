@@ -123,3 +123,20 @@ Tests demonstrate serialized single-attempt equivalence, actual backtracking
 when only the first anchor can hold a later storage stamp, failure preservation,
 stale/corrupt cursor rejection and combined RCL capacity rejection.
 Quality passes (440 production / 384 test files, zero violations); smoke passes.
+
+## Total composition budget
+
+Composition checkpoint v2 retains totalAttempts across calls. The injected
+maximumTotalAttempts defaults to 100000 (allowed 1..1000000) and participates
+in request identity. Exhausting it produces rejected/search-limit while keeping
+the last geometric rejection in the checkpoint. A complete solution on the
+final permitted attempt wins over exhaustion. This bounds total exploration,
+not wall-clock cost of a synchronous placement or branch reconstruction.
+
+Version 1 composition cursors reject rather than fabricate consumed counts.
+This is an unregistered development capability; no live migration is implied.
+Five composition tests pass in 272ms, including cross-call exhaustion,
+zero further attempts after exhaustion, changed-limit identity and success
+on the exact limit. Smoke passes in 188ms; quality zero violations
+(440 production /384 test files). Production anchor policy and full draft
+routing/evaluation integration remain outstanding.
