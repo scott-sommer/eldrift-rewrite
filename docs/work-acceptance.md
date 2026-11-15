@@ -26,7 +26,7 @@ The five focused recovery/distributor/support policy test files pass17tests in22
 
 Role inventory reconciliation remains incomplete, including operator assignment translation and expansion-related builder paths. The combined ordinary-colony criterion already has its separate1,100-tick evidence in work.md.
 
-The initial audit found that native-work marked every site ready. The integration below resolves that dependency gap. Final work-selection acceptance reconciliation and a broader native regression remain outstanding; the criterion is not automatically checked by this increment.
+The initial audit found that native-work marked every site ready. The integration below resolves that dependency gap. That increment did not by itself complete acceptance; the full regression and criterion reconciliation are recorded below.
 
 This audit verifies only the recovery acceptance criterion; ED-22 and the overall rewrite remain incomplete.
 
@@ -42,3 +42,19 @@ Native --work-dependencies runs production main with an extension site that woul
 All581 tests/176files pass in4.64s. Final quality305 production/275 test files passes with zero Lizard violations. Initial graph/schema functions exceeded CCN; dependency indexing and entry validation were extracted, without exceptions. Full native aggregate has not been rerun for this increment.
 
 This is dependency consumption by workers, not automatic layout strategy generation or construction-site creation. Those remain required planning work. Schema rollback to code supporting only version1 is not safe after migration; the release migration/rollback rehearsal must account for version2.
+
+## Remaining ordinary-upgrader miner fallback
+
+Source inspection at frozen baseline confirms role.upgrader.js57-64 actively calls utilV2.findMyMiner/collectEnergyFromMiner when controller-link/storage collection is unavailable and assignedNode exists. This is not the commented ordinary-builder branch. utilV2.js103-148 finds/caches the miner by assigned coordinates;150-188 prioritizes adjacent dropped energy, a cached dump target, rich local storage, the miner's dump target, approaching the miner, then nearest dropped resources if no miner exists. withdrawFromTarget at83-101 approaches the assigned position when its cached target disappears.
+
+The rewrite upgrader profile currently ranks drops/controller links/storage only. It neither reads a worker station assignment nor follows its miner deposit endpoint, so ordinary-upgrader parity is incomplete. The next implementation must introduce a feature-owned source/station assignment, observe current deposit infrastructure, and feed chosen endpoints through the existing collection reservations/action adapter. Travel/wait fallback must remain explicit when the endpoint is missing; it must not claim a completed transfer. Existing source identity and container/link/storage metadata in MiningStation provide the boundary, avoiding inference from legacy role strings.
+
+Deliberate corrections to test: legacy miner matching compares coordinates without enforcing the assigned room; cached miner/target can become stale; withdrawFromTarget reads .amount from numeric Store values and may select a non-energy resource. Match full room/source identity, revalidate live endpoints, and collect energy specifically. The helper's suicide on missing assignment must not become the normal absence-of-assignment policy. Preserve unrestricted station endpoint access only within explicit worker reserve/ownership rules. Operator assignedNode translation remains separately traceable; it is not implemented by this audit.
+
+## Work-selection criterion: verified after full native regression
+
+Full pinned native suite at implementation83357c8 passes137checks in351.14s, including the two expected-failure detector cases. artifacts/engine-suite.json records each scenario and evidence path. An additional inspection of all nonnegative evidence reports found no errors and no messages containing Error:.
+
+Requirement mapping: critical repair and downgrade precedence are exercised in work-selection.test.ts; controller downgrade overrides recovery investment suppression in native --energy-recovery (engine-bG07FH). Resource reservation/reserve behavior is exercised in worker-energy.test.ts and native --worker-collection (engine-o9SOMk), where storage stops exactly at50,000 and remaining container energy funds work. Dependency ordering executes through production main in --work-dependencies (engine-PXUu91), with actual road completion releasing the higher-priority extension. --work-selection (engine-RsbY8l) checks construction/repair/upgrade progression. These paths share existing work task execution and action arbitration; the plan integration introduces no second executor. Focused selector/reserve/dependency checks pass11tests in194ms.
+
+The combined1,100-tick colony resilience case also passes in this aggregate (engine-2A1eEV). This verifies the work-selection criterion; it does not complete role parity, later layout strategies/site placement, or release CPU/memory/soak requirements. ED-22 now has recovery, work-selection and combined-colony criteria verified; role traceability remains open, including the assigned-miner fallback above.
