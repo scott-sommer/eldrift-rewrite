@@ -1,6 +1,6 @@
 import { loop as botLoop } from '../../src/main';
 import { advancePlanningJob } from '../../src/features/planning/planning-job';
-import type { PlanningJobCheckpoint } from '../../src/features/planning/planning-job-model';
+import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
 import { createPlanStore } from '../../src/features/planning/plan-store';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { validateDraft } from '../../src/capabilities/planning/draft-validation';
@@ -14,8 +14,10 @@ const limits = { ...planningLimits, rampart: [0, 0, 0, 2500, 2500, 2500, 2500, 2
 let calls = 0;
 export function loop() {
   botLoop();
-  const memory = Memory as Memory & { planningJob?: PlanningJobCheckpoint; jobRows?: unknown[]; jobCommitted?: boolean };
+  const memory = Memory as Memory & { jobRows?: unknown[]; jobCommitted?: boolean };
   const store = createPlanStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
+  const jobs = createPlanningJobStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
+  let job = jobs.read();
   if (!memory.jobCommitted) {
     const result = advancePlanningJob({
       observation: JSON.stringify(planningObservation()), policy: 'fixture-v1', baseRevision: 0,
@@ -25,8 +27,10 @@ export function loop() {
       } },
       weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
       minimumImprovement: 0, step: evaluateJobCandidate, validate: valid,
-    }, memory.planningJob, 1);
-    memory.planningJob = result.checkpoint;
+    }, job.checkpoint, 1);
+    const saved = jobs.save(job.revision, result.checkpoint);
+    if (!saved.ok) throw new Error('Lost planning job revision');
+    job = saved.record;
     if (result.done) {
       if (!('proposal' in result) || !result.proposal) throw new Error('No selected native plan');
       const committed = store.commit(0, result.proposal,
@@ -37,7 +41,7 @@ export function loop() {
     }
   }
   const plan = store.read();
-  (memory.jobRows ??= []).push({ tick: Game.time, calls: ++calls, next: memory.planningJob!.next,
+  (memory.jobRows ??= []).push({ tick: Game.time, calls: ++calls, next: job.checkpoint!.next,
     revision: plan.revision, strategy: plan.strategy, committed: memory.jobCommitted ?? false });
 }
 function valid(proposal: PlanProposal): boolean {

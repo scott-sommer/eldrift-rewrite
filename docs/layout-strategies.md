@@ -434,3 +434,33 @@ Quality: 392 production / 349 test files, zero Lizard violations; 764 tests / 23
 passed in 6.59s. Unit coverage includes JSON continuation, all-candidate selection,
 hysteresis, rejected candidates, ties, stale inputs, guard yielding, exceptions and
 evaluator/validator mutation isolation. No ED-24 acceptance item is newly closed.
+
+### Versioned durable job store (ED-24)
+Planning progress now uses the shared versioned state port under planning-jobs/<room>,
+owner planning-jobs, schema version 1. Its revision is independent of planning/<room>.
+The store validates cursor/seen IDs, pending/rejection metadata and retained proposals
+against the existing staged-plan/provenance schema. Evaluator checkpoint payloads must
+be plain JSON; their strategy-specific validity remains the evaluator's responsibility.
+Reads and saves detach data. Stale writers cannot save or clear newer revisions.
+Changed job identity cannot silently replace progress: callers explicitly clear the
+expected revision before starting another identity. Clearing progress never touches
+the committed plan. Corrupt, wrong-owner and future-version records throw without
+overwriting evidence.
+
+The native --planning-job fixture now reads/writes this store instead of an ad hoc
+Memory property. Engine-eS0Jle passed 90 ticks, both code reloads, job envelope version/
+owner checks and 67 progress revisions, selecting and committing constrained at tick 67.
+The committed plan stayed revision zero before selection and one afterward. Errors and
+messages were empty. Total fixture Memory was 148,528 bytes. Average CPU 18.52 ms
+(7–139 ms), higher than the earlier unvalidated ad hoc storage scenario; schema/copy
+cost remains material. Removing redundant reads reduced an initial store run average
+from 21.14 ms, but these single local runs are not a firm performance guarantee.
+Validation still occurs before every write.
+
+Quality: 394 production / 350 test files, zero Lizard violations. Full unit suite:
+770 tests / 232 files in 7.00s. After removing redundant reads, the six store tests
+passed in 268 ms and native continuation passed again. Tests cover detachment,
+revision conflicts, explicit identity reset, committed-plan preservation, future/corrupt
+envelopes, invalid evaluator payloads and retained proposal/schema failures.
+Production scheduling, job invalidation/retirement policy, commit-window recovery,
+complete candidate enumeration and incremental score evaluation remain open.
