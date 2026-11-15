@@ -58,3 +58,28 @@ zero-work yielding, exhausted failure reasons, stale definitions/constraints,
 invalid budgets and detached state. Nine stamp tests pass in 279ms; smoke in
 188ms; quality passes (437 production / 382 test files, zero violations).
 Runtime registration and full composition acceptance remain outstanding.
+
+## Staged catalog
+
+createStampCatalog builds independent hub, spawn, five-extension strip,
+reaction-lab and support stamps using injected structure limits. It includes
+all native maximum spawns/extensions/towers and factory/power spawn/nuker/
+observer capacity, plus storage/terminal and one hub link. Source/controller/
+mineral infrastructure and remaining links belong to the existing attachment
+pipeline, not duplicate catalog entries.
+
+The lab stamp selectively reuses stageConstrainedCore's corrected lab/road
+geometry and reagent-first staging, excluding its storage/terminal/link.
+Its provenance is the existing constrained-template correction rather than a
+new unverified reaction pattern. Hub/service/extension stamp geometries are
+new, independently placeable primitives. Every stamp declares traversable road
+connection ports. Extension strips allow narrow terrain pockets; support stamps
+are small single-structure groups.
+
+Catalog tests validate total service capacity and every RCL cap, all eight
+transforms and road ports, all staged lab reaction ranges, independent returned
+definitions and invalid capacity input. Twelve stamp tests pass in 307ms;
+smoke passes in 189ms; quality passes for 438 production / 383 test files with
+zero violations. This is pure geometry/staging evidence. Whole-room reachability,
+composition/backtracking, shared-inventory accounting and native registration
+remain outstanding; no claim of complete irregular-room planning is made.
