@@ -10,6 +10,7 @@ import { connectRoads } from './road-connections';
 import { placementFailures } from './placement-validation';
 import { validateDraft } from './draft-validation';
 export interface FinishDraftInput {
+  assess?: typeof assessRoom;
   entries: readonly StagedTile[]; storage: Tile; anchors: readonly Tile[];
   observation: AssessmentInput; limits: StructureLimits;
   blocksMovement: (type: string) => boolean;
@@ -22,7 +23,7 @@ export function finishDraft(input: FinishDraftInput) {
   return completeDraftRoads(input, prepared.assessment, result);
 }
 export function prepareDraftRoads(input: FinishDraftInput) {
-  const assessment = assessRoom(input.observation);
+  const assessment = (input.assess ?? assessRoom)(input.observation);
   const existingRoads = input.observation.infrastructure.filter(entry => entry.type === 'road').map(entry => entry.position);
   const costs = planningRoadCosts(assessment, input.entries, existingRoads, input.blocksMovement);
   const roads = input.entries.filter(entry => entry.type === 'road').map(entry => entry.position);

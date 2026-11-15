@@ -8,9 +8,9 @@ import { resourceInfrastructure } from './resource-infrastructure';
 import { auxiliaryInfrastructure } from './auxiliary-infrastructure';
 import { scheduleCapacity } from './capacity-scheduling';
 export function attachInfrastructure(
-  core: readonly CorePlacement[], storage: Tile, observation: AssessmentInput, limits: StructureLimits,
+  core: readonly CorePlacement[], storage: Tile, observation: AssessmentInput, limits: StructureLimits, assess: typeof assessRoom = assessRoom,
 ) {
-  const assessment = assessRoom(observation);
+  const assessment = assess(observation);
   const excluded = new Set(observation.constraints.filter(item => item.kind !== 'locked').map(item => tileIndex(item.position)));
   const observedRoads = new Set(observation.infrastructure.filter(item => item.type === 'road').map(item => tileIndex(item.position)));
   const context = {

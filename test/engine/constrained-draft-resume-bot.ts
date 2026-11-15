@@ -1,3 +1,5 @@
+import { createAssessmentCache } from '../../src/capabilities/planning/assessment-cache';
+import { assessRoom } from '../../src/capabilities/planning/assessment';
 import { loop as botLoop } from '../../src/main';
 import { constrainedDraft } from '../../src/capabilities/planning/constrained-draft';
 import { constrainedDraftBatch } from '../../src/capabilities/planning/constrained-draft-batch';
@@ -6,11 +8,13 @@ import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-sea
 import { planningLimits } from '../fixtures/planning-limits';
 import { planningObservation } from '../fixtures/planning-observation';
 let calls = 0;
+let assessmentBuilds = 0;
+const assess = createAssessmentCache(input => { assessmentBuilds++; return assessRoom(input); });
 export function loop() {
   botLoop();
   const memory = Memory as Memory & { draftCheckpoint?: ConstrainedDraftCheckpoint; expectedDraft?: string; draftResumeRows?: unknown[]; checkpointMetrics?: unknown };
   const input = { candidate: { anchor: { x: 25, y: 25 }, transform: 0 as const },
-    observation: planningObservation(), limits: planningLimits,
+    assess, observation: planningObservation(), limits: planningLimits,
     blocksMovement: (type: string) => OBSTACLE_OBJECT_TYPES.some(obstacle => obstacle === type),
     search: (costs: readonly number[]) => planningRoadSearch('W0N1', costs, 10000) };
   if (Game.time === 1) {
@@ -20,6 +24,7 @@ export function loop() {
   }
   const result = constrainedDraftBatch(input, 'native-v1:maxOps=10000', memory.draftCheckpoint, 1);
   if (!result.ok) throw new Error('Resumed constrained draft failed: ' + JSON.stringify(result));
+  if (assessmentBuilds !== 1) throw new Error('Repeated room assessment in unchanged planning runtime');
   memory.draftCheckpoint = result.checkpoint;
   memory.checkpointMetrics = {
     serializedCharacters: JSON.stringify(result.checkpoint).length,

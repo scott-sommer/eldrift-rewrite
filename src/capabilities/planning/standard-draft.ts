@@ -17,7 +17,7 @@ export function standardDraftFoundation(input: StandardDraftInput) {
   if (!core) return { ok: false as const, phase: 'footprint' as const, details: input.candidate };
   const placement = placementFailures(core, input.observation);
   if (placement.length) return { ok: false as const, phase: 'placement' as const, details: placement };
-  const attached = attachInfrastructure(core, anchor, input.observation, input.limits);
+  const attached = attachInfrastructure(core, anchor, input.observation, input.limits, input.assess);
   if (!attached.ok) return { ok: false as const, phase: 'capacity' as const, details: attached.failure };
   if (attached.missing.length) return { ok: false as const, phase: 'infrastructure' as const, details: attached.missing };
   return attached;

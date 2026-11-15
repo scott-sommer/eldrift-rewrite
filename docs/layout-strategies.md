@@ -373,3 +373,30 @@ Quality: 388 production / 345 test files, zero Lizard violations; 751 unit tests
 all 511 binary sequences through length eight having distinct identities, changed
 terrain/cost cells and policy/metadata invalidation. Preparation caching and whole-planner
 CPU bounds remain open; compact signatures reduce persistence overhead only.
+
+### Caller-owned assessment reuse (ED-24)
+Layout preparation accepts an optional assessment provider. A caller-owned single-entry
+heap cache now reuses an exact unchanged observation across infrastructure attachment,
+traffic preparation and final road preparation. Both synchronous and batched strategies
+receive the same narrow dependency. The default remains direct assessment; no global
+cache or game objects are introduced. A runtime reload loses the cache and safely rebuilds
+it from the observation. Changed terrain, objects, infrastructure ownership, constraints,
+cost policy or margin invalidate it using exact serialized observation identity.
+The detached assessment result is recursively frozen to prevent consumer mutation;
+the input observation remains mutable and unfrozen. Failed builds do not replace the
+last successfully cached observation.
+
+Native constrained engine-xl2sln and standard engine-eEEbJR passed with empty errors/
+messages. Both bots assert exactly one assessment build per runtime, including rebuilt
+runtimes after code reloads, while preserving exact uninterrupted-layout equivalence.
+Constrained checkpoint remains 65,909 characters and total fixture Memory 98,661 bytes.
+Constrained 70-tick average CPU was 10.21 ms (3–105 ms), versus 20.31 ms (9–114 ms)
+in preceding uncached engine-Uk6xFM. This is local fixture evidence, not a deployment
+budget guarantee; the first tick includes an uninterrupted reference computation.
+Standard averaged 19.92 ms (3–93 ms) across its short 12-tick fixture.
+
+Quality passed: 389 production / 346 test files, zero Lizard violations; 754 tests /
+230 files in 7.57s. Unit tests cover equivalent reconstructed inputs, deep immutability,
+in-place invalidation, single-entry eviction, failed builds and fresh runtime recreation.
+Foundation generation, service packing, exact signature scans and final validation still
+repeat; whole-planner CPU bounds and automatic candidate coordinator wiring remain open.

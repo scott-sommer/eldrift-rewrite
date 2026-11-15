@@ -11,7 +11,7 @@ export type ConstrainedRoadInput = Omit<FinishDraftInput, 'search'> & {
   search: (costs: readonly number[]) => TrafficRoadInput['search'];
 };
 export function constrainedRoads(input: ConstrainedRoadInput) {
-  const assessment = assessRoom(input.observation);
+  const assessment = (input.assess ?? assessRoom)(input.observation);
   const observed = input.observation.infrastructure.filter(entry => entry.type === 'road').map(entry => entry.position);
   const costs = planningRoadCosts(assessment, input.entries, observed, input.blocksMovement);
   const roads = input.entries.filter(entry => entry.type === 'road').map(entry => entry.position);
