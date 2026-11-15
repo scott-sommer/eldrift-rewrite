@@ -320,3 +320,29 @@ with empty errors/messages, including JSON-resumed native alternate routing equa
 routing. This native check resumes within one tick; it is not a runtime-reload or hard-CPU-kill proof.
 The helper is not yet wired into constrained draft orchestration, core-road stitching, service
 packing, or its final connectivity pass. Full constrained continuation remains unfinished.
+
+### Constrained draft continuation (ED-24)
+The constrained draft now composes traffic-lane batching, core-road stitching and final
+connection batching under one search budget. Foundation preparation and service packing
+are extracted and shared with the synchronous strategy. Pending results omit entries;
+only the completed, structurally validated draft exposes them. Observation, entries,
+limits, costs and caller search revision bind the road checkpoints. Changed observations
+reject restoration; failed core stitching rejects the draft. The last committed plan is
+not touched by this capability.
+
+Native --constrained-draft-resume (engine-ouDZZi) ran 70 ticks with one search per tick,
+actual code/runtime reloads before ticks 6 and 36, all three routing phases observed,
+and exact final entries/connections/lanes/omissions equal to the uninterrupted strategy.
+Completed calls performed no more searches. Status passed, errors/messages empty.
+--layout-placement (engine-KqGKED) also passed, preserving eight-orientation assembly
+and measured strategy selection. Quality passed for 387 production / 344 test files,
+zero Lizard violations; 747 tests / 228 files passed in 7.24s.
+
+Measured native scenario CPU: 9–108 ms, average 17.73 ms over 70 samples. First sample
+includes the uninterrupted comparison computation. Final total fixture Memory was
+216,471 bytes, including reference draft, checkpoints and diagnostic rows; this is not
+an isolated production checkpoint measurement. Assessment, foundation and service packing
+are still recomputed on resumed calls; final validation repeats after completion.
+Search count bounds are not a whole-planner CPU bound. Checkpoint fingerprint size,
+preparation caching, candidate orchestration, live-room qualification and hard CPU
+termination testing remain outstanding before ED-24 completion.
