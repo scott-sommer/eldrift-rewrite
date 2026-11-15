@@ -7,10 +7,14 @@ import type { WorkerEnergyProfile } from '../../src/features/work/energy-profile
 export function loop() {
   const creep = Object.values(Game.creeps).find(item => item.name.startsWith('profile-'))!;
   const profile = creep.name.slice('profile-'.length);
+  if (profile === 'flag-hold' && Game.time === 1) {
+    creep.room.createFlag(10, 10, 'Transfer:test:W0N1');
+    return;
+  }
   creep.memory.population = { owner: workOwner('W0N1'), home: 'W0N1' };
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
-  settings.empire = { workersEnabled: true, workerEnergyProfile: (profile === 'hold' ? 'upgrader-v2' : profile) as WorkerEnergyProfile,
+  settings.empire = { workersEnabled: true, workerEnergyProfile: ((profile === 'hold' || profile === 'flag-hold') ? 'upgrader-v2' : profile) as WorkerEnergyProfile,
     workerHoldStoragePosition: profile === 'hold' };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();

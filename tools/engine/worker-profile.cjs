@@ -12,14 +12,14 @@ async function workerProfileWorld(server, bot, profile) {
     user: bot.id, store: { energy: 35001 }, storeCapacity: 300000, hits: 3000, hitsMax: 3000,
   });
   await server.world.addRoomObject('W0N1', 'link', 19, 20, {
-    user: bot.id, store: { energy: profile === 'hold' ? 0 : 401 }, storeCapacityResource: { energy: 800 }, cooldown: 0, hits: 1000, hitsMax: 1000,
+    user: bot.id, store: { energy: (profile === 'hold' || profile === 'flag-hold') ? 0 : 401 }, storeCapacityResource: { energy: 800 }, cooldown: 0, hits: 1000, hitsMax: 1000,
   });
   await server.world.addRoomObject('W0N1', 'energy', 19, 22, { energy: profile === 'upgrader' ? 20 : 60, resourceType: 'energy' });
 }
 function verifyWorkerProfile(memory, profile) {
   const rows = memory.workerProfile;
-  if (profile === 'hold') {
-    assert.deepEqual(rows.map(row => row[0]), [0, 0, 0]);
+  if (profile === 'hold' || profile === 'flag-hold') {
+    assert.deepEqual(rows.map(row => row[0]), profile === 'hold' ? [0, 0, 0] : [0, 0]);
     assert.ok(rows.every(row => row[5] === 19 && row[6] === 21), 'held worker does not travel to remote storage');
     return;
   }

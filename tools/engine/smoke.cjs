@@ -81,7 +81,7 @@ const { energyRecoveryWorld, changeRecoveryEnergy, verifyEnergyRecovery } = requ
 const { mixedWorkersWorld, verifyMixedWorkers } = require('./mixed-workers.cjs');
 const { workerPopulationWorld, loseWorker, verifyWorkerPopulation } = require('./worker-population.cjs');
 const { workerProfileWorld, verifyWorkerProfile } = require('./worker-profile.cjs');
-const workerProfile = ['builder', 'fortifier', 'upgrader', 'upgrader-v2', 'hold'].find(profile => process.argv.includes('--worker-profile-' + profile));
+const workerProfile = ['builder', 'fortifier', 'upgrader', 'upgrader-v2', 'hold', 'flag-hold'].find(profile => process.argv.includes('--worker-profile-' + profile));
 const { workerPickupWorld, verifyWorkerPickup } = require('./worker-pickup.cjs');
 const { workerCollectionWorld, verifyWorkerCollection } = require('./worker-collection.cjs');
 const { verifyWorkerRuntime } = require('./worker-runtime.cjs');

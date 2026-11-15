@@ -1054,7 +1054,7 @@
     "source": "`spawner.js`",
     "evidence": "legacy README; verify against handlers",
     "targetIssue": "ED-39",
-    "implementationStatus": "not ported",
+    "implementationStatus": "partial: upgrader-v2 distant-storage hold consumes current-room Transfer markers; transfer hauler recruitment/return-anchor integration remains ED-39",
     "sourceCandidates": [
       {
         "file": "role.builder.js",

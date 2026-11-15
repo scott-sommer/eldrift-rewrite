@@ -1,3 +1,4 @@
+import { nativeWorkerHold } from './native-worker-hold';
 import { assignedMinerCollection } from './native-worker-miner';
 import { selectBootstrapEnergy } from '../features/work/bootstrap-energy';
 import { harvestBootstrapEnergy } from './native-bootstrap-harvest';
@@ -30,7 +31,7 @@ export function createNativeWorkerCollection(state: StatePort, dispatch: ReturnT
     const free = creep.store.getFreeCapacity();
     const origin = creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 };
     let order = bootstrap ? selectBootstrapEnergy(sources, origin, free, creep.store.getCapacity()) : selectProfileEnergy(sources, origin, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
-      storageReserve: config.workerEnergyStorageReserve, holdStoragePosition: config.workerHoldStoragePosition });
+      storageReserve: config.workerEnergyStorageReserve, holdStoragePosition: nativeWorkerHold(creep.room, config) });
     const selected = assignedMinerCollection(creep, owner, config, dispatch, booked, order);
     if (selected && 'status' in selected) return selected;
     order = selected;

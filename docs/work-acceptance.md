@@ -128,3 +128,13 @@ The shared exclusion transform now accepts selected structure types, and native-
 Native --art-builder runs production main: while both markers enclose wall/rampart, rampart reaches300 by tick4 and wall stays100. Missing-corner observations retain wall100. Removing all markers permits wall repair to300 by tick14; final energy6. Evidence engine-pZ1LaS. Fortifier lifecycle regression engine-FPrVaY still protects both types initially. The scenario is registered in the full suite. Pure tests verify wall-only filtering for valid and malformed regions. All589tests/180files pass4.65s; quality315production/283testfiles passes with zero Lizard violations. No full aggregate rerun is claimed.
 
 Builder renewal is called only for newSpawner at role.builder.js run entry, so its expansion lifecycle remains traceable to ED-30 rather than ordinary builder renewal. Final ED-22 role reconciliation remains open.
+
+## Upgrader-v2 Transfer marker input
+
+role.upgraderV2.js evaluateNextTask permits a full controller-link load, then nearby container/storage collection, before checking current-room flags containing Transfer to suppress distant home-storage collection. Existing energy profile already represented the selection policy through workerHoldStoragePosition, but native flags were disconnected.
+
+native-worker-hold now combines explicit hold configuration with current-room Transfer markers for the upgrader-v2 profile only. It does not impose a general movement lock or suppress nearby energy collection; it feeds the existing distant-storage fallback policy. Removing the marker releases the derived hold on the next observation, without sticky legacy state. Other profiles are unchanged.
+
+Native --worker-profile-flag-hold creates a real Transfer marker on tick1 with explicit hold configuration false. On ticks2–3 the empty worker remains19,21 with distant storage available and no eligible link. Evidence engine-Gh95dU. Unit boundary coverage verifies marker removal, other-profile isolation and explicit hold. All590tests/181files pass4.59s; quality316production/284testfiles passes with zero Lizard violations. Initial test import was corrected before these checks. Full aggregate not rerun; scenario registered.
+
+This implements one Transfer consumer only. Transfer-driven hauler recruitment and return-position behavior remain ED-39 integration work, explicitly retained in flag inventory. ED-22 final role reconciliation remains open.
