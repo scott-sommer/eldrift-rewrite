@@ -287,3 +287,11 @@ Dedicated --planning-commit generates a standard candidate using native PathFind
 Quality passed (378 production / 338 test files, zero Lizard violations). Native --planning-commit engine-ecZ6hd passed with reload provenance; --layout-placement engine-1CD54V passed with unchanged measured strategy selection. Both errors/messages empty. No production changes; targeted native checks cover the new scenario and shared proposal helper. The new scenario is registered in the full suite.
 
 Combined with the existing configuration-choice regression, versioned serializable staged plans/provenance and bootstrap-to-final-plan identity are now evidenced for ED-24. The scenario uses controlled room observations; it is not live automatic planning or a full migration rehearsal. Automatic orchestration, bounded full candidate construction, hard CPU termination and broad room qualification remain pending.
+
+### Resumable road connection construction
+
+connectRoadBatch bounds path searches per call and checkpoints completed connections plus their accumulated preferred roads. JSON-restored batches match uninterrupted connectRoads output; incomplete paths never add tiles or consume their destination. CPU yielding and thrown search interruptions preserve saved progress. Checkpoint validation covers network signature, target identities, connection measurements, duplicate roads and retention of original roads. Pending checkpoint roads remain draft data and must not be published as a complete plan.
+
+Quality passed (380 production / 339 test files, zero Lizard violations). Unit suite passed 737 tests / 225 files in 7.11s. Extended native reload/control scenarios passed engine-DhUKeP and engine-tKrPqJ, errors/messages empty: one connection per tick, persisted four-road network, native connection costs [8,3] confirming road reuse, and no searches after completion. Load-time witness confirms the first connection survives code reload together with enumeration/scoring checkpoints.
+
+The new mechanism is not yet wired into standard/constrained candidate assembly; alternate-lane construction and full planner orchestration still require phased continuation. Hard CPU termination remains unverified. ED-24 checkpoint acceptance stays open.
