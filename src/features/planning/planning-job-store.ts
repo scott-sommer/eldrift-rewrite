@@ -25,7 +25,10 @@ export function createPlanningJobStore(port: StatePort, room: string, types: rea
     if (!current.checkpoint || current.checkpoint.signature !== receipt.signature || current.checkpoint.pending) {
       return { ok: false as const, reason: 'unfinished' as const };
     }
-    const record: PlanningJobRecord = { room, revision: current.revision + 1, receipt };
+    const checkpoint = current.checkpoint;
+    const diagnostics = { evaluated: checkpoint.next, rejected: checkpoint.rejected,
+      ...(checkpoint.lastRejection ? { lastRejection: checkpoint.lastRejection } : {}) };
+    const record: PlanningJobRecord = { room, revision: current.revision + 1, receipt: { ...receipt, diagnostics } };
     saveState(port, key, schema, record);
     return { ok: true as const, record: copyPlain(record) };
   }

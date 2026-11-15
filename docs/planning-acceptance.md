@@ -7,3 +7,22 @@ Architecture decisions, charter, full goal, roadmap/backlog, development instruc
 Future source discoveries refine the inventory under the responsible feature ticket. Do not classify an implemented capability as deferred without user agreement. Preserve exact source SHA and file hashes when porting.
 
 Validation: 60/60 modules have owners/issues/symbols; 60/60 console controls have owners; 26 documented flag records; source hashes previously verified against the frozen checkout; git diff --check passes. No production test suite exists yet. Local SSH publication remains blocked by the wrong account; local commits are intact.
+
+## Completed-attempt diagnostics (ED-24)
+
+Completion receipts now retain evaluated/rejected candidate counts and the last
+candidate rejection identifier/reason, derived from the saved checkpoint rather
+than supplied by the caller. Full candidate history and retained proposals are
+still retired. Existing v2 receipts without diagnostics remain readable; no
+invented historical counts are introduced.
+
+Regression evidence covers a successful commit followed by a rejected replacement:
+the original plan remains byte-for-byte equivalent as plain data, the failure
+receipt survives store recreation, and the unchanged request stays idle. Receipt
+validation rejects inconsistent counters and malformed rejection data; detached
+return values cannot mutate persisted diagnostics.
+
+Validation: quality passes (435 production / 380 test files, zero Lizard
+violations); targeted planning receipt/store/cycle tests and fast smoke pass.
+This is persistence/unit evidence, not proof of recovery from native hard CPU
+termination. ED-24's reset/CPU-exhaustion gate remains open.

@@ -90,3 +90,24 @@ test('configured refresh retries a completed failed request while budget tuning 
   expect(input.step).toHaveBeenCalledTimes(2);
   expect(ports.plans.read().revision).toBe(0);
 });
+
+test('failed replacement retains the committed plan and rejection details across reload', () => {
+  const { ports, input, port } = setup();
+  runPlanningCycle(ports, input, 1, 1);
+  const baseline = ports.plans.read();
+  const replacement = { ...input, baseRevision: 1, observation: 'changed',
+    step: vi.fn(() => ({ status: 'rejected' as const, reason: 'source-access-blocked' })) };
+  expect(runPlanningCycle(ports, replacement, 2, 1)).toMatchObject({
+    status: 'finished', outcome: 'no-valid-candidate',
+  });
+  ports.jobs = createPlanningJobStore(port, 'W0N1', ['spawn', 'storage']);
+  expect(ports.jobs.read().receipt).toMatchObject({
+    planRevision: 1, outcome: 'no-valid-candidate',
+    diagnostics: { evaluated: 1, rejected: 1,
+      lastRejection: { id: 'standard:0', reason: 'source-access-blocked' } },
+  });
+  expect(ports.jobs.read()).not.toHaveProperty('checkpoint');
+  expect(runPlanningCycle(ports, replacement, 3, 1).status).toBe('idle');
+  expect(ports.plans.read()).toEqual(baseline);
+  expect(replacement.step).toHaveBeenCalledTimes(1);
+});

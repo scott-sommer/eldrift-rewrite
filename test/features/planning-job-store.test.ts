@@ -93,3 +93,18 @@ test('v1 progress migrates to v2 without losing resumable work', () => {
   expect(store.read()).toEqual({ room: 'W0N1', revision: 7, checkpoint: checkpoint() });
   expect(records['planning-jobs/W0N1']).toMatchObject({ version: 2 });
 });
+
+test('completion derives detached diagnostics from saved progress', () => {
+  const { store } = setup();
+  store.save(0, { version: 1, signature: 'job-v1', next: 2,
+    seen: ['standard:0', 'standard:1'], rejected: 2,
+    lastRejection: { id: 'standard:1', reason: 'lab-access' } });
+  const finished = store.finish(1, { signature: 'job-v1', planRevision: 0, completedAt: 5,
+    outcome: 'no-valid-candidate', diagnostics: { evaluated: 99, rejected: 99 } });
+  expect(finished.ok).toBe(true);
+  if (!finished.ok) throw new Error('Completion failed');
+  expect(finished.record.receipt?.diagnostics).toEqual({ evaluated: 2, rejected: 2,
+    lastRejection: { id: 'standard:1', reason: 'lab-access' } });
+  finished.record.receipt!.diagnostics!.lastRejection!.reason = 'mutated';
+  expect(store.read().receipt?.diagnostics?.lastRejection?.reason).toBe('lab-access');
+});
