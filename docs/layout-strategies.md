@@ -814,3 +814,23 @@ suite: 830 tests / 242 files in 9.35s. Native --planning-job engine-FOyF3P passe
 230-tick planning/reload/recovery/manual-metadata assertions with empty errors/messages.
 This closes an entry-validation gap; runtime scheduling and the broader remaining
 ED-24 acceptance criteria are still open.
+
+### Prepared request identity for manual edits (ED-24)
+preparePlanningRequest now returns a detached, placement-sorted operatorEntries snapshot
+and a versioned policyIdentity binding those entries to the request preservation/strategy
+policy. Runtime composition can give the same identity to the evaluator and outer job,
+so manual metadata edits cause guarded job restart rather than only an inner stale
+checkpoint exception. This identity covers request policy; scoring weights/cost policy,
+strategy versions and search revision must still be included by the composing caller.
+
+An integrated test starts pending evaluation, edits manual storage priority, prepares a
+new identity, restarts the persisted job and commits the edited priority. Additional
+tests cover detached snapshots and identity changes for RCL, dependencies and preservation
+mode. The first integration run exposed a fixture type-list omission (rampart); correcting
+the fixture to match its actual proposal made the test pass without weakening validation.
+
+Quality passed: 411 production / 362 test files, zero Lizard violations. Targeted request,
+operator, planning-cycle and enumeration-cycle tests plus broad smoke passed 28 tests /
+5 files in 0.497s. Full unit/native suites were not repeated for this pure request-policy
+change; their latest preceding evidence remains recorded above. Runtime wiring remains
+open; this provides the identity contract that wiring needs.

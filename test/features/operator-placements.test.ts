@@ -1,3 +1,5 @@
+import { preparePlanningRequest } from '../../src/features/planning/planning-request';
+import { planningObservation } from '../fixtures/planning-observation';
 import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
 import { createPlanStore } from '../../src/features/planning/plan-store';
 import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
@@ -108,11 +110,38 @@ test('invalid manual dependency becomes a persisted rejection and completion rec
     source: { revision: 'fixture', count: 1, at: () => candidate },
     weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
     minimumImprovement: 0, step: createCandidateEvaluator(config), validate: () => true };
-  const ports = { jobs: createPlanningJobStore(port, 'W0N1', Object.keys(planningLimits)),
-    plans: createPlanStore(port, 'W0N1', Object.keys(planningLimits)), validateCommit: () => true };
+  const ports = { jobs: createPlanningJobStore(port, 'W0N1', Object.keys(planningLimits).concat('rampart')),
+    plans: createPlanStore(port, 'W0N1', Object.keys(planningLimits).concat('rampart')), validateCommit: () => true };
   expect(runPlanningCycle(ports, input, 1, 1)).toMatchObject({ status: 'pending' });
   expect(runPlanningCycle(ports, input, 2, 1)).toMatchObject({ status: 'finished', outcome: 'no-valid-candidate' });
   expect(ports.jobs.read().receipt?.outcome).toBe('no-valid-candidate');
   expect(ports.plans.read().revision).toBe(0);
   expect(runPlanningCycle(ports, input, 3, 1)).toMatchObject({ status: 'idle' });
+});
+
+test('prepared policy identity changes on manual edits and restarts pending evaluation', () => {
+  const records: Record<string, unknown> = {};
+  const port = { read: (key: string) => records[key], write: (key: string, value: Envelope) => { records[key] = value; } };
+  const plan = { room: 'W0N1', revision: 0, strategy: null, entries: [manual] };
+  const policy = { strategy: 'auto' as const, preserveExisting: true, valuableTypes: ['storage'], constrainedAnchorLimit: 36 };
+  const firstRequest = preparePlanningRequest(planningObservation(), plan, policy);
+  if (!firstRequest.ok) throw new Error(firstRequest.reason);
+  const ports = { jobs: createPlanningJobStore(port, 'W0N1', Object.keys(planningLimits).concat('rampart')),
+    plans: createPlanStore(port, 'W0N1', Object.keys(planningLimits).concat('rampart')), validateCommit: () => true };
+  const config = { ...options(), policy: firstRequest.policyIdentity, operatorEntries: firstRequest.operatorEntries };
+  const input = { observation: 'obs', policy: config.policy, baseRevision: 0,
+    source: { revision: 'fixture', count: 1, at: () => candidate },
+    weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
+    minimumImprovement: 0, step: createCandidateEvaluator(config), validate: () => true };
+  runPlanningCycle(ports, input, 1, 1);
+  const old = ports.jobs.read().checkpoint!.signature;
+  const updatedRequest = preparePlanningRequest(planningObservation(), { ...plan, entries: [{ ...manual, priority: -999 }] }, policy);
+  if (!updatedRequest.ok) throw new Error(updatedRequest.reason);
+  expect(updatedRequest.policyIdentity).not.toBe(firstRequest.policyIdentity);
+  const updated = { ...input, policy: updatedRequest.policyIdentity,
+    step: createCandidateEvaluator({ ...config, policy: updatedRequest.policyIdentity, operatorEntries: updatedRequest.operatorEntries }) };
+  expect(runPlanningCycle(ports, updated, 2, 1)).toMatchObject({ status: 'pending' });
+  expect(ports.jobs.read().checkpoint!.signature).not.toBe(old);
+  expect(runPlanningCycle(ports, updated, 3, 1)).toMatchObject({ status: 'finished', outcome: 'committed' });
+  expect(ports.plans.read().entries.find(entry => entry.type === 'storage')?.priority).toBe(-999);
 });

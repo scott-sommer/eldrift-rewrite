@@ -33,7 +33,10 @@ export function preparePlanningRequest(observed: AssessmentInput, plan: PlanStat
     controller: controller.position, limit: policy.constrainedAnchorLimit,
     preferred: [...(previous ? [previous.anchor] : []), ...(storage ? [storage] : [])],
   };
-  return { ok: true as const, observation, options: copyPlain(options) };
+  const operatorEntries = copyPlain(plan.entries.filter(entry => entry.source === 'operator'))
+    .sort((a, b) => (a.type + ':' + a.x + ':' + a.y).localeCompare(b.type + ':' + b.x + ':' + b.y));
+  const policyIdentity = 'planning-request-v1:' + JSON.stringify([copyPlain(policy), operatorEntries]);
+  return { ok: true as const, observation, options: copyPlain(options), operatorEntries, policyIdentity };
 }
 function requestConstraints(observation: AssessmentInput, plan: PlanState, policy: PlanningRequestPolicy): PlanningConstraint[] {
   const automatic = policy.preserveExisting

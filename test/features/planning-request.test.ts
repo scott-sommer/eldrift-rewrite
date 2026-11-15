@@ -78,3 +78,20 @@ test('previous plan anchors seed both strategies while orientation seeds only it
   plan.provenance.transform = 8;
   expect(() => preparePlanningRequest(observation, plan, policy)).toThrow('previous transform');
 });
+
+test('prepared manual policy is detached and binds metadata and preservation settings', () => {
+  const { observation, plan } = setup();
+  const first = preparePlanningRequest(observation, plan, policy);
+  if (!first.ok) throw new Error(first.reason);
+  first.operatorEntries[0]!.priority = 999;
+  expect(plan.entries[0]!.priority).toBe(0);
+  for (const edited of [{ ...plan.entries[0]!, priority: 1 }, { ...plan.entries[0]!, rcl: 3 },
+    { ...plan.entries[0]!, dependencies: ['storage:25:25'] }]) {
+    const next = preparePlanningRequest(observation, { ...plan, entries: [edited] }, policy);
+    if (!next.ok) throw new Error(next.reason);
+    expect(next.policyIdentity).not.toBe(first.policyIdentity);
+  }
+  const changed = preparePlanningRequest(observation, plan, { ...policy, preserveExisting: false });
+  if (!changed.ok) throw new Error(changed.reason);
+  expect(changed.policyIdentity).not.toBe(first.policyIdentity);
+});
