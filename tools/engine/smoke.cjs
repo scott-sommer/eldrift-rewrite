@@ -43,10 +43,11 @@ const { groundDeliveryWorld, reloadGroundDelivery, verifyGroundDelivery } = requ
 const groundRecovery = process.argv.includes('--ground-recovery');
 const groundDelivery = process.argv.includes('--ground-delivery') || groundRecovery;
 const { upgradeMasterWorld, ageUpgradeMaster, verifyUpgradeMaster } = require('./upgrade-master.cjs');
-const { changeMasterLayout, verifyMasterLayoutLoss } = require('./master-layout-loss.cjs');
+const { changeMasterLayout, verifyMasterLayoutLoss, removeMasterStorage, verifyMasterStorageLoss } = require('./master-layout-loss.cjs');
+const masterStorageLoss = process.argv.includes('--master-storage-loss');
 const masterLayoutLoss = process.argv.includes('--master-layout-loss');
 const masterContention = process.argv.includes('--upgrade-master-contention');
-const upgradeMaster = process.argv.includes('--upgrade-master') || masterContention || masterLayoutLoss;
+const upgradeMaster = process.argv.includes('--upgrade-master') || masterContention || masterLayoutLoss || masterStorageLoss;
 const { upgradeFleetWorld, verifyUpgradeFleet, changeUpgradeFleet } = require('./upgrade-fleet.cjs');
 const upgradeFleetLoss = process.argv.includes('--upgrade-fleet-loss');
 const upgradeFleet = process.argv.includes('--upgrade-fleet') || upgradeFleetLoss;
@@ -454,6 +455,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     }
     if (upgradeMaster) await ageUpgradeMaster(server, bot, tick);
     if (masterLayoutLoss) await changeMasterLayout(server, bot, tick);
+    if (masterStorageLoss) await removeMasterStorage(server, tick);
     if (upgradeFleet) {
       const reloaded = await changeUpgradeFleet(server, bot, modules, tick, upgradeFleetLoss);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
@@ -497,7 +499,8 @@ server.on('error', error => { console.error(error); finish(1, error); });
   assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
   if (structureActions) verifyStructureActions(memory);
-  if (masterLayoutLoss) verifyMasterLayoutLoss(memory);
+  if (masterStorageLoss) verifyMasterStorageLoss(memory);
+  else if (masterLayoutLoss) verifyMasterLayoutLoss(memory);
   else if (upgradeMaster) verifyUpgradeMaster(memory, masterContention);
   if (upgradeFleet) verifyUpgradeFleet(memory, upgradeFleetLoss);
   if (upgradeRoom) verifyUpgradeRoom(memory, process.argv.includes('--upgrade-room-shortage'));

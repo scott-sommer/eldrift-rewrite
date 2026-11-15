@@ -1,3 +1,4 @@
+import { haulingOwner } from '../features/logistics/identity';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
 import type { RoomFeature } from './runtime-model';
@@ -21,6 +22,10 @@ export function createNativeUpgradeMaster(state: StatePort, dispatch: Dispatch,
   const definitions = { haul: createNativeHaulingTask(state, stationary, { version: 'upgrade-master', maximumRooms: 16, costs: {}, blockedRooms: [] }) };
   const execute = createTaskRunner(state, definitions, () => Game.time);
   function run(creep: Creep, room: Room, config: Readonly<RuntimeConfig>, active: boolean): void {
+    if (room.controller!.level < 6 && !room.storage && creep.store.getUsedCapacity() === 0) {
+      creep.memory.population = { home: room.name, owner: haulingOwner(room.name) };
+      return;
+    }
     const layout = observeUpgradeMasterLayout(room);
     if (!layout) return;
     dispatch.activate();

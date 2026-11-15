@@ -24,3 +24,21 @@ function verifyMasterLayoutLoss(memory) {
   assert.ok(rows.every(row => row.total <= 2 && row.localCargo === 0));
 }
 module.exports = { changeMasterLayout, verifyMasterLayoutLoss };
+
+async function removeMasterStorage(server, tick) {
+  if (tick !== 100) return;
+  const { db } = await server.world.load();
+  await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'storage' });
+  await db['rooms.objects'].update({ room: 'W0N1', type: 'controller' }, { $set: { level: 2 } });
+}
+function verifyMasterStorageLoss(memory) {
+  const rows = memory.upgradeMaster;
+  const before = rows.find(row => row.tick === 100), after = rows.find(row => row.tick === 101);
+  console.log('MASTER_STORAGE_LOSS_SUMMARY ' + JSON.stringify({ before, after, last: rows.at(-1) }));
+  assert.equal(before.master.cargo, 0);
+  assert.equal(after.master.name, before.master.name);
+  assert.equal(after.master.owner, 'logistics:' + JSON.stringify('W0N1'));
+  assert.ok(rows.filter(row => row.tick > 100).every(row => row.master.owner === 'logistics:' + JSON.stringify('W0N1') && row.total === 2));
+}
+module.exports.removeMasterStorage = removeMasterStorage;
+module.exports.verifyMasterStorageLoss = verifyMasterStorageLoss;
