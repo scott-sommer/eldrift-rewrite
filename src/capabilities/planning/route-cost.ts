@@ -1,13 +1,14 @@
 import { connectRoads } from './road-connections';
 import type { RoadConnectionsInput } from './road-connections';
 import type { Tile } from '../../core/geometry/local-grid';
+export interface MeasuredRoute { id: string; cost: number; weight: number; contribution: number; steps: number }
 export interface WeightedDestination { id: string; position: Tile; weight: number }
 export interface RouteCostInput extends Omit<RoadConnectionsInput, 'targets' | 'buildable'> {
   targets: readonly WeightedDestination[];
 }
 /** Measure independent journeys on one fixed final network, never discount earlier measured paths. */
 export function measureRouteCost(input: RouteCostInput) {
-  const routes: { id: string; cost: number; weight: number; contribution: number; steps: number }[] = [];
+  const routes: MeasuredRoute[] = [];
   const ids = new Set<string>();
   for (const target of input.targets) {
     if (!target.id || ids.has(target.id) || !Number.isFinite(target.weight) || target.weight < 0) {
