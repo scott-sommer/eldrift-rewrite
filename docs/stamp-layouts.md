@@ -162,3 +162,19 @@ full unit suite 918 tests / 260 files passes in 8.71s. Smoke passed earlier in
 the iteration. These are contract/failure tests, not successful native stamp
 layout evidence. Anchor policy, strategy registration, full successful routing
 fixtures and native qualification remain open.
+
+## Preservation-aware anchor policy
+
+stampAnchors derives anchors from matching owned/locked structures under all
+eight transforms, deduplicates and ranks those first, then ranks remaining
+interior anchors by Chebyshev distance from the selected hub and row-major tie.
+Hostile structures are not promoted. A caller limit bounds returned anchors;
+the geometry admission phase still handles terrain and occupancy. An anchor
+can be an empty stamp origin, so testing its terrain alone would be incorrect.
+
+Tests verify transformed reuse, ordering independent of observation order,
+duplicate-lock deduplication, hostile exclusion, interior bounds and detached
+results. Three tests pass in 287ms; smoke in 190ms; quality zero violations
+(442 production /386 test files). Integration must give each stamp its own
+anchor sequence and pin the hub to the candidate storage position. This policy
+is not yet wired into native candidate generation.
