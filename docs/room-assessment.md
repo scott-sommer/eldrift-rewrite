@@ -40,3 +40,13 @@ Costs are configurable positive integers below255 (defaultplain1/swamp5);255 rep
 Exit groups are maximal contiguous passable runs on each side, ordered top/right/bottom/left and increasing coordinate within a side. Corners belong to both incident sides intentionally; consumers must keep side identity rather than deduplicating distinct directions. An exit group describes border terrain only, not confirmed neighbouring-room connectivity.
 
 Open, swamp-heavy divided and fully closed fixtures check costs, counts, component sizes, margins and split exit runs. Sparse terrain, malformed costs and invalid margins fail explicitly.602tests/184files pass4.91s; quality320production/287testfiles zero Lizard violations. Native aggregate remains149; pure assessment is not yet attached to a runtime observer. Object/structure constraints, access tiles, anchors, stable fingerprint and freshness remain required.
+
+## Objects, infrastructure and manual constraints
+
+assessRoom composes terrain with typed fixed objects, infrastructure observations and manual constraints. It returns separate walkable and available-empty-footprint masks, recomputing regions/clearance from the latter. Fixed object tiles block both. Existing structures occupy new-footprint space while their explicit walkable property controls access; native ownership/type classification remains an adapter responsibility.
+
+Keep-clear constraints reserve building space without blocking movement. Blocked constraints prevent both. Locked placements require a structure type and reserve their tile; a desired placement does not become a current movement obstacle before construction. Constraint records are preserved and sorted, not silently resolved or interpreted as construction authorization. Structure overlap legality and conflicting desired placements belong to later validation.
+
+Each source/mineral exposes walkable adjacent work tiles; controllers expose adjacent access separately from range3 work tiles. Empty access lists remain explicit. Current owned spawn/storage/terminal observations become candidate anchors; strategy selection is not performed. Returned anchors/constraints clone position data to avoid mutating inputs.
+
+Fixtures cover fixed-object exclusion, source/controller work ranges, walkable occupied roads, blocking spawns, each constraint type, anchor ownership, copying, inaccessible mineral and malformed/duplicate entries.605tests/185files pass4.96s; quality322production/288testfiles zero Lizard violations. Fingerprint/freshness, native observation and end-to-end assessment scenarios remain required;149-native aggregate unchanged.
