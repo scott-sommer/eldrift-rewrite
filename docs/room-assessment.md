@@ -30,3 +30,13 @@ Clearance is Chebyshev distance to the nearest ineligible tile or outside-room c
 Fixtures cover open, divided, diagonal-only, obstructed and fully blocked masks. An independent direct-distance oracle checks every tile against three obstacles and the room boundary. Input is not mutated; wrong-sized, nonboolean and sparse masks are rejected.599tests/183files initially pass4.91s; quality319production/286testfiles zero Lizard violations. Final sparse-mask validation is included in the recorded final checks.
 
 Terrain costs, exits, object/access/anchor constraints, fingerprint/freshness and native observation remain pending. No construction/action API is used. The prior149-check engine aggregate is unchanged; these pure modules are not yet runtime consumers.
+
+## Terrain costs and directional exits
+
+assessTerrain composes the grid primitives over2500 validated plain/swamp/wall cells. Terrain passability includes edge cells; candidate placement eligibility additionally applies an explicit margin (default2, matching legacy core bounds2..47). The returned buildable mask is terrain-only eligibility, not final legal structure placement. Regions and clearance use this margin-constrained mask.
+
+Costs are configurable positive integers below255 (defaultplain1/swamp5);255 represents blocked terrain. They are planning weights, not a claim of body-specific movement fatigue or a native path matrix. Counts retain terrain composition for strategy assessment.
+
+Exit groups are maximal contiguous passable runs on each side, ordered top/right/bottom/left and increasing coordinate within a side. Corners belong to both incident sides intentionally; consumers must keep side identity rather than deduplicating distinct directions. An exit group describes border terrain only, not confirmed neighbouring-room connectivity.
+
+Open, swamp-heavy divided and fully closed fixtures check costs, counts, component sizes, margins and split exit runs. Sparse terrain, malformed costs and invalid margins fail explicitly.602tests/184files pass4.91s; quality320production/287testfiles zero Lizard violations. Native aggregate remains149; pure assessment is not yet attached to a runtime observer. Object/structure constraints, access tiles, anchors, stable fingerprint and freshness remain required.
