@@ -1,0 +1,4087 @@
+{
+  "source": "room.rampart.strategy.perimeterWithController.js",
+  "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+  "sha256": "dfd11ba162bd5b9a0ae9c00b20c69ec979d3c7268d423ddf72f366da5b9bad44",
+  "cases": [
+    {
+      "name": "open",
+      "bounds": {
+        "minX": 20,
+        "maxX": 30,
+        "minY": 20,
+        "maxY": 30
+      },
+      "controller": {
+        "x": 40,
+        "y": 40
+      },
+      "walls": [],
+      "expected": [
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 17,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 17,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 19,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 19,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 20,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 20,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 21,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 21,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 22,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 22,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 23,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 23,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 24,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 24,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 25,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 25,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 40
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 40,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 40,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 40
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        }
+      ]
+    },
+    {
+      "name": "clipped",
+      "bounds": {
+        "minX": 2,
+        "maxX": 8,
+        "minY": 2,
+        "maxY": 8
+      },
+      "controller": {
+        "x": 1,
+        "y": 1
+      },
+      "walls": [],
+      "expected": [
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 3,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 4,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 5,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 5,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 6,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 7,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 8,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 8,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 9,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 9,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 10,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 11,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 11,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 3
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 4
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 5
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 6
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 7
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 8
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 9
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 10
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 10
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 11
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 12,
+            "y": 11
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        }
+      ]
+    },
+    {
+      "name": "overlap",
+      "bounds": {
+        "minX": 20,
+        "maxX": 30,
+        "minY": 20,
+        "maxY": 30
+      },
+      "controller": {
+        "x": 17,
+        "y": 17
+      },
+      "walls": [],
+      "expected": [
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 17,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 17,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 19,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 19,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 20,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 20,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 21,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 21,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 22,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 22,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 23,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 23,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 24,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 24,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 25,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 25,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 17,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        }
+      ]
+    },
+    {
+      "name": "natural-wall",
+      "bounds": {
+        "minX": 20,
+        "maxX": 30,
+        "minY": 20,
+        "maxY": 30
+      },
+      "controller": {
+        "x": 40,
+        "y": 40
+      },
+      "walls": [
+        "16:16",
+        "17:16",
+        "39:39"
+      ],
+      "expected": [
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 17,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 18,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 19,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 19,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 20,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 20,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 21,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 21,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 22,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 22,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 23,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 23,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 24,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 24,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 25,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 25,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 16,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 40
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 40,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 40,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 40
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 40,
+          "tag": "controller"
+        }
+      ]
+    },
+    {
+      "name": "no-controller",
+      "bounds": {
+        "minX": 30,
+        "maxX": 47,
+        "minY": 2,
+        "maxY": 40
+      },
+      "walls": [],
+      "expected": [
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 27,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 28,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 29,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 30,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 31,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 32,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 33,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 34,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 35,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 35,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 36,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 36,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 37,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 37,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 38,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 38,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 39,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 40,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 40,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 41,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 42,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 42,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 43,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 43,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 44,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 44,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 45,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 45,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 46,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 46,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 2
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 44
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 3
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 3
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 4
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 4
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 5
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 5
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 6
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 6
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 7
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 7
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 8
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 8
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 9
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 9
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 10
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 10
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 11
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 11
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 12
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 13
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 13
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 14
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 14
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 15
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 15
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 16
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 17
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 18
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 19
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 20
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 21
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 22
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 23
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 24
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 25
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 26
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 27
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 28
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 29
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 30
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 31
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 32
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 33
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 34
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 35
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 35
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 36
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 36
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 37
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 37
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 38
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 38
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 39
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 40
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 40
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 41
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 42
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 42
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 26,
+            "y": 43
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        },
+        {
+          "type": "rampart",
+          "position": {
+            "x": 47,
+            "y": 43
+          },
+          "rcl": 6,
+          "priority": 50,
+          "tag": "perimeter"
+        }
+      ]
+    }
+  ]
+}

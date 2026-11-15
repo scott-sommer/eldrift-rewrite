@@ -8,7 +8,13 @@
     "exactOptionalPropertyTypes": true,
     "noEmit": true,
     "skipLibCheck": true,
-    "types": ["screeps"]
+    "types": [
+      "screeps"
+    ],
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ]
 }

@@ -1,3 +1,4 @@
+import { applyLegacyPerimeterDefense } from '../../src/features/planning/legacy-perimeter-defense';
 import { createNativePlanningScore } from '../../src/app/native-planning-score';
 import type { PlanEntry } from '../../src/features/planning/plan-model';
 import { createNativePlanningEvaluator } from '../../src/app/native-planning-evaluator';
@@ -20,5 +21,5 @@ export const evaluateJobCandidate = createNativePlanningEvaluator({
   searchRevision: 'native-job-v1', versions: { standard: 'fixture-v1', constrained: 'fixture-v1' },
   prepare: measure('prepare', prepareEvaluation), operatorEntries,
   maximumSearches: 1, maximumPathOps: 10000, canContinue: () => true,
-  prepareScore: (candidate, entries) => score(candidate, measurementInput(entries, observation).entries),
+  prepareScore: (candidate, entries) => score(candidate, applyLegacyPerimeterDefense(candidate, entries, observation)),
 });

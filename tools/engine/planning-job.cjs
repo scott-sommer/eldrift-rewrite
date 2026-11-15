@@ -40,7 +40,21 @@ function verifyPlanningJob(memory) {
   assert.equal(request.data.request.basePlan.revision, 0);
   const plan = memory.eldrift.records['planning/W0N1'].data;
   assert.equal(plan.entries.filter(entry => entry.type === 'extension').length, 60);
-  assert.deepEqual(plan.provenance.costs, { hauling: 64, service: 337, capacityShortfall: 0, swamps: 0, defense: 85, migration: 303 });
+  assert.deepEqual(plan.provenance.costs, { hauling: 64, service: 337, capacityShortfall: 0, swamps: 0, defense: 94, migration: 312 });
+  const ramparts = plan.entries.filter(entry => entry.type === 'rampart');
+  assert.equal(ramparts.length, 94);
+  assert.ok(ramparts.every(entry => entry.rcl === 6));
+  const perimeter = ramparts.filter(entry => entry.tag === 'perimeter');
+  const controller = ramparts.filter(entry => entry.tag === 'controller');
+  assert.equal(perimeter.length, 86);
+  assert.equal(controller.length, 8);
+  assert.ok(perimeter.every(entry => entry.priority === 50));
+  assert.ok(controller.every(entry => entry.priority === 40 && Math.max(Math.abs(entry.x - 40), Math.abs(entry.y - 40)) === 1));
+  const minX = Math.min(...perimeter.map(entry => entry.x)), maxX = Math.max(...perimeter.map(entry => entry.x));
+  const minY = Math.min(...perimeter.map(entry => entry.y)), maxY = Math.max(...perimeter.map(entry => entry.y));
+  assert.equal(perimeter.length, 2 * (maxX - minX + maxY - minY));
+  assert.ok(perimeter.every(entry => entry.x === minX || entry.x === maxX || entry.y === minY || entry.y === maxY));
+  assert.equal(new Set(ramparts.map(entry => entry.x + ':' + entry.y)).size, 94);
   assert.equal(plan.provenance.committedAt, 199);
   assert.deepEqual(plan.entries.find(entry => entry.type === 'storage'), {
     type: 'storage', x: 25, y: 25, rcl: 4, priority: -777,
