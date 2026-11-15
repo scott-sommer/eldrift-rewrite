@@ -834,3 +834,26 @@ operator, planning-cycle and enumeration-cycle tests plus broad smoke passed 28 
 5 files in 0.497s. Full unit/native suites were not repeated for this pure request-policy
 change; their latest preceding evidence remains recorded above. Runtime wiring remains
 open; this provides the identity contract that wiring needs.
+
+### Owned-room planning scheduler feature (ED-24)
+createPlanningFeature connects the persisted enumeration/scoring lifecycle to the existing
+runtime RoomFeature contract as owned-room background work. Explicit ports supply request
+preparation, enablement, work/CPU budgets, clocks and result reporting. Existing scheduler
+admission owns bucket thresholds, per-room background settings and ordering; the feature
+adds a shared continuation guard for preparation and the admitted planning cycle.
+Its deadline is the smaller of starting CPU plus the planning allowance and the room's
+background fraction of tickLimit. Exhausted preparation does not start enumeration.
+
+Integration tests run the actual runtime scheduler and real planning stores/lifecycle.
+They verify low-bucket/disabled/foreign-room deferral, one evaluator step per simulated
+allowance, all eight candidates across runtime recreation, completion idleness,
+no state writes after preparation exhausts the allowance, and isolated scheduler failure
+for invalid budgets. These are controlled CPU clock tests, not native CPU bounds.
+
+Quality passed: 412 production / 363 test files, zero Lizard violations. Scheduler,
+runtime, planning-feature and smoke tests passed 15 tests in 0.345s. Full fast suite:
+836 tests / 243 files in 8.40s. Native suite was not rerun: this feature is injectable
+and not yet registered in the native main composition. Native request preparation,
+trigger policy/configuration and final feature registration remain required.
+Cooperative checks cannot preempt synchronous work; cold preparation and persistence
+overhead still require native budget qualification.
