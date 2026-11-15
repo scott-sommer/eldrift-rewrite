@@ -57,3 +57,16 @@ test('foreign controllers and out-of-room targets cannot be selected, and invali
   expect(select(assessment)).toBeUndefined();
   expect(() => selectWork(assessment, position(), 'builder', { ...defaultWorkPolicy, criticalRepairFraction: 0.9 })).toThrow('threshold');
 });
+
+test('builder weak-wall tier beats distance and preempts a retained healthier wall at the strict half boundary', () => {
+  const assessment: WorkAssessment = { sites: [], structures: [
+    structure('near', 'constructedWall', 25000),
+    structure('far', 'constructedWall', 24999, 40),
+  ] };
+  expect(select(assessment, 'near')?.id).toBe('far');
+  assessment.structures[1]!.hits = 25000;
+  expect(select(assessment)?.id).toBe('near');
+  assessment.structures[0]!.hits = 50000;
+  assessment.structures[1]!.hits = 50000;
+  expect(select(assessment)).toBeUndefined();
+});

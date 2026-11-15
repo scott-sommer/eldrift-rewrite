@@ -23,12 +23,13 @@ function repairOrder(item: WorkStructure, origin: Position, mode: WorkerMode, po
   if (item.hits >= targetHits) return [];
   const critical = !barrier && item.hits < item.maximum * policy.criticalRepairFraction;
   if (mode === 'fortifier' && !barrier && !critical) return [];
-  const priority = critical ? 10 : barrier ? barrierPriority(item, mode) : 30;
+  const priority = critical ? 10 : barrier ? barrierPriority(item, mode, targetHits) : 30;
   const score = barrier ? item.hits + workRange(origin, item.position) * policy.barrierDistanceWeight : workRange(origin, item.position);
   return [{ id: item.id, position: item.position, kind: 'repair', priority, score, targetHits }];
 }
-function barrierPriority(item: WorkStructure, mode: WorkerMode): number {
-  return mode === 'fortifier' || item.type === 'rampart' ? 40 : 41;
+function barrierPriority(item: WorkStructure, mode: WorkerMode, targetHits: number): number {
+  if (mode === 'fortifier' || item.type === 'rampart') return 40;
+  return item.hits < targetHits / 2 ? 41 : 42;
 }
 
 function repairTarget(item: WorkStructure, policy: Readonly<WorkPolicy>): number {
