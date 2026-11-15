@@ -5,7 +5,7 @@ import { finishDraftBatch } from './finish-draft-batch';
 import type { FinishDraftInput } from './finish-draft';
 import type { RoadCheckpoint } from './road-checkpoint';
 export interface StampDraftInput extends Omit<FinishDraftInput, 'entries' | 'anchors'> {
-  composition: Pick<StampCompositionInput, 'stamps' | 'anchors' | 'entries' | 'corridors' | 'claimed' | 'maximumTotalAttempts'>;
+  composition: Pick<StampCompositionInput, 'stamps' | 'anchors' | 'anchorsByStamp' | 'entries' | 'corridors' | 'claimed' | 'maximumTotalAttempts'>;
 }
 export interface StampDraftCheckpoint { version: 1; composition: StampCompositionCheckpoint; roads?: RoadCheckpoint }
 /** Composition, resource attachment and shared final road/access validation remain separate phases. */

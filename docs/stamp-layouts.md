@@ -178,3 +178,19 @@ results. Three tests pass in 287ms; smoke in 190ms; quality zero violations
 (442 production /386 test files). Integration must give each stamp its own
 anchor sequence and pin the hub to the candidate storage position. This policy
 is not yet wired into native candidate generation.
+
+## Per-stamp anchor integration
+
+Composition accepts anchorsByStamp, retaining the shared-anchor option for
+simple callers. Each depth validates ordinals against its own candidate count,
+including the terminal zero cursor. Anchor-list changes invalidate saved search
+identity. prepareStampComposition connects the catalog and preservation-aware
+policy: hub is pinned to candidate storage; other stamps receive independently
+ranked bounded lists. Inputs/returned placements remain detached.
+
+The draft pipeline forwards these lists. Tests verify independent pinned
+placements, serialized resumption, changed-list rejection, per-depth cursor
+bounds and observed-spawn prioritization. Twelve targeted composition/policy/
+draft tests pass in 391ms; smoke 202ms; quality zero violations
+(443 production /387 test files). Native registration and successful full
+catalog/road qualification remain outstanding.

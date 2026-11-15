@@ -62,3 +62,14 @@ test('total search limit persists across calls and successful final attempts sti
   const single = { ...input(), maximumTotalAttempts: 1, stamps: [input().stamps[0]!] };
   expect(composeStamps(single, undefined, 1)).toMatchObject({ status: 'complete', checkpoint: { totalAttempts: 1 } });
 });
+
+test('per-stamp anchor lists pin independent placements and validate their own cursor bounds', () => {
+  const request = { ...input(), anchorsByStamp: [[{ x: 30, y: 30 }], [{ x: 20, y: 20 }]] };
+  const first = composeStamps(request, undefined, 1);
+  const result = composeStamps(request, JSON.parse(JSON.stringify(first.checkpoint)), 1);
+  expect(result.status).toBe('complete');
+  expect(result.entries?.find(entry => entry.type === 'spawn')?.position).toEqual({ x: 30, y: 30 });
+  expect(result.entries?.find(entry => entry.type === 'storage')?.position).toEqual({ x: 20, y: 20 });
+  expect(() => composeStamps({ ...request, anchorsByStamp: [[], []] }, first.checkpoint, 1)).toThrow('Stale');
+  expect(() => composeStamps(request, { ...first.checkpoint, cursors: [1, 9] }, 1)).toThrow('cursor');
+});
