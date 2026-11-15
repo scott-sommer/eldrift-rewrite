@@ -31,3 +31,30 @@ test('rejects a sparse array whose extra property masks its missing index', () =
   expect(() => copyPlain(value)).toThrow('extended array');
   expect(copyPlain([1, 2])).toEqual([1, 2]);
 });
+
+test('plain copy preserves JSON normalization while detaching shared references', () => {
+  const shared = { nested: [1, 'value', null, true] };
+  const value = Object.assign(Object.create(null), { first: shared, second: shared, negativeZero: -0 });
+  const copied = copyPlain(value);
+  expect(copied).toEqual(JSON.parse(JSON.stringify(value)));
+  expect(Object.getPrototypeOf(copied)).toBe(Object.prototype);
+  expect(Object.is(copied.negativeZero, -0)).toBe(false);
+  expect(copied.first).not.toBe(shared);
+  expect(copied.first).not.toBe(copied.second);
+});
+test('prototype-like keys remain data without changing the destination prototype', () => {
+  const value = JSON.parse('{"__proto__":{"polluted":true},"constructor":"data","prototype":[1]}');
+  const copied = copyPlain(value);
+  expect(Object.getPrototypeOf(copied)).toBe(Object.prototype);
+  expect(Object.hasOwn(copied, '__proto__')).toBe(true);
+  expect(copied.polluted).toBeUndefined();
+  expect(JSON.stringify(copied)).toBe(JSON.stringify(value));
+});
+test('symbols, hidden properties and validation-budget overflow remain rejected', () => {
+  expect(() => copyPlain({ [Symbol('hidden')]: 1 })).toThrow('non-data');
+  expect(() => copyPlain(Object.defineProperty({}, 'hidden', { value: 1 }))).toThrow('non-data');
+  expect(() => copyPlain(Array(100001).fill(0))).toThrow('validation budget');
+  let deep: unknown = 0;
+  for (let depth = 0; depth < 102; depth++) deep = { child: deep };
+  expect(() => copyPlain(deep)).toThrow('validation budget');
+});

@@ -1,3 +1,4 @@
+import { measure, profileJobs, profilePlans } from './planning-profile';
 import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
 import { loop as botLoop } from '../../src/main';
 import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
@@ -15,11 +16,11 @@ let calls = 0;
 export function loop() {
   botLoop();
   const memory = Memory as Memory & { jobRows?: unknown[]; jobCommitted?: boolean; recoveredCommit?: boolean };
-  const store = createPlanStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
-  const jobs = createPlanningJobStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
+  const store = profilePlans(createPlanStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits)));
+  const jobs = profileJobs(createPlanningJobStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits)));
   const cycleJobs = { ...jobs, finish: (...args: Parameters<typeof jobs.finish>) =>
     Game.time === 199 ? { ok: false as const, reason: 'revision' as const } : jobs.finish(...args) };
-  const result = runPlanningCycle({ jobs: cycleJobs, plans: store,
+  const result = measure('cycle', runPlanningCycle)({ jobs: cycleJobs, plans: store,
     validateCommit: plan => valid({ ...plan, strategy: plan.strategy!, provenance: plan.provenance! }) }, {
       observation: JSON.stringify(planningObservation()), policy: 'fixture-v1', baseRevision: 0,
       source: { revision: 'two-strategies-v1', count: 2, at: index => {
@@ -27,7 +28,7 @@ export function loop() {
         return { id: strategy + ':25:25:0', strategy, anchor: { x: 25, y: 25 }, transform: 0 };
       } },
       weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
-      minimumImprovement: 0, step: evaluateJobCandidate, validate: valid,
+      minimumImprovement: 0, step: measure('evaluate', evaluateJobCandidate), validate: measure('validate', valid),
     }, Game.time, 1);
   if (result.status === 'finished') memory.recoveredCommit = result.recovered;
   const job = jobs.read();

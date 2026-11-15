@@ -600,3 +600,36 @@ passed in 7.36s. Coverage includes completion/recreation idleness, lost acknowle
 changed-input restart, superseded requests, failed-search receipts and v1-to-v2 migration.
 Production runtime scheduling/trigger policy, enumeration persistence, live-room qualification,
 whole-planner CPU bounds and hard termination evidence remain open.
+
+### Profile-guided persistence copying (ED-24)
+Added native fixture timing around lifecycle calls, evaluator work and job/plan store
+operations. The matched 230-tick baseline engine-7D7oC0 measured job.read 3,364.63 ms
+across 460 calls and job.save 4,970.64 ms across 200 calls. Evaluator calls totaled
+3,818.80 ms; lifecycle calls totaled 12,257.48 ms. Timings are inclusive and some
+diagnostic reads occur outside the lifecycle, so these categories must not be summed
+as disjoint shares.
+
+copyPlain now validates and constructs detached plain data in one traversal, removing
+the separate JSON stringify/parse round trip. Immutable strings need no reconstruction,
+which matters for large nested checkpoint signatures. Existing cycle, non-JSON value,
+accessor, prototype, sparse/extended array and node/depth checks remain. Negative zero
+normalizes to zero; null-prototype input objects normalize to ordinary plain objects;
+shared references become independent copies. Own __proto__ keys are defined as data
+properties without invoking the destination prototype setter.
+
+Matched engine-7JaUIq measured job.read 598.42 ms and job.save 823.12 ms, an 83% reduction
+in their combined measured total. Lifecycle total fell to 4,584.61 ms. Overall sampled
+average tick CPU fell from 66.41 to 27.12 ms; maximum from 168 to 130 ms. Both native
+runs preserved all layout/cost/store/reload/retirement assertions with empty errors/messages.
+These are local fixture measurements, not guaranteed runtime budgets; validation,
+preparation and cold-tick work remain significant.
+
+Quality passed for 402 production / 356 test files, zero Lizard violations. Full unit
+suite passed 797 tests / 236 files in 7.12s, including new compatibility checks for
+normalization, independent aliases, dangerous-looking property names, symbols, hidden
+properties and node/depth bounds. The full native regression suite passed 157 checks in 445.99s (artifacts/engine-suite.json),
+including the two intentional error/timeout negative tests. All positive scenarios had
+empty error arrays. The only positive-scenario messages were the expected single
+barrier-repair suspension warning in each of --art-region and --art-builder, explicitly
+asserted by verifyArtRegion. No unexplained messages remained. This broad regression
+covers persistence users beyond planning; it does not close unfinished rewrite features.
