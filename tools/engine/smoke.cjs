@@ -1,3 +1,5 @@
+const planningCommit = process.argv.includes('--planning-commit');
+const { reloadCommittedPlan, verifyPlanningCommit } = require('./planning-commit.cjs');
 const planningRouteReload = process.argv.includes('--planning-route-reload');
 const planningRouteResume = planningRouteReload || process.argv.includes('--planning-route-resume');
 const { verifyPlanningRouteResume, reloadPlanningRoutes } = require('./planning-route-resume.cjs');
@@ -226,6 +228,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) modules.main = await actionBundle(root, 'worker-pickup-bot');
   if (process.argv.includes('--worker-collection')) modules.main = await actionBundle(root, 'worker-collection-bot');
   if (process.argv.includes('--worker-runtime')) modules.main = await actionBundle(root, 'worker-runtime-bot');
+  if (planningCommit) modules.main = await actionBundle(root, 'planning-commit-bot');
   if (planningRouteResume) modules.main = await actionBundle(root, 'planning-route-resume-bot');
   if (layoutPlacement) modules.main = await actionBundle(root, 'layout-placement-bot');
   if (roomAssessment) modules.main = await actionBundle(root, 'room-assessment-bot');
@@ -341,7 +344,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (workerProfile) await workerProfileWorld(server, bot, workerProfile);
   if (process.argv.includes('--worker-pickup')) await workerPickupWorld(server, bot);
   if (process.argv.includes('--worker-collection')) await workerCollectionWorld(server, bot);
-  if (planningRouteResume || layoutPlacement || roomAssessment || process.argv.includes('--work-selection') || process.argv.includes('--worker-runtime')) await workSelectionWorld(server, bot);
+  if (planningCommit || planningRouteResume || layoutPlacement || roomAssessment || process.argv.includes('--work-selection') || process.argv.includes('--worker-runtime')) await workSelectionWorld(server, bot);
   if (process.argv.includes('--work')) await workWorld(server, bot);
   if (process.argv.includes('--resources')) await resourceWorld(server, bot);
   if (process.argv.includes('--movement') || process.argv.includes('--paths')) await movementWorld(server, bot);
@@ -478,6 +481,10 @@ server.on('error', error => { console.error(error); finish(1, error); });
     }
     if (process.argv.includes('--energy-recovery')) await changeRecoveryEnergy(server, tick);
     if (process.argv.includes('--worker-population')) await loseWorker(server, tick);
+    if (planningCommit) {
+      const reloaded = await reloadCommittedPlan(server, bot, modules, tick);
+      if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
+    }
     if (planningRouteReload) {
       const reloaded = await reloadPlanningRoutes(server, bot, modules, tick);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
@@ -565,6 +572,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) verifyWorkerPickup(memory);
   if (process.argv.includes('--worker-collection')) verifyWorkerCollection(memory);
   if (process.argv.includes('--worker-runtime')) verifyWorkerRuntime(memory);
+  if (planningCommit) verifyPlanningCommit(memory);
   if (planningRouteResume) verifyPlanningRouteResume(memory, planningRouteReload);
   if (layoutPlacement) verifyLayoutPlacement(memory);
   if (roomAssessment) verifyRoomAssessment(memory);

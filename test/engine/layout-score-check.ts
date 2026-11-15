@@ -5,7 +5,7 @@ import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-sea
 import type { StagedTile } from '../../src/capabilities/planning/template';
 import type { AssessmentInput } from '../../src/capabilities/planning/assessment-model';
 import { planningLimits } from '../fixtures/planning-limits';
-export function measuredLayout(id: string, entries: readonly StagedTile[], observation: AssessmentInput) {
+export function measuredProposal(id: string, entries: readonly StagedTile[], observation: AssessmentInput) {
   const protectedTypes = ['spawn', 'extension', 'storage', 'terminal', 'lab', 'tower', 'factory', 'powerSpawn', 'nuker', 'observer'];
   const protectedEntries = entries.filter(entry => protectedTypes.includes(entry.type));
   const defended = [...entries, ...protectedEntries.map(entry => ({ type: 'rampart', position: entry.position, rcl: 4, priority: -100 }))];
@@ -30,5 +30,10 @@ export function measuredLayout(id: string, entries: readonly StagedTile[], obser
   const record = { room: 'W0N1', revision: 1, ...proposal, provenance: { ...proposal.provenance, committedAt: Game.time } };
   if (!planSchema('W0N1', Object.keys(limits)).valid(record)) throw new Error('Generated proposal failed schema');
   if (!proposal.entries.some(entry => entry.tag === 'source' && entry.objectId === 's1')) throw new Error('Lost source association');
-  return { id, costs: result.costs };
+  return proposal;
+}
+
+export function measuredLayout(id: string, entries: readonly StagedTile[], observation: AssessmentInput) {
+  const proposal = measuredProposal(id, entries, observation);
+  return { id, costs: proposal.provenance.costs };
 }
