@@ -1,0 +1,41 @@
+import { expect, test, vi } from 'vitest';
+import { createImmutableJsonCache } from '../../src/core/immutable-json-cache';
+test('immutable JSON reuses deeply frozen data without retaining mutable inputs', () => {
+  const stringify = vi.fn(JSON.stringify), cached = createImmutableJsonCache(stringify);
+  const frozen = Object.freeze([Object.freeze({ x: 25, y: 25 })]);
+  expect(cached(frozen)).toBe(JSON.stringify(frozen));
+  expect(cached(frozen)).toBe(JSON.stringify(frozen));
+  expect(stringify).toHaveBeenCalledTimes(1);
+  const child = { x: 25 }, shallow = Object.freeze([child]);
+  expect(cached(shallow)).toBe('[{"x":25}]');
+  child.x = 26;
+  expect(cached(shallow)).toBe('[{"x":26}]');
+  const mutable = [1];
+  expect(cached(mutable)).toBe('[1]');
+  mutable.push(2);
+  expect(cached(mutable)).toBe('[1,2]');
+});
+test('accessors and mutable internal slots cannot supply reusable serialization', () => {
+  const cached = createImmutableJsonCache();
+  let x = 1;
+  const getter = Object.freeze({ get x() { return x; } });
+  expect(cached(getter)).toBe('{"x":1}');
+  x = 2;
+  expect(cached(getter)).toBe('{"x":2}');
+  const date = Object.freeze(new Date(0));
+  expect(cached(date)).toBe(JSON.stringify(date));
+  date.setTime(1000);
+  expect(cached(date)).toBe(JSON.stringify(date));
+  const custom = Object.freeze({ toJSON: () => x });
+  expect(cached(custom)).toBe('2');
+  x = 3;
+  expect(cached(custom)).toBe('3');
+});
+test('primitive and cyclic behavior matches JSON serialization', () => {
+  const cached = createImmutableJsonCache();
+  for (const value of [null, undefined, false, 1, 'quote"']) expect(cached(value)).toBe(JSON.stringify(value));
+  const cyclic: { self?: unknown } = {};
+  cyclic.self = cyclic;
+  Object.freeze(cyclic);
+  expect(() => cached(cyclic)).toThrow();
+});

@@ -1,10 +1,11 @@
+import { framedIdentity } from '../../core/framed-identity';
 import type { MeasuredRoute, RouteCostInput } from './route-cost';
 export interface RouteCheckpoint { version: 1; signature: string; routes: MeasuredRoute[] }
 export function routeCheckpoint(input: RouteCostInput, networkRevision: string, previous?: RouteCheckpoint): RouteCheckpoint {
   if (!networkRevision) throw new Error('Missing route network revision');
   const ids = input.targets.map(target => target.id);
   if (ids.some(id => !id) || new Set(ids).size !== ids.length) throw new Error('Invalid route target identities');
-  const signature = JSON.stringify([networkRevision, input.start, input.roads, input.targets]);
+  const signature = framedIdentity(['route-checkpoint-v2', networkRevision, JSON.stringify([input.start, input.roads, input.targets])]);
   if (!previous) return { version: 1, signature, routes: [] };
   if (previous.version !== 1 || previous.signature !== signature) throw new Error('Stale route checkpoint');
   if (!Array.isArray(previous.routes) || previous.routes.length > input.targets.length) throw new Error('Invalid route checkpoint');

@@ -13,8 +13,10 @@ test('cached branch skips repeated validation but reset reconstructs identical o
   expect(first.status).toBe('complete');
   const checkpoint = JSON.parse(JSON.stringify(first.checkpoint));
   blocksMovement.mockClear();
+  const write = vi.spyOn(cache, 'write');
   const warm = composeStamps(input, checkpoint, 0, () => true, cache);
   expect(blocksMovement).not.toHaveBeenCalled();
+  expect(write).not.toHaveBeenCalled();
   expect(warm.entries).toEqual(first.entries);
   warm.entries![0]!.position.x = 0;
   expect(composeStamps(input, checkpoint, 0, () => true, cache).entries).toEqual(first.entries);

@@ -22,8 +22,9 @@ export function composeStamps(
   input: StampCompositionInput, previous: StampCompositionCheckpoint | undefined,
   maximumAttempts: number, guard: () => boolean = () => true, cache?: StampReplayCache,
 ) {
-  const checkpoint = restore(input, previous, maximumAttempts);
-  let draft = cachedReplay(input, checkpoint, guard, cache), attempts = 0;
+  const checkpoint = restore(input, previous, maximumAttempts, cache);
+  const initial = cachedReplay(input, checkpoint, guard, cache);
+  let draft = initial, attempts = 0;
   while (draft && !checkpoint.exhausted && checkpoint.choices.length < input.stamps.length
     && attempts < maximumAttempts && checkpoint.totalAttempts < totalLimit(input) && guard()) {
     const depth = checkpoint.choices.length, ordinal = checkpoint.cursors[depth]!;
@@ -39,7 +40,7 @@ export function composeStamps(
     checkpoint.choices.push(ordinal); checkpoint.cursors.push(0);
     draft = placed.draft;
   }
-  if (draft) cache?.write(checkpoint.signature, checkpoint.choices, draft);
+  if (draft && draft !== initial) cache?.write(checkpoint.signature, checkpoint.choices, draft);
   return compositionResult(input, checkpoint, draft, attempts);
 }
 function compositionResult(input: StampCompositionInput, checkpoint: StampCompositionCheckpoint, draft: Draft | undefined, attempts: number) {
@@ -71,11 +72,11 @@ function replay(input: StampCompositionInput, choices: readonly number[], guard:
   }
   return draft;
 }
-function restore(input: StampCompositionInput, saved: StampCompositionCheckpoint | undefined, budget: number) {
+function restore(input: StampCompositionInput, saved: StampCompositionCheckpoint | undefined, budget: number, cache?: StampReplayCache) {
   if (!Number.isSafeInteger(budget) || budget < 0) throw new Error('Invalid composition budget');
   if (!input.revision || input.stamps.length > 64 || input.anchors.length > 2500) throw new Error('Invalid composition input');
   validateAnchors(input);
-  const signature = compositionSignature(input);
+  const signature = compositionSignature(input, cache?.stringify);
   if (!saved) return { version: 2 as const, totalAttempts: 0, signature, choices: [], cursors: [0], exhausted: false };
   validateSaved(saved, signature, input.stamps.map((_, depth) => anchorsAt(input, depth).length * 8));
   validateTotal(saved, totalLimit(input));
@@ -119,9 +120,11 @@ function validateAnchors(input: StampCompositionInput): void {
   if (lists.some(list => list.length > 2500 || !list.every(tile => insideRoom(tile)))) throw new Error('Invalid stamp anchors');
 }
 
-function compositionSignature(input: StampCompositionInput): string {
-  return framedIdentity(['stamp-composition-v4', input.revision, JSON.stringify([input.stamps, input.anchors,
-    input.entries, input.corridors, input.claimed ?? [], input.limits, totalLimit(input), input.anchorsByStamp ?? null])]);
+function compositionSignature(input: StampCompositionInput, stringify: (value: unknown) => string | undefined = JSON.stringify): string {
+  const parts = [input.stamps, input.anchors, input.entries, input.corridors, input.claimed ?? [],
+    input.limits, totalLimit(input), input.anchorsByStamp ?? null];
+  return framedIdentity(['stamp-composition-v4', input.revision,
+    '[' + parts.map(value => stringify(value) ?? 'null').join(',') + ']']);
 }
 
 function validCursors(cursors: readonly number[], counts: readonly number[]): boolean {
@@ -136,5 +139,9 @@ function cachedReplay(input: StampCompositionInput, checkpoint: StampComposition
   guard: () => boolean, cache?: StampReplayCache): Draft | undefined {
   if (!cache) return replay(input, checkpoint.choices, guard);
   if (!guard()) return undefined;
-  return cache.read(checkpoint.signature, checkpoint.choices) ?? replay(input, checkpoint.choices, guard);
+  const cached = cache.read(checkpoint.signature, checkpoint.choices);
+  if (cached) return cached;
+  const draft = replay(input, checkpoint.choices, guard);
+  if (draft) cache.write(checkpoint.signature, checkpoint.choices, draft);
+  return draft;
 }

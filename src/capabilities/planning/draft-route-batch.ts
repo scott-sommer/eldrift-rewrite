@@ -1,3 +1,4 @@
+import { framedIdentity } from '../../core/framed-identity';
 import { prepareRouteCosts } from './draft-route-costs';
 import type { DraftRouteCostsInput } from './draft-route-costs';
 import { draftRevision } from './draft-revision';
@@ -11,7 +12,7 @@ export function draftRouteBatch(
 ) {
   if (previous && previous.version !== 1) throw new Error('Invalid draft route checkpoint');
   const prepared = prepareRouteCosts(input);
-  const revision = JSON.stringify([draftRevision(input, searchRevision, prepared.costs), input.serviceWeights, input.hauling]);
+  const revision = framedIdentity(['draft-route-v2', draftRevision(input, searchRevision, prepared.costs), JSON.stringify([input.serviceWeights, input.hauling])]);
   const hauling = measureRouteBatch({ ...prepared.context, targets: input.hauling },
     revision, previous?.hauling, maximumSearches, canContinue);
   if (!hauling.ok) return { ...hauling, phase: 'hauling' as const };

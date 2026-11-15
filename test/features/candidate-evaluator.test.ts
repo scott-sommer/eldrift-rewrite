@@ -1,3 +1,4 @@
+import { decodeCandidateProgress } from '../../src/features/planning/candidate-progress';
 import { planningLimits } from '../fixtures/planning-limits';
 import { expect, test, vi } from 'vitest';
 import { createCandidateEvaluator } from '../../src/features/planning/candidate-evaluator';
@@ -41,7 +42,9 @@ test('candidate, strategy version and policy changes invalidate serialized evalu
 test('finished geometry moves to scoring without exposing an unscored proposal', () => {
   const config = options({ version: '1', advance: () => ({ status: 'complete', entries: [] }) });
   const result = createCandidateEvaluator(config)(candidate, undefined);
-  expect(result).toMatchObject({ status: 'pending', checkpoint: { phase: 'score', entries: [] } });
+  expect(result.status).toBe('pending');
+  if (result.status !== 'pending') throw new Error('Expected score progress');
+  expect(decodeCandidateProgress(result.checkpoint)).toMatchObject({ phase: 'score', entries: [] });
   expect(config.prepareScore).not.toHaveBeenCalled();
   expect(result).not.toHaveProperty('proposal');
 });
@@ -67,4 +70,19 @@ test('a custom geometry lacking bootstrap structures is rejected without trappin
   if (first.status !== 'pending') throw new Error('Missing score phase');
   expect(evaluate(candidate, first.checkpoint)).toMatchObject({
     status: 'rejected', reason: expect.stringContaining('bootstrap') });
+});
+
+test('score callbacks cannot mutate persisted geometry even when they fail', () => {
+  const config = options({ version: '1', advance: () => ({ status: 'complete',
+    entries: [{ type: 'spawn', position: { x: 25, y: 25 }, rcl: 1 }] }) });
+  config.prepareScore = (_candidate, entries) => {
+    entries[0]!.position.x = 0;
+    throw new Error('interrupted score');
+  };
+  const evaluate = createCandidateEvaluator(config), first = evaluate(candidate, undefined);
+  if (first.status !== 'pending') throw new Error('Expected score checkpoint');
+  const snapshot = JSON.stringify(first.checkpoint);
+  expect(() => evaluate(candidate, first.checkpoint)).toThrow('interrupted score');
+  expect(JSON.stringify(first.checkpoint)).toBe(snapshot);
+  expect(decodeCandidateProgress(first.checkpoint).entries![0]!.position.x).toBe(25);
 });

@@ -1,3 +1,4 @@
+import { decodeCandidateProgress } from '../../src/features/planning/candidate-progress';
 import { afterEach, expect, test, vi } from 'vitest';
 import { createNativePlanningWork } from '../../src/app/native-planning-work';
 import type { NativePlanningPolicy } from '../../src/app/native-planning-work';
@@ -111,12 +112,13 @@ test('native evaluator receives configured stamp search allowance', () => {
   if (ready.status !== 'ready') throw new Error(ready.status);
   const candidate = { id: 'stamps:25:25:0', strategy: 'stamps', anchor: { x: 25, y: 25 }, transform: 0 as const };
   const paused = ready.work.input.step(candidate, undefined);
-  expect(paused).toMatchObject({ status: 'pending', checkpoint: {
-    phase: 'draft', checkpoint: { composition: { totalAttempts: 0 } } } });
   if (paused.status !== 'pending') throw new Error(paused.status);
+  expect(decodeCandidateProgress(paused.checkpoint)).toMatchObject({
+    phase: 'draft', checkpoint: { composition: { totalAttempts: 0 } } });
   policy.config = { ...policy.config, planningStampAttemptsPerStep: 1 };
   const resumed = prepare(() => true);
   if (resumed.status !== 'ready') throw new Error(resumed.status);
-  expect(resumed.work.input.step(candidate, paused.checkpoint)).toMatchObject({
-    status: 'pending', checkpoint: { checkpoint: { composition: { totalAttempts: 1 } } } });
+  const result = resumed.work.input.step(candidate, paused.checkpoint);
+  if (result.status !== 'pending') throw new Error(result.status);
+  expect(decodeCandidateProgress(result.checkpoint)).toMatchObject({ checkpoint: { composition: { totalAttempts: 1 } } });
 });

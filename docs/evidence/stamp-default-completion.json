@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "messages": [],
+  "errors": [],
+  "provenance": {
+    "commit": "75e45a9273fd6fb67094fee815fa0ffc3fe7ea0d",
+    "dirty": true,
+    "bundleSha256": "93bb49c5d360d9f7c1340c7b6cc6a336e49a6479045fb4679fd9ea6623fe383b",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "75e45a9273fd6fb67094fee815fa0ffc3fe7ea0d",
+    "dirty": true,
+    "bundleSha256": "02f9605421b29a2ed2f04130c2f8c955d08b5609fa21c642b0bfb5493166ba73",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "scenario": "--stamp-budget",
+  "ticks": 1600,
+  "outcome": "committed",
+  "completedAt": 790,
+  "evaluated": 36,
+  "rejected": 35,
+  "wholeBotCpuThroughCommit": {
+    "samples": 789,
+    "mean": 9.891001267427123,
+    "max": 44
+  },
+  "maximumSampledMemoryBytes": 396085,
+  "finalSample": {
+    "tick": 1601,
+    "wallMilliseconds": 20.702900000003865,
+    "cpuMilliseconds": 9,
+    "memoryBytes": 355631
+  },
+  "limits": "Whole-bot samples include telemetry, storage and non-planning work. Cooperative planning allowance is not a hard ceiling for atomic preparation. Reloads at6/101 do not prove late cold replay under default CPU."
+}

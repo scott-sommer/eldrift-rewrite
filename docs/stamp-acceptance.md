@@ -215,3 +215,41 @@ one through1600. This is not a default-budget completion claim. Repeated
 composition restoration/signature creation and admission remain material costs;
 further work must reduce or checkpoint setup rather than raise gameplay budgets.
 Native retention engine-43mgAP passed: bounded replanning failure at100 retained the committed plan across reload; no runtime errors.
+
+## Default-budget completion after checkpoint and scoring changes
+
+The unchanged default gameplay budgets now complete the observed-room stamp case.
+Engine-PbgxLt committed at790, evaluated36 candidates and rejected35 incompatible
+locked-storage anchors, over1600 ticks with reloads at6/101. Runtime errors/messages
+were empty. Reproducible bundle provenance and aggregate whole-bot measurements
+are retained in evidence/stamp-default-completion.json. The scenario is now
+registered in the full native suite; its inventory assertions share the elevated
+stamp-room verifier. This run predates those additional inventory assertions;
+the upcoming suite will execute them.
+
+Changes remove repeated setup rather than increase gameplay allowances:
+- Caller-owned weak serialization caches reuse only deeply immutable plain data.
+  Mutable children, accessors and non-plain internal-slot objects bypass reuse.
+- Unchanged replay drafts are not copied back into their cache on every step.
+- Candidate progress version2 carries opaque JSON. Its owner parses and validates
+  once at resume; lifecycle stores no longer traverse every nested route/entry.
+  Version1 object progress upgrades on save. Size, node/depth and finite-number
+  validation remain enforced, including JSON prototype-key and negative-zero tests.
+- Score factories, assessment/validation accelerators and detached prepared score
+  inputs retain the exact observation/policy scope across ticks. Entry or candidate
+  changes invalidate input preparation; live native callbacks remain function ports.
+- Score route identities use exact framing to avoid nested escaping. Native policy
+  revision3 restarts older requests while retaining committed plans.
+
+Scoring stage evidence (engine-csWzek, temporary instrumentation removed) is in
+evidence/stamp-score-cpu.json. At1400, score-input preparation consumed about2.72ms
+and restore about1.21ms before these last changes. Intermediate diagnostics reached
+88 roads (engine-EVSPOb), scoring (engine-wzNm2J), and four hauling measurements
+(engine-GtuGh2) but failed commitment; none is counted as a passing completion.
+
+Final quality455 production/408 test files passed; full960 unit tests/277 files
+passed7.54s. Broad native regression and default-budget resets during deep
+composition/routing/scoring remain unverified. In particular, cold branch replay
+currently reconstructs from the root and may need incremental reconstruction
+across ticks when a deep branch cannot fit one normal allowance. ED-25 remains open.
+Native bounded-failure retention engine-GEnmLe also passed with no runtime errors/messages; committed plans survived rejected replacement and reload.

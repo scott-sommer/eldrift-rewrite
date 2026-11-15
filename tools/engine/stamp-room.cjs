@@ -20,6 +20,12 @@ function verifyStampRoom(memory, automatic = false) {
   assert.equal(plan.revision, 1);
   assert.ok(job.receipt.completedAt > (automatic ? 21 : 6) && job.receipt.completedAt < (automatic ? 200 : 100));
   if (!automatic) assert.equal(job.receipt.diagnostics.rejected, 0);
+  verifyStampInventory(plan);
+  assert.ok(rows.every(row => row.sites === 0));
+  assert.ok(rows.slice(-10).every(row => row.outcome === 'committed' && row.revision === 1));
+  console.log('STAMP_ROOM_COMMIT ' + JSON.stringify({ committedAt: plan.provenance.committedAt, costs: plan.provenance.costs, bootstrap: plan.provenance.bootstrap }));
+}
+function verifyStampInventory(plan) {
   for (const [type, count] of Object.entries({ spawn: 3, tower: 6, link: 6,
     storage: 1, terminal: 1, factory: 1, observer: 1, nuker: 1, powerSpawn: 1, extractor: 1 })) {
     assert.equal(plan.entries.filter(entry => entry.type === type).length, count, type);
@@ -29,8 +35,5 @@ function verifyStampRoom(memory, automatic = false) {
   assert.ok(plan.entries.some(entry => entry.type === 'storage' && entry.x === 25 && entry.y === 25));
   assert.equal(plan.entries.filter(entry => entry.type === 'extension').length, 60);
   assert.equal(plan.entries.filter(entry => entry.type === 'lab').length, 10);
-  assert.ok(rows.every(row => row.sites === 0));
-  assert.ok(rows.slice(-10).every(row => row.outcome === 'committed' && row.revision === 1));
-  console.log('STAMP_ROOM_COMMIT ' + JSON.stringify({ committedAt: plan.provenance.committedAt, costs: plan.provenance.costs, bootstrap: plan.provenance.bootstrap }));
 }
-module.exports = { verifyStampRoom };
+module.exports = { verifyStampRoom, verifyStampInventory };

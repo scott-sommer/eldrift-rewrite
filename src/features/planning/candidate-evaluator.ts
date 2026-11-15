@@ -1,3 +1,5 @@
+import { restoreCandidateProgress, saveCandidateProgress } from './candidate-progress';
+import type { CandidateProgress } from './candidate-progress';
 import { framedIdentity } from '../../core/framed-identity';
 import { validScorePlacements } from './score-placement-validation';
 import { mergeOperatorPlacements } from './operator-placements';
@@ -20,10 +22,6 @@ export interface CandidateEvaluatorOptions {
   operatorEntries?: readonly PlanEntry[];
   prepareScore: (candidate: PlanningCandidate, entries: readonly StagedTile[]) => EvaluateDraftInput;
 }
-interface Progress {
-  version: 1; signature: string; phase: 'draft' | 'score';
-  checkpoint?: unknown; entries?: StagedTile[];
-}
 export function createCandidateEvaluator(options: CandidateEvaluatorOptions) {
   if (!Number.isSafeInteger(options.maximumSearches) || options.maximumSearches < 0) throw new Error('Invalid evaluator search budget');
   if (!options.observation || !options.policy || !options.searchRevision) throw new Error('Missing evaluator identity');
@@ -32,25 +30,17 @@ export function createCandidateEvaluator(options: CandidateEvaluatorOptions) {
     if (!strategy) return { status: 'rejected', reason: 'unsupported-strategy:' + candidate.strategy };
     if (!strategy.version) throw new Error('Missing strategy version');
     const signature = framedIdentity(['candidate-v2', JSON.stringify(candidate), strategy.version, options.observation, options.policy, options.searchRevision, JSON.stringify(options.operatorEntries ?? [])]);
-    const progress = restoreProgress(signature, saved);
+    const progress = restoreCandidateProgress(signature, saved);
     if (progress.phase === 'score') return scoreCandidate(options, candidate, strategy.version, progress);
     const result = strategy.advance(copyPlain(candidate), signature, progress.checkpoint, options.maximumSearches, options.canContinue);
     if (result.status === 'rejected') return result;
-    return { status: 'pending', checkpoint: copyPlain(result.status === 'complete'
-      ? { version: 1, signature, phase: 'score', entries: result.entries }
-      : { version: 1, signature, phase: 'draft', checkpoint: result.checkpoint }) };
+    return { status: 'pending', checkpoint: saveCandidateProgress(result.status === 'complete'
+      ? { signature, phase: 'score', entries: result.entries }
+      : { signature, phase: 'draft', checkpoint: result.checkpoint }) };
   };
 }
-function restoreProgress(signature: string, saved: unknown): Progress {
-  if (saved === undefined) return { version: 1, signature, phase: 'draft' };
-  const progress = copyPlain(saved) as Progress;
-  if (!progress || progress.version !== 1 || progress.signature !== signature) throw new Error('Stale candidate evaluation');
-  if (progress.phase !== 'draft' && progress.phase !== 'score') throw new Error('Invalid evaluation phase');
-  if (progress.phase === 'score' && !Array.isArray(progress.entries)) throw new Error('Missing score placements');
-  return progress;
-}
 function scoreCandidate(
-  options: CandidateEvaluatorOptions, candidate: PlanningCandidate, version: string, progress: Progress,
+  options: CandidateEvaluatorOptions, candidate: PlanningCandidate, version: string, progress: CandidateProgress,
 ): CandidateStep {
   const input = scoreInput(options, candidate, progress.entries!);
   if (!validScorePlacements(input.entries, Object.keys(input.limits))) {
@@ -59,7 +49,7 @@ function scoreCandidate(
   const result = evaluateDraftBatch(input, progress.signature, progress.checkpoint as DraftRouteCheckpoint | undefined,
     options.maximumSearches, options.canContinue, options.prepare);
   if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };
-  if (!result.done) return { status: 'pending', checkpoint: { ...progress, checkpoint: result.checkpoint } };
+  if (!result.done) return { status: 'pending', checkpoint: saveCandidateProgress({ ...progress, checkpoint: result.checkpoint }) };
   return proposalStep({ strategy: candidate.strategy, entries: input.entries,
     provenance: { candidateId: candidate.id, strategyVersion: version, observation: options.observation,
       policy: options.policy, generatedAt: options.tick(), anchor: candidate.anchor, transform: candidate.transform, costs: result.costs } });
@@ -71,7 +61,8 @@ function proposalStep(input: ProposalInput): CandidateStep {
 }
 
 function scoreInput(options: CandidateEvaluatorOptions, candidate: PlanningCandidate, draft: readonly StagedTile[]): EvaluateDraftInput {
-  if (!options.operatorEntries?.length) return options.prepareScore(copyPlain(candidate), copyPlain(draft));
+  // Restored progress has already passed plain-data validation; detach without repeating that walk.
+  if (!options.operatorEntries?.length) return options.prepareScore(copyPlain(candidate), JSON.parse(JSON.stringify(draft)) as StagedTile[]);
   const entries = mergeOperatorPlacements(draft, options.operatorEntries);
   const prepared = options.prepareScore(copyPlain(candidate), entries);
   return { ...prepared, entries: mergeOperatorPlacements(prepared.entries, options.operatorEntries) };

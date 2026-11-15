@@ -46,3 +46,20 @@ function assign(target: object, key: string, value: unknown): void {
   if (key === '__proto__') Object.defineProperty(target, key, { value, enumerable: true, writable: true, configurable: true });
   else (target as Record<string, unknown>)[key] = value;
 }
+
+/** JSON.parse already creates detached data properties; validate budgets without cloning them again. */
+export function parsePlain(source: string): unknown {
+  return validateParsed(JSON.parse(source), 0, { nodes: 100000 });
+}
+function validateParsed(value: unknown, depth: number, budget: { nodes: number }): unknown {
+  if (--budget.nodes < 0 || depth > 100) throw new Error('State exceeds validation budget');
+  if (typeof value === 'number') {
+    if (!Number.isFinite(value)) throw new Error('State contains a non-JSON value');
+    return value === 0 ? 0 : value;
+  }
+  if (value !== null && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    for (const key of Object.keys(record)) record[key] = validateParsed(record[key], depth + 1, budget);
+  }
+  return value;
+}

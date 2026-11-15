@@ -1,3 +1,5 @@
+import { createScoreInputCache } from '../features/planning/score-input-cache';
+import { framedIdentity } from '../core/framed-identity';
 import type { PlanningRoomCache } from './planning-room-caches';
 import { createNativePlanningAdmission } from './native-planning-admission';
 import { createNativePlanningEvaluator } from './native-planning-evaluator';
@@ -29,6 +31,7 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
     let score: ReturnType<NativePlanningPolicy['prepareScore']> | undefined;
     const step = createNativePlanningEvaluator({
       stampServices: cache,
+      ...(cache.evaluate ? { prepare: cache.evaluate } : {}),
       ...(cache.assess ? { assess: cache.assess } : {}),
       room, observation: admitted.request.observation, observationIdentity: admitted.observationIdentity,
       policyIdentity: admitted.policyIdentity, operatorEntries: admitted.request.operatorEntries,
@@ -37,7 +40,9 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
       stampOptions: { anchorLimit: policy.config.planningStampAnchorLimit,
         attemptsPerStep: policy.config.planningStampAttemptsPerStep, totalAttempts: policy.config.planningStampTotalAttempts },
       prepareScore: (candidate, entries) => {
-        score ??= policy.prepareScore(admitted.request.observation);
+        const create = () => createScoreInputCache(policy.prepareScore(admitted.request.observation));
+        score ??= cache.score
+          ? cache.score(framedIdentity([admitted.observationIdentity, admitted.policyIdentity]), create) : create();
         return score(candidate, entries);
       },
     });
