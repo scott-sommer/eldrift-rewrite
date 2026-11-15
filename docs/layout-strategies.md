@@ -346,3 +346,30 @@ are still recomputed on resumed calls; final validation repeats after completion
 Search count bounds are not a whole-planner CPU bound. Checkpoint fingerprint size,
 preparation caching, candidate orchestration, live-room qualification and hard CPU
 termination testing remain outstanding before ED-24 completion.
+
+### Exact compact checkpoint identities (ED-24)
+Measured the constrained checkpoint separately from reference data and diagnostics:
+baseline engine-0PEgjK contained 183,798 serialized characters, of which 131,905
+were signature characters before outer JSON escaping. Repeated terrain/cost cells now
+use tagged value/count runs inside the shared draft revision. Irregular sequences keep
+raw arrays whenever that representation is shorter. This is lossless identity comparison,
+not a probabilistic hash. Cell order, lengths, values, observations, placement metadata,
+limits and caller search revision remain significant. Road checkpoint signatures still
+bind origins, roads and targets separately. The new draft-revision-v2 identity deliberately
+rejects old in-flight draft checkpoints as stale; committed plans are unchanged.
+
+Controlled result: 65,909 checkpoint characters and 43,968 signature characters,
+a 64.1% checkpoint reduction. These fixtures use ASCII, so character counts also match
+UTF-8 byte counts here; this equivalence is not assumed for arbitrary room/operator data.
+Total fixture Memory fell from 216,552 to 98,661 bytes. Engine-JbZ2wz retained exact
+layout output through both runtime reloads. Its CPU average was 17.76 ms versus
+18.24 ms baseline, too small/noisy a comparison to claim a CPU performance improvement.
+A fixture-specific 80,000-character checkpoint gate passed in engine-Uk6xFM.
+Standard continuation also passed in engine-XtzwHq. All four evidence records report
+passed with empty errors/messages.
+
+Quality: 388 production / 345 test files, zero Lizard violations; 751 unit tests /
+229 files passed in 6.99s. Tests cover lossless round trips, no representation expansion,
+all 511 binary sequences through length eight having distinct identities, changed
+terrain/cost cells and policy/metadata invalidation. Preparation caching and whole-planner
+CPU bounds remain open; compact signatures reduce persistence overhead only.

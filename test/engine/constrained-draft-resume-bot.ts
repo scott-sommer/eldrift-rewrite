@@ -8,7 +8,7 @@ import { planningObservation } from '../fixtures/planning-observation';
 let calls = 0;
 export function loop() {
   botLoop();
-  const memory = Memory as Memory & { draftCheckpoint?: ConstrainedDraftCheckpoint; expectedDraft?: string; draftResumeRows?: unknown[] };
+  const memory = Memory as Memory & { draftCheckpoint?: ConstrainedDraftCheckpoint; expectedDraft?: string; draftResumeRows?: unknown[]; checkpointMetrics?: unknown };
   const input = { candidate: { anchor: { x: 25, y: 25 }, transform: 0 as const },
     observation: planningObservation(), limits: planningLimits,
     blocksMovement: (type: string) => OBSTACLE_OBJECT_TYPES.some(obstacle => obstacle === type),
@@ -21,6 +21,11 @@ export function loop() {
   const result = constrainedDraftBatch(input, 'native-v1:maxOps=10000', memory.draftCheckpoint, 1);
   if (!result.ok) throw new Error('Resumed constrained draft failed: ' + JSON.stringify(result));
   memory.draftCheckpoint = result.checkpoint;
+  memory.checkpointMetrics = {
+    serializedCharacters: JSON.stringify(result.checkpoint).length,
+    signatureCharacters: result.checkpoint.roads.traffic.network.signature.length
+      + (result.checkpoint.roads.stitching?.signature.length ?? 0) + (result.checkpoint.final?.signature.length ?? 0),
+  };
   const identical = result.done
     ? JSON.stringify({ entries: result.entries, connections: result.connections, lanes: result.lanes, omitted: result.omitted }) === memory.expectedDraft : null;
   (memory.draftResumeRows ??= []).push({ tick: Game.time, calls: ++calls, done: result.done,

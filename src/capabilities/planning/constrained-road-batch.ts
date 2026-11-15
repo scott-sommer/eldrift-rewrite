@@ -1,3 +1,4 @@
+import { draftRevision } from './draft-revision';
 import { tileIndex } from '../../core/geometry/local-grid';
 import { prepareDraftRoads } from './finish-draft';
 import { completeConstrainedRoads } from './constrained-roads';
@@ -16,7 +17,7 @@ export function constrainedRoadBatch(
     const search = input.search(costs);
     return (start, goal, roads) => search(start, goal, roads, []);
   } });
-  const revision = JSON.stringify([searchRevision, input.entries, input.observation, input.limits, prepared.costs]);
+  const revision = draftRevision(input, searchRevision, prepared.costs);
   const traffic = connectTrafficBatch({ ...prepared.roads, search: input.search(prepared.costs) },
     revision, previous?.traffic, maximumSearches, canContinue);
   if (!traffic.ok) return traffic;

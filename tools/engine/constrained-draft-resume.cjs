@@ -8,6 +8,8 @@ async function reloadConstrainedDraft(server, bot, modules, index) {
   return main;
 }
 function verifyConstrainedDraftResume(memory) {
+  console.log('CONSTRAINED_CHECKPOINT ' + JSON.stringify(memory.checkpointMetrics));
+  assert.ok(memory.checkpointMetrics.serializedCharacters < 80000, 'Controlled layout checkpoint exceeded 80K character budget');
   const rows = memory.draftResumeRows;
   assert.equal(rows.length, 70);
   assert.deepEqual(memory.draftReloadWitnesses.map(row => row.tick), [6, 36]);
