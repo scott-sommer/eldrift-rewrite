@@ -406,3 +406,18 @@ Actual --master-bootstrap runs production main for140ticks, sponsoring a new ful
 Validation: quality passed (301 production /269 test files; zero Lizard violations);576 tests/175files passed in4.53s. New strict-threshold/mature policy tests pass. Targeted native regressions --upgrade-master, --upgrade-master-contention, --upgrade-service, --upgrade-loss and --upgrade-cycle all pass. The new case is registered for the next full suite; the preceding128-case aggregate was not rerun in this increment.
 
 Next: combined reset/reclaim/bootstrap/rebuild with these specialist paths interacting. Persisted plan anchors, refuge route-availability and remaining colony parity remain open; ED-22 is incomplete.
+
+
+## Combined reset, reclaim and bootstrap construction (ED-22, 2026-11-15)
+
+Added --upgrade-rebuild, a700-tick production-main scenario that composes the previously separate specialist paths. An owned RCL8 W0N1 retains spawn/storage/terminal/lab; E0N1 is an owned sponsor with enough native spawn energy for the required bodies. No specialist creeps are seeded. The fixture provides two GCL slots and explicit operator configuration, including a lowered master retained-stock threshold500 for its1,000-energy target store and donor supply reserve99,970.
+
+The bot recruits a master, claimer, bootstrap worker and full-size supply courier. A native unclaim is followed by an actual code reload while the room is neutral; the same persisted lifecycle then reclaims it. The fixture introduces a300-progress road construction site only after reclaim. Native bootstrap collection/build/upgrade execution completes that site, recovers RCL2 and continues controller progress. The same master survives the reset, and the courier confirms30 energy transferred to it. All configured specialist rosters remain bounded to one.
+
+Initial evidence artifacts/engine-8Q0aZq/evidence.json: reload tick71 observes level0 and the tick70 unclaim attempt; at tick700 the room is owned RCL2 with progress332, cycles1, one completed road and no remaining site. Retained target storage falls from1,000 to150, donor stock from100,000 to99,970; master retains the supplied30 energy. The completed claimer expires naturally later in the run. Final assertions also require release→reclaim→road completion→RCL2 in order and no caught runtime errors.
+
+This is evidence for retained-infrastructure reset, recovery and construction execution. The construction site is a declared fixture input, not automatic layout placement; it does not establish the later layout/expansion acceptance gates or a completely destroyed-room rebuild.
+
+Quality passed (301 production /270 test files; zero Lizard violations);576 tests/175files passed in4.56s. Complete expanded native suite passed131 checks in309.69s (artifacts/engine-suite.json), including final ordered-milestone assertions, the recent retained-layout master fix and long-route replacement scenario.
+
+ED-22 acceptance review: the next gap is its explicit combined ordinary-colony scenario—sustained collection/delivery, miner/hauler replacement, construction/upgrading and recovery after seeded worker/energy loss. Existing colony-economy, recovery-economy, worker-population and specialist scenarios demonstrate constituent behaviors but do not yet prove that combined acceptance criterion. Assigned-room work/source traceability also requires final reconciliation before ED-22 can close. The broader layout and CreateRoom/NewSpawn expansion work remains required in its existing backlog (including ED-30); none is being removed from overall parity.
