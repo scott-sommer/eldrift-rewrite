@@ -1,3 +1,4 @@
+import type { PlanningReceipt } from './planning-receipt';
 import { copyPlain } from '../../persistence/plain-data';
 import { openState, saveState } from '../../persistence/versioned-state';
 import type { StatePort } from '../../persistence/versioned-state';
@@ -18,7 +19,17 @@ export function createPlanningJobStore(port: StatePort, room: string, types: rea
     saveState(port, key, schema, record);
     return { ok: true as const, record: copyPlain(record) };
   }
-  return { read: () => openState(port, key, schema),
+  function finish(expectedRevision: number, receipt: PlanningReceipt) {
+    const current = openState(port, key, schema);
+    if (current.revision !== expectedRevision) return { ok: false as const, reason: 'revision' as const };
+    if (!current.checkpoint || current.checkpoint.signature !== receipt.signature || current.checkpoint.pending) {
+      return { ok: false as const, reason: 'unfinished' as const };
+    }
+    const record: PlanningJobRecord = { room, revision: current.revision + 1, receipt };
+    saveState(port, key, schema, record);
+    return { ok: true as const, record: copyPlain(record) };
+  }
+  return { finish, read: () => openState(port, key, schema),
     save: (expectedRevision: number, checkpoint: PlanningJobCheckpoint) => write(expectedRevision, checkpoint),
     clear: (expectedRevision: number) => write(expectedRevision) };
 }

@@ -570,3 +570,33 @@ strategies, detached continuation, identity/version invalidation, phase boundari
 failure reasons, budget checks and missing-bootstrap rejection.
 Automatic scheduling, lifecycle policy, complete live-room qualification and whole-planner
 CPU/hard termination evidence remain unfinished.
+
+### Planning lifecycle and durable completion receipts (ED-24)
+runPlanningCycle now composes the job store, coordinator and exact commit recovery.
+It resumes matching work, explicitly clears stale unfinished job identity before restarting,
+and refuses an unstarted request superseded by a newer committed plan. Completed jobs
+become compact receipts instead of retaining full candidate/evaluator checkpoints.
+A receipt records the request signature, outcome, plan revision and completion tick.
+An unchanged request with the same plan revision remains idle; rejected/no-candidate
+requests also remain idle until their input identity changes. Callers must supply the
+current request and explicit base revision; global scheduling/trigger policy is separate.
+
+Job schema v2 migrates v1 progress unchanged and permits either a checkpoint or receipt.
+Receipt writes use the job revision guard, so losing acknowledgement after a plan write
+leaves recoverable progress. The lifecycle validates tick/step budgets before mutations.
+Committed plan records retain their independent schema and revision.
+
+Native --planning-job engine-aA5A1l passed 230 ticks with reloads at 6/40/91/160/200/210.
+It deliberately rejects the receipt write after the tick-199 plan commit, recovers at 200,
+retires the full checkpoint into a v2 receipt at job revision 201, and stays idle through
+the post-retirement reload at 210. Plan revision remains one, committedAt 199; all six
+costs remain unchanged. Errors/messages empty. Total fixture Memory 111,633 bytes.
+Average CPU was 62.46 ms (7–158 ms), materially expensive; this lifecycle is functionally
+validated but not qualified for ordinary runtime CPU budgets. Repeated copying/validation
+and integration overhead need profiling and bounded preparation before automatic scheduling.
+
+Quality: 402 production / 355 test files, zero Lizard violations. 794 tests / 236 files
+passed in 7.36s. Coverage includes completion/recreation idleness, lost acknowledgement,
+changed-input restart, superseded requests, failed-search receipts and v1-to-v2 migration.
+Production runtime scheduling/trigger policy, enumeration persistence, live-room qualification,
+whole-planner CPU bounds and hard termination evidence remain open.

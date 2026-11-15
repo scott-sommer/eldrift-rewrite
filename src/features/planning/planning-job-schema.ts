@@ -1,16 +1,19 @@
+import { validPlanningReceipt } from './planning-receipt';
+import type { PlanningReceipt } from './planning-receipt';
 import type { StateSchema } from '../../persistence/versioned-state';
 import type { PlanningJobCheckpoint } from './planning-job-model';
 import { integer } from './plan-model';
 import { planSchema } from './plan-state';
-export interface PlanningJobRecord { room: string; revision: number; checkpoint?: PlanningJobCheckpoint }
+export interface PlanningJobRecord { room: string; revision: number; checkpoint?: PlanningJobCheckpoint; receipt?: PlanningReceipt }
 export function planningJobSchema(room: string, types: readonly string[]): StateSchema<PlanningJobRecord> {
   const plans = planSchema(room, types);
-  return { owner: 'planning-jobs', version: 1, migrations: {},
+  return { owner: 'planning-jobs', version: 2, migrations: { 1: data => data },
     initial: () => ({ room, revision: 0 }),
     valid(value: unknown): value is PlanningJobRecord {
       if (!value || typeof value !== 'object') return false;
       const record = value as Partial<PlanningJobRecord>;
       if (record.room !== room || !integer(record.revision, 0, Number.MAX_SAFE_INTEGER)) return false;
+      if (record.receipt !== undefined) return record.checkpoint === undefined && validPlanningReceipt(record.receipt);
       return record.checkpoint === undefined || validCheckpoint(record.checkpoint, plans);
     } };
 }

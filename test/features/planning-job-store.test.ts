@@ -85,3 +85,11 @@ test('retained proposals must satisfy the existing plan schema and refer to comp
   value.best.provenance.candidateId = 'unseen';
   expect(() => store.save(1, value)).toThrow('invalid state');
 });
+
+test('v1 progress migrates to v2 without losing resumable work', () => {
+  const { records, store } = setup();
+  records['planning-jobs/W0N1'] = { owner: 'planning-jobs', version: 1,
+    data: { room: 'W0N1', revision: 7, checkpoint: checkpoint() } };
+  expect(store.read()).toEqual({ room: 'W0N1', revision: 7, checkpoint: checkpoint() });
+  expect(records['planning-jobs/W0N1']).toMatchObject({ version: 2 });
+});

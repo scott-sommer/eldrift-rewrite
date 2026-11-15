@@ -1,6 +1,5 @@
-import { commitPlanOnce } from '../../src/features/planning/commit-plan-once';
+import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
 import { loop as botLoop } from '../../src/main';
-import { advancePlanningJob } from '../../src/features/planning/planning-job';
 import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
 import { createPlanStore } from '../../src/features/planning/plan-store';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
@@ -18,9 +17,10 @@ export function loop() {
   const memory = Memory as Memory & { jobRows?: unknown[]; jobCommitted?: boolean; recoveredCommit?: boolean };
   const store = createPlanStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
   const jobs = createPlanningJobStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
-  let job = jobs.read();
-  if (!memory.jobCommitted) {
-    const result = advancePlanningJob({
+  const cycleJobs = { ...jobs, finish: (...args: Parameters<typeof jobs.finish>) =>
+    Game.time === 199 ? { ok: false as const, reason: 'revision' as const } : jobs.finish(...args) };
+  const result = runPlanningCycle({ jobs: cycleJobs, plans: store,
+    validateCommit: plan => valid({ ...plan, strategy: plan.strategy!, provenance: plan.provenance! }) }, {
       observation: JSON.stringify(planningObservation()), policy: 'fixture-v1', baseRevision: 0,
       source: { revision: 'two-strategies-v1', count: 2, at: index => {
         const strategy = index === 0 ? 'standard' : 'constrained';
@@ -28,23 +28,12 @@ export function loop() {
       } },
       weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
       minimumImprovement: 0, step: evaluateJobCandidate, validate: valid,
-    }, job.checkpoint, 1);
-    const saved = jobs.save(job.revision, result.checkpoint);
-    if (!saved.ok) throw new Error('Lost planning job revision');
-    job = saved.record;
-    if (result.done) {
-      if (!('proposal' in result) || !result.proposal) throw new Error('No selected native plan');
-      const committed = commitPlanOnce(store, 0, result.proposal,
-        { tick: Game.time, observation: JSON.stringify(planningObservation()), policy: 'fixture-v1' },
-        plan => valid({ ...plan, strategy: plan.strategy!, provenance: plan.provenance! }));
-      if (!committed.ok) throw new Error('Selected plan failed commit: ' + committed.reason);
-      // Deliberately leave completion unacknowledged on the first successful write.
-      memory.jobCommitted = committed.recovered;
-      memory.recoveredCommit = committed.recovered;
-    }
-  }
+    }, Game.time, 1);
+  if (result.status === 'finished') memory.recoveredCommit = result.recovered;
+  const job = jobs.read();
+  memory.jobCommitted = !!job.receipt;
   const plan = store.read();
-  (memory.jobRows ??= []).push({ tick: Game.time, calls: ++calls, next: job.checkpoint!.next,
+  (memory.jobRows ??= []).push({ tick: Game.time, calls: ++calls, next: job.checkpoint?.next ?? 2, status: result.status,
     revision: plan.revision, strategy: plan.strategy, committed: memory.jobCommitted ?? false });
 }
 function valid(proposal: PlanProposal): boolean {
