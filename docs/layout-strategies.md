@@ -897,3 +897,26 @@ Quality passed: 415 production / 365 test files, zero Lizard violations. Targete
 request, request policy, lifecycle, operator, configuration and smoke tests passed 29 tests /
 6 files in 0.482s. Full unit/native suites were not repeated for this policy-only change.
 Native main-loop registration remains open.
+
+### Durable original request baseline (ED-24)
+planning-requests now owns a v1 per-room request snapshot containing identity and the
+original complete base plan. Capture is revision-guarded: the same identity reuses its
+existing snapshot without writing, even if the caller now observes a newer committed
+plan. A changed identity captures the supplied new baseline. Explicit clear is guarded.
+The existing plan schema validates saved baselines; detached reads/captures and invalid,
+foreign or future-envelope preservation follow the shared persistence contract.
+
+The native planning-job fixture now obtains baseRevision from this store on every tick,
+including after commit. engine-S5GiRu passed 230 ticks, all six reloads, commit 199/recovery
+200 and idle retirement with empty errors/messages. The request owner remains version one,
+record revision one and original basePlan revision zero while the committed plan is
+revision one. Exact operator metadata and all six cost assertions remain unchanged.
+Average sampled CPU 19.94 ms, maximum 115 ms; no CPU-bound claim.
+
+Quality passed: 416 production / 366 test files, zero Lizard violations. Targeted request
+store/lifecycle/smoke: 11 tests / 0.365s. Full fast suite: 848 tests / 246 files in 7.92s.
+Tests cover recreation, unchanged-identity reuse, new-identity capture, stale capture/clear,
+detachment and corrupt/future/foreign state preservation.
+Native admission must still derive the stable request identity and use this captured
+base plan for seeds/operator policy, then register the configured feature in main.
+Observation/policy invalidation and whole-planner CPU qualification remain open.

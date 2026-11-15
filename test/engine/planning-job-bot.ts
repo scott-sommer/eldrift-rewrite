@@ -1,3 +1,4 @@
+import { createPlanningRequestStore } from '../../src/features/planning/planning-request-store';
 import { measure, profileJobs, profilePlans } from './planning-profile';
 import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
 import { loop as botLoop } from '../../src/main';
@@ -17,12 +18,16 @@ export function loop() {
   botLoop();
   const memory = Memory as Memory & { jobRows?: unknown[]; jobCommitted?: boolean; recoveredCommit?: boolean };
   const store = profilePlans(createPlanStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits)));
+  const requests = createPlanningRequestStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits));
+  const captured = requests.capture(requests.read().revision, 'fixture-request-v1', store.read());
+  if (!captured.ok) throw new Error('Planning request conflict');
+  const baseRevision = captured.record.request!.basePlan.revision;
   const jobs = profileJobs(createPlanningJobStore(createMemoryPort(() => Memory), 'W0N1', Object.keys(limits)));
   const cycleJobs = { ...jobs, finish: (...args: Parameters<typeof jobs.finish>) =>
     Game.time === 199 ? { ok: false as const, reason: 'revision' as const } : jobs.finish(...args) };
   const result = measure('cycle', runPlanningCycle)({ jobs: cycleJobs, plans: store,
     validateCommit: plan => valid({ ...plan, strategy: plan.strategy!, provenance: plan.provenance! }) }, {
-      observation: JSON.stringify(planningObservation()), policy: 'fixture-v1', baseRevision: 0,
+      observation: JSON.stringify(planningObservation()), policy: 'fixture-v1', baseRevision,
       source: { revision: 'two-strategies-v1', count: 2, at: index => {
         const strategy = index === 0 ? 'standard' : 'constrained';
         return { id: strategy + ':25:25:0', strategy, anchor: { x: 25, y: 25 }, transform: 0 };

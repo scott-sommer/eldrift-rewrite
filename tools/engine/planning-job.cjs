@@ -33,6 +33,11 @@ function verifyPlanningJob(memory) {
   assert.equal(rows[198].committed, false);
   assert.equal(rows[199].committed, true);
   assert.equal(memory.planningJob, undefined);
+  const request = memory.eldrift.records['planning-requests/W0N1'];
+  assert.equal(request.owner, 'planning-requests');
+  assert.equal(request.version, 1);
+  assert.equal(request.data.revision, 1);
+  assert.equal(request.data.request.basePlan.revision, 0);
   const plan = memory.eldrift.records['planning/W0N1'].data;
   assert.equal(plan.entries.filter(entry => entry.type === 'extension').length, 60);
   assert.deepEqual(plan.provenance.costs, { hauling: 64, service: 337, capacityShortfall: 0, swamps: 0, defense: 85, migration: 303 });
