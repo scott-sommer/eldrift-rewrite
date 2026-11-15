@@ -16,9 +16,9 @@ export function loop() {
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
   const containers = creep.room.find(FIND_STRUCTURES).filter((item): item is StructureContainer => item.structureType === STRUCTURE_CONTAINER);
-  const deposit = containers.find(item => item.pos.x === 21)!;
-  const row = { energy: creep.store.energy, cargoHydrogen: creep.store.H ?? 0,
-    depositEnergy: deposit.store.energy, hydrogen: deposit.store.H,
+  const deposit = containers.find(item => item.pos.x !== 18);
+  const row = { tick: Game.time, depositId: deposit?.id ?? null, depositX: deposit?.pos.x ?? null, energy: creep.store.energy, cargoHydrogen: creep.store.H ?? 0,
+    depositEnergy: deposit?.store.energy ?? null, hydrogen: deposit?.store.H ?? null,
     unrelated: containers.find(item => item.pos.x === 18)!.store.energy, progress: creep.room.controller!.progress };
   const memory = Memory as Memory & { workerMiner?: (typeof row)[] };
   (memory.workerMiner ??= []).push(row);

@@ -1,9 +1,8 @@
 import { createMovementDetours } from './detour';
 import { createMovementProgress } from './progress';
-import { movementStep } from './step';
+import { movementStep, movementArrived } from './step';
 import type { MovementView, MovementPorts, MovementIntent, Position } from './step';
 import type { PathRequest } from './path-model';
-import { withinRange } from './path-model';
 import type { createPathService } from './path-service';
 interface NavigationPorts {
   paths: ReturnType<typeof createPathService>;
@@ -19,7 +18,7 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
   const detours = createMovementDetours();
   const navigate = (unit: string, view: MovementView, mobile = true) => {
     const failures = progress.observe(unit, view.position, view.tick, mobile && view.fatigue === 0);
-    if (withinRange(view.position, view.destination, view.range)) {
+    if (movementArrived(view)) {
       progress.forget(unit);
       detours.forget(unit);
       return { status: 'done' as const };

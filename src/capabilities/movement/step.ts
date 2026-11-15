@@ -17,12 +17,12 @@ export interface MovementPorts {
   move(direction: number): MovementIntent;
   rejected(code: number): Outcome;
 }
-function arrived(view: MovementView): boolean {
-  return view.position.room === view.destination.room
+export function movementArrived(view: Pick<MovementView, 'position' | 'destination' | 'range'>): boolean {
+  return view.position.room === view.destination.room && (onExit(view.destination) || !onExit(view.position))
     && Math.max(Math.abs(view.position.x - view.destination.x), Math.abs(view.position.y - view.destination.y)) <= view.range;
 }
 export function movementStep(view: MovementView, ports: MovementPorts): Outcome {
-  if (arrived(view)) return { status: 'done' };
+  if (movementArrived(view)) return { status: 'done' };
   if (view.fatigue > 0) return { status: 'blocked', reason: 'fatigue', retryAt: view.tick + 1 };
   const route = ports.route();
   if (route.status === 'unavailable') return { status: 'blocked', reason: route.reason, retryAt: route.retryAt };
@@ -34,4 +34,8 @@ function movementOutcome(intent: MovementIntent, tick: number, rejected: Movemen
   if (intent.status === 'queued') return { status: 'running' };
   if (intent.status === 'blocked') return { status: 'blocked', reason: intent.reason, retryAt: tick + 1 };
   return issuedOutcome(intent, tick, rejected);
+}
+
+function onExit(position: Position): boolean {
+  return position.x === 0 || position.x === 49 || position.y === 0 || position.y === 49;
 }
