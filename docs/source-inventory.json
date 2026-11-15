@@ -4523,8 +4523,10 @@
     "sha256": "FBF48E6CC9664DC0FD69F0B7700463B4774D974E7D0F196AF491A4B8BB2352F4",
     "physicalLines": 1024,
     "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "implementationStatus": "ED-23 pure geometry and room assessment completed; templates, placement and strategy helpers remain ED-24 onward",
+    "evidence": [
+      "docs/room-assessment.md"
+    ],
     "plannedIssues": [
       "ED-13",
       "ED-23",

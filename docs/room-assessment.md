@@ -76,3 +76,20 @@ Native --room-assessment calls production main with default disabled work featur
 Expanded --room-assessment to8ticks. Initial observations1–3 preserve site identities/progress and fingerprint. The external test fixture removes the construction site after3; observations4–5 change fingerprint and retain no sites. A caller keep-clear constraint at25,25 on6–7 changes fingerprint and removes that tile from availability. At8 constraint removal restores the exact4–5 signature and availability. Assessment never recreates the removed site or issues construction/destruction actions.
 
 Final evidence engine-RuTQP5. Quality325production/290testfiles passes with zero Lizard violations. Production code unchanged in this increment; last608-unit result and149-native aggregate retain their scope. Combined with version1 canonical signature and explicit freshness boundary tests, this verifies ED-23 fingerprint/freshness acceptance. No cache/scheduler implementation or other ticket completion is implied.
+
+## ED-23 acceptance audit
+
+All four ED-23 criteria are evidenced as of this completion increment:
+
+| Criterion | Implementation and evidence |
+| --- | --- |
+| Regions/clearance/exits/costs/objects/access/anchors/constraints | assessRoom+assessTerrain and native observeRoomAssessment; planning-grid, planning-terrain and room-assessment unit fixtures; native engine-9dwTqo |
+| Pure transforms/coordinates/adjacency | local-grid, room-grid and transforms; all2500tile indices/boundaries, eight legacy transforms and inverse anchor recovery across all eight transforms |
+| Versioned fingerprint and freshness | snapshot version1; canonical meaningful-input signatures and independent observation age/visibility; assessment-snapshot tests and native site/manual invalidation |
+| Open/constrained/disconnected/swamp-heavy/occupied fixtures; no assessment game actions | named terrain/grid/object fixtures plus8-tick native observation; adapter only reads APIs, site progress remains unchanged until external fixture removal, observer never rebuilds it |
+
+anchorForPlacement selectively ports legacy anchorFromWorld with transformed relative offsets, validates positions and returns undefined for out-of-room anchors. This completes the geometry needed to propose anchors from preserved infrastructure without native RoomPosition construction.
+
+Final609tests/186files pass5.81s; quality325production/290testfiles zero Lizard violations; native --room-assessment engine-9dwTqo passes. Last full native aggregate remains149; no newer aggregate claimed.
+
+Scope boundary: ED-23 supplies reusable deterministic observations/assessment, not automatic layout execution. The earlier notes listing scheduler/cache integration as follow-up do not add new acceptance requirements to ED-23. ED-24 owns strategy candidates, validation/scoring, checkpoints and commitment; ED-27 owns construction reconciliation; expansion consumes assessment in its later policy. CPU/memory cost and caching choices remain measured performance work. Legacy room.layout.shared contains further templates/placement logic still to port under ED-24 onward; this milestone does not claim whole-module parity.

@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { adjacentTiles, insideRoom, tileAt, tileIndex } from '../../src/core/geometry/local-grid';
-import { placeOffset, transformOffset } from '../../src/core/geometry/transforms';
+import { anchorForPlacement, placeOffset, transformOffset } from '../../src/core/geometry/transforms';
 import type { TransformIndex } from '../../src/core/geometry/transforms';
 test('all room tiles round-trip and neighbour lists never wrap or include self', () => {
   for (let index = 0; index < 2500; index++) {
@@ -36,4 +36,15 @@ test('placement respects margins and rejects malformed or overflowing coordinate
   expect(() => transformOffset({ x: NaN, y: 0 }, 0)).toThrow();
   expect(() => transformOffset({ x: 1, y: 0 }, 8 as TransformIndex)).toThrow();
   expect(() => insideRoom({ x: 25, y: 25 }, -1)).toThrow();
+});
+
+test('existing structures recover their template anchor for all rotations and reflections', () => {
+  const anchor = { x: 25, y: 25 }, offset = { x: 3, y: -2 };
+  for (let index = 0; index < 8; index++) {
+    const transform = index as TransformIndex;
+    const placed = placeOffset(anchor, offset, transform)!;
+    expect(anchorForPlacement(placed, offset, transform)).toEqual(anchor);
+  }
+  expect(anchorForPlacement({ x: 0, y: 0 }, { x: 1, y: 1 }, 0)).toBeUndefined();
+  expect(() => anchorForPlacement({ x: 50, y: 0 }, offset, 0)).toThrow('placement');
 });

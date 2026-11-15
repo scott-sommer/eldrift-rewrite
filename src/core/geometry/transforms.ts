@@ -17,3 +17,11 @@ export function placeOffset(anchor: Tile, offset: Tile, transform: TransformInde
   const result = { x: anchor.x + point.x, y: anchor.y + point.y };
   return insideRoom(result, margin) ? result : undefined;
 }
+
+/** Recover a candidate anchor from an existing structure and its transformed template offset. */
+export function anchorForPlacement(position: Tile, offset: Tile, transform: TransformIndex): Tile | undefined {
+  if (!insideRoom(position)) throw new Error('Invalid placement');
+  const point = transformOffset(offset, transform);
+  const anchor = { x: position.x - point.x, y: position.y - point.y };
+  return insideRoom(anchor) ? anchor : undefined;
+}
