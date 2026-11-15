@@ -22,13 +22,14 @@ export function validCompactEnumeration(value: unknown): value is CompactEnumera
   const state = value as CompactEnumeration;
   if (state.version !== 1 || typeof state.signature !== 'string' || !state.signature) return false;
   if (!Array.isArray(state.candidates) || state.candidates.length > 10000) return false;
-  if (![state.standard, state.constrained].every(validCursor)) return false;
+  if (![state.standard, state.constrained, state.stamps].every(validCursor)) return false;
   if (new Set(state.candidates).size !== state.candidates.length) return false;
-  const seen = { standard: new Set(state.standard?.seen), constrained: new Set(state.constrained?.seen) };
+  const seen = { standard: new Set(state.standard?.seen), constrained: new Set(state.constrained?.seen), stamps: new Set(state.stamps?.seen) };
   return state.candidates.every(id => validId(id, seen));
 }
-function validId(id: unknown, seen: { standard: Set<string>; constrained: Set<string> }): boolean {
-  if (typeof id !== 'string' || !/^(standard|constrained):([0-9]|[1-4][0-9]):([0-9]|[1-4][0-9]):[0-7]$/.test(id)) return false;
+function validId(id: unknown, seen: { standard: Set<string>; constrained: Set<string>; stamps: Set<string> }): boolean {
+  if (typeof id !== 'string' || !/^(standard|constrained|stamps):([0-9]|[1-4][0-9]):([0-9]|[1-4][0-9]):[0-7]$/.test(id)) return false;
+  if (id.startsWith('stamps:') && !id.endsWith(':0')) return false;
   const split = id.indexOf(':');
   return seen[id.slice(0, split) as keyof typeof seen].has(id.slice(split + 1));
 }

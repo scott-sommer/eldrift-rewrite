@@ -4,10 +4,10 @@ import type { CandidateSeeds } from '../../capabilities/planning/standard-candid
 import type { AnchorOptions } from '../../capabilities/planning/constrained-anchors';
 import type { CandidateCheckpoint } from '../../capabilities/planning/candidate-batch';
 import type { PlanningCandidate } from './planning-job-model';
-export interface EnumerationOptions { standard?: CandidateSeeds; constrained?: AnchorOptions }
+export interface EnumerationOptions { standard?: CandidateSeeds; constrained?: AnchorOptions; stamps?: AnchorOptions }
 export interface EnumerationCheckpoint {
   version: 1; signature: string; candidates: PlanningCandidate[];
-  standard?: CandidateCheckpoint; constrained?: CandidateCheckpoint;
+  standard?: CandidateCheckpoint; constrained?: CandidateCheckpoint; stamps?: CandidateCheckpoint;
 }
 export function enumeratePlanningCandidates(
   options: EnumerationOptions, previous: EnumerationCheckpoint | undefined,

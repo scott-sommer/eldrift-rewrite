@@ -1,3 +1,4 @@
+import { stampCandidateBatch } from '../../capabilities/planning/stamp-candidate-batch';
 import { copyPlain } from '../../persistence/plain-data';
 import { standardCandidateBatch } from '../../capabilities/planning/standard-candidate-batch';
 import { constrainedCandidateBatch } from '../../capabilities/planning/constrained-candidate-batch';
@@ -29,6 +30,13 @@ export function enumerateCompactCandidates(
     const result = constrainedCandidateBatch(options.constrained, checkpoint.constrained, maximumAttempts - attempts, canContinue);
     checkpoint.constrained = result.checkpoint;
     append(checkpoint.candidates, 'constrained', result.candidates);
+    attempts += result.attempts;
+    if (!result.done) return { done: false as const, checkpoint, attempts };
+  }
+  if (options.stamps) {
+    const result = stampCandidateBatch(options.stamps, checkpoint.stamps, maximumAttempts - attempts, canContinue);
+    checkpoint.stamps = result.checkpoint;
+    append(checkpoint.candidates, 'stamps', result.candidates);
     attempts += result.attempts;
     if (!result.done) return { done: false as const, checkpoint, attempts };
   }

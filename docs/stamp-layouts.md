@@ -238,3 +238,19 @@ Eight strategy/evaluator tests across two files pass in478ms; quality passes
 (444 production /390 test files, zero violations); smoke passes. Tests cover
 opt-in registration, serialized adapter progress and explicit outer-transform
 rejection. Full native scoring/commit and irregular-room acceptance remain open.
+
+## Persistent hub enumeration
+
+Enumeration now supports an optional stamps source after standard/constrained,
+sharing the per-call attempt budget. Hub anchors reuse the bounded preferred/
+controller/center pool without requiring a constrained-core footprint.
+Each hub is emitted only at transform0; stamp rotations belong to composition.
+Compact/public schemas accept stamp IDs only when their cursor history contains
+the same coordinates and reject nonzero outer transforms. Old enumeration data
+without stamps remains valid; no stored state is rewritten merely to add this
+optional strategy. Request admission still does not emit stamp options yet.
+
+Thirteen enumeration/store tests across three files pass in567ms, including
+serialized resume and shared budget ordering; smoke passes. Quality:
+445 production /391 test files, zero violations. Production request/policy
+enablement and native scored commitment remain next.
