@@ -1,6 +1,7 @@
 import { placeTemplate } from './template';
 import { standardTemplate } from './standard-template';
 import { stagePositions } from './staging';
+import { stageReactionLabs } from './lab-staging';
 import type { PlacedTile } from './template';
 import type { Tile } from '../../core/geometry/local-grid';
 import type { TransformIndex } from '../../core/geometry/transforms';
@@ -38,7 +39,8 @@ function stageType(
   const capacity = limits[recipe.type];
   if (!capacity) throw new Error('Missing structure limits: ' + recipe.type);
   const positions = placed.filter(entry => entry.type === recipe.type).map(entry => entry.position);
-  return stagePositions(positions, anchor, capacity, recipe.minimum).map(entry => ({
+  const stage = recipe.type === 'lab' ? stageReactionLabs : stagePositions;
+  return stage(positions, anchor, capacity, recipe.minimum).map(entry => ({
     type: recipe.type, position: entry.position, rcl: entry.rcl,
     priority: recipe.priority, tag: recipe.tag,
   }));
