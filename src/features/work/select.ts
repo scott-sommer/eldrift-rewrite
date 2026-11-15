@@ -7,7 +7,7 @@ import type { WorkerMode, WorkPolicy } from './policy';
 export function selectWork(view: WorkAssessment, origin: Position, mode: WorkerMode, policy: Readonly<WorkPolicy>, current?: string): WorkOrder | undefined {
   validateWorkPolicy(policy);
   const candidates = controllerOrders(view, origin, mode, policy);
-  if (mode !== 'upgrader') candidates.push(...constructionOrders(view, origin, policy), ...repairOrders(view, origin, mode, policy));
+  if (mode !== 'upgrader') candidates.push(...constructionOrders(view, origin, policy), ...repairOrders(view, origin, mode, policy, current));
   candidates.sort((a, b) => a.priority - b.priority || a.score - b.score || a.id.localeCompare(b.id));
   const best = candidates[0];
   return candidates.find(item => item.id === current && item.priority === best?.priority) ?? best;

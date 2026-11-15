@@ -3,11 +3,12 @@ import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 export function loop() {
-  const creep = Game.creeps.build!;
+  const creep = Object.values(Game.creeps)[0]!;
   creep.memory.population ??= { owner: 'work:W0N1:fortifier', home: 'W0N1' };
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
-  settings.empire = { workersEnabled: true, workerWallHits: 300, workerRampartHits: 300 };
+  settings.empire = { workersEnabled: true, workerWallHits: 300, workerRampartHits: 300,
+    workerFortificationProfile: creep.name === 'legacy' ? 'legacy' : 'fixed' };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
   const structures = creep.room.find(FIND_STRUCTURES);

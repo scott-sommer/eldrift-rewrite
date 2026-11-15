@@ -1,5 +1,5 @@
 import { assignNativeWorkerSource } from './native-worker-assignment';
-import { upgradeBootstrapOwner } from '../features/work/upgrade-identity';
+import { nativeWorkerWorkPolicy, retainedWorkerTarget } from './native-worker-work-policy';
 import { createNativeWorkerCargo } from './native-worker-cargo';
 import { maintainNativeWorkers } from './native-worker-population';
 import { createNativeWorkerCollection } from './native-worker-collection';
@@ -12,7 +12,6 @@ import { createNativeWork } from '../adapters/screeps/work-execution';
 import { assessNativeWork } from './native-work-assessment';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
 import { nativeWorkerSettings } from './native-worker-settings';
-import { defaultWorkPolicy } from '../features/work/policy';
 import { selectWork } from '../features/work/select';
 import { createWorkTaskBehavior } from './work-task';
 import { reconcileWorkTask } from './reconcile-work-task';
@@ -50,13 +49,10 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     assessment: ReturnType<typeof assessNativeWork>): void {
     assignNativeWorkerSource(creep, room, settings);
     if (cargo.run(creep, room.name, settings)) return;
-    const bootstrap = creep.memory.population?.owner === upgradeBootstrapOwner(room.name);
-    const policy = { ...defaultWorkPolicy, wallHits: settings.workerWallHits, rampartHits: settings.workerRampartHits,
-      downgradeThreshold: settings.workerDowngradeThreshold,
-      allowUpgrade: bootstrap || !recoveryActive && (!room.storage || room.storage.store.energy > settings.workerUpgradeReserve) };
+    const policy = nativeWorkerWorkPolicy(creep, room, settings, recoveryActive);
     const origin = creep.pos.roomName === room.name ? movementPosition(creep.pos) : { room: room.name, x: 25, y: 25 };
     reconcileWorkTask(state, schemas, { name: creep.name, id: creep.id, home: room.name }, Game.time,
-      current => settings.workersEnabled ? selectWork(assessment, origin, settings.workerMode, policy, current?.id) : undefined);
+      current => settings.workersEnabled ? selectWork(assessment, origin, settings.workerMode, policy, retainedWorkerTarget(creep, settings, current?.id)) : undefined);
     if (!settings.workersEnabled) return;
     dispatch.activate(); execute(creep.name, { creep, config: settings });
   }

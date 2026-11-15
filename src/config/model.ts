@@ -66,6 +66,8 @@ export interface RuntimeConfig {
   workerFortifierTarget: number;
   workerUpgraderTarget: number;
   workerMode: 'builder' | 'fortifier' | 'upgrader';
+  workerFortificationProfile: 'fixed' | 'legacy';
+  workerFortificationCeiling: number;
   workerWallHits: number;
   workerRampartHits: number;
   workerDowngradeThreshold: number;
@@ -164,6 +166,8 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   workerFortifierTarget: 0,
   workerUpgraderTarget: 0,
   workerMode: 'builder',
+  workerFortificationProfile: 'fixed',
+  workerFortificationCeiling: 0,
   workerWallHits: 50000,
   workerRampartHits: 50000,
   workerDowngradeThreshold: 5000,

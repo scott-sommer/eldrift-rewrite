@@ -68,6 +68,8 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   workerFortifierTarget: value => bounded(value, 50) && Number.isInteger(value),
   workerUpgraderTarget: value => bounded(value, 50) && Number.isInteger(value),
   workerMode: value => typeof value === 'string' && ['builder', 'fortifier', 'upgrader'].includes(value),
+  workerFortificationProfile: value => value === 'fixed' || value === 'legacy',
+  workerFortificationCeiling: value => bounded(value, 300000000) && Number.isInteger(value),
   workerWallHits: value => bounded(value, 300000000) && Number.isInteger(value),
   workerRampartHits: value => bounded(value, 300000000) && Number.isInteger(value),
   workerDowngradeThreshold: value => bounded(value, 200000) && Number.isInteger(value),

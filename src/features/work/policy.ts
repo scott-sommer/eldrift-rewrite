@@ -6,6 +6,7 @@ export interface WorkPolicy {
   rampartHits: number;
   wallHits: number;
   barrierDistanceWeight: number;
+  legacyFortificationCeiling?: number;
   allowUpgrade: boolean;
   allowMaxLevelUpgrade: boolean;
   constructionOrder: readonly string[];
@@ -21,5 +22,6 @@ export function validateWorkPolicy(policy: Readonly<WorkPolicy>): void {
     .every(value => Number.isFinite(value) && value >= 0)) throw new Error('Invalid work policy bounds');
   if (![policy.criticalRepairFraction, policy.routineRepairFraction].every(value => Number.isFinite(value) && value >= 0 && value <= 1)) throw new Error('Invalid repair fraction');
   if (policy.criticalRepairFraction > policy.routineRepairFraction) throw new Error('Critical repair threshold exceeds routine threshold');
+  if (policy.legacyFortificationCeiling !== undefined && (!Number.isFinite(policy.legacyFortificationCeiling) || policy.legacyFortificationCeiling < 0)) throw new Error('Invalid fortification ceiling');
   if (new Set(policy.constructionOrder).size !== policy.constructionOrder.length) throw new Error('Duplicate construction priority');
 }

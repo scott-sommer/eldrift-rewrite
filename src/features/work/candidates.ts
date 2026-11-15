@@ -1,3 +1,4 @@
+import { legacyFortificationOrders } from './legacy-fortification';
 import type { WorkAssessment, WorkOrder, WorkStructure } from '../../capabilities/work/assessment';
 import type { Position } from '../../capabilities/movement/step';
 import type { WorkerMode, WorkPolicy } from './policy';
@@ -11,7 +12,8 @@ export function constructionOrders(view: WorkAssessment, origin: Position, polic
       score: (rank < 0 ? policy.constructionOrder.length : rank) * 100 + workRange(origin, site.position) };
   });
 }
-export function repairOrders(view: WorkAssessment, origin: Position, mode: WorkerMode, policy: Readonly<WorkPolicy>): WorkOrder[] {
+export function repairOrders(view: WorkAssessment, origin: Position, mode: WorkerMode, policy: Readonly<WorkPolicy>, current?: string): WorkOrder[] {
+  if (mode === 'fortifier' && policy.legacyFortificationCeiling !== undefined) return legacyFortificationOrders(view, origin, policy.legacyFortificationCeiling, current);
   return view.structures.filter(item => item.eligible && !item.excluded && item.position.room === origin.room)
     .flatMap(item => repairOrder(item, origin, mode, policy));
 }
