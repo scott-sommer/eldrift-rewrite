@@ -111,3 +111,18 @@ Contract checks additionally preserve an unrelated hauling head and prevent drop
 Final unit/contract suite passes474tests/145files in3.95s; quality234production/222testfiles has zero Lizard violations; packaged bundle validation passes. The unrelated-task fixture initially omitted the queued request required by real admission; it now submits that request and asserts successful task admission before checking preservation. No production admission guard was relaxed. Native regression is recorded after completion below.
 
 Final full native regression passes101checks in141.08s, including all three worker cargo modes and existing work, energy collection, recovery, donor and logistics scenarios. Standalone cargo evidence reports zero errors/messages. No live deployment was performed.
+
+
+## Combined ordinary-colony resilience acceptance (ED-22, 2026-11-15)
+
+Added --colony-resilience, a1,100-tick production-main scenario covering ED-22's combined owned-room acceptance criterion. The fixture starts with no creeps, a300-energy spawn, an empty storage/container, one renewable source and one road site. Mining, courier, builder and recovery policies remain enabled throughout; ordinary worker collection/upgrading retains a100-energy storage reserve. Recovery enters below25 and exits at100, checked each tick for this bounded scenario.
+
+Faults are injected only after the colony has a live miner/hauler/worker, has completed construction, has upgraded, and has recovered its storage reserve. The fixture removes the miner at tick460, the hauler at560, and the worker at600. The last loss also drains spawn/extensions/storage/container energy to zero and adds a second road site. It never restores energy, seeds replacement creeps, changes the bot's policy or mutates controller/construction progress. Source regeneration and native passive spawn regeneration remain normal engine behavior; confirmed logistics receipts establish actual collection/delivery rather than inferring it from spawn energy.
+
+The bot replaces all three lost identities, re-enters recovery after the energy drain, exits through replenished storage, completes the second road and resumes upgrading. Final tick1,100: one live replacement miner, hauler and worker; storage151, spawn300, controller progress142 (44 before final loss), two completed roads, no remaining sites, cumulative confirmed logistics receipts1,903. Receipts count actual logistics deliveries, including banking, not unique energy production.
+
+Final actual-engine evidence artifacts/engine-4G3cdd/evidence.json. The initial1,000-tick run passed but had advanced only one upgrade point after the final loss; the final scenario extends observation and explicitly requires at least10 further progress. It also checks all three replacement identities, ongoing deliveries after each fault, zero-energy recovery re-entry, final recovery exit and absence of caught runtime errors.
+
+Validation: quality passed (301 production /271 test files; zero Lizard violations);576 tests/175files passed in4.53s; final native resilience scenario passed. The new case is registered for the next full suite; the prior131-case aggregate was not rerun for this fixture-only addition.
+
+This evidences ED-22's combined ordinary-colony criterion; ED-22 itself remains open for source/behavior traceability reconciliation. In particular, assigned-room/source handling and no-source wall-dismantling paths in role.builder.js require explicit disposition/implementation through their intended boundaries. This result does not replace later release CPU/memory/soak gates.
