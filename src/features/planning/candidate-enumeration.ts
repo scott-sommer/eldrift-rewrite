@@ -17,7 +17,7 @@ export function enumeratePlanningCandidates(
   maximumAttempts: number, canContinue: () => boolean = () => true,
 ) {
   if (!Number.isSafeInteger(maximumAttempts) || maximumAttempts < 0) throw new Error('Invalid enumeration budget');
-  const signature = 'planning-candidates-v1:' + JSON.stringify(options);
+  const signature = enumerationSignature(options);
   const checkpoint = previous ? copyPlain(previous) : { version: 1 as const, signature, candidates: [] };
   if (checkpoint.version !== 1 || checkpoint.signature !== signature) throw new Error('Stale candidate enumeration');
   if (!validEnumeration(checkpoint)) throw new Error('Invalid candidate enumeration');
@@ -53,4 +53,8 @@ function candidateSource(checkpoint: EnumerationCheckpoint): PlanningJobInput['s
       if (!Number.isSafeInteger(index) || index < 0 || index >= candidates.length) throw new Error('Invalid planning candidate ordinal');
       return copyPlain(candidates[index]!);
     } };
+}
+
+export function enumerationSignature(options: EnumerationOptions): string {
+  return 'planning-candidates-v1:' + JSON.stringify(options);
 }

@@ -1,15 +1,14 @@
-import { enumeratePlanningCandidates } from '../../src/features/planning/candidate-enumeration';
+import { runEnumerationCycle } from '../../src/features/planning/enumeration-cycle';
 import { createEnumerationStore } from '../../src/features/planning/enumeration-store';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 export function verifyCandidateEnumeration(): void {
   const memory = Memory as Memory & { enumerationRows?: unknown[] };
   const store = createEnumerationStore(createMemoryPort(() => Memory), 'W0N1');
-  const saved = store.read();
-  const result = enumeratePlanningCandidates({
+  const result = runEnumerationCycle(store, {
     standard: { storage: { x: 25, y: 25 }, structures: [] },
     constrained: { controller: { x: 40, y: 40 }, preferred: [{ x: 25, y: 25 }], limit: 36 },
-  }, saved.checkpoint, 400);
-  if (!store.save(saved.revision, result.checkpoint).ok) throw new Error('Enumeration save conflict');
+  }, 400);
+  if (result.status === 'conflict') throw new Error('Enumeration conflict');
   if (result.done) {
     if (result.source.count !== 1176) throw new Error('Missing enumerated candidates');
     if (result.source.at(0).id !== 'standard:25:25:0'

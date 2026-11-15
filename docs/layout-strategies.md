@@ -682,3 +682,32 @@ passed 806 tests / 238 files in 7.37s. Tests cover exact uninterrupted equivalen
 detachment, stale writers, explicit restart, invalid state preservation and committed
 plan isolation. Automatic request lifecycle/scheduling and retirement of enumeration
 history after scoring still require integration; ED-24 remains in progress.
+
+### Persisted enumeration-to-scoring handoff (ED-24)
+runEnumerationCycle now owns revision-guarded restart for changed enumeration options,
+resumption and saving before source exposure. A save/clear conflict prevents handoff.
+Already-completed enumeration performs no additional store write. Invalid work budgets
+are rejected before clearing old progress.
+
+runEnumeratedPlanningCycle composes enumeration with the existing scoring/commit
+lifecycle using separate attempt/step budgets and one shared continuation guard.
+Scoring cannot start until the full candidate set has been persisted. Changed
+enumeration options replace stale scoring identity only after new generation finishes.
+Store recreation, changed requests, write conflicts, guard exhaustion at handoff,
+invalid budgets and completed-request idleness are covered. A controlled proposal
+test makes only the final orientation viable: all eight candidates are visited,
+the plan stays uncommitted until then, and the final candidate commits exactly once.
+This test verifies orchestration, not native layout viability.
+
+The native route-reload fixture now calls runEnumerationCycle. engine-wmb4mF passed
+with empty errors/messages, preserving all 1,176 candidates over the three batches
+and runtime reload. CPU samples 43/45/30 ms, final fixture Memory 138,254 bytes.
+This native test covers enumeration persistence; the complete new composed handoff
+is currently unit-tested. The existing native planning-job scenario separately covers
+the scoring/commit lifecycle.
+
+Quality passed for 407 production / 359 test files with zero Lizard violations.
+Full fast suite: 813 tests / 239 files in 7.59s. Automatic room request scheduling,
+enumeration-history retirement after scoring, bounded cold work and full live-room
+qualification remain open. Completed history is retained to reproduce the exact
+source identity needed by scoring receipts and lost-acknowledgement recovery.
