@@ -1,3 +1,4 @@
+import { verifyTrafficRoads } from './traffic-road-check';
 import { loop as botLoop } from '../../src/main';
 import { canShareTile } from '../../src/capabilities/planning/placement-validation';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
@@ -11,6 +12,7 @@ export function loop() {
   const rows = memory.layoutPlacement ??= [];
   if (Game.time === 1) {
     verifyRoadSearch();
+    verifyTrafficRoads();
     verifyAssembledDraft();
     const candidate = { anchor: { x: spawn.pos.x, y: spawn.pos.y }, transform: 0 as const };
     const live = observeStandardLayoutDraft(room.name, candidate);

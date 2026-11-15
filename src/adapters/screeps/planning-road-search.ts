@@ -9,13 +9,14 @@ export function planningRoadSearch(room: string, costs: readonly number[], maxOp
   if (!Number.isInteger(maxOps) || maxOps < 1) throw new Error('Invalid planning search budget');
   const base = new PathFinder.CostMatrix();
   costs.forEach((cost, index) => { const tile = tileAt(index); base.set(tile.x, tile.y, cost); });
-  return (start: Tile, goal: Tile, preferredRoads: readonly Tile[]): RoadSearchResult => {
+  return (start: Tile, goal: Tile, preferredRoads: readonly Tile[], blocked: readonly Tile[] = []): RoadSearchResult => {
     tileIndex(start); tileIndex(goal);
     const matrix = base.clone();
     for (const road of preferredRoads) {
       tileIndex(road);
       if (matrix.get(road.x, road.y) < 255) matrix.set(road.x, road.y, 1);
     }
+    for (const tile of blocked) { tileIndex(tile); matrix.set(tile.x, tile.y, 255); }
     const result = PathFinder.search(new RoomPosition(start.x, start.y, room),
       { pos: new RoomPosition(goal.x, goal.y, room), range: 1 }, {
         maxRooms: 1, maxOps, plainCost: 2, swampCost: 2,
