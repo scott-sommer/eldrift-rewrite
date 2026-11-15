@@ -10,10 +10,9 @@ export function validEnumeration(value: unknown): value is EnumerationCheckpoint
   if (state.candidates.length > 10000 || !state.candidates.every(validCandidate)) return false;
   if (new Set(state.candidates.map(candidate => candidate.id)).size !== state.candidates.length) return false;
   if (![state.standard, state.constrained].every(validCursor)) return false;
-  return state.candidates.every(candidate => {
-    const cursor = candidate.strategy === 'standard' ? state.standard : state.constrained;
-    return cursor?.seen.includes(candidate.id.slice(candidate.strategy.length + 1)) === true;
-  });
+  const seen = { standard: new Set(state.standard?.seen), constrained: new Set(state.constrained?.seen) };
+  return state.candidates.every(candidate => seen[candidate.strategy as keyof typeof seen]
+    .has(candidate.id.slice(candidate.strategy.length + 1)));
 }
 function validCandidate(value: unknown): value is PlanningCandidate {
   if (!value || typeof value !== 'object') return false;
@@ -23,7 +22,7 @@ function validCandidate(value: unknown): value is PlanningCandidate {
     || !integer(candidate.transform, 0, 7)) return false;
   return candidate.id === candidate.strategy + ':' + candidate.anchor.x + ':' + candidate.anchor.y + ':' + candidate.transform;
 }
-function validCursor(value: unknown): value is CandidateCheckpoint | undefined {
+export function validCursor(value: unknown): value is CandidateCheckpoint | undefined {
   if (value === undefined) return true;
   if (!value || typeof value !== 'object') return false;
   const cursor = value as CandidateCheckpoint;

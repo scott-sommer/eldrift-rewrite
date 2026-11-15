@@ -25,12 +25,16 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
       const current = readPolicy();
       return { ...current, implementationRevision: policyRevision(current), currentPlan: admitted.stores.plans.read() };
     });
+    let score: ReturnType<NativePlanningPolicy['prepareScore']> | undefined;
     const step = createNativePlanningEvaluator({
       room, observation: admitted.request.observation, observationIdentity: admitted.observationIdentity,
       policyIdentity: admitted.policyIdentity, operatorEntries: admitted.request.operatorEntries,
       versions: policy.versions, searchRevision: policy.searchRevision, maximumPathOps: policy.maximumPathOps,
       maximumSearches: policy.config.planningSearches, canContinue,
-      prepareScore: policy.prepareScore(admitted.request.observation),
+      prepareScore: (candidate, entries) => {
+        score ??= policy.prepareScore(admitted.request.observation);
+        return score(candidate, entries);
+      },
     });
     const base = admitted.stores.requests.read().request!.basePlan;
     const work: PlanningWork = {

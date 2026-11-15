@@ -23,7 +23,8 @@ export function admitPlanningRequest(
   const captured = store.capture(saved.revision, identity, current);
   if (!captured.ok) return { status: 'conflict' as const };
   const base = captured.record.request!.basePlan;
-  const request = prepareConfiguredPlanningRequest(observation, base, config, valuableTypes);
+  const request = base.revision === current.revision ? prepared
+    : prepareConfiguredPlanningRequest(observation, base, config, valuableTypes);
   if (!request.ok) throw new Error('Captured planning request became unavailable');
   return { status: 'ready' as const, request, identity, observationIdentity, policyIdentity,
     baseRevision: base.revision, reused: captured.reused };

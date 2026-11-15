@@ -44,6 +44,7 @@ test('native work connects current identity, both strategies, persisted completi
   if (ready.status !== 'ready') throw new Error(ready.status);
   const { work } = ready, plan = proposal(work);
   expect(Object.keys(work.enumeration)).toEqual(['standard', 'constrained']);
+  expect(policy.prepareScore).not.toHaveBeenCalled();
   expect(work.input.validate(plan)).toBe(true);
   expect(work.input.step({ id: 'unknown', strategy: 'unknown', anchor: { x: 25, y: 25 }, transform: 0 }, undefined))
     .toEqual({ status: 'rejected', reason: 'unsupported-strategy:unknown' });

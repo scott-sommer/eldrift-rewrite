@@ -48,7 +48,7 @@ test('changed options restart generation and replace stale scoring progress only
 });
 test('a failed batch save never exposes candidates to scoring', () => {
   const { ports, input } = setup();
-  ports.candidates.save = () => ({ ok: false, reason: 'revision' });
+  ports.candidates.saveCompact = () => ({ ok: false, reason: 'revision' });
   expect(runEnumeratedPlanningCycle(ports, options, input, 1, { attempts: 8, steps: 8 }))
     .toEqual({ phase: 'enumeration', status: 'conflict' });
   expect(input.step).not.toHaveBeenCalled();

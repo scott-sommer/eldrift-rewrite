@@ -55,11 +55,43 @@ test('invalid geometry, transform, history and cursor cannot replace valid progr
 test('future, foreign and corrupt envelopes survive failed reads without replacement', () => {
   const { records, store } = setup();
   for (const value of [{ owner: 'foreign', version: 1, data: {} },
-    { owner: 'planning-candidates', version: 2, data: {} },
+    { owner: 'planning-candidates', version: 3, data: {} },
     { owner: 'planning-candidates', version: 1, data: { room: 'W0N1', revision: -1 } }]) {
     records['planning-candidates/W0N1'] = value;
     const before = JSON.stringify(records);
     expect(() => store.read()).toThrow();
+    expect(JSON.stringify(records)).toBe(before);
+  }
+});
+
+test('v1 checkpoints migrate losslessly to compact IDs without changing revision or candidate order', () => {
+  const { records, store } = setup(), checkpoint = enumeratePlanningCandidates(options, undefined, 400).checkpoint;
+  records['planning-candidates/W0N1'] = { owner: 'planning-candidates', version: 1,
+    data: { room: 'W0N1', revision: 7, checkpoint } };
+  const before = JSON.stringify(records['planning-candidates/W0N1']);
+  expect(store.read()).toEqual({ room: 'W0N1', revision: 7, checkpoint });
+  const migrated = records['planning-candidates/W0N1'] as Envelope;
+  expect(migrated.version).toBe(2);
+  expect(JSON.stringify(migrated).length).toBeLessThan(before.length / 2);
+  expect(store.read().checkpoint).toEqual(checkpoint);
+});
+test('malformed compact IDs never overwrite stored progress', () => {
+  const { records, store } = setup(), checkpoint = enumeratePlanningCandidates(options, undefined, 1).checkpoint;
+  store.save(0, checkpoint);
+  const record = records['planning-candidates/W0N1'] as { data: { checkpoint: { candidates: unknown[] } } };
+  record.data.checkpoint.candidates = ['standard:025:25:0'];
+  const before = JSON.stringify(record);
+  expect(() => store.read()).toThrow('invalid state');
+  expect(JSON.stringify(records['planning-candidates/W0N1'])).toBe(before);
+});
+
+test('invalid v1 checkpoint migrations preserve the original envelope', () => {
+  const { records, store } = setup();
+  for (const checkpoint of [null, {}, { version: 1, signature: 'old', candidates: ['not-a-candidate'] }]) {
+    records['planning-candidates/W0N1'] = { owner: 'planning-candidates', version: 1,
+      data: { room: 'W0N1', revision: 3, checkpoint } };
+    const before = JSON.stringify(records);
+    expect(() => store.read()).toThrow('invalid state');
     expect(JSON.stringify(records)).toBe(before);
   }
 });
