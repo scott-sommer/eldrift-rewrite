@@ -1,3 +1,5 @@
+import { mergeOperatorPlacements } from './operator-placements';
+import type { PlanEntry } from './plan-model';
 import type { prepareEvaluation } from '../../capabilities/planning/evaluate-draft';
 import { evaluateDraftBatch } from '../../capabilities/planning/evaluate-draft-batch';
 import type { EvaluateDraftInput } from '../../capabilities/planning/evaluate-draft';
@@ -13,6 +15,7 @@ export interface CandidateEvaluatorOptions {
   strategies: Readonly<Record<string, LayoutStrategy>>;
   maximumSearches: number; canContinue: () => boolean; tick: () => number;
   prepare?: typeof prepareEvaluation;
+  operatorEntries?: readonly PlanEntry[];
   prepareScore: (candidate: PlanningCandidate, entries: readonly StagedTile[]) => EvaluateDraftInput;
 }
 interface Progress {
@@ -26,7 +29,7 @@ export function createCandidateEvaluator(options: CandidateEvaluatorOptions) {
     const strategy = Object.hasOwn(options.strategies, candidate.strategy) ? options.strategies[candidate.strategy] : undefined;
     if (!strategy) return { status: 'rejected', reason: 'unsupported-strategy:' + candidate.strategy };
     if (!strategy.version) throw new Error('Missing strategy version');
-    const signature = JSON.stringify([candidate, strategy.version, options.observation, options.policy, options.searchRevision]);
+    const signature = JSON.stringify([candidate, strategy.version, options.observation, options.policy, options.searchRevision, ...(options.operatorEntries?.length ? [options.operatorEntries] : [])]);
     const progress = restoreProgress(signature, saved);
     if (progress.phase === 'score') return scoreCandidate(options, candidate, strategy.version, progress);
     const result = strategy.advance(copyPlain(candidate), signature, progress.checkpoint, options.maximumSearches, options.canContinue);
@@ -47,7 +50,7 @@ function restoreProgress(signature: string, saved: unknown): Progress {
 function scoreCandidate(
   options: CandidateEvaluatorOptions, candidate: PlanningCandidate, version: string, progress: Progress,
 ): CandidateStep {
-  const input = options.prepareScore(copyPlain(candidate), copyPlain(progress.entries!));
+  const input = scoreInput(options, candidate, progress.entries!);
   const result = evaluateDraftBatch(input, progress.signature, progress.checkpoint as DraftRouteCheckpoint | undefined,
     options.maximumSearches, options.canContinue, options.prepare);
   if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };
@@ -60,4 +63,11 @@ function scoreCandidate(
 function proposalStep(input: ProposalInput): CandidateStep {
   try { return { status: 'complete', proposal: createPlanProposal(input) }; }
   catch (error) { return { status: 'rejected', reason: 'proposal:' + String(error) }; }
+}
+
+function scoreInput(options: CandidateEvaluatorOptions, candidate: PlanningCandidate, draft: readonly StagedTile[]): EvaluateDraftInput {
+  if (!options.operatorEntries?.length) return options.prepareScore(copyPlain(candidate), copyPlain(draft));
+  const entries = mergeOperatorPlacements(draft, options.operatorEntries);
+  const prepared = options.prepareScore(copyPlain(candidate), entries);
+  return { ...prepared, entries: mergeOperatorPlacements(prepared.entries, options.operatorEntries) };
 }

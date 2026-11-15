@@ -12,6 +12,8 @@ const observation = planningObservation();
 export const evaluateJobCandidate = createCandidateEvaluator({
   observation: JSON.stringify(observation), policy: 'fixture-v1', searchRevision: 'native-job-v1',
   prepare: createEvaluationCache(measure('prepare', prepareEvaluation)),
+  operatorEntries: [{ type: 'storage', x: 25, y: 25, rcl: 4, priority: -777,
+    source: 'operator', tag: 'manual-storage', dependencies: [] }],
   maximumSearches: 1, canContinue: () => true, tick: () => Game.time,
   strategies: createLayoutStrategies({ observation, limits: planningLimits, assess: createAssessmentCache(),
     blocksMovement: type => OBSTACLE_OBJECT_TYPES.some(item => item === type),

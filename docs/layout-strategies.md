@@ -737,3 +737,33 @@ previous anchors/orientations. This is pure policy evidence; no new native scena
 run. Runtime triggering and wiring remain open. Operator entries are constrained here;
 preserving their source/priority/dependency metadata through draft merging before scoring
 still requires integration. No automatic demolition or live deployment is enabled.
+
+### Operator metadata through candidate scoring (ED-24)
+Candidate evaluators now accept operatorEntries. Exact type/tile matches replace generated
+metadata with the complete manual entry; additions are retained. Source, RCL, priority,
+tag, objectId and dependency metadata survive proposal construction. Duplicate draft or
+operator keys fail explicitly. Inputs remain detached; non-operator historical entries
+are not automatically reintroduced. Operator entry changes invalidate evaluator progress;
+runtime callers must also update request policy identity so the outer lifecycle restarts.
+
+Merging occurs before score-input preparation and again on that provider's result, so
+provider transformations cannot silently erase manual ownership. Normal hard validation,
+route costs and footprint costs see the merged geometry. Conflicting additions reject
+before route searches. The default path without operator entries retains its prior
+signature and avoids extra merge work.
+
+Native --planning-job engine-DLBMam passed all 230 ticks, six reloads, commit 199,
+recovery 200 and idle retirement with empty errors/messages. Both strategies receive
+the manual storage entry; the committed constrained plan retains its source=operator,
+priority=-777, tag=manual-storage and empty dependencies exactly. All six costs remain
+unchanged. Average sampled CPU 18.48 ms, maximum 93 ms; this is not a CPU-budget guarantee.
+The earlier unchanged-configuration native regression also passed (engine-BwlbHT).
+
+Quality passed: 409 production / 361 test files, zero Lizard violations. Full unit suite:
+824 tests / 241 files in 7.14s. Tests additionally cover nonempty dependency/objectId
+metadata, additions contributing to migration cost, duplicate rejection, changed manual
+policy invalidation and conflict rejection before searches.
+Runtime request wiring remains open. Strategy-local hard validation can still reject a
+missing manual lock before the final merge; incorporating manual placements into strategy
+draft generation/access planning is required for arbitrary operator additions. The native
+case proves exact matching metadata retention, not that broader capability.
