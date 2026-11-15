@@ -1,14 +1,15 @@
+import type { StagedTile } from './template';
 import { adjacentTiles, tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 import type { AssessmentInput } from './assessment-model';
-import type { CorePlacement, StructureLimits } from './core-model';
+import type { StructureLimits } from './core-model';
 import { assessRoom } from './assessment';
 import { placementFailures } from './placement-validation';
 import { resourceInfrastructure } from './resource-infrastructure';
 import { auxiliaryInfrastructure } from './auxiliary-infrastructure';
 import { scheduleCapacity } from './capacity-scheduling';
 export function attachInfrastructure(
-  core: readonly CorePlacement[], storage: Tile, observation: AssessmentInput, limits: StructureLimits, assess: typeof assessRoom = assessRoom,
+  core: readonly StagedTile[], storage: Tile, observation: AssessmentInput, limits: StructureLimits, assess: typeof assessRoom = assessRoom,
 ) {
   const assessment = assess(observation);
   const excluded = new Set(observation.constraints.filter(item => item.kind !== 'locked').map(item => tileIndex(item.position)));
@@ -22,7 +23,7 @@ export function attachInfrastructure(
   };
   const resources = resourceInfrastructure({ ...context, objects: observation.objects });
   const auxiliary = auxiliaryInfrastructure({
-    ...context, reserved: [...context.reserved, ...resources.entries.map(entry => entry.position)],
+    ...context, existing: core, reserved: [...context.reserved, ...resources.entries.map(entry => entry.position)],
   });
   const proposals = [...resources.entries, ...auxiliary.entries];
   const scheduled = scheduleCapacity(proposals, core, limits);

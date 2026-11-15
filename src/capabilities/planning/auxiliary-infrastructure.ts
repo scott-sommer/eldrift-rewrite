@@ -1,8 +1,10 @@
+import type { PlacedTile } from './template';
 import { tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 import { nearbyUtility } from './utility-placement';
 import type { StageRequest } from './capacity-scheduling';
 export interface AuxiliaryInput {
+  existing?: readonly PlacedTile[];
   storage: Tile; reserved: readonly Tile[];
   available: (type: string, position: Tile) => boolean;
   adjacentRoads: (position: Tile) => number;
@@ -19,6 +21,7 @@ export function auxiliaryInfrastructure(input: AuxiliaryInput) {
   const reserved = new Set(input.reserved.map(tileIndex));
   const entries: AuxiliaryProposal[] = [], missing: string[] = [];
   for (const [index, recipe] of recipes.entries()) {
+    if (recipe.type === 'factory' && input.existing?.some(entry => entry.type === 'factory')) continue;
     const position = nearbyUtility({
       center: input.storage, minRange: 2, maxRange: recipe.maxRange,
       targets: recipe.targets.map(offset => ({ x: input.storage.x + offset.x, y: input.storage.y + offset.y })),

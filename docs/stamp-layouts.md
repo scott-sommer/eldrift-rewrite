@@ -140,3 +140,25 @@ zero further attempts after exhaustion, changed-limit identity and success
 on the exact limit. Smoke passes in 188ms; quality zero violations
 (440 production /384 test files). Production anchor policy and full draft
 routing/evaluation integration remain outstanding.
+
+## Shared draft completion pipeline
+
+stampDraftBatch connects composition to attachInfrastructure and
+finishDraftBatch. It requires the composition's storage to match the candidate
+anchor, adds resource/auxiliary infrastructure, routes to all non-road entries,
+then uses the existing final hard validator. A separate road checkpoint survives
+composition replay and cooperative pauses. Pending composition never begins
+road search; incomplete paths never expose a successful draft.
+
+attachInfrastructure now accepts general staged placements rather than only
+core-tagged entries. Auxiliary placement reuses a supplied factory instead of
+requesting a second one; its existing additional-link policy is unchanged.
+This resolves the catalog/attachment duplicate factory conflict without
+discarding the catalog's chosen factory geometry.
+
+Final validation: quality passes (441 production / 385 test files, zero
+violations); 11 targeted infrastructure/standard/stamp tests pass in 376ms;
+full unit suite 918 tests / 260 files passes in 8.71s. Smoke passed earlier in
+the iteration. These are contract/failure tests, not successful native stamp
+layout evidence. Anchor policy, strategy registration, full successful routing
+fixtures and native qualification remain open.
