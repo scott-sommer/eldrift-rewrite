@@ -1050,3 +1050,11 @@ with empty errors/messages after the identity change. This native scenario exerc
 observation/admission identity, not a successful live-room plan commit through the new
 validator. That broader qualification, production scoring/defense composition and
 main-loop registration remain open.
+
+### Canonical policy serialization (ED-24)
+
+Policy identity now uses versioned explicit tuples (planning-request-v2), rather than serializing caller object property order. Valuable structure types are a set; operator dependencies are order-independent; omitted refresh revision means zero. Operator placement, RCL, priority, tag, object identity and dependencies remain identity-bound. Returned operator entries retain their original metadata and dependency ordering; canonicalization only affects identity.
+
+This deliberately changes persisted request identities: earlier requests restart on next admission, including a previously completed request whose stored policy used v1. Existing committed plans remain stored until a newly validated replacement commits. This is an internal development migration, not a live deployment.
+
+Validation: quality passed (424 production / 371 test files; zero Lizard violations). Request/admission/native commit validator plus smoke tests: 19 tests across four files, 0.899s. Native room-assessment scenario engine-4oFoI2 passed with empty errors and messages. Full unit/native suites were not repeated for this small correction. Native runtime registration, production scoring/defense policy and live-room complete-plan qualification remain open.

@@ -95,3 +95,36 @@ test('prepared manual policy is detached and binds metadata and preservation set
   if (!changed.ok) throw new Error(changed.reason);
   expect(changed.policyIdentity).not.toBe(first.policyIdentity);
 });
+
+test('equivalent policy and operator serialization order retain the same identity', () => {
+  const { observation, plan } = setup();
+  const entry = { ...plan.entries[0]!, tag: 'manual', dependencies: ['road:21:20', 'road:22:20'] };
+  const first = preparePlanningRequest(observation, { ...plan, entries: [entry] }, policy);
+  const reordered = { dependencies: [...entry.dependencies].reverse(), tag: entry.tag, source: entry.source,
+    priority: entry.priority, rcl: entry.rcl, y: entry.y, x: entry.x, type: entry.type };
+  const next = preparePlanningRequest(observation, { ...plan, entries: [reordered] }, {
+    refreshRevision: 0, constrainedAnchorLimit: 36, valuableTypes: ['storage', 'spawn', 'spawn'],
+    preserveExisting: true, strategy: 'auto',
+  });
+  if (!first.ok || !next.ok) throw new Error('Expected available request');
+  expect(next.policyIdentity).toBe(first.policyIdentity);
+  expect(next.operatorEntries[0]!.dependencies).toEqual(['road:22:20', 'road:21:20']);
+  expect(entry.dependencies).toEqual(['road:21:20', 'road:22:20']);
+});
+
+test('identity binds every policy setting and optional operator metadata', () => {
+  const { observation, plan } = setup();
+  const first = preparePlanningRequest(observation, plan, policy);
+  if (!first.ok) throw new Error(first.reason);
+  for (const changed of [{ ...policy, strategy: 'standard' as const }, { ...policy, valuableTypes: ['spawn'] },
+    { ...policy, constrainedAnchorLimit: 12 }, { ...policy, refreshRevision: 1 }]) {
+    const result = preparePlanningRequest(observation, plan, changed);
+    if (!result.ok) throw new Error(result.reason);
+    expect(result.policyIdentity).not.toBe(first.policyIdentity);
+  }
+  for (const edited of [{ ...plan.entries[0]!, tag: 'manual' }, { ...plan.entries[0]!, objectId: 'road-id' }]) {
+    const result = preparePlanningRequest(observation, { ...plan, entries: [edited] }, policy);
+    if (!result.ok) throw new Error(result.reason);
+    expect(result.policyIdentity).not.toBe(first.policyIdentity);
+  }
+});

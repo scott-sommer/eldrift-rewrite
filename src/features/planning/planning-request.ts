@@ -1,3 +1,4 @@
+import { planningPolicyIdentity } from './planning-policy-identity';
 import type { TransformIndex } from '../../core/geometry/transforms';
 import type { AssessmentInput, PlanningConstraint } from '../../capabilities/planning/assessment-model';
 import { preservationLocks } from '../../capabilities/planning/preservation';
@@ -36,7 +37,7 @@ export function preparePlanningRequest(observed: AssessmentInput, plan: PlanStat
   };
   const operatorEntries = copyPlain(plan.entries.filter(entry => entry.source === 'operator'))
     .sort((a, b) => (a.type + ':' + a.x + ':' + a.y).localeCompare(b.type + ':' + b.x + ':' + b.y));
-  const policyIdentity = 'planning-request-v1:' + JSON.stringify([copyPlain(policy), operatorEntries]);
+  const policyIdentity = planningPolicyIdentity(policy, operatorEntries);
   return { ok: true as const, observation, options: copyPlain(options), operatorEntries, policyIdentity };
 }
 function requestConstraints(observation: AssessmentInput, plan: PlanState, policy: PlanningRequestPolicy): PlanningConstraint[] {
