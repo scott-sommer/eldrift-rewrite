@@ -543,3 +543,30 @@ Quality: 398 production / 353 test files, zero Lizard violations; 782 unit tests
 234 files passed in 6.89s before the native-only fixture addition. Production scheduling,
 enumeration-state ownership/retirement, complete live-room evaluation, whole-planner CPU
 bounds and hard termination evidence remain unfinished.
+
+### Production strategy/evaluator contracts (ED-24)
+Candidate generation, incremental scoring and proposal creation now compose in production
+planning modules. createLayoutStrategies adapts standard and constrained draft batches
+behind versioned advance contracts, explicitly adapting standard searches to omit alternate
+lane exclusions. createCandidateEvaluator accepts this strategy map, observation/policy/
+search identities, search budget, continuation guard, clock and scoring-input preparation.
+It supports additional injected strategies without changing evaluator dispatch. Unknown
+strategy names reject explicitly; candidate, policy and strategy-version changes invalidate
+saved progress. Generation completion becomes a score-phase checkpoint, never an unscored
+proposal. Proposal/bootstrap construction failures reject the candidate cleanly.
+
+The scoring-input callback owns defense preparation and score policy. The native fixture
+still supplies its explicit per-asset rampart overlay; this is not an automatic defense
+planner or ED-26 implementation. The production evaluator and adapters do not import
+fixture or engine globals. Job persistence/selection/commit remain separate responsibilities.
+
+Native --planning-job engine-XluzMO passed all 230 ticks and five reloads using the
+production evaluator. All six costs, constrained selection, tick-199 commit, tick-200
+recovery, source associations and store assertions remain unchanged; errors/messages empty.
+Quality: 400 production / 354 test files, zero Lizard violations. Full suite passed
+787 tests / 235 files in 7.39s before the final bootstrap-rejection case; final affected
+evaluator suite passed six tests in 341 ms. Tests cover extension dispatch, unknown
+strategies, detached continuation, identity/version invalidation, phase boundaries,
+failure reasons, budget checks and missing-bootstrap rejection.
+Automatic scheduling, lifecycle policy, complete live-room qualification and whole-planner
+CPU/hard termination evidence remain unfinished.
