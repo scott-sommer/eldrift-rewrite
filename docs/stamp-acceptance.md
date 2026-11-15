@@ -169,3 +169,21 @@ route preparation and checkpoint work must be investigated next. Variation in
 composition timing is not attributed to this downstream cache.
 Full unit943/270 files passed8.43s; quality449 production/401 test files passes.
 No default-budget completion or full native regression claim is made.
+
+## Exact framed checkpoint identities
+
+Candidate, stamp composition, draft and road-network identities now frame ordered
+strings by their lengths rather than repeatedly JSON-escaping existing identity
+strings. The representation remains exact (not hashed); tests cover empty fields,
+boundary ambiguity, quotes/backslashes, surrogate pairs and linear nested growth.
+Native policy revision advances to native-planning-v2:legacy-perimeter-v1 so
+in-progress old-format requests restart rather than resuming stale checkpoints.
+Committed plans remain retained until validated replacement.
+
+Full unit945/271 files passed10.03s; quality450 production/402 test files passed.
+Native retention engine-vMzM5p passed commitment, changed-policy failure and
+reload preservation. Default-budget engine-RXyua8 still FAILED with zero road
+connections through1600. Final sampled Memory size535356 versus564341 bytes in
+the preceding run includes telemetry and is only indicative of aggregate size,
+not isolated checkpoint savings. No CPU/completion improvement is claimed.
+Further investigation needs direct per-stage timings before another optimization.

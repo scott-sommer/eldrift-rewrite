@@ -1,3 +1,4 @@
+import { framedIdentity } from '../../core/framed-identity';
 import type { Tile } from '../../core/geometry/local-grid';
 import { tileIndex } from '../../core/geometry/local-grid';
 import type { RoadConnectionsInput } from './road-connections';
@@ -7,7 +8,7 @@ export function roadCheckpoint(input: RoadConnectionsInput, revision: string, pr
   if (!revision) throw new Error('Missing road network revision');
   const ids = input.targets.map(target => target.id);
   if (ids.some(id => !id) || new Set(ids).size !== ids.length) throw new Error('Invalid road target identities');
-  const signature = JSON.stringify([revision, input.start, input.roads, input.targets]);
+  const signature = framedIdentity(['road-checkpoint-v2', revision, JSON.stringify([input.start, input.roads, input.targets])]);
   if (!previous) return { version: 1, signature, roads: uniqueRoads(input.roads), connections: [] };
   if (previous.version !== 1 || previous.signature !== signature) throw new Error('Stale road checkpoint');
   validateConnections(previous.connections, ids);

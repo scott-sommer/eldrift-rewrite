@@ -1,3 +1,4 @@
+import { framedIdentity } from '../../core/framed-identity';
 import type { StampReplayCache } from './stamp-replay-cache';
 import { insideRoom } from '../../core/geometry/local-grid';
 import { placeStamp } from './stamp-placement';
@@ -119,8 +120,8 @@ function validateAnchors(input: StampCompositionInput): void {
 }
 
 function compositionSignature(input: StampCompositionInput): string {
-  return JSON.stringify(['stamp-composition-v3', input.revision, input.stamps, input.anchors,
-    input.entries, input.corridors, input.claimed ?? [], input.limits, totalLimit(input), input.anchorsByStamp ?? null]);
+  return framedIdentity(['stamp-composition-v4', input.revision, JSON.stringify([input.stamps, input.anchors,
+    input.entries, input.corridors, input.claimed ?? [], input.limits, totalLimit(input), input.anchorsByStamp ?? null])]);
 }
 
 function validCursors(cursors: readonly number[], counts: readonly number[]): boolean {

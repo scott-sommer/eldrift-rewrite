@@ -1,9 +1,10 @@
+import { framedIdentity } from '../../core/framed-identity';
 import type { FinishDraftInput } from './finish-draft';
 /** Exact identity, not a hash: repeated cells are represented as value/count runs. */
 export function draftRevision(input: Pick<FinishDraftInput, 'entries' | 'observation' | 'limits'>, searchRevision: string, costs: readonly number[]): string {
-  return JSON.stringify(['draft-revision-v2', searchRevision, input.entries,
+  return framedIdentity(['draft-revision-v3', searchRevision, JSON.stringify([input.entries,
     { ...input.observation, terrain: compactSequence(input.observation.terrain) },
-    input.limits, compactSequence(costs)]);
+    input.limits, compactSequence(costs)])]);
 }
 /** Tagged runs are unambiguous with raw arrays; irregular inputs keep the smaller raw form. */
 export function compactSequence<T extends string | number>(values: readonly T[]): readonly T[] | { runs: [T, number][] } {

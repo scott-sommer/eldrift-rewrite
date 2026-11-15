@@ -1,3 +1,4 @@
+import { framedIdentity } from '../../core/framed-identity';
 import { validScorePlacements } from './score-placement-validation';
 import { mergeOperatorPlacements } from './operator-placements';
 import type { PlanEntry } from './plan-model';
@@ -30,7 +31,7 @@ export function createCandidateEvaluator(options: CandidateEvaluatorOptions) {
     const strategy = Object.hasOwn(options.strategies, candidate.strategy) ? options.strategies[candidate.strategy] : undefined;
     if (!strategy) return { status: 'rejected', reason: 'unsupported-strategy:' + candidate.strategy };
     if (!strategy.version) throw new Error('Missing strategy version');
-    const signature = JSON.stringify([candidate, strategy.version, options.observation, options.policy, options.searchRevision, ...(options.operatorEntries?.length ? [options.operatorEntries] : [])]);
+    const signature = framedIdentity(['candidate-v2', JSON.stringify(candidate), strategy.version, options.observation, options.policy, options.searchRevision, JSON.stringify(options.operatorEntries ?? [])]);
     const progress = restoreProgress(signature, saved);
     if (progress.phase === 'score') return scoreCandidate(options, candidate, strategy.version, progress);
     const result = strategy.advance(copyPlain(candidate), signature, progress.checkpoint, options.maximumSearches, options.canContinue);
