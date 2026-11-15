@@ -19,10 +19,10 @@ export function loop() {
   const room = Game.rooms.W0N1!;
   const master = Object.values(Game.creeps).find(creep => creep.memory.population?.owner === upgradeMasterOwner('W0N1'));
   const lab = room.find(FIND_MY_STRUCTURES).find((item): item is StructureLab => item.structureType === STRUCTURE_LAB)!;
-  const row = { before, ring: Game.creeps.ring ? { ttl: Game.creeps.ring.ticksToLive } : null, total: Object.keys(Game.creeps).length, localCargo: Game.creeps.local!.store.getUsedCapacity(),
+  const row = { tick: Game.time, labId: lab?.id, before, ring: Game.creeps.ring ? { ttl: Game.creeps.ring.ticksToLive } : null, total: Object.keys(Game.creeps).length, localCargo: Game.creeps.local!.store.getUsedCapacity(),
     master: master ? { name: master.name, spawning: master.spawning, parts: master.body.map(part => part.type),
-      ttl: master.ticksToLive ?? 0, x: master.pos.x, y: master.pos.y, cargo: master.store.getUsedCapacity() } : null,
-    lab: { mineral: lab.mineralType, amount: lab.mineralType ? lab.store.getUsedCapacity(lab.mineralType) : 0 },
+      ttl: master.ticksToLive ?? 0, x: master.pos.x, y: master.pos.y, cargo: master.store.getUsedCapacity(), boostCargo: master.store.XGH2O ?? 0 } : null,
+    lab: lab ? { mineral: lab.mineralType, amount: lab.mineralType ? lab.store.getUsedCapacity(lab.mineralType) : 0 } : null,
     terminal: { H: room.terminal!.store.H ?? 0, GH: room.terminal!.store.GH ?? 0, XGH2O: room.terminal!.store.XGH2O ?? 0 },
     storageH: room.storage!.store.H ?? 0 };
   const memory = Memory as Memory & { upgradeMaster?: (typeof row)[]; masterReceipts?: { seen: string[]; totals: Record<string, number> } };

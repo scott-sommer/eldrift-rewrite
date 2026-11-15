@@ -38,3 +38,11 @@ workerRampartHits is the effective repair target. Legacy builderRampartHits over
 The legacy wallBuilder sleep10 occurs only when no eligible barrier remains at RCL8. The rewrite reevaluates observed work each tick, allowing newly damaged barriers or construction to be selected immediately. This deliberately removes an internal idle delay, not an externally requested pause capability. CPU cost belongs to the later measured performance gate; no savings are assumed. Raw sleep/operator pause remains separately tracked.
 
 Validation:591tests/181files pass4.68s; quality316production/284testfiles, zero Lizard violations. Native Art-builder action regression engine-kKR1VE passes. The half-target ordering itself is proven by the selector boundary test; this native regression does not contain two competing walls. Full suite not rerun. Master failure-path reconciliation is the next role-audit item.
+
+## Master lab loss and replacement evidence
+
+Added --master-layout-loss to the pinned native suite. It runs production main with the normal automatically recruited master, removes its lab after tick80 while it carries200XGH2O, and creates a replacement lab with a new identity after tick90. The replacement contains100GH as an observable new service demand; creep cargo is never injected.
+
+At observations81–90 the same master remains at22,21 with200boost mineral and loses exactly9TTL across those observations: missing layout suspends renewal and service rather than issuing actions against stale endpoints. After replacement, shared cargo recovery returns200XGH2O to the terminal's existing300, giving500. Native service clears replacement GH100 into the terminal, producing140GH total including the earlier40. Final cargo is0; ordinary courier cargo stays0 and population never exceeds the original local courier plus one master.
+
+Final evidence engine-htd3xD; normal --upgrade-master regression engine-thB6UZ also passes. Quality316production/284testfiles passes with zero Lizard violations. Production behavior was unchanged; the last unit result remains591tests/181files. No full native aggregate rerun. The new scenario verifies a temporary missing lab with cargo and native replacement; it does not prove missing-storage retirement, permanent layout loss or all adjacent-hauler contention cases.
