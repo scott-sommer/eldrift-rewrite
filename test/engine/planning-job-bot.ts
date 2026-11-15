@@ -39,7 +39,7 @@ export function loop() {
         return { id: strategy + ':25:25:0', strategy, anchor: { x: 25, y: 25 }, transform: 0 };
       } },
       weights: { hauling: 1, service: 0, capacityShortfall: 0, swamps: 0, defense: 0, migration: 0 },
-      minimumImprovement: 0, step: measure('evaluate', evaluateJobCandidate), validate: measure('validate', valid),
+      minimumImprovement: 0, step: measure('evaluate', interruptibleEvaluation), validate: measure('validate', valid),
     }, Game.time, 1);
   if (result.status === 'finished') memory.recoveredCommit = result.recovered;
   const job = jobs.read();
@@ -54,4 +54,12 @@ function valid(proposal: PlanProposal): boolean {
   return validateDraft({ assessment: assessRoom(observation), entries, limits, constraints: observation.constraints,
     blocksMovement: type => OBSTACLE_OBJECT_TYPES.some(item => item === type),
     placementFailures: draft => placementFailures(draft, observation) }).ok;
+}
+
+function interruptibleEvaluation(...args: Parameters<typeof evaluateJobCandidate>) {
+  if ((globalThis as { planningCpuTest?: boolean }).planningCpuTest && Game.time === 50) {
+    while (Game.cpu.getUsed() < 2000) { Math.sqrt(Game.cpu.getUsed()); }
+    throw new Error('CPU termination failed');
+  }
+  return evaluateJobCandidate(...args);
 }

@@ -26,3 +26,30 @@ Validation: quality passes (435 production / 380 test files, zero Lizard
 violations); targeted planning receipt/store/cycle tests and fast smoke pass.
 This is persistence/unit evidence, not proof of recovery from native hard CPU
 termination. ED-24's reset/CPU-exhaustion gate remains open.
+
+## Native CPU termination and recovery (ED-24)
+
+The packaged --planning-cpu scenario runs the existing two-strategy native
+planning evaluator for 230 ticks. At tick 50 it exhausts the runtime allowance
+inside the candidate-step wrapper while a candidate checkpoint is pending.
+The harness requires exactly one driver error, matching the native
+"Script execution timed out" message and the injected wrapper stack frame.
+It compares persisted job and plan snapshots around the interrupted tick.
+
+Verified run engine-kIlvFl: job revisions at ticks 49/50/51 were 49/49/50.
+The interrupted tick did not change the persisted checkpoint or plan; work
+resumed next tick and committed the constrained plan at tick 200, then stayed
+idle for the last 20 ticks. The receipt reports both candidates evaluated;
+the plan retains 60 extensions and the independently expected six costs.
+The existing scenario's code reloads also remain active.
+
+This proves recovery from a real runtime timeout at the candidate-step boundary,
+not a cooperative guard or a thrown JavaScript test exception. It does not prove
+every possible interruption site or production CPU performance. Native
+observed-room completion and default-budget progress have separate scenarios.
+The initial engine-XSCaCH run failed only the expected-error wording assertion;
+its saved snapshots already showed 49/49/50. The strengthened verifier passed.
+
+Commands: npm run test:engine -- --planning-cpu; npm run quality
+(435 production / 380 test files, zero violations). Scenario registered in the
+full engine suite; the expanded full suite has not yet been rerun.
