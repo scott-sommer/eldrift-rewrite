@@ -187,3 +187,31 @@ connections through1600. Final sampled Memory size535356 versus564341 bytes in
 the preceding run includes telemetry and is only indicative of aggregate size,
 not isolated checkpoint savings. No CPU/completion improvement is claimed.
 Further investigation needs direct per-stage timings before another optimization.
+
+## Measured stage costs and retained stamp preparation
+
+Temporary Game.cpu.getUsed stage instrumentation on baseline 8e690bf is recorded
+in evidence/stamp-stage-cpu.json (engine-Irrsbp). At tick1400 the feature began at
+3.3373 CPU, admission finished at5.8066, strategy began at6.7070, anchors finished
+at7.5669, composition restore at8.2948 and the road checkpoint at9.9719.
+The interval to the road guard was about6.63ms against the5ms allowance.
+Console instrumentation contributes overhead; these are cumulative timestamps,
+not an isolated benchmark or a strict production timing guarantee. All temporary
+instrumentation was restored before the subsequent implementation and checks.
+
+Stamp preparation now retains one immutable catalog/anchor preparation per room
+within the existing32-room cache bound. Exact storage, observation, capacity,
+anchor-limit and operator-entry inputs determine reuse. Different inputs evict
+the previous preparation; reloads rebuild it. Tests verify mutation protection,
+caller-input ownership, invalidation and equivalent cold reconstruction.
+Stamp services are grouped into an explicit injected object instead of adding
+another positional parameter throughout runtime composition.
+
+Quality passed451 production/403 test files with no violations. Targeted12 tests
+and smoke passed; full947 unit tests/272 files passed8.18s.
+Default-budget engine-eoDHXu still FAILED its commitment assertion: composition
+completed by750, one road connection appeared by850, and that count remained
+one through1600. This is not a default-budget completion claim. Repeated
+composition restoration/signature creation and admission remain material costs;
+further work must reduce or checkpoint setup rather than raise gameplay budgets.
+Native retention engine-43mgAP passed: bounded replanning failure at100 retained the committed plan across reload; no runtime errors.

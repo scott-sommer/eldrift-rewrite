@@ -20,7 +20,7 @@ export function createNativePlanningFeature(
     prepare(context, canContinue) {
       const room = context.room.name;
       const cache = caches(room);
-      const result = createNativePlanningWork(state, room, () => policy(room, readConfig(room)), cache.replay, cache.assess, cache.attach)(canContinue);
+      const result = createNativePlanningWork(state, room, () => policy(room, readConfig(room)), cache)(canContinue);
       return result.status === 'ready' ? result.work : undefined;
     },
     report: options.report ?? (() => {}),

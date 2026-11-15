@@ -1,3 +1,4 @@
+import type { StampPreparationProvider } from '../../capabilities/planning/stamp-preparation-cache';
 import type { InfrastructureProvider } from '../../capabilities/planning/infrastructure-cache';
 import type { StampReplayCache } from '../../capabilities/planning/stamp-replay-cache';
 import { prepareStampComposition } from '../../capabilities/planning/stamp-composition-policy';
@@ -7,10 +8,13 @@ import type { FinishDraftInput } from '../../capabilities/planning/finish-draft'
 import type { LayoutStrategy } from './layout-strategies';
 import type { PlanEntry } from './plan-model';
 export interface StampStrategyOptions { anchorLimit: number; attemptsPerStep: number; totalAttempts: number }
+export interface StampStrategyServices {
+  prepare?: StampPreparationProvider; replay?: StampReplayCache; attach?: InfrastructureProvider;
+}
 /** Adapter only: common evaluator retains hard validation, scoring and proposal ownership. */
 export function createStampLayoutStrategy(
   input: Omit<FinishDraftInput, 'entries' | 'storage' | 'anchors'>, version: string,
-  operatorEntries: readonly PlanEntry[], options: StampStrategyOptions, cache?: StampReplayCache, attach?: InfrastructureProvider,
+  operatorEntries: readonly PlanEntry[], options: StampStrategyOptions, services: StampStrategyServices = {},
 ): LayoutStrategy {
   validateOptions(version, options);
   const entries = operatorEntries.map(entry => ({ ...entry, position: { x: entry.x, y: entry.y } }));
@@ -20,10 +24,10 @@ export function createStampLayoutStrategy(
     if (lockedStorage.some(item => item.position.x !== candidate.anchor.x || item.position.y !== candidate.anchor.y)) {
       return { status: 'rejected', reason: 'stamp-hub-conflicts-with-locked-storage' };
     }
-    const composition = prepareStampComposition(candidate.anchor, input.observation, input.limits, options.anchorLimit, entries);
-    const result = stampDraftBatch({ ...input, ...(attach ? { attach } : {}), storage: candidate.anchor,
+    const composition = (services.prepare ?? prepareStampComposition)(candidate.anchor, input.observation, input.limits, options.anchorLimit, entries);
+    const result = stampDraftBatch({ ...input, ...(services.attach ? { attach: services.attach } : {}), storage: candidate.anchor,
       composition: { ...composition, maximumTotalAttempts: options.totalAttempts } },
-    revision, checkpoint as StampDraftCheckpoint | undefined, options.attemptsPerStep, searches, guard, cache);
+    revision, checkpoint as StampDraftCheckpoint | undefined, options.attemptsPerStep, searches, guard, services.replay);
     if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };
     return result.done ? { status: 'complete', entries: result.entries }
       : { status: 'pending', checkpoint: result.checkpoint };
