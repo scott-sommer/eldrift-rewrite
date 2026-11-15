@@ -25,20 +25,30 @@ function verifyMasterLayoutLoss(memory) {
 }
 module.exports = { changeMasterLayout, verifyMasterLayoutLoss };
 
-async function removeMasterStorage(server, tick) {
-  if (tick !== 100) return;
+async function removeMasterStorage(server, tick, loaded = false) {
+  if (tick !== (loaded ? 80 : 100)) return;
   const { db } = await server.world.load();
   await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'storage' });
+  if (loaded) await server.world.addRoomObject('W0N1', 'container', 23, 21,
+    { store: {}, storeCapacity: 2000, hits: 250000, hitsMax: 250000, nextDecayTime: 1000 });
   await db['rooms.objects'].update({ room: 'W0N1', type: 'controller' }, { $set: { level: 2 } });
 }
-function verifyMasterStorageLoss(memory) {
+function verifyMasterStorageLoss(memory, loaded = false) {
   const rows = memory.upgradeMaster;
-  const before = rows.find(row => row.tick === 100), after = rows.find(row => row.tick === 101);
+  const boundary = loaded ? 80 : 100;
+  const before = rows.find(row => row.tick === boundary), after = rows.find(row => row.tick === boundary + 1);
   console.log('MASTER_STORAGE_LOSS_SUMMARY ' + JSON.stringify({ before, after, last: rows.at(-1) }));
-  assert.equal(before.master.cargo, 0);
+  assert.equal(loaded ? after.master.boostCargo : before.master.cargo, loaded ? 200 : 0);
   assert.equal(after.master.name, before.master.name);
   assert.equal(after.master.owner, 'logistics:' + JSON.stringify('W0N1'));
-  assert.ok(rows.filter(row => row.tick > 100).every(row => row.master.owner === 'logistics:' + JSON.stringify('W0N1') && row.total === 2));
+  assert.ok(rows.filter(row => row.tick > boundary).every(row => row.master.owner === 'logistics:' + JSON.stringify('W0N1') && row.total === 2));
+  if (loaded) {
+    const last = rows.at(-1);
+    assert.equal(last.master.cargo, 0, 'loaded handoff recovers its cargo');
+    assert.equal(last.containerBoost, 200, 'recovered mineral is delivered exactly once');
+    assert.equal(last.terminal.XGH2O, 300, 'inactive terminal is not a receiving sink');
+    assert.equal(last.lab.amount, 1000);
+  }
 }
 module.exports.removeMasterStorage = removeMasterStorage;
 module.exports.verifyMasterStorageLoss = verifyMasterStorageLoss;

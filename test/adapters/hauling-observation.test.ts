@@ -64,3 +64,11 @@ test('pickup observations expose the unthrottled native amount, unlike withdrawa
   world({ store: store(2000) }, null);
   expect(observeHauling(creep, request).minimumCollection).toBe(0);
 });
+
+test('inactive structure stock remains collectible but cannot reserve receiving capacity', () => {
+  const retained = { structureType: 'storage', store: store(1000000), isActive: () => false };
+  world(retained, retained);
+  expect(observeHauling(creep, request)).toMatchObject({ sourceStock: 30, sinkFree: 0 });
+  world(retained, { ...retained, isActive: () => true });
+  expect(observeHauling(creep, request)).toMatchObject({ sourceStock: 30, sinkFree: 80 });
+});

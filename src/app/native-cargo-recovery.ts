@@ -28,7 +28,7 @@ export function nativeCargoSinks(room: Room, resource: ResourceConstant, termina
     .sort((a, b) => nativePriority(a, resource, terminalReserve)! - nativePriority(b, resource, terminalReserve)! || a.id.localeCompare(b.id));
 }
 function nativePriority(structure: AnyStructure, resource: ResourceConstant, terminalReserve: number): number | undefined {
-  if (!('store' in structure)) return undefined;
+  if (!('store' in structure) || !structure.isActive()) return undefined;
   return recoveryPriority({ kind: structure.structureType, owned: 'my' in structure && structure.my,
     free: structure.store.getFreeCapacity(resource) ?? 0 }, resource, terminalReserve);
 }

@@ -23,6 +23,7 @@ function sourceStock(source: TransferObject | null, resource: ResourceConstant):
 }
 function sinkCapacity(sink: TransferObject | null, resource: ResourceConstant): number {
   if (!sink || !('store' in sink) || !('structureType' in sink || 'body' in sink || 'powers' in sink)) return 0;
+  if ('isActive' in sink && !sink.isActive()) return 0;
   return sink.store.getFreeCapacity(resource) ?? 0;
 }
 export function capacityPool(id: string, sink: TransferObject | null, resource: ResourceConstant): string {
