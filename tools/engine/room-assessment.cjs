@@ -7,7 +7,7 @@ async function changeAssessmentSites(server, tick) {
 function verifyRoomAssessment(memory) {
   const rows = memory.assessmentRows;
   assert.equal(rows.length, 8);
-  assert.ok(rows.every(row => row.roadWalkable && !row.roadAvailable && row.hiddenAbsent));
+  assert.ok(rows.every(row => row.roadWalkable && !row.roadAvailable && row.hiddenAbsent && row.inputRoundTrip));
   assert.ok(rows.every(row => row.sourceCount > 0 && row.controllerCount === 1 && row.anchorCount > 0));
   assert.deepEqual(rows.map(row => row.tick), [1, 2, 3, 4, 5, 6, 7, 8]);
   assert.ok(rows.slice(0, 3).every(row => row.fingerprint === rows[0].fingerprint && row.siteCount > 0));

@@ -1,11 +1,14 @@
 import { loop as botLoop } from '../../src/main';
-import { observeRoomAssessment } from '../../src/adapters/screeps/room-assessment';
+import { assessmentSnapshot } from '../../src/capabilities/planning/snapshot';
+import { observeRoomAssessment, observeRoomPlanningInput } from '../../src/adapters/screeps/room-assessment';
 export function loop() {
   botLoop();
   const room = Game.rooms.W0N1!;
   const constraints = Game.time >= 6 && Game.time <= 7
     ? [{ id: 'manual', kind: 'keep-clear' as const, position: { x: 25, y: 25 } }] : [];
   const snapshot = observeRoomAssessment(room.name, { constraints })!;
+  const input = observeRoomPlanningInput(room.name, { constraints })!;
+  const roundTrip = assessmentSnapshot(room.name, JSON.parse(JSON.stringify(input)), Game.time);
   const result = snapshot.assessment;
   const road = room.find(FIND_STRUCTURES).find(item => item.structureType === STRUCTURE_ROAD)!;
   const index = road.pos.y * 50 + road.pos.x;
@@ -14,7 +17,8 @@ export function loop() {
     sourceCount: result.access.filter(item => item.kind === 'source').length,
     controllerCount: result.access.filter(item => item.kind === 'controller').length,
     siteCount: result.constraints.length, anchorCount: result.anchors.length,
-    hiddenAbsent: observeRoomAssessment('E9S9') === undefined,
+    hiddenAbsent: observeRoomAssessment('E9S9') === undefined && observeRoomPlanningInput('E9S9') === undefined,
+    inputRoundTrip: roundTrip.fingerprint === snapshot.fingerprint && JSON.stringify(roundTrip.assessment) === JSON.stringify(result),
     sites: room.find(FIND_CONSTRUCTION_SITES).map(item => [item.id, item.progress]) };
   const memory = Memory as Memory & { assessmentRows?: (typeof row)[] };
   (memory.assessmentRows ??= []).push(row);

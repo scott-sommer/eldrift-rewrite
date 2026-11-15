@@ -6,6 +6,11 @@ import { blocksMovement } from './structure-walkability';
 type AssessmentOptions = Pick<AssessmentInput, 'costs' | 'margin'> & { constraints?: AssessmentInput['constraints'] };
 /** Observation only. Hidden rooms return no new snapshot, never an empty infrastructure claim. */
 export function observeRoomAssessment(name: string, options: AssessmentOptions = {}) {
+  const input = observeRoomPlanningInput(name, options);
+  return input && assessmentSnapshot(name, input, Game.time);
+}
+/** Plain observations shared by assessment and candidate generation; no live game objects escape. */
+export function observeRoomPlanningInput(name: string, options: AssessmentOptions = {}): AssessmentInput | undefined {
   const room = Game.rooms[name];
   if (!room) return undefined;
   const terrain = room.getTerrain();
@@ -23,7 +28,8 @@ export function observeRoomAssessment(name: string, options: AssessmentOptions =
     position: position(item.pos), walkable: !blocksMovement(item), owned: 'my' in item && item.my }));
   const sites = room.find(FIND_CONSTRUCTION_SITES).map(item => ({ id: 'site:' + item.id,
     kind: 'locked' as const, type: item.structureType, position: position(item.pos) }));
-  return assessmentSnapshot(name, { ...options, terrain: cells, objects, infrastructure,
-    constraints: [...sites, ...(options.constraints ?? [])] }, Game.time);
+  return { ...options, terrain: cells, objects, infrastructure,
+    ...(options.costs ? { costs: { ...options.costs } } : {}),
+    constraints: [...sites, ...(options.constraints ?? []).map(item => ({ ...item, position: { ...item.position } }))] };
 }
 function position(pos: RoomPosition) { return { x: pos.x, y: pos.y }; }
