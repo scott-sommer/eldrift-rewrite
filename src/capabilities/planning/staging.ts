@@ -1,7 +1,7 @@
 import { tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 export interface StagedPosition { position: Tile; rcl: number }
-function validateLimits(limits: readonly number[]): void {
+export function validateLimits(limits: readonly number[]): void {
   if (limits.length !== 9) throw new Error('Expected RCL zero through eight limits');
   let previous = 0;
   for (const limit of limits) {
