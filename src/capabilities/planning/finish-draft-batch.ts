@@ -1,5 +1,5 @@
 import { draftRevision } from './draft-revision';
-import { prepareDraftRoads, completeDraftRoads } from './finish-draft';
+import { prepareDraftRoads, completeDraftRoads, amendDraftInput } from './finish-draft';
 import type { FinishDraftInput } from './finish-draft';
 import { connectRoadBatch } from './road-connection-batch';
 import type { RoadCheckpoint } from './road-checkpoint';
@@ -7,6 +7,7 @@ export function finishDraftBatch(
   input: FinishDraftInput, searchRevision: string, checkpoint: RoadCheckpoint | undefined,
   maximumSearches: number, canContinue: () => boolean = () => true,
 ) {
+  input = amendDraftInput(input);
   const prepared = prepareDraftRoads(input);
   const revision = draftRevision(input, searchRevision, prepared.costs);
   const batch = connectRoadBatch(prepared.roads, revision, checkpoint, maximumSearches, canContinue);

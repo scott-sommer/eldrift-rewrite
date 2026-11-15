@@ -767,3 +767,29 @@ Runtime request wiring remains open. Strategy-local hard validation can still re
 missing manual lock before the final merge; incorporating manual placements into strategy
 draft generation/access planning is required for arbitrary operator additions. The native
 case proves exact matching metadata retention, not that broader capability.
+
+### Manual entries before final road planning (ED-24)
+Both synchronous and incremental finishDraft paths now accept an explicit draft
+amendment port. The feature-owned operator amendment merges detached manual placements
+before road cost construction, path searches and final capacity/access/lock validation.
+New manual tiles become deduplicated road targets; exact replacements do not add searches.
+The amended geometry participates in checkpoint identity. createLayoutStrategies injects
+this policy for both standard and constrained strategies when operator entries are supplied.
+
+Tests demonstrate a locked manual road that fails without amendment succeeding with a
+connected road network, synchronous/batch equivalence across serialization, RCL edits
+invalidating a checkpoint, metadata preservation, and conflicts failing hard validation.
+Quality passed: 410 production / 362 test files, zero Lizard violations. Full fast suite:
+828 tests / 242 files in 8.33s.
+
+Native --planning-job engine-JfIR2T applies manual storage policy before final road planning
+in both strategies and before scoring. All 230 ticks, six reloads, commit 199/recovery 200,
+idle retirement, exact manual metadata and six costs passed; errors/messages empty.
+Average sampled CPU 19.82 ms, maximum 109 ms. This native case is a matching manual
+placement; new manual road connectivity is unit-tested, not separately native-qualified.
+
+This resolves missing-lock rejection for additions admitted by final draft validation.
+It does not make every arbitrary manual placement feasible: core/infrastructure packing
+and constrained traffic layout still precede final amendment. Conflicting placements or
+excess capacity reject the candidate rather than rearranging the generated footprint.
+Runtime request wiring, native qualification of additions, and CPU bounds remain open.

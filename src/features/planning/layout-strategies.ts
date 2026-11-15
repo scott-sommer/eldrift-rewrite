@@ -1,3 +1,5 @@
+import { createOperatorDraftAmendment } from './operator-draft';
+import type { PlanEntry } from './plan-model';
 import { standardDraftBatch } from '../../capabilities/planning/standard-draft-batch';
 import { constrainedDraftBatch } from '../../capabilities/planning/constrained-draft-batch';
 import type { ConstrainedDraftInput } from '../../capabilities/planning/constrained-draft';
@@ -16,7 +18,9 @@ export interface LayoutStrategy {
 /** Explicit strategy adapters; adding a strategy does not change the candidate evaluator. */
 export function createLayoutStrategies(
   input: Omit<ConstrainedDraftInput, 'candidate'>, versions: { standard: string; constrained: string },
+  operatorEntries: readonly PlanEntry[] = [],
 ): Readonly<Record<string, LayoutStrategy>> {
+  if (operatorEntries.length) input = { ...input, amendDraft: createOperatorDraftAmendment(operatorEntries) };
   return {
     standard: { version: versions.standard, advance: (candidate, revision, checkpoint, searches, guard) =>
       strategyStep(standardDraftBatch({ ...input, candidate, search: costs => {

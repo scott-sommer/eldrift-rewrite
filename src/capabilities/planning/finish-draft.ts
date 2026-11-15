@@ -10,6 +10,7 @@ import { connectRoads } from './road-connections';
 import { placementFailures } from './placement-validation';
 import { validateDraft } from './draft-validation';
 export interface FinishDraftInput {
+  amendDraft?: (entries: readonly StagedTile[], anchors: readonly Tile[]) => { entries: readonly StagedTile[]; anchors: readonly Tile[] };
   assess?: typeof assessRoom;
   entries: readonly StagedTile[]; storage: Tile; anchors: readonly Tile[];
   observation: AssessmentInput; limits: StructureLimits;
@@ -17,6 +18,7 @@ export interface FinishDraftInput {
   search: (costs: readonly number[]) => RoadConnectionsInput['search'];
 }
 export function finishDraft(input: FinishDraftInput) {
+  input = amendDraftInput(input);
   const prepared = prepareDraftRoads(input);
   const result = connectRoads(prepared.roads);
   if (!result.ok) return { ok: false as const, phase: 'roads' as const, details: result };
@@ -48,4 +50,8 @@ export function completeDraftRoads(
   });
   if (!validation.ok) return validation;
   return { ok: true as const, entries, connections: result.connections };
+}
+
+export function amendDraftInput(input: FinishDraftInput): FinishDraftInput {
+  return input.amendDraft ? { ...input, ...input.amendDraft(input.entries, input.anchors) } : input;
 }
