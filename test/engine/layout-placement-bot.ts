@@ -1,6 +1,7 @@
 import { loop as botLoop } from '../../src/main';
 import { canShareTile } from '../../src/capabilities/planning/placement-validation';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
+import { verifyAssembledDraft } from './layout-draft-check';
 export function loop() {
   botLoop();
   const room = Game.rooms.W0N1!;
@@ -9,6 +10,7 @@ export function loop() {
   const rows = memory.layoutPlacement ??= [];
   if (Game.time === 1) {
     verifyRoadSearch();
+    verifyAssembledDraft();
     rows.push({
       predictedRoad: canShareTile('road', 'spawn'),
       predictedExtension: canShareTile('extension', 'spawn'),
