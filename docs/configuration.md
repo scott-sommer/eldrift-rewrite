@@ -1,6 +1,6 @@
 # Runtime configuration
 
-ED-15 implementation in progress. resolveConfig takes explicit layer inputs and a tick; it reads no game globals or process environment. Precedence: defaults, environment, empire, roomProfile, roomOverride, temporary. The composition root will supply the selected room profile and persistent/operator layers. This resolver is not yet wired into the game loop.
+resolveConfig takes explicit layer inputs and a tick; it reads no game globals or process environment. Precedence: defaults, environment, empire, roomProfile, roomOverride, temporary. The composition root supplies the selected room profile and persistent/operator layers through the game loop.
 
 Each effective key reports its winning source. Unknown keys, invalid enum/range/type values and invalid ticks throw with layer/key context. False and zero are valid when their declared domain permits them. Temporary overrides apply only while tick < expiresAt. Expired patches are still validated. Values and source maps are frozen, including cloned allies arrays, so one caller cannot alter another room's resolved configuration.
 
@@ -48,3 +48,13 @@ Recovery donor settings: recoverySupportEnabled (default true), recoverySupportR
 workerCargoDropFallback defaults to true. Workers first deposit non-energy cargo through shared cargo recovery; if no compatible destination exists, true permits a mineral drop to free work capacity, while false retains cargo and waits. Energy is excluded from this disposal policy. Pending transfer settlement and unrelated task ownership take precedence over fallback.
 
 Upgrade-room service is opt-in via upgradeRoomServiceEnabled=false by default, alongside logisticsEnabled. Defaults: upgradeLabMineralTarget=1300, upgradeSpawnEnergyFloor=100, upgradeStorageEnergyCeiling=990000, upgradeServiceBatch=200. These settings govern specialist mineral/energy shipments through local couriers; courierSpawningEnabled supplies automatic fleet demand. The service pauses new work during recovery and takes precedence over ordinary store balancing. It does not yet enable renewal, boosting or unclaim/reclaim. See upgrade-rooms.md for boundaries and evidence.
+
+### Native planning
+
+Planning is registered as owned-room background work and remains opt-in through planningEnabled=false. It uses the normal configuration precedence, bucket admission and background CPU fraction. Disabling pauses further work without deleting progress or the committed plan. It does not create construction sites.
+
+Operational defaults: planningCpuBudget=5, planningCandidateAttempts=100, planningEvaluationSteps=1, planningSearches=1. These are cooperative allowances, not a demonstrated hard CPU ceiling; native cold preparation/persistence remains synchronous. planningPreserveExisting=true locks valuable owned structures; planningAnchorLimit=36 bounds constrained anchor search. layoutStrategy selects auto/standard/constrained; stamps remains explicitly unavailable until ED-25. planningRefreshRevision=0 can be incremented to request a fresh plan.
+
+Score controls (each finite 0..1,000,000) are planningHaulingWeight=1, planningServiceWeight=1, planningCapacityWeight=1000, planningSwampWeight=1, planningDefenseWeight=1 and planningMigrationWeight=0.001. They weight measured completed routes, missing capacity, swamp footprint, barrier count and nominal construction/retirement energy respectively. These initial tunable defaults are not an empirically optimized balance. planningMinimumImprovement=10 uses the same weighted-score units for switching hysteresis. planningMaximumPathOps=10000 accepts integers 1..100000 and bounds each native path search; incomplete paths reject candidates.
+
+The current production policy uses the characterized perimeter/controller fallback at RCL6. Native score preparation and fresh commit validation bind policy changes to request identity. Main-loop activation/disable behavior has real-engine evidence; a complete automatically selected plan from real room observations, default-budget viability, soak performance and earlier-RCL defense safety still require qualification.
