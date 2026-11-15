@@ -633,3 +633,28 @@ empty error arrays. The only positive-scenario messages were the expected single
 barrier-repair suspension warning in each of --art-region and --art-builder, explicitly
 asserted by verifyArtRegion. No unexplained messages remained. This broad regression
 covers persistence users beyond planning; it does not close unfinished rewrite features.
+
+### Reusing candidate hard-check preparation (ED-24)
+A caller-owned, single-candidate heap cache now reuses placement/access/defense
+preparation while incremental route scoring advances. The key includes exact entries,
+observation, limits, protected types, barrier costs and evaluated movement-blocker
+behavior. Assessment-provider identity also invalidates it. Results are detached;
+exceptions do not populate the cache. Runtime reloads naturally rebuild it. Final
+selection and commit validation remain fresh, independent checks.
+
+The production evaluator accepts an optional preparation provider; uncached behavior
+remains the default. The native fixture composes the cache explicitly. Matched 230-tick
+engine-f0gBUf passed all six reloads, six costs, commit-at-199/recovery-at-200 and idle
+retirement assertions, with empty errors/messages. Preparation ran four times: once
+per candidate and again after each scoring reload. Average sampled CPU fell from
+27.12 to 18.78 ms; maximum was 76 ms. Evaluator total fell from 3,043.66 to 1,171.35 ms;
+lifecycle total from 4,584.61 to 2,707.81 ms. Inclusive timing categories overlap.
+Preparation still peaked at 32.46 ms, so this is not a whole-planner CPU bound.
+Total fixture Memory was 112,367 bytes.
+
+Quality passed for 403 production / 357 test files with zero Lizard violations.
+Full unit suite passed 801 tests / 237 files in 8.14s before adding the final real
+placement-invalidation case; all five cache tests then passed in 0.292s. Tests cover
+dependency changes, mutable blocker behavior, detached diagnostics, exceptions,
+runtime recreation and rejecting a newly obstructed previously valid layout.
+Runtime scheduling, bounded cold preparation and live-room qualification remain open.

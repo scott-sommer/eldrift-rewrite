@@ -1,3 +1,4 @@
+import type { prepareEvaluation } from '../../capabilities/planning/evaluate-draft';
 import { evaluateDraftBatch } from '../../capabilities/planning/evaluate-draft-batch';
 import type { EvaluateDraftInput } from '../../capabilities/planning/evaluate-draft';
 import type { DraftRouteCheckpoint } from '../../capabilities/planning/draft-route-batch';
@@ -11,6 +12,7 @@ export interface CandidateEvaluatorOptions {
   observation: string; policy: string; searchRevision: string;
   strategies: Readonly<Record<string, LayoutStrategy>>;
   maximumSearches: number; canContinue: () => boolean; tick: () => number;
+  prepare?: typeof prepareEvaluation;
   prepareScore: (candidate: PlanningCandidate, entries: readonly StagedTile[]) => EvaluateDraftInput;
 }
 interface Progress {
@@ -47,7 +49,7 @@ function scoreCandidate(
 ): CandidateStep {
   const input = options.prepareScore(copyPlain(candidate), copyPlain(progress.entries!));
   const result = evaluateDraftBatch(input, progress.signature, progress.checkpoint as DraftRouteCheckpoint | undefined,
-    options.maximumSearches, options.canContinue);
+    options.maximumSearches, options.canContinue, options.prepare);
   if (!result.ok) return { status: 'rejected', reason: JSON.stringify(result) };
   if (!result.done) return { status: 'pending', checkpoint: { ...progress, checkpoint: result.checkpoint } };
   return proposalStep({ strategy: candidate.strategy, entries: input.entries,

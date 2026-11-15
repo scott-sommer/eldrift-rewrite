@@ -1,3 +1,6 @@
+import { createEvaluationCache } from '../../src/capabilities/planning/evaluation-cache';
+import { prepareEvaluation } from '../../src/capabilities/planning/evaluate-draft';
+import { measure } from './planning-profile';
 import { createCandidateEvaluator } from '../../src/features/planning/candidate-evaluator';
 import { createLayoutStrategies } from '../../src/features/planning/layout-strategies';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
@@ -8,6 +11,7 @@ import { measurementInput } from './layout-score-check';
 const observation = planningObservation();
 export const evaluateJobCandidate = createCandidateEvaluator({
   observation: JSON.stringify(observation), policy: 'fixture-v1', searchRevision: 'native-job-v1',
+  prepare: createEvaluationCache(measure('prepare', prepareEvaluation)),
   maximumSearches: 1, canContinue: () => true, tick: () => Game.time,
   strategies: createLayoutStrategies({ observation, limits: planningLimits, assess: createAssessmentCache(),
     blocksMovement: type => OBSTACLE_OBJECT_TYPES.some(item => item === type),

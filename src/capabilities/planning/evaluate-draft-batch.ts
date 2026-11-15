@@ -5,8 +5,9 @@ import type { DraftRouteCheckpoint } from './draft-route-batch';
 export function evaluateDraftBatch(
   input: EvaluateDraftInput, revision: string, checkpoint: DraftRouteCheckpoint | undefined,
   maximumSearches: number, canContinue: () => boolean = () => true,
+  prepare: typeof prepareEvaluation = prepareEvaluation,
 ) {
-  const prepared = prepareEvaluation(input);
+  const prepared = prepare(input);
   if (!prepared.ok) return prepared;
   const policy = JSON.stringify([revision, input.desiredCapacity, input.constructionCost,
     input.retirementCost, input.protectedTypes, input.barrierCosts]);

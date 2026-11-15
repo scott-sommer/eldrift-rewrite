@@ -37,6 +37,7 @@ function verifyPlanningJob(memory) {
   assert.equal(plan.entries.filter(entry => entry.type === 'extension').length, 60);
   assert.deepEqual(plan.provenance.costs, { hauling: 64, service: 337, capacityShortfall: 0, swamps: 0, defense: 85, migration: 303 });
   assert.equal(plan.provenance.committedAt, 199);
+  assert.equal(memory.planningProfile.prepare.calls, 4, 'Hard checks rebuild for both scoring reloads');
   console.log('PLANNING_PROFILE ' + JSON.stringify(memory.planningProfile));
   console.log('PLANNING_JOB ' + JSON.stringify({ committedAt: plan.provenance.committedAt, strategy: plan.strategy }));
 }
