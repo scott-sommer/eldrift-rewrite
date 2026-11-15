@@ -400,3 +400,37 @@ Quality passed: 389 production / 346 test files, zero Lizard violations; 754 tes
 in-place invalidation, single-entry eviction, failed builds and fresh runtime recreation.
 Foundation generation, service packing, exact signature scans and final validation still
 repeat; whole-planner CPU bounds and automatic candidate coordinator wiring remain open.
+
+### Resumable candidate coordination (ED-24)
+The planning feature now owns a serializable candidate job, separate from geometry,
+strategy evaluation and plan commitment. A revisioned, random-access candidate source
+and incremental evaluator are injected. Each invocation can bound evaluator steps and
+yield via a guard. Pending evaluator state survives JSON serialization; input observation,
+policy, source revision/count, expected plan revision, weights and switching threshold
+bind the job identity. The source owner must change its revision when ordering or
+candidate content changes. Changed pending IDs and duplicate candidate IDs are rejected.
+
+The job evaluates every supplied candidate, retaining only the best full proposal and
+a re-evaluated previous proposal for hysteresis, plus compact seen IDs/rejection diagnostics.
+It never exposes a selection while candidates remain. Hard validation precedes ranking
+and runs again before a selected proposal is exposed; final invalidation returns no
+proposal. Ties use stable IDs. Rejected candidates cannot win. Candidate inputs, evaluator
+checkpoints, validator inputs and returned proposals are detached from previously saved
+state. Exceptions cannot mutate a previously persisted checkpoint. Commit remains the
+existing separate revision/freshness/validation-guarded store operation.
+
+Native --planning-job (engine-VtLP6Q) passed 90 ticks with reloads before ticks 6 and 36.
+It used real standard and constrained batch generation, native PathFinder, measured scoring
+and fresh structural validation. The first completed candidate did not commit. After both
+were evaluated, hauling-only weights selected constrained (cost 64), committed at tick 67,
+with 60 extensions. Prior ticks retained revision zero; later ticks retained revision one.
+Errors/messages empty. Average CPU 10.62 ms (4–135 ms); total fixture Memory 148,433 bytes.
+This scenario uses two fixed candidates and a fixture defense overlay. Scoring still runs
+synchronously in a separate evaluator step; the job bounds evaluator calls, not their CPU.
+The runtime's full candidate enumerators, production evaluator/policy, durable job store and
+automatic scheduling are not wired yet. It is not evidence of hard CPU termination safety.
+
+Quality: 392 production / 349 test files, zero Lizard violations; 764 tests / 231 files
+passed in 6.59s. Unit coverage includes JSON continuation, all-candidate selection,
+hysteresis, rejected candidates, ties, stale inputs, guard yielding, exceptions and
+evaluator/validator mutation isolation. No ED-24 acceptance item is newly closed.
