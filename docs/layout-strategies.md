@@ -984,3 +984,24 @@ admission, policy admission and smoke: 11 tests / 3 files in 0.331s. Unit checks
 all ineligible-room cases avoid both reads and writes. Full suites were not repeated.
 This is native admission, not native planning execution: evaluator/scoring/defense
 composition and main-loop registration remain open. No live deployment occurred.
+
+### Native evaluator composition (ED-24)
+createNativePlanningEvaluator now composes controller structure limits from the actual
+engine globals, native single-room pathfinding, both production layout strategies,
+manual draft amendments, assessment caching and hard-check preparation caching.
+Room name, observation/policy identities, operator entries, strategy/search versions,
+search count, path operation allowance and continuation guard are explicit inputs.
+Scoring/defensive-layout preparation remains an injected policy.
+
+The native planning-job fixture now uses this production composition instead of assembling
+mechanics itself or supplying fixture limits to strategy generation. engine-eaHuOM passed
+all 230 ticks, six reloads, persisted request baseline, commit 199/recovery 200, idle
+retirement, manual metadata and unchanged six costs with empty errors/messages.
+Average sampled CPU 19.87 ms, maximum 83 ms; these remain fixture measurements.
+
+Quality passed: 419 production / 369 test files, zero Lizard violations. Targeted evaluator,
+operator, amended-draft and smoke tests: 19 tests / 4 files in 0.418s. Full suites were
+not repeated for this composition extraction. Native admission still needs to be joined
+to this evaluator with production scoring/defense policy, fresh commit validation and
+configured work preparation before main-loop registration. Fixture defense overlays
+remain test policy and are not claimed as completed automatic defense planning.
