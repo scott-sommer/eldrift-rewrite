@@ -1134,3 +1134,48 @@ Evidence audit: engine-S9Dma1 status passed, errors/messages empty; earlier succ
 Acceptance review: ED-24 criteria1 and2 are now evidenced by the native complete-room comparison plus existing standard/constrained characterization (including the documented enclosed-lab correction/all transforms), native two-viable-strategy selection, and hard-validator negative tests. Re-ran33 targeted strategy/capacity/sharing/access/validation/path/enumeration/smoke tests across11 files in0.570s; all passed. Quality passed for435 production /379 test files, zero Lizard violations. Production code is unchanged from39c1071; its892-test unit run remains the full-unit baseline.
 
 Criterion4 stays open: cooperative yielding and code reloads are demonstrated, but hard CPU termination, retained failure explanations after completion, comprehensive last-valid-plan failure qualification and sustained performance still need work. Additional terrain/room archetypes, default-budget full completion, cache retention, enumeration retirement and soak qualification remain outstanding. This native success does not complete the rewrite or ED-25/26 enhancements.
+
+## Adding a strategy: executable blueprint example
+
+test/examples/blueprint-layout-strategy.ts implements LayoutStrategy for a small
+authored blueprint. Its adjacent test registers it directly with
+createCandidateEvaluator and exercises the unchanged hard validator, defense
+validation, cost calculation and proposal builder. Run:
+npx vitest run test/examples/blueprint-layout-strategy.test.ts
+
+This is an educational extension, not a fourth enabled production room planner.
+The fixture has a spawn, storage and protective ramparts; no sources, labs or
+route demand. Its success proves the extension boundary, not colony completeness
+or native pathfinding. Production room plans must include their required service
+capacity, infrastructure connections and all-RCL validation.
+
+The adapter contract is:
+1. Supply a nonempty version and stable candidate IDs. A candidate carries a
+   storage anchor and transform; storage in the eventual proposal must match it.
+2. advance receives the evaluator revision, saved plain-data checkpoint, a road
+   search allowance and a cooperative CPU guard. Return pending with detached,
+   serializable state, rejected with a useful reason, or complete with placements.
+   Complete means draft generation finished, not that a plan is approved.
+3. Every placement needs type, local position, RCL and finite construction
+   priority. Preserve manual metadata and locks. Return complete geometry;
+   never truncate an invalid footprint into an apparently valid plan.
+4. Bind checkpoint identity to algorithm version and semantic inputs; reject
+   stale state. Check guards between bounded units of work. The tiny example
+   caps blueprints at 100 tiles and transforms them atomically after admission.
+   Large strategies need incremental checkpoints like the stamp composer.
+5. Leave hard validation, score comparison/hysteresis, fresh commit validation,
+   persistence and construction execution with their existing owners.
+
+To promote a strategy into production, register its factory at the composition
+boundary and supply a real version. Also extend configuration validation, request
+preparation, deterministic candidate generation and compact ID/cursor validation;
+these currently explicitly recognize standard/constrained/stamps. Update request
+and policy identity when search semantics change, and handle persisted schemas
+where their accepted representation changes. Registering only an evaluator key
+does not make a strategy selectable through production configuration.
+
+Use the same room observation, capacity limits, route search, defense policy,
+manual amendment and score weights as other candidates. Add native irregular-room
+and reset tests, preservation/failure tests and measured CPU evidence before
+automatic participation. The example intentionally avoids a generic plugin loader
+or service locator: callers inject a small explicit strategy registry.
