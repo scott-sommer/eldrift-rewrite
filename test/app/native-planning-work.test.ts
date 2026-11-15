@@ -85,3 +85,38 @@ test('operational search allowance preserves request identity while protection c
   expect(changed.work.input.policy).not.toBe(first.work.input.policy);
   expect(first.work.input.validate(proposal(first.work))).toBe(false);
 });
+
+test('stamp per-step allowance resumes identity while search domain and total cap restart it', () => {
+  const { prepare, policy } = setup();
+  const first = prepare(() => true);
+  if (first.status !== 'ready') throw new Error(first.status);
+  policy.config = { ...policy.config, planningStampAttemptsPerStep: 0 };
+  const paused = prepare(() => true);
+  if (paused.status !== 'ready') throw new Error(paused.status);
+  expect(paused.work.input.policy).toBe(first.work.input.policy);
+  for (const patch of [{ planningStampAnchorLimit: 201 }, { planningStampTotalAttempts: 5000 }]) {
+    policy.config = { ...policy.config, ...patch };
+    const changed = prepare(() => true);
+    if (changed.status !== 'ready') throw new Error(changed.status);
+    expect(changed.work.input.policy).not.toBe(first.work.input.policy);
+    expect(first.work.input.validate(proposal(first.work))).toBe(false);
+  }
+});
+
+test('native evaluator receives configured stamp search allowance', () => {
+  const { prepare, policy } = setup();
+  policy.versions.stamps = 'v1';
+  policy.config = { ...policy.config, layoutStrategy: 'stamps', planningStampAttemptsPerStep: 0 };
+  const ready = prepare(() => true);
+  if (ready.status !== 'ready') throw new Error(ready.status);
+  const candidate = { id: 'stamps:25:25:0', strategy: 'stamps', anchor: { x: 25, y: 25 }, transform: 0 as const };
+  const paused = ready.work.input.step(candidate, undefined);
+  expect(paused).toMatchObject({ status: 'pending', checkpoint: {
+    phase: 'draft', checkpoint: { composition: { totalAttempts: 0 } } } });
+  if (paused.status !== 'pending') throw new Error(paused.status);
+  policy.config = { ...policy.config, planningStampAttemptsPerStep: 1 };
+  const resumed = prepare(() => true);
+  if (resumed.status !== 'ready') throw new Error(resumed.status);
+  expect(resumed.work.input.step(candidate, paused.checkpoint)).toMatchObject({
+    status: 'pending', checkpoint: { checkpoint: { composition: { totalAttempts: 1 } } } });
+});

@@ -43,3 +43,17 @@ test('configured scheduler feature respects per-room enablement and temporary ze
   expect(prepare).toHaveBeenCalledOnce();
   expect(prepare.mock.calls[0]?.[0].room.name).toBe('a');
 });
+
+test('stamp search settings resolve by layer and enforce bounded integers', () => {
+  const resolved = resolveConfig({ roomOverride: { planningStampAnchorLimit: 250,
+    planningStampAttemptsPerStep: 0, planningStampTotalAttempts: 5000 } }, 1);
+  expect(resolved.values.planningStampAnchorLimit).toBe(250);
+  expect(resolved.values.planningStampAttemptsPerStep).toBe(0);
+  expect(resolved.values.planningStampTotalAttempts).toBe(5000);
+  expect(resolved.sources.planningStampAnchorLimit).toBe('roomOverride');
+  for (const patch of [{ planningStampAnchorLimit: 0 }, { planningStampAnchorLimit: 2501 },
+    { planningStampAttemptsPerStep: -1 }, { planningStampAttemptsPerStep: 0.5 },
+    { planningStampTotalAttempts: 0 }, { planningStampTotalAttempts: 1000001 }]) {
+    expect(() => resolveConfig({ empire: patch }, 1)).toThrow(/empire/);
+  }
+});

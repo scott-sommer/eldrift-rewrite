@@ -31,6 +31,8 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
       policyIdentity: admitted.policyIdentity, operatorEntries: admitted.request.operatorEntries,
       versions: policy.versions, searchRevision: policy.searchRevision, maximumPathOps: policy.maximumPathOps,
       maximumSearches: policy.config.planningSearches, canContinue,
+      stampOptions: { anchorLimit: policy.config.planningStampAnchorLimit,
+        attemptsPerStep: policy.config.planningStampAttemptsPerStep, totalAttempts: policy.config.planningStampTotalAttempts },
       prepareScore: (candidate, entries) => {
         score ??= policy.prepareScore(admitted.request.observation);
         return score(candidate, entries);
@@ -60,6 +62,7 @@ function policyRevision(policy: NativePlanningPolicy): string {
     .every(value => Number.isFinite(value) && value >= 0)) throw new Error('Invalid native planning costs');
   return JSON.stringify([policy.implementationRevision, policy.versions.standard, policy.versions.constrained, policy.versions.stamps ?? null,
     policy.searchRevision, policy.scoreRevision, policy.maximumPathOps,
+    policy.config.planningStampAnchorLimit, policy.config.planningStampTotalAttempts,
     scoreDimensions.map(key => policy.weights[key]), policy.minimumImprovement,
     [...new Set(policy.protectedTypes)].sort(), policy.barrierCosts.rampart, policy.barrierCosts.constructedWall]);
 }

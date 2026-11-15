@@ -9,12 +9,16 @@ export interface PlanningConfig extends PlanningScoreConfig {
   planningPreserveExisting: boolean;
   planningAnchorLimit: number;
   planningRefreshRevision: number;
+  planningStampAnchorLimit: number;
+  planningStampAttemptsPerStep: number;
+  planningStampTotalAttempts: number;
 }
 export const planningDefaults: Readonly<PlanningConfig> = Object.freeze({
   ...planningScoreDefaults,
   planningEnabled: false, planningCpuBudget: 5, planningCandidateAttempts: 100,
   planningEvaluationSteps: 1, planningSearches: 1, planningPreserveExisting: true,
   planningAnchorLimit: 36, planningRefreshRevision: 0,
+  planningStampAnchorLimit: 200, planningStampAttemptsPerStep: 100, planningStampTotalAttempts: 100000,
 });
 function integer(value: unknown, maximum: number, minimum = 0): boolean {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= minimum && value <= maximum;
@@ -28,5 +32,8 @@ export const planningValidators: { [K in keyof PlanningConfig]: (value: unknown)
   planningSearches: value => integer(value, 10000),
   planningPreserveExisting: value => typeof value === 'boolean',
   planningAnchorLimit: value => integer(value, 2500, 1),
+  planningStampAnchorLimit: value => integer(value, 2500, 1),
+  planningStampAttemptsPerStep: value => integer(value, 1000000),
+  planningStampTotalAttempts: value => integer(value, 1000000, 1),
   planningRefreshRevision: value => integer(value, Number.MAX_SAFE_INTEGER),
 };

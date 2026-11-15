@@ -58,3 +58,17 @@ Operational defaults: planningCpuBudget=5, planningCandidateAttempts=100, planni
 Score controls (each finite 0..1,000,000) are planningHaulingWeight=1, planningServiceWeight=1, planningCapacityWeight=1000, planningSwampWeight=1, planningDefenseWeight=1 and planningMigrationWeight=0.001. They weight measured completed routes, missing capacity, swamp footprint, barrier count and nominal construction/retirement energy respectively. These initial tunable defaults are not an empirically optimized balance. planningMinimumImprovement=10 uses the same weighted-score units for switching hysteresis. planningMaximumPathOps=10000 accepts integers 1..100000 and bounds each native path search; incomplete paths reject candidates.
 
 The current production policy uses the characterized perimeter/controller fallback at RCL6. Native score preparation and fresh commit validation bind policy changes to request identity. Main-loop activation/disable behavior has real-engine evidence; complex-room coverage, sustained default-budget completion, soak performance and earlier-RCL defense safety still require qualification. The 400-tick planning-room scenario demonstrates a complete plan from native observations in one open-terrain owned room using an explicitly larger work allowance. The 80-tick planning-budget scenario now demonstrates full enumeration and evaluation progress with unchanged default budgets; it does not establish a hard CPU ceiling.
+
+## Stamp search budgets
+
+Stamp composition exposes three settings through the existing empire, room and
+temporary override layers:
+- planningStampAnchorLimit: default 200, integer 1..2500; candidate positions per stamp.
+- planningStampAttemptsPerStep: default 100, integer 0..1000000; placement attempts per evaluator call. Zero pauses placement advancement.
+- planningStampTotalAttempts: default 100000, integer 1..1000000; cumulative placement ceiling for a composition.
+
+The outer hub candidate count still uses planningAnchorLimit. Shared CPU guards
+and road-search budgets remain applicable. Per-step changes preserve checkpoint
+identity; anchor-domain and cumulative-ceiling changes restart the request and
+invalidate stale proposals while retaining the committed plan. These settings
+bound placement attempts, not total CPU consumed by checkpoint replay or routing.

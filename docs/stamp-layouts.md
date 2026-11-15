@@ -311,3 +311,15 @@ Quality: 445 production /392 test files, zero violations.
 Broad smoke: one passed, 204 ms.
 ED-25 remains open for irregular-room qualification, configurable inner
 budgets, automatic strategy participation and the extension example.
+
+## Runtime budget configuration
+
+Inner stamp budgets now flow from resolved runtime configuration into the native
+strategy adapter. See configuration.md for defaults, limits and restart semantics.
+Native adapter regression proves zero-attempt pause then one-attempt continuation
+using the same serialized evaluator checkpoint. Policy identity tests prove
+domain/total-cap changes invalidate old proposals; per-step changes retain identity.
+Targeted configuration/native-work tests passed; broad smoke passed (207 ms).
+Quality passed (445 production/392 test files, zero violations).
+Automatic participation, irregular-room qualification and the extension example
+remain outstanding; no full native suite rerun is claimed for this change.
