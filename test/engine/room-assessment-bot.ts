@@ -1,3 +1,4 @@
+import { verifyNativePlanningWork } from './native-planning-work-check';
 import { verifyNativePlanningAdmission } from './native-planning-admission-check';
 import { loop as botLoop } from '../../src/main';
 import { assessmentSnapshot } from '../../src/capabilities/planning/snapshot';
@@ -8,6 +9,7 @@ export function loop() {
   const constraints = Game.time >= 6 && Game.time <= 7
     ? [{ id: 'manual', kind: 'keep-clear' as const, position: { x: 25, y: 25 } }] : [];
   verifyNativePlanningAdmission(constraints);
+  verifyNativePlanningWork(constraints);
   const snapshot = observeRoomAssessment(room.name, { constraints })!;
   const input = observeRoomPlanningInput(room.name, { constraints })!;
   const roundTrip = assessmentSnapshot(room.name, JSON.parse(JSON.stringify(input)), Game.time);

@@ -5,6 +5,13 @@ async function changeAssessmentSites(server, tick) {
   await db['rooms.objects'].removeWhere({ room: 'W0N1', type: 'constructionSite' });
 }
 function verifyRoomAssessment(memory) {
+  const work = memory.planningWorkRows;
+  assert.equal(work.length, 8);
+  assert.deepEqual(work.map(row => row.tick), [1, 2, 3, 4, 5, 6, 7, 8]);
+  assert.ok(work.every(row => row.planRevision === 0), 'enumeration does not commit a plan');
+  assert.ok(work.every(row => row.candidates > 0 && row.revision > 0));
+  assert.ok(work[7].candidates > work[0].candidates, 'native work resumes persisted enumeration');
+  assert.ok(work.every((row, index) => index === 0 || row.candidates >= work[index - 1].candidates));
   const admitted = memory.planningAdmissionRows;
   assert.equal(admitted.length, 8);
   assert.deepEqual(admitted.map(row => row.revision), [1, 1, 1, 2, 2, 3, 3, 4]);
