@@ -219,3 +219,22 @@ observation, not observed-room admission, scoring/commit, production activation,
 irregular terrain qualification or CPU performance proof. The high placement
 count motivates subsequent search profiling; the declared total ceiling was
 not raised to obtain this success.
+
+## Shared strategy registration
+
+createLayoutStrategies accepts an optional stamps version and explicit stamp
+search settings. The new adapter prepares pinned-hub composition, seeds operator
+entries, retains the existing operator amendment before final routing and maps
+draft progress/failure/completion to LayoutStrategy. Common candidate evaluation
+still owns score preparation, proposal provenance and hard validation.
+
+Outer stamp candidates use transform0; independent stamp transforms are searched
+inside composition. Other outer transforms reject explicitly. Standard and
+constrained registration is unchanged when no stamp version is supplied.
+Native evaluator options can carry the optional version; production policy,
+request admission and enumeration are not yet enabled for stamps.
+
+Eight strategy/evaluator tests across two files pass in478ms; quality passes
+(444 production /390 test files, zero violations); smoke passes. Tests cover
+opt-in registration, serialized adapter progress and explicit outer-transform
+rejection. Full native scoring/commit and irregular-room acceptance remain open.

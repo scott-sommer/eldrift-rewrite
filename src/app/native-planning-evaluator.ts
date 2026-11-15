@@ -11,7 +11,7 @@ import { planningRoadSearch } from '../adapters/screeps/planning-road-search';
 export interface NativePlanningEvaluatorOptions {
   room: string; observation: AssessmentInput; observationIdentity: string; policyIdentity: string;
   operatorEntries: readonly PlanEntry[];
-  versions: { standard: string; constrained: string }; searchRevision: string;
+  versions: { standard: string; constrained: string; stamps?: string }; searchRevision: string;
   maximumSearches: number; maximumPathOps: number; canContinue: () => boolean;
   prepareScore: CandidateEvaluatorOptions['prepareScore'];
   prepare?: typeof prepareEvaluation;
