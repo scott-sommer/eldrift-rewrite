@@ -1,6 +1,7 @@
 import { loop as botLoop } from '../../src/main';
 import { canShareTile } from '../../src/capabilities/planning/placement-validation';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
+import { observeStandardLayoutDraft } from '../../src/adapters/screeps/standard-layout-draft';
 import { verifyAssembledDraft } from './layout-draft-check';
 export function loop() {
   botLoop();
@@ -11,6 +12,11 @@ export function loop() {
   if (Game.time === 1) {
     verifyRoadSearch();
     verifyAssembledDraft();
+    const candidate = { anchor: { x: spawn.pos.x, y: spawn.pos.y }, transform: 0 as const };
+    const live = observeStandardLayoutDraft(room.name, candidate);
+    const hidden = observeStandardLayoutDraft('E9S9', candidate);
+    if (live.ok || live.phase !== 'placement') throw new Error('Live spawn conflict was not rejected');
+    if (hidden.ok || hidden.phase !== 'visibility') throw new Error('Hidden room was evaluated');
     rows.push({
       predictedRoad: canShareTile('road', 'spawn'),
       predictedExtension: canShareTile('extension', 'spawn'),
