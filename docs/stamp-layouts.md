@@ -194,3 +194,28 @@ bounds and observed-spawn prioritization. Twelve targeted composition/policy/
 draft tests pass in 391ms; smoke 202ms; quality zero violations
 (443 production /387 test files). Native registration and successful full
 catalog/road qualification remain outstanding.
+
+## Full catalog and native draft qualification
+
+Full catalog composition now has an executable regression: all 27 stamps compose
+around fixed storage25,25 with 200 anchors per non-hub stamp and a total10000
+attempt ceiling. Serialized500-attempt calls preserve the final service counts.
+
+New native --stamp-draft runs the shared draft pipeline with real PathFinder,
+controlled planningObservation input and planningLimits, 100 placement attempts
+and two road searches per tick. It finishes at tick141 after9387 placement
+attempts and95 road connections, passing final shared hard validation. Harness
+asserts 60 extensions,3 spawns,10 labs,6 towers,6 links and one of each singleton
+service structure. Two code reloads at ticks21 and101 exercise composition and
+road progress. Final engine-y0K1f2 passes with empty errors/messages and the same
+completion counts/tick as pre-reload engine-EMRJQY.
+
+Quality:443 production /389 test files, zero violations. Full-composition,
+draft and smoke regression:7 tests /3 files pass1.19s. Registered in the expanded
+162-case engine suite; aggregate not rerun for this test-only addition.
+
+This is complete native pathfinding/draft evidence for a controlled open-room
+observation, not observed-room admission, scoring/commit, production activation,
+irregular terrain qualification or CPU performance proof. The high placement
+count motivates subsequent search profiling; the declared total ceiling was
+not raised to obtain this success.
