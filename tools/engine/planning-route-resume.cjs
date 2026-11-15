@@ -8,6 +8,12 @@ async function reloadPlanningRoutes(server, bot, modules, index) {
   return main;
 }
 function verifyPlanningRouteResume(memory, reloaded = false) {
+  assert.deepEqual(memory.enumerationRows, [
+    { done: false, attempts: 400, candidates: 400, exposedSource: false },
+    { done: false, attempts: 400, candidates: 800, exposedSource: false },
+    { done: true, attempts: 376, candidates: 1176, exposedSource: true },
+  ]);
+  assert.equal(new Set(memory.enumeration.candidates.map(candidate => candidate.id)).size, 1176);
   assert.deepEqual(memory.roadBatchRows, [
     { done: false, searches: 1, completed: 1, roads: 4 },
     { done: true, searches: 1, completed: 2, roads: 4 },

@@ -515,3 +515,31 @@ route-batch tests then passed in 343 ms. Coverage includes exact JSON-resumed br
 weight/terrain invalidation, guard yielding, empty routes, late failure and cross-phase
 search accounting. Runtime scheduling, full enumeration, validation/preparation budgeting,
 job retirement and hard CPU termination remain open.
+
+### Complete configured candidate enumeration (ED-24)
+The planning feature now composes standardCandidateBatch and constrainedCandidateBatch
+under a shared raw-attempt budget. Serialized progress retains fitting unique candidates
+and each strategy's cursor. A coordinator-compatible random-access source is exposed
+only after every enabled strategy finishes; its identity binds all enumeration options.
+Standard candidates precede constrained candidates, retaining each strategy's established
+seed/anchor/transform order. Strategies may be disabled independently. Changed options
+reject restoration. Candidate and accessor results are detached, and enumeration is
+limited to the coordinator's 10,000-candidate safety bound rather than silently truncated.
+
+Unit characterization compares the complete result against independent standard eager
+enumeration and constrained anchor/orientation placement. A coordinator integration test
+visits every enumerated candidate (using a rejecting test evaluator), proving there is
+no first-fit truncation at the source boundary. This is not a live-room viability test.
+
+Native --planning-route-reload engine-oWAcdw passed across the tick-2 runtime reload:
+attempt batches 400/400/376 produced 400/800/1,176 candidates, exposing the source only
+on completion. It retained 888 standard and 288 constrained candidates, unique stable IDs,
+and known strategy boundary order. Existing road/route checkpoint checks also passed.
+Errors/messages empty. Total fixture Memory 138,148 bytes; CPU 13–47 ms, average 33.33 ms
+for these deliberately large enumeration batches. Snapshot copying/anchor preparation is
+not bounded by the attempt count; smaller runtime budgets remain a scheduling concern.
+
+Quality: 398 production / 353 test files, zero Lizard violations; 782 unit tests /
+234 files passed in 6.89s before the native-only fixture addition. Production scheduling,
+enumeration-state ownership/retirement, complete live-room evaluation, whole-planner CPU
+bounds and hard termination evidence remain unfinished.
