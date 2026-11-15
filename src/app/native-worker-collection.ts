@@ -1,3 +1,4 @@
+import { assignedMinerCollection } from './native-worker-miner';
 import { selectBootstrapEnergy } from '../features/work/bootstrap-energy';
 import { harvestBootstrapEnergy } from './native-bootstrap-harvest';
 import { upgradeBootstrapOwner } from '../features/work/upgrade-identity';
@@ -28,8 +29,11 @@ export function createNativeWorkerCollection(state: StatePort, dispatch: ReturnT
       available: Math.max(0, source.stock - booked(logisticsPool('stock', source.id, 'energy'))) }));
     const free = creep.store.getFreeCapacity();
     const origin = creep.pos.roomName === home ? movementPosition(creep.pos) : { room: home, x: 25, y: 25 };
-    const order = bootstrap ? selectBootstrapEnergy(sources, origin, free, creep.store.getCapacity()) : selectProfileEnergy(sources, origin, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
+    let order = bootstrap ? selectBootstrapEnergy(sources, origin, free, creep.store.getCapacity()) : selectProfileEnergy(sources, origin, free, { profile: config.workerEnergyProfile, capacity: creep.store.getCapacity(),
       storageReserve: config.workerEnergyStorageReserve, holdStoragePosition: config.workerHoldStoragePosition });
+    const selected = assignedMinerCollection(creep, owner, config, dispatch, booked, order);
+    if (selected && 'status' in selected) return selected;
+    order = selected;
     if (!order && bootstrap) return harvestBootstrapEnergy(creep, room, owner, dispatch, config.upgradeBootstrapDismantleEnabled);
     if (!order) return creep.store.energy > 0 ? { status: 'done' } : { status: 'blocked', reason: 'worker-energy-unavailable', retryAt: Game.time + 1 };
     return collect(creep, order, owner, invoke => issueCollection(state, Game.time, { owner, holder: creep.name,
