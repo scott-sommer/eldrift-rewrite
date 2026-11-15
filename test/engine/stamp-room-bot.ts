@@ -6,11 +6,11 @@ import type { Envelope } from '../../src/persistence/versioned-state';
 import type { PlanningJobRecord } from '../../src/features/planning/planning-job-schema';
 import type { PlanState } from '../../src/features/planning/plan-model';
 export function loop() { runRoomPlanning('stamps'); }
-export function runRoomPlanning(strategy: 'auto' | 'stamps') {
+export function runRoomPlanning(strategy: 'auto' | 'stamps', overrides: Partial<import('../../src/config/model').RuntimeConfig> = {}) {
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
   settings.empire = { layoutStrategy: strategy, planningAnchorLimit: 1, planningEnabled: true, planningCpuBudget: 100, planningCandidateAttempts: 1000,
-    planningEvaluationSteps: 20, planningSearches: 4 };
+    planningEvaluationSteps: 20, planningSearches: 4, ...overrides };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
   const job = (state.read('planning-jobs/W0N1') as Envelope | undefined)?.data as PlanningJobRecord | undefined;

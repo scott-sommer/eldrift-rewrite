@@ -371,3 +371,19 @@ Costs: hauling67, service315, capacity shortfall0, swamps0, defense102,
 migration1246702. This is a local-outcrop room at a locked anchor, not proof that
 standard cores cannot fit anywhere in an unconstrained room or that arbitrary
 terrain is solvable. The scenario is registered in the expanded native suite.
+
+## Bounded replanning failure preserves the committed plan
+
+Native --stamp-failure first commits an ordinary observed-room stamp plan. At
+tick100 it snapshots the entire planning envelope and changes the configured
+cumulative placement limit to one. Production policy identity starts new work;
+composition rejects with search-limit. No plan or proposal is injected.
+
+engine-zML5Ki passed400 ticks. Failure receipt completedAt100, evaluated1,
+rejected1, lastRejection identifies stamps:25:25:0 and composition/search-limit.
+The final planning envelope is deeply identical to its pre-change snapshot,
+including revision1, entries and provenance. Reload101 preserves the failure
+receipt and old plan; all later samples retain revision1 and no construction
+sites are created. This qualifies policy-triggered bounded-search failure,
+not every possible runtime failure or terrain change. The case is registered
+in the native suite; full expanded-suite qualification remains outstanding.
