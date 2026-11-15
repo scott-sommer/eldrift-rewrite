@@ -13,8 +13,14 @@ export function createStampCatalog(limits: StructureLimits): LayoutStamp[] {
   for (let start = 0; start < count; start += 5) stamps.push(extensions(start, Math.min(5, count - start), limits));
   return stamps;
 }
+const priorities: Readonly<Record<string, number>> = {
+  storage: -500, spawn: -430, extension: -400, link: -365, tower: -340,
+  terminal: -320, lab: -300, factory: -260, powerSpawn: -240, nuker: -220, observer: -210, road: -220,
+};
 function cell(type: string, x: number, y: number, rcl: number): StampTile {
-  return { type, offset: { x, y }, rcl, tag: 'stamp' };
+  const priority = priorities[type];
+  if (priority === undefined) throw new Error('Missing stamp priority: ' + type);
+  return { type, offset: { x, y }, rcl, priority, tag: 'stamp' };
 }
 function capacity(limits: StructureLimits, type: string): readonly number[] {
   const values = limits[type];

@@ -280,3 +280,34 @@ suite:929 tests /265 files passed8.58s. One obsolete unsupported-strategy test
 initially failed; replaced with missing-controller failure coverage and added
 explicit ready stamp admission. Native observed-room score/commit qualification
 has not yet been run for this activation.
+
+## Observed-room commitment and reset qualification
+
+The actual main-loop scenario admits an explicit stamps request from native
+room observation, preserves spawn (22,24) and storage (25,25), composes and routes
+the catalog, evaluates shared scores, and commits revision 1. No draft,
+candidate, observation or plan is injected. Planning uses CPU budget 100,
+1000 candidate attempts, 20 evaluation steps and four searches per tick;
+this is not a default-budget performance claim.
+
+Initial run engine-AqcvlY exposed missing catalog placement priorities:
+composition finished but shared plan validation rejected invalid-plan-entries.
+Catalog priorities now follow existing construction ordering. The full-catalog
+regression exercises the shared score-placement/persistence contract.
+
+npm run test:engine -- --stamp-room passed 400 ticks in engine-3UIoa8.
+Runtime reloads at ticks 21 and 101 cover pending work and committed state.
+Commit occurred at tick 39; one evaluated candidate, zero rejections.
+The verifier requires all service counts (including 60 extensions, ten labs,
+six links, three spawns), retained observed structures, ramparts, no construction
+sites, and stable revision through the final ten ticks.
+Costs: hauling 64, service 350, capacity shortfall 0, swamp 0,
+defense 104, migration 1242204. Runtime errors/messages were empty.
+The scenario is registered in the native suite; the expanded full suite has
+not yet been rerun.
+
+Targeted catalog/composition tests: four passed, 1.13 seconds.
+Quality: 445 production /392 test files, zero violations.
+Broad smoke: one passed, 204 ms.
+ED-25 remains open for irregular-room qualification, configurable inner
+budgets, automatic strategy participation and the extension example.

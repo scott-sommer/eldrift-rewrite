@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+import { validScorePlacements } from '../../src/features/planning/score-placement-validation';
 import { prepareStampComposition } from '../../src/capabilities/planning/stamp-composition-policy';
 import { composeStamps } from '../../src/capabilities/planning/stamp-composition';
 import { planningObservation } from '../fixtures/planning-observation';
@@ -14,6 +15,7 @@ test('full catalog composes around a fixed hub with complete service capacity', 
   }
   expect(result.status, JSON.stringify({ total: result.checkpoint.totalAttempts,
     depth: result.checkpoint.choices.length, reason: result.checkpoint.lastReason })).toBe('complete');
+  expect(validScorePlacements(result.entries!, Object.keys(planningLimits))).toBe(true);
   expect(result.entries?.filter(entry => entry.type === 'extension')).toHaveLength(60);
   expect(result.entries?.filter(entry => entry.type === 'spawn')).toHaveLength(3);
   expect(result.entries?.filter(entry => entry.type === 'lab')).toHaveLength(10);
