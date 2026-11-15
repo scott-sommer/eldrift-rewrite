@@ -54,3 +54,27 @@ adapter repeats this preparation on each advance before composeStamps checks its
 guard. This is a concrete optimization target, not a measured attribution of the
 whole-bot CPU above. Preserve deterministic anchor order and preservation-derived
 priority when optimizing, and measure default-budget progress after the change.
+
+## Lazy anchor traversal
+
+Replaced repeated full-grid allocation/sorting with Chebyshev ring traversal in
+distance then row-major order, stopping once enough anchors are collected.
+Preservation-derived anchors retain their existing sorted precedence.
+Exact equivalence tests cover boundary/interior hubs and limits1/9/200/2500;
+existing transformed-lock and full/irregular composition regressions pass.
+
+Native engine-NdtgIg committed at14 but correctly failed the old assertion that
+planning remains incomplete at reload21. The explicit stamp-room family now
+reloads at6 and101; automatic comparison and standalone draft retain their
+existing schedules. Final engine-UBG2PV passed400 ticks, committed at15,
+preserved full capacity and exact previous cost breakdown, errors/messages empty.
+The earlier engine-3UIoa8 committed at39. Through-commit whole-bot samples in the
+new run:14 samples, mean108.5/max137/sum1519 CPU. Elevated allowance remains100;
+faster completion is not proof of a lower per-tick ceiling. Host timing and
+reload schedule differ, so this is functional progress with indicative timing,
+not an isolated benchmark.
+
+Full unit suite938/267 files passed8.22s; targeted seven tests passed1.11s.
+Quality446 production/397 test files, zero violations. The full166-case native
+baseline predates this optimization; default-budget and broader native regression
+remain to qualify before closing the CPU work.

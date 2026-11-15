@@ -2,8 +2,8 @@ const assert = require('node:assert/strict');
 function verifyStampRoom(memory, automatic = false) {
   const rows = memory.planningRoomRows;
   assert.equal(rows.length, 400);
-  assert.deepEqual(memory.stampReloads, automatic ? [21, 101, 201] : [21, 101]);
-  assert.ok(rows.some(row => row.tick < 21 && row.pending));
+  assert.deepEqual(memory.stampReloads, automatic ? [21, 101, 201] : [6, 101]);
+  assert.ok(rows.some(row => row.tick < (automatic ? 21 : 6) && row.pending));
   console.log('STAMP_ROOM_PROGRESS ' + JSON.stringify(rows.slice(-3)));
   const records = memory.eldrift.records;
   const plan = records['planning/W0N1'].data;
@@ -18,7 +18,7 @@ function verifyStampRoom(memory, automatic = false) {
     assert.ok(rows.some(row => row.pending?.startsWith('stamps:')));
   }
   assert.equal(plan.revision, 1);
-  assert.ok(job.receipt.completedAt > 21 && job.receipt.completedAt < (automatic ? 200 : 100));
+  assert.ok(job.receipt.completedAt > (automatic ? 21 : 6) && job.receipt.completedAt < (automatic ? 200 : 100));
   if (!automatic) assert.equal(job.receipt.diagnostics.rejected, 0);
   for (const [type, count] of Object.entries({ spawn: 3, tower: 6, link: 6,
     storage: 1, terminal: 1, factory: 1, observer: 1, nuker: 1, powerSpawn: 1, extractor: 1 })) {

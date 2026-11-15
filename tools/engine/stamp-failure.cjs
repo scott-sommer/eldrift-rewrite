@@ -9,7 +9,7 @@ function verifyStampFailure(memory) {
   assert.ok(receipt.completedAt >= 100 && receipt.completedAt < 110);
   assert.match(receipt.diagnostics.lastRejection.reason, /search-limit/);
   assert.ok(receipt.diagnostics.rejected >= 1);
-  assert.deepEqual(memory.stampReloads, [21, 101]);
+  assert.deepEqual(memory.stampReloads, [6, 101]);
   const rows = memory.planningRoomRows;
   assert.ok(rows.some(row => row.tick < 100 && row.outcome === 'committed'));
   assert.ok(rows.filter(row => row.tick >= 100).every(row => row.revision === 1));

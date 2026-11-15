@@ -1,6 +1,7 @@
+import { tilesByDistance } from '../../core/geometry/distance-order';
 import { anchorForPlacement } from '../../core/geometry/transforms';
 import type { TransformIndex } from '../../core/geometry/transforms';
-import { insideRoom, tileAt, tileIndex } from '../../core/geometry/local-grid';
+import { insideRoom, tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 import type { LayoutStamp } from './stamp-placement';
 import type { AssessmentInput } from './assessment-model';
@@ -11,9 +12,12 @@ export function stampAnchors(
   if (!insideRoom(center) || !Number.isSafeInteger(limit) || limit < 1 || limit > 2500) throw new Error('Invalid stamp anchor policy');
   const preferred = preservedAnchors(stamp, observation);
   const compare = (a: Tile, b: Tile) => range(center, a) - range(center, b) || tileIndex(a) - tileIndex(b);
-  const remaining = Array.from({ length: 2500 }, (_, index) => tileAt(index))
-    .filter(tile => insideRoom(tile, 2) && !preferred.has(tileIndex(tile)));
-  return [...preferred.values()].sort(compare).concat(remaining.sort(compare)).slice(0, limit);
+  const anchors = [...preferred.values()].sort(compare).slice(0, limit);
+  for (const tile of tilesByDistance(center)) {
+    if (anchors.length >= limit) break;
+    if (!preferred.has(tileIndex(tile))) anchors.push(tile);
+  }
+  return anchors;
 }
 function range(a: Tile, b: Tile): number { return Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y)); }
 
