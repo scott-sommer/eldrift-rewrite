@@ -1005,3 +1005,23 @@ not repeated for this composition extraction. Native admission still needs to be
 to this evaluator with production scoring/defense policy, fresh commit validation and
 configured work preparation before main-loop registration. Fixture defense overlays
 remain test policy and are not claimed as completed automatic defense planning.
+
+### Fresh commit validation contract (ED-24)
+createPlanningCommitValidator rereads an explicit validation-snapshot port on every call.
+It rejects unavailable/wrong-room or mismatched observation/policy identity, validates
+the full plan schema/dependency graph, then freshly assesses placement, capacity, locks,
+lab stages, access and barrier coverage. Candidate preparation caches are not reused.
+The caller supplies current limits, movement rules and protected-asset/defense policy.
+
+Tests verify repeated availability/identity reads, new terrain obstruction despite an
+incorrectly reused identity, invalid dependencies, exposed protected assets and input
+nonmutation. The native planning-job fixture now invokes this validator at its actual
+commit boundary. engine-ecZ9Rv passed the existing 230-tick/six-reload/commit-recovery,
+request-baseline, metadata and cost assertions with empty errors/messages.
+
+Quality passed: 420 production / 370 test files, zero Lizard violations. Targeted validation,
+lifecycle and smoke passed 10 tests in 0.415s; full fast suite passed 861 tests / 249 files
+in 8.18s. Native validation in this scenario still reads its controlled observation
+fixture through the fresh callback. The final native runtime must connect that callback
+to current room observation/configuration and admitted identity. Production scoring/defense
+policy and main-loop registration remain open.

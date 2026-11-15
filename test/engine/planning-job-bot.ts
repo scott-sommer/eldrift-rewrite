@@ -1,3 +1,4 @@
+import { createPlanningCommitValidator } from '../../src/features/planning/planning-commit-validation';
 import { createPlanningRequestStore } from '../../src/features/planning/planning-request-store';
 import { measure, profileJobs, profilePlans } from './planning-profile';
 import { runPlanningCycle } from '../../src/features/planning/planning-cycle';
@@ -26,7 +27,12 @@ export function loop() {
   const cycleJobs = { ...jobs, finish: (...args: Parameters<typeof jobs.finish>) =>
     Game.time === 199 ? { ok: false as const, reason: 'revision' as const } : jobs.finish(...args) };
   const result = measure('cycle', runPlanningCycle)({ jobs: cycleJobs, plans: store,
-    validateCommit: plan => valid({ ...plan, strategy: plan.strategy!, provenance: plan.provenance! }) }, {
+    validateCommit: createPlanningCommitValidator(() => ({
+      room: 'W0N1', observation: planningObservation(), observationIdentity: JSON.stringify(planningObservation()),
+      policyIdentity: 'fixture-v1', limits, blocksMovement: type => OBSTACLE_OBJECT_TYPES.some(item => item === type),
+      protectedTypes: ['spawn', 'extension', 'storage', 'terminal', 'lab', 'tower', 'factory', 'powerSpawn', 'nuker', 'observer'],
+      barrierCosts: { rampart: 1, constructedWall: 1 },
+    })) }, {
       observation: JSON.stringify(planningObservation()), policy: 'fixture-v1', baseRevision,
       source: { revision: 'two-strategies-v1', count: 2, at: index => {
         const strategy = index === 0 ? 'standard' : 'constrained';
