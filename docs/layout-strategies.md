@@ -303,3 +303,20 @@ standardDraftFoundation separates core/infrastructure preparation from road comp
 Native --standard-draft-resume builds the ten logistics connections one per tick, reloads code after connection five, and compares final entries/connections exactly against uninterrupted standardDraft. It completes at tick 10 and issues no searches on ticks 11/12. The fixture passes engine-zY6xgz with errors/messages empty. CPU samples were [82,15,12,11,13,43,14,13,11,32,25,24] ms; tick 1 also computes the uninterrupted reference, tick 6 reloads, and completion revalidates. Preparation/assessment still repeat, and completed calls revalidate, so this is a path-search bound rather than a whole-tick CPU budget.
 
 Quality passed (382 production / 341 test files, zero Lizard violations); 738 tests / 226 files passed in 7.36s. Synchronous --layout-placement engine-BKRgZC passed errors/messages empty with unchanged costs, including constrained candidates. New resume scenario registered in full suite. Constrained alternate-road continuation, coordinator integration, cached preparation and hard CPU termination remain pending under ED-24.
+
+### Resumable traffic lanes (ED-24)
+Traffic road generation now has a separate serializable checkpoint and bounded-search batch helper.
+Each primary and alternate search consumes one slot. A checkpoint between searches retains the
+primary connection and excluded interior tiles; an unavailable alternate preserves the primary
+and records its failure. A failed mandatory primary does not advance. Restores validate revision,
+target identities, lane phase, costs, original roads and blocked-tile membership; callers must
+include terrain, constraints and search-policy changes in the supplied revision.
+Pending networks remain drafts, never published layout plans. Inputs are detached before work,
+so a thrown search cannot mutate a previously persisted checkpoint.
+
+Validation: quality passed (384 production / 342 test files, zero Lizard violations);
+743 unit tests / 227 files passed in 8.87s. Native layout-placement engine-eZaz18 passed
+with empty errors/messages, including JSON-resumed native alternate routing equal to uninterrupted
+routing. This native check resumes within one tick; it is not a runtime-reload or hard-CPU-kill proof.
+The helper is not yet wired into constrained draft orchestration, core-road stitching, service
+packing, or its final connectivity pass. Full constrained continuation remains unfinished.

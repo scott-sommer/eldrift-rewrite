@@ -1,3 +1,4 @@
+import { connectTrafficBatch } from '../../src/capabilities/planning/traffic-road-batch';
 import { connectTrafficRoads } from '../../src/capabilities/planning/traffic-roads';
 import { planningRoadSearch } from '../../src/adapters/screeps/planning-road-search';
 export function verifyTrafficRoads(): void {
@@ -8,6 +9,12 @@ export function verifyTrafficRoads(): void {
     buildable: () => true, search: planningRoadSearch('W0N1', costs) };
   const dual = connectTrafficRoads(request);
   if (!dual.ok || dual.lanes[0]?.secondaryCost === undefined) throw new Error('Missing native alternate lane');
+  const first = connectTrafficBatch(request, 'native-v1', undefined, 1);
+  const resumed = connectTrafficBatch(request, 'native-v1', JSON.parse(JSON.stringify(first.checkpoint)), 1);
+  if (!resumed.ok || !resumed.done || first.searches !== 1 || resumed.searches !== 1
+    || JSON.stringify({ ok: true, roads: resumed.checkpoint.network.roads, lanes: resumed.checkpoint.lanes }) !== JSON.stringify(dual)) {
+    throw new Error('Resumed native traffic roads diverged');
+  }
   for (let x = 10; x <= 15; x++) costs[11 * 50 + x] = 255;
   const single = connectTrafficRoads({ ...request, search: planningRoadSearch('W0N1', costs) });
   if (!single.ok || single.lanes[0]?.secondaryFailure !== 'incomplete-search') throw new Error('Narrow corridor claimed redundancy');
