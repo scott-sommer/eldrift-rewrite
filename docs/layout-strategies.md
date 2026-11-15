@@ -920,3 +920,26 @@ detachment and corrupt/future/foreign state preservation.
 Native admission must still derive the stable request identity and use this captured
 base plan for seeds/operator policy, then register the configured feature in main.
 Observation/policy invalidation and whole-planner CPU qualification remain open.
+
+### Stable request admission (ED-24)
+admitPlanningRequest binds normalized current observation, configured/manual request
+policy and an explicit implementation revision into a request identity. It captures
+the current plan only for a new identity, then prepares candidate seeds and operator
+policy from that request's original stored base plan. Same-identity reopening after a
+successful commit therefore preserves baseRevision and seed ordering. Missing-controller
+or unsupported-strategy results do not initialize request storage; capture conflicts
+do not expose ready work.
+
+Tests use a completed plan with bootstrap/provenance to prove reopening does not adopt
+its new prior-candidate seed. Changed world observations, refresh revisions or implementation
+revision capture a new baseline; changed search budgets and reordered observation lists
+reuse the request. The implementation revision must bind the caller's complete scoring,
+strategy and search policy; it is not inferred from callback functions.
+
+Quality passed: 417 production / 367 test files, zero Lizard violations. Targeted admission,
+request store, planning lifecycle and smoke: 15 tests / 4 files in 0.309s. Full unit/native
+suites were not repeated for this isolated policy composition. Native request preparation,
+using admitted identities throughout the evaluator/commit path, main registration and CPU
+qualification remain open. Observation changes currently create a new identity; completed
+plan refresh admission still needs a policy that avoids unnecessary replanning during
+ordinary construction.
