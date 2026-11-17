@@ -2,14 +2,14 @@
 
 Audit baseline: db270a0. Production stamp planning, automatic comparison and
 configuration are implemented. Default-budget completion and broad native
-regression pass. ED-25 remains In Progress pending the final full native suite after the cold-replay fix.
+regression pass. ED-25 acceptance is qualified by the final clean168-case native suite after the cold-replay fix.
 
 | Requirement | Evidence inspected | Assessment |
 | --- | --- | --- |
 | Irregular staged room or explained failure | stamp-irregular.test.ts; native irregular-stamp-room, full counts/shared validation/real routing | Four outcrops around locked storage qualify; not universal solvability |
 | Locks/manual entries and corridors | stamp-placement tests and native observed spawn/storage preservation | Evidenced |
 | Labs, egress, RCL capacity, common score | catalog transform/RCL tests, shared final validator, native complete-room cases | Evidenced |
-| Determinism and reset/resume | serialized incremental/backtracking tests, elevated native reloads, early default reloads6/101 | Late composition/routing/scoring resets now pass; final full-suite rerun pending |
+| Determinism and reset/resume | serialized incremental/backtracking tests, elevated native reloads, early default reloads6/101 | Late composition/routing/scoring resets now pass; final full168-case suite passed |
 | Rejection preserves prior plan | native stamp-failure, complete plan-envelope equality after exhaustion and reload | Evidenced |
 | CPU bounded | finite domain/attempt/search limits, cooperative guard; default case commits at790 | Default and late-reset completion evidenced; allowance is not a hard millisecond ceiling |
 | Extension contract and example | layout-strategies.md and executable blueprint strategy example | Evidenced at evaluator boundary; example is not a full production colony strategy |
@@ -283,3 +283,15 @@ reset events and traces are in evidence/stamp-late-reset.json.
 The full native suite now registers168 cases and compares default/late-reset plans.
 Its final clean run after this fix remains pending before ED-25 closes.
 
+
+## Final acceptance qualification
+
+All168 native checks passed636.46s against clean6b2ae35, including ordinary
+default-budget completion, phase-triggered composition/routing/scoring resets,
+physical-plan/score comparison, irregular rooms and retained-plan rejection.
+Evidence: evidence/stamp-final-engine-suite.json. Only expected intentional
+planning timeout, injected failure sentinels and Art suspension diagnostics occur.
+Full963 unit tests and quality gates were passed on this production revision.
+All ED-25 criteria are evidenced within the fixture and bounded-search scope
+described above. Cooperative budgets do not promise a hard per-tick ceiling;
+broader CPU/memory/soak qualification remains ED-43. ED-45 retains free-form work.
