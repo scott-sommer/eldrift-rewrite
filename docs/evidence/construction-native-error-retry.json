@@ -1,0 +1,326 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ouf2D9",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 247.58100000000002,
+      "cpuMilliseconds": 40,
+      "memoryBytes": 1033
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 20.48230000000001,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1206
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 16.083299999999895,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1427
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 15.757000000000062,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1600
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 61.94290000000001,
+      "cpuMilliseconds": 30,
+      "memoryBytes": 1792
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 15.623100000000022,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1965
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 16.21690000000001,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 2186
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 13.492900000000077,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2372
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 16.602500000000077,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2558
+    },
+    {
+      "tick": 11,
+      "wallMilliseconds": 23.003100000000018,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2616
+    },
+    {
+      "tick": 12,
+      "wallMilliseconds": 17.3742000000002,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2711
+    },
+    {
+      "tick": 13,
+      "wallMilliseconds": 25.883000000000038,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2806
+    }
+  ],
+  "provenance": {
+    "commit": "aeac0de3478c720899982832fed1578c4d87a355",
+    "dirty": true,
+    "bundleSha256": "220036295719700d7b744b79296243bd02f7f23d8ac190e8c2c0db8767666aa5",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "aeac0de3478c720899982832fed1578c4d87a355",
+    "dirty": true,
+    "bundleSha256": "725b0f049d765d38dac3a9b255ca7adeb457b995317754574db675b3ebe8c8de",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "constructionRetry": {
+    "rows": [
+      {
+        "tick": 1,
+        "retries": {
+          "road:25:25": {
+            "failures": 1,
+            "nextAttempt": 3,
+            "reason": "engine:-7",
+            "quarantined": false
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "engine:-7"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 2,
+        "retries": {
+          "road:25:25": {
+            "failures": 1,
+            "nextAttempt": 3,
+            "reason": "engine:-7",
+            "quarantined": false
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "retry-wait"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 3,
+        "retries": {
+          "road:25:25": {
+            "failures": 2,
+            "nextAttempt": 7,
+            "reason": "engine:-7",
+            "quarantined": false
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "engine:-7"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 4,
+        "retries": {
+          "road:25:25": {
+            "failures": 2,
+            "nextAttempt": 7,
+            "reason": "engine:-7",
+            "quarantined": false
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "retry-wait"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 5,
+        "retries": {
+          "road:25:25": {
+            "failures": 2,
+            "nextAttempt": 7,
+            "reason": "engine:-7",
+            "quarantined": false
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "retry-wait"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 6,
+        "retries": {
+          "road:25:25": {
+            "failures": 2,
+            "nextAttempt": 7,
+            "reason": "engine:-7",
+            "quarantined": false
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "retry-wait"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 7,
+        "retries": {
+          "road:25:25": {
+            "failures": 3,
+            "nextAttempt": 11,
+            "reason": "engine:-7",
+            "quarantined": true
+          }
+        },
+        "decisions": [
+          {
+            "status": "retry",
+            "reason": "engine:-7"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 8,
+        "retries": {
+          "road:25:25": {
+            "failures": 3,
+            "nextAttempt": 11,
+            "reason": "engine:-7",
+            "quarantined": true
+          }
+        },
+        "decisions": [
+          {
+            "status": "invalid",
+            "reason": "quarantined:engine:-7"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 9,
+        "retries": {
+          "road:25:25": {
+            "failures": 3,
+            "nextAttempt": 11,
+            "reason": "engine:-7",
+            "quarantined": true
+          }
+        },
+        "decisions": [
+          {
+            "status": "invalid",
+            "reason": "quarantined:engine:-7"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 10,
+        "retries": {},
+        "decisions": [
+          {
+            "status": "created",
+            "reason": "accepted"
+          }
+        ],
+        "sites": 0
+      },
+      {
+        "tick": 11,
+        "retries": {},
+        "decisions": [
+          {
+            "status": "site-existing",
+            "reason": "present"
+          }
+        ],
+        "sites": 1
+      },
+      {
+        "tick": 12,
+        "retries": {},
+        "decisions": [
+          {
+            "status": "site-existing",
+            "reason": "present"
+          }
+        ],
+        "sites": 1
+      }
+    ],
+    "calls": [
+      {
+        "tick": 1,
+        "status": "retry",
+        "reason": "engine:-7"
+      },
+      {
+        "tick": 3,
+        "status": "retry",
+        "reason": "engine:-7"
+      },
+      {
+        "tick": 7,
+        "status": "retry",
+        "reason": "engine:-7"
+      },
+      {
+        "tick": 10,
+        "status": "created",
+        "reason": "accepted"
+      }
+    ]
+  },
+  "childPids": [
+    54744,
+    44756,
+    50752
+  ]
+}
