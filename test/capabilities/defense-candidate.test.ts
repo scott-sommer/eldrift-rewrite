@@ -29,3 +29,14 @@ test('illegal sharing and exposed assets fail before operational scoring', () =>
   expect(evaluateDefenseCandidate({ ...request, barriers: [{ type: 'constructedWall', position: { x: 25, y: 25 } }] }))
     .toMatchObject({ ok: false, phase: 'placement' });
 });
+
+test('declared infrastructure inventory requires explicit exemptions for exposed assets', () => {
+  const request = input();
+  const protection = { assets: [{ id: 'remote', position: { x: 10, y: 20 } }], exemptions: [] };
+  expect(evaluateDefenseCandidate({ ...request, protection }))
+    .toMatchObject({ ok: false, phase: 'protection', details: { uncovered: ['remote'] } });
+  expect(evaluateDefenseCandidate({ ...request, protection: { ...protection,
+    exemptions: [{ id: 'remote', reason: 'Remote mining infrastructure' }] } }))
+    .toMatchObject({ ok: true, protection: { acceptable: true,
+      intentionallyUnprotected: [{ id: 'remote', exposed: true }] } });
+});
