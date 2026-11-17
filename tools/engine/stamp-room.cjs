@@ -26,6 +26,8 @@ function verifyStampRoom(memory, automatic = false) {
   console.log('STAMP_ROOM_COMMIT ' + JSON.stringify({ committedAt: plan.provenance.committedAt, costs: plan.provenance.costs, bootstrap: plan.provenance.bootstrap }));
 }
 function verifyStampInventory(plan) {
+  assert.ok(plan.entries.filter(entry => entry.type === 'rampart').every(entry => entry.minimumStoredEnergy === 50000),
+    'generated defenses must retain configured reserve requirements');
   for (const [type, count] of Object.entries({ spawn: 3, tower: 6, link: 6,
     storage: 1, terminal: 1, factory: 1, observer: 1, nuker: 1, powerSpawn: 1, extractor: 1 })) {
     assert.equal(plan.entries.filter(entry => entry.type === type).length, count, type);

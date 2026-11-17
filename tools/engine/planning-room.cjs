@@ -45,6 +45,7 @@ function verifyPlanningRoom(memory) {
   assert.equal(plan.entries.filter(entry => entry.type === 'extension').length, 60);
   assert.equal(plan.entries.filter(entry => entry.type === 'lab').length, 10);
   assert.ok(plan.entries.some(entry => entry.type === 'rampart'));
+  assert.ok(plan.entries.filter(entry => entry.type === 'rampart').every(entry => entry.minimumStoredEnergy === 50000));
   const ids = records['planning-candidates/W0N1'].data.checkpoint.candidates;
   assert.ok(ids.some(id => id.startsWith('standard:')));
   assert.ok(ids.some(id => id.startsWith('constrained:')));

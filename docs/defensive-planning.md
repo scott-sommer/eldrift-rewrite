@@ -1,8 +1,13 @@
 # Defensive planning implementation record
 
-ED-26 is In Progress. Baseline implementation: 1db1a55.
-Full unit regression: 992 tests/287 files passed in8.14s on2026-11-17.
-Latest quality:464 production/418 test files, zero Lizard violations.
+ED-26 is In Progress. Current production baseline: 9a6d263 (2026-11-18).
+Full unit regression: 1,036 tests/303 files passed in8.31s.
+Latest quality:483 production/435 test files, zero Lizard violations.
+Adaptive native policy is active when planning is enabled; planning defaults off.
+Search replay, candidate/coordinator recovery, explicit asset accounting, road gates
+and persisted energy-reserve requirements are implemented. Engine evidence proves
+selected native completion/reset paths, not strict CPU compliance or all acceptance
+fixtures. Chronological implementation evidence follows below.
 
 ## Provenance and scope
 
@@ -56,26 +61,23 @@ using independent flood separation, establishing optimum5 for that fixture.
 
 Native --layout-placement engine-xQ3KtV passed after shared validation integration,
 with no errors/messages. This qualifies existing layout compatibility only.
-New cut/exit generation has no native room-scale or production selection evidence.
+Later entries below record native room-scale generation and adaptive production
+selection evidence; these supersede this initial compatibility-only baseline.
 
 ## Remaining execution plan
 
-1. Define common resumable strategy adapters for cut, exit and legacy fallback.
-   Require consistent input/provenance and diagnostics for rejected candidates.
-2. Make graph construction and residual edge scans interruptible; augmentation
-   counts alone do not establish a practical per-tick CPU bound. Measure open-room
-   worst cases before selecting an algorithm/budget policy.
-3. Add versioned/reset-safe search state or deterministic replay with incremental
-   reconstruction. Heap-only flow is insufficient for production reset recovery.
-4. Compose protected regions/controller inclusion and explicit intentionally
-   unprotected infrastructure reports. Preserve operator locks and manual barriers.
-5. Wire candidate evaluation and weighted selection with economy-driven RCL staging,
-   gate policy, powered-tower assumptions and configurable strategy preferences.
-6. Integrate into the native candidate pipeline with request invalidation and
-   retained-plan safety. Register native open-exit/choke/controller/disconnected/
-   fallback/reset fixtures and compare completed defenses via shared validation.
-7. Record CPU/memory measurements and acceptance audit, then close ED-26 only
-   after every criterion is evidenced. ED-43 owns wider performance/soak gates.
+1. Finish requalification of stamp/automatic/irregular/default-budget/late-reset
+   native fixtures after adaptive policy activation; compare completed plans and
+   retain exact bundle provenance. Full engine regression remains required.
+2. Add explicit native open-exit/choke/controller/disconnected/fallback acceptance
+   cases with strategy identity and protection/operational reports.
+3. Measure and resolve atomic setup/finalization CPU costs; current admission and
+   scan allowances do not establish a strict CPU ceiling. Profile Memory overhead.
+4. Enforce persisted RCL/energy requirements in ED-27 construction execution and
+   verify reserve-loss/missing-storage behavior; metadata alone is not enforcement.
+5. Audit operator barriers/locks and retained-plan safety across policy revisions.
+6. Record acceptance evidence against each ED-26 criterion and close only when
+   all requirements pass. ED-43 owns broader performance and soak gates.
 
 No new generator creates construction sites; construction reconciliation remains
 a separate feature. No claim of ED-26 completion follows from the current unit suite.
@@ -200,3 +202,12 @@ Generated adaptive barriers now carry `minimumStoredEnergy` alongside their conf
 `defenseEconomyEligible` checks both RCL and observed stored-energy thresholds. ED-27 must invoke this policy before issuing construction sites, with an explicit definition of usable room reserve; that execution enforcement remains unimplemented and must not be claimed complete under ED-26. This is a durable planner/executor contract, not evidence of live affordability enforcement or upkeep sustainability.
 
 Quality passed (483 production /435 test files, zero Lizard violations). Focused economy/native-policy plus smoke: five tests in785ms. Full unit regression:1,036tests across303files in8.31s. Exact reserve/RCL boundaries, preservation of existing barrier settings, invalid metadata and persisted round-trip covered. No new native evidence for this schema extension is claimed.
+
+
+### Stamp requalification and default-budget failure
+
+Current baseline9a6d263 passed native --stamp-room:400ticks, committed32,88ramparts, complete inventory, resets6/101, no sites/errors/messages. Archived defense-stamp-native.json retains clean provenance. Engine stamp/planning-room assertions now require configured50000energy metadata on generated ramparts; subsequent default-budget run did not reach that assertion.
+
+Native --stamp-budget failed the unchanged1600tick completion gate twice. Initial evidence engine-FBn1Oc reached defense phase but did not expose search internals. Added fixture-only telemetry records generated-strategy count and durable augmentation count. Traced engine-TjC9me proves progress: flow4at700,40at1000,81at1450,88and all3generated strategies at1550; still defense phase at1600, no committed receipt. This is not total search starvation. The default CPU/search policy does not yet satisfy the prior end-to-end deadline; finalization/validation overhead and solver cost need investigation. Do not extend the deadline or claim default completion from the earlier80tick progress check.
+
+Failure evidence and trace are versioned as defense-stamp-budget-failure.json and defense-stamp-budget-trace.json. Required next actions: profile per-phase admission/setup/finalization, improve bounded progress, re-run1600tick completion and late-reset plan comparison, then broaden native regression. ED-26 remains open. These failures are local engine results, not an external blocker.
