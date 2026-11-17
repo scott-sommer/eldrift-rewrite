@@ -5,7 +5,7 @@ export interface FlowCheckpoint { version: 1; signature: string; augmentations: 
 export function createRecoverableFlow(
   size: number, edges: readonly CapacityEdge[], source: number, sink: number, saved?: FlowCheckpoint,
 ) {
-  const signature = JSON.stringify(['recoverable-flow-v1', size, edges, source, sink]);
+  const signature = JSON.stringify(['recoverable-flow-v2', size, edges.map(edge => [edge.from, edge.to, edge.capacity]), source, sink]);
   validateCheckpoint(saved, signature);
   const network = createResidualNetwork(size, edges, source, sink);
   return new FlowRunner(network, signature, checkpointCount(saved));

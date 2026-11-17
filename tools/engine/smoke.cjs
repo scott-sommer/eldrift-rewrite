@@ -598,6 +598,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     if (defenseCutReload) {
       assert.deepEqual(memory.stampReloads, [101, 201]);
       assert.deepEqual(memory.defenseCut.starts, [1, 101, 201]);
+      assert.ok(memory.defenseCut.restored.slice(1).every(count => count > 0));
       assert.ok(memory.defenseCut.rows.filter(row => row.tick === 100 || row.tick === 200).every(row => row.status === 'pending'));
     }
   }
