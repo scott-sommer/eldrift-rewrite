@@ -23,6 +23,7 @@ test('native policy composes stored strategies and converges with configured bar
   if (result.status !== 'complete') throw new Error('Expected defended plan');
   expect(result.entries.filter(entry => entry.type === 'rampart')).toHaveLength(1);
   expect(result.entries.find(entry => entry.type === 'rampart')?.rcl).toBe(7);
+  expect(result.entries.find(entry => entry.type === 'rampart')?.minimumStoredEnergy).toBe(50000);
   expect(Object.keys(records)).toEqual(['defense-search/W0N1']);
   expect(nativeDefensePolicy('W0N1', { ...config, planningDefenseTowerWeight: 2 }, ['storage']).revision).not.toBe(policy.revision);
 });

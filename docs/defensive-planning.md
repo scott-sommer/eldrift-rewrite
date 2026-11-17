@@ -191,3 +191,12 @@ Two earlier runs informed fixture adjustment: the initial10000scan/oneaugmentati
 Shared candidate evaluation now derives mandatory friendly gates wherever planned roads cross generated barriers, unions explicit gate requirements, and deduplicates/sorts them. This supplies real gate-access accounting for native generated defenses rather than an always-empty requirement list. Native defense revision advances to v2:road-gates to invalidate persisted requests when this semantic change applies. It does not infer every strategic ingress/egress need or implement economy-based stage switching.
 
 Quality passed (482 production / 434 test files, zero Lizard violations). Focused gates/native-policy/pipeline plus smoke: seven tests in301ms, including exact rampart-passable and constructed-wall-blocked diagnostics. No complete native regression or new native run for the road-gate change is claimed. ED-26 remains open for strict budget qualification, economy staging and remaining scenario coverage.
+
+
+### Declarative defense economy requirements
+
+Generated adaptive barriers now carry `minimumStoredEnergy` alongside their configured RCL. The native default is50000energy, configurable with validated `planningDefenseMinimumStoredEnergy`; the native semantic revision advances to v3:economy-reserve. Requirements describe construction eligibility rather than observing live energy during layout search, avoiding reserve-driven search restarts. Existing/manual barriers retain their original metadata. The optional field passes through proposal conversion, plan validation, persistent commit and store recreation; older plans without it retain a zero reserve requirement.
+
+`defenseEconomyEligible` checks both RCL and observed stored-energy thresholds. ED-27 must invoke this policy before issuing construction sites, with an explicit definition of usable room reserve; that execution enforcement remains unimplemented and must not be claimed complete under ED-26. This is a durable planner/executor contract, not evidence of live affordability enforcement or upkeep sustainability.
+
+Quality passed (483 production /435 test files, zero Lizard violations). Focused economy/native-policy plus smoke: five tests in785ms. Full unit regression:1,036tests across303files in8.31s. Exact reserve/RCL boundaries, preservation of existing barrier settings, invalid metadata and persisted round-trip covered. No new native evidence for this schema extension is claimed.

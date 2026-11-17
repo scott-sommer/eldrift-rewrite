@@ -4,6 +4,7 @@ export interface PlanEntry {
   x: number;
   y: number;
   rcl: number;
+  minimumStoredEnergy?: number;
   priority: number;
   source: 'strategy' | 'operator';
   dependencies?: string[];
@@ -37,5 +38,7 @@ function validDependencies(value: unknown): boolean {
 }
 
 function validMetadata(entry: Partial<PlanEntry>): boolean {
+  if (entry.minimumStoredEnergy !== undefined
+    && (!Number.isSafeInteger(entry.minimumStoredEnergy) || entry.minimumStoredEnergy < 0)) return false;
   return [entry.tag, entry.objectId].every(value => value === undefined || typeof value === 'string' && value.length > 0);
 }

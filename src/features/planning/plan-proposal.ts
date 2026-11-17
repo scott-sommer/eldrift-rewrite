@@ -27,6 +27,7 @@ export function createPlanProposal(input: ProposalInput): PlanProposal {
 export function planEntry(entry: ProposalPlacement): PlanEntry {
   if (entry.priority === undefined || !Number.isFinite(entry.priority)) throw new Error('Missing plan placement priority');
   return { type: entry.type, x: entry.position.x, y: entry.position.y, rcl: entry.rcl,
+    ...(entry.minimumStoredEnergy === undefined ? {} : { minimumStoredEnergy: entry.minimumStoredEnergy }),
     priority: entry.priority, source: entry.source ?? 'strategy',
     ...(entry.tag === undefined ? {} : { tag: entry.tag }),
     ...(entry.objectId === undefined ? {} : { objectId: entry.objectId }),

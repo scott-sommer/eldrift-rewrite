@@ -4,7 +4,7 @@ import type { Tile } from '../../core/geometry/local-grid';
 
 export interface TemplateTile { type: string; offset: Tile }
 export interface PlacedTile { type: string; position: Tile }
-export interface StagedTile extends PlacedTile { rcl: number; priority?: number; tag?: string; objectId?: string }
+export interface StagedTile extends PlacedTile { rcl: number; minimumStoredEnergy?: number; priority?: number; tag?: string; objectId?: string }
 /** Atomic placement: an out-of-bounds footprint is rejected, never truncated. */
 export function placeTemplate(
   template: readonly TemplateTile[], anchor: Tile, transform: TransformIndex, margin = 2,
