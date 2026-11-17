@@ -28,6 +28,9 @@ export function loop() {
   const progress = createConstructionProgressStore(state, 'W0N1').read(), plan = plans.read();
   const memory = Memory as Memory & { constructionRuntimeRows?: unknown[] };
   (memory.constructionRuntimeRows ??= []).push({ tick: Game.time, revision: progress.revision, next: progress.next,
+    level: Game.rooms.W0N1!.controller!.level, energy: Game.rooms.W0N1!.storage?.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,
     sites: Object.values(Game.constructionSites).map(site => site.structureType), planRevision: plan.revision,
-    entries: plan.entries.length, bootstrap: plan.provenance?.bootstrap.spawn });
+    entries: plan.entries.length, bootstrap: plan.provenance?.bootstrap.spawn, snapshot: JSON.stringify(plan),
+    roads: Game.rooms.W0N1!.find(FIND_STRUCTURES).filter(item => item.structureType === STRUCTURE_ROAD).map(item => item.pos.x + ':' + item.pos.y),
+    roadSites: Object.values(Game.constructionSites).filter(site => site.structureType === STRUCTURE_ROAD).map(site => site.pos.x + ':' + site.pos.y) });
 }
