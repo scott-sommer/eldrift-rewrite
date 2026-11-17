@@ -12,10 +12,13 @@ export function createTerrainCutNetwork(input: TerrainCutInput) {
   input = { walkable: [...input.walkable], barrierCosts: [...input.barrierCosts],
     entries: input.entries.map(tile => ({ ...tile })), protectedTiles: input.protectedTiles.map(tile => ({ ...tile })) };
   const entries = new Set(input.entries.map(tileIndex)), protectedTiles = new Set(input.protectedTiles.map(tileIndex));
-  const edges = buildEdges(input, entries, protectedTiles, infinity);
-  const network = createResidualNetwork(5002, edges, 5000, 5001);
+  const prepare = prepareEdges(buildEdges(input, entries, protectedTiles, infinity));
+  let network: ReturnType<typeof createResidualNetwork> | undefined;
   return { advance(maximumAugmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
-    const result = network.advance(maximumAugmentations, guard, maximumScans);
+    const prepared = prepare(maximumScans, guard);
+    if (!prepared.done) return { status: 'pending' as const, flow: 0 };
+    network ??= createResidualNetwork(5002, prepared.edges, 5000, 5001);
+    const result = network.advance(maximumAugmentations, guard, maximumScans - prepared.scans);
     if (!result.done) return { status: 'pending' as const, flow: result.flow };
     if (result.flow >= infinity) return { status: 'rejected' as const, reason: 'no-legal-cut' as const };
     const reached = new Set(result.reachable);
@@ -24,21 +27,19 @@ export function createTerrainCutNetwork(input: TerrainCutInput) {
     return { status: 'complete' as const, cost: result.flow, barriers };
   } };
 }
-function buildEdges(input: TerrainCutInput, entries: Set<number>, protectedTiles: Set<number>, infinity: number): CapacityEdge[] {
-  const edges: CapacityEdge[] = [];
+function* buildEdges(input: TerrainCutInput, entries: Set<number>, protectedTiles: Set<number>, infinity: number): Generator<CapacityEdge> {
   for (let index = 0; index < 2500; index++) {
     if (!input.walkable[index]) continue;
     const terminal = [entries, protectedTiles].some(set => set.has(index));
     const cost = terminal ? infinity : input.barrierCosts[index] ?? infinity;
-    edges.push({ from: index * 2, to: index * 2 + 1, capacity: cost });
-    if (entries.has(index)) edges.push({ from: 5000, to: index * 2, capacity: infinity });
-    if (protectedTiles.has(index)) edges.push({ from: index * 2 + 1, to: 5001, capacity: infinity });
+    yield { from: index * 2, to: index * 2 + 1, capacity: cost };
+    if (entries.has(index)) yield { from: 5000, to: index * 2, capacity: infinity };
+    if (protectedTiles.has(index)) yield { from: index * 2 + 1, to: 5001, capacity: infinity };
     for (const tile of adjacentTiles(tileAt(index))) {
       const target = tileIndex(tile);
-      if (input.walkable[target]) edges.push({ from: index * 2 + 1, to: target * 2, capacity: infinity });
+      if (input.walkable[target]) yield { from: index * 2 + 1, to: target * 2, capacity: infinity };
     }
   }
-  return edges;
 }
 function validateInput(input: TerrainCutInput): number {
   if (input.walkable.length !== 2500 || input.barrierCosts.length !== 2500) throw new Error('Invalid cut grid');
@@ -60,4 +61,19 @@ function capacityLimit(costs: readonly (number | null)[]): number {
   }
   if (!Number.isSafeInteger(sum + 1)) throw new Error('Cut capacity overflow');
   return sum + 1;
+}
+
+function prepareEdges(iterator: Generator<CapacityEdge>) {
+  const edges: CapacityEdge[] = [];
+  let done = false;
+  return (maximum: number, guard: () => boolean) => {
+    if (!Number.isSafeInteger(maximum) || maximum < 0) throw new Error('Invalid flow scan budget');
+    let scans = 0;
+    while (!done && scans < maximum && guard()) {
+      const step = iterator.next(); scans++;
+      if (step.done) done = true;
+      else edges.push(step.value);
+    }
+    return { edges, done, scans };
+  };
 }
