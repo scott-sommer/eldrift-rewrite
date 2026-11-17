@@ -22,3 +22,16 @@ test('invalid networks and budgets fail explicitly', () => {
   expect(() => createResidualNetwork(2, [{ from: 0, to: 1, capacity: -1 }], 0, 1)).toThrow();
   expect(() => createResidualNetwork(2, [], 0, 1).advance(-1)).toThrow('budget');
 });
+
+test('one-scan slices preserve BFS progress and converge to uninterrupted flow', () => {
+  const edges = Array.from({ length: 30 }, (_, from) => ({ from, to: from + 1, capacity: 2 }));
+  const network = createResidualNetwork(31, edges, 0, 30);
+  expect(network.advance(1, () => true, 0)).toMatchObject({ done: false, scans: 0 });
+  let result = network.advance(1, () => true, 1);
+  for (let tick = 0; !result.done && tick < 200; tick++) {
+    expect(result.scans).toBeLessThanOrEqual(1);
+    result = network.advance(1, () => true, 1);
+  }
+  expect(result).toMatchObject({ done: true, flow: 2, reachable: [0] });
+  expect(() => network.advance(1, () => true, -1)).toThrow('scan budget');
+});
