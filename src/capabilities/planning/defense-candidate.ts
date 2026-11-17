@@ -24,13 +24,13 @@ export function evaluateDefenseCandidate(input: DefenseCandidateInput) {
   if (!validation.ok) return { ok: false as const, phase: 'separation' as const, details: validation };
   const protection = protectionReport(input);
   if (protection && !protection.acceptable) return { ok: false as const, phase: 'protection' as const, details: protection };
-  const access = defenseAccess(friendlyMask(input), input.origins, input.repairRange);
+  const access = defenseAccess(defenseFriendlyMask(input), input.origins, input.repairRange);
   const operations = defenseOperations({ ...input.operations, ...access,
     barriers: input.barriers, gates: input.gates,
     towers: input.placements.filter(entry => entry.type === 'tower').map(entry => entry.position) });
   return { ok: true as const, validation, operations, ...(protection ? { protection } : {}) };
 }
-function friendlyMask(input: DefenseCandidateInput): boolean[] {
+export function defenseFriendlyMask(input: DefenseCandidateInput): boolean[] {
   const mask = input.observation.terrain.map(cell => cell !== 'wall');
   for (const object of input.observation.objects) mask[tileIndex(object.position)] = false;
   for (const object of input.observation.infrastructure) {
