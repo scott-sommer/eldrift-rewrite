@@ -128,3 +128,10 @@ The native port accepts this optional policy and re-reads live room ownership/re
 Normal registered runtime remains owned-room only. Remote mission authorization/plan supply belongs to ED-29; this API does not automatically activate remote construction or infer approved rooms. Native level-zero road/container capacities and ownership checks were inspected in pinned common2.16.1/engine4.3.2 source. No new actual-engine remote placement is claimed.
 
 Quality499production/447testfiles zero violations. Full units1,070tests/313files8.51s. Tests cover approval/default denial, roads/container restriction, foreign reservation/ownership refusal, native call suppression, and independent stage/capacity gates. Remote native placement/mission integration and final construction acceptance remain open.
+
+
+## Native approved remote infrastructure
+
+--construction-remote passed6ticks in a visible self-reserved E0N1 at controller level0. An owned observer creep supplies normal room visibility. Explicit approval and acting username permit one road and one container; both actual engine sites appear next tick and no repeated creates occur. Every row preserves actual level0with stage1. Direct remote spawn and unapproved road requests are refused by policy before native calls. Foreign reservation/ownership refusal remains unit evidence; no such native transition is claimed by this fixture.
+
+This fixture invokes the shared executor/native port directly, not an activated remote mission. ED-29 must still supply desired remote work and approval through mission policy. Existing registered runtime remains owned-room only. Evidence construction-remote-native.json retains rows and dirty/bundle/engine provenance; no errors/messages. Quality499production/448testfiles zero Lizard violations. Scenario registered for the final aggregate; no new full-suite claim for this harness-only increment.
