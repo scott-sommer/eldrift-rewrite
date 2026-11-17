@@ -148,3 +148,12 @@ The coordinator exposes a detached versioned geometry checkpoint bound to ordere
 Restored coordinators must be retained across admitted calls while revalidation proceeds; reconstructing the coordinator every call would repeatedly replay validation. A candidate-defense composition adapter therefore still needs a request-scoped heap cache alongside its serialized checkpoint. The native policy remains legacy-only until that integration is completed.
 
 Quality passed (474 production / 429 test files, zero Lizard violations). Coordinator/pipeline plus smoke: six tests passed in 287 ms, including restoration after generation, no repeated generator execution, detached checkpoint data and invalidation for policy/movement changes. No new full-suite or engine claim for this increment.
+
+
+### Candidate-defense composition
+
+`createCoordinatedCandidateDefense` implements the revisioned candidate-defense port with an injected strategy/evaluation/ranking setup and bounded search allowances. One request-scoped heap coordinator retains validation progress. Serialized candidate checkpoint state carries request identity and coordinator geometry; cache loss restores it, older checkpoints replace newer accelerators, and cross-candidate checkpoints fail explicitly. Deferred admission does not prepare strategies or touch search state. No eligible strategy rejects the candidate. Selected barriers merge into detached layout entries with duplicate type/position entries removed.
+
+Tests use actual stored terrain, exit-perimeter and legacy fallback strategies in a corridor, reset the adapter at calls 1/3/6, and verify minimum-barrier convergence and original layout preservation. Additional tests cover refusal before setup, foreign request rejection, older-checkpoint rollback and no-valid-defense rejection. Final quality passed (475 production / 430 test files, zero Lizard violations); focused composition/lifecycle/coordinator plus smoke: 12 tests in 353 ms. Full unit regression: 1,025 tests across 298 files in 8.15 s.
+
+Remaining integration: native planning policy/work must supply this port and retain it in the room-owned observation/policy cache, provide complete protection inventory and configured operational weights, and qualify the packaged native scenarios. The current native policy still applies the legacy perimeter during scoring; no production activation or new engine evidence is claimed here.
