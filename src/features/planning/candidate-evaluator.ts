@@ -1,3 +1,5 @@
+import { advanceCandidateDefense } from './candidate-defense';
+import type { CandidateDefense } from './candidate-defense';
 import { restoreCandidateProgress, saveCandidateProgress } from './candidate-progress';
 import type { CandidateProgress } from './candidate-progress';
 import { framedIdentity } from '../../core/framed-identity';
@@ -20,22 +22,25 @@ export interface CandidateEvaluatorOptions {
   maximumSearches: number; canContinue: () => boolean; tick: () => number;
   prepare?: typeof prepareEvaluation;
   operatorEntries?: readonly PlanEntry[];
+  defense?: CandidateDefense;
   prepareScore: (candidate: PlanningCandidate, entries: readonly StagedTile[]) => EvaluateDraftInput;
 }
 export function createCandidateEvaluator(options: CandidateEvaluatorOptions) {
   if (!Number.isSafeInteger(options.maximumSearches) || options.maximumSearches < 0) throw new Error('Invalid evaluator search budget');
+  if (options.defense && !options.defense.revision) throw new Error('Missing defense revision');
   if (!options.observation || !options.policy || !options.searchRevision) throw new Error('Missing evaluator identity');
   return (candidate: PlanningCandidate, saved: unknown): CandidateStep => {
     const strategy = Object.hasOwn(options.strategies, candidate.strategy) ? options.strategies[candidate.strategy] : undefined;
     if (!strategy) return { status: 'rejected', reason: 'unsupported-strategy:' + candidate.strategy };
     if (!strategy.version) throw new Error('Missing strategy version');
-    const signature = framedIdentity(['candidate-v2', JSON.stringify(candidate), strategy.version, options.observation, options.policy, options.searchRevision, JSON.stringify(options.operatorEntries ?? [])]);
+    const signature = candidateSignature(options, candidate, strategy.version);
     const progress = restoreCandidateProgress(signature, saved);
+    if (progress.phase === 'defense') return advanceCandidateDefense(options.defense, candidate, progress, options.canContinue);
     if (progress.phase === 'score') return scoreCandidate(options, candidate, strategy.version, progress);
     const result = strategy.advance(copyPlain(candidate), signature, progress.checkpoint, options.maximumSearches, options.canContinue);
     if (result.status === 'rejected') return result;
     return { status: 'pending', checkpoint: saveCandidateProgress(result.status === 'complete'
-      ? { signature, phase: 'score', entries: result.entries }
+      ? { signature, phase: options.defense ? 'defense' : 'score', entries: result.entries }
       : { signature, phase: 'draft', checkpoint: result.checkpoint }) };
   };
 }
@@ -66,4 +71,9 @@ function scoreInput(options: CandidateEvaluatorOptions, candidate: PlanningCandi
   const entries = mergeOperatorPlacements(draft, options.operatorEntries);
   const prepared = options.prepareScore(copyPlain(candidate), entries);
   return { ...prepared, entries: mergeOperatorPlacements(prepared.entries, options.operatorEntries) };
+}
+
+function candidateSignature(options: CandidateEvaluatorOptions, candidate: PlanningCandidate, version: string): string {
+  return framedIdentity(['candidate-v2', JSON.stringify(candidate), version, options.observation, options.policy,
+    options.searchRevision, JSON.stringify(options.operatorEntries ?? []), ...(options.defense ? [options.defense.revision] : [])]);
 }

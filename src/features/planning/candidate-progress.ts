@@ -1,7 +1,7 @@
 import { copyPlain, parsePlain } from '../../persistence/plain-data';
 import type { StagedTile } from '../../capabilities/planning/template';
 export interface CandidateProgress {
-  signature: string; phase: 'draft' | 'score'; checkpoint?: unknown; entries?: StagedTile[];
+  signature: string; phase: 'draft' | 'defense' | 'score'; checkpoint?: unknown; entries?: StagedTile[];
 }
 interface StoredProgress extends CandidateProgress { version: number; payload?: string }
 /** The lifecycle carries opaque JSON; only this owner decodes and validates its nested progress. */
@@ -24,9 +24,9 @@ export function decodeCandidateProgress(saved: unknown): CandidateProgress {
   if (!stored || ![1, 2].includes(stored.version) || typeof stored.signature !== 'string' || !stored.signature) {
     throw new Error('Stale candidate evaluation');
   }
-  if (stored.phase !== 'draft' && stored.phase !== 'score') throw new Error('Invalid evaluation phase');
+  if (!['draft', 'defense', 'score'].includes(stored.phase)) throw new Error('Invalid evaluation phase');
   const data = stored.version === 1 ? stored : decodePayload(stored.payload);
-  if (stored.phase === 'score' && !Array.isArray(data.entries)) throw new Error('Missing score placements');
+  if (stored.phase !== 'draft' && !Array.isArray(data.entries)) throw new Error('Missing score placements');
   return { signature: stored.signature, phase: stored.phase,
     ...(data.checkpoint === undefined ? {} : { checkpoint: data.checkpoint }),
     ...(data.entries === undefined ? {} : { entries: data.entries }) };

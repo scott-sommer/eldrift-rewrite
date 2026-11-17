@@ -19,6 +19,7 @@ export interface NativePlanningEvaluatorOptions {
   versions: { standard: string; constrained: string; stamps?: string }; searchRevision: string;
   maximumSearches: number; maximumPathOps: number; canContinue: () => boolean;
   prepareScore: CandidateEvaluatorOptions['prepareScore'];
+  defense?: CandidateEvaluatorOptions['defense'];
   prepare?: typeof prepareEvaluation;
 }
 /** Native mechanics are composed here; scoring and defensive-layout policy remain explicit inputs. */
@@ -34,6 +35,6 @@ export function createNativePlanningEvaluator(options: NativePlanningEvaluatorOp
       blocksMovement: type => (OBSTACLE_OBJECT_TYPES as readonly string[]).includes(type),
       search: costs => planningRoadSearch(options.room, costs, options.maximumPathOps),
     }, options.versions, options.operatorEntries, options.stampOptions, options.stampServices),
-    prepareScore: options.prepareScore,
+    prepareScore: options.prepareScore, ...(options.defense ? { defense: options.defense } : {}),
   });
 }
