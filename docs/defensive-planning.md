@@ -118,3 +118,10 @@ Native exact-plan comparison passed: engine-GZc6y1 uninterrupted vs engine-Tps9t
 Request-owner native fixture engine-bXJy6a passes module reloads101/201 through TerrainDefenseCheckpoint rather than raw FlowCheckpoint. Whole-request identity and last flow progress survive Memory round trips; evidence evidence/defense-request-native.json. This does not yet establish production namespace/coordinator integration or efficient replay.
 Native versioned-store qualification engine-t6DRdE passes --defense-cut-reload using defense-search/W0N1 owner/version1 with revision-checked writes. Fixture no longer owns raw checkpoint persistence. Evidence: evidence/defense-store-native.json. Main gameplay defensive policy/coordinator still needs integration; replay remains costly.
 Stored lifecycle native fixture engine-XFWCFC passes reload recovery through createStoredTerrainDefense; duplicated fixture save/advance code removed. Evidence: evidence/defense-service-native.json. Main gameplay composition still uses legacy defense; this is the intended reusable service boundary under real engine execution.
+
+
+### Stored request policy changes
+
+The stored terrain-defense lifecycle compares the current request identity before restoring saved progress. A changed request clears only the defense-search checkpoint through a revision-checked write and reports `restarted`; the next admitted advance starts fresh. Admission refusal performs no store access. Concurrent revision failure remains an explicit conflict. Committed planning state is outside this service's ownership.
+
+Validation: quality gates passed (471 production files, 427 test files, zero Lizard violations); targeted recovery/store/request plus smoke tests passed (7 tests, 265 ms); full unit suite passed (1,014 tests across 295 files, 8.66 s). The native fixture handles the new restart status, but no new native-run evidence is claimed for this change. Production strategy/coordinator integration and ED-26's remaining fixture gates remain open.

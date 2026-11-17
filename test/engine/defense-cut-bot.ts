@@ -14,7 +14,7 @@ export function loop() {
   if (!search) { saved.starts.push(Game.time); saved.restored.push(record.checkpoint?.flow?.augmentations ?? 0); search = createSearch(store); }
   const step = search.advance({ augmentations: 1, scans: 10000 }, () => Game.cpu.getUsed() - started < 5);
   if (step.status === 'conflict') throw new Error('Defense checkpoint revision conflict');
-  if (step.status === 'deferred') return;
+  if (step.status === 'deferred' || step.status === 'restarted') return;
   const result = step.result;
   saved.rows.push({ tick: Game.time, cpu: Game.cpu.getUsed() - started, status: result.status });
   if (result.status === 'rejected') throw new Error('Native defense cut rejected: ' + result.reason);

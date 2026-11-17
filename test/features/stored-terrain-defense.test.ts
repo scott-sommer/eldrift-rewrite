@@ -26,3 +26,25 @@ test('stored search recreates from durable progress and respects admission befor
   expect(first.advance(budget, () => true).status).toBe('advanced');
   expect(store.read().checkpoint?.flow?.augmentations).toBe(1);
 });
+
+test('changed policy retires stale progress without writing outside search state', () => {
+  const records: Record<string, Envelope> = {};
+  const port = { read: (key: string) => records[key], write: (key: string, value: Envelope) => { records[key] = value; } };
+  const store = createDefenseSearchStore(port, 'W0N1');
+  const input = { observation: { terrain: Array<TerrainCell>(2500).fill('plain'), objects: [], infrastructure: [], constraints: [] },
+    protectedAssets: [{ type: 'storage', position: { x: 25, y: 25 } }],
+    protectedTiles: [{ x: 25, y: 25 }], rcl: 6, costs: { rampart: 1, constructedWall: 1 } };
+  const budget = { augmentations: 1, scans: 100 };
+  createStoredTerrainDefense(store, input).advance(budget, () => true);
+  const previous = store.read();
+  const committed = JSON.stringify(records);
+  const changed = createStoredTerrainDefense(store, { ...input, rcl: 7 });
+  expect(changed.advance(budget, () => false)).toEqual({ status: 'deferred' });
+  expect(JSON.stringify(records)).toBe(committed);
+  expect(changed.advance(budget, () => true)).toEqual({ status: 'restarted' });
+  expect(store.read()).toEqual({ room: 'W0N1', revision: previous.revision + 1 });
+  const next = changed.advance(budget, () => true);
+  expect(next.status).toBe('advanced');
+  expect(store.read().checkpoint?.identity).not.toBe(previous.checkpoint?.identity);
+  expect(Object.keys(records)).toEqual(['defense-search/W0N1']);
+});

@@ -7,9 +7,7 @@ export interface TerrainDefenseCheckpoint { version: 1; identity: string; flow?:
 /** Request owner preserves the last valid flow checkpoint while preparation or replay yields. */
 export function createTerrainDefenseRequest(source: TerrainCutDefenseInput, previous?: TerrainDefenseCheckpoint) {
   const input = copyPlain(source);
-  const identity = JSON.stringify(['terrain-defense-request-v1', {
-    ...input, observation: { ...input.observation, terrain: compactSequence(input.observation.terrain) },
-  }]);
+  const identity = terrainDefenseIdentity(input);
   if (previous && (previous.version !== 1 || previous.identity !== identity)) throw new Error('Stale terrain defense request');
   const checkpoint: TerrainDefenseCheckpoint = previous ? copyPlain(previous) : { version: 1, identity };
   const search = createTerrainCutDefense(input, checkpoint.flow);
@@ -18,4 +16,10 @@ export function createTerrainDefenseRequest(source: TerrainCutDefenseInput, prev
     if ('checkpoint' in result && result.checkpoint) checkpoint.flow = copyPlain(result.checkpoint);
     return { result, checkpoint: copyPlain(checkpoint) };
   } };
+}
+
+export function terrainDefenseIdentity(input: TerrainCutDefenseInput): string {
+  return JSON.stringify(['terrain-defense-request-v1', {
+    ...input, observation: { ...input.observation, terrain: compactSequence(input.observation.terrain) },
+  }]);
 }
