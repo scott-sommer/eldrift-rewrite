@@ -1,3 +1,4 @@
+import { compactSequence } from './draft-revision';
 import { adjacentTiles, tileAt, tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 import { createRecoverableFlow } from '../../core/recoverable-flow';
@@ -13,13 +14,14 @@ export function createTerrainCutNetwork(input: TerrainCutInput, checkpoint?: Flo
   const saved = checkpoint && { ...checkpoint };
   input = { walkable: [...input.walkable], barrierCosts: [...input.barrierCosts],
     entries: input.entries.map(tile => ({ ...tile })), protectedTiles: input.protectedTiles.map(tile => ({ ...tile })) };
+  const recipe = terrainGraphRecipe(input);
   const entries = new Set(input.entries.map(tileIndex)), protectedTiles = new Set(input.protectedTiles.map(tileIndex));
   const prepare = prepareEdges(buildEdges(input, entries, protectedTiles, infinity));
   let network: ReturnType<typeof createRecoverableFlow> | undefined;
   return { advance(maximumAugmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
     const prepared = prepare(maximumScans, guard);
     if (!prepared.done) return { status: 'pending' as const, flow: 0, ...(saved ? { checkpoint: { ...saved } } : {}) };
-    network ??= createRecoverableFlow(5002, prepared.edges, 5000, 5001, saved);
+    network ??= createRecoverableFlow(5002, prepared.edges, 5000, 5001, saved, recipe);
     const result = network.advance(maximumAugmentations, guard, maximumScans - prepared.scans);
     if (!result.done) return { status: 'pending' as const, flow: result.flow, checkpoint: result.checkpoint };
     if (result.flow >= infinity) return { status: 'rejected' as const, reason: 'no-legal-cut' as const };
@@ -78,4 +80,10 @@ function prepareEdges(iterator: Generator<CapacityEdge>) {
     }
     return { edges, done, scans };
   };
+}
+
+function terrainGraphRecipe(input: TerrainCutInput): string {
+  return JSON.stringify(['terrain-graph-v1:row-major-eight-neighbour', input.walkable.map(value => Number(value)).join(''),
+    compactSequence(input.barrierCosts.map(value => value ?? 0)),
+    input.entries.map(tileIndex), input.protectedTiles.map(tileIndex)]);
 }

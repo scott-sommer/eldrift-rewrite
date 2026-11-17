@@ -3,9 +3,9 @@ import type { CapacityEdge } from './residual-network';
 export interface FlowCheckpoint { version: 1; signature: string; augmentations: number }
 /** Rebuild validated residual state by bounded deterministic replay; no persisted capacities are trusted. */
 export function createRecoverableFlow(
-  size: number, edges: readonly CapacityEdge[], source: number, sink: number, saved?: FlowCheckpoint,
+  size: number, edges: readonly CapacityEdge[], source: number, sink: number, saved?: FlowCheckpoint, graphRecipe?: string,
 ) {
-  const signature = JSON.stringify(['recoverable-flow-v2', size, edges.map(edge => [edge.from, edge.to, edge.capacity]), source, sink]);
+  const signature = flowIdentity(size, edges, source, sink, graphRecipe);
   validateCheckpoint(saved, signature);
   const network = createResidualNetwork(size, edges, source, sink);
   return new FlowRunner(network, signature, checkpointCount(saved));
@@ -40,3 +40,12 @@ function validateReplay(done: boolean, completed: number, target: number): void 
 function replayAllowance(replaying: boolean, remaining: number): number { return replaying ? remaining : Number.MAX_SAFE_INTEGER; }
 function isReplaying(replaying: boolean, done: boolean): boolean { return replaying && !done; }
 
+
+/** A recipe must losslessly bind deterministic edge construction, ordering and algorithm version. */
+function flowIdentity(size: number, edges: readonly CapacityEdge[], source: number, sink: number, recipe?: string): string {
+  if (recipe !== undefined) {
+    if (!recipe) throw new Error('Missing graph recipe');
+    return JSON.stringify(['recoverable-recipe-v1', size, source, sink, recipe]);
+  }
+  return JSON.stringify(['recoverable-flow-v2', size, edges.map(edge => [edge.from, edge.to, edge.capacity]), source, sink]);
+}

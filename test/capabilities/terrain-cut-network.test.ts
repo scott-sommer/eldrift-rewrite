@@ -71,3 +71,11 @@ test('serialized terrain flow checkpoints resume through deterministic bounded r
   for (let calls = 0; result.status === 'pending' && calls < 1000; calls++) result = restored.advance(1, () => true, 5);
   expect(result).toEqual({ status: 'complete', cost: 1, barriers: [{ x: 5, y: 25 }] });
 });
+
+test('compact graph recipe invalidates changed terrain costs and terminals', () => {
+  const request = corridor(), result = createTerrainCutNetwork(request).advance(1);
+  if (result.status !== 'pending' || !result.checkpoint) throw new Error('Expected checkpoint');
+  expect(JSON.stringify(result.checkpoint).length).toBeLessThan(4000);
+  request.barrierCosts[25 * 50 + 5] = 2;
+  expect(() => createTerrainCutNetwork(request, result.checkpoint).advance(100)).toThrow('Stale');
+});
