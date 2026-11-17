@@ -21,7 +21,7 @@ export function createNativePlanningAdmission(
     const stores = { plans: createPlanStore(state, name, types), jobs: createPlanningJobStore(state, name, types),
       candidates: createEnumerationStore(state, name), requests: createPlanningRequestStore(state, name, types) };
     const admission = admitPlanningRequest(stores.requests, observation, stores.plans.read(), config,
-      valuableTypes, implementationRevision, stores.jobs.read().receipt);
+      valuableTypes, implementationRevision, stores.jobs.readReceipt());
     return { ...admission, stores };
   };
 }

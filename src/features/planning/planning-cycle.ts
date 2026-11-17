@@ -6,7 +6,7 @@ import type { createPlanningJobStore } from './planning-job-store';
 import type { createPlanStore } from './plan-store';
 import type { PlanState } from './plan-model';
 export interface PlanningCyclePorts {
-  jobs: ReturnType<typeof createPlanningJobStore>; plans: ReturnType<typeof createPlanStore>;
+  jobs: Pick<ReturnType<typeof createPlanningJobStore>, 'read' | 'save' | 'clear' | 'finish'>; plans: ReturnType<typeof createPlanStore>;
   validateCommit: (plan: PlanState) => boolean;
 }
 /** Caller supplies the current request; completed receipts suppress repeat work for that request. */

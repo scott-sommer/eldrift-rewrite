@@ -22,7 +22,7 @@ function verifyPlanningJob(memory) {
   }
   const job = memory.eldrift.records['planning-jobs/W0N1'];
   assert.equal(job.owner, 'planning-jobs');
-  assert.equal(job.version, 2);
+  assert.equal(job.version, 3);
   assert.equal(job.data.revision, 201);
   assert.equal(job.data.checkpoint, undefined);
   assert.equal(job.data.receipt.outcome, 'committed');

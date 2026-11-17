@@ -3,7 +3,7 @@ import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 import type { Envelope } from '../../src/persistence/versioned-state';
-import type { PlanningJobRecord } from '../../src/features/planning/planning-job-schema';
+import { createPlanningJobStore } from '../../src/features/planning/planning-job-store';
 import type { PlanState } from '../../src/features/planning/plan-model';
 export function loop() {
   const state = createMemoryPort(() => Memory);
@@ -12,7 +12,7 @@ export function loop() {
     planningEvaluationSteps: 20, planningSearches: 4, planningDefenseScans: 100000, planningDefenseAugmentations: 4 };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
-  const job = (state.read('planning-jobs/W0N1') as Envelope | undefined)?.data as PlanningJobRecord | undefined;
+  const job = createPlanningJobStore(state, 'W0N1', Object.keys(CONTROLLER_STRUCTURES)).read();
   const plan = (state.read('planning/W0N1') as Envelope | undefined)?.data as PlanState | undefined;
   const candidates = (state.read('planning-candidates/W0N1') as Envelope | undefined)?.data as { checkpoint?: { candidates: string[] } } | undefined;
   const memory = Memory as Memory & { planningRoomRows?: unknown[] };
