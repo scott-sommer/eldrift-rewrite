@@ -592,6 +592,10 @@ server.on('error', error => { console.error(error); finish(1, error); });
   const memory = JSON.parse(await bot.memory);
   if (defenseCut) {
     evidence.defenseCut = memory.defenseCut;
+    evidence.defenseSearch = memory.eldrift.records['defense-search/W0N1'];
+    assert.equal(evidence.defenseSearch.owner, 'defense-search');
+    assert.equal(evidence.defenseSearch.version, 1);
+    assert.ok(evidence.defenseSearch.data.checkpoint.flow.augmentations > 0);
     console.log('DEFENSE_CUT ' + JSON.stringify(memory.defenseCut));
     assert.equal(memory.defenseCut?.done, true);
     assert.equal(memory.defenseCut.barriers, 48);
