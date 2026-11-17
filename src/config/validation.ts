@@ -80,6 +80,7 @@ const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
   workerCargoDropFallback: value => typeof value === 'boolean',
   workerHoldStoragePosition: value => typeof value === 'boolean',
   workerEnergyStorageReserve: value => bounded(value, 1000000) && Number.isInteger(value),
+  workerUpgradeApproachRange: value => Number.isInteger(value) && Number(value) >= 1 && Number(value) <= 3,
   workerUpgradeReserve: value => bounded(value, 1000000) && Number.isInteger(value),
   workerSupplyEnabled: value => typeof value === 'boolean',
   controllerContainerTarget: value => bounded(value, 2000) && Number.isInteger(value),

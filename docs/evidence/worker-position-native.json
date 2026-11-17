@@ -1,0 +1,130 @@
+{
+  "runs": [
+    {
+      "scenario": "worker-position-native",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1aIcgh",
+      "provenance": {
+        "commit": "9b8e1494440419867df105a75a67ab6c72089d38",
+        "dirty": true,
+        "bundleSha256": "194ef58bf71172c3751f1f60900e99b8424cab890f899a2f023afdb16d8acecf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "workerPosition": [
+        {
+          "tick": 1,
+          "range": 3,
+          "progress": 0,
+          "energy": 20,
+          "x": 17,
+          "y": 20
+        },
+        {
+          "tick": 2,
+          "range": 2,
+          "progress": 1,
+          "energy": 19,
+          "x": 18,
+          "y": 21
+        },
+        {
+          "tick": 3,
+          "range": 2,
+          "progress": 2,
+          "energy": 18,
+          "x": 18,
+          "y": 21
+        }
+      ]
+    },
+    {
+      "scenario": "worker-position-wide-native",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DJ0O51",
+      "provenance": {
+        "commit": "9b8e1494440419867df105a75a67ab6c72089d38",
+        "dirty": true,
+        "bundleSha256": "194ef58bf71172c3751f1f60900e99b8424cab890f899a2f023afdb16d8acecf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "workerPosition": [
+        {
+          "tick": 1,
+          "range": 3,
+          "progress": 0,
+          "energy": 20,
+          "x": 17,
+          "y": 20
+        },
+        {
+          "tick": 2,
+          "range": 3,
+          "progress": 1,
+          "energy": 19,
+          "x": 17,
+          "y": 20
+        },
+        {
+          "tick": 3,
+          "range": 3,
+          "progress": 2,
+          "energy": 18,
+          "x": 17,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "scenario": "worker-position-runtime-regression",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-w9Y5WD",
+      "provenance": {
+        "commit": "9b8e1494440419867df105a75a67ab6c72089d38",
+        "dirty": true,
+        "bundleSha256": "c7f17f2df31dcd86ffbb7caff7b33c006852e4710a2e6dec6677a6325242c94f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "workerPosition": null
+    },
+    {
+      "scenario": "worker-position-selection-regression",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fScbAy",
+      "provenance": {
+        "commit": "9b8e1494440419867df105a75a67ab6c72089d38",
+        "dirty": true,
+        "bundleSha256": "17f7f4b4d4776c21820c85355c567c10532be00974d0a4b8bfb2d733126f3c2a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "workerPosition": null
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import type { createNativeDispatch } from './native-dispatch';
 import { createNativeWork } from '../adapters/screeps/work-execution';
 import { assessNativeWork } from './native-work-assessment';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
+import { nativeWorkerUpgradeRange } from './native-worker-position';
 import { nativeWorkerSettings } from './native-worker-settings';
 import { selectWork } from '../features/work/select';
 import { createWorkTaskBehavior } from './work-task';
@@ -25,7 +26,7 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
   const collect = createNativeWorkerCollection(state, dispatch);
   const definitions = { work: createWorkTaskBehavior<{ creep: Creep; config: Readonly<RuntimeConfig> }>({
     identity: ({ creep }) => ({ name: creep.name, id: creep.id }),
-    run: ({ creep }, payload, owner) => work(creep, payload.order, owner),
+    run: ({ creep, config }, payload, owner) => work(creep, payload.order, owner, nativeWorkerUpgradeRange(config)),
     supply: { energy: ({ creep }) => creep.store.energy, free: ({ creep }) => creep.store.getFreeCapacity(),
       collect: ({ creep, config }, payload, owner) => collect(creep, payload.home, owner, config) },
   }) };

@@ -81,3 +81,10 @@ bound placement attempts, not total CPU consumed by checkpoint replay or routing
 Defaults: `constructionCpuBudget=3`, `constructionEntries=20`, `constructionAttempts=1`, `constructionRoomSites=5`. Admission is cooperative; CPU value is not a hard elapsed-time ceiling. `constructionIncludeTerminalEnergy=false` means only owned storage energy satisfies a plan entry's minimumStoredEnergy requirement.
 
 Error retry controls: `constructionRetryAttempts=3`, `constructionRetryDelay=10`, `constructionRetryMaximumDelay=1000`; maximum delay must cover initial delay. Quarantine stops engine calls until desired-plan/policy refresh or observed site/structure presence. Runtime lifecycle/native qualification remains ED-27 work; see construction.md.
+
+
+## Ordinary upgrader approach distance
+
+workerUpgradeApproachRange is an integer1–3, default2. It applies when workerMode=upgrader and workerEnergyProfile=upgrader; balanced, builder, fortifier and upgrader-v2 work retain action range3. Upgrade-room station geometry remains separately owned. A room override of3 preserves the old W3N58 exception without a hardcoded room name in runtime code. ED-44 must translate any retained legacy configuration deliberately; no automatic legacy memory import occurs.
+
+An upgrader already within API range3 can issue its upgrade while moving toward the preferred distance on the same tick. Positioning shares the task owner and movement boundary. Rejected or blocked work does not issue an extra positioning request. Build/repair distances remain3. A preferred distance is a policy goal, not permission to cross blocked terrain or issue conflicting actions.

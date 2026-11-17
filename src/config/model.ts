@@ -76,6 +76,7 @@ export interface RuntimeConfig extends PlanningConfig, ConstructionConfig {
   workerRampartHits: number;
   workerDowngradeThreshold: number;
   workerUpgradeReserve: number;
+  workerUpgradeApproachRange: number;
   workerEnergyStorageReserve: number;
   workerEnergyProfile: 'balanced' | 'builder' | 'fortifier' | 'upgrader' | 'upgrader-v2';
   workerHoldStoragePosition: boolean;
@@ -177,6 +178,7 @@ export const defaults: Readonly<RuntimeConfig> = Object.freeze({
   workerRampartHits: 50000,
   workerDowngradeThreshold: 5000,
   workerUpgradeReserve: 50000,
+  workerUpgradeApproachRange: 2,
   workerEnergyStorageReserve: 50000,
   workerEnergyProfile: 'balanced',
   workerHoldStoragePosition: false,
