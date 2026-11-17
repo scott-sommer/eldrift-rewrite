@@ -14,7 +14,7 @@ export function loop() {
   const ports = reservedConstructionPorts('W0N1', nativeConstructionPorts('W0N1', 1), ledger, () => Game.time, nativeConstructionSiteKeys);
   const store = createConstructionProgressStore(createMemoryPort(() => Memory), 'W0N1');
   const service = createStoredConstructionCycle(store, () => ({ room: 'W0N1', revision: 1, strategy: 'standard', entries }),
-    ports, { types: constructionTypeOrder });
+    ports, { types: constructionTypeOrder }, () => Game.time);
   const step = service.advance({ entries: 1, attempts: 1 }, () => true);
   if (step.status !== 'advanced') throw new Error('Expected native construction progress: ' + step.status);
   const result = step.result;
