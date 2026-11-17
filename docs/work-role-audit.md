@@ -1,6 +1,6 @@
 # Worker role reconciliation
 
-Baseline: Eldrift-Directive f2bbf7e8c44addc7c426abb5458e393c9502ff5f. Implementation reviewed through831c948. This is a current checklist; docs/work-acceptance.md and docs/upgrade-rooms.md retain chronological evidence. A checked behavior does not imply whole-module or release completion.
+Baseline: Eldrift-Directive f2bbf7e8c44addc7c426abb5458e393c9502ff5f. Functional review updated through5145a27; consolidated ownership is in docs/worker-role-acceptance.md. This is a current checklist; docs/work-acceptance.md and docs/upgrade-rooms.md retain chronological evidence. A checked behavior does not imply whole-module or release completion.
 
 | Legacy entry | Implemented behavior / evidence | Remaining reconciliation |
 | --- | --- | --- |
@@ -98,10 +98,13 @@ Legacy role.upgradeMaster.js72–78 retires when low-RCL storage is missing, oth
 
 Deliberate correction: an empty or unrelated adjacent hauler cannot indefinitely suppress service. Supply units returning through recovery also do not block the master. Native feature settlement still precedes the wait, and service request generation remains separate. Gate applies at the valid station, before collection and renewal, preserving legacy handoff ordering.
 
-The new --master-handoff runs production main in owned RCL2 E0N1 with retained storage/terminal/lab geometry, a950-body-equivalent master and a normal50-part supply courier. It moves the loaded courier from range2 into adjacency while the master has a pending service demand. Before the correction, native tick2 accepted competing200withdraw/900transfer attempts; actual incoming transfer was700 because master capacity is900. Native event journals correctly observed the partial result; the missing wait assertion failed (engine-lrGO2j). This was capacity contention, not fabricated delivery or lost energy.
+The new --master-handoff runs production main in owned RCL2 E0N1 with retained storage/terminal/lab geometry, a19-part master (950-energy body recipe) and a normal50-part supply courier. It moves the loaded courier from range2 into adjacency while the master has a pending service demand. Before the correction, native tick2 accepted competing200withdraw/900transfer attempts; actual incoming transfer was700 because master capacity is900. Native event journals correctly observed the partial result; the missing wait assertion failed (engine-lrGO2j). This was capacity contention, not fabricated delivery or lost energy.
 
 After correction, the supplier hands off900 without a competing withdrawal; module reload3 preserves settlement. The master recovers250to the spawn and650to an active adjacent container. At the fixture's index10, consuming250spawn energy leaves50; reload11 preserves state. The still-adjacent empty supplier does not block later200withdraw/delivery from retained storage. Final storage299800, spawn250, container650, both creeps empty, incoming receipt900 and service receipts200; sponsor reserve remains4000. Including unchanged extension250, total initial301200 minus explicit consumption250 equals final300950. Every observed row satisfies that conservation equation, and master stays2,21 with exactly2units.
 
 Fixture qualification: sponsor reserve was initialized explicitly; filled RCL2 extensions plus spawn50 keep available room energy at least300, avoiding native automatic spawn regeneration. Reload/consumption hooks were initially attached to the wrong loop variable and were corrected before the meaningful failing baseline. No production assertion or conservation requirement was weakened.
 
 Exact baseline/passing rows, reset witnesses and regression provenance are retained in docs/evidence/master-handoff-native.json. Existing master-bootstrap, upgrade-master and master-loaded-loss native cases also pass without errors/messages. New case is registered for the next full aggregate. Full units1,087tests/317files8.16s; quality503production/456testfiles zero violations; focused policy+smoke3tests249ms. These are targeted dirty-checkout runs at96b9953; the latest clean full aggregate remains176cases at a6779f7 and does not cover this production addition. Consolidated role mapping and the new complete aggregate remain before ED-22 closure.
+
+
+Seven-role functional reconciliation is consolidated in docs/worker-role-acceptance.md and source-inventory.json. Later expansion/control/migration requirements remain explicitly owned in Jira. Full179-case revalidation is pending; this source audit alone does not close ED-22.

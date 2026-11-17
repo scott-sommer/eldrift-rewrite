@@ -2924,8 +2924,8 @@
     "file": "role.builder.js",
     "sha256": "FFDB0F8FF030515BBA396C9889B779664139348911766414636DC423015056FC",
     "physicalLines": 643,
-    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "shared work, collection, cargo, Art wall-only exclusion and UpgradeRoom bootstrap exercised; expansion/operator and final policy reconciliation remain open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Shared builder work/resource/cargo/Art/bootstrap actions qualified; assigned-room expansion/renewal is ED-30 and operator/state translation ED-39/44",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
@@ -2933,11 +2933,14 @@
       "docs/work-acceptance.md",
       "test/engine/bootstrap-assignment-bot.ts",
       "test/engine/bootstrap-salvage-bot.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
       "ED-22",
-      "ED-30"
+      "ED-30",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery",
@@ -2972,13 +2975,19 @@
         "line": 631
       }
     ],
-    "proposedOwner": "features/economy/work",
+    "proposedOwner": "features/work",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/capabilities/work-selection.test.ts",
+        "test/capabilities/worker-energy-profiles.test.ts",
+        "test/engine/worker-runtime-bot.ts",
+        "test/engine/worker-cargo-bot.ts",
+        "test/engine/work-dependencies-bot.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
@@ -4066,17 +4075,20 @@
     "file": "role.upgradeMaster.js",
     "sha256": "180AC0220E05469850795B5484743C1E6095F0F476DBDC36570D1BBBB7646F93",
     "physicalLines": 215,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "native station service, sponsored population, low-RCL retained stores and reset-cycle behavior exercised; complete source reconciliation remains open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Station service/population/renewal, retained stores, loaded storage-loss handoff and adjacent supply ordering qualified; typed sleep/state import remain ED-39/44",
     "evidence": [
       "docs/upgrade-rooms.md",
       "test/engine/upgrade-master-bot.ts",
       "test/engine/upgrade-master-bootstrap-bot.ts",
       "test/engine/upgrade-rebuild-bot.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
-      "ED-22"
+      "ED-22",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
@@ -4096,21 +4108,26 @@
         "line": 12
       }
     ],
-    "proposedOwner": "features/economy/work",
+    "proposedOwner": "features/work",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/features/upgrade-master-handoff.test.ts",
+        "test/engine/master-handoff-bot.ts",
+        "test/engine/upgrade-master-bot.ts",
+        "test/engine/upgrade-master-bootstrap-bot.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
     "file": "role.upgrader.js",
     "sha256": "C7EB1B431A63851638D6EAC7D6DB66E5C3C17E9AD96B52E1688223AD17648080",
     "physicalLines": 76,
-    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "ordinary upgrading, energy profiles and assigned-source deposit collection exercised; legacy operator/memory translation and complete source reconciliation remain open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Ordinary work/collection/miner endpoints and configurable controller positioning qualified; goAway and legacy assignment/room override translation remain ED-39/44",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
@@ -4118,10 +4135,13 @@
       "docs/work-acceptance.md",
       "test/engine/worker-miner-bot.ts",
       "test/engine/worker-miner-travel-bot.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
-      "ED-22"
+      "ED-22",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
@@ -4141,29 +4161,37 @@
         "line": 3
       }
     ],
-    "proposedOwner": "features/economy/work",
+    "proposedOwner": "features/work",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/capabilities/miner-energy.test.ts",
+        "test/capabilities/worker-source-assignment.test.ts",
+        "test/engine/worker-miner-travel-bot.ts",
+        "test/engine/worker-position-bot.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
     "file": "role.upgraderV2.js",
     "sha256": "023AF653193D91C5C29E1A52312FD84CF7608450C7ACC7EEA7557B0673FB5FEF",
     "physicalLines": 104,
-    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "energy profile and native Transfer hold exercised; sleep/operator and final action-policy reconciliation remain open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Shared bounded work/collection/cargo and native Transfer hold qualified; typed sleep controls and legacy job/state translation remain ED-39/44",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
       "test/engine/worker-profile-bot.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
-      "ED-22"
+      "ED-22",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
@@ -4184,21 +4212,26 @@
         "line": 11
       }
     ],
-    "proposedOwner": "features/economy/work",
+    "proposedOwner": "features/work",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/capabilities/worker-energy-profiles.test.ts",
+        "test/app/native-worker-hold.test.ts",
+        "test/engine/worker-profile-bot.ts",
+        "test/app/work-task.test.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
     "file": "role.wallBuilder.js",
     "sha256": "06634A3F0D02455C2C48023ACEE9CBC35AB811F5741BB0193FA9DD612508287C",
     "physicalLines": 158,
-    "reviewStatus": "ED-22 work/collection paths reviewed in docs/work.md; specialist, operator and population paths remain open",
-    "implementationStatus": "fixed and legacy fortification, resource profile and Art-region native exclusions exercised; final source reconciliation remains open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Fixed/weighted fortification, construction/upgrade fallback and Art exclusions qualified; explicit sleep controls and legacy translation remain ED-39/44",
     "evidence": [
       "docs/work.md",
       "test/capabilities/worker-energy-profiles.test.ts",
@@ -4209,10 +4242,13 @@
       "test/engine/fortifier-work-bot.ts",
       "test/engine/art-region-bot.ts",
       "test/capabilities/art-region.test.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
-      "ED-22"
+      "ED-22",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
@@ -4245,21 +4281,25 @@
         "line": 148
       }
     ],
-    "proposedOwner": "features/economy/work",
+    "proposedOwner": "features/work",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/capabilities/legacy-fortification.test.ts",
+        "test/capabilities/worker-energy-profiles.test.ts",
+        "test/engine/fortifier-work-bot.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
     "file": "room.energy.recovery.js",
     "sha256": "C10E838EC6EC54E5187D952D7252533B2537CE9EF1B61C25A6F06A4F16513C1D",
     "physicalLines": 196,
-    "reviewStatus": "ED-22 recovery source reviewed; assessment/investment/emergency economy integration evidenced in docs/recovery.md",
-    "implementationStatus": "ED-22 recovery acceptance verified: hysteresis, emergency economy, donor execution and ownership handoff; release/migration gates remain open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Recovery hysteresis, donors, emergency spawning/reassignment and end-to-end colony resilience qualified; legacy recovery memory import/rollback remains ED-44",
     "evidence": [
       "docs/recovery.md",
       "test/capabilities/recovery.test.ts",
@@ -4273,10 +4313,12 @@
       "test/engine/automatic-support-bot.ts",
       "test/engine/distributor-recovery-bot.ts",
       "test/engine/colony-resilience-bot.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
-      "ED-22"
+      "ED-22",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery"
@@ -4364,13 +4406,17 @@
         "line": 170
       }
     ],
-    "proposedOwner": "features/economy/recovery",
+    "proposedOwner": "features/recovery",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/capabilities/recovery.test.ts",
+        "test/capabilities/distributor-recovery.test.ts",
+        "test/engine/colony-resilience-bot.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
@@ -5668,18 +5714,21 @@
     "file": "upgradeRoom.js",
     "sha256": "7B382CF2DC4B903F5094F8ED6CB096D681C9967FF4211231BABA10B6A8409682",
     "physicalLines": 135,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "ring/service population, supply, lifecycle and combined reset/rebuild exercised; operator and later specialist integration remain open",
+    "reviewStatus": "ED-22 functional source reconciliation complete; cross-ticket requirements explicit; full milestone revalidation pending",
+    "implementationStatus": "Ring/rotation/renewal/boost, reserve retirement, sponsored bootstrap/supply and opt-in reset/reclaim/rebuild qualified; specialist mode/layout integration ED-31, trade ED-37 and controls/migration ED-39/44 remain",
     "evidence": [
       "docs/upgrade-rooms.md",
       "test/engine/upgrade-rebuild-bot.ts",
       "test/engine/upgrade-bootstrap-bot.ts",
-      "docs/work-role-audit.md"
+      "docs/work-role-audit.md",
+      "docs/worker-role-acceptance.md"
     ],
     "plannedIssues": [
       "ED-22",
       "ED-31",
-      "ED-37"
+      "ED-37",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port building, repairs, upgrading, and colony recovery",
@@ -5701,13 +5750,18 @@
         "line": 3
       }
     ],
-    "proposedOwner": "features/economy/work",
+    "proposedOwner": "features/work",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "5145a270978ec0450c23c574a97d9a8e0edb0dd6",
+      "required": "Behavior fixtures plus relevant contract/engine scenarios, with later integration/control/migration gates retained",
+      "tests": [
+        "test/capabilities/upgrade-stations.test.ts",
+        "test/capabilities/upgrade-rotation.test.ts",
+        "test/engine/upgrade-rebuild-bot.ts",
+        "test/engine/upgrade-bootstrap-bot.ts"
+      ],
+      "status": "ED-22 functional scope qualified; full 179-case milestone revalidation pending; not whole-module release parity"
     }
   },
   {
