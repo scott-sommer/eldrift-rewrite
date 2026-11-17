@@ -9,6 +9,8 @@ export interface TerrainCutInput {
 /** Original vertex-split reduction: null costs forbid barriers; diagonal edges model attacker movement. */
 export function createTerrainCutNetwork(input: TerrainCutInput) {
   const infinity = validateInput(input);
+  input = { walkable: [...input.walkable], barrierCosts: [...input.barrierCosts],
+    entries: input.entries.map(tile => ({ ...tile })), protectedTiles: input.protectedTiles.map(tile => ({ ...tile })) };
   const entries = new Set(input.entries.map(tileIndex)), protectedTiles = new Set(input.protectedTiles.map(tileIndex));
   const edges = buildEdges(input, entries, protectedTiles, infinity);
   const network = createResidualNetwork(5002, edges, 5000, 5001);
