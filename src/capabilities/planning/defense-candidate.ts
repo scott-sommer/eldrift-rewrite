@@ -1,3 +1,4 @@
+import { defenseGates } from './defense-gates';
 import { defenseProtectionReport } from './defense-protection-report';
 import type { ProtectionDecision } from './defense-protection-report';
 import { defenseEntryTiles } from './defense-separation';
@@ -26,7 +27,7 @@ export function evaluateDefenseCandidate(input: DefenseCandidateInput) {
   if (protection && !protection.acceptable) return { ok: false as const, phase: 'protection' as const, details: protection };
   const access = defenseAccess(defenseFriendlyMask(input), input.origins, input.repairRange);
   const operations = defenseOperations({ ...input.operations, ...access,
-    barriers: input.barriers, gates: input.gates,
+    barriers: input.barriers, gates: defenseGates(input.placements, input.barriers, input.gates),
     towers: input.placements.filter(entry => entry.type === 'tower').map(entry => entry.position) });
   return { ok: true as const, validation, operations, ...(protection ? { protection } : {}) };
 }

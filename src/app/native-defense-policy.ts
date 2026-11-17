@@ -12,7 +12,7 @@ export function nativeDefensePolicy(room: string, config: Readonly<RuntimeConfig
     repair: config.planningDefenseRepairWeight, tower: config.planningDefenseTowerWeight,
     minimumTowerPower: config.planningDefenseMinimumTowerPower,
     maximumUnreachableRepair: config.planningDefenseMaximumUnreachableRepair, valuableTypes: [...valuableTypes] };
-  const revision = 'native-defense-v1:' + JSON.stringify(settings);
+  const revision = 'native-defense-v2:road-gates:' + JSON.stringify(settings);
   return { revision, prepare(state, observed) {
     const observation = copyPlain(observed), store = createDefenseSearchStore(state, room);
     return createCoordinatedCandidateDefense(revision, (candidate, entries) => {
