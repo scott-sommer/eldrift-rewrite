@@ -16,8 +16,10 @@ export function createTerrainCutDefense(source: TerrainCutDefenseInput) {
   const entries = input.attackerEntries ?? defenseEntryTiles(input.observation.terrain);
   const prepare = createLegalCosts(input);
   let network: ReturnType<typeof createTerrainCutNetwork> | undefined;
+  let terminal: ReturnType<typeof completeDefense> | undefined;
   return { advance(augmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
     const prepared = prepare(maximumScans, guard);
+    if (terminal) return JSON.parse(JSON.stringify(terminal)) as typeof terminal;
     if (!prepared.done) return { status: 'pending' as const };
     if (maximumScans === prepared.scans || !guard()) return { status: 'pending' as const };
     network ??= createTerrainCutNetwork({
@@ -26,11 +28,8 @@ export function createTerrainCutDefense(source: TerrainCutDefenseInput) {
     });
     const result = network.advance(augmentations, guard, maximumScans - prepared.scans);
     if (result.status !== 'complete') return result;
-    const barriers: StagedTile[] = result.barriers.map(position =>
-      ({ type: 'rampart', position, rcl: input.rcl, priority: 50, tag: 'terrain-cut' }));
-    const validation = barrierCost({ ...input, barriers });
-    if (!validation.ok) return { status: 'rejected' as const, reason: 'validation' as const, validation };
-    return { status: 'complete' as const, strategy: 'terrain-cut-v1', barriers, validation };
+    terminal = completeDefense(input, result.barriers);
+    return JSON.parse(JSON.stringify(terminal)) as typeof terminal;
   } };
 }
 function createLegalCosts(input: TerrainCutDefenseInput) {
@@ -51,4 +50,12 @@ function createLegalCosts(input: TerrainCutDefenseInput) {
 
 function validateDefenseLevel(rcl: number): void {
   if (!Number.isSafeInteger(rcl) || rcl < 2 || rcl > 8) throw new Error('Invalid defense RCL');
+}
+
+function completeDefense(input: TerrainCutDefenseInput, positions: readonly Tile[]) {
+  const barriers: StagedTile[] = positions.map(position =>
+    ({ type: 'rampart', position, rcl: input.rcl, priority: 50, tag: 'terrain-cut' }));
+  const validation = barrierCost({ ...input, barriers });
+  if (!validation.ok) return { status: 'rejected' as const, reason: 'validation' as const, validation };
+  return { status: 'complete' as const, strategy: 'terrain-cut-v1', barriers, validation };
 }

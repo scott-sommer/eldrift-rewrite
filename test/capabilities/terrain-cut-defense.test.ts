@@ -49,3 +49,13 @@ test('exhausting preparation allowance yields before graph construction and hono
   expect(network.advance(1, () => true, 0)).toMatchObject({ status: 'pending' });
   expect(() => network.advance(1, () => true, 100)).toThrow('Blocked cut terminal');
 });
+
+test('completed defense is retained with detached results when subsequent CPU admission is denied', () => {
+  const network = createTerrainCutDefense(input()), result = network.advance(100);
+  expect(result.status).toBe('complete');
+  if (result.status !== 'complete') throw new Error('Expected completed defense');
+  const expected = JSON.parse(JSON.stringify(result));
+  result.barriers[0]!.position.x = 49;
+  result.validation.cost = 999;
+  expect(network.advance(0, () => false, 0)).toEqual(expected);
+});
