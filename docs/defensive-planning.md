@@ -111,3 +111,4 @@ search and final validation. The last phase is still atomic. Persistent recovery
 must preserve or deterministically rebuild pending construction/search state;
 heap iterators alone do not meet the reset criterion. Common strategy adapters and
 coordinator exist, but native planning still uses legacy defense policy.
+Native open-room synthetic-observation cut scenario --defense-cut passed engine-uMxRAd:251 planner calls, completion tick251,48 validated barriers, no runtime errors/messages. Planner CPU sum548.13ms, maximum5.449ms, final5.168ms with cooperative5ms guard and10000 scans/1 augmentation. Evidence: evidence/defense-cut-native.json. Scenario runs alongside main runtime but uses authored plain observation rather than live room assessment; no reset or production defensive-selection claim. Registered in full engine suite for future regression.
