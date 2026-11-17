@@ -39,3 +39,13 @@ test('tiny scan slices and CPU yielding preserve the same validated staged defen
   expect(result).toEqual(expected);
   expect(() => network.advance(1, () => true, -1)).toThrow('scan budget');
 });
+
+test('exhausting preparation allowance yields before graph construction and honors the next guard', () => {
+  const request = input();
+  request.protectedTiles = [{ x: 25, y: 24 }]; // Blocked terminal is detected when graph construction begins.
+  const network = createTerrainCutDefense(request);
+  expect(network.advance(1, () => true, 2500)).toMatchObject({ status: 'pending' });
+  expect(network.advance(1, () => false, 100)).toMatchObject({ status: 'pending' });
+  expect(network.advance(1, () => true, 0)).toMatchObject({ status: 'pending' });
+  expect(() => network.advance(1, () => true, 100)).toThrow('Blocked cut terminal');
+});

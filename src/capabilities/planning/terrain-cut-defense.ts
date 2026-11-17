@@ -12,13 +12,14 @@ export interface TerrainCutDefenseInput extends Omit<BarrierCostInput, 'barriers
 /** Legal-grid adapter. Protected tiles define the desired interior, independently of protected assets. */
 export function createTerrainCutDefense(source: TerrainCutDefenseInput) {
   const input: TerrainCutDefenseInput = JSON.parse(JSON.stringify(source));
-  if (!Number.isSafeInteger(input.rcl) || input.rcl < 2 || input.rcl > 8) throw new Error('Invalid defense RCL');
+  validateDefenseLevel(input.rcl);
   const entries = input.attackerEntries ?? defenseEntryTiles(input.observation.terrain);
   const prepare = createLegalCosts(input);
   let network: ReturnType<typeof createTerrainCutNetwork> | undefined;
   return { advance(augmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
     const prepared = prepare(maximumScans, guard);
     if (!prepared.done) return { status: 'pending' as const };
+    if (maximumScans === prepared.scans || !guard()) return { status: 'pending' as const };
     network ??= createTerrainCutNetwork({
       walkable: input.observation.terrain.map(cell => cell !== 'wall'),
       barrierCosts: prepared.costs, entries, protectedTiles: input.protectedTiles,
@@ -46,4 +47,8 @@ function createLegalCosts(input: TerrainCutDefenseInput) {
     }
     return { done: costs.length === 2500, costs, scans };
   };
+}
+
+function validateDefenseLevel(rcl: number): void {
+  if (!Number.isSafeInteger(rcl) || rcl < 2 || rcl > 8) throw new Error('Invalid defense RCL');
 }
