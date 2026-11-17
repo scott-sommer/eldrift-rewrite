@@ -1,0 +1,21 @@
+import { expect, test, vi } from 'vitest';
+import { nativePlanningDefense } from '../../src/app/native-planning-defense';
+import { createPlanningDefenseCache } from '../../src/app/planning-defense-cache';
+import { planningObservation } from '../fixtures/planning-observation';
+test('native defense preparation is lazy, request-scoped and validates its semantic revision', () => {
+  const state = { read: () => undefined, write: () => {} }, cache = createPlanningDefenseCache();
+  const advance = vi.fn(() => ({ status: 'rejected' as const, reason: 'blocked' }));
+  const prepare = vi.fn(() => ({ revision: 'v1', advance }));
+  const policy = { revision: 'v1', prepare }, observation = planningObservation();
+  const candidate = { id: 'a', strategy: 'standard', anchor: { x: 25, y: 25 }, transform: 0 as const };
+  const first = nativePlanningDefense(policy, state, observation, 'request1', cache).defense!;
+  expect(first.advance(candidate, [], null, () => false)).toEqual({ status: 'pending', checkpoint: null });
+  expect(prepare).not.toHaveBeenCalled();
+  first.advance(candidate, [], null, () => true);
+  nativePlanningDefense(policy, state, observation, 'request1', cache).defense!.advance(candidate, [], null, () => true);
+  expect(prepare).toHaveBeenCalledTimes(1);
+  nativePlanningDefense(policy, state, observation, 'request2', cache).defense!.advance(candidate, [], null, () => true);
+  expect(prepare).toHaveBeenCalledTimes(2);
+  const mismatch = nativePlanningDefense({ revision: 'v2', prepare }, state, observation, 'request3', cache).defense!;
+  expect(() => mismatch.advance(candidate, [], null, () => true)).toThrow('revision mismatch');
+});

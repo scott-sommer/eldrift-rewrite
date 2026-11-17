@@ -1,3 +1,4 @@
+import { createPlanningDefenseCache } from './planning-defense-cache';
 import { createPlanningScoreCache } from './planning-score-cache';
 import { createEvaluationCache } from '../capabilities/planning/evaluation-cache';
 import { createStampPreparationCache } from '../capabilities/planning/stamp-preparation-cache';
@@ -5,6 +6,7 @@ import { createInfrastructureCache } from '../capabilities/planning/infrastructu
 import { createStampReplayCache } from '../capabilities/planning/stamp-replay-cache';
 import { createAssessmentCache } from '../capabilities/planning/assessment-cache';
 export interface PlanningRoomCache {
+  defense: ReturnType<typeof createPlanningDefenseCache>;
   score: ReturnType<typeof createPlanningScoreCache>;
   evaluate: ReturnType<typeof createEvaluationCache>;
   prepare: ReturnType<typeof createStampPreparationCache>;
@@ -18,7 +20,7 @@ export function createPlanningRoomCaches(limit = 32) {
   const rooms = new Map<string, PlanningRoomCache>();
   return (room: string): PlanningRoomCache => {
     const cache = rooms.get(room) ?? {
-      score: createPlanningScoreCache(), evaluate: createEvaluationCache(),
+      defense: createPlanningDefenseCache(), score: createPlanningScoreCache(), evaluate: createEvaluationCache(),
       prepare: createStampPreparationCache(), attach: createInfrastructureCache(),
       replay: createStampReplayCache(), assess: createAssessmentCache(),
     };

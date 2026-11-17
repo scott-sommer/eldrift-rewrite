@@ -1,3 +1,5 @@
+import { createPlanningRoomCaches } from '../../src/app/planning-room-caches';
+import { saveCandidateProgress } from '../../src/features/planning/candidate-progress';
 import { decodeCandidateProgress } from '../../src/features/planning/candidate-progress';
 import { afterEach, expect, test, vi } from 'vitest';
 import { createNativePlanningWork } from '../../src/app/native-planning-work';
@@ -121,4 +123,35 @@ test('native evaluator receives configured stamp search allowance', () => {
   const result = resumed.work.input.step(candidate, paused.checkpoint);
   if (result.status !== 'pending') throw new Error(result.status);
   expect(decodeCandidateProgress(result.checkpoint)).toMatchObject({ checkpoint: { composition: { totalAttempts: 1 } } });
+});
+
+
+test('native work retains defense port across evaluator recreation and revisions invalidate the request', () => {
+  const { state, policy, read } = setup(), cache = createPlanningRoomCaches()('W0N1');
+  const advance = vi.fn(() => ({ status: 'pending' as const, checkpoint: { cursor: 1 } }));
+  const prepareDefense = vi.fn(() => ({ revision: 'defense-v1', advance }));
+  policy.defense = { revision: 'defense-v1', prepare: prepareDefense };
+  policy.config = { ...policy.config, layoutStrategy: 'stamps', planningStampAttemptsPerStep: 0 };
+  const prepare = () => createNativePlanningWork(state, 'W0N1', read, cache)(() => true);
+  const first = prepare();
+  if (first.status !== 'ready') throw new Error(first.status);
+  expect(prepareDefense).not.toHaveBeenCalled();
+  const candidate = { id: 'stamps:25:25:0', strategy: 'stamps', anchor: { x: 25, y: 25 }, transform: 0 as const };
+  const draft = first.work.input.step(candidate, undefined);
+  if (draft.status !== 'pending') throw new Error(draft.status);
+  const progress = decodeCandidateProgress(draft.checkpoint);
+  const saved = saveCandidateProgress({ signature: progress.signature, phase: 'defense', entries: [] });
+  const defended = first.work.input.step(candidate, saved);
+  if (defended.status !== 'pending') throw new Error(defended.status);
+  const second = prepare();
+  if (second.status !== 'ready') throw new Error(second.status);
+  second.work.input.step(candidate, defended.checkpoint);
+  expect(prepareDefense).toHaveBeenCalledTimes(1);
+  expect(advance).toHaveBeenCalledTimes(2);
+  expect(advance.mock.calls[1]).toBeDefined();
+  policy.defense = { revision: 'defense-v2', prepare: () => ({ revision: 'defense-v2', advance }) };
+  const changed = prepare();
+  if (changed.status !== 'ready') throw new Error(changed.status);
+  expect(changed.work.input.policy).not.toBe(first.work.input.policy);
+  expect(() => changed.work.input.step(candidate, defended.checkpoint)).toThrow('Stale');
 });

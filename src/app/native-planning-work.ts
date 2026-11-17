@@ -1,3 +1,6 @@
+import { nativePlanningDefense } from './native-planning-defense';
+import type { NativeDefensePolicy } from './native-planning-defense';
+import { createPlanningDefenseCache } from './planning-defense-cache';
 import { createScoreInputCache } from '../features/planning/score-input-cache';
 import { framedIdentity } from '../core/framed-identity';
 import type { PlanningRoomCache } from './planning-room-caches';
@@ -12,12 +15,14 @@ import type { LayoutCosts } from '../capabilities/planning/selection';
 import { scoreDimensions } from '../capabilities/planning/selection';
 import type { AssessmentInput } from '../capabilities/planning/assessment-model';
 export interface NativePlanningPolicy extends Omit<NativeCommitPolicy, 'currentPlan'> {
+  defense?: NativeDefensePolicy;
   versions: NativePlanningEvaluatorOptions['versions']; searchRevision: string; scoreRevision: string;
   maximumPathOps: number; weights: LayoutCosts; minimumImprovement: number;
   prepareScore(observation: AssessmentInput): NativePlanningEvaluatorOptions['prepareScore'];
 }
 /** Called only after scheduler admission; scoring/defense policy is supplied by the composition root. */
 export function createNativePlanningWork(state: StatePort, room: string, readPolicy: () => NativePlanningPolicy, cache: Partial<PlanningRoomCache> = {}) {
+  const defenseCache = cache.defense ?? createPlanningDefenseCache();
   return (canContinue: () => boolean) => {
     if (!canContinue()) return { status: 'deferred' as const };
     const policy = readPolicy(), revision = policyRevision(policy);
@@ -30,6 +35,8 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
     });
     let score: ReturnType<NativePlanningPolicy['prepareScore']> | undefined;
     const step = createNativePlanningEvaluator({
+      ...nativePlanningDefense(policy.defense, state, admitted.request.observation,
+        framedIdentity([admitted.observationIdentity, admitted.policyIdentity]), defenseCache),
       stampServices: cache,
       ...(cache.evaluate ? { prepare: cache.evaluate } : {}),
       ...(cache.assess ? { assess: cache.assess } : {}),
@@ -63,7 +70,7 @@ export function createNativePlanningWork(state: StatePort, room: string, readPol
 function policyRevision(policy: NativePlanningPolicy): string {
   if (![policy.implementationRevision, policy.versions.standard, policy.versions.constrained,
     ...(policy.versions.stamps === undefined ? [] : [policy.versions.stamps]),
-    policy.searchRevision, policy.scoreRevision].every(value => value.length > 0)) throw new Error('Missing native planning revision');
+    policy.searchRevision, policy.scoreRevision, ...(policy.defense ? [policy.defense.revision] : [])].every(value => value.length > 0)) throw new Error('Missing native planning revision');
   if (!Number.isSafeInteger(policy.maximumPathOps) || policy.maximumPathOps < 1) throw new Error('Invalid native planning path budget');
   if (![...scoreDimensions.map(key => policy.weights[key]), policy.minimumImprovement,
     policy.barrierCosts.rampart, policy.barrierCosts.constructedWall]
@@ -72,5 +79,5 @@ function policyRevision(policy: NativePlanningPolicy): string {
     policy.searchRevision, policy.scoreRevision, policy.maximumPathOps,
     policy.config.planningStampAnchorLimit, policy.config.planningStampTotalAttempts,
     scoreDimensions.map(key => policy.weights[key]), policy.minimumImprovement,
-    [...new Set(policy.protectedTypes)].sort(), policy.barrierCosts.rampart, policy.barrierCosts.constructedWall]);
+    [...new Set(policy.protectedTypes)].sort(), policy.barrierCosts.rampart, policy.barrierCosts.constructedWall, ...(policy.defense ? [policy.defense.revision] : [])]);
 }
