@@ -1,3 +1,4 @@
+import { awaitsNativeMasterHandoff } from './native-master-handoff';
 import { haulingOwner } from '../features/logistics/identity';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
@@ -35,6 +36,7 @@ export function createNativeUpgradeMaster(state: StatePort, dispatch: Dispatch,
         policy: { version: 'upgrade-master-travel', maximumRooms: 16, costs: {}, blockedRooms: [] } });
       return;
     }
+    if (awaitsNativeMasterHandoff(creep, room)) return;
     recoverNativeCargo(state, definitions, creep, room.name, config.terminalFreeReserve, () => true, sink => creep.pos.isNearTo(sink));
     selectHaulingTask(state, definitions, { home: room.name, name: creep.name, unitId: creep.id,
       tick: Game.time, cargoTotal: creep.store.getUsedCapacity() }, request => observeHauling(creep, request),

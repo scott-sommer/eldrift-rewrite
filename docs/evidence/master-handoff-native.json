@@ -1,0 +1,1902 @@
+{
+  "runs": [
+    {
+      "scenario": "master-handoff-baseline",
+      "status": "failed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lrGO2j",
+      "provenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "4edba2cc6191bc225a0e9121b776b978d47fd354ee607bef2fbcc006d46549ab",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "f0f1107ab6cbdae2a5c12019cbf2adea492d6b14cb96a4f154cc434da39bee38",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": "AssertionError [ERR_ASSERTION]: empty low-RCL master yields collection to adjacent loaded supplier\n    at verifyMasterHandoff (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\master-handoff.cjs:35:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:713:71\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "masterHandoff": [
+        {
+          "tick": 1,
+          "master": 0,
+          "supplier": 900,
+          "x": 2,
+          "y": 21,
+          "adjacent": false,
+          "level": 2,
+          "extensions": 250,
+          "storage": 300000,
+          "spawn": 50,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": null,
+          "incoming": {
+            "acknowledged": true,
+            "attempt": null,
+            "result": null
+          },
+          "serviceReceived": 0
+        },
+        {
+          "tick": 2,
+          "master": 0,
+          "supplier": 900,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 300000,
+          "spawn": 50,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",1]\\\\\\\",\\\\\\\"2\\\\\\\"]\\\"]\",\"2\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",1]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "cf94b2fc04128fe",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "withdraw",
+            "tick": 2,
+            "amount": 200,
+            "cargoBefore": 0
+          },
+          "incoming": {
+            "acknowledged": false,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"2\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 2,
+              "amount": 900,
+              "cargoBefore": 900
+            },
+            "result": null
+          },
+          "serviceReceived": 0
+        },
+        {
+          "tick": 3,
+          "master": 900,
+          "supplier": 200,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 50,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",1]\\\\\\\",\\\\\\\"2\\\\\\\"]\\\"]\",\"3\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",1]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 3,
+            "amount": 200,
+            "cargoBefore": 900
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"2\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 2,
+              "amount": 900,
+              "cargoBefore": 900
+            },
+            "result": {
+              "status": "observed",
+              "amount": 700
+            }
+          },
+          "serviceReceived": 0
+        },
+        {
+          "tick": 4,
+          "master": 700,
+          "supplier": 200,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 250,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",1]\\\\\\\",\\\\\\\"2\\\\\\\"]\\\"]\",\"3\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",1]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 3,
+            "amount": 200,
+            "cargoBefore": 900
+          },
+          "incoming": {
+            "acknowledged": false,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": null
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 5,
+          "master": 900,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 250,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"3e28b2fc048c228\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"3e28b2fc048c228\\\",\\\"5\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 5,
+            "amount": 50,
+            "cargoBefore": 900
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 6,
+          "master": 850,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 300,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"3e28b2fc048c228\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"3e28b2fc048c228\\\",\\\"5\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 5,
+            "amount": 50,
+            "cargoBefore": 900
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 7,
+          "master": 850,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 300,
+          "container": 0,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"fc15b2fc04b911b\\\\\\\",\\\\\\\"7\\\\\\\"]\\\"]\",\"7\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"fc15b2fc04b911b\\\",\\\"7\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "fc15b2fc04b911b",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 7,
+            "amount": 850,
+            "cargoBefore": 850
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 8,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 300,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"fc15b2fc04b911b\\\\\\\",\\\\\\\"7\\\\\\\"]\\\"]\",\"7\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"fc15b2fc04b911b\\\",\\\"7\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "fc15b2fc04b911b",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 7,
+            "amount": 850,
+            "cargoBefore": 850
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 9,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 300,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"fc15b2fc04b911b\\\\\\\",\\\\\\\"7\\\\\\\"]\\\"]\",\"7\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"fc15b2fc04b911b\\\",\\\"7\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "fc15b2fc04b911b",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 7,
+            "amount": 850,
+            "cargoBefore": 850
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 10,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 300,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"fc15b2fc04b911b\\\\\\\",\\\\\\\"7\\\\\\\"]\\\"]\",\"7\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"fc15b2fc04b911b\\\",\\\"7\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "fc15b2fc04b911b",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 7,
+            "amount": 850,
+            "cargoBefore": 850
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 11,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 50,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"fc15b2fc04b911b\\\\\\\",\\\\\\\"7\\\\\\\"]\\\"]\",\"7\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"445fb2fc04bcdcc\\\",\\\"energy\\\",\\\"fc15b2fc04b911b\\\",\\\"7\\\"]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "fc15b2fc04b911b",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 7,
+            "amount": 850,
+            "cargoBefore": 850
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 12,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299800,
+          "spawn": 50,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"12\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "cf94b2fc04128fe",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "withdraw",
+            "tick": 12,
+            "amount": 200,
+            "cargoBefore": 0
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 13,
+          "master": 200,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 50,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 200
+        },
+        {
+          "tick": 14,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        },
+        {
+          "tick": 15,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        },
+        {
+          "tick": 16,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        },
+        {
+          "tick": 17,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        },
+        {
+          "tick": 18,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        },
+        {
+          "tick": 19,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        },
+        {
+          "tick": 20,
+          "master": 0,
+          "supplier": 0,
+          "x": 2,
+          "y": 21,
+          "adjacent": true,
+          "level": 2,
+          "extensions": 250,
+          "storage": 299600,
+          "spawn": 250,
+          "container": 850,
+          "source": 4000,
+          "total": 2,
+          "masterAttempt": {
+            "id": "logistics:[\"attempt\",\"445fb2fc04bcdcc\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"445fb2fc04bcdcc\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"cf94b2fc04128fe\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3e28b2fc048c228\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+            "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"cf94b2fc04128fe\\\",\\\"3e28b2fc048c228\\\",\\\"energy\\\",11]\"]",
+            "unit": "445fb2fc04bcdcc",
+            "target": "3e28b2fc048c228",
+            "room": "E0N1",
+            "resource": "energy",
+            "kind": "transfer",
+            "tick": 13,
+            "amount": 200,
+            "cargoBefore": 200
+          },
+          "incoming": {
+            "acknowledged": true,
+            "attempt": {
+              "id": "logistics:[\"supply-intent\",\"6866b2fc04bd723\",\"4\"]",
+              "unit": "6866b2fc04bd723",
+              "target": "445fb2fc04bcdcc",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 4,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "result": {
+              "status": "observed",
+              "amount": 200
+            }
+          },
+          "serviceReceived": 400
+        }
+      ]
+    },
+    {
+      "scenario": "master-handoff-native",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-07OEqm",
+      "provenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "623a85d5f25f3c228bcace37547d5c906d5ed11c1186a966843c3140c0cdcbc7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "9d28383552f230f5c05f6884120d432b96cdc0357d7ceb81853b4aa74b6cf162",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "masterHandoff": {
+        "rows": [
+          {
+            "tick": 1,
+            "master": 0,
+            "supplier": 900,
+            "x": 2,
+            "y": 21,
+            "adjacent": false,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 50,
+            "container": 0,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": null,
+            "incoming": {
+              "acknowledged": true,
+              "attempt": null,
+              "result": null
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 2,
+            "master": 0,
+            "supplier": 900,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 50,
+            "container": 0,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": null,
+            "incoming": {
+              "acknowledged": false,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": null
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 3,
+            "master": 900,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 50,
+            "container": 0,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"0db1b37b7b98089\\\\\\\",\\\\\\\"3\\\\\\\"]\\\"]\",\"3\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"0db1b37b7b98089\\\",\\\"3\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 3,
+              "amount": 250,
+              "cargoBefore": 900
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 4,
+            "master": 650,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 0,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"0db1b37b7b98089\\\\\\\",\\\\\\\"3\\\\\\\"]\\\"]\",\"3\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"0db1b37b7b98089\\\",\\\"3\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 3,
+              "amount": 250,
+              "cargoBefore": 900
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 5,
+            "master": 650,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 0,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 6,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 7,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 8,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 9,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 10,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 300,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 11,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 50,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"5e87b37b7bce89a\\\\\\\",\\\\\\\"5\\\\\\\"]\\\"]\",\"5\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"E0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8f46b37b7bc59cb\\\",\\\"energy\\\",\\\"5e87b37b7bce89a\\\",\\\"5\\\"]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "5e87b37b7bce89a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 5,
+              "amount": 650,
+              "cargoBefore": 650
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 12,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 300000,
+            "spawn": 50,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"12\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "8fa2b37b7b15f2a",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "withdraw",
+              "tick": 12,
+              "amount": 200,
+              "cargoBefore": 0
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 13,
+            "master": 200,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 50,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 0
+          },
+          {
+            "tick": 14,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          },
+          {
+            "tick": 15,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          },
+          {
+            "tick": 16,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          },
+          {
+            "tick": 17,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          },
+          {
+            "tick": 18,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          },
+          {
+            "tick": 19,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          },
+          {
+            "tick": 20,
+            "master": 0,
+            "supplier": 0,
+            "x": 2,
+            "y": 21,
+            "adjacent": true,
+            "level": 2,
+            "extensions": 250,
+            "storage": 299800,
+            "spawn": 250,
+            "container": 650,
+            "source": 4000,
+            "total": 2,
+            "masterAttempt": {
+              "id": "logistics:[\"attempt\",\"8f46b37b7bc59cb\",\"task:[\\\"master\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"8f46b37b7bc59cb\\\\\\\",\\\\\\\"upgrade-service:E0N1\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"spawn-energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8fa2b37b7b15f2a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"0db1b37b7b98089\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",11]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"13\"]",
+              "requestKey": "logistics:[\"request-binding\",\"E0N1\",\"upgrade-service:E0N1\",\"[\\\"spawn-energy\\\",\\\"8fa2b37b7b15f2a\\\",\\\"0db1b37b7b98089\\\",\\\"energy\\\",11]\"]",
+              "unit": "8f46b37b7bc59cb",
+              "target": "0db1b37b7b98089",
+              "room": "E0N1",
+              "resource": "energy",
+              "kind": "transfer",
+              "tick": 13,
+              "amount": 200,
+              "cargoBefore": 200
+            },
+            "incoming": {
+              "acknowledged": true,
+              "attempt": {
+                "id": "logistics:[\"supply-intent\",\"1a77b37b7bc35d0\",\"2\"]",
+                "unit": "1a77b37b7bc35d0",
+                "target": "8f46b37b7bc59cb",
+                "room": "E0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 2,
+                "amount": 900,
+                "cargoBefore": 900
+              },
+              "result": {
+                "status": "observed",
+                "amount": 900
+              }
+            },
+            "serviceReceived": 200
+          }
+        ],
+        "reloads": [
+          3,
+          11
+        ]
+      }
+    },
+    {
+      "scenario": "master-handoff-bootstrap-regression",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Dr5Qyg",
+      "provenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "6f78a96b14a1b9520ee6dd503111cad1955591c5f5692a15e4e9b8a400d3ae56",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null,
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "masterHandoff": null
+    },
+    {
+      "scenario": "master-handoff-mature-regression",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gy8Y1A",
+      "provenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "17789a3437413a8991980641df0ffccabff2d7824e9918e22380254cdd43b4ac",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null,
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "masterHandoff": null
+    },
+    {
+      "scenario": "master-handoff-loss-regression",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-rEIHE9",
+      "provenance": {
+        "commit": "96b995324d9d9797c4b00e42a24a6acea0882173",
+        "dirty": true,
+        "bundleSha256": "17789a3437413a8991980641df0ffccabff2d7824e9918e22380254cdd43b4ac",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null,
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "masterHandoff": null
+    }
+  ]
+}
