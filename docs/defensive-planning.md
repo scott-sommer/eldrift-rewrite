@@ -91,3 +91,23 @@ advancement only: graph construction, path augmentation and final validation
 still include synchronous work. Heap iterators are not persistence checkpoints.
 Integrated milestone: real terrain-cut, exit-perimeter and legacy generators now run through shared evaluation/ranking in defense-pipeline.test.ts. The corridor fixture completes all three with valid separation and selects a minimum-cost one-barrier envelope. Full1001 unit tests/291 files passed7.68s; quality467 production/422 test files passed. This remains a local unit integration fixture; native production selection and reset-safe persistence are pending.
 Open-room local measurement (Node24.22.1, Windows, production273ec6f): 50x50 plain room,11x11 protected interior, all border entries. Setup16.13ms;2062 calls at1 augmentation/1000 scans; summed search102.84ms; maximum observed slice4.42ms;48 barriers passed shared validation. Reproduce with node tools/measure-defense-cut.mjs. These are local Node wall timings, not Screeps CPU. Graph construction remains synchronous and is the next budgeting target. Evidence: evidence/defense-cut-local.json.
+
+
+## Deferred setup measurement
+
+After bounded legal-grid, terrain-edge and residual-edge construction changes,
+clean a30307d repeats the same open-room fixture: constructor1.12ms,
+2109 advance calls, summed advance120.24ms, largest slice4.85ms at the final
+completion/validation call. The first advance took2.86ms; other large samples
+include residual-construction transition calls. Cut remains48 barriers and passes
+shared validation. Evidence: evidence/defense-cut-sliced-local.json.
+Constructor-only reduction from16.13ms reflects work moved into advance calls;
+it is not a reduction in total computation or a controlled statistical benchmark.
+These are local Node wall times, not Screeps CPU.
+
+Full1003 unit tests/291 files passed7.43s on this revision.
+Next qualification must measure real-engine CPU across preparation, graph transfer,
+search and final validation. The last phase is still atomic. Persistent recovery
+must preserve or deterministically rebuild pending construction/search state;
+heap iterators alone do not meet the reset criterion. Common strategy adapters and
+coordinator exist, but native planning still uses legacy defense policy.
