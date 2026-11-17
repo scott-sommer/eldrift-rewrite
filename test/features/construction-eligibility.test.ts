@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { constructionEligibility } from '../../src/features/construction/eligibility';
+import { constructionEligibility, createConstructionClassifier } from '../../src/features/construction/eligibility';
 import type { ConstructionObservation } from '../../src/features/construction/model';
 import type { PlanEntry } from '../../src/features/planning/plan-model';
 const entry: PlanEntry = { type: 'rampart', x: 25, y: 25, rcl: 6, priority: 50, source: 'strategy', minimumStoredEnergy: 50000 };
@@ -39,4 +39,24 @@ test('site inventories count physical IDs once while global and room caps remain
   const spawn = { ...entry, type: 'spawn', minimumStoredEnergy: 0 };
   expect(constructionEligibility(spawn, { ...observed, sites: [site, site], limits: { spawn: Array(9).fill(2) } }).status).toBe('eligible');
   expect(constructionEligibility(spawn, { ...observed, sites: [site, site], limits: { spawn: Array(9).fill(1) } }).reason).toBe('structure-limit');
+});
+
+
+test('cycle classifier snapshots economy, inventories and dependency sets across many entries', () => {
+  const observed = observation();
+  const completed = new Set<string>(), sites = [{ id: 'site', type: 'spawn', x: 24, y: 25, owned: true }];
+  const classify = createConstructionClassifier({ ...observed, completed, sites });
+  observed.storedEnergy = 0;
+  sites[0]!.x = 25; sites[0]!.type = 'rampart';
+  completed.add('spawn:24:25');
+  expect(classify(entry).status).toBe('eligible');
+  expect(classify({ ...entry, dependencies: ['spawn:24:25'] }).reason).toBe('dependency');
+  expect(classify({ ...entry, type: 'spawn', x: 24, minimumStoredEnergy: 0 }).status).toBe('site-existing');
+});
+test('contradictory identities and invalid budgets reject the snapshot before classifying entries', () => {
+  const observed = observation(), site = { id: 'site', type: 'spawn', x: 24, y: 25, owned: true };
+  expect(() => createConstructionClassifier({ ...observed, sites: [site, { ...site, x: 23 }] })).toThrow('identity');
+  expect(() => createConstructionClassifier({ ...observed, globalSites: -1 })).toThrow('budget');
+  expect(() => createConstructionClassifier({ ...observed, storedEnergy: NaN })).toThrow();
+  expect(() => createConstructionClassifier({ ...observed, limits: { spawn: [1] } })).toThrow('RCL limits');
 });

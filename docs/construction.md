@@ -23,3 +23,12 @@ Tests cover exact RCL/reserve boundaries, existing-object precedence under downg
 5. Add actual-engine cases for existing sites, caps, RCL unlock/downgrade, reserve loss/missing storage, rebuilding and resets. Finalize ED-22 role reconciliation prerequisite before ED-27 acceptance closes.
 
 The full rewrite remains active; this classifier does not satisfy the remaining construction acceptance criteria.
+
+
+## Indexed cycle observations
+
+`createConstructionClassifier` prepares one detached, validated observation per cycle and reuses position/type indexes for each entry. Economy, terrain, site-budget and RCL-limit shape checks run before classification. Physical IDs deduplicate counts; contradictory duplicate IDs reject instead of silently choosing an observation. Completed/temporary occupancy sets are detached too. The original one-entry function remains a convenience wrapper; the executor must use the cycle factory and refresh after state changes or successful reservations.
+
+Existing-object checks use indexed positions; type/site budgets use precomputed counts. Terrain fixed-object validation still uses the small fixed-object list; this is not a complete per-cycle execution-time bound. Input ownership semantics for neutral roads/containers and native reserve observation remain adapter work.
+
+Validation: quality487production/437testfiles, zero Lizard violations. Classifier snapshot/capacity plus smoke7tests passed256ms. Tests mutate source inventories, reserve and dependency sets after preparation, verify retained answers, and reject invalid budgets/RCL limits/conflicting identities. No new native scenario or full-unit claim for this increment. No construction site calls are registered.
