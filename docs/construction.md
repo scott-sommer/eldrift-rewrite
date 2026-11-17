@@ -41,3 +41,14 @@ Validation: quality487production/437testfiles, zero Lizard violations. Classifie
 `orderConstructionEntries` accepts an explicit type order and committed bootstrap spawn key. Defaults put bootstrap first, then containers/roads/storage, extensions, towers/defenses, and later infrastructure. Per-entry numeric priority applies within each category; placement keys give deterministic ties. This is ordering, not eligibility: RCL/dependencies/reserves still gate execution. Manual placement precedence does not mean every operator entry runs before bootstrap. Remote room authorization/roads/containers remain a separate policy to implement.
 
 Quality passed489production/438testfiles with zero Lizard violations. Merge/order/classifier plus smoke:10tests230ms. Tests cover both input orders, detached original metadata, ambiguous duplicates, missing/cyclic dependencies, bootstrap/category order and deterministic reversed inputs. No sites or destructive actions are issued; executor/reservations/native adapters remain open.
+
+
+## Bounded executor and local reservations
+
+`runConstructionCycle` composes retained-entry merge/order, fresh observed eligibility and an injected site-creation port. Explicit entry and attempt caps plus admission checks bound each call. The latest snapshot is classified before each attempted site, including RCL, dependencies, reserve and capacity. Created requests reserve type/room/global capacity even when the engine has not exposed the sites yet; observations already containing the placement do not count it twice. The observation port must supply consistent room/global state.
+
+Only accepted requests reserve slots. Full/not-owned results stop a cycle; other explicit results are reported within the attempt cap. Port inputs and returned decisions are detached; committed entries remain untouched. A returned cursor resumes bounded scans beyond completed prefixes and wraps so lost structures can be revisited. Callers must persist/bind this cursor to plan identity; that lifecycle is not implemented yet.
+
+Reservations are currently local to one room cycle. Cross-room/global intent accounting, native result mapping, retries/backoff, remote authorization and atomic current-plan revision checks remain to be implemented before registration. There is no native createConstructionSite call or gameplay deployment in this increment.
+
+Quality491production/439testfiles, zero Lizard violations. Full units1,053tests/307files passed8.34s. Executor tests cover accepted intent visibility lag, reflected-site deduplication, reserve loss/downgrade before issuance, full/admission/attempt limits, nonmutated plans and cursor fairness. This is mocked port behavior, not engine site-creation evidence.
