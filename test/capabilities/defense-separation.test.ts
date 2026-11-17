@@ -1,3 +1,4 @@
+import { barrierCost } from '../../src/capabilities/planning/barrier-cost';
 import { expect, test } from 'vitest';
 import { defenseEntryTiles, defenseSeparation } from '../../src/capabilities/planning/defense-separation';
 import type { TerrainCell } from '../../src/capabilities/planning/terrain';
@@ -25,4 +26,18 @@ test('invalid observations and duplicate assets fail explicitly', () => {
   expect(() => defenseSeparation({ terrain, entries: [{ x: 0, y: 0 }], barriers: [], assets: [] })).toThrow('entry');
   const asset = { id: 'same', position: { x: 25, y: 25 } };
   expect(() => defenseSeparation({ terrain, entries: [], barriers: [], assets: [asset, asset] })).toThrow('identities');
+});
+
+test('shared barrier validator applies explicit entry regions and retains placement rejection', () => {
+  const terrain: TerrainCell[] = Array(2500).fill('plain');
+  const input = { observation: { terrain, objects: [], infrastructure: [], constraints: [] },
+    protectedAssets: [{ type: 'storage', position: { x: 25, y: 25 } }],
+    barriers: [], costs: { rampart: 1, constructedWall: 1 } };
+  expect(barrierCost(input)).toMatchObject({ ok: false, reason: 'exposed' });
+  expect(barrierCost({ ...input, attackerEntries: [] })).toMatchObject({ ok: true });
+  const barrier = { type: 'rampart', position: { x: 25, y: 25 } };
+  expect(barrierCost({ ...input, barriers: [barrier] })).toMatchObject({ ok: true });
+  terrain[25 * 50 + 25] = 'wall';
+  expect(barrierCost({ ...input, attackerEntries: [], barriers: [barrier] }))
+    .toMatchObject({ ok: false, reason: 'placement' });
 });

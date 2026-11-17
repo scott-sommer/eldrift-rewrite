@@ -1,11 +1,13 @@
 import { validatePlanningConstraints } from './preservation';
-import { connectedRegions } from './grid-analysis';
+import { defenseEntryTiles, defenseSeparation } from './defense-separation';
 import { placementFailures } from './placement-validation';
-import { tileAt, tileIndex, insideRoom } from '../../core/geometry/local-grid';
+import { tileIndex } from '../../core/geometry/local-grid';
+import type { Tile } from '../../core/geometry/local-grid';
 import type { PlacedTile } from './template';
 import type { AssessmentInput } from './assessment-model';
 export interface BarrierCostInput {
   observation: AssessmentInput;
+  attackerEntries?: readonly Tile[];
   barriers: readonly PlacedTile[];
   protectedAssets: readonly PlacedTile[];
   costs: Readonly<Record<'rampart' | 'constructedWall', number>>;
@@ -22,13 +24,15 @@ export function barrierCost(input: BarrierCostInput) {
   if (constraints.length) return { ok: false as const, reason: 'constraints' as const, details: constraints };
   const failures = placementFailures([...input.protectedAssets, ...input.barriers], input.observation);
   if (failures.length) return { ok: false as const, reason: 'placement' as const, details: failures };
-  const blocked = new Set(keys);
-  const walkable = input.observation.terrain.map((terrain, index) => terrain !== 'wall' && !blocked.has(index));
-  const exposedRegions = connectedRegions(walkable).filter(region =>
-    region.tiles.some(index => !insideRoom(tileAt(index), 1)));
-  const exposed = new Set(exposedRegions.flatMap(region => region.tiles));
-  const unprotected = input.protectedAssets.filter(entry => exposed.has(tileIndex(entry.position)))
-    .map(entry => entry.type + ':' + tileIndex(entry.position)).sort();
+  const separation = defenseSeparation({
+    terrain: input.observation.terrain,
+    entries: input.attackerEntries ?? defenseEntryTiles(input.observation.terrain),
+    barriers: input.barriers.map(entry => entry.position),
+    assets: input.protectedAssets.map(entry => ({
+      id: entry.type + ':' + tileIndex(entry.position), position: entry.position,
+    })),
+  });
+  const unprotected = separation.exposed;
   if (unprotected.length) return { ok: false as const, reason: 'exposed' as const, details: unprotected };
   return { ok: true as const, cost, barrierTiles: keys.length, protectedAssets: input.protectedAssets.length };
 }
