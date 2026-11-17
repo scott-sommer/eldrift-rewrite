@@ -32,3 +32,12 @@ The full rewrite remains active; this classifier does not satisfy the remaining 
 Existing-object checks use indexed positions; type/site budgets use precomputed counts. Terrain fixed-object validation still uses the small fixed-object list; this is not a complete per-cycle execution-time bound. Input ownership semantics for neutral roads/containers and native reserve observation remain adapter work.
 
 Validation: quality487production/437testfiles, zero Lizard violations. Classifier snapshot/capacity plus smoke7tests passed256ms. Tests mutate source inventories, reserve and dependency sets after preparation, verify retained answers, and reject invalid budgets/RCL limits/conflicting identities. No new native scenario or full-unit claim for this increment. No construction site calls are registered.
+
+
+## Entry merging and ordering
+
+`mergeConstructionEntries` validates and detaches entries, deduplicates by type/x/y, and gives operator metadata precedence over generated metadata in either input order. Exact duplicates collapse; contradictory same-source duplicates reject as ambiguous rather than silently discarding reserve/dependency/RCL policy. Stable property ordering and sorted dependency references define duplicate equivalence. The merged graph must have valid internal references and no cycles.
+
+`orderConstructionEntries` accepts an explicit type order and committed bootstrap spawn key. Defaults put bootstrap first, then containers/roads/storage, extensions, towers/defenses, and later infrastructure. Per-entry numeric priority applies within each category; placement keys give deterministic ties. This is ordering, not eligibility: RCL/dependencies/reserves still gate execution. Manual placement precedence does not mean every operator entry runs before bootstrap. Remote room authorization/roads/containers remain a separate policy to implement.
+
+Quality passed489production/438testfiles with zero Lizard violations. Merge/order/classifier plus smoke:10tests230ms. Tests cover both input orders, detached original metadata, ambiguous duplicates, missing/cyclic dependencies, bootstrap/category order and deterministic reversed inputs. No sites or destructive actions are issued; executor/reservations/native adapters remain open.
