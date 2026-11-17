@@ -52,3 +52,12 @@ Only accepted requests reserve slots. Full/not-owned results stop a cycle; other
 Reservations are currently local to one room cycle. Cross-room/global intent accounting, native result mapping, retries/backoff, remote authorization and atomic current-plan revision checks remain to be implemented before registration. There is no native createConstructionSite call or gameplay deployment in this increment.
 
 Quality491production/439testfiles, zero Lizard violations. Full units1,053tests/307files passed8.34s. Executor tests cover accepted intent visibility lag, reflected-site deduplication, reserve loss/downgrade before issuance, full/admission/attempt limits, nonmutated plans and cursor fairness. This is mocked port behavior, not engine site-creation evidence.
+
+
+## Shared tick reservation ledger
+
+`createConstructionReservationLedger` tracks accepted room/type/x/y requests across room cycles. `reservedConstructionPorts` records only successful creates and projects missing intents into room sites and global counts. All room executors must share the ledger and an authoritative set of observed global placement keys. Global count comes from that key set plus accepted requests not reflected there; local executor reservations recognize projected placements and do not duplicate them.
+
+Tick advancement clears old intent reservations in favor of actual observations; backwards/invalid ticks reject. Reflected sites are not added twice, and observed completed structures retire local accepted reservations. Creation inputs and ledger metadata are detached even if an injected adapter mutates its argument.
+
+Quality492production/440testfiles, zero Lizard violations. Shared-ledger/executor plus smoke9tests225ms. Cross-room cap exhaustion, reflected-site count, tick turnover, failed-request nonreservation and adapter mutation isolation covered. Native global-site observation and runtime ledger ownership still need wiring; no new native execution evidence is claimed. Cursor/retry persistence and remote policy remain open.
