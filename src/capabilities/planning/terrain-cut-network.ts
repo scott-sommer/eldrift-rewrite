@@ -14,8 +14,8 @@ export function createTerrainCutNetwork(input: TerrainCutInput) {
   const entries = new Set(input.entries.map(tileIndex)), protectedTiles = new Set(input.protectedTiles.map(tileIndex));
   const edges = buildEdges(input, entries, protectedTiles, infinity);
   const network = createResidualNetwork(5002, edges, 5000, 5001);
-  return { advance(maximumAugmentations: number, guard: () => boolean = () => true) {
-    const result = network.advance(maximumAugmentations, guard);
+  return { advance(maximumAugmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
+    const result = network.advance(maximumAugmentations, guard, maximumScans);
     if (!result.done) return { status: 'pending' as const, flow: result.flow };
     if (result.flow >= infinity) return { status: 'rejected' as const, reason: 'no-legal-cut' as const };
     const reached = new Set(result.reachable);

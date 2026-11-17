@@ -25,3 +25,17 @@ test('forbidden clearance cells cannot be selected for barriers', () => {
   expect(createTerrainCutDefense({ ...request, observation: { ...request.observation, constraints } }).advance(100))
     .toMatchObject({ status: 'rejected', reason: 'no-legal-cut' });
 });
+
+test('tiny scan slices and CPU yielding preserve the same validated staged defense', () => {
+  const request = input(), expected = createTerrainCutDefense(request).advance(100);
+  const network = createTerrainCutDefense(request);
+  expect(network.advance(100, () => true, 0)).toMatchObject({ status: 'pending' });
+  expect(network.advance(100, () => false, 1)).toMatchObject({ status: 'pending' });
+  let result = network.advance(1, () => true, 1), slices = 1;
+  while (result.status === 'pending' && slices < 1000) {
+    result = network.advance(1, () => true, 1); slices++;
+  }
+  expect(slices).toBeGreaterThan(10);
+  expect(result).toEqual(expected);
+  expect(() => network.advance(1, () => true, -1)).toThrow('scan budget');
+});

@@ -79,3 +79,13 @@ New cut/exit generation has no native room-scale or production selection evidenc
 
 No new generator creates construction sites; construction reconciliation remains
 a separate feature. No claim of ED-26 completion follows from the current unit suite.
+
+## Search scan budgeting
+
+Residual BFS retains a heap iterator and accepts an explicit scan allowance;
+terrain-cut-network and terrain-cut-defense forward it as the third advance
+argument. Zero scans or a false CPU guard leave search pending. A tiny-slice
+adapter regression compares the complete validated staged defense with an
+uninterrupted run. Counts include iterator completion steps. This bounds BFS
+advancement only: graph construction, path augmentation and final validation
+still include synchronous work. Heap iterators are not persistence checkpoints.

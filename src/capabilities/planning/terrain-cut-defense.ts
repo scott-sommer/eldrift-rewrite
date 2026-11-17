@@ -18,8 +18,8 @@ export function createTerrainCutDefense(source: TerrainCutDefenseInput) {
     walkable: input.observation.terrain.map(cell => cell !== 'wall'),
     barrierCosts: legalCosts(input), entries, protectedTiles: input.protectedTiles,
   });
-  return { advance(augmentations: number, guard: () => boolean = () => true) {
-    const result = network.advance(augmentations, guard);
+  return { advance(augmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
+    const result = network.advance(augmentations, guard, maximumScans);
     if (result.status !== 'complete') return result;
     const barriers: StagedTile[] = result.barriers.map(position =>
       ({ type: 'rampart', position, rcl: input.rcl, priority: 50, tag: 'terrain-cut' }));
