@@ -1,6 +1,6 @@
 # ED-27 construction acceptance
 
-Production baseline a6779f7b5d25200c3a4c373fd12055ed85fd3093. This records functional construction evidence; ED-22 prerequisite reconciliation remains open, so ED-27 is not closed by this audit.
+Production baseline a6779f7b5d25200c3a4c373fd12055ed85fd3093. This original construction audit is supplemented by the final179-case worker/construction regression below; ED-22 prerequisite reconciliation is now satisfied for functional milestone acceptance.
 
 | Criterion | Inspected evidence | Result |
 | --- | --- | --- |
@@ -19,4 +19,9 @@ Production baseline a6779f7b5d25200c3a4c373fd12055ed85fd3093. This records funct
 
 ## Remaining ownership and release gates
 
-ED-22 still owns final worker-role reconciliation. ED-29 owns activation through remote missions. ED-39 owns typed operator construction retry/reset controls and plan/manual input adapters; ED-44 owns legacy state import, rollback and release compatibility. A completed construction subsystem does not establish those capabilities or full rewrite completion. No live upload or destructive gameplay action occurred.
+ED-22 final worker-role reconciliation is accepted in docs/worker-role-acceptance.md. ED-29 owns activation through remote missions. ED-39 owns typed operator construction retry/reset controls and plan/manual input adapters; ED-44 owns legacy state import, rollback and release compatibility. A completed construction subsystem does not establish those capabilities or full rewrite completion. No live upload or destructive gameplay action occurred.
+
+
+## Final prerequisite and regression qualification
+
+Clean88a39c7fc93a53c92f7eabd72afe087cd39b59ce passes all179native checks in665.36s, including six construction cases, both new worker-positioning cases, low-RCL master handoff and combined colony resilience. Exact current provenance/diagnostics are in docs/evidence/worker-final-engine-suite.json. Current quality503production/456testfiles passes without violations; full units1,087tests/317files8.16s. The ED-22 source-to-owner and functional audit now resolves the last ED-27 prerequisite. All construction criteria remain supported at this baseline. ED-29/39/43/44 integration, operator, performance/soak and release/migration gates remain required; neither subsystem's acceptance closes those requirements.

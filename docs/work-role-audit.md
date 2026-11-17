@@ -108,3 +108,8 @@ Exact baseline/passing rows, reset witnesses and regression provenance are retai
 
 
 Seven-role functional reconciliation is consolidated in docs/worker-role-acceptance.md and source-inventory.json. Later expansion/control/migration requirements remain explicitly owned in Jira. Full179-case revalidation is pending; this source audit alone does not close ED-22.
+
+
+## Final ED-22 functional milestone audit
+
+Clean88a39c7 passes179native checks in665.36s; current production quality503files/456testfiles zero violations and1,087unit tests/317files8.16s. The final source-to-owner mapping is docs/worker-role-acceptance.md; docs/evidence/worker-final-engine-suite.json records the aggregate. This supersedes historical pending-aggregate/role-reconciliation notes for ED-22's functional scope. Later expansion, specialist/trade coordination, operator controls, migration/rollback and release performance remain required in their explicit ED owners. ED-22 acceptance does not retire those paths or declare the overall rewrite complete.

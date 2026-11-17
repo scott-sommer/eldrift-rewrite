@@ -20,8 +20,10 @@ Sleep has five active readers: wallBuilder37, distributorV2 21, mineralCourierV2
 
 Source review also confirms role.builder.js invokes ordinary upgrader fallback belowRCL8, so goAway applies there only after construction/repair selection has exhausted. role.courier.js directly reads goAway but is unreachable through literal main imports; dormant/external compatibility disposition remains ED-39. No registered goAway setter was found.
 
-## Validation status before milestone closure
+## Final functional milestone validation
 
 Production5145a27 includes the new handoff ordering. Full units1,087tests/317files8.16s and quality503production/456testfiles zero violations pass. docs/evidence/master-handoff-native.json records failing baseline and passing handoff/bootstrap/mature/storage-loss native outcomes. docs/evidence/worker-position-native.json records positioning/override/shared-worker evidence. Dirty targeted provenance is retained accurately.
 
-The last clean aggregate is176cases/a6779f7/663.13s, predating both latest role corrections. Both positioning cases and handoff are registered, making179cases. The new full aggregate is still required before ED-22 criterion1 or prerequisite-dependent ED-27 closure. Milestone completion must not imply later ED-30/31/36/37/39/43/44 requirements have disappeared.
+The clean complete aggregate now passes179checks in665.36s at88a39c7fc93a53c92f7eabd72afe087cd39b59ce. Every case reports the same commit and dirty=false. docs/evidence/worker-final-engine-suite.json retains exact provenance/diagnostics and the latest positioning/handoff rows. The diagnostics audit found only expected planning CPU termination, injected error/timeout cases and Art repair-suspension notices. The combined colony-resilience verifier confirms miner/hauler/worker replacement, two completed roads, continued controller work, repeated economic deliveries and recovery after seeded energy loss.
+
+This satisfies ED-22's work/recovery acceptance criteria. The source-to-owner mapping and clean aggregate also resolve ED-27's worker prerequisite. Construction's separate criterion audit remains docs/construction-acceptance.md. This is functional milestone acceptance, not release parity: ED-30/31/36/37/39/43/44 requirements remain open and explicit. No live upload or destructive gameplay action occurred. Earlier failed aggregates and dirty targeted evidence remain historical and have not been erased or presented as clean runs.
