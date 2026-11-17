@@ -87,3 +87,13 @@ test('old/future observations, corrupt migration and foreign-room payloads prese
   expect(() => store.read('W1N1', 10)).toThrow('legacy');
   expect(JSON.stringify(port.read('intel/W1N1'))).toBe(corrupt);
 });
+
+test('legacy opaque IDs and duplicate-heavy records retain supported facts without bypassing rich validation', () => {
+  const { port, store } = setup();
+  const id = 'legacy-opaque-id-'.repeat(30);
+  port.write('intel/W1N1', { owner: 'intel', version: 1, data: { lastSeen: 10, owned: false,
+    sourceIds: Array(12000).fill(id), structureIds: [], hostileIds: [] } });
+  expect(store.read('W1N1', 10)).toMatchObject({ freshness: 'unknown', record: { sourceIds: [id], summary: null } });
+  store.observe('W1N1', { lastSeen: 11, owned: false, sourceIds: [id,id], structureIds: [], hostileIds: [] });
+  expect(store.read('W1N1', 11).record.sourceIds).toEqual([id]);
+});

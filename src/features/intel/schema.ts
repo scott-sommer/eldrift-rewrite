@@ -4,7 +4,7 @@ import { validRoomSummary } from './summary-validation';
 import { object, ids, natural, text, tickOrNull, sameIds } from './validation';
 import type { IntelRecord, LegacyIntelRecord, IntelFailure } from './model';
 export type { IntelRecord } from './model';
-function legacy(value: unknown): value is LegacyIntelRecord {
+export function validLegacyIntel(value: unknown): value is LegacyIntelRecord {
   return object(value) && tickOrNull(value.lastSeen) && typeof value.owned === 'boolean'
     && ids(value.sourceIds) && ids(value.structureIds) && ids(value.hostileIds);
 }
@@ -12,7 +12,7 @@ export function validIntelFailure(value: unknown): value is IntelFailure {
   return object(value) && text(value.id) && natural(value.tick) && text(value.reason);
 }
 function valid(value: unknown): value is IntelRecord {
-  if (!legacy(value)) return false;
+  if (!validLegacyIntel(value)) return false;
   const record = value as IntelRecord;
   return uniqueIndexes(record) && validSummaryState(record) && validVisit(record)
     && (record.lastFailure === null || validIntelFailure(record.lastFailure));
@@ -37,7 +37,7 @@ function validVisit(record: IntelRecord): boolean {
   return tickOrNull(record.lastVisit) && (record.lastVisit === null || record.lastSeen !== null && record.lastVisit <= record.lastSeen);
 }
 function migrate(value: unknown): IntelRecord {
-  if (!legacy(value)) throw new Error('Invalid legacy intel');
+  if (!validLegacyIntel(value)) throw new Error('Invalid legacy intel');
   return { ...value, sourceIds: [...new Set(value.sourceIds)], structureIds: [...new Set(value.structureIds)],
     hostileIds: [...new Set(value.hostileIds)], summary: null, lastVisit: null, lastFailure: null };
 }

@@ -13,7 +13,7 @@ export function position(value: Record<string, unknown>): boolean {
   return natural(value.x) && value.x < 50 && natural(value.y) && value.y < 50;
 }
 export function ids(value: unknown): value is string[] {
-  return Array.isArray(value) && value.length <= 10000 && value.every(text);
+  return Array.isArray(value) && value.every(id => typeof id === 'string' && id.length > 0);
 }
 export function sameIds(a: readonly string[], b: readonly string[]): boolean {
   const values = new Set(a);

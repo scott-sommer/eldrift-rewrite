@@ -3,9 +3,8 @@ import type { StatePort } from '../../persistence/versioned-state';
 import { copyPlain } from '../../persistence/plain-data';
 import { stateKey } from '../../persistence/state-key';
 import { roomCoordinates } from '../../core/geometry/room-grid';
-import { intelSchema, validIntelFailure, summaryHostiles } from './schema';
+import { intelSchema, validIntelFailure, validLegacyIntel, summaryHostiles } from './schema';
 import { validRoomSummary } from './summary-validation';
-import { natural } from './validation';
 import { intelReadModel, requireIntelClock } from './freshness';
 import type { IntelFailure, IntelRecord, LegacyIntelRecord, RoomSummary } from './model';
 export function createIntelStore(port: StatePort) {
@@ -19,11 +18,13 @@ export function createIntelStore(port: StatePort) {
     },
     /** ID-only compatibility updates retain detailed facts with their own original timestamp. */
     observe(room: string, value: LegacyIntelRecord): void {
-      const { lastSeen, owned, sourceIds, structureIds, hostileIds } = copyPlain(value);
-      if (lastSeen === null || !natural(lastSeen)) throw new Error('Observation requires a tick');
+      const snapshot = copyPlain(value);
+      if (!validLegacyIntel(snapshot) || snapshot.lastSeen === null) throw new Error('Observation requires valid facts and a tick');
+      const { lastSeen, owned, sourceIds, structureIds, hostileIds } = snapshot;
       const record = read(room);
       requireNewObservation(record, lastSeen);
-      save(room, { ...record, lastSeen, owned, sourceIds, structureIds, hostileIds });
+      save(room, { ...record, lastSeen, owned, sourceIds: [...new Set(sourceIds)],
+        structureIds: [...new Set(structureIds)], hostileIds: [...new Set(hostileIds)] });
     },
     observeSummary(value: RoomSummary, visited = false): void {
       const summary = copyPlain(value);
