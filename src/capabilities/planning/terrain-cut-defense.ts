@@ -1,3 +1,4 @@
+import type { FlowCheckpoint } from '../../core/recoverable-flow';
 import { tileAt, tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
 import { createTerrainCutNetwork } from './terrain-cut-network';
@@ -10,7 +11,7 @@ export interface TerrainCutDefenseInput extends Omit<BarrierCostInput, 'barriers
   protectedTiles: readonly Tile[]; rcl: number;
 }
 /** Legal-grid adapter. Protected tiles define the desired interior, independently of protected assets. */
-export function createTerrainCutDefense(source: TerrainCutDefenseInput) {
+export function createTerrainCutDefense(source: TerrainCutDefenseInput, checkpoint?: FlowCheckpoint) {
   const input: TerrainCutDefenseInput = JSON.parse(JSON.stringify(source));
   validateDefenseLevel(input.rcl);
   const entries = input.attackerEntries ?? defenseEntryTiles(input.observation.terrain);
@@ -25,7 +26,7 @@ export function createTerrainCutDefense(source: TerrainCutDefenseInput) {
     network ??= createTerrainCutNetwork({
       walkable: input.observation.terrain.map(cell => cell !== 'wall'),
       barrierCosts: prepared.costs, entries, protectedTiles: input.protectedTiles,
-    });
+    }, checkpoint);
     const result = network.advance(augmentations, guard, maximumScans - prepared.scans);
     if (result.status !== 'complete') return result;
     terminal = completeDefense(input, result.barriers);

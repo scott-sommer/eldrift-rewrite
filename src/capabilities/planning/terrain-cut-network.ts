@@ -1,25 +1,27 @@
 import { adjacentTiles, tileAt, tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
-import { createResidualNetwork } from '../../core/residual-network';
+import { createRecoverableFlow } from '../../core/recoverable-flow';
+import type { FlowCheckpoint } from '../../core/recoverable-flow';
 import type { CapacityEdge } from '../../core/residual-network';
 export interface TerrainCutInput {
   walkable: readonly boolean[]; barrierCosts: readonly (number | null)[];
   entries: readonly Tile[]; protectedTiles: readonly Tile[];
 }
 /** Original vertex-split reduction: null costs forbid barriers; diagonal edges model attacker movement. */
-export function createTerrainCutNetwork(input: TerrainCutInput) {
+export function createTerrainCutNetwork(input: TerrainCutInput, checkpoint?: FlowCheckpoint) {
   const infinity = validateInput(input);
+  const saved = checkpoint && { ...checkpoint };
   input = { walkable: [...input.walkable], barrierCosts: [...input.barrierCosts],
     entries: input.entries.map(tile => ({ ...tile })), protectedTiles: input.protectedTiles.map(tile => ({ ...tile })) };
   const entries = new Set(input.entries.map(tileIndex)), protectedTiles = new Set(input.protectedTiles.map(tileIndex));
   const prepare = prepareEdges(buildEdges(input, entries, protectedTiles, infinity));
-  let network: ReturnType<typeof createResidualNetwork> | undefined;
+  let network: ReturnType<typeof createRecoverableFlow> | undefined;
   return { advance(maximumAugmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
     const prepared = prepare(maximumScans, guard);
-    if (!prepared.done) return { status: 'pending' as const, flow: 0 };
-    network ??= createResidualNetwork(5002, prepared.edges, 5000, 5001);
+    if (!prepared.done) return { status: 'pending' as const, flow: 0, ...(saved ? { checkpoint: { ...saved } } : {}) };
+    network ??= createRecoverableFlow(5002, prepared.edges, 5000, 5001, saved);
     const result = network.advance(maximumAugmentations, guard, maximumScans - prepared.scans);
-    if (!result.done) return { status: 'pending' as const, flow: result.flow };
+    if (!result.done) return { status: 'pending' as const, flow: result.flow, checkpoint: result.checkpoint };
     if (result.flow >= infinity) return { status: 'rejected' as const, reason: 'no-legal-cut' as const };
     const reached = new Set(result.reachable);
     const barriers = input.walkable.flatMap((open, index) =>

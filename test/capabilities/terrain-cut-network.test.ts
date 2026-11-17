@@ -60,3 +60,14 @@ test('weighted cuts match exhaustive separation search on a diagonal two-route c
   expect(defenseSeparation({ terrain, entries: request.entries, barriers: result.barriers,
     assets: [{ id: 'core', position: cells[3]! }] }).separated).toBe(true);
 });
+
+test('serialized terrain flow checkpoints resume through deterministic bounded reconstruction', () => {
+  const request = corridor(), first = createTerrainCutNetwork(request).advance(1);
+  expect(first.status).toBe('pending');
+  if (first.status !== 'pending' || !first.checkpoint) throw new Error('Expected flow checkpoint');
+  const saved = JSON.parse(JSON.stringify(first.checkpoint));
+  const restored = createTerrainCutNetwork(request, saved);
+  let result = restored.advance(1, () => true, 5);
+  for (let calls = 0; result.status === 'pending' && calls < 1000; calls++) result = restored.advance(1, () => true, 5);
+  expect(result).toEqual({ status: 'complete', cost: 1, barriers: [{ x: 5, y: 25 }] });
+});
