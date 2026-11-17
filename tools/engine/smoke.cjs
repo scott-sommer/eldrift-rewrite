@@ -1,4 +1,5 @@
-const constructionRun = process.argv.includes('--construction');
+const constructionRuntime = process.argv.includes('--construction-runtime');
+const constructionRun = constructionRuntime || process.argv.includes('--construction');
 const defenseCutReload = process.argv.includes('--defense-cut-reload');
 const defenseCut = defenseCutReload || process.argv.includes('--defense-cut');
 const stampLateReset = process.argv.includes('--stamp-late-reset');
@@ -258,7 +259,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--worker-pickup')) modules.main = await actionBundle(root, 'worker-pickup-bot');
   if (process.argv.includes('--worker-collection')) modules.main = await actionBundle(root, 'worker-collection-bot');
   if (process.argv.includes('--worker-runtime')) modules.main = await actionBundle(root, 'worker-runtime-bot');
-  if (constructionRun) modules.main = await actionBundle(root, 'construction-bot');
+  if (constructionRun) modules.main = await actionBundle(root, constructionRuntime ? 'construction-runtime-bot' : 'construction-bot');
   if (defenseCut) modules.main = await actionBundle(root, 'defense-cut-bot');
   if (stampRoom) modules.main = await actionBundle(root, stampBudget ? 'stamp-budget-bot' : stampFailure ? 'stamp-failure-bot' : autoStampRoom ? 'auto-stamp-room-bot' : 'stamp-room-bot');
   if (planningRoom) modules.main = await actionBundle(root, 'planning-room-bot');
@@ -597,7 +598,17 @@ server.on('error', error => { console.error(error); finish(1, error); });
   }
   if (!planningCpu) assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
-  if (constructionRun) {
+  if (constructionRuntime) {
+    const rows = memory.constructionRuntimeRows;
+    evidence.constructionRuntime = rows;
+    assert.equal(rows.length, 6);
+    assert.deepEqual(rows.map(row => row.revision), [1, 2, 3, 4, 5, 6]);
+    assert.equal(rows.at(-1).sites.length, 1);
+    assert.ok(rows.every(row => row.sites.every(type => type === 'road')));
+    assert.ok(rows.every(row => row.entries === 5 && row.planRevision === 1 && row.bootstrap === 'spawn:15:15'));
+    assert.ok(rows.every(row => row.next >= 0));
+  }
+  if (constructionRun && !constructionRuntime) {
     const rows = memory.constructionRows;
     evidence.construction = rows;
     assert.equal(rows.length, 6);

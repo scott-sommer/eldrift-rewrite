@@ -1,0 +1,125 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GtHaJn",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 253.89480000000003,
+      "cpuMilliseconds": 41,
+      "memoryBytes": 2245
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 23.65210000000002,
+      "cpuMilliseconds": 6,
+      "memoryBytes": 2350
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 22.47550000000001,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 2455
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 21.674600000000055,
+      "cpuMilliseconds": 7,
+      "memoryBytes": 2560
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 20.005700000000047,
+      "cpuMilliseconds": 7,
+      "memoryBytes": 2665
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 19.0689000000001,
+      "cpuMilliseconds": 7,
+      "memoryBytes": 2770
+    }
+  ],
+  "provenance": {
+    "commit": "abeae730454af78eb4d53482e681868d8a0956f4",
+    "dirty": true,
+    "bundleSha256": "41179c096319731fe74435788e03b66e18baff303b8f0043e2c4cea89106983a",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "constructionRuntime": [
+    {
+      "tick": 1,
+      "revision": 1,
+      "next": 2,
+      "sites": [],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15"
+    },
+    {
+      "tick": 2,
+      "revision": 2,
+      "next": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15"
+    },
+    {
+      "tick": 3,
+      "revision": 3,
+      "next": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15"
+    },
+    {
+      "tick": 4,
+      "revision": 4,
+      "next": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15"
+    },
+    {
+      "tick": 5,
+      "revision": 5,
+      "next": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15"
+    },
+    {
+      "tick": 6,
+      "revision": 6,
+      "next": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15"
+    }
+  ],
+  "childPids": [
+    59404,
+    26508,
+    20048
+  ]
+}

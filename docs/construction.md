@@ -1,6 +1,6 @@
 # Desired-state construction reconciliation (ED-27)
 
-ED-27 is In Progress. This feature consumes retained plans independently of layout search. It must not delete plan entries after a structure/site appears; retained desired state is needed to rebuild losses. No site execution or runtime registration is implemented yet.
+ED-27 is In Progress. This feature consumes retained plans independently of layout search. It must not delete plan entries after a structure/site appears; retained desired state is needed to rebuild losses. Native execution is registered behind constructionEnabled (default false); lifecycle acceptance remains open. Sections below retain chronological implementation evidence; the newest section defines current scope.
 
 ## Legacy reference
 
@@ -90,3 +90,14 @@ Construction progress schema advances to version2, adding failure count, next-at
 Default retry policy allows3failed engine requests with exponential delays starting10ticks and capped1000ticks. Explicit invalid-argument results quarantine immediately. Full-site/RCL/ownership results do not consume the engine-error allowance. Cooldown/quarantine blocks native create calls; these logical checks conservatively consume the current cycle attempt allowance and advance its cursor. Quarantine remains until desired-plan/policy refresh or observed structure/site presence; it does not silently expire. Presence clears history so a later structure loss can rebuild. An explicit operator retry/reset UI remains future operator work.
 
 Quality496production/444testfiles, zero Lizard violations. Full units1,065tests/311files passed9.16s. Tests cover exact wake-up/quarantine boundaries, detached history, successful/present retirement, service recreation, desired-plan reset and version1migration. Final --construction native6tick compatibility passed with no errors/messages; construction-retries-native.json retains bundle/dirty provenance. That scenario verifies cursor/site/cap/reserve behavior under the new schema, not forced native error backoff or whole-module-reset recovery. Runtime registration, native failure/rebuild/RCL/reset cases and remote authorization remain open.
+
+
+## Registered committed-plan runtime feature
+
+createNativeConstructionFeature is registered separately from planning in main. It runs only for enabled owned rooms after scheduler/background admission, shares a tick ledger across those rooms, reads the retained plan store and uses plan-bound progress/retry state. The committed bootstrap key participates in ordering. Construction can remain enabled while planning is idle; it does not request a replacement layout simply to resume staged work. Disabled configuration performs no native/state access in the feature.
+
+Dedicated construction configuration controls CPU admission, entries scanned, create attempts, room-site cap, optional terminal reserve and retry policy. Defaults: disabled,3CPU,20entries,1attempt,5room sites,storage-only reserve,3errors/10initial delay/1000maximum delay. Invalid budgets and reversed retry delay limits reject through normal configuration layers. Remote rooms remain unauthorized by this owned-room feature.
+
+New --construction-runtime engine scenario commits a fixture plan through the normal plan store, enables the registered feature, and runs the normal main loop. Passed6ticks with progress revisions1..6, exactly1road site under cap, preserved5entries/plan revision1 and bootstrap spawn15:15, no errors/messages. Evidence construction-runtime-native.json retains dirty/bundle provenance. This high-budget fixture does not qualify default3CPU completion, whole-module reset or rebuilding.
+
+Quality498production/446testfiles zero violations. Full units1,067tests/312files8.50s. Focused disabled-feature/config/stored-cycle plus smoke7tests369ms. Remaining acceptance: native RCL progression/downgrade, structure-loss reconstruction, reserve turnover, full reset/backoff, remote policy and final ED-22 prerequisite reconciliation; broader engine regression must include both new construction scenarios.

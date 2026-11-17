@@ -21,6 +21,7 @@ export function resolveConfig(input: ConfigInput, tick: number): EffectiveConfig
     const patch = validatePatch(temporary, 'temporary');
     if (tick < expiresAt) apply('temporary', patch);
   }
+  if (values.constructionRetryMaximumDelay < values.constructionRetryDelay) throw new Error('Construction retry maximum delay must cover initial delay');
   if (values.upgradeFleetStopEnergy >= values.upgradeFleetStartEnergy) throw new Error('Upgrade fleet stop must be below start energy');
   if (values.recoveryEnterEnergy >= values.recoveryExitEnergy) throw new Error('Recovery entry must be below exit energy');
   if (values.terminalEnergyLow >= values.terminalEnergyHigh) throw new Error('terminalEnergyLow must be below terminalEnergyHigh');

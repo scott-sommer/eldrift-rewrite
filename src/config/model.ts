@@ -1,6 +1,8 @@
+import { constructionDefaults } from './construction';
+import type { ConstructionConfig } from './construction';
 import { planningDefaults } from './planning';
 import type { PlanningConfig } from './planning';
-export interface RuntimeConfig extends PlanningConfig {
+export interface RuntimeConfig extends PlanningConfig, ConstructionConfig {
   recoverySupportEnabled: boolean;
   recoverySupportReserve: number;
   recoverySupportBodyBudget: number;
@@ -101,7 +103,7 @@ export interface RuntimeConfig extends PlanningConfig {
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
-  ...planningDefaults,
+  ...planningDefaults, ...constructionDefaults,
   recoverySupportEnabled: true,
   recoverySupportReserve: 0,
   recoverySupportBodyBudget: 2600,

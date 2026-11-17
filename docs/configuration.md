@@ -72,3 +72,12 @@ and road-search budgets remain applicable. Per-step changes preserve checkpoint
 identity; anchor-domain and cumulative-ceiling changes restart the request and
 invalidate stale proposals while retaining the committed plan. These settings
 bound placement attempts, not total CPU consumed by checkpoint replay or routing.
+
+
+## Construction execution
+
+`constructionEnabled` defaults false and activates retained committed-plan reconciliation independently of `planningEnabled`. Owned rooms only; remote authorization is separate unfinished policy. Normal environment/empire/room/temporary layers apply.
+
+Defaults: `constructionCpuBudget=3`, `constructionEntries=20`, `constructionAttempts=1`, `constructionRoomSites=5`. Admission is cooperative; CPU value is not a hard elapsed-time ceiling. `constructionIncludeTerminalEnergy=false` means only owned storage energy satisfies a plan entry's minimumStoredEnergy requirement.
+
+Error retry controls: `constructionRetryAttempts=3`, `constructionRetryDelay=10`, `constructionRetryMaximumDelay=1000`; maximum delay must cover initial delay. Quarantine stops engine calls until desired-plan/policy refresh or observed site/structure presence. Runtime lifecycle/native qualification remains ED-27 work; see construction.md.
