@@ -12,6 +12,8 @@ test('native policy maps resolved tuning and binds scoring mechanics to its revi
     planningMinimumImprovement: 12, planningMaximumPathOps: 5000 } }, 1).values;
   const policy = nativePlanningPolicy('W0N1', config);
   expect(policy.weights).toEqual({ hauling: 2, service: 3, capacityShortfall: 4, swamps: 5, defense: 6, migration: 7 });
+  expect(policy.defense).toBeDefined();
+  expect(nativePlanningPolicy('W0N1', { ...config, planningDefenseStrategy: 'legacy' }).defense).toBeUndefined();
   expect(policy.minimumImprovement).toBe(12);
   expect(policy.maximumPathOps).toBe(5000);
   expect(nativePlanningPolicy('W0N1', { ...config, planningMaximumPathOps: 5001 }).scoreRevision).not.toBe(policy.scoreRevision);

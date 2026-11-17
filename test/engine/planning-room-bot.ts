@@ -9,7 +9,7 @@ export function loop() {
   const state = createMemoryPort(() => Memory);
   const settings = openState(state, 'operator/config', operatorSchema);
   settings.empire = { planningEnabled: true, planningCpuBudget: 100, planningCandidateAttempts: 1000,
-    planningEvaluationSteps: 20, planningSearches: 4 };
+    planningEvaluationSteps: 20, planningSearches: 4, planningDefenseScans: 100000, planningDefenseAugmentations: 4 };
   saveState(state, 'operator/config', operatorSchema, settings);
   botLoop();
   const job = (state.read('planning-jobs/W0N1') as Envelope | undefined)?.data as PlanningJobRecord | undefined;

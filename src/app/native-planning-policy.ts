@@ -1,3 +1,4 @@
+import { nativeDefensePolicy } from './native-defense-policy';
 import { createNativePlanningScore } from './native-planning-score';
 import type { NativePlanningPolicy } from './native-planning-work';
 import type { RuntimeConfig } from '../config/model';
@@ -9,7 +10,9 @@ export function nativePlanningPolicy(room: string, config: Readonly<RuntimeConfi
   const score = createNativePlanningScore(room, {
     maximumPathOps: config.planningMaximumPathOps, protectedTypes, barrierCosts,
   });
-  return { config, implementationRevision: 'native-planning-v3:legacy-perimeter-v1',
+  const adaptive = config.planningDefenseStrategy === 'adaptive';
+  return { config, implementationRevision: adaptive ? 'native-planning-v4:adaptive-defense-v1' : 'native-planning-v3:legacy-perimeter-v1',
+    ...(adaptive ? { defense: nativeDefensePolicy(room, config, protectedTypes) } : {}),
     versions: { standard: 'standard-v1', constrained: 'constrained-v1', stamps: 'stamps-v1' }, searchRevision: 'native-roads-v1',
     scoreRevision: score.revision, maximumPathOps: config.planningMaximumPathOps,
     valuableTypes: protectedTypes, protectedTypes, barrierCosts, constraints: [],
@@ -19,7 +22,7 @@ export function nativePlanningPolicy(room: string, config: Readonly<RuntimeConfi
       defense: config.planningDefenseWeight, migration: config.planningMigrationWeight },
     prepareScore(observation) {
       const prepare = score.prepare(observation);
-      return (candidate, entries) => prepare(candidate, applyLegacyPerimeterDefense(candidate, entries, observation));
+      return (candidate, entries) => prepare(candidate, adaptive ? entries : applyLegacyPerimeterDefense(candidate, entries, observation));
     },
   };
 }

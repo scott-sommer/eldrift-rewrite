@@ -15,7 +15,7 @@ async function planningRoomWorld(server, bot, irregular = false) {
   await server.world.addRoomObject('W0N1', 'mineral', 10, 40, { mineralType: 'H', mineralAmount: 50000, density: 1 });
 }
 async function reloadPlanningRoom(server, bot, modules, index) {
-  if (![50, 120, 350].includes(index)) return;
+  if (![50, 120, 380].includes(index)) return;
   const { db, env } = server.common.storage;
   const main = modules.main + '\n(Memory.planningRoomReloads ??= []).push(Game.time);';
   await db['users.code'].update({ user: bot.id }, { $set: { modules: { ...modules, main }, timestamp: Date.now() } });
@@ -28,7 +28,7 @@ function verifyPlanningRoom(memory) {
     firstCommit: rows.find(row => row.outcome === 'committed'), lastBest: rows.findLast(row => row.best) }));
   assert.equal(rows.length, 400);
   assert.ok(rows.every(row => row.sites === 0));
-  assert.deepEqual(memory.planningRoomReloads, [51, 121, 351]);
+  assert.deepEqual(memory.planningRoomReloads, [51, 121, 381]);
   const records = memory.eldrift.records, plan = records['planning/W0N1'].data;
   const receipt = records['planning-jobs/W0N1'].data.receipt;
   assert.equal(receipt?.outcome, 'committed', 'native room planning must commit a complete validated plan');
@@ -51,7 +51,7 @@ function verifyPlanningRoom(memory) {
   assert.equal(new Set(ids).size, ids.length);
   assert.equal(JSON.parse(receipt.signature)[4], ids.length);
   assert.ok(rows.filter(row => row.tick > receipt.completedAt).every(row => row.revision === 1 && row.outcome === 'committed'));
-  assert.ok(receipt.completedAt < 350, 'third reload verifies an already committed plan');
+  assert.ok(receipt.completedAt < 380, 'third reload verifies an already committed plan');
   console.log('PLANNING_ROOM_PLAN ' + JSON.stringify({ strategy: plan.strategy, committedAt: plan.provenance.committedAt,
     costs: plan.provenance.costs, bootstrap: plan.provenance.bootstrap,
     counts: plan.entries.reduce((counts, entry) => { counts[entry.type] = (counts[entry.type] || 0) + 1; return counts; }, {}) }));

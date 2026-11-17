@@ -1,6 +1,8 @@
+import { planningDefenseDefaults, planningDefenseValidators } from './planning-defense';
+import type { PlanningDefenseConfig } from './planning-defense';
 import { planningScoreDefaults, planningScoreValidators } from './planning-score';
 import type { PlanningScoreConfig } from './planning-score';
-export interface PlanningConfig extends PlanningScoreConfig {
+export interface PlanningConfig extends PlanningScoreConfig, PlanningDefenseConfig {
   planningEnabled: boolean;
   planningCpuBudget: number;
   planningCandidateAttempts: number;
@@ -14,7 +16,7 @@ export interface PlanningConfig extends PlanningScoreConfig {
   planningStampTotalAttempts: number;
 }
 export const planningDefaults: Readonly<PlanningConfig> = Object.freeze({
-  ...planningScoreDefaults,
+  ...planningScoreDefaults, ...planningDefenseDefaults,
   planningEnabled: false, planningCpuBudget: 5, planningCandidateAttempts: 100,
   planningEvaluationSteps: 1, planningSearches: 1, planningPreserveExisting: true,
   planningAnchorLimit: 36, planningRefreshRevision: 0,
@@ -24,7 +26,7 @@ function integer(value: unknown, maximum: number, minimum = 0): boolean {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= minimum && value <= maximum;
 }
 export const planningValidators: { [K in keyof PlanningConfig]: (value: unknown) => boolean } = {
-  ...planningScoreValidators,
+  ...planningScoreValidators, ...planningDefenseValidators,
   planningEnabled: value => typeof value === 'boolean',
   planningCpuBudget: value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1000,
   planningCandidateAttempts: value => integer(value, 10000),
