@@ -32,14 +32,15 @@ function addEdge(graph: ResidualEdge[][], edge: CapacityEdge): void {
 }
 function* searchPath(graph: ResidualEdge[][], source: number, sink: number) {
   const parents: ({ from: number; edge: number } | undefined)[] = Array(graph.length);
-  const seen = new Set([source]), queue = [source];
+  const seen = new Uint8Array(graph.length), queue = [source];
+  seen[source] = 1;
   for (let cursor = 0; cursor < queue.length; cursor++) {
     const from = queue[cursor]!;
     for (let edge = 0; edge < graph[from]!.length; edge++) {
       yield;
       const next = graph[from]![edge]!;
-      if (next.capacity === 0 || seen.has(next.to)) continue;
-      seen.add(next.to); parents[next.to] = { from, edge }; queue.push(next.to);
+      if (next.capacity === 0 || seen[next.to] === 1) continue;
+      seen[next.to] = 1; parents[next.to] = { from, edge }; queue.push(next.to);
       if (next.to === sink) return { parents, queue };
     }
   }

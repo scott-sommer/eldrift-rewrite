@@ -1,3 +1,4 @@
+import { sampledGuard } from '../../core/sampled-guard';
 import { compactSequence } from './draft-revision';
 import { adjacentTiles, tileAt, tileIndex } from '../../core/geometry/local-grid';
 import type { Tile } from '../../core/geometry/local-grid';
@@ -19,6 +20,7 @@ export function createTerrainCutNetwork(input: TerrainCutInput, checkpoint?: Flo
   const prepare = prepareEdges(buildEdges(input, entries, protectedTiles, infinity));
   let network: ReturnType<typeof createRecoverableFlow> | undefined;
   return { advance(maximumAugmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
+    guard = sampledGuard(guard, 32);
     const prepared = prepare(maximumScans, guard);
     if (!prepared.done) return { status: 'pending' as const, flow: 0, ...(saved ? { checkpoint: { ...saved } } : {}) };
     network ??= createRecoverableFlow(5002, prepared.edges, 5000, 5001, saved, recipe);

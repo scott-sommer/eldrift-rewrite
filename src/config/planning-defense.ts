@@ -6,7 +6,7 @@ export interface PlanningDefenseConfig {
   planningDefenseMinimumTowerPower: number; planningDefenseMaximumUnreachableRepair: number;
 }
 export const planningDefenseDefaults: Readonly<PlanningDefenseConfig> = Object.freeze({
-  planningDefenseMinimumStoredEnergy: 50000, planningDefenseStrategy: 'adaptive', planningDefenseRcl: 6, planningDefenseScans: 10000,
+  planningDefenseMinimumStoredEnergy: 50000, planningDefenseStrategy: 'adaptive', planningDefenseRcl: 6, planningDefenseScans: 20000,
   planningDefenseAugmentations: 1, planningDefenseUpkeepWeight: 100, planningDefenseRepairWeight: 1,
   planningDefenseTowerWeight: 1, planningDefenseMinimumTowerPower: 150, planningDefenseMaximumUnreachableRepair: 2500,
 });
