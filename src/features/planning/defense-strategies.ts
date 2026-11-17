@@ -12,12 +12,14 @@ export interface DefenseStrategy {
   advance(budget: { augmentations: number; scans: number }, guard: () => boolean): DefenseStep;
 }
 /** Lazy strategy adapters. Graph construction and synchronous generators still need CPU qualification. */
-export function createDefenseStrategies(input: TerrainCutDefenseInput, fallback: PerimeterDefenseInput): DefenseStrategy[] {
+export function createDefenseStrategies(
+  input: TerrainCutDefenseInput, fallback: PerimeterDefenseInput, terrainStrategy?: DefenseStrategy,
+): DefenseStrategy[] {
   const snapshot: TerrainCutDefenseInput = JSON.parse(JSON.stringify(input));
   const legacy: PerimeterDefenseInput = JSON.parse(JSON.stringify(fallback));
   let cut: ReturnType<typeof createTerrainCutDefense> | undefined;
   return [
-    { id: 'terrain-cut-v1', advance(budget, guard) {
+    terrainStrategy ?? { id: 'terrain-cut-v1', advance(budget, guard) {
       if (!guard()) return { status: 'pending' };
       cut ??= createTerrainCutDefense(snapshot);
       const result = cut.advance(budget.augmentations, guard, budget.scans);

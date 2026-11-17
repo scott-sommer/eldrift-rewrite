@@ -125,3 +125,10 @@ Stored lifecycle native fixture engine-XFWCFC passes reload recovery through cre
 The stored terrain-defense lifecycle compares the current request identity before restoring saved progress. A changed request clears only the defense-search checkpoint through a revision-checked write and reports `restarted`; the next admitted advance starts fresh. Admission refusal performs no store access. Concurrent revision failure remains an explicit conflict. Committed planning state is outside this service's ownership.
 
 Validation: quality gates passed (471 production files, 427 test files, zero Lizard violations); targeted recovery/store/request plus smoke tests passed (7 tests, 265 ms); full unit suite passed (1,014 tests across 295 files, 8.66 s). The native fixture handles the new restart status, but no new native-run evidence is claimed for this change. Production strategy/coordinator integration and ED-26's remaining fixture gates remain open.
+
+
+### Durable search in the strategy pipeline
+
+`createStoredDefenseStrategies` composes the persisted terrain-search lifecycle into the same strategy contract used by exit-perimeter and legacy fallback generation. The ordinary strategy factory accepts an explicitly injected terrain strategy; persistence stays at the feature composition boundary. Deferred admission, restart and revision conflict yield pending rather than rejecting an otherwise viable strategy. The caller must supply a stable request snapshot and room-specific store.
+
+Tests exercise progress after adapter recreation, policy-change restart with new RCL staging, and both durable and heap-only generators through shared evaluation/ranking (all three candidates valid in the corridor fixture). Quality gates passed: 472 production files, 428 test files, zero Lizard violations. Targeted adapter/pipeline/coordinator plus smoke: seven tests passed in 286 ms. This does not persist coordinator evaluation progress or wire the strategy set into the live runtime; those remain necessary integration work. No new native engine claim is made.
