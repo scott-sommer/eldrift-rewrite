@@ -56,3 +56,36 @@ test('coordinator snapshots evaluation observations and ranking weights across t
   expect(result.selection.selected?.total).toBe(1);
   expect(result.selected?.evaluation.ok).toBe(true);
 });
+
+
+test('coordinator restores detached geometry, revalidates it and skips completed generators', () => {
+  const observation = planningObservation();
+  const storage = { type: 'storage', position: { x: 25, y: 25 } };
+  const input = { observation, placements: [storage], protectedAssets: [storage],
+    costs: { rampart: 1, constructedWall: 1 }, origins: [{ x: 24, y: 25 }], gates: [], repairRange: 3,
+    blocksMovement: (type: string) => type !== 'rampart',
+    operations: { rampartDecayHits: 300, rampartDecayTicks: 100, repairEnergyPerHit: 0.01,
+      minimumTowerPower: 0, tower: { power: 600, optimalRange: 5, falloffRange: 20, falloff: 0.75 } } };
+  const policy = { weights: { construction: 1, upkeep: 0, repairAccess: 0, gateAccess: 0, towerDeficit: 0 },
+    maximumUnreachableRepair: 2500, maximumBlockedGates: 0 };
+  let calls = 0;
+  const strategies = [{ id: 'fallback', advance() { calls++; return { status: 'complete' as const,
+    barriers: [{ type: 'rampart', position: { x: 25, y: 25 }, rcl: 6 }] }; } }];
+  const budget = { augmentations: 1, scans: 10 };
+  const first = createDefenseCoordinator(strategies, input, policy, { revision: 'movement-v1' });
+  first.advance(budget, () => true);
+  const saved = JSON.parse(JSON.stringify(first.checkpoint()));
+  const restored = createDefenseCoordinator(strategies, input, policy, { revision: 'movement-v1', checkpoint: saved });
+  saved.generated[0].barriers[0].position.x = 0;
+  expect(restored.advance(budget, () => false)).toEqual({ status: 'pending' });
+  restored.advance(budget, () => true);
+  const result = restored.advance(budget, () => true);
+  expect(calls).toBe(1);
+  expect(result.status).toBe('complete');
+  if (result.status !== 'complete') throw new Error('Expected restored selection');
+  expect(result.selected?.barriers[0]?.position.x).toBe(25);
+  expect(() => createDefenseCoordinator(strategies, input, policy,
+    { revision: 'movement-v2', checkpoint: first.checkpoint() })).toThrow('Stale');
+  expect(() => createDefenseCoordinator(strategies, { ...input, costs: { rampart: 2, constructedWall: 1 } }, policy,
+    { revision: 'movement-v1', checkpoint: first.checkpoint() })).toThrow('Stale');
+});

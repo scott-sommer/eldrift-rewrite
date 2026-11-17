@@ -139,3 +139,12 @@ Tests exercise progress after adapter recreation, policy-change restart with new
 Candidate evaluation now supports an explicit optional defense stage between draft generation and route scoring. The defense port owns an opaque checkpoint carried in the existing serialized candidate payload, supplies a semantic revision included in candidate identity, and returns pending/rejected/complete geometry. Admission refusal retains progress without invoking the port. Completion moves to scoring on a later call; no unscored proposal escapes. Existing callers without the port retain their previous lifecycle and semantic identity. The native evaluator exposes the port for composition; native policy still uses legacy synchronous defense until the coordinator adapter and policy inputs are connected.
 
 Lizard identified excessive branching during implementation; candidate identity construction was extracted and phase validation consolidated. Final quality checks passed (473 production / 429 test files, zero violations). Focused candidate lifecycle plus smoke: 13 tests passed in 1.07 s. Full unit regression: 1,018 tests across 297 files passed in 9.12 s. Native engine and production policy integration remain unproven for the new phase.
+
+
+### Coordinator geometry checkpoints
+
+The coordinator exposes a detached versioned geometry checkpoint bound to ordered strategy IDs, plain evaluation inputs, ranking policy, and an explicit recovery revision (including movement semantics supplied by the caller). Restoration skips finished generators but revalidates their geometry under admission before ranking; persisted evaluation scores are not trusted. Progress validation checks order, result kinds and barrier positions. Pending terrain-generator work remains owned by its separate search checkpoint.
+
+Restored coordinators must be retained across admitted calls while revalidation proceeds; reconstructing the coordinator every call would repeatedly replay validation. A candidate-defense composition adapter therefore still needs a request-scoped heap cache alongside its serialized checkpoint. The native policy remains legacy-only until that integration is completed.
+
+Quality passed (474 production / 429 test files, zero Lizard violations). Coordinator/pipeline plus smoke: six tests passed in 287 ms, including restoration after generation, no repeated generator execution, detached checkpoint data and invalidation for policy/movement changes. No new full-suite or engine claim for this increment.
