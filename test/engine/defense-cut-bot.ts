@@ -1,10 +1,11 @@
+import type { StagedTile } from '../../src/capabilities/planning/template';
 import type { FlowCheckpoint } from '../../src/core/recoverable-flow';
 import { loop as runtimeLoop } from '../../src/main';
 import { createTerrainCutDefense } from '../../src/capabilities/planning/terrain-cut-defense';
 let search: ReturnType<typeof createTerrainCutDefense> | undefined;
 export function loop() {
   runtimeLoop();
-  const memory = Memory as Memory & { defenseCut?: { done: boolean; barriers: number; starts: number[]; restored: number[]; checkpoint?: FlowCheckpoint; rows: { tick: number; cpu: number; status: string }[] } };
+  const memory = Memory as Memory & { defenseCut?: { done: boolean; barriers: number; entries?: StagedTile[]; starts: number[]; restored: number[]; checkpoint?: FlowCheckpoint; rows: { tick: number; cpu: number; status: string }[] } };
   const saved = memory.defenseCut ??= { done: false, barriers: 0, starts: [], restored: [], rows: [] };
   if (saved.done) return;
   const started = Game.cpu.getUsed();
@@ -13,7 +14,7 @@ export function loop() {
   if ('checkpoint' in result && result.checkpoint) saved.checkpoint = result.checkpoint;
   saved.rows.push({ tick: Game.time, cpu: Game.cpu.getUsed() - started, status: result.status });
   if (result.status === 'rejected') throw new Error('Native defense cut rejected: ' + result.reason);
-  if (result.status === 'complete') { saved.done = true; saved.barriers = result.barriers.length; }
+  if (result.status === 'complete') { saved.done = true; saved.barriers = result.barriers.length; saved.entries = result.barriers; }
 }
 function createSearch(checkpoint?: FlowCheckpoint) {
   const protectedTiles = [];

@@ -22,6 +22,12 @@ for (const scenario of cases) {
     assert.ok(baseline, 'default-budget baseline must precede late-reset comparison');
     compareStampBudgetPlans(JSON.parse(fs.readFileSync(baseline.evidence, 'utf8')).stampPlanning, evidence.stampPlanning);
   }
+  if (scenario === '--defense-cut-reload') {
+    const baseline = results.find(result => result.scenario === '--defense-cut');
+    assert.ok(baseline, 'terrain baseline must precede reload comparison');
+    const original = JSON.parse(fs.readFileSync(baseline.evidence, 'utf8')).defenseCut;
+    assert.deepEqual(evidence.defenseCut.entries, original.entries, 'recovery must preserve complete staged barrier geometry');
+  }
   results.push({ scenario: scenario || 'packaged-smoke', milliseconds: performance.now() - began, evidence: marker[1].trim(), expectedFailure: negative });
   console.log(`${scenario || 'packaged-smoke'}: passed`);
 }
