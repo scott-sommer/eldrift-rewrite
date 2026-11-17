@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
-import { createIntelStore } from '../../src/persistence/intel/store';
+import { createIntelStore } from '../../src/features/intel/store';
 
 test('memory namespace survives serialization reset without altering legacy keys', () => {
   let memory: { eldrift?: unknown; roomCache: unknown } = { roomCache: { W1N1: { labs: ['legacy'] } } };

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { createIntelStore } from '../../src/persistence/intel/store';
+import { createIntelStore } from '../../src/features/intel/store';
 import type { Envelope } from '../../src/persistence/versioned-state';
 
 test('vision loss retains intel and unrelated namespaces; reconstruction restores freshness', () => {

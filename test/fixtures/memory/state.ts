@@ -5,7 +5,7 @@ import { colonySchema } from '../../../src/features/colony/state';
 import { planSchema } from '../../../src/features/planning/plan-state';
 import { missionSchema } from '../../../src/features/missions/state';
 import { operatorSchema } from '../../../src/features/operator/state';
-import { intelSchema } from '../../../src/persistence/intel/schema';
+import { intelSchema } from '../../../src/features/intel/schema';
 import { taskSchema } from '../../../src/persistence/tasks/schema';
 import { reservationSchema } from '../../../src/persistence/reservations/schema';
 import type { Claim } from '../../../src/persistence/reservations/schema';
@@ -26,7 +26,7 @@ export function memoryFixture(rooms: number) {
   for (let index = 0; index < rooms; index++) {
     const room = `W${index}N1`;
     put(port, `colony/${room}`, colonySchema(room, 'fixture'), { room, owner: 'fixture', mode: 'normal', recovery: { active: false, checkedAt: 100 } });
-    put(port, `intel/${room}`, intelSchema, { lastSeen: 100, owned: true, sourceIds: [`${room}-source-a`, `${room}-source-b`], structureIds: Array.from({ length: 100 }, (_, i) => `${room}-structure-${i}`), hostileIds: [] });
+    put(port, `intel/${room}`, intelSchema(room), { ...intelSchema(room).initial(), lastSeen: 100, owned: true, sourceIds: [`${room}-source-a`, `${room}-source-b`], structureIds: Array.from({ length: 100 }, (_, i) => `${room}-structure-${i}`), hostileIds: [] });
     put(port, `planning/${room}`, planSchema(room, ['road']), { room, revision: 1, strategy: 'size-fixture', entries: Array.from({ length: 150 }, (_, i) => ({ type: 'road', x: i % 30 + 1, y: Math.floor(i / 30) + 1, rcl: 3, priority: i, source: 'strategy' as const })) });
     const missionId = `defend-${room}`;
     const contracts = { defend: { validOptions: (value: unknown) => value === room, validCriteria: (value: unknown) => value === null } };
