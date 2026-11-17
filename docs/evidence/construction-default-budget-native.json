@@ -1,0 +1,517 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wJwyPQ",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 238.56830000000002,
+      "cpuMilliseconds": 36,
+      "memoryBytes": 3293
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 28.498299999999972,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 4441
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 19.873699999999985,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 5603
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 18.070299999999975,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 6765
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 18.63900000000001,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 7926
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 31.18730000000005,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 9088
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 20.194900000000075,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 10249
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 18.946800000000053,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 11409
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 19.00720000000001,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 12571
+    },
+    {
+      "tick": 11,
+      "wallMilliseconds": 32.11520000000007,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 13735
+    },
+    {
+      "tick": 12,
+      "wallMilliseconds": 15.69130000000007,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 14898
+    },
+    {
+      "tick": 13,
+      "wallMilliseconds": 16.027999999999906,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 16061
+    },
+    {
+      "tick": 14,
+      "wallMilliseconds": 20.681100000000015,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 17213
+    },
+    {
+      "tick": 15,
+      "wallMilliseconds": 23.452599999999848,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 18376
+    },
+    {
+      "tick": 16,
+      "wallMilliseconds": 16.267100000000028,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 19539
+    },
+    {
+      "tick": 17,
+      "wallMilliseconds": 15.255400000000009,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 20703
+    },
+    {
+      "tick": 18,
+      "wallMilliseconds": 15.897700000000214,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 21866
+    },
+    {
+      "tick": 19,
+      "wallMilliseconds": 30.054499999999962,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 23030
+    },
+    {
+      "tick": 20,
+      "wallMilliseconds": 28.09439999999995,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 24192
+    },
+    {
+      "tick": 21,
+      "wallMilliseconds": 29.751500000000078,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 25356
+    }
+  ],
+  "provenance": {
+    "commit": "3f0ad225e3fb49ded28a2c397f4cd7d583e91749",
+    "dirty": true,
+    "bundleSha256": "6d9725b548d292ead91b71a0a2cec562a73f40b6766fd947ff87a064305158cb",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "constructionBudget": [
+    {
+      "tick": 1,
+      "used": 18.808200000000006,
+      "revision": 1,
+      "next": 1,
+      "level": 6,
+      "energy": 0,
+      "sites": [],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": []
+    },
+    {
+      "tick": 2,
+      "used": 4.393700000000003,
+      "revision": 2,
+      "next": 2,
+      "level": 6,
+      "energy": 0,
+      "sites": [],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": []
+    },
+    {
+      "tick": 3,
+      "used": 3.8216000000000037,
+      "revision": 3,
+      "next": 4,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 4,
+      "used": 2.1096000000000004,
+      "revision": 4,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 5,
+      "used": 4.501800000000003,
+      "revision": 5,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 6,
+      "used": 3.1518999999999977,
+      "revision": 6,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 7,
+      "used": 4.505600000000001,
+      "revision": 7,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 8,
+      "used": 4.47120000000001,
+      "revision": 8,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 9,
+      "used": 4.1573999999999955,
+      "revision": 9,
+      "next": 2,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 10,
+      "used": 4.140999999999991,
+      "revision": 10,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 11,
+      "used": 3.501500000000007,
+      "revision": 11,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 12,
+      "used": 2.825400000000002,
+      "revision": 12,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 13,
+      "used": 4.0929,
+      "revision": 13,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 14,
+      "used": 2.765500000000003,
+      "revision": 14,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 15,
+      "used": 3.933000000000007,
+      "revision": 15,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 16,
+      "used": 3.7812999999999874,
+      "revision": 16,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 17,
+      "used": 4.144800000000004,
+      "revision": 17,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 18,
+      "used": 3.0043000000000006,
+      "revision": 18,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 19,
+      "used": 3.55510000000001,
+      "revision": 19,
+      "next": 3,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    },
+    {
+      "tick": 20,
+      "used": 2.9455999999999847,
+      "revision": 20,
+      "next": 0,
+      "level": 6,
+      "energy": 0,
+      "sites": [
+        "road"
+      ],
+      "planRevision": 1,
+      "entries": 5,
+      "bootstrap": "spawn:15:15",
+      "snapshot": "{\"room\":\"W0N1\",\"revision\":1,\"strategy\":\"fixture\",\"entries\":[{\"type\":\"spawn\",\"x\":15,\"y\":15,\"rcl\":1,\"priority\":-100,\"source\":\"strategy\"},{\"type\":\"storage\",\"x\":25,\"y\":25,\"rcl\":4,\"priority\":-90,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":23,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"road\",\"x\":24,\"y\":25,\"rcl\":1,\"priority\":1,\"source\":\"strategy\"},{\"type\":\"rampart\",\"x\":27,\"y\":25,\"rcl\":6,\"minimumStoredEnergy\":50000,\"priority\":50,\"source\":\"strategy\"}],\"provenance\":{\"candidateId\":\"fixture\",\"strategyVersion\":\"fixture-v1\",\"observation\":\"fixture-observation\",\"policy\":\"fixture-policy\",\"generatedAt\":1,\"anchor\":{\"x\":25,\"y\":25},\"transform\":0,\"costs\":{\"hauling\":0,\"service\":0,\"capacityShortfall\":0,\"swamps\":0,\"defense\":1,\"migration\":0},\"bootstrap\":{\"spawn\":\"spawn:15:15\",\"storage\":\"storage:25:25\"},\"committedAt\":1}}",
+      "roads": [],
+      "roadSites": [
+        "23:25"
+      ]
+    }
+  ],
+  "childPids": [
+    55544,
+    7804,
+    21636
+  ]
+}

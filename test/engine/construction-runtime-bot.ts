@@ -1,3 +1,4 @@
+import { constructionDefaults } from '../../src/config/construction';
 import { loop as runtimeLoop } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState, saveState } from '../../src/persistence/versioned-state';
@@ -21,13 +22,16 @@ export function loop() {
     }
   }
   const settings = openState(state, 'operator/config', operatorSchema);
-  settings.empire = { constructionEnabled: true, constructionCpuBudget: 100, constructionEntries: 20,
+  const defaultBudget = !!(globalThis as typeof globalThis & { constructionDefaultBudget?: boolean }).constructionDefaultBudget;
+  settings.empire = { constructionEnabled: true, constructionCpuBudget: defaultBudget ? constructionDefaults.constructionCpuBudget : 100, constructionEntries: 20,
     constructionAttempts: 1, constructionRoomSites: 1 };
   saveState(state, 'operator/config', operatorSchema, settings);
+  const started = Game.cpu.getUsed();
   runtimeLoop();
+  const used = Game.cpu.getUsed() - started;
   const progress = createConstructionProgressStore(state, 'W0N1').read(), plan = plans.read();
   const memory = Memory as Memory & { constructionRuntimeRows?: unknown[] };
-  (memory.constructionRuntimeRows ??= []).push({ tick: Game.time, revision: progress.revision, next: progress.next,
+  (memory.constructionRuntimeRows ??= []).push({ tick: Game.time, used, revision: progress.revision, next: progress.next,
     level: Game.rooms.W0N1!.controller!.level, energy: Game.rooms.W0N1!.storage?.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,
     sites: Object.values(Game.constructionSites).map(site => site.structureType), planRevision: plan.revision,
     entries: plan.entries.length, bootstrap: plan.provenance?.bootstrap.spawn, snapshot: JSON.stringify(plan),
