@@ -38,3 +38,12 @@ The suite additionally includes --maintenance: a test fixture seeds reservation 
 The --retirement fixture adds an owned creep in a disposable world, invokes production main, and issues suicide. Subsequent ticks verify the local roster and task queue are cleared and only that creep's claim is released. Eleven scenarios passed in 9.58s with this case included. No live shard was contacted.
 
 --recovery uses six ticks (other current scenarios use three) and verifies repeated blockage followed by occupancy-aware rerouting around an unchanged stationary creep. The suite now contains13 checks and passed in11.60s. Reports include the scenario's actual tick count.
+
+
+## Aggregate failure reporting
+
+The suite now replaces artifacts/engine-suite.json with status=running before the first child. Each completed case persists its evidence path. A failed child/assertion writes status=failed, activeScenario and the failure stack while retaining prior successful cases. Only successful exhaustion writes status=passed. A killed parent can leave running, which is not completion evidence. The standalone node --test tools/engine/suite-report-check.cjs regression verifies stale-success replacement, partial evidence, failure and subsequent success lifecycle. Normal npm run test:engine:suite uses this reporter automatically.
+
+At production8e56274 the construction milestone aggregate stopped at --stamp-budget after1600ticks without a receipt; the captured checkpoint had evaluated one candidate. An isolated unchanged rerun committed at1179 with the original1600tick limit. Both traces/provenance are retained in docs/evidence/construction-stamp-budget-regression.json. This is unresolved timing sensitivity, not proof of a deterministic runtime regression or a successful aggregate. ED-43 must qualify repeated default-budget completion and setup/checkpoint costs; no limit was relaxed.
+
+Validation: reporter lifecycle1test passes (115.98ms overall); full unit1,070tests/313files passes7.97s. Quality499production/449testfiles passes with zero Lizard violations. Initial placement of the Node-only check under Vitest discovery caused an empty-suite failure; naming it suite-report-check.cjs and invoking it explicitly from the engine-suite script separates the two runners. No production bot code or scenario deadline changed.
