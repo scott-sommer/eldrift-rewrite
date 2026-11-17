@@ -72,3 +72,12 @@ Site requests recheck visible room ownership and map native acceptance/full/RCL/
 New registered --construction local-engine scenario passed6ticks: one accepted road, observed site on later ticks, room cap prevents another road, and missing storage blocks the50000reserve rampart. Evidence docs/evidence/construction-native-baseline.json retains dirty-worktree/bundle provenance and all decision rows. No errors/messages. This is test-bot integration, not normal runtime registration or live deployment. Existing full-suite170case report predates this newly registered case; no171case aggregate is claimed.
 
 Quality493production/442testfiles zero Lizard violations. Native-port/executor plus smoke8tests passed241ms, covering storage/optional terminal reserve sources, neutral/hostile classification, global identities, ownership loss and result mapping. Cursor/retry persistence, normal runtime feature/configuration, plan-revision guard, remote authorization and rebuilding/RCL/reset engine scenarios remain open.
+
+
+## Plan-bound persisted cursor
+
+Construction owns a version1 progress namespace per room with compare-and-save revision, exact plan/order identity and next scan index. createStoredConstructionCycle resumes that index after recreation and starts at0when desired plan contents/revision or ordering policy changes. Admission refusal touches neither plan nor store. Every side-effect request rechecks current desired-plan identity and progress revision; if either changed, later site calls stop and stale progress is not saved. Already accepted intents cannot be undone by a later revision change.
+
+The native --construction fixture now recreates store/service every tick, uses a fixture-defined retained plan and scans one entry per call. It passed6ticks with cursor1/2/0/1/2/0, progress revision6, exactly1road, site-existing recognition, cap refusal and missing-storage reserve refusal. Evidence construction-stored-native.json retains dirty/bundle provenance. This proves native Memory/service recreation, not whole-module reset or normal committed-plan runtime registration.
+
+Quality495production/443testfiles, zero Lizard violations. Focused stored-cycle/executor plus smoke8tests249ms. Full units1,060tests/310files passed8.42s. Tests cover refusal without initialization, recreated cursor, plan revision restart, stale plan blocking and stale progress-save rejection. Persistent bounded retry/quarantine records, runtime configuration/feature registration, remote authorization and remaining engine lifecycle cases are still open.

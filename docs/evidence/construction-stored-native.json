@@ -1,0 +1,151 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-j93skO",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 254.68560000000002,
+      "cpuMilliseconds": 37,
+      "memoryBytes": 984
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 18.358600000000024,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 1138
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 17.995300000000043,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1299
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 16.381899999999973,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1445
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 15.048700000000053,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1599
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 15.64429999999993,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1760
+    }
+  ],
+  "provenance": {
+    "commit": "b4a9fb41f25594681f211a0031f55d31e517c074",
+    "dirty": true,
+    "bundleSha256": "cadfefd65c1f471727d48808848a720b4be717d7a4692d86bc4d4cdf361a406c",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "construction": [
+    {
+      "tick": 1,
+      "created": 1,
+      "attempts": 1,
+      "decisions": [
+        {
+          "type": "road",
+          "status": "created",
+          "reason": "accepted"
+        }
+      ],
+      "next": 1,
+      "sites": 0,
+      "storedEnergy": 0
+    },
+    {
+      "tick": 2,
+      "created": 0,
+      "attempts": 0,
+      "decisions": [
+        {
+          "type": "road",
+          "status": "waiting-for-budget",
+          "reason": "site-limit"
+        }
+      ],
+      "next": 2,
+      "sites": 1,
+      "storedEnergy": 0
+    },
+    {
+      "tick": 3,
+      "created": 0,
+      "attempts": 0,
+      "decisions": [
+        {
+          "type": "rampart",
+          "status": "waiting-for-budget",
+          "reason": "energy-reserve"
+        }
+      ],
+      "next": 0,
+      "sites": 1,
+      "storedEnergy": 0
+    },
+    {
+      "tick": 4,
+      "created": 0,
+      "attempts": 0,
+      "decisions": [
+        {
+          "type": "road",
+          "status": "site-existing",
+          "reason": "present"
+        }
+      ],
+      "next": 1,
+      "sites": 1,
+      "storedEnergy": 0
+    },
+    {
+      "tick": 5,
+      "created": 0,
+      "attempts": 0,
+      "decisions": [
+        {
+          "type": "road",
+          "status": "waiting-for-budget",
+          "reason": "site-limit"
+        }
+      ],
+      "next": 2,
+      "sites": 1,
+      "storedEnergy": 0
+    },
+    {
+      "tick": 6,
+      "created": 0,
+      "attempts": 0,
+      "decisions": [
+        {
+          "type": "rampart",
+          "status": "waiting-for-budget",
+          "reason": "energy-reserve"
+        }
+      ],
+      "next": 0,
+      "sites": 1,
+      "storedEnergy": 0
+    }
+  ],
+  "childPids": [
+    16076,
+    22100,
+    26768
+  ]
+}

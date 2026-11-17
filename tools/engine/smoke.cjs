@@ -607,6 +607,8 @@ server.on('error', error => { console.error(error); finish(1, error); });
     assert.ok(rows.some(row => row.decisions.some(item => item.reason === 'energy-reserve')));
     assert.ok(rows.some(row => row.decisions.some(item => item.reason === 'site-limit')));
     assert.ok(rows.every(row => row.storedEnergy === 0));
+    assert.deepEqual(rows.map(row => row.next), [1, 2, 0, 1, 2, 0]);
+    assert.equal(memory.eldrift.records['construction/W0N1'].data.revision, 6);
   }
   if (defenseCut) {
     evidence.defenseCut = memory.defenseCut;
