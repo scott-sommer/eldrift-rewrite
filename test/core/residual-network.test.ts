@@ -35,3 +35,13 @@ test('one-scan slices preserve BFS progress and converge to uninterrupted flow',
   expect(result).toMatchObject({ done: true, flow: 2, reachable: [0] });
   expect(() => network.advance(1, () => true, -1)).toThrow('scan budget');
 });
+
+test('residual construction uses scan allowance and snapshots edges before deferred allocation', () => {
+  const edges = [{ from: 0, to: 1, capacity: 3 }, { from: 1, to: 2, capacity: 3 }];
+  const network = createResidualNetwork(3, edges, 0, 2);
+  edges[0]!.capacity = 0;
+  const first = network.advance(1, () => true, 1);
+  expect(first).toMatchObject({ done: false, flow: 0, scans: 1 });
+  expect(network.advance(1, () => false, 1)).toMatchObject({ done: false, flow: 0, scans: 0 });
+  expect(network.advance(10).flow).toBe(3);
+});

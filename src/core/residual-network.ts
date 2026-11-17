@@ -2,13 +2,15 @@ export interface CapacityEdge { from: number; to: number; capacity: number }
 interface ResidualEdge { to: number; reverse: number; capacity: number }
 /** Original Edmonds-Karp implementation. Each batch limits augmentations; BFS edge scans can yield across calls. */
 export function createResidualNetwork(size: number, edges: readonly CapacityEdge[], source: number, sink: number) {
-  const graph = buildNetwork(size, edges, source, sink);
+  const construction = buildNetwork(size, edges, source, sink), graph = construction.graph;
   let flow = 0, done = false, reachable: number[] = [];
   let pending: ReturnType<typeof searchPath> | undefined;
   return { advance(maximumAugmentations: number, guard: () => boolean = () => true, maximumScans = Number.MAX_SAFE_INTEGER) {
     validateAugmentationBudget(maximumAugmentations);
     validateScanBudget(maximumScans);
-    let augmentations = 0, scans = 0;
+    const prepared = construction.advance(maximumScans, guard);
+    let augmentations = 0, scans = prepared.scans;
+    if (!prepared.done) return { done, flow, augmentations, scans };
     while (!done && augmentations < maximumAugmentations && scans < maximumScans && guard()) {
       pending ??= searchPath(graph, source, sink);
       const step = pending.next(); scans++;
@@ -18,7 +20,7 @@ export function createResidualNetwork(size: number, edges: readonly CapacityEdge
         done = true; reachable = search.queue.sort((a, b) => a - b); break;
       }
       flow += augment(graph, search.parents, source, sink);
-      if (!Number.isSafeInteger(flow)) throw new Error('Flow overflow');
+      validateFlow(flow);
       augmentations++;
     }
     return { done, flow, augmentations, scans, ...(done ? { reachable: [...reachable] } : {}) };
@@ -56,16 +58,22 @@ function augment(graph: ResidualEdge[][], parents: ({ from: number; edge: number
   return amount;
 }
 
-function buildNetwork(size: number, edges: readonly CapacityEdge[], source: number, sink: number): ResidualEdge[][] {
+function buildNetwork(size: number, edges: readonly CapacityEdge[], source: number, sink: number) {
   if (!Number.isSafeInteger(size) || size < 2 || size > 10000) throw new Error('Invalid network size');
   const validNode = (node: number) => Number.isSafeInteger(node) && node >= 0 && node < size;
   if (!validNode(source) || !validNode(sink) || source === sink) throw new Error('Invalid terminals');
   const graph: ResidualEdge[][] = Array.from({ length: size }, () => []);
-  for (const edge of edges) {
-    validateEdge(edge, validNode);
-    addEdge(graph, edge);
-  }
-  return graph;
+  const snapshot = edges.map(edge => { validateEdge(edge, validNode); return { ...edge }; });
+  let cursor = 0;
+  return { graph, advance(maximum: number, guard: () => boolean) {
+    let scans = 0;
+    while (cursor < snapshot.length && scans < maximum && guard()) {
+      addEdge(graph, snapshot[cursor++]!); scans++;
+    }
+    // A false guard prevents the caller's BFS loop too; consumed budget prevents early search.
+    return { scans, done: cursor === snapshot.length };
+  } };
+
 }
 
 function validateEdge(edge: CapacityEdge, validNode: (node: number) => boolean): void {
@@ -79,4 +87,8 @@ function validateScanBudget(value: number): void {
 
 function validateAugmentationBudget(value: number): void {
   if (!Number.isSafeInteger(value) || value < 0) throw new Error('Invalid flow budget');
+}
+
+function validateFlow(flow: number): void {
+  if (!Number.isSafeInteger(flow)) throw new Error('Flow overflow');
 }
