@@ -89,3 +89,4 @@ adapter regression compares the complete validated staged defense with an
 uninterrupted run. Counts include iterator completion steps. This bounds BFS
 advancement only: graph construction, path augmentation and final validation
 still include synchronous work. Heap iterators are not persistence checkpoints.
+Integrated milestone: real terrain-cut, exit-perimeter and legacy generators now run through shared evaluation/ranking in defense-pipeline.test.ts. The corridor fixture completes all three with valid separation and selects a minimum-cost one-barrier envelope. Full1001 unit tests/291 files passed7.68s; quality467 production/422 test files passed. This remains a local unit integration fixture; native production selection and reset-safe persistence are pending.
