@@ -61,3 +61,14 @@ Quality491production/439testfiles, zero Lizard violations. Full units1,053tests/
 Tick advancement clears old intent reservations in favor of actual observations; backwards/invalid ticks reject. Reflected sites are not added twice, and observed completed structures retire local accepted reservations. Creation inputs and ledger metadata are detached even if an injected adapter mutates its argument.
 
 Quality492production/440testfiles, zero Lizard violations. Shared-ledger/executor plus smoke9tests225ms. Cross-room cap exhaustion, reflected-site count, tick turnover, failed-request nonreservation and adapter mutation isolation covered. Native global-site observation and runtime ledger ownership still need wiring; no new native execution evidence is claimed. Cursor/retry persistence and remote policy remain open.
+
+
+## Native construction port and first engine evidence
+
+Native construction composition lives in app/native-construction-ports.ts, following the app-layer native planning pattern; adapters do not import feature contracts. It composes room assessment/limits with owned site observations, completed structure keys, hostile-creep occupancy and global owned-site placement keys. Neutral roads/containers in an owned room are usable/completed infrastructure; hostile owned-structure types are not. Default reserve is owned storage energy; terminal energy is an explicit opt-in. Missing/nonowned storage contributes zero.
+
+Site requests recheck visible room ownership and map native acceptance/full/RCL/ownership/argument errors explicitly. Invalid-target/other errors remain retryable for future bounded backoff, since dynamic occupancy can cause them. Native reserve/site eligibility is still enforced by the executor before this mechanism call.
+
+New registered --construction local-engine scenario passed6ticks: one accepted road, observed site on later ticks, room cap prevents another road, and missing storage blocks the50000reserve rampart. Evidence docs/evidence/construction-native-baseline.json retains dirty-worktree/bundle provenance and all decision rows. No errors/messages. This is test-bot integration, not normal runtime registration or live deployment. Existing full-suite170case report predates this newly registered case; no171case aggregate is claimed.
+
+Quality493production/442testfiles zero Lizard violations. Native-port/executor plus smoke8tests passed241ms, covering storage/optional terminal reserve sources, neutral/hostile classification, global identities, ownership loss and result mapping. Cursor/retry persistence, normal runtime feature/configuration, plan-revision guard, remote authorization and rebuilding/RCL/reset engine scenarios remain open.
