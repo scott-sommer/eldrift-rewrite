@@ -30,3 +30,29 @@ test('coordinator retains generator rejection, evaluates alternatives and select
   if (again.status !== 'complete') throw new Error('Expected retained selection');
   expect(again.selected?.barriers[0]!.position.x).toBe(25);
 });
+
+test('coordinator snapshots evaluation observations and ranking weights across ticks', () => {
+  const observation = planningObservation();
+  const policy = { weights: { construction: 1, upkeep: 0, repairAccess: 0, gateAccess: 0, towerDeficit: 0 },
+    maximumUnreachableRepair: 0, maximumBlockedGates: 0 };
+  const candidate = { type: 'storage', position: { x: 25, y: 25 } };
+  const coordinator = createDefenseCoordinator([
+    { id: 'fallback', advance: () => ({ status: 'complete',
+      barriers: [{ type: 'rampart', position: { x: 25, y: 25 }, rcl: 6 }] }) },
+  ], { observation, placements: [candidate], protectedAssets: [candidate],
+    costs: { rampart: 1, constructedWall: 1 }, origins: [{ x: 24, y: 25 }], gates: [], repairRange: 3,
+    blocksMovement: type => type !== 'rampart',
+    operations: { rampartDecayHits: 300, rampartDecayTicks: 100, repairEnergyPerHit: 0.01,
+      minimumTowerPower: 0, tower: { power: 600, optimalRange: 5, falloffRange: 20, falloff: 0.75 } } }, policy);
+  observation.terrain = Array(2500).fill('wall');
+  candidate.position.x = 0;
+  policy.weights.construction = 999;
+  const budget = { augmentations: 1, scans: 10 };
+  coordinator.advance(budget, () => true);
+  coordinator.advance(budget, () => true);
+  const result = coordinator.advance(budget, () => true);
+  expect(result.status).toBe('complete');
+  if (result.status !== 'complete') throw new Error('Expected stable selection');
+  expect(result.selection.selected?.total).toBe(1);
+  expect(result.selected?.evaluation.ok).toBe(true);
+});

@@ -1,3 +1,4 @@
+import { copyPlain } from '../../persistence/plain-data';
 import type { DefenseStrategy } from './defense-strategies';
 import { evaluateDefenseCandidate } from '../../capabilities/planning/defense-candidate';
 import type { DefenseCandidateInput } from '../../capabilities/planning/defense-candidate';
@@ -9,6 +10,9 @@ interface CompletedDefense extends EvaluatedDefense { barriers: StagedTile[] }
 export function createDefenseCoordinator(
   strategies: readonly DefenseStrategy[], input: Omit<DefenseCandidateInput, 'barriers'>, policy: DefenseSelectionPolicy,
 ) {
+  const { blocksMovement, ...plainInput } = input;
+  input = { ...copyPlain(plainInput), blocksMovement };
+  policy = copyPlain(policy);
   const ids = strategies.map(strategy => strategy.id);
   if (ids.some(id => !id) || new Set(ids).size !== ids.length) throw new Error('Invalid defense strategies');
   const ordered = [...strategies], completed: CompletedDefense[] = [], rejected: { id: string; reason: string }[] = [];
