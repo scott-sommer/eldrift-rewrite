@@ -40,3 +40,30 @@ test.each([false, true])('real strategies converge through evaluation with durab
   expect(result.rejected).toEqual([]);
 });
 
+
+
+test('real fallback survives rejected terrain interior and obstructed exit perimeter', () => {
+  const observation = planningObservation();
+  observation.terrain = Array.from({ length: 2500 }, (_, index) =>
+    Math.floor(index / 50) === 25 && index % 50 <= 30 ? 'plain' : 'wall');
+  observation.objects = [];
+  observation.constraints = [{ id: 'exit-access', kind: 'keep-clear', position: { x: 2, y: 25 } }];
+  const storage = { type: 'storage', position: { x: 25, y: 25 } };
+  const generation = { observation, protectedAssets: [storage], protectedTiles: [storage.position, { x: 0, y: 25 }],
+    rcl: 6, costs: { rampart: 1, constructedWall: 1 } };
+  const coordinator = createDefenseCoordinator(createDefenseStrategies(generation, {
+    terrain: observation.terrain, rcl: 6, bounds: { minX: 22, maxX: 28, minY: 22, maxY: 28 } }),
+  { observation, protectedAssets: [storage], placements: [storage], costs: generation.costs,
+    origins: [{ x: 24, y: 25 }], gates: [], repairRange: 3, blocksMovement: type => type !== 'rampart',
+    operations: { rampartDecayHits: 300, rampartDecayTicks: 100, repairEnergyPerHit: 0.01,
+      minimumTowerPower: 0, tower: { power: 600, optimalRange: 5, falloffRange: 20, falloff: 0.75 } } },
+  { weights: { construction: 1, upkeep: 1, repairAccess: 0, gateAccess: 0, towerDeficit: 0 },
+    maximumUnreachableRepair: 2500, maximumBlockedGates: 0 });
+  const budget = { augmentations: 10, scans: 100000 };
+  let result = coordinator.advance(budget, () => true);
+  for (let calls = 0; result.status === 'pending' && calls < 50; calls++) result = coordinator.advance(budget, () => true);
+  if (result.status !== 'complete') throw new Error('Expected fallback selection');
+  expect(result.selected?.id).toBe('legacy-perimeter-v1');
+  expect(result.selected?.evaluation.ok).toBe(true);
+  expect(result.rejected.map(item => item.id)).toEqual(['terrain-cut-v1', 'exit-perimeter-v1']);
+});

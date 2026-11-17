@@ -1,8 +1,9 @@
 # Defensive planning implementation record
 
-ED-26 is In Progress. Current production baseline: 9a6d263 (2026-11-18).
-Full unit regression: 1,036 tests/303 files passed in8.31s.
-Latest quality:483 production/435 test files, zero Lizard violations.
+ED-26 planning acceptance audited; see defense-acceptance.md.
+Current production baseline: cfaad8e (2026-11-18).
+Full unit regression: 1,039 tests/304 files passed in8.24s.
+Latest quality:484 production/436 test files, zero Lizard violations.
 Adaptive native policy is active when planning is enabled; planning defaults off.
 Search replay, candidate/coordinator recovery, explicit asset accounting, road gates
 and persisted energy-reserve requirements are implemented. Engine evidence proves
@@ -227,3 +228,8 @@ Evidence: defense-sampled-budget-native.json, defense-sampled-late-reset-native.
 Expanded --stamp-late-reset from3to5targeted cache losses: composition261, routing573, active defense search724(after12durable augmentations), defense evaluation978(after1generated strategy/88augmentations), and scoring1036. The1600tick deadline remains unchanged. Scenario passed with commit1269,36evaluated/35rejected, complete stamp inventory, reserve metadata and no construction sites. Both defense reset checks verify the durable flow target survives immediately; subsequent rows prove phase resumption.
 
 Complete canonical staged plan matches the baseline engine-9SA9g4, including geometry, reserve/policy metadata, physical object associations, scores and semantic provenance. Evidence: defense-phase-reset-native.json and defense-phase-reset-comparison.json. This extends native recovery evidence through actual production candidate defense, beyond the earlier synthetic standalone cut fixture. It does not establish strict CPU timing or every room topology. No production algorithm changed in this increment; the packaged engine run is the relevant verification for this harness change. Broad native regression and remaining topology fixtures still required.
+
+
+### Final planning milestone audit
+
+Full clean170case engine suite passed658.86s against cfaad8e. Per-case provenance and diagnostic/memory summaries are archived in defense-final-engine-suite.json. Only expected CPU interruption/injected failures and Art notices occurred. Added a real fallback fixture (uncuttable selected terrain interior plus obstructed exit perimeter), proving actual legacy generation survives both rejections through shared evaluation. Full units1,039/304files passed8.24s; quality484production/436testfiles with zero violations. defense-acceptance.md maps every ED-26 criterion to evidence and explicitly carries construction enforcement into ED-27 and wider performance/soak qualification into ED-43. Earlier remaining-work lists are chronological and superseded by that audit where covered.
