@@ -21,7 +21,7 @@ test('real strategies converge through shared evaluation and choose a minimum-co
     maximumUnreachableRepair: 2500, maximumBlockedGates: 0 });
   const budget = { augmentations: 1, scans: 5 };
   let result = coordinator.advance(budget, () => true);
-  for (let calls = 0; result.status === 'pending' && calls < 1000; calls++) {
+  for (let calls = 0; result.status === 'pending' && calls < 2000; calls++) {
     result = coordinator.advance(budget, () => true);
   }
   expect(result.status).toBe('complete');

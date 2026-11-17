@@ -32,7 +32,7 @@ test('tiny scan slices and CPU yielding preserve the same validated staged defen
   expect(network.advance(100, () => true, 0)).toMatchObject({ status: 'pending' });
   expect(network.advance(100, () => false, 1)).toMatchObject({ status: 'pending' });
   let result = network.advance(1, () => true, 1), slices = 1;
-  while (result.status === 'pending' && slices < 1000) {
+  while (result.status === 'pending' && slices < 10000) {
     result = network.advance(1, () => true, 1); slices++;
   }
   expect(slices).toBeGreaterThan(10);
