@@ -39,3 +39,18 @@ test('native site creation refuses lost ownership and maps engine results explic
   expect([-8, -14, -1, -10, -7].map(code => nativeConstructionResult(code).status))
     .toEqual(['full', 'rcl', 'not-owned', 'invalid', 'retry']);
 });
+
+test('explicit remote port keeps level-zero limits and refuses foreign reservations and non-infrastructure', () => {
+  const room = setup();
+  room.controller.my = false; room.controller.level = 0;
+  const ports = nativeConstructionPorts('W0N1', 3, false, { rooms: ['W0N1'], username: 'eldrift' });
+  const observed = ports.observe();
+  expect(observed.level).toBe(0);
+  expect(observed.stageLevel).toBe(1);
+  const entry = { type: 'road', x: 25, y: 25, rcl: 1, priority: 1, source: 'strategy' as const };
+  expect(ports.create(entry).status).toBe('created');
+  expect(ports.create({ ...entry, type: 'spawn' }).reason).toBe('remote-structure-type');
+  Object.assign(room.controller, { reservation: { username: 'other' } });
+  expect(ports.create(entry).reason).toBe('foreign-reservation');
+  expect(room.createConstructionSite).toHaveBeenCalledTimes(1);
+});

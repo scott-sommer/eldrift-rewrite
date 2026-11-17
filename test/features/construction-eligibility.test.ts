@@ -60,3 +60,12 @@ test('contradictory identities and invalid budgets reject the snapshot before cl
   expect(() => createConstructionClassifier({ ...observed, storedEnergy: NaN })).toThrow();
   expect(() => createConstructionClassifier({ ...observed, limits: { spawn: [1] } })).toThrow('RCL limits');
 });
+
+test('remote stage policy permits stage-one roads while capacity stays at the actual level-zero limits', () => {
+  const remote = { ...observation(), level: 0, stageLevel: 1,
+    limits: { road: Array(9).fill(2500), spawn: [0, ...Array(8).fill(3)] } };
+  const road = { ...entry, type: 'road', rcl: 1, minimumStoredEnergy: 0 };
+  expect(constructionEligibility(road, remote).status).toBe('eligible');
+  expect(constructionEligibility({ ...road, type: 'spawn' }, remote).reason).toBe('structure-limit');
+  expect(constructionEligibility({ ...road, rcl: 2 }, remote).reason).toBe('entry-stage');
+});

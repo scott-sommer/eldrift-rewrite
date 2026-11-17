@@ -40,6 +40,7 @@ function validateObject(item: ConstructionObject): void {
 }
 function validateObservation(observed: ConstructionObservation): void {
   validateEconomy(observed);
+  if (observed.stageLevel !== undefined && (!integer(observed.stageLevel) || observed.stageLevel > 8)) throw new Error('Invalid construction stage level');
   if (![observed.globalSites, observed.globalSiteLimit, observed.roomSiteLimit].every(integer)) throw new Error('Invalid construction site budget');
   if (observed.terrain.length !== 2500 || !observed.terrain.every(cell => ['plain', 'swamp', 'wall'].includes(cell))) throw new Error('Invalid construction terrain');
   for (const levels of Object.values(observed.limits)) {

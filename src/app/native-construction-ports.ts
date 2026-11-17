@@ -1,3 +1,5 @@
+import { constructionAuthority } from '../features/construction/authority';
+import type { RemoteConstructionPolicy } from '../features/construction/authority';
 import { observeRoomPlanningInput } from '../adapters/screeps/room-assessment';
 import { nativePlanningLimits } from '../adapters/screeps/planning-limits';
 import { placementKey } from '../features/planning/dependencies';
@@ -9,22 +11,23 @@ export function nativeConstructionSiteKeys(): ReadonlySet<string> {
     { type: site.structureType, x: site.pos.x, y: site.pos.y })));
 }
 /** Default usable reserve is owned storage energy; terminal energy is opt-in policy. */
-export function nativeConstructionPorts(name: string, roomSiteLimit: number, includeTerminalEnergy = false): ConstructionExecutionPorts {
+export function nativeConstructionPorts(name: string, roomSiteLimit: number, includeTerminalEnergy = false, remote?: RemoteConstructionPolicy): ConstructionExecutionPorts {
   return { observe() {
     const room = Game.rooms[name], input = observeRoomPlanningInput(name);
-    if (!room?.controller?.my || !input) throw new Error('Construction observation unavailable');
+    if (!room || !input || !nativeConstructionAuthority(name, remote).allowed) throw new Error('Construction observation unavailable');
     const structures = input.infrastructure.map(item => ({ id: item.id, type: item.type,
       x: item.position.x, y: item.position.y, owned: item.owned || ['road', 'container'].includes(item.type) }));
     const sites = room.find(FIND_CONSTRUCTION_SITES).map(site => ({ id: site.id, type: site.structureType,
       x: site.pos.x, y: site.pos.y, owned: site.my }));
     const occupied = room.find(FIND_HOSTILE_CREEPS).map(creep => creep.pos.x + ':' + creep.pos.y);
-    return { level: room.controller.level, storedEnergy: usableEnergy(room, includeTerminalEnergy),
+    return { level: room.controller?.level ?? 0, ...(!room.controller?.my ? { stageLevel: 1 } : {}), storedEnergy: usableEnergy(room, includeTerminalEnergy),
       terrain: input.terrain, objects: input.objects, structures, sites,
       completed: new Set(structures.filter(item => item.owned).map(placementKey)), temporarilyOccupied: new Set(occupied),
       limits: nativePlanningLimits(), globalSites: nativeConstructionSiteKeys().size, globalSiteLimit: MAX_CONSTRUCTION_SITES, roomSiteLimit };
   }, create(entry) {
     const room = Game.rooms[name];
-    if (!room?.controller?.my) return { status: 'not-owned', reason: 'room-unavailable-or-not-owned' };
+    const authority = nativeConstructionAuthority(name, remote, entry.type);
+    if (!room || !authority.allowed) return { status: 'not-owned', reason: authority.reason };
     return nativeConstructionResult(room.createConstructionSite(entry.x, entry.y, entry.type as BuildableStructureConstant));
   } };
 }
@@ -42,4 +45,11 @@ export function nativeConstructionResult(code: number): ConstructionAttempt {
     case ERR_INVALID_ARGS: return { status: 'invalid', reason: 'arguments' };
     default: return { status: 'retry', reason: 'engine:' + code };
   }
+}
+
+function nativeConstructionAuthority(name: string, remote?: RemoteConstructionPolicy, type?: string) {
+  const room = Game.rooms[name], controller = room?.controller;
+  return constructionAuthority({ room: name, visible: !!room, owned: !!controller?.my,
+    ...(controller?.owner ? { owner: controller.owner.username } : {}),
+    ...(controller?.reservation ? { reservation: controller.reservation.username } : {}) }, remote, type);
 }

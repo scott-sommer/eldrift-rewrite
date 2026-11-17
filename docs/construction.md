@@ -117,3 +117,14 @@ Scenario passed with no errors/messages; evidence construction-lifecycle-native.
 --construction-budget runs the registered committed-plan feature for20ticks with the production default3CPU admission allowance,20entry scan cap and1attempt cap. The fixture retains an explicit1room-site cap rather than the production default5, to keep capacity/refusal assertions comparable. Passed: eligible road site visible by3, progress revision20, only road sites, byte-equivalent desired plan throughout. This is a small5entry plan, not large-plan or multi-room throughput qualification.
 
 Whole botLoop maximum measured18.8082CPU includes cold startup and other runtime work; it does not establish a strict3CPU ceiling. No production budget was raised. Evidence construction-default-budget-native.json retains rows, engine/bundle and dirty-worktree provenance. Quality498production/446testfiles zero violations. Harness-only change verified by the actual engine scenario; broader native aggregate remains to run after the remaining construction acceptance cases.
+
+
+## Explicit remote infrastructure authority
+
+constructionAuthority separates room permission from site mechanics. Default denies unowned rooms. A caller may inject approved remote room names plus the acting username; visible neutral/self-reserved rooms then allow roads/containers only. Foreign owners/reservations, hidden rooms and other structure types refuse before the native create call. Owned-room behavior remains unchanged.
+
+The native port accepts this optional policy and re-reads live room ownership/reservation for each request. Remote observations retain actual level0capacity limits and expose stageLevel1 for explicitly approved stage-one infrastructure. They do not pretend that a remote controller is owned or RCL8. Higher-stage entries remain waiting, and level-zero spawn/storage capacity remains0.
+
+Normal registered runtime remains owned-room only. Remote mission authorization/plan supply belongs to ED-29; this API does not automatically activate remote construction or infer approved rooms. Native level-zero road/container capacities and ownership checks were inspected in pinned common2.16.1/engine4.3.2 source. No new actual-engine remote placement is claimed.
+
+Quality499production/447testfiles zero violations. Full units1,070tests/313files8.51s. Tests cover approval/default denial, roads/container restriction, foreign reservation/ownership refusal, native call suppression, and independent stage/capacity gates. Remote native placement/mission integration and final construction acceptance remain open.

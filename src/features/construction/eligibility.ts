@@ -23,7 +23,7 @@ function classify(entry: PlanEntry, inventory: Inventory) {
   if (sites.some(item => item.type === entry.type && item.owned)) return result('site-existing', 'present');
   const failure = terrainPlacementFailure({ type: entry.type, position: { x: entry.x, y: entry.y } }, observed);
   if (failure) return result('invalid', failure);
-  if (entry.rcl > observed.level) return result('waiting-for-RCL', 'entry-stage');
+  if (entry.rcl > constructionStage(observed)) return result('waiting-for-RCL', 'entry-stage');
   return accessEligibility(entry, observed, structures, sites) ?? budgetEligibility(entry, inventory);
 }
 function budgetEligibility(entry: PlanEntry, inventory: Inventory) {
@@ -53,3 +53,5 @@ function hasStructureCapacity(type: string, inventory: Inventory): boolean {
 function hasSiteCapacity(observed: ConstructionObservation, roomSites: number): boolean {
   return roomSites < observed.roomSiteLimit && observed.globalSites < observed.globalSiteLimit;
 }
+
+function constructionStage(observed: ConstructionObservation): number { return observed.stageLevel ?? observed.level; }
