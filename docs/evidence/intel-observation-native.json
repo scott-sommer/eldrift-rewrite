@@ -1,0 +1,386 @@
+{
+  "registeredSuiteCases": 180,
+  "runs": [
+    {
+      "scenario": "intel-observation-native",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HaBxMb",
+      "provenance": {
+        "commit": "4acfda0577d0917aa3156976ea0eb2ae1a35ecfc",
+        "dirty": true,
+        "bundleSha256": "4b994ac869ace09c59181034c72547da6ac60f081ff62619e08c4a96ad275861",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "4acfda0577d0917aa3156976ea0eb2ae1a35ecfc",
+        "dirty": true,
+        "bundleSha256": "0e87c35a2a59a15e699fc5ce7557d8156704060b964c8792afdb24cfc03e96d8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "intelObservation": {
+        "rows": [
+          {
+            "tick": 1,
+            "liveVisible": true,
+            "lastSeen": 1,
+            "lastVisit": 1,
+            "freshness": "fresh",
+            "owned": true,
+            "level": 3,
+            "owner": "eldrift-smoke",
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 1,
+            "homeOwned": true
+          },
+          {
+            "tick": 2,
+            "liveVisible": true,
+            "lastSeen": 2,
+            "lastVisit": 2,
+            "freshness": "fresh",
+            "owned": true,
+            "level": 3,
+            "owner": "eldrift-smoke",
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 2,
+            "homeOwned": true
+          },
+          {
+            "tick": 3,
+            "liveVisible": true,
+            "lastSeen": 3,
+            "lastVisit": 3,
+            "freshness": "fresh",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": "eldrift-smoke",
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 3,
+            "homeOwned": true
+          },
+          {
+            "tick": 4,
+            "liveVisible": true,
+            "lastSeen": 4,
+            "lastVisit": 4,
+            "freshness": "fresh",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": "eldrift-smoke",
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 4,
+            "homeOwned": true
+          },
+          {
+            "tick": 5,
+            "liveVisible": false,
+            "lastSeen": 4,
+            "lastVisit": 4,
+            "freshness": "fresh",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": "eldrift-smoke",
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 5,
+            "homeOwned": true
+          },
+          {
+            "tick": 6,
+            "liveVisible": false,
+            "lastSeen": 4,
+            "lastVisit": 4,
+            "freshness": "fresh",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": "eldrift-smoke",
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 6,
+            "homeOwned": true
+          },
+          {
+            "tick": 7,
+            "liveVisible": false,
+            "lastSeen": 4,
+            "lastVisit": 4,
+            "freshness": "stale",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": "eldrift-smoke",
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 7,
+            "homeOwned": true
+          },
+          {
+            "tick": 8,
+            "liveVisible": true,
+            "lastSeen": 8,
+            "lastVisit": 8,
+            "freshness": "fresh",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 8,
+            "homeOwned": true
+          },
+          {
+            "tick": 9,
+            "liveVisible": true,
+            "lastSeen": 9,
+            "lastVisit": 9,
+            "freshness": "fresh",
+            "owned": false,
+            "level": 0,
+            "owner": null,
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 9,
+            "homeOwned": true
+          },
+          {
+            "tick": 10,
+            "liveVisible": true,
+            "lastSeen": 10,
+            "lastVisit": 10,
+            "freshness": "fresh",
+            "owned": true,
+            "level": 1,
+            "owner": "eldrift-smoke",
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 10,
+            "homeOwned": true
+          },
+          {
+            "tick": 11,
+            "liveVisible": true,
+            "lastSeen": 11,
+            "lastVisit": 11,
+            "freshness": "fresh",
+            "owned": true,
+            "level": 1,
+            "owner": "eldrift-smoke",
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 11,
+            "homeOwned": true
+          },
+          {
+            "tick": 12,
+            "liveVisible": true,
+            "lastSeen": 12,
+            "lastVisit": 12,
+            "freshness": "fresh",
+            "owned": true,
+            "level": 1,
+            "owner": "eldrift-smoke",
+            "reservation": null,
+            "sources": 2,
+            "mineral": "H",
+            "highway": true,
+            "keeper": false,
+            "homeSeen": 12,
+            "homeOwned": true
+          }
+        ],
+        "reloads": [
+          7
+        ],
+        "record": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 12,
+            "owned": true,
+            "sourceIds": [
+              "cfe9bce35e420eb",
+              "c9debce35e43531"
+            ],
+            "structureIds": [
+              "26bdbce35e49213"
+            ],
+            "hostileIds": [],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 12,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "f49dbce35e40ee7",
+                "x": 20,
+                "y": 20,
+                "level": 1,
+                "owned": true,
+                "owner": "eldrift-smoke",
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "cfe9bce35e420eb",
+                  "x": 10,
+                  "y": 10,
+                  "capacity": 3000
+                },
+                {
+                  "id": "c9debce35e43531",
+                  "x": 35,
+                  "y": 35,
+                  "capacity": 3000
+                }
+              ],
+              "mineral": {
+                "id": "bcabbce35e4b72a",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "26bdbce35e49213",
+                  "x": 21,
+                  "y": 21,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                }
+              ],
+              "units": [
+                {
+                  "id": "5675bce37b2700b",
+                  "x": 25,
+                  "y": 25,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": 12,
+            "lastFailure": null
+          }
+        },
+        "unrelated": {
+          "initializedAt": 1,
+          "planning": "{\"owner\":\"planning\",\"version\":3,\"data\":{\"room\":\"E0N1\",\"revision\":17,\"strategy\":null,\"entries\":[]}}"
+        },
+        "planning": {
+          "owner": "planning",
+          "version": 3,
+          "data": {
+            "room": "E0N1",
+            "revision": 17,
+            "strategy": null,
+            "entries": []
+          }
+        }
+      },
+      "maxMemoryBytes": 5138,
+      "maxCpuMilliseconds": 35
+    },
+    {
+      "scenario": "intel-observation-reload",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mNgIWr",
+      "provenance": {
+        "commit": "4acfda0577d0917aa3156976ea0eb2ae1a35ecfc",
+        "dirty": true,
+        "bundleSha256": "97ac7f7c520e0753d4033e8fe3a746acc9b933a5d798b4c005c8402d92c59476",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "4acfda0577d0917aa3156976ea0eb2ae1a35ecfc",
+        "dirty": true,
+        "bundleSha256": "b893610be9fc242b29b0248b50f6183f37e61a06e30821d0abc916473c223d6e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "intelObservation": null,
+      "maxMemoryBytes": 246,
+      "maxCpuMilliseconds": 32
+    }
+  ]
+}

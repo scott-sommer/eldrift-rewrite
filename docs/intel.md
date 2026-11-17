@@ -1,6 +1,6 @@
 # Scouting and room intelligence (ED-28)
 
-Status: source audit, reusable room graph and feature-owned rich intel state implemented in tested increments. No native scout/observer runtime is registered by this increment, and no ED-28 acceptance criterion is complete yet.
+Status: source audit, reusable room graph, rich intel state and native plain-data capture are qualified in tested increments. Automatic scout/observer orchestration is not registered yet; no ED-28 acceptance criterion is complete.
 
 ## Source responsibilities and reuse
 
@@ -24,7 +24,7 @@ There is no symmetric result cache. Directed/excluded/changed graphs are recompu
 
 Graph+smoke9tests pass261ms. Fixtures cover cross-quadrant real corners, missing corners, blocked intermediates, directed reverse failure, a pathable detour gap4 versus geometric2, unknown data, exact read/admission boundaries, detached request snapshots and invalid topology/budgets. Full units1,095tests/318files pass11.34s; quality505production/457testfiles zero Lizard violations. This pure mechanism is not wired into native gameplay yet, so the prior clean179-case engine archive is not presented as validation of this new graph.
 
-Still required: native rich-summary capture, scout death/history and lifecycle state, visibility handling without unseen clearing, traversal policy from freshness/status/threats, bounded exploration/observation demand, scout lifecycle and shared movement recovery, observer action ownership and delayed visibility, death/owner-change/expiry scenarios and native end-to-end proof. ED-29/30 consume current intel through read models; ED-35 receives discoveries; ED-39 owns operator adapters and ED-44 legacy state translation. The feature remains In Progress.
+Still required: bounded capture/refresh orchestration, scout death/history and lifecycle state, automatic visibility handling without unseen clearing, traversal policy from freshness/status/threats, bounded exploration/observation demand, scout lifecycle and shared movement recovery, observer action ownership and delayed visibility, death/owner-change/expiry scenarios and native end-to-end proof. ED-29/30 consume current intel through read models; ED-35 receives discoveries; ED-39 owns operator adapters and ED-44 legacy state translation. The feature remains In Progress.
 
 
 ## Version2 room intel state
@@ -39,7 +39,7 @@ lastSeen tracks the latest ID observation; summary.observedAt separately dates d
 
 observeSummary atomically derives matching ID/ownership indexes. Only explicit visited=true advances physical lastVisit; observer capture must leave it false. recordFailure independently updates the latest context with stable-ID replay protection and ignores distinct older/equal-tick events. This is not a complete death/event history or a repeated-death counter; those remain scout lifecycle work. Snapshot absence never clears stored facts, and read/reconstruction do not alter unrelated namespaces. Rich observations and returned data are detached through existing persistence validation.
 
-Migration/retention/freshness/snapshot tests plus smoke21tests pass256ms. Full units1,108tests/320files pass10.07s; quality510production/460testfiles zero Lizard violations, including type/lint/boundaries. The first quality pass found oversized decision counts in summary/read validation; header/optional-fact validation and freshness read models were extracted before the passing run. Existing Memory/intel tests and size fixtures now import the feature-owned state; generic persistence no longer imports a domain feature. Native capture has not yet been exercised, so these are contract/persistence proofs rather than real-engine observation claims.
+Migration/retention/freshness/snapshot tests plus smoke21tests pass256ms. Full units1,108tests/320files pass10.07s; quality510production/460testfiles zero Lizard violations, including type/lint/boundaries. The first quality pass found oversized decision counts in summary/read validation; header/optional-fact validation and freshness read models were extracted before the passing run. Existing Memory/intel tests and size fixtures now import the feature-owned state; generic persistence no longer imports a domain feature. Those are contract/persistence proofs; the later native capture qualification below supplies separate engine evidence.
 
 
 ### Opaque v1 ID compatibility qualification
@@ -47,3 +47,18 @@ Migration/retention/freshness/snapshot tests plus smoke21tests pass256ms. Full u
 A follow-up migration audit found that v1 ID indexes allowed arbitrary nonempty strings and duplicate-heavy arrays within the existing plain-data validation budget. Version2 preserves that opaque compatibility instead of retroactively applying rich-object ID/collection restrictions. Migration and the ID-only compatibility write normalize duplicate indexes. Rich summaries still enforce bounded object counts, short fact identifiers, valid geometry, ownership relationships and exact indexes.
 
 The regression migrates12000duplicate opaque IDs, including an identifier longer than the rich-object limit, without inventing detailed knowledge. It also checks a repeated ID-only update. Invalid ID-only input now validates before opening/writing state. Full units1,109tests/320files pass8.73s; quality510production/460testfiles zero violations. Legacy retention tests now live in test/features/intel-retention.test.ts alongside the feature owner. Native observation/scout/observer evidence remains pending.
+
+
+## Native plain-data capture and visibility qualification
+
+app/native-intel-observation maps the current Game.rooms entry to detached model facts. Hidden rooms return undefined before map/room queries; API failures propagate instead of becoming empty/normal snapshots. Controller is mapped separately, preventing duplicate controller/structure IDs. Reservations, raw hostility, owner identities, power-unit classification, resource positions/capacities and current map exits/status remain observation facts. Diplomacy and traversal admission stay feature policy.
+
+The new --intel-observation scenario runs production main plus an explicit capture probe for12ticks. It begins with an owned RCL3 room and a visiting MOVE unit; fixtures replace controller ownership with a reservation at3, remove the only visibility provider at5, reset the whole module at7, restore neutral-room vision at8 and restore owned RCL1 at10. During actual Game.rooms absence5–7, lastSeen/lastVisit remain4 and both source facts/mineral persist. With maximumAge2, freshness is fresh/fresh/stale; capture resumes with authoritative reservation/ownership changes on restored vision. Final snapshot contains two3000capacity sources, H mineral, neutral road, owned visitor/controller and the west W0N1 exit. Physical-visit marking is explicit in the probe; no autonomous scout traversal is claimed.
+
+A planning namespace is initialized once at revision17 and serialized as a one-time witness. It remains byte-for-byte unchanged across ownership/vision/reset phases, while home-room intel continues updating every tick. The witness is not recreated after loss. This exercises actual native Memory/state isolation, not only an external sentinel that could conceal reinitialization. The fixture removes/re-adds a visibility unit directly; it is not scout population, observed death classification or replacement evidence.
+
+Final native capture and existing --reload regression pass with no errors/messages. docs/evidence/intel-observation-native.json retains rows, reset witnesses, final rich record, unrelated plan and exact dirty/bundle/engine provenance. Foreign/raw hostility, allied identities, power-unit shape and non-normal map-status mapping are currently unit evidence; the native fixture does not contain a hostile encounter or an observer structure/action. The two clocks of statusTimestamp and observedAt remain distinct.
+
+Quality511production/462testfiles passes with zero violations; full units1,111tests/321files pass8.32s. Focused native-capture/state+smoke10tests pass221ms. The capture probe is registered, bringing the full native suite to180cases; no new full aggregate has been run. The last clean179-case archive remains worker/construction evidence and predates this capture increment. Sampled whole-fixture CPU/Memory peaks are retained for provenance, not claimed as ED-43 performance/soak qualification.
+
+Next: bounded/configurable automatic capture and refresh, ownership/freshness-aware traversal, scout demand/lifecycle/evade and delayed observer visibility with single action ownership. ED-28 remains In Progress.
