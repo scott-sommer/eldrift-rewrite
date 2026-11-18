@@ -1,3 +1,4 @@
+import { remoteFleetDemand } from '../../../features/remotes/fleet/demand';
 import type { StatePort } from '../../../persistence/versioned-state';
 import type { RoomFeature } from '../../runtime-model';
 import type { createNativeDispatch } from '../../native-dispatch';
@@ -47,8 +48,7 @@ export function createNativeRemoteRecruitment(state: StatePort, dispatch: Return
 }
 function reconcileProfile(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, profile: RemoteFleetProfile, desired: number,
   units: ReturnType<typeof observePopulation>, lifetime: number): void {
-  const plan = { owner: profile.owner,room: profile.home,desired,body: profile.body,replacementParts: profile.body.length,
-    travelTicks: profile.travelTicks,marginTicks: profile.marginTicks,priority: profile.priority,requestLifetime: lifetime };
+  const plan = remoteFleetDemand(profile,desired,lifetime);
   const queue = createSpawnQueue(state,profile.home);
   for (const request of queue.list().filter(request => request.owner === profile.owner && JSON.stringify(request.body) !== JSON.stringify(profile.body))) queue.cancel(request.id,profile.owner);
   const pending = queue.list(), decision = reconcileDemand(plan,units,pending,Game.time);

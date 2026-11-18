@@ -3,17 +3,31 @@ const { remoteTransportWorld } = require('./remote-transport.cjs');
 const { reloadStampDraft } = require('./stamp-draft.cjs');
 async function remoteFleetWorld(server,bot,mode) {
   await remoteTransportWorld(server,bot);
+  if (mode === 'border') {
+    await server.world.addRoomObject('E0N1','creep',0,24,{ name: 'returning-miner',user: bot.id,
+      body: [...Array(4).fill({ type: 'work',hits: 100 }),{ type: 'carry',hits: 100 },...Array(2).fill({ type: 'move',hits: 100 })],
+      store: { energy: 24 },storeCapacity: 50,hits: 700,hitsMax: 700,spawning: false,fatigue: 0,ageTime: 1500 });
+    for (const [name,x,y] of [['parked-a',46,24],['parked-b',48,23]]) await server.world.addRoomObject('W0N1','creep',x,y,{
+      name,user: bot.id,body: [{ type: 'move',hits: 100 }],store: {},storeCapacity: 0,hits: 100,hitsMax: 100,spawning: false,fatigue: 0,ageTime: 1500 });
+  }
+  if (mode === 'lifetime') {
+    const { db } = await server.world.load();
+    await db['rooms.objects'].update({ room: 'W0N1',type: 'controller' },{ $set: { level: 8 } });
+    for (let index=20; index<60; index++) await server.world.addRoomObject('W0N1','extension',20+index%5,20+Math.floor(index/5),
+      { user: bot.id,store: { energy: 50 },storeCapacityResource: { energy: 50 },hits: 1000,hitsMax: 1000 });
+  }
   if (mode === 'bootstrap') {
     const { db } = await server.world.load();
     await db['rooms.objects'].removeWhere({ room: 'E0N1',type: 'container' });
   }
 }
 function createRemoteFleetChanges(mode) {
-  const seen = new Set(), metadata = { mode,confirmationResets: [],replacement: null,damage: null };
+  const seen = new Set(), metadata = { mode,streamedRows: [],confirmationResets: [],replacement: null,damage: null };
   async function change(server,bot,modules,index) {
     const { db } = await server.world.load();
     if (index === 1) await db['rooms.objects'].removeWhere({ room: 'E0N1',type: 'creep',name: 'reservation-witness' });
     const memory = JSON.parse((await bot.memory) || '{}'), row = memory.remoteFleetRows?.at(-1), now = Number(await server.world.gameTime);
+    if (mode === 'lifetime' && row && metadata.streamedRows.at(-1)?.tick !== row.tick) metadata.streamedRows.push(row);
     if (mode === 'replacement' && !metadata.replacement && row?.credited >= 100 && row.tick >= 100) {
       const unit = row.units.find(unit => unit.kind === 'courier' && !unit.spawning);
       if (unit) { await db['rooms.objects'].update({ _id: unit.id },{ $set: { ageTime: now+40 } }); metadata.replacement = { id: unit.id,tick: now,deathAt: now+40,before: row.units.filter(unit => unit.kind === 'courier').map(unit => unit.id) }; }
@@ -37,9 +51,16 @@ function createRemoteFleetChanges(mode) {
   return { change,metadata };
 }
 async function verifyRemoteFleet(memory,evidence,metadata,server) {
-  const rows = memory.remoteFleetRows, last = rows.at(-1);
-  evidence.remoteFleet = { rows,metadata,reloads: memory.stampReloads,receipts: memory.remoteFleetReceipts,bindings: memory.remoteFleetBindings };
-  assert.equal(rows.length,metadata.mode === 'bootstrap' ? 1500 : metadata.mode === 'budget' ? 280 : 260); assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
+  if (metadata.mode === 'border') {
+    evidence.remoteBorder = { rows: memory.borderRows };
+    assert.equal(memory.borderRows.length,20); assert.deepEqual(evidence.errors,[]);
+    assert.equal(memory.borderRows.at(-1).position.room,'W0N1');
+    assert.ok(memory.borderRows.every(row => row.cargo === 24 && row.outcome.status !== 'failed')); return;
+  }
+  const rows = metadata.mode === 'lifetime' ? [...metadata.streamedRows,...memory.remoteFleetRows] : memory.remoteFleetRows, last = rows.at(-1);
+  if (metadata.mode === 'lifetime') { delete metadata.streamedRows; rows.forEach((row,index) => assert.equal(row.tick,index+1)); }
+  evidence.remoteFleet = { rows,metadata,reloads: memory.stampReloads,attempts: memory.remoteFleetAttempts,receipts: memory.remoteFleetReceipts,bindings: memory.remoteFleetBindings };
+  assert.equal(rows.length,metadata.mode === 'lifetime' ? 1750 : metadata.mode === 'bootstrap' ? 1500 : metadata.mode === 'budget' ? 280 : 260); assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.ok(last.revokedAt >= 180); assert.ok(last.credited >= 200);
   assert.ok(rows.some(row => row.units.some(unit => unit.kind === 'miner' && unit.room === 'E0N1' && unit.tasks.includes('remote-mine'))));
   assert.ok(rows.some(row => row.units.some(unit => unit.kind === 'courier' && unit.tasks.includes('haul'))));
@@ -57,12 +78,12 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
   evidence.remoteFleet.passiveSpawnEnergy = passiveEnergy;
   evidence.remoteFleet.maximumUncreditedPhysical = Math.max(...rows.map(row => row.storageEnergy-row.credited));
   assert.equal(last.storageEnergy,last.credited,'final confirmed ledger must exactly match home storage');
-  assert.equal(last.homeTotal,1300-last.birthCost+last.credited+passiveEnergy,'home inventory must separate births, confirmed deliveries and passive spawn energy');
+  assert.equal(last.homeTotal,(metadata.mode === 'lifetime' ? 3300 : 1300)-last.birthCost+last.credited+passiveEnergy,'home inventory must separate births, confirmed deliveries and passive spawn energy');
   const { db } = await server.world.load(), source = await db['rooms.objects'].findOne({ room: 'E0N1',type: 'source' });
   const container = await db['rooms.objects'].findOne({ room: 'E0N1',type: 'container' });
   evidence.remoteFleet.finalWorld = { sourceEnergy: source.energy,containerEnergy: container.store.energy };
-  if (metadata.mode !== 'bootstrap') assert.equal(1500-source.energy,last.credited+container.store.energy,'all harvested energy must be conserved after retirement');
-  else {
+  if (!['bootstrap','lifetime'].includes(metadata.mode)) assert.equal(1500-source.energy,last.credited+container.store.energy,'all harvested energy must be conserved after retirement');
+  else if (metadata.mode === 'bootstrap') {
     const sites = rows.flatMap(row => row.sites.filter(site => site.type === 'container'));
     assert.equal(rows[0].containerEnergy,null,'bootstrap must not seed a container');
     assert.ok(sites.some(site => site.progress > 0),'recruited miner must actually build the site');
@@ -71,12 +92,19 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
     assert.ok(rows.some(row => row.containerEnergy > 0),'completed container must receive mined energy');
     evidence.remoteFleet.bootstrap = { firstSite: rows.find(row => row.sites.length)?.tick,firstProgress: rows.find(row => row.sites.some(site => site.progress > 0))?.tick,firstContainer: rows.find(row => row.containerEnergy !== null)?.tick,firstCredit: rows.find(row => row.credited > 0)?.tick };
   }
-  const unrelated = rows[0].pending.find(request => request.id === 'unrelated-request');
-  for (const row of rows) {
-    assert.deepEqual(row.sentinel,rows[0].sentinel);
-    assert.deepEqual(row.pending.find(request => request.id === 'unrelated-request'),unrelated);
+  if (metadata.mode === 'lifetime') evidence.remoteFleet.naturalHandoffs = verifyNaturalHandoffs(rows);
+  if (metadata.mode === 'lifetime') {
+    assert.ok(rows.every(row => row.unrelatedIntact && row.sentinelIntact));
+    assert.equal(last.pendingCount,1);
+  } else {
+    const unrelated = rows[0].pending.find(request => request.id === 'unrelated-request');
+    for (const row of rows) {
+      assert.deepEqual(row.sentinel,rows[0].sentinel);
+      assert.deepEqual(row.pending.find(request => request.id === 'unrelated-request'),unrelated);
+    }
+    assert.equal(last.pending.length,1);
   }
-  assert.equal(last.pending.length,1); assert.ok(metadata.confirmationResets.length >= 4);
+  assert.ok(metadata.confirmationResets.length >= 4);
   for (const tick of metadata.confirmationResets) assert.ok(memory.stampReloads.includes(tick));
   if (metadata.mode === 'cancel') {
     assert.ok(last.cancelled); const { tick,name } = last.cancelled;
@@ -98,3 +126,24 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
   }
 }
 module.exports = { remoteFleetWorld,createRemoteFleetChanges,verifyRemoteFleet };
+
+function verifyNaturalHandoffs(rows) {
+  const handoffs = [], first = rows.find(row => row.tick === 100);
+  for (const kind of ['miner','courier']) {
+    const originals = first.units.filter(unit => unit.kind === kind && !unit.spawning).map(unit => unit.id), used = new Set();
+    for (const id of originals) {
+      const retired = rows.find(row => row.tick > first.tick && row.units.some(unit => unit.id === id && !unit.spawning && unit.ttl !== null && unit.ttl <= unit.retireTicks));
+      assert.ok(retired,'old actor must reach its natural service retirement');
+      const arrival = rows.find(row => row.tick > first.tick && row.units.some(unit => unit.kind === kind && !originals.includes(unit.id) && !used.has(unit.id) && !unit.spawning && unit.room === 'E0N1'
+        && Math.max(Math.abs(unit.x-(kind === 'miner' ? 6 : 5)),Math.abs(unit.y-25)) <= 1));
+      assert.ok(arrival && arrival.tick < retired.tick,'a distinct successor must reach the service point before each natural old-worker retirement');
+      const successor = arrival.units.find(unit => unit.kind === kind && !originals.includes(unit.id) && !used.has(unit.id) && !unit.spawning && unit.room === 'E0N1'
+        && Math.max(Math.abs(unit.x-(kind === 'miner' ? 6 : 5)),Math.abs(unit.y-25)) <= 1).id;
+      used.add(successor);
+      const deathAt = first.tick+first.units.find(unit => unit.id === id).ttl;
+      assert.ok(rows.some(row => row.tick > deathAt && !row.units.some(unit => unit.id === id)),'original must actually expire naturally');
+      handoffs.push({ kind,original: id,successor,arrival: arrival.tick,retirement: retired.tick,deathAt });
+    }
+  }
+  return handoffs;
+}

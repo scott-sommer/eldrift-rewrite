@@ -18,11 +18,11 @@ import { traceReceipts } from './receipt-trace';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
 const definitions = { 'remote-mine': { phases: ['work'],validPayload: validRemoteTaskPayload },haul: { phases: ['work'],validPayload: validHaulingPayload } };
 interface ProbeMemory extends Memory {
-  remoteFleetRows?: unknown[]; remoteFleetRevokedAt?: number; remoteFleetCancel?: { tick: number; name: string }; remoteFleetResumeAt?: number;
+  remoteFleetExpectedUnrelated?: unknown; remoteFleetRows?: unknown[]; remoteFleetAttempts?: Record<string,unknown>; remoteFleetRevokedAt?: number; remoteFleetCancel?: { tick: number; name: string }; remoteFleetResumeAt?: number;
   remoteFleetReceipts?: Record<string,number>; remoteFleetBindings?: Record<string,string>; remoteFleetBirthCosts?: Record<string,number>;
 }
 export function loop(): void { runFleetProbe('normal'); }
-export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damage' | 'budget' | 'bootstrap'): void {
+export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damage' | 'budget' | 'bootstrap' | 'lifetime'): void {
   const memory = Memory as ProbeMemory;
   if (Game.time === 1) {
     const config = openState(state,'operator/config',operatorSchema);
@@ -45,7 +45,7 @@ function updatePolicy(memory: ProbeMemory, mode: string): void {
     patch({ remoteSpawningEnabled: true }); memory.remoteFleetResumeAt = Game.time;
   }
   const credited = Object.values(memory.remoteFleetReceipts ?? {}).reduce((sum,amount) => sum+amount,0);
-  if (!memory.remoteFleetRevokedAt && Game.time >= (mode === 'bootstrap' ? 1300 : 180) && credited >= 200 && units.some(creep => remoteFleetIdentity(creep.memory.population!.owner)?.kind === 'courier'
+  if (!memory.remoteFleetRevokedAt && Game.time >= (mode === 'lifetime' ? 1650 : mode === 'bootstrap' ? 1300 : 180) && credited >= 200 && units.some(creep => remoteFleetIdentity(creep.memory.population!.owner)?.kind === 'courier'
     && creep.pos.roomName === 'E0N1' && creep.store.energy > 0)) {
     patch({ remoteMaximumSlots: 0 }); memory.remoteFleetRevokedAt = Game.time;
   }
@@ -62,17 +62,28 @@ function snapshot(memory: ProbeMemory, mode: string): void {
   const stores = Game.rooms[home]!.find(FIND_STRUCTURES).filter(item => 'store' in item) as AnyStoreStructure[];
   const room = Game.rooms.E0N1, source = room?.find(FIND_SOURCES)[0];
   const container = room?.find(FIND_STRUCTURES).find(item => item.structureType === STRUCTURE_CONTAINER) as StructureContainer | undefined;
+  const pending = createSpawnQueue(state,home).list(), sentinel = state.read('sentinel/remote-fleet');
+  if (mode === 'lifetime') {
+    const unrelated = pending.find(request => request.id === 'unrelated-request');
+    memory.remoteFleetExpectedUnrelated ??= unrelated;
+    if (!unrelated || JSON.stringify(unrelated) !== JSON.stringify(memory.remoteFleetExpectedUnrelated)) throw new Error('Unrelated queue changed');
+    if (JSON.stringify(sentinel) !== JSON.stringify({ owner: 'fixture',version: 1,data: { kept: ['fleet',29] } })) throw new Error('Sentinel changed');
+  }
+  if (mode === 'lifetime') memory.remoteFleetRows = [];
   (memory.remoteFleetRows ??= []).push({ tick: Game.time,revokedAt: memory.remoteFleetRevokedAt ?? null,cancelled: memory.remoteFleetCancel ?? null,
     credited: Object.values(amounts).reduce((sum,amount) => sum+amount,0),birthCost: Object.values(costs).reduce((sum,cost) => sum+cost,0),
     spawnEnergy: Game.rooms[home]!.energyAvailable,storageEnergy: Game.rooms[home]!.storage?.store.energy ?? 0,
     homeTotal: stores.reduce((sum,item) => sum+item.store.energy,0),sourceEnergy: source?.energy ?? null,containerEnergy: container?.store.energy ?? null,
-    ...(mode === 'bootstrap' ? {} : { fleet: createRemoteFleetStore(state,home).read() }),pending: createSpawnQueue(state,home).list(),sentinel: state.read('sentinel/remote-fleet'),
+    ...(['bootstrap','lifetime'].includes(mode) ? {} : { fleet: createRemoteFleetStore(state,home).read() }),...(mode === 'lifetime' ? { pendingCount: pending.length,unrelatedIntact: true,sentinelIntact: true } : { pending,sentinel }),
     sites: Object.values(Game.constructionSites).filter(site => site.pos.roomName === 'E0N1').map(site => ({ id: site.id,type: site.structureType,x: site.pos.x,y: site.pos.y,progress: site.progress,total: site.progressTotal })),
     quantities: peekState(state,'quantity-reservations/empire',quantitySchema)?.claims.length ?? 0,miningClaims: peekState(state,'reservations/empire',reservationSchema)?.claims.length ?? 0,
     units: units.map(creep => {
       const key = stateKey('logistics-attempts',creep.id), journal = state.read(key) === undefined ? undefined : createTransferJournal(state,creep.id).read();
-      return { id: creep.id,name: creep.name,kind: remoteFleetIdentity(creep.memory.population!.owner)!.kind,room: creep.pos.roomName,cargo: creep.store.getUsedCapacity(),
+      if (mode === 'lifetime' && journal?.attempt) (memory.remoteFleetAttempts ??= {})[journal.attempt.id] ??= journal.attempt;
+      const traceJournal = mode === 'lifetime' ? journal && !journal.acknowledged ? journal.attempt : undefined : journal?.attempt;
+      return { id: creep.id,...(mode === 'lifetime' ? { x: creep.pos.x,y: creep.pos.y } : { name: creep.name }),kind: remoteFleetIdentity(creep.memory.population!.owner)!.kind,room: creep.pos.roomName,cargo: creep.store.getUsedCapacity(),
+        ...(mode === 'lifetime' ? { retireTicks: createRemoteFleetStore(state,home).read().actors.find(actor => actor.owner === creep.memory.population!.owner)?.retireTicks ?? 0 } : {}),
         spawning: creep.spawning,moves: creep.getActiveBodyparts(MOVE),ttl: creep.ticksToLive ?? null,tasks: peekState(state,stateKey('tasks',creep.name),taskSchema(creep.name,definitions))?.queue.map(task => task.kind) ?? [],
-        journal: journal?.attempt ? { ...journal.attempt,acknowledged: journal.acknowledged,result: journal.result } : null };
+        journal: traceJournal ? { ...traceJournal,acknowledged: journal!.acknowledged,result: journal!.result } : null };
     }) });
 }

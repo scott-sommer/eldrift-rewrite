@@ -1,3 +1,4 @@
+import { movementPosition } from '../../adapters/screeps/movement-traffic';
 import type { StatePort } from '../../persistence/versioned-state';
 import type { TaskDefinition, TaskRecord } from '../../persistence/tasks/schema';
 import type { LogisticsRequest } from '../../capabilities/logistics/request';
@@ -51,16 +52,22 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
     const view = context.source(creep,demand);
     if (!view) { retire(creep); return; }
     if (!view.endpoint) {
-      dispatch.activate(); dispatch.movement.move(creep,{ owner: binding.owner,destination: view.position,range: 1,policy: view.route }); return;
+      stage(creep,view); return;
     }
     const maximum = creep.store.getFreeCapacity(RESOURCE_ENERGY);
     if (maximum < 1) return;
-    for (const sink of context.sinks()) {
+    const sinks = context.sinks();
+    for (const sink of sinks) {
       if (!options.guard()) return;
       if (admit(creep,demand,view.endpoint,sink,maximum)) {
         dispatch.activate(); execute(creep.name,creep); return;
       }
     }
+    if (sinks.length) stage(creep,view);
+  }
+  function stage(creep: Creep, view: NonNullable<ReturnType<typeof context.source>>): void {
+    const destination = view.endpoint ? movementPosition(view.endpoint.pos) : view.position;
+    dispatch.activate(); dispatch.movement.move(creep,{ owner: binding.owner,destination,range: 1,policy: view.route });
   }
   function admit(creep: Creep, demand: RemoteTransportDemand, container: RemoteTransportSource, sink: AnyStructure, maximum: number): boolean {
     const expiresAt = Math.min(demand.expiresAt,Game.time + options.requestLifetime);

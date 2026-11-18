@@ -1,3 +1,4 @@
+import { repairBorderPath } from './path-border';
 import { nativePathGoals } from './path-goals';
 import type { PathProfile, PathSearch } from '../../capabilities/movement/path-model';
 import { movementArrived } from '../../capabilities/movement/step';
@@ -9,11 +10,12 @@ export function createNativePathSearch(matrix: Matrices): PathSearch {
     const allowed = request.allowedRooms === undefined ? undefined : new Set(request.allowedRooms);
     if (allowed && (!allowed.has(request.origin.room) || !allowed.has(request.destination.room))) return { status: 'no-route', reason: 'room-policy' };
     const { origin, destination, range, profile } = request;
-    const result = PathFinder.search(new RoomPosition(origin.x, origin.y, origin.room), nativePathGoals(destination, range), {
+    const search = (start: typeof origin, maximumOps: number) => PathFinder.search(new RoomPosition(start.x, start.y, start.room), nativePathGoals(destination, range), {
       plainCost: profile.plainCost, swampCost: profile.swampCost,
-      maxOps: profile.maxOps, maxRooms: roomBudget(profile.maxRooms, allowed),
+      maxOps: maximumOps, maxRooms: roomBudget(profile.maxRooms, allowed),
       roomCallback: room => allowed && !allowed.has(room) ? false : matrix(room, profile) ?? true,
     });
+    const initial = search(origin,profile.maxOps), result = repairBorderPath(request,matrix,initial,search);
     const path = result.path.map(position => ({ room: position.roomName, x: position.x, y: position.y }));
     const end = path.at(-1) ?? origin;
     const complete = !result.incomplete && movementArrived({ position: end, destination, range });

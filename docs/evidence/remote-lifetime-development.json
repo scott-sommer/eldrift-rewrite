@@ -1,0 +1,367 @@
+{
+  "status": "historical-development-failures",
+  "scope": "Retirement-aware replacement and natural-lifetime regression development; no new production milestone is claimed.",
+  "unitChecks": {
+    "tests": 1357,
+    "files": 371,
+    "seconds": 10.42,
+    "focusedTests": 4,
+    "focusedFiles": 2,
+    "focusedMilliseconds": 221,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 651,
+      "testFiles": 538,
+      "violations": 0
+    }
+  },
+  "findings": [
+    "Population replacement lead must include service retirement in addition to body spawn/outbound/buffer. Working tree uses remoteFleetDemand.",
+    "Initial long traces exhausted native Memory. Final lifetime probe streams every row through the host, retaining unique attempts and asserting repeated sentinel/queue invariants inside the bot. Final native Memory is 447644 bytes.",
+    "Before courier staging, successor miner reaches source at 1442 before old retirement 1477, but replacement couriers stay home during source depletion.",
+    "After staging, genuinely new miner is ready at 1442 before retirement 1477, and courier at 1459 before retirement 1487. Original native lifetimes are unchanged.",
+    "Final staging run still fails safe retirement: loaded replacement miner remains at E0N1 (0,24), cargo24, from tick1680 through1750; both couriers are empty at home. Home credit8062 at revocation1650. Do not claim completed handoff/return qualification."
+  ],
+  "nextAction": "Isolate the border-return failure in a short native reproduction. Inspect actual PathFinder first step and movement outcome; movementTransition intentionally rejects direct outward steps from an arrival border. Do not assume this is the root cause without observing the path/outcome. Fix the shared movement/return responsibility, run the complete lifetime probe plus affected regressions, and only then commit/push a qualified milestone.",
+  "runs": [
+    {
+      "sourceEvidence": "artifacts\\engine-yUeFpP\\evidence.json",
+      "sourceEvidenceSha256": "7540d774bb8a148f1c08ebbe62570349e9bed1f28da5ebdd29d3058de23a33aa",
+      "status": "failed",
+      "failure": "Error: Engine smoke timeout\n    at Timeout._onTimeout (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:262:117)\n    at listOnTimeout (node:internal/timers:685:17)\n    at process.processTimers (node:internal/timers:618:7)",
+      "provenance": {
+        "commit": "33960e73b770e2c67d6d5e15751c0b198cf87ef3",
+        "dirty": true,
+        "bundleSha256": "351fabecdb31f85fc07f95116dd93c85a0ebc9e72e723d7a01e039ff9b988ccb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sampleCount": 25,
+      "lastSample": [
+        {
+          "tick": 26,
+          "wallMilliseconds": 32.128799999999956,
+          "cpuMilliseconds": 9,
+          "memoryBytes": 44235
+        }
+      ]
+    },
+    {
+      "sourceEvidence": "artifacts\\engine-RBkhaU\\evidence.json",
+      "sourceEvidenceSha256": "7d6478b96af190683490dc475db19ee596e90ed0a4904a6cb34c0fcf4b7959e3",
+      "status": "failed",
+      "failure": "Error: Engine smoke timeout\n    at Timeout._onTimeout (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:262:117)\n    at listOnTimeout (node:internal/timers:685:17)\n    at process.processTimers (node:internal/timers:618:7)",
+      "provenance": {
+        "commit": "33960e73b770e2c67d6d5e15751c0b198cf87ef3",
+        "dirty": true,
+        "bundleSha256": "351fabecdb31f85fc07f95116dd93c85a0ebc9e72e723d7a01e039ff9b988ccb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sampleCount": 1452,
+      "lastSample": [
+        {
+          "tick": 1453,
+          "wallMilliseconds": 132.12109999998938,
+          "cpuMilliseconds": 42,
+          "memoryBytes": 2097036
+        }
+      ]
+    },
+    {
+      "sourceEvidence": "artifacts\\engine-kzTGyK\\evidence.json",
+      "sourceEvidenceSha256": "15929088e27d5aed5b7f60d81b9851c2980fa0a8d3d6d24153696ccab7270e16",
+      "status": "failed",
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1515 !== 1750\n\n    at verifyRemoteFleet (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\remote-fleet.cjs:48:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:840:30\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "provenance": {
+        "commit": "33960e73b770e2c67d6d5e15751c0b198cf87ef3",
+        "dirty": true,
+        "bundleSha256": "de3c9ae83288fcf3d28a16618c835cb8e40b9841bafd0cd1557c072c90de4b43",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sampleCount": 1750,
+      "lastSample": [
+        {
+          "tick": 1751,
+          "wallMilliseconds": 56.422099999996135,
+          "cpuMilliseconds": 25,
+          "memoryBytes": 2097099
+        }
+      ],
+      "rows": 1515,
+      "lastRow": {
+        "tick": 1656,
+        "revokedAt": 1650,
+        "cancelled": null,
+        "credited": 7412,
+        "birthCost": 1900,
+        "spawnEnergy": 1400,
+        "storageEnergy": 8140,
+        "homeTotal": 9540,
+        "sourceEnergy": 692,
+        "containerEnergy": 56,
+        "pending": [
+          {
+            "id": "unrelated-request",
+            "name": "unrelated-request",
+            "owner": "unrelated",
+            "room": "W0N1",
+            "body": [
+              "move"
+            ],
+            "priority": 100,
+            "readyAt": 10000,
+            "expiresAt": 20000
+          }
+        ],
+        "sentinel": {
+          "owner": "fixture",
+          "version": 1,
+          "data": {
+            "kept": [
+              "fleet",
+              29
+            ]
+          }
+        },
+        "sites": [],
+        "quantities": 0,
+        "miningClaims": 0,
+        "units": [
+          {
+            "id": "643f0926ab8967d",
+            "x": 3,
+            "y": 26,
+            "kind": "miner",
+            "room": "E0N1",
+            "cargo": 24,
+            "retireTicks": 45,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1275,
+            "tasks": [],
+            "journal": null
+          },
+          {
+            "id": "730e0927dd11fdf",
+            "x": 46,
+            "y": 24,
+            "kind": "courier",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 47,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1295,
+            "tasks": [],
+            "journal": null
+          },
+          {
+            "id": "a982092856ad21a",
+            "x": 47,
+            "y": 24,
+            "kind": "courier",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 47,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1307,
+            "tasks": [],
+            "journal": null
+          }
+        ]
+      }
+    },
+    {
+      "sourceEvidence": "artifacts\\engine-PTtJPs\\evidence.json",
+      "sourceEvidenceSha256": "c8bdb827dca4f30d6e774ffd42aae26ed06c6a64d17346cabc50a68ee3c084d6",
+      "status": "failed",
+      "failure": "AssertionError [ERR_ASSERTION]: successor must reach the room before natural old-worker retirement\n    at verifyRemoteFleet (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\remote-fleet.cjs:89:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:840:24",
+      "provenance": {
+        "commit": "33960e73b770e2c67d6d5e15751c0b198cf87ef3",
+        "dirty": true,
+        "bundleSha256": "487ae97e117b7f9de5432791b424ab0baa707e759a19266cdbb3a84f1cb9abe7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sampleCount": 1750,
+      "lastSample": [
+        {
+          "tick": 1751,
+          "wallMilliseconds": 102.20119999998133,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 2092950
+        }
+      ],
+      "rows": 1750,
+      "lastRow": {
+        "tick": 1750,
+        "revokedAt": 1652,
+        "cancelled": null,
+        "credited": 8102,
+        "birthCost": 1900,
+        "spawnEnergy": 1400,
+        "storageEnergy": 8102,
+        "homeTotal": 9502,
+        "sourceEnergy": null,
+        "containerEnergy": null,
+        "pendingCount": 1,
+        "unrelatedIntact": true,
+        "sentinelIntact": true,
+        "sites": [],
+        "quantities": 0,
+        "miningClaims": 0,
+        "units": [
+          {
+            "id": "deae098922148c4",
+            "x": 46,
+            "y": 25,
+            "kind": "miner",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 45,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1181,
+            "tasks": [],
+            "journal": null
+          },
+          {
+            "id": "7818098a3df9184",
+            "x": 45,
+            "y": 24,
+            "kind": "courier",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 47,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1201,
+            "tasks": [],
+            "journal": null
+          },
+          {
+            "id": "efbd098aadcc84d",
+            "x": 46,
+            "y": 24,
+            "kind": "courier",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 47,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1213,
+            "tasks": [],
+            "journal": null
+          }
+        ]
+      }
+    },
+    {
+      "sourceEvidence": "artifacts\\engine-cmBxR9\\evidence.json",
+      "sourceEvidenceSha256": "c789d2536aa6c5b1a2820c26f016c373acc6d1cca57e5b2c0fabe10d68c02399",
+      "status": "failed",
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(last.units.every(unit => unit.room === 'W0N1' && unit.cargo === 0 && unit.tasks.length === 0 && !unit.spawning))\n\n    at verifyRemoteFleet (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\remote-fleet.cjs:54:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:840:30\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "provenance": {
+        "commit": "33960e73b770e2c67d6d5e15751c0b198cf87ef3",
+        "dirty": true,
+        "bundleSha256": "d37482b2429e80b6efda47a59849a746fea0029d5b3decab9e1dc6da1d962817",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sampleCount": 1750,
+      "lastSample": [
+        {
+          "tick": 1751,
+          "wallMilliseconds": 45.921999999991385,
+          "cpuMilliseconds": 10,
+          "memoryBytes": 447644
+        }
+      ],
+      "rows": 1750,
+      "lastRow": {
+        "tick": 1750,
+        "revokedAt": 1650,
+        "cancelled": null,
+        "credited": 8062,
+        "birthCost": 1900,
+        "spawnEnergy": 1400,
+        "storageEnergy": 8062,
+        "homeTotal": 9462,
+        "sourceEnergy": 692,
+        "containerEnergy": 50,
+        "pendingCount": 1,
+        "unrelatedIntact": true,
+        "sentinelIntact": true,
+        "sites": [],
+        "quantities": 0,
+        "miningClaims": 0,
+        "units": [
+          {
+            "id": "0a9b09f2d7cb08d",
+            "x": 0,
+            "y": 24,
+            "kind": "miner",
+            "room": "E0N1",
+            "cargo": 24,
+            "retireTicks": 45,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1181,
+            "tasks": [],
+            "journal": null
+          },
+          {
+            "id": "c96509f37b5146d",
+            "x": 46,
+            "y": 24,
+            "kind": "courier",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 47,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1201,
+            "tasks": [],
+            "journal": null
+          },
+          {
+            "id": "363109f3c74bb4b",
+            "x": 48,
+            "y": 23,
+            "kind": "courier",
+            "room": "W0N1",
+            "cargo": 0,
+            "retireTicks": 47,
+            "spawning": false,
+            "moves": 2,
+            "ttl": 1213,
+            "tasks": [],
+            "journal": null
+          }
+        ]
+      }
+    }
+  ],
+  "subsequentDevelopment": "Short native reproduction confirmed complete PathFinder path with impossible outward arrival-border first step and invalid-direction. Shared adapter repair passes the border probe. Corrected null-TTL verifier and distinct-successor assertions pass the full 1750-tick development run engine-6E1LRz: miner1446<1477; couriers1458<1487 and1472<1499; all return empty at home. Clean qualification and full regression are pending at this checkpoint."
+}
