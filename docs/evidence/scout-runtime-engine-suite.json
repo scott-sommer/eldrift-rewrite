@@ -1,0 +1,1130 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-18T05:22:02.639Z",
+  "milliseconds": 694369.3267,
+  "activeScenario": null,
+  "results": [
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 884.6184,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tqVWTm\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--reload",
+      "milliseconds": 990.9410999999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-pbxKPP\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--actions",
+      "milliseconds": 993.3590000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GD0Y1t\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stations",
+      "milliseconds": 947.8274000000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XYK3LY\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining",
+      "milliseconds": 1106.0281000000004,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WwDMTd\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-storage",
+      "milliseconds": 1041.5518000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VAZXRw\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-work",
+      "milliseconds": 1007.1390000000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-f7bJjk\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-mining",
+      "milliseconds": 2014.1007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nYSmx5\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-mineral",
+      "milliseconds": 1634.7357999999986,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-57kdzd\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-replacement",
+      "milliseconds": 1824.3497000000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-emIArs\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-saturation",
+      "milliseconds": 1882.8980999999985,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-e3At17\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--extractor-fault",
+      "milliseconds": 1502.302099999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-obuWR2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-interrupted",
+      "milliseconds": 1387.624499999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-0Wn6VL\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--specialist-mining",
+      "milliseconds": 1332.236399999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YxDL7Y\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-depletion",
+      "milliseconds": 1089.036,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-M3hirW\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-capacity",
+      "milliseconds": 1125.849000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-W6hGOQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1356.670299999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-TJKJJL\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--spawn-contention",
+      "milliseconds": 1111.1913000000022,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jlDLtc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--tasks",
+      "milliseconds": 1040.1320000000014,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-N9nB2t\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work",
+      "milliseconds": 1064.422499999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-H3Hb6e\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work-selection",
+      "milliseconds": 1212.5174000000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-TaF2i9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--room-assessment",
+      "milliseconds": 1332.719799999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-04OT9u\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--intel-observation",
+      "milliseconds": 1408.2116000000024,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oGnHsQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--intel-capture",
+      "milliseconds": 1561.2847000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4i9n6D\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-lifecycle",
+      "milliseconds": 1797.2224999999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-W8suZ9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-control",
+      "milliseconds": 2023.5009000000027,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nuNSPc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-spawn",
+      "milliseconds": 5653.836299999995,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-T80Xn5\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-default",
+      "milliseconds": 2728.3873999999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MXFofv\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-explore",
+      "milliseconds": 5774.865400000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BW7S4k\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-blocked",
+      "milliseconds": 3602.3137999999963,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-KiQ8Vl\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--layout-placement",
+      "milliseconds": 1440.917499999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-eYX3jy\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-route-resume",
+      "milliseconds": 1042.9133000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-s930kt\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-route-reload",
+      "milliseconds": 1129.722600000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HzlvBC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-commit",
+      "milliseconds": 1196.2513000000035,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Q7xqNY\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--standard-draft-resume",
+      "milliseconds": 1513.8001999999979,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gQV9zV\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--constrained-draft-resume",
+      "milliseconds": 4683.0638000000035,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kddhhz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-job",
+      "milliseconds": 8581.894299999993,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BdZkVO\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-cpu",
+      "milliseconds": 9388.796900000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-eRI4ux\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-runtime",
+      "milliseconds": 1108.12049999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4xvlAH\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-budget",
+      "milliseconds": 3446.252299999993,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IvabPT\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-room",
+      "milliseconds": 32413.34019999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EQ6A0c\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction",
+      "milliseconds": 2219.475000000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-I8QIfn\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-runtime",
+      "milliseconds": 1169.8678999999975,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NPxtrJ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-lifecycle",
+      "milliseconds": 1584.250199999995,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HBOVJ1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-budget",
+      "milliseconds": 1547.6964000000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-F8xpAe\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-remote",
+      "milliseconds": 1084.0267000000022,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vFmQjg\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-retry",
+      "milliseconds": 1312.5956000000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-k1WLJC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--defense-cut",
+      "milliseconds": 9743.360400000005,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zUiSzE\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--defense-cut-reload",
+      "milliseconds": 11687.718000000023,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jjSqvA\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-draft",
+      "milliseconds": 6159.569800000027,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PkCQj4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-room",
+      "milliseconds": 13336.243500000011,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-dX7yuj\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--auto-stamp-room",
+      "milliseconds": 24092.763600000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6yLeu4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--irregular-stamp-room",
+      "milliseconds": 11900.883799999981,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Vk26CJ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-failure",
+      "milliseconds": 14063.128299999982,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NvmKJ2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-budget",
+      "milliseconds": 60843.263799999986,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-cuj5sN\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-late-reset",
+      "milliseconds": 65068.72089999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-d4hH8m\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work-dependencies",
+      "milliseconds": 1069.2027000000235,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kjJ24o\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-runtime",
+      "milliseconds": 1056.5896000000066,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aYb913\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-position",
+      "milliseconds": 995.8881999999867,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2XesXU\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-position-wide",
+      "milliseconds": 1028.9444999999832,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yabg4e\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-population",
+      "milliseconds": 1730.9226999999955,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lNb5nR\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mixed-workers",
+      "milliseconds": 1004.4062999999733,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jdQLXU\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--fortifier-work",
+      "milliseconds": 1199.4990999999573,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hOTY4h\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--legacy-fortifier",
+      "milliseconds": 1167.0247999999556,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VKxadr\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--art-region",
+      "milliseconds": 1368.9266999999527,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-bOkaz2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--art-builder",
+      "milliseconds": 1325.901200000022,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jBQPxl\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--energy-recovery",
+      "milliseconds": 1162.134400000039,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Y6NCis\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-economy",
+      "milliseconds": 5736.434799999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GNZEVq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-scavenging",
+      "milliseconds": 1356.5569999999716,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zHqXeJ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-scavenger-spawn",
+      "milliseconds": 8600.362000000023,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-T8NHi8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-banking",
+      "milliseconds": 3558.7754000000423,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-bQaZEG\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--distributor-recovery",
+      "milliseconds": 3060.4911999999895,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qGM7HN\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--automatic-support",
+      "milliseconds": 4241.174400000018,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VtCKGc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-replacement",
+      "milliseconds": 34622.47850000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VhzbwK\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-sponsor-loss",
+      "milliseconds": 2223.8905999999843,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GfKJu1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-terminal",
+      "milliseconds": 1584.3636000000406,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XHbmTC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-terminal-full",
+      "milliseconds": 1849.912799999991,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZomBa7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-target-loss",
+      "milliseconds": 1683.3633000000264,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-dKCCB3\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-fleet",
+      "milliseconds": 12186.067900000024,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-QrVEbF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-fleet-loss",
+      "milliseconds": 1144.1880999999703,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CSi6Pa\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-cycle",
+      "milliseconds": 1629.4604999999865,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kDIgLY\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-cargo",
+      "milliseconds": 1982.8464000000386,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jqS5R0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-cargo-hold",
+      "milliseconds": 1848.736900000018,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-sSPNed\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-master",
+      "milliseconds": 1557.5742000000319,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-p6Kt4E\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--ground-recovery",
+      "milliseconds": 1315.8893999999855,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Bzz6a0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--ground-delivery",
+      "milliseconds": 978.6956000000355,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BYW8Kg\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-supply-transport",
+      "milliseconds": 2246.295700000017,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Tl6or4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--support-transport",
+      "milliseconds": 2903.9783999999636,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-L49or2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--support-loss",
+      "milliseconds": 1331.8755999999703,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uzRoVh\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--support-reserve-change",
+      "milliseconds": 2258.9699000000255,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qQVbao\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-service",
+      "milliseconds": 6653.6322999999975,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-TW3FuY\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--structure-actions",
+      "milliseconds": 994.7173000000184,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7z0mfA\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-bootstrap",
+      "milliseconds": 7035.831099999952,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hsjevf\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-handoff",
+      "milliseconds": 2083.76880000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BbwcSL\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-master",
+      "milliseconds": 3819.2718999999925,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-C6pxzo\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-layout-loss",
+      "milliseconds": 5534.581000000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZUUqAX\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-storage-loss",
+      "milliseconds": 3597.676600000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MWhTog\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-loaded-loss",
+      "milliseconds": 4419.321200000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RRLGad\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-master-contention",
+      "milliseconds": 1209.140699999989,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-V7E5hj\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-fleet",
+      "milliseconds": 11936.493699999992,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zZzzde\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-fleet-loss",
+      "milliseconds": 1164.0298000000184,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-J46EWJ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-loss",
+      "milliseconds": 7809.508700000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6eM9BK\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-harvest",
+      "milliseconds": 9654.075899999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tN67Xp\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-assignment",
+      "milliseconds": 1515.7662000000128,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Fg6JTa\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-salvage",
+      "milliseconds": 1387.9784000000218,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JYPIyZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-salvage-disabled",
+      "milliseconds": 1284.4271999999182,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fPCwaQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-salvage-depleted",
+      "milliseconds": 1734.1485999999568,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7QNz7E\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-bootstrap",
+      "milliseconds": 4114.9243000000715,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-W3RGU9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-rebuild",
+      "milliseconds": 28192.766500000027,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Z6AlZ9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-cycle",
+      "milliseconds": 2945.4555999999866,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XwdcAc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-claim",
+      "milliseconds": 2400.3526000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qBkLrU\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-room",
+      "milliseconds": 2167.345900000073,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-s0n0WE\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-room-shortage",
+      "milliseconds": 1554.248399999924,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6ztndc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-cargo",
+      "milliseconds": 1259.640699999989,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GcUzm9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-cargo-drop",
+      "milliseconds": 1330.470399999991,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gOV75O\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-cargo-hold",
+      "milliseconds": 1160.0198000000091,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-r0FPMA\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-collection",
+      "milliseconds": 1179.2240000000456,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-sirPhJ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner",
+      "milliseconds": 1334.3863000000129,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-J9zCVc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner-automatic",
+      "milliseconds": 1333.1173999999883,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-8fEI9I\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner-replacement",
+      "milliseconds": 1312.7627999999095,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Fcv8q7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner-travel",
+      "milliseconds": 1893.4719999999506,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5R7WcZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-pickup",
+      "milliseconds": 1135.391100000008,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-LWLQYC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-builder",
+      "milliseconds": 1034.6751999999397,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-atDUb7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-fortifier",
+      "milliseconds": 1032.9137000000337,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CehYNe\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-upgrader",
+      "milliseconds": 1006.5522999999812,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-OXwPSC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-upgrader-v2",
+      "milliseconds": 1017.5189999999711,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kWLlA8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-hold",
+      "milliseconds": 947.3557000000728,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jokdhl\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-flag-hold",
+      "milliseconds": 967.4751000000397,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-TcnsvW\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--resources",
+      "milliseconds": 1355.0683999999892,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-27NXCa\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--transfer-confirmation",
+      "milliseconds": 1016.3488000000361,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JsJVkN\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--hauling-cycle",
+      "milliseconds": 1057.044600000023,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-eMKp5n\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--energy-logistics",
+      "milliseconds": 1065.937099999981,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-m6rJIZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--reclamation",
+      "milliseconds": 1126.5677000000142,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZonYAn\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work-supply",
+      "milliseconds": 1207.6176999999443,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XTnjQS\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--tower-supply",
+      "milliseconds": 1055.0105000000913,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-0GVUvq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-supply",
+      "milliseconds": 993.5984999999637,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-v3MP5V\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--controller-links",
+      "milliseconds": 994.9481999999844,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5ruyD7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-contention",
+      "milliseconds": 1045.746999999974,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FVDboe\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-service",
+      "milliseconds": 1034.1920000000391,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FQHJDb\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-reversal",
+      "milliseconds": 1127.357799999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-V5R4K9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-transport",
+      "milliseconds": 1430.9934000000358,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XmFY2u\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--courier-death",
+      "milliseconds": 1036.7849999999162,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3fuY6I\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--cargo-death",
+      "milliseconds": 1157.4623000000138,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-s1lYhm\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--storage-loss",
+      "milliseconds": 1038.3227000000188,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6esocq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--energy-banking",
+      "milliseconds": 1030.831200000015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yYHJAP\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--banking-fallback",
+      "milliseconds": 1031.6317999999737,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UkD6yy\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--banking-demand",
+      "milliseconds": 1131.0429000000004,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tBUoBw\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-fill",
+      "milliseconds": 1086.2966000000015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5lUquk\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-guard",
+      "milliseconds": 1052.610100000049,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qZ412Y\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-drain",
+      "milliseconds": 1373.3443999999436,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hSbYN7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-mineral",
+      "milliseconds": 1413.2888000000967,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YPu4Cc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-reload",
+      "milliseconds": 1260.563000000082,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hXQMoX\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-recovery",
+      "milliseconds": 1001.4631999999983,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-OnA6OL\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-recovery-fallback",
+      "milliseconds": 1048.1661000000313,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Vl35c5\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--courier-bootstrap",
+      "milliseconds": 1551.1347999999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-a5hnmZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--courier-routes",
+      "milliseconds": 975.4133000000147,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RjmTQF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-routes",
+      "milliseconds": 962.5037999999477,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ygWKfD\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-resilience",
+      "milliseconds": 39793.29920000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-C7t5h6\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-economy",
+      "milliseconds": 3607.769900000072,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lZCp6K\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--empty-source",
+      "milliseconds": 1083.3667000000132,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7h0xIg\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--cargo-recovery",
+      "milliseconds": 1057.939699999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2xXvA2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--expiry-recovery",
+      "milliseconds": 1048.1152000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-T253Mg\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--expiry-delivery",
+      "milliseconds": 1039.0084000000497,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2oJUpu\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--unknown-recovery",
+      "milliseconds": 1038.3340000000317,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EvnjHO\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--unknown-delivery",
+      "milliseconds": 1049.107399999979,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9nL3k2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--missing-sink",
+      "milliseconds": 1049.9733000000706,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ooVtqv\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--pickup-admission",
+      "milliseconds": 1016.4349999999395,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZkWOZU\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--remains-supply",
+      "milliseconds": 1101.8852000000188,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mv48uL\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--drop-supply",
+      "milliseconds": 1057.0411000000313,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-8Lqez0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--large-drop",
+      "milliseconds": 1050.6020000000717,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-b4UjN9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--preservation",
+      "milliseconds": 1126.251799999969,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wfMvTl\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--full-sink",
+      "milliseconds": 1058.372699999949,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-cHcPf3\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--preservation-decay",
+      "milliseconds": 1131.8392000000458,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yo8fWx\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--source-loss",
+      "milliseconds": 1058.2297000000253,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7Sunz4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--movement",
+      "milliseconds": 1003.4939000000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Ml40hH\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--maintenance",
+      "milliseconds": 981.9782000000123,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Z0MkDS\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--retirement",
+      "milliseconds": 996.4646000000648,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wLtgwZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--paths",
+      "milliseconds": 1027.6084000000264,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-92USg8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery",
+      "milliseconds": 1096.999599999981,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3fRuPj\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--traffic",
+      "milliseconds": 1034.0836000000127,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PqBqDt\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--exits",
+      "milliseconds": 1078.7571000000462,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-H0xWsh\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--navigation",
+      "milliseconds": 1048.1321999999927,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-H0TdIe\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--unseen",
+      "milliseconds": 997.8486999999732,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GfnSkP\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--occupied-exit",
+      "milliseconds": 939.8531999998959,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PGwGEe\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--service-recovery",
+      "milliseconds": 1100.0956000000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-txEpo9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--inject-error",
+      "milliseconds": 802.5999999999767,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nfnMeP\\evidence.json",
+      "expectedFailure": true
+    },
+    {
+      "scenario": "--inject-timeout",
+      "milliseconds": 1763.064800000051,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Gzvx3n\\evidence.json",
+      "expectedFailure": true
+    }
+  ]
+}

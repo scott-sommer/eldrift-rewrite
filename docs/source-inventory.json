@@ -3774,12 +3774,15 @@
     "file": "role.scout.js",
     "sha256": "1E94FF029CB29F63BC995C7D68EB572991944E4DB5586FFCCA46408FB83278E8",
     "physicalLines": 751,
-    "reviewStatus": "Partial responsibility review: capture, target ranking, route admission and heartbeat/loss boundaries; movement/controller/operator paths still pending",
-    "implementationStatus": "Partial port: native rich intel capture, bounded risk-aware graph/exploration targets and reset-safe scout loss history; autonomous scout population/movement/visits and observer actions remain ED-28",
+    "reviewStatus": "Responsibilities reviewed through native objective controller, movement, demand and loss tracking; legacy assigned-flag fallback and memory translation remain explicit later gates",
+    "implementationStatus": "Native scout population, persisted control, ordered visits, bounded exploration, shared threat-aware movement and loss replacement qualified; observer ownership remains ED-28, operator/legacy-memory integration ED-39/44",
     "evidence": [
       "docs/intel.md",
       "docs/evidence/scout-lifecycle-native.json",
-      "docs/evidence/scout-lifecycle-engine-suite.json"
+      "docs/evidence/scout-lifecycle-engine-suite.json",
+      "docs/scouts.md",
+      "docs/evidence/scout-runtime-engine-suite.json",
+      "docs/evidence/scout-runtime-clean-native.json"
     ],
     "plannedIssues": [
       "ED-28"
@@ -4035,19 +4038,24 @@
     "proposedOwner": "features/intel",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "c9f9840df5133816e96da7786de4a781b0c38d87",
-      "required": "Native scenario and behavior tests for each ported responsibility; autonomous controller/observer integration and later operator/migration gates remain open",
+      "commit": "1a539c24fa0ad1a1fc0f7054fc304ca06273ed63",
+      "required": "Observer ownership/delayed capture in ED-28; legacy assigned-flag fallback, operator integration and memory translation in ED-39/44; release pressure/soak in ED-43",
       "tests": [
         "test/features/intel-traversal.test.ts",
         "test/features/intel-room-gap.test.ts",
         "test/features/exploration-plan.test.ts",
         "test/features/scout-history.test.ts",
         "test/app/scout-retirement.test.ts",
-        "test/engine/scout-lifecycle-bot.ts"
+        "test/engine/scout-lifecycle-bot.ts",
+        "test/features/scout-control.test.ts",
+        "test/app/native-scouts.test.ts",
+        "test/app/native-scout-depth.test.ts",
+        "test/app/scout-planning-budget.test.ts",
+        "test/engine/scout-runtime-bot.ts"
       ],
-      "status": "Partial mechanisms qualified; not whole-role parity",
-      "validationCommit": "c9f9840df5133816e96da7786de4a781b0c38d87",
-      "fullNativeSuite": "docs/evidence/scout-lifecycle-engine-suite.json"
+      "status": "Native scout control/demand qualified; not whole-role release parity",
+      "validationCommit": "6380e92cc8a53429a523006e43b6b9bfa8a0d725",
+      "fullNativeSuite": "docs/evidence/scout-runtime-engine-suite.json"
     }
   },
   {
