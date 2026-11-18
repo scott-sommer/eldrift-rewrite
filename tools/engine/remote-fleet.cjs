@@ -1,7 +1,13 @@
 const assert = require('node:assert/strict');
 const { remoteTransportWorld } = require('./remote-transport.cjs');
 const { reloadStampDraft } = require('./stamp-draft.cjs');
-async function remoteFleetWorld(server,bot) { await remoteTransportWorld(server,bot); }
+async function remoteFleetWorld(server,bot,mode) {
+  await remoteTransportWorld(server,bot);
+  if (mode === 'bootstrap') {
+    const { db } = await server.world.load();
+    await db['rooms.objects'].removeWhere({ room: 'E0N1',type: 'container' });
+  }
+}
 function createRemoteFleetChanges(mode) {
   const seen = new Set(), metadata = { mode,confirmationResets: [],replacement: null,damage: null };
   async function change(server,bot,modules,index) {
@@ -33,7 +39,7 @@ function createRemoteFleetChanges(mode) {
 async function verifyRemoteFleet(memory,evidence,metadata,server) {
   const rows = memory.remoteFleetRows, last = rows.at(-1);
   evidence.remoteFleet = { rows,metadata,reloads: memory.stampReloads,receipts: memory.remoteFleetReceipts,bindings: memory.remoteFleetBindings };
-  assert.equal(rows.length,metadata.mode === 'budget' ? 280 : 260); assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
+  assert.equal(rows.length,metadata.mode === 'bootstrap' ? 1500 : metadata.mode === 'budget' ? 280 : 260); assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.ok(last.revokedAt >= 180); assert.ok(last.credited >= 200);
   assert.ok(rows.some(row => row.units.some(unit => unit.kind === 'miner' && unit.room === 'E0N1' && unit.tasks.includes('remote-mine'))));
   assert.ok(rows.some(row => row.units.some(unit => unit.kind === 'courier' && unit.tasks.includes('haul'))));
@@ -55,7 +61,16 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
   const { db } = await server.world.load(), source = await db['rooms.objects'].findOne({ room: 'E0N1',type: 'source' });
   const container = await db['rooms.objects'].findOne({ room: 'E0N1',type: 'container' });
   evidence.remoteFleet.finalWorld = { sourceEnergy: source.energy,containerEnergy: container.store.energy };
-  assert.equal(1500-source.energy,last.credited+container.store.energy,'all harvested energy must be conserved after retirement');
+  if (metadata.mode !== 'bootstrap') assert.equal(1500-source.energy,last.credited+container.store.energy,'all harvested energy must be conserved after retirement');
+  else {
+    const sites = rows.flatMap(row => row.sites.filter(site => site.type === 'container'));
+    assert.equal(rows[0].containerEnergy,null,'bootstrap must not seed a container');
+    assert.ok(sites.some(site => site.progress > 0),'recruited miner must actually build the site');
+    assert.ok(sites.some(site => site.progress >= site.total-50),'build progress must approach completion');
+    assert.ok(container && sites.some(site => site.x === container.x && site.y === container.y),'native container must match an automatically built site');
+    assert.ok(rows.some(row => row.containerEnergy > 0),'completed container must receive mined energy');
+    evidence.remoteFleet.bootstrap = { firstSite: rows.find(row => row.sites.length)?.tick,firstProgress: rows.find(row => row.sites.some(site => site.progress > 0))?.tick,firstContainer: rows.find(row => row.containerEnergy !== null)?.tick,firstCredit: rows.find(row => row.credited > 0)?.tick };
+  }
   const unrelated = rows[0].pending.find(request => request.id === 'unrelated-request');
   for (const row of rows) {
     assert.deepEqual(row.sentinel,rows[0].sentinel);

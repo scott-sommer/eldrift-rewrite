@@ -22,18 +22,18 @@ interface ProbeMemory extends Memory {
   remoteFleetReceipts?: Record<string,number>; remoteFleetBindings?: Record<string,string>; remoteFleetBirthCosts?: Record<string,number>;
 }
 export function loop(): void { runFleetProbe('normal'); }
-export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damage' | 'budget'): void {
+export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damage' | 'budget' | 'bootstrap'): void {
   const memory = Memory as ProbeMemory;
   if (Game.time === 1) {
     const config = openState(state,'operator/config',operatorSchema);
     config.empire = { remoteManagementEnabled: true,remoteWorkersEnabled: true,remoteSpawningEnabled: true,remoteDepth: 1,remoteMaximumSlots: 1,
-      remoteMaximumSpawnLoad: 2,remoteCpuBudget: 100,remoteWorkerCpuBudget: mode === 'budget' ? 5 : 100,remoteContainersEnabled: false,remoteMinimumRcl: 2 };
+      remoteMaximumSpawnLoad: 2,remoteCpuBudget: 100,remoteWorkerCpuBudget: mode === 'budget' ? 5 : 100,remoteContainersEnabled: mode === 'bootstrap',constructionEnabled: mode === 'bootstrap',constructionCpuBudget: 100,remoteMinimumRcl: 2 };
     saveState(state,'operator/config',operatorSchema,config);
     createSpawnQueue(state,home).submit({ id: 'unrelated-request',name: 'unrelated-request',owner: 'unrelated',room: home,body: ['move'],priority: 100,readyAt: 10000,expiresAt: 20000 });
     state.write('sentinel/remote-fleet',{ owner: 'fixture',version: 1,data: { kept: ['fleet',29] } });
   }
   updatePolicy(memory,mode);
-  runtimeLoop(); snapshot(memory);
+  runtimeLoop(); snapshot(memory,mode);
 }
 function updatePolicy(memory: ProbeMemory, mode: string): void {
   const units = Object.values(Game.creeps).filter(creep => remoteFleetIdentity(creep.memory.population?.owner ?? ''));
@@ -45,7 +45,7 @@ function updatePolicy(memory: ProbeMemory, mode: string): void {
     patch({ remoteSpawningEnabled: true }); memory.remoteFleetResumeAt = Game.time;
   }
   const credited = Object.values(memory.remoteFleetReceipts ?? {}).reduce((sum,amount) => sum+amount,0);
-  if (!memory.remoteFleetRevokedAt && Game.time >= 180 && credited >= 200 && units.some(creep => remoteFleetIdentity(creep.memory.population!.owner)?.kind === 'courier'
+  if (!memory.remoteFleetRevokedAt && Game.time >= (mode === 'bootstrap' ? 1300 : 180) && credited >= 200 && units.some(creep => remoteFleetIdentity(creep.memory.population!.owner)?.kind === 'courier'
     && creep.pos.roomName === 'E0N1' && creep.store.energy > 0)) {
     patch({ remoteMaximumSlots: 0 }); memory.remoteFleetRevokedAt = Game.time;
   }
@@ -53,7 +53,7 @@ function updatePolicy(memory: ProbeMemory, mode: string): void {
 function patch(values: object): void {
   const config = openState(state,'operator/config',operatorSchema); config.empire = { ...config.empire as object,...values }; saveState(state,'operator/config',operatorSchema,config);
 }
-function snapshot(memory: ProbeMemory): void {
+function snapshot(memory: ProbeMemory, mode: string): void {
   const records = peekState(state,stateKey('logistics-requests',home),logisticsQueueSchema)?.records ?? [];
   const amounts = memory.remoteFleetReceipts ??= {}, bindings = memory.remoteFleetBindings ??= {}, costs = memory.remoteFleetBirthCosts ??= {};
   traceReceipts(records,{ amounts,bindings });
@@ -66,7 +66,8 @@ function snapshot(memory: ProbeMemory): void {
     credited: Object.values(amounts).reduce((sum,amount) => sum+amount,0),birthCost: Object.values(costs).reduce((sum,cost) => sum+cost,0),
     spawnEnergy: Game.rooms[home]!.energyAvailable,storageEnergy: Game.rooms[home]!.storage?.store.energy ?? 0,
     homeTotal: stores.reduce((sum,item) => sum+item.store.energy,0),sourceEnergy: source?.energy ?? null,containerEnergy: container?.store.energy ?? null,
-    fleet: createRemoteFleetStore(state,home).read(),pending: createSpawnQueue(state,home).list(),sentinel: state.read('sentinel/remote-fleet'),
+    ...(mode === 'bootstrap' ? {} : { fleet: createRemoteFleetStore(state,home).read() }),pending: createSpawnQueue(state,home).list(),sentinel: state.read('sentinel/remote-fleet'),
+    sites: Object.values(Game.constructionSites).filter(site => site.pos.roomName === 'E0N1').map(site => ({ id: site.id,type: site.structureType,x: site.pos.x,y: site.pos.y,progress: site.progress,total: site.progressTotal })),
     quantities: peekState(state,'quantity-reservations/empire',quantitySchema)?.claims.length ?? 0,miningClaims: peekState(state,'reservations/empire',reservationSchema)?.claims.length ?? 0,
     units: units.map(creep => {
       const key = stateKey('logistics-attempts',creep.id), journal = state.read(key) === undefined ? undefined : createTransferJournal(state,creep.id).read();
