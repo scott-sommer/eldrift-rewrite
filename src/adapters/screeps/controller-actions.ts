@@ -11,6 +11,13 @@ export function createNativeControllerActions(state: StatePort, arbiter: ReturnT
       if (!admission.admit(owner, [key(controller)])) return ERR_BUSY;
       return controller.unclaim();
     },
+    reserve(creep: Creep, controller: StructureController, owner: string): number {
+      if (!creep.my) return ERR_NOT_OWNER;
+      if (controller.owner || controller.reservation && controller.reservation.username !== creep.owner.username) return ERR_INVALID_TARGET;
+      if (!admission.admit(owner,[key(controller),'controller-unit:' + creep.id])) return ERR_BUSY;
+      const result = arbiter.issue(creep.name,owner,['reserveController'],() => creep.reserveController(controller),code => code === OK);
+      return result.status === 'blocked' ? ERR_BUSY : result.code;
+    },
     claim(creep: Creep, controller: StructureController, owner: string): number {
       if (!creep.my) return ERR_NOT_OWNER;
       if (controller.owner) return ERR_INVALID_TARGET;
