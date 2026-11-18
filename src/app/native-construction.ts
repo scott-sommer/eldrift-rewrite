@@ -29,3 +29,5 @@ function constructionWork(state: StatePort, room: string, config: Readonly<Runti
     () => Game.time, { attempts: config.constructionRetryAttempts, delay: config.constructionRetryDelay,
       maximumDelay: config.constructionRetryMaximumDelay });
 }
+
+export { createConstructionReservationLedger } from '../features/construction/reservation-ledger';
