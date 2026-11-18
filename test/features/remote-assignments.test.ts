@@ -124,3 +124,15 @@ test('demand resolution uses current payload and refuses expired tokens even aft
   apply(f.store,[plan('E0N1',['source-b'])],'W0N1',31);
   expect(f.store.resolve(renewed,31)).toBeUndefined();
 });
+
+test('scoped batches preserve unmentioned same-home leases without renewing expiry or changing generation', () => {
+  const f = fixture(); apply(f.store,[plan(),plan('E1N1',['manual'])]);
+  const manual = f.store.owner('E1N1',10)!;
+  expect(f.store.reconcile({ home: 'W0N1',tick: 11,lifetime: 100,expectedRevision: 1,scope: ['E0N1'],plans: [plan()] }).status).toBe('applied');
+  expect(f.store.owner('E1N1',11)).toEqual(manual); expect(f.store.owner('E0N1',11)?.expiresAt).toBe(111);
+  expect(f.store.reconcile({ home: 'W0N1',tick: 12,lifetime: 100,expectedRevision: 2,scope: ['E0N1'],plans: [] }).status).toBe('applied');
+  expect(f.store.owner('E1N1',12)).toEqual(manual); expect(f.store.owner('E0N1',12)).toBeUndefined();
+  const before = JSON.stringify(f.root);
+  expect(() => f.store.reconcile({ home: 'W0N1',tick: 12,lifetime: 100,expectedRevision: 3,scope: [],plans: [plan()] })).toThrow('scope');
+  expect(JSON.stringify(f.root)).toBe(before);
+});

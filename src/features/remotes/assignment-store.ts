@@ -16,7 +16,7 @@ export function createRemoteAssignmentStore(port: StatePort) {
     const active = state.assignments.filter(item => item.expiresAt > batch.tick);
     const conflict = active.find(item => item.home !== batch.home && batch.plans.some(plan => plan.room === item.plan.room));
     if (conflict) return { status: 'conflict',room: conflict.plan.room,home: conflict.home };
-    const others = active.filter(item => item.home !== batch.home);
+    const others = active.filter(item => item.home !== batch.home || batch.scope && !batch.scope.includes(item.plan.room));
     if (others.length + batch.plans.length > 128) return { status: 'capacity' };
     const revision = state.revision + 1;
     if (!Number.isSafeInteger(revision)) throw new Error('Remote assignment revision overflow');
@@ -63,10 +63,17 @@ function normalizePlan(plan: RemoteRoomPlan): RemoteRoomPlan {
 function validateBatch(batch: RemoteAssignmentBatch): void {
   if (!room(batch.home) || !natural(batch.expectedRevision) || !natural(batch.tick)) throw new Error('Invalid remote assignment batch');
   validateLifetime(batch.tick,batch.lifetime);
+  validateScope(batch);
   if (!Array.isArray(batch.plans) || batch.plans.length > 64 || !batch.plans.every(validRemotePlan)) throw new Error('Invalid remote assignment plans');
   if (batch.plans.some(plan => plan.room === batch.home) || new Set(batch.plans.map(plan => plan.room)).size !== batch.plans.length) throw new Error('Conflicting remote assignment plans');
 }
 
 function validateLifetime(tick: number, lifetime: number): void {
   if (!natural(lifetime) || lifetime < 1 || !Number.isSafeInteger(tick + lifetime)) throw new Error('Invalid remote assignment lifetime');
+}
+
+function validateScope(batch: RemoteAssignmentBatch): void {
+  if (batch.scope === undefined) return;
+  if (!Array.isArray(batch.scope) || batch.scope.length > 128 || !batch.scope.every(room) || new Set(batch.scope).size !== batch.scope.length) throw new Error('Invalid remote assignment scope');
+  if (!Array.isArray(batch.plans) || batch.plans.some(plan => !batch.scope!.includes(plan.room))) throw new Error('Remote plan outside assignment scope');
 }

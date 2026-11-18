@@ -11,6 +11,8 @@ export interface RemoteAssignment {
 export interface RemoteAssignmentState { revision: number; clock: number; assignments: RemoteAssignment[] }
 export interface RemoteAssignmentBatch {
   home: string; expectedRevision: number; tick: number; lifetime: number; plans: RemoteRoomPlan[];
+  /** Optional room scope patches only these leases; other assignments retain their exact expiry and generation. */
+  scope?: string[];
 }
 export type RemoteAssignmentResult =
   | { status: 'applied'; revision: number; assignments: RemoteAssignment[] }
