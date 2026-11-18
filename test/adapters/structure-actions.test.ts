@@ -65,3 +65,29 @@ test('observation has one durable structure owner even after rejection, interrup
   expect(f.make().observe({ ...observer, my: false }, 'E0N1', 'scanning')).toBe(-1);
   expect(invoke).toHaveBeenCalledTimes(2);
 });
+
+function spawningFixture() {
+  const f = fixture(), cancel = vi.fn(() => 0);
+  Object.assign(f.creep,{ name: 'new',spawning: true,memory: { population: { owner: 'remote',home: f.room.name } } });
+  Object.assign(f.spawn,{ spawning: { name: 'new',cancel } }); Object.assign(Game,{ creeps: { new: f.creep } });
+  return { ...f,cancel };
+}
+test('spawning cancellation verifies the exact actor owner/home and shares structure/body admission', () => {
+  const f = spawningFixture();
+  expect(f.make().cancelSpawning(f.spawn,'other','remote')).toBe(-7);
+  expect(f.make().cancelSpawning(f.spawn,'new','operator')).toBe(-1);
+  expect(f.cancel).not.toHaveBeenCalled();
+  expect(f.make().cancelSpawning(f.spawn,'new','remote')).toBe(0);
+  expect(f.make().availableEnergy(f.room.name,100)).toBe(100);
+  expect(f.make().boost(f.lab,f.creep,'other')).toBe(-4);
+  expect(f.make().spawn(f.assignment)).toBe(-4);
+  expect(f.make().cancelSpawning(f.spawn,'new','remote')).toBe(-4); expect(f.cancel).toHaveBeenCalledTimes(1);
+});
+test('rejected or interrupted spawn cancellation retains admission until a fresh tick', () => {
+  const f = spawningFixture(); f.cancel.mockReturnValue(-9);
+  expect(f.make().cancelSpawning(f.spawn,'new','remote')).toBe(-9);
+  expect(f.make().cancelSpawning(f.spawn,'new','remote')).toBe(-4);
+  Game.time++; f.cancel.mockImplementation(() => { throw new Error('interrupted cancellation'); });
+  expect(() => f.make().cancelSpawning(f.spawn,'new','remote')).toThrow('interrupted');
+  expect(f.make().cancelSpawning(f.spawn,'new','remote')).toBe(-4);
+});

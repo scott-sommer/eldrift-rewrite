@@ -28,6 +28,12 @@ export function createSpawnQueue(port: StatePort, room: string) {
       saveState(port, key, schema, state);
       return true;
     },
+    cancelOwners(owners: ReadonlySet<string>): number {
+      const state = read(), kept = state.requests.filter(request => !owners.has(request.owner));
+      const removed = state.requests.length-kept.length;
+      if (removed) saveState(port,key,schema,{ requests: kept });
+      return removed;
+    },
     reconcile(tick: number, observedNames: ReadonlySet<string>): void {
       validTick(tick);
       const state = read();

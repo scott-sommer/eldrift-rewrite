@@ -22,6 +22,15 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
       if (!admission.admit(assignment.request.owner, [structureKey(target.id)], energy(target.room, cost))) return ERR_BUSY;
       return spawn(assignment);
     },
+    cancelSpawning(spawn: StructureSpawn, name: string, owner: string): number {
+      if (!spawn.my) return ERR_NOT_OWNER;
+      if (spawn.spawning?.name !== name) return ERR_INVALID_TARGET;
+      const creep = Game.creeps[name];
+      if (!creep?.my || creep.memory.population?.owner !== owner || creep.memory.population.home !== spawn.room.name) return ERR_NOT_OWNER;
+      if (!creep.spawning || !creep.id) return ERR_INVALID_TARGET;
+      if (!admission.admit(owner,[structureKey(spawn.id),bodyKey(creep.id)])) return ERR_BUSY;
+      return spawn.spawning.cancel();
+    },
     renew(spawn: StructureSpawn, creep: Creep, owner: string): number {
       if (!spawn.my || !creep.my) return ERR_NOT_OWNER;
       if (spawn.room.name !== creep.room.name || !creep.body.length) return ERR_INVALID_TARGET;
