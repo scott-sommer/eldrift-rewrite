@@ -13,6 +13,7 @@ import { createNativeRemoteBanking } from './native-banking';
 import type { NativeRemoteOptions } from './native-movement';
 import { eligibleRemoteActor } from './actor';
 import type { RemoteActorBinding } from './actor';
+import { cancelTask } from '../cancel-task';
 import { assignRemoteTask } from './assign-task';
 export interface NativeRemoteMiningCycleOptions extends NativeRemoteOptions { banking?: NativeRemoteBankingPolicy }
 export type RemoteMiningActorBinding = RemoteActorBinding;
@@ -33,8 +34,13 @@ export function createNativeRemoteMiningCycle(state: StatePort, dispatch: Return
     if (!queued(creep) && creep.store.getUsedCapacity() > 0) {
       service.retire(creep,home,'remote-return:' + creep.name); return false;
     }
+    if (!demand) withdraw(creep);
     if (demand?.home === home) assignRemoteTask(state,definitions,'remote-mine',creep.name,demand,Game.time,creep.ticksToLive ?? 1);
     return true;
+  }
+  function withdraw(creep: Creep): void {
+    const head = peekState(state,stateKey('tasks',creep.name),taskSchema(creep.name,definitions))?.queue[0];
+    if (head?.kind === 'remote-mine') cancelTask(state,creep.name,head.id,definitions);
   }
   return { definitions,
     run(creep: Creep, demand?: RemoteMiningDemand): void {

@@ -1,5 +1,7 @@
 import { roomCoordinates } from '../core/geometry/room-grid';
 export interface RemoteConfig {
+  remoteWorkersEnabled: boolean; remoteSpawningEnabled: boolean; remoteWorkerCpuBudget: number; remoteWorkerMaximumUnits: number;
+  remoteMinimumBatch: number; remoteTripLifetime: number; remoteSpawnRequestLifetime: number;
   remoteManagementEnabled: boolean; remoteMinimumRcl: number; remoteDepth: number;
   remoteDiscoveryReads: number; remoteDiscoveryRooms: number; remoteDiscoveryRefresh: number;
   remoteScanRooms: number; remoteScanSources: number; remoteCpuBudget: number;
@@ -12,6 +14,8 @@ export interface RemoteConfig {
   remoteRiskPerTick: number; remoteInfrastructurePerTick: number;
 }
 export const remoteDefaults: Readonly<RemoteConfig> = Object.freeze({
+  remoteWorkersEnabled: false,remoteSpawningEnabled: false,remoteWorkerCpuBudget: 5,remoteWorkerMaximumUnits: 40,
+  remoteMinimumBatch: 20,remoteTripLifetime: 200,remoteSpawnRequestLifetime: 100,
   remoteManagementEnabled: false,remoteMinimumRcl: 3,remoteDepth: 2,
   remoteDiscoveryReads: 4,remoteDiscoveryRooms: 64,remoteDiscoveryRefresh: 100,
   remoteScanRooms: 2,remoteScanSources: 1,remoteCpuBudget: 5,
@@ -31,6 +35,8 @@ function rooms(value: unknown): boolean {
   try { for (const name of value) roomCoordinates(name); return new Set(value).size === value.length; } catch { return false; }
 }
 export const remoteValidators: { [K in keyof RemoteConfig]: (value: unknown) => boolean } = {
+  remoteWorkersEnabled: enabled,remoteSpawningEnabled: enabled,remoteWorkerCpuBudget: value => rate(value,1000),remoteWorkerMaximumUnits: value => integer(value,0,100),
+  remoteMinimumBatch: value => integer(value,1,10000),remoteTripLifetime: value => integer(value,1,1000000),remoteSpawnRequestLifetime: value => integer(value,1,1000000),
   remoteManagementEnabled: enabled,remoteMinimumRcl: value => integer(value,1,8),remoteDepth: value => integer(value,0,8),
   remoteDiscoveryReads: value => integer(value,0,1000),remoteDiscoveryRooms: value => integer(value,0,64),remoteDiscoveryRefresh: value => integer(value,1,1000000),
   remoteScanRooms: value => integer(value,0,64),remoteScanSources: value => integer(value,0,128),remoteCpuBudget: value => rate(value,1000),

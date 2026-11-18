@@ -10,7 +10,7 @@ export interface RemoteRoomOffer {
 }
 export interface RemotePortfolioPolicy {
   home: string; tick: number; maximumAge: number;
-  maximumSlots: number; maximumHaulers: number; maximumSpawnLoad: number;
+  maximumSlots: number; maximumHaulers: number; maximumSpawnLoad: number; maximumUnits?: number;
   minimumNetYield: number; completionBonus: number;
   order: 'nearest' | 'net-yield';
 }

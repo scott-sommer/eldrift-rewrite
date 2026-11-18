@@ -5,6 +5,7 @@ import type { RemotePortfolioPolicy, RemoteRoomOffer, RemoteQuote } from './port
 export function validateRemoteOffers(offers: RemoteRoomOffer[], policy: RemotePortfolioPolicy): void {
   roomCoordinates(policy.home);
   if (![policy.tick,policy.maximumAge,policy.maximumSlots,policy.maximumHaulers].every(natural)) throw new Error('Invalid remote portfolio clock or capacity');
+  validateWorkforce(policy.maximumUnits);
   if (![policy.maximumSpawnLoad,policy.completionBonus].every(rate) || !rate(policy.minimumNetYield)) throw new Error('Invalid remote portfolio rates');
   if (!['nearest','net-yield'].includes(policy.order)) throw new Error('Invalid remote portfolio strategy');
   if (offers.length > 64 || offers.reduce((sum,offer) => sum + offer.quotes.length,0) > 128) throw new Error('Remote portfolio input limit');
@@ -46,4 +47,8 @@ function validateInventory(offer: RemoteRoomOffer): void {
   if (!offer.sourceIds.every(text)) throw new Error('Invalid remote source identity');
   const cost = offer.commitment;
   if (typeof cost.atomic !== 'boolean' || !natural(cost.slots) || !rate(cost.energyPerTick) || !rate(cost.spawnLoad)) throw new Error('Invalid remote commitment');
+}
+
+function validateWorkforce(value: number | undefined): void {
+  if (value !== undefined && (!natural(value) || value > 1000)) throw new Error('Invalid remote workforce budget');
 }

@@ -1,13 +1,16 @@
+import type { RemoteManagementRequest } from '../../../features/remotes/management/model';
+import type { RemoteAssignment } from '../../../features/remotes/assignment-model';
+import type { RemotePortfolio } from '../../../features/remotes/portfolio-model';
 import type { StatePort } from '../../../persistence/versioned-state';
-import type { RoomFeature } from '../../runtime-model';
+import type { RoomFeature, FeatureContext } from '../../runtime-model';
 import { advanceNativeRemoteDiscovery } from '../discovery/native';
 import { nativeRemoteManagementPolicy, nativeRemoteTraversal } from './policy';
 import { createNativeRemoteManagement } from './native';
 /** Default-off registration performs no native/state reads; discovery and lease management share one caller CPU deadline. */
-export function createNativeRemoteManagementFeature(state: StatePort): RoomFeature {
+export function createNativeRemoteManagementFeature(state: StatePort, committed: (request: RemoteManagementRequest, result: { assignments: RemoteAssignment[]; portfolio: RemotePortfolio }) => void = () => {}): RoomFeature {
   return { id: 'remote-management',scope: 'owned',urgency: 'background',interval: 1,run(context) {
     const config = context.config.values;
-    if (!config.remoteManagementEnabled || !context.room.owned) return;
+    if (!enabled(context)) return;
     const home = Game.rooms[context.room.name];
     if (!home?.controller?.my || home.controller.level < config.remoteMinimumRcl) return;
     const deadline = Math.min(Game.cpu.getUsed()+config.remoteCpuBudget,Game.cpu.tickLimit*config.backgroundCpuFraction);
@@ -18,7 +21,11 @@ export function createNativeRemoteManagementFeature(state: StatePort): RoomFeatu
     const policy = nativeRemoteManagementPolicy(home,discovered.rooms,config);
     if (!policy || !guard()) return;
     if (discovered.status !== 'complete' && !discovered.rooms.length) return;
-    createNativeRemoteManagement(state,{ maximumRooms: config.remoteMaximumRouteRooms,maximumOps: config.remoteMaximumPathOps })
-      .advance({ home: home.name,tick: Game.time,policy },{ rooms: config.remoteScanRooms,sources: config.remoteScanSources },guard);
+    const request = { home: home.name,tick: Game.time,policy };
+    const result = createNativeRemoteManagement(state,{ maximumRooms: config.remoteMaximumRouteRooms,maximumOps: config.remoteMaximumPathOps })
+      .advance(request,{ rooms: config.remoteScanRooms,sources: config.remoteScanSources },guard);
+    if (result.status === 'applied') committed(request,result);
   } };
 }
+
+function enabled(context: FeatureContext): boolean { return context.config.values.remoteManagementEnabled && context.room.owned; }
