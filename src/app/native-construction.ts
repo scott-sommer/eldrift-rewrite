@@ -8,8 +8,7 @@ import { constructionTypeOrder } from '../features/construction/order';
 import { createConstructionReservationLedger, reservedConstructionPorts } from '../features/construction/reservation-ledger';
 import { nativeConstructionPorts, nativeConstructionSiteKeys } from './native-construction-ports';
 /** Owned-room construction is separate from planning; disabled configuration performs no native/state reads. */
-export function createNativeConstructionFeature(state: StatePort): RoomFeature {
-  const ledger = createConstructionReservationLedger();
+export function createNativeConstructionFeature(state: StatePort, ledger = createConstructionReservationLedger()): RoomFeature {
   return { id: 'construction', scope: 'owned', urgency: 'background', interval: 1, run(context) {
     const config = context.config.values;
     if (!context.room.owned || !config.constructionEnabled) return;

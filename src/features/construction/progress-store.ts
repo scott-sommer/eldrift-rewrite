@@ -5,8 +5,8 @@ import type { StatePort, StateSchema } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
 import { copyPlain } from '../../persistence/plain-data';
 interface ConstructionProgress { room: string; revision: number; identity: string | null; next: number; retries: ConstructionRetries }
-export function createConstructionProgressStore(port: StatePort, room: string) {
-  const key = stateKey('construction', room), schema = progressSchema(room);
+export function createConstructionProgressStore(port: StatePort, room: string, identity = room) {
+  const key = stateKey('construction', identity), schema = progressSchema(room);
   return { read: () => openState(port, key, schema),
     save(expectedRevision: number, identity: string, next: number, retries: ConstructionRetries = {}) {
       const current = openState(port, key, schema);
