@@ -2886,6 +2886,20 @@
         "evidence": "docs/evidence/remote-runtime-native.json",
         "fullNativeSuite": "docs/evidence/remote-runtime-engine-suite.json",
         "reference": "docs/remote-discovery.md"
+      },
+      "ordinaryRemoteWorkforce": {
+        "owner": "features/remotes/fleet + app/remotes/fleet + shared population/mining/hauling/dispatch",
+        "status": "Ordinary automatic recruitment, miner/courier service, retirement and confirmed home income qualified. Not module-wide parity; infrastructure/Reserve/adaptive/reachability, specialists, operator/migration and pressure acceptance remain open.",
+        "validationCommit": "c3bee10",
+        "tests": [
+          "test/features/remote-fleet.test.ts",
+          "test/app/remotes/native-fleet-admission.test.ts",
+          "test/app/remotes/native-mining-withdrawal.test.ts",
+          "test/engine/remote-fleet-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-fleet-native.json",
+        "fullNativeSuite": "docs/evidence/remote-fleet-engine-suite.json",
+        "reference": "docs/remote-fleet.md"
       }
     }
   },
@@ -3405,6 +3419,20 @@
         ],
         "evidence": "docs/evidence/remote-infrastructure-native.json",
         "reference": "docs/remote-infrastructure.md"
+      },
+      "ordinaryRemoteWorkforce": {
+        "owner": "features/remotes/fleet + app/remotes/fleet + shared population/mining/hauling/dispatch",
+        "status": "Ordinary automatic recruitment, miner/courier service, retirement and confirmed home income qualified. Not module-wide parity; infrastructure/Reserve/adaptive/reachability, specialists, operator/migration and pressure acceptance remain open.",
+        "validationCommit": "c3bee10",
+        "tests": [
+          "test/features/remote-fleet.test.ts",
+          "test/app/remotes/native-fleet-admission.test.ts",
+          "test/app/remotes/native-mining-withdrawal.test.ts",
+          "test/engine/remote-fleet-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-fleet-native.json",
+        "fullNativeSuite": "docs/evidence/remote-fleet-engine-suite.json",
+        "reference": "docs/remote-fleet.md"
       }
     }
   },
@@ -3766,6 +3794,20 @@
         ],
         "evidence": "docs/evidence/remote-infrastructure-native.json",
         "reference": "docs/remote-infrastructure.md"
+      },
+      "ordinaryRemoteWorkforce": {
+        "owner": "features/remotes/fleet + app/remotes/fleet + shared population/mining/hauling/dispatch",
+        "status": "Ordinary automatic recruitment, miner/courier service, retirement and confirmed home income qualified. Not module-wide parity; infrastructure/Reserve/adaptive/reachability, specialists, operator/migration and pressure acceptance remain open.",
+        "validationCommit": "c3bee10",
+        "tests": [
+          "test/features/remote-fleet.test.ts",
+          "test/app/remotes/native-fleet-admission.test.ts",
+          "test/app/remotes/native-mining-withdrawal.test.ts",
+          "test/engine/remote-fleet-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-fleet-native.json",
+        "fullNativeSuite": "docs/evidence/remote-fleet-engine-suite.json",
+        "reference": "docs/remote-fleet.md"
       }
     }
   },
@@ -5797,6 +5839,22 @@
       "required": "behavior fixture plus relevant contract/engine scenario",
       "tests": [],
       "status": "not implemented"
+    },
+    "responsibilityEvidence": {
+      "ordinaryRemoteWorkforce": {
+        "owner": "features/remotes/fleet + app/remotes/fleet + shared population/mining/hauling/dispatch",
+        "status": "Ordinary automatic recruitment, miner/courier service, retirement and confirmed home income qualified. Not module-wide parity; infrastructure/Reserve/adaptive/reachability, specialists, operator/migration and pressure acceptance remain open.",
+        "validationCommit": "c3bee10",
+        "tests": [
+          "test/features/remote-fleet.test.ts",
+          "test/app/remotes/native-fleet-admission.test.ts",
+          "test/app/remotes/native-mining-withdrawal.test.ts",
+          "test/engine/remote-fleet-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-fleet-native.json",
+        "fullNativeSuite": "docs/evidence/remote-fleet-engine-suite.json",
+        "reference": "docs/remote-fleet.md"
+      }
     }
   },
   {

@@ -29,3 +29,5 @@ Clean committed 93f8314 passes six targeted entrypoints: management (56 ticks), 
 Combined regression update: the later clean 88e4760 runtime milestone passes the full 203-case engine suite; see evidence/remote-runtime-engine-suite.json and remote-discovery.md. Earlier component-check limitations above describe their original commits. Worker recruitment/execution and complete ED-29 acceptance remain open.
 
 Workforce integration update: the later fleet milestone connects ordinary automatic portfolios to recruitment and miner/courier execution; see remote-fleet.md for current controls, ownership and qualification. Earlier probe limitations above remain specific to their original commits. Infrastructure execution, Reserve/adaptive/reachability integration and full ED-29 acceptance remain open.
+
+Combined workforce regression: clean c3bee10 passes all 208 native scenarios. See evidence/remote-fleet-engine-suite.json and remote-fleet.md for exact scope; earlier regression counts remain historical to their commits.

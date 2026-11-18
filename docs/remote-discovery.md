@@ -35,3 +35,5 @@ Legacy adaptive support is not just spawn utilization: remote.manager evaluates 
 Legacy unreachable-source feedback is per home and full miner life: actual arrival emits one success and clears the streak; TTL <=1 without ever arriving emits one failure; two consecutive failed lives exclude source and room for that home. Combat disappearance or repeated blocked ticks are not equivalent proof.
 
 Workforce integration update: the later fleet milestone connects ordinary automatic portfolios to recruitment and miner/courier execution; see remote-fleet.md for current controls, ownership and qualification. Earlier probe limitations above remain specific to their original commits. Infrastructure execution, Reserve/adaptive/reachability integration and full ED-29 acceptance remain open.
+
+Combined workforce regression: clean c3bee10 passes all 208 native scenarios. See evidence/remote-fleet-engine-suite.json and remote-fleet.md for exact scope; earlier regression counts remain historical to their commits.
