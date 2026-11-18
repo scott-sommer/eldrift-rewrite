@@ -50,3 +50,11 @@ Final-source targeted --scout-explore passes110ticks with default3CPU shared dis
 Latest full units1,210tests/339files pass9.35s. Quality550production/483testfiles passes with zero Lizard violations. check:bundle passes, including CommonJS execution without Node globals. Whole-fixture samples include probe rows/cold start and are not ED-43 performance/soak proof.
 
 Remaining ED-28 work includes observer action ownership, delayed observation/refresh demand and vision budgeting, further scout/operator integration where the acceptance audit identifies gaps, plus current-source full native qualification. ED-39/44 own external flag/API and memory translation; ED-43 retains larger pressure, CPU/Memory and soak validation. No whole-role release parity or goal completion is claimed here.
+
+### Default-budget regression correction
+
+The clean1a539c2 aggregate passed all five scout cases but failed at --stamp-budget: composition and defense completed, with service scoring still advancing at tick1600. No runtime errors were reported. The failed trace and exact provenance are retained in docs/evidence/scout-runtime-stamp-budget-failure.json; this run is not a passing187-case qualification.
+
+Native score preparation now owns a single-network search cache. Identical final tile costs reuse the private base CostMatrix across resumed scoring ticks; each actual search still clones it before road/blocker overlays. Changed costs rebuild the base, malformed changes still fail validation, and cache eviction/reset only repeats preparation. This removes repeated2500-cell native matrix construction without changing planner budgets, identities, persisted schemas, search semantics or scenario limits. Unit tests cover matrix construction counts, overlay isolation, changed-cost invalidation, invalid inputs and independent owners.
+
+Targeted --stamp-budget passed, committing at tick1219, with36 evaluated/35 rejected candidates and reloads6/101. docs/evidence/planning-native-search-cache.json preserves its dirty development provenance; elapsed completion differences also include machine/JIT variability and are not an isolated benchmark. Full units1212tests/340files passed9.47s; quality551production/484testfiles passed with zero violations; bundle check passed. Clean aggregate qualification remains pending.

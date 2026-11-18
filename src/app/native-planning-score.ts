@@ -1,5 +1,5 @@
 import { nativePlanningLimits } from '../adapters/screeps/planning-limits';
-import { planningRoadSearch } from '../adapters/screeps/planning-road-search';
+import { createPlanningRoadSearchCache } from '../adapters/screeps/planning-road-search-cache';
 import { createAssessmentCache } from '../capabilities/planning/assessment-cache';
 import type { AssessmentInput, FixedObject } from '../capabilities/planning/assessment-model';
 import type { BarrierCostInput } from '../capabilities/planning/barrier-cost';
@@ -27,13 +27,14 @@ export function createNativePlanningScore(room: string, options: NativeScoreOpti
       policy.constructionCost, policy.retirementCost, limits].map(canonical)]);
   return { revision, prepare(observed: AssessmentInput): CandidateEvaluatorOptions['prepareScore'] {
     const observation = copyPlain(observed), assess = createAssessmentCache();
+    const search = createPlanningRoadSearchCache(room, policy.maximumPathOps);
     return (candidate, entries) => ({
       ...copyPlain(policy), observation: copyPlain(observation), limits: copyPlain(limits), assess,
       storage: { ...candidate.anchor }, entries: copyPlain(entries),
       hauling: observation.objects.filter(object => policy.haulingWeights[object.kind] > 0)
         .map(object => ({ id: object.id, position: { ...object.position }, weight: policy.haulingWeights[object.kind] })),
       blocksMovement: type => (OBSTACLE_OBJECT_TYPES as readonly string[]).includes(type),
-      search: costs => planningRoadSearch(room, costs, policy.maximumPathOps),
+      search,
     });
   } };
 }

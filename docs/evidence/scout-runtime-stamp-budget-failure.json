@@ -1,0 +1,252 @@
+{
+  "status": "failed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RUc95l",
+  "provenance": {
+    "commit": "1a539c24fa0ad1a1fc0f7054fc304ca06273ed63",
+    "dirty": false,
+    "bundleSha256": "d5d3060865d56236f25762c90af055b5de65689f00870919b817e886d830d1ab",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "1a539c24fa0ad1a1fc0f7054fc304ca06273ed63",
+    "dirty": false,
+    "bundleSha256": "7921bd8bbf15ebccda41a1e9c8eee53cc3d8a5cba044b8ecdedb1b914b460f43",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "stampPlanning": {
+    "plan": {
+      "room": "W0N1",
+      "revision": 0,
+      "strategy": null,
+      "entries": []
+    },
+    "reloads": [
+      6,
+      101
+    ],
+    "resets": [],
+    "trace": [
+      {
+        "tick": 50,
+        "phase": "draft",
+        "attempts": 1041,
+        "depth": 8
+      },
+      {
+        "tick": 100,
+        "phase": "draft",
+        "attempts": 2315,
+        "depth": 12
+      },
+      {
+        "tick": 150,
+        "phase": "draft",
+        "attempts": 3068,
+        "depth": 14
+      },
+      {
+        "tick": 200,
+        "phase": "draft",
+        "attempts": 3986,
+        "depth": 17
+      },
+      {
+        "tick": 250,
+        "phase": "draft",
+        "attempts": 4802,
+        "depth": 18
+      },
+      {
+        "tick": 300,
+        "phase": "draft",
+        "attempts": 5571,
+        "depth": 20
+      },
+      {
+        "tick": 350,
+        "phase": "draft",
+        "attempts": 6355,
+        "depth": 22
+      },
+      {
+        "tick": 400,
+        "phase": "draft",
+        "attempts": 7025,
+        "depth": 23
+      },
+      {
+        "tick": 450,
+        "phase": "draft",
+        "attempts": 7691,
+        "depth": 24
+      },
+      {
+        "tick": 500,
+        "phase": "draft",
+        "attempts": 8228,
+        "depth": 25
+      },
+      {
+        "tick": 550,
+        "phase": "draft",
+        "attempts": 8838,
+        "depth": 26
+      },
+      {
+        "tick": 600,
+        "phase": "draft",
+        "attempts": 9131,
+        "depth": 27,
+        "roads": 14
+      },
+      {
+        "tick": 650,
+        "phase": "draft",
+        "attempts": 9131,
+        "depth": 27,
+        "roads": 44
+      },
+      {
+        "tick": 700,
+        "phase": "draft",
+        "attempts": 9131,
+        "depth": 27,
+        "roads": 80
+      },
+      {
+        "tick": 750,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 4
+      },
+      {
+        "tick": 800,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 23
+      },
+      {
+        "tick": 850,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 38
+      },
+      {
+        "tick": 900,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 53
+      },
+      {
+        "tick": 950,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 67
+      },
+      {
+        "tick": 1000,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 81
+      },
+      {
+        "tick": 1050,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1100,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1150,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1200,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1250,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1300,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1350,
+        "phase": "score",
+        "flow": 88,
+        "hauling": 4,
+        "service": 0
+      },
+      {
+        "tick": 1400,
+        "phase": "score",
+        "flow": 88,
+        "hauling": 4,
+        "service": 1
+      },
+      {
+        "tick": 1450,
+        "phase": "score",
+        "flow": 88,
+        "hauling": 4,
+        "service": 2
+      },
+      {
+        "tick": 1500,
+        "phase": "score",
+        "flow": 88,
+        "hauling": 4,
+        "service": 3
+      },
+      {
+        "tick": 1550,
+        "phase": "score",
+        "flow": 88,
+        "hauling": 4,
+        "service": 7
+      },
+      {
+        "tick": 1600,
+        "phase": "score",
+        "flow": 88,
+        "hauling": 4,
+        "service": 10
+      }
+    ]
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: default allowances must eventually commit the stamp plan\n+ actual - expected\n\n+ undefined\n- 'committed'\n\n    at verifyStampBudget (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\stamp-budget.cjs:15:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:792:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "messages": [],
+  "errors": [],
+  "sourceSha256": "45b28e71f5fa5b5073a2fd8286fa4a321d3061c99b4c3f0cef14baf2e80af9e2",
+  "samples": {
+    "ticks": 1600,
+    "cpuMilliseconds": {
+      "min": 9,
+      "max": 46,
+      "mean": 11.84875
+    }
+  }
+}
