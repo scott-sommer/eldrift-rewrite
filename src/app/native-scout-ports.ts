@@ -1,3 +1,4 @@
+import type { Position } from '../capabilities/movement/step';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
 import type { Outcome } from '../core/execution/model';
@@ -19,7 +20,7 @@ export interface ScoutDispatch {
   movement: Pick<ReturnType<typeof createNativeDispatch>['movement'],'move'>;
 }
 export function nativeScoutPorts(state: StatePort, dispatch: Pick<ScoutDispatch,'movement'>, creep: Creep,
-  home: string, config: Readonly<RuntimeConfig>, planningGuard: () => boolean): { ports: ScoutControlPorts; dangerous: boolean } {
+  home: string, config: Readonly<RuntimeConfig>, planningGuard: () => boolean, fallbackGoal?: () => Position | undefined): { ports: ScoutControlPorts; dangerous: boolean } {
   const store = createIntelStore(state), summary = observeNativeIntel(creep.pos.roomName);
   if (!summary) throw new Error('Owned scout room is not visible');
   store.observeSummary(summary);
@@ -28,6 +29,11 @@ export function nativeScoutPorts(state: StatePort, dispatch: Pick<ScoutDispatch,
     .map(unit => ({ room: summary.room, x: unit.x, y: unit.y }));
   const avoid = threatAvoidance(threats,config.scoutThreatRange,movementPosition(creep.pos));
   const dangerous = traversalThreat(store.peek(summary.room,Game.time).record,friendly) !== undefined;
+  const move = (destination: Position, range: number, avoids: Readonly<Record<string,number>>): Outcome => {
+    const policy = nativeScoutRoute(state,creep,home,destination.room,config,avoids);
+    if (!('version' in policy)) return policy;
+    return dispatch.movement.move(creep,{ owner: `scout:${creep.id}`, destination, range, policy, avoid });
+  };
   return { dangerous, ports: {
     capture: visited => store.observeSummary(summary,visited),
     failure: (room,reason) => store.recordFailure(room,{ id: `scout-route:${creep.id}:${Game.time}`, tick: Game.time, reason }),
@@ -43,10 +49,10 @@ export function nativeScoutPorts(state: StatePort, dispatch: Pick<ScoutDispatch,
       return dispatch.movement.move(creep,{ owner: `scout:${creep.id}`, destination, range: 0, avoid,
         policy: { version: 'scout-local', maximumRooms: 1, blockedRooms: [], costs: {}, allowedRooms: [creep.pos.roomName] } });
     },
-    travel: (room,avoids): Outcome => {
-      const policy = nativeScoutRoute(state,creep,home,room,config,avoids);
-      if (!('version' in policy)) return policy;
-      return dispatch.movement.move(creep,{ owner: `scout:${creep.id}`, destination: { room, x: 25, y: 25 }, range: 23, policy, avoid });
+    travel: (room,avoids) => move({ room, x: 25, y: 25 },23,avoids),
+    fallback: avoids => {
+      const goal = fallbackGoal?.();
+      return goal ? move(goal,1,avoids) : undefined;
     },
   } };
 }

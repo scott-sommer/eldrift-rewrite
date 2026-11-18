@@ -1,3 +1,4 @@
+import { createNativeFlagTargets } from '../adapters/screeps/flag-targets';
 import { createScoutPlanningBudget } from './scout-planning-budget';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
@@ -14,7 +15,7 @@ import { nativeScoutPorts } from './native-scout-ports';
 import { maintainNativeScouts, nativeScoutQueued } from './native-scout-fleet';
 export function createNativeScouts(state: StatePort, dispatch: ScoutDispatch,
   configuration: (room: string) => Readonly<RuntimeConfig>, report: Pick<SchedulerPorts,'reportFailure'>) {
-  const controls = createScoutControlStore(state), history = createScoutHistoryStore(state);
+  const controls = createScoutControlStore(state), history = createScoutHistoryStore(state), flags = createNativeFlagTargets();
   const planning = createScoutPlanningBudget({ tick: () => Game.time, usedCpu: () => Game.cpu.getUsed(),
     tickLimit: () => Game.cpu.tickLimit, bucket: () => Game.cpu.bucket });
   let tick = -1, roster: Creep[] = [];
@@ -28,7 +29,9 @@ export function createNativeScouts(state: StatePort, dispatch: ScoutDispatch,
     const queued = nativeScoutQueued(state,room.name);
     if (!configured && !queued) return;
     const home = Game.rooms[room.name];
-    if (home?.controller?.my && maintainNativeScouts(state,home,config.values,queued,planning(home.name,config.values))) dispatch.activate();
+    if (!home?.controller?.my) return;
+    const flag = flags.resolve(config.values.scoutFallbackFlag);
+    if (maintainNativeScouts(state,home,config.values,queued,planning(home.name,config.values),flag?.room)) dispatch.activate();
   } };
   const feature: RoomFeature = { id: 'scouts', scope: 'visible', urgency: 'urgent', interval: 1, run({ room }) {
     if (tick !== Game.time) { tick = Game.time; roster = Object.values(Game.creeps).filter(ownedScout); configs.clear(); }
@@ -62,7 +65,7 @@ export function createNativeScouts(state: StatePort, dispatch: ScoutDispatch,
     history.heartbeat(nativeScoutHeartbeat(creep,home,saved?.objective ?? null));
     if (!config.scoutsEnabled || creep.spawning) return;
     const control = saved ?? initialScoutControl(creep.id,home,creep.pos.roomName,Game.time);
-    const { ports, dangerous } = nativeScoutPorts(state,dispatch,creep,home,config,planning(home,config));
+    const { ports, dangerous } = nativeScoutPorts(state,dispatch,creep,home,config,planning(home,config),() => flags.resolve(config.scoutFallbackFlag));
     dispatch.activate();
     const result = advanceScout(control,{ tick: Game.time, position: movementPosition(creep.pos), canMove: creep.fatigue === 0, dangerous, ports,
       policy: { assigned: config.scoutAssignedRooms, stabilizeTicks: config.scoutStabilizeTicks,

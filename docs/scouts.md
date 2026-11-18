@@ -1,5 +1,7 @@
 # Native scout control (ED-28)
 
+Current runtime scope includes native scout control/demand, shared risk-aware movement, observer scheduling/capture (see observers.md), and the typed flag fallback below. Clean188-case observer/scout qualification is archived; the final fallback-source189-case run is pending. Public console/legacy-memory adapters remain ED-39/44 and pressure/soak ED-43. Earlier milestone sections retain their historical scope and failed evidence.
+
 Status: native control, recruitment and fallback exploration are implemented in tested increments. Scout/observer acceptance is not complete: observer actions/delayed visibility, operator flag adapters, migration and release pressure/soak qualification remain open.
 
 ## Responsibilities and ownership
@@ -72,3 +74,18 @@ Targeted default-budget and five-phase-reset runs now commit at1419/1283 respect
 All187packaged native engine checks pass in694.37s on clean6380e92, with the same commit/clean provenance verified in every case. docs/evidence/scout-runtime-engine-suite.json archives the aggregate, while docs/evidence/scout-runtime-clean-native.json preserves complete evidence for the six scout lifecycle/control/demand cases. Expected injected error/timeout cases retain their expected-failure classification. Default-budget planning commits at1493 and the five-phase-reset run at1315 with equal plans. Earlier failed clean runs remain retained; the1493 result still demonstrates sensitivity near the1600-tick gate, so ED-43 repeated pressure/CPU/soak qualification remains open.
 
 This establishes the described native scout increment, not observer functionality, legacy flag/memory integration or whole-goal completion. The next implementation increment is the separate observer action/receipt/capture owner.
+
+
+## Typed assigned-flag fallback
+
+Legacy role.scout.js676–683 selected the first flag whose name contained creep.memory.assignedFlag and called moveTo when objective/route processing could not progress. ScoutControlPorts now exposes an optional fallback(avoidUntil) outcome port. The controller calls it only without an admissible objective; normal assigned/exploration work and danger evasion take priority. Arrival is a running hold with moving=false, so waiting at a flag does not create false stuck/retry failures. The same-tick checkpoint gate still prevents repeated actions.
+
+scoutFallbackFlag defaults to an empty, disabled selector and follows normal room/profile/temporary layers. It accepts a nonblank string up to100characters. The native flag adapter retains substring matching, uses stable name order for multiple matches, caches plain positions only for the current tick, and returns detached goals. Flag moves/removals become new goals on the next tick. No native flag object or mission state enters the reusable controller.
+
+The native goal uses the same scout movement helper as ordinary travel, with range1 at the flag position, live traversal/risk admission, explicit room corridor, threat overlay, path revision, traffic and single dispatch owner. No additional moveTo/PathFinder stack is introduced. A safe matched room can contribute bounded population demand even when ordinary exploration depth is zero; missing or newly hostile goals do not keep recruiting. The existing population coordinator owns actual bodies/queue/replacement.
+
+Deliberate corrections: the selector is explicit and empty means disabled; ambiguous matches are deterministic rather than object-enumeration dependent; dangerous rooms/operator flags cannot bypass traversal policy. On failed routes the controller first records the failure/exclusion and releases the objective, then may use fallback on the next admissible tick after replanning. It does not issue a second movement command in the failure tick. Public per-creep assignedFlag compatibility, Game/console commands and legacy-memory translation remain ED-39/44; those adapters supply the existing typed goal boundary.
+
+Focused checks cover detached matching, moved/removed targets, absence, objective/danger priority, same-tick deduplication, arrival holds through reset, failure-to-fallback recovery, configuration validation, real demand and hostile-target cancellation without touching other owners. Final targeted --scout-fallback passes140native ticks at ordinary3CPU planning/5CPU control with zero exploration depth: real spawning, initial goal, moved goal, removed-match replacement, final disappearance, resets12/60/110, stable one-unit demand, physical visit stabilization and unchanged unrelated witness. No errors/messages occur. docs/evidence/scout-fallback-native.json retains complete dirty provenance and the earlier successful but tightly timed development fixture.
+
+Quality564production/491testfiles passes with zero Lizard violations. Full units1238tests/345files pass9.00s; bundle check passes. This completes the implemented ED-28 runtime paths subject to clean combined189-case qualification and the acceptance audit; it is not a release/whole-goal completion claim.

@@ -109,3 +109,6 @@ scoutPlanCpuBudget=3 is shared by recruitment/assigned assessment/fallback consu
 observersEnabled defaultsfalse. observerAssignedRooms is an ordered per-home list; observerRefreshInterval=1 preserves continuous single-target capability, observerRequestLifetime=25 bounds requests, and observerFailureDelay=25 spaces unsuccessful assigned attempts. Specialists submit explicit owner/id/home/room/priority/expiry requests through the same observation owner.
 
 observerCpuBudget=3, observerVisionBudget=4, observerCaptureBudget=4 and observerScanBudget=32 are shared environment/empire-only budgets. Per-home background/bucket/fraction policy gates new vision; pending next-tick capture remains urgent within the observer limits. See observers.md for lifecycle, caps and the difference between observation receipts and physical visits.
+
+
+scoutFallbackFlag='' disables the optional scout flag goal. A nonblank selector (maximum100characters) matches flag names by substring in stable name order. It follows normal room/profile/temporary scope. Safe matching goals can sustain bounded scout demand with zero discovery depth; existing objectives and danger evasion take precedence. All fallback movement uses the shared scout route/movement boundary. Public per-creep flag-memory translation remains ED-39/44.

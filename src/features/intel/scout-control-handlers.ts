@@ -13,7 +13,7 @@ export function scoutControlHandlers(control: ScoutControl): Handlers<ScoutContr
 function choose(control: ScoutControl, context: ScoutControlContext): Outcome {
   const assigned = control.assigned[control.assignmentIndex];
   control.objective = assigned ?? context.ports.next(control) ?? null;
-  if (!control.objective) return { status: 'blocked', retryAt: context.tick+10, reason: 'no-scout-target' };
+  if (!control.objective) return fallback(control,context);
   return { status: 'transition', phase: control.objective === context.position.room ? 'stabilize' : 'travel' };
 }
 function stabilize(control: ScoutControl, context: ScoutControlContext): Outcome {
@@ -44,4 +44,11 @@ function moving(control: ScoutControl, outcome: Outcome): Outcome {
 export function complete(control: ScoutControl): void {
   if (control.assigned[control.assignmentIndex] === control.objective) control.assignmentIndex++;
   control.objective = null;
+}
+
+function fallback(control: ScoutControl, context: ScoutControlContext): Outcome {
+  const outcome = context.ports.fallback?.(control.avoidUntil);
+  if (!outcome) return { status: 'blocked', retryAt: context.tick+10, reason: 'no-scout-target' };
+  const result = moving(control,outcome);
+  return result.status === 'done' ? { status: 'running' } : result;
 }

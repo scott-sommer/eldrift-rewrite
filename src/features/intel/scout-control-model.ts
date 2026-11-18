@@ -13,6 +13,7 @@ export interface ScoutControlPolicy {
 }
 export interface ScoutControlPorts {
   next(control: Readonly<ScoutControl>): string | undefined;
+  fallback?(avoid: Readonly<Record<string, number>>): Outcome | undefined;
   stabilize(cursor: number): Outcome;
   travel(room: string, avoid: Readonly<Record<string,number>>): Outcome;
   escape(avoid: Readonly<Record<string,number>>, cursor: number): string | undefined;

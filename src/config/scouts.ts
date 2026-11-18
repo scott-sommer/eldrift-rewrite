@@ -1,6 +1,6 @@
 import { roomCoordinates } from '../core/geometry/room-grid';
 export interface ScoutConfig {
-  scoutMinimumRcl: number; scoutDemandInterval: number;
+  scoutMinimumRcl: number; scoutDemandInterval: number; scoutFallbackFlag: string;
   scoutsEnabled: boolean; scoutSpawningEnabled: boolean; scoutCount: number; scoutAssignedRooms: readonly string[];
   scoutDepth: number; scoutExtendedDepth: number; scoutExtendedProgress: number;
   scoutExplorationReads: number; scoutExplorationRooms: number; scoutPlanCpuBudget: number; scoutControlCpuBudget: number;
@@ -9,7 +9,7 @@ export interface ScoutConfig {
   scoutStuckTicks: number; scoutOscillationLimit: number;
 }
 export const scoutDefaults: Readonly<ScoutConfig> = Object.freeze({
-  scoutMinimumRcl: 2, scoutDemandInterval: 10,
+  scoutMinimumRcl: 2, scoutDemandInterval: 10, scoutFallbackFlag: '',
   scoutsEnabled: false, scoutSpawningEnabled: false, scoutCount: 1, scoutAssignedRooms: Object.freeze([]),
   scoutDepth: 2, scoutExtendedDepth: 4, scoutExtendedProgress: 0.1,
   scoutExplorationReads: 32, scoutExplorationRooms: 32, scoutPlanCpuBudget: 3, scoutControlCpuBudget: 5,
@@ -29,6 +29,7 @@ export const scoutValidators: { [K in keyof ScoutConfig]: (value: unknown) => bo
   scoutMinimumRcl: value => integer(value,1,8), scoutDemandInterval: value => integer(value,1,1000000),
   scoutsEnabled: value => typeof value === 'boolean', scoutSpawningEnabled: value => typeof value === 'boolean',
   scoutCount: value => integer(value,0,20), scoutAssignedRooms: assigned,
+  scoutFallbackFlag: value => typeof value === 'string' && value.length <= 100 && (value === '' || value.trim().length > 0),
   scoutDepth: value => integer(value,0,8), scoutExtendedDepth: value => integer(value,0,8),
   scoutExtendedProgress: value => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1,
   scoutExplorationReads: value => integer(value,0,1000), scoutExplorationRooms: value => integer(value,0,1000),

@@ -72,3 +72,38 @@ test('retirement clears control state without creating unknown identity records'
   createScoutRetirement(state,() => 2)('scout');
   expect(controls.read().units).toEqual([]);
 });
+
+test('typed fallback runs only without objectives and yields to newly available work or danger', () => {
+  let control = initialScoutControl('scout','W0N1','W0N1',1);
+  const ctx = context(1); ctx.policy.assigned = [];
+  ctx.ports.fallback = vi.fn(() => ({ status: 'running' as const }));
+  control = advanceScout(control,ctx).control;
+  ctx.tick = 2; control = advanceScout(control,ctx).control;
+  expect(ctx.ports.fallback).toHaveBeenCalledOnce(); expect(control).toMatchObject({ phase: 'choose', objective: null, moving: true });
+  advanceScout(control,ctx); expect(ctx.ports.fallback).toHaveBeenCalledOnce();
+  ctx.tick = 3; ctx.position.x++;
+  ctx.ports.next = vi.fn(() => 'E0N1'); control = advanceScout(control,ctx).control;
+  expect(control.objective).toBe('E0N1'); expect(ctx.ports.fallback).toHaveBeenCalledOnce();
+  ctx.tick = 4; ctx.dangerous = true; control = advanceScout(control,ctx).control;
+  expect(control.phase).toBe('evade'); expect(ctx.ports.fallback).toHaveBeenCalledOnce();
+});
+test('arrival at a fallback goal holds without false stuck tracking or exhausting generic retries', () => {
+  let control = initialScoutControl('scout','W0N1','W0N1',1);
+  const ctx = context(1); ctx.policy.assigned = [];
+  ctx.ports.fallback = vi.fn(() => ({ status: 'done' as const }));
+  for (let tick = 1; tick < 15; tick++) {
+    ctx.tick = tick; control = advanceScout(JSON.parse(JSON.stringify(control)),ctx).control;
+    expect(control.moving).toBe(false); expect(control.stuck).toBe(0); expect(control.retries).toBeLessThan(2);
+  }
+  expect(ctx.ports.failure).not.toHaveBeenCalled();
+});
+test('route failure persists its exclusion before fallback on the next admissible tick', () => {
+  let control = initialScoutControl('scout','W0N1','W0N1',1);
+  const ctx = context(1); ctx.ports.fallback = vi.fn(() => ({ status: 'running' as const }));
+  control = advanceScout(control,ctx).control;
+  ctx.tick = 2; ctx.ports.travel = vi.fn(() => ({ status: 'failed' as const, reason: 'no-room-route' }));
+  control = advanceScout(control,ctx).control;
+  expect(ctx.ports.fallback).not.toHaveBeenCalled(); expect(control.avoidUntil.E0N1).toBe(1002);
+  ctx.tick = 3; control = advanceScout(control,ctx).control;
+  expect(ctx.ports.fallback).toHaveBeenCalledWith({ E0N1: 1002 }); expect(control.objective).toBeNull();
+});

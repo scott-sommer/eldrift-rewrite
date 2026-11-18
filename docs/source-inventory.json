@@ -3774,15 +3774,16 @@
     "file": "role.scout.js",
     "sha256": "1E94FF029CB29F63BC995C7D68EB572991944E4DB5586FFCCA46408FB83278E8",
     "physicalLines": 751,
-    "reviewStatus": "Responsibilities reviewed through native objective controller, movement, demand and loss tracking; legacy assigned-flag fallback and memory translation remain explicit later gates",
-    "implementationStatus": "Native scout population, persisted control, ordered visits, bounded exploration, shared threat-aware movement and loss replacement qualified; observer ownership remains ED-28, operator/legacy-memory integration ED-39/44",
+    "reviewStatus": "Responsibilities reviewed through native control, movement, demand, loss and typed assigned-flag fallback; public per-creep flag/memory adapters remain ED-39/44",
+    "implementationStatus": "Core native scout runtime and typed flag fallback implemented; clean188 baseline and targeted140tick fallback qualified, combined189 qualification pending. Public controls/memory/release gates remain explicit.",
     "evidence": [
       "docs/intel.md",
       "docs/evidence/scout-lifecycle-native.json",
       "docs/evidence/scout-lifecycle-engine-suite.json",
       "docs/scouts.md",
       "docs/evidence/scout-runtime-engine-suite.json",
-      "docs/evidence/scout-runtime-clean-native.json"
+      "docs/evidence/scout-runtime-clean-native.json",
+      "docs/evidence/scout-fallback-native.json"
     ],
     "plannedIssues": [
       "ED-28"
@@ -4039,7 +4040,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "1a539c24fa0ad1a1fc0f7054fc304ca06273ed63",
-      "required": "Observer ownership/delayed capture in ED-28; legacy assigned-flag fallback, operator integration and memory translation in ED-39/44; release pressure/soak in ED-43",
+      "required": "Combined189 native qualification and ED-28 acceptance audit; public per-creep assignedFlag/console and legacy-memory translation ED-39/44, release pressure/soak ED-43",
       "tests": [
         "test/features/intel-traversal.test.ts",
         "test/features/intel-room-gap.test.ts",
@@ -4051,7 +4052,9 @@
         "test/app/native-scouts.test.ts",
         "test/app/native-scout-depth.test.ts",
         "test/app/scout-planning-budget.test.ts",
-        "test/engine/scout-runtime-bot.ts"
+        "test/engine/scout-runtime-bot.ts",
+        "test/adapters/flag-targets.test.ts",
+        "test/engine/scout-fallback-bot.ts"
       ],
       "status": "Native scout control/demand qualified; not whole-role release parity",
       "validationCommit": "6380e92cc8a53429a523006e43b6b9bfa8a0d725",

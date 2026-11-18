@@ -142,3 +142,8 @@ Native recruitment, assigned/fallback objectives, stabilized physical visits, ho
 ## Observer owner increment
 
 The scout increment is now qualified by the clean187-case6380e92 suite (694.37s), archived in docs/evidence/scout-runtime-engine-suite.json. Native observer requests/actions/delayed capture are implemented separately in features/intel/observation and app/native-observers. See observers.md for legacy source mapping, exact budgets, queue/receipt ownership, the targeted24tick native evidence and remaining specialist/operator/migration gates. Current-source combined188-case qualification remains pending; ED-28 stays In Progress until its final acceptance audit.
+
+
+## Final ED-28 runtime increment
+
+The clean188-case d215833 observer/scout run passes693.90s and is archived in docs/evidence/observer-engine-suite.json. The source-audited scout assigned-flag fallback is now implemented as an optional typed controller port with native configured goals, shared risk-aware movement and bounded population demand. Its targeted140tick native scenario and1238unit tests pass; see scouts.md. Current-source189-case combined qualification and the final acceptance audit remain pending. Public console/memory adapters and release pressure/soak remain their later ED gates.

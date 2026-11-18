@@ -115,3 +115,18 @@ test.each([{ scoutPlanCpuBudget: 0 },{ backgroundEnabled: false }])('paused asse
   expect(queue.list().map(request => request.id)).toEqual(['live']);
   expect(fixture.dispatch.activate).not.toHaveBeenCalled();
 });
+
+test('an admitted flag fallback recruits one scout and hostile target intel cancels only that demand', () => {
+  const patch = { scoutsEnabled: true, scoutSpawningEnabled: true, scoutFallbackFlag: 'Scout:', scoutDepth: 0, scoutExtendedDepth: 0 };
+  const fixture = setup(patch);
+  fixture.game.rooms.W0N1 = { name: 'W0N1', controller: { my: true, level: 2, owner: { username: 'bot' } } };
+  Object.assign(fixture.game,{ flags: { 'Scout:Remote': { pos: { roomName: 'E0N1', x: 25, y: 25 } } },
+    map: { getRoomStatus: () => ({ status: 'normal' }), describeExits: () => ({}) } });
+  fixture.work.demand.run(context(1,patch));
+  const queue = createSpawnQueue(fixture.state,'W0N1'); expect(queue.list()).toHaveLength(1);
+  queue.submit({ id: 'keep', name: 'keep', owner: 'mining:source', room: 'W0N1', readyAt: 0, expiresAt: 100, body: ['move'], priority: 1 });
+  const facts = intelSummary(2,'E0N1'); facts.controller = { ...facts.controller!, owned: false, owner: 'enemy' };
+  facts.units = []; facts.structures = []; createIntelStore(fixture.state).observeSummary(facts);
+  fixture.game.time = 2; fixture.work.demand.run(context(2,patch));
+  expect(queue.list().map(request => request.id)).toEqual(['keep']);
+});
