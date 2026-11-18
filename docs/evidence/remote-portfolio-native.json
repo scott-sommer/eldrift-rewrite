@@ -2312,6 +2312,2319 @@
         61120,
         60120
       ]
+    },
+    {
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-huWElW",
+      "messages": [],
+      "errors": [],
+      "samples": [
+        {
+          "tick": 2,
+          "wallMilliseconds": 241.19090000000006,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 9887
+        },
+        {
+          "tick": 3,
+          "wallMilliseconds": 16.507000000000062,
+          "cpuMilliseconds": 8,
+          "memoryBytes": 15450
+        },
+        {
+          "tick": 4,
+          "wallMilliseconds": 9.793999999999983,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 16056
+        },
+        {
+          "tick": 5,
+          "wallMilliseconds": 10.064899999999966,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 16560
+        },
+        {
+          "tick": 6,
+          "wallMilliseconds": 14.918699999999944,
+          "cpuMilliseconds": 7,
+          "memoryBytes": 21921
+        },
+        {
+          "tick": 7,
+          "wallMilliseconds": 10.213600000000042,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 22460
+        },
+        {
+          "tick": 8,
+          "wallMilliseconds": 14.788699999999949,
+          "cpuMilliseconds": 8,
+          "memoryBytes": 27956
+        },
+        {
+          "tick": 9,
+          "wallMilliseconds": 14.34069999999997,
+          "cpuMilliseconds": 7,
+          "memoryBytes": 33549
+        }
+      ],
+      "provenance": {
+        "commit": "8fc6b86f766efc8b128d034ad04b6141c2508026",
+        "dirty": false,
+        "bundleSha256": "b631222e827541de011e40c22c5084421f853fc6770ca2d452506f96cef46c9f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "remoteAssessment": {
+        "rows": [
+          {
+            "tick": 1,
+            "visible": true,
+            "observedAt": 1,
+            "capacity": 1500,
+            "near": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "source": "2f1ae33a91d76b6",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 1,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "2f1ae33a91d76b6",
+                "x": 5,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 1
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 77,
+                "outboundTicks": 43,
+                "returnTicks": 45,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 247
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 90,
+                "requiredHaulers": 5,
+                "haulers": 5,
+                "deliveredRate": 5,
+                "netRate": 3.3582568074104264,
+                "energy": {
+                  "mining": 0.39341917024320455,
+                  "hauling": 0.6983240223463687,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 1.6417431925895734
+                },
+                "spawn": {
+                  "mining": 0.015021459227467811,
+                  "hauling": 0.04189944134078212,
+                  "reservation": 0.005,
+                  "total": 0.06192090056824993
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "far": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "source": "c589e33a91e7902",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 1,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "c589e33a91e7902",
+                "x": 45,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 1
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 157,
+                "outboundTicks": 79,
+                "returnTicks": 79,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 972
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 160,
+                "requiredHaulers": 8,
+                "haulers": 8,
+                "deliveredRate": 5,
+                "netRate": 2.886569257057885,
+                "energy": {
+                  "mining": 0.417298937784522,
+                  "hauling": 1.146131805157593,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 2.113430742942115
+                },
+                "spawn": {
+                  "mining": 0.015933232169954476,
+                  "hauling": 0.06876790830945559,
+                  "reservation": 0.005,
+                  "total": 0.08970114047941007
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "portfolio": {
+              "full": {
+                "home": "W0N1",
+                "tick": 1,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": true,
+                    "atomic": false,
+                    "slots": 2,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 1,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 3.3582568074104264,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 1.6417431925895734
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.005,
+                            "total": 0.06192090056824993
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      },
+                      {
+                        "id": "remote-source:4:W0N115:c589e33a91e7902",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "c589e33a91e7902",
+                        "observedAt": 1,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 160,
+                          "requiredHaulers": 8,
+                          "haulers": 8,
+                          "deliveredRate": 5,
+                          "netRate": 2.886569257057885,
+                          "energy": {
+                            "mining": 0.417298937784522,
+                            "hauling": 1.146131805157593,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.113430742942115
+                          },
+                          "spawn": {
+                            "mining": 0.015933232169954476,
+                            "hauling": 0.06876790830945559,
+                            "reservation": 0.005,
+                            "total": 0.08970114047941007
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 6.244826064468311,
+                    "spawnLoad": 0.15162204104766,
+                    "haulers": 13,
+                    "closestTravel": 77,
+                    "totalTravel": 234,
+                    "rank": 7.181549974138558
+                  }
+                ],
+                "slots": 2,
+                "haulers": 13,
+                "spawnLoad": 0.15162204104766,
+                "netRate": 6.244826064468311
+              },
+              "fragment": {
+                "home": "W0N1",
+                "tick": 1,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": false,
+                    "atomic": false,
+                    "slots": 1,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 1,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 2.858256807410427,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 1,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.141743192589573
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.01,
+                            "total": 0.06692090056824992
+                          },
+                          "reservationShares": 1,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 2.858256807410427,
+                    "spawnLoad": 0.06692090056824992,
+                    "haulers": 5,
+                    "closestTravel": 77,
+                    "totalTravel": 77,
+                    "rank": 2.858256807410427
+                  }
+                ],
+                "slots": 1,
+                "haulers": 5,
+                "spawnLoad": 0.06692090056824992,
+                "netRate": 2.858256807410427
+              },
+              "refused": {
+                "home": "W0N1",
+                "tick": 1,
+                "bundles": [],
+                "slots": 0,
+                "haulers": 0,
+                "spawnLoad": 0,
+                "netRate": 0
+              }
+            },
+            "rejected": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "source": "2f1ae33a91d76b6",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 1,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 100,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "2f1ae33a91d76b6",
+                "x": 5,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 1
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 77,
+                "outboundTicks": 43,
+                "returnTicks": 45,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 247
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 90,
+                "requiredHaulers": 5,
+                "haulers": 5,
+                "deliveredRate": 5,
+                "netRate": -96.64174319258957,
+                "energy": {
+                  "mining": 0.39341917024320455,
+                  "hauling": 0.6983240223463687,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 100,
+                  "total": 101.64174319258957
+                },
+                "spawn": {
+                  "mining": 0.015021459227467811,
+                  "hauling": 0.04189944134078212,
+                  "reservation": 0.005,
+                  "total": 0.06192090056824993
+                },
+                "reservationShares": 2,
+                "accepted": false,
+                "rejected": [
+                  "net-yield"
+                ]
+              }
+            },
+            "unaffordable": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "travel:body-budget",
+              "refresh": false
+            },
+            "partial": null,
+            "paused": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "traversal:admission",
+              "refresh": false
+            },
+            "stale": null,
+            "cpu": 14.1233,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 2,
+            "visible": true,
+            "observedAt": 2,
+            "capacity": 1500,
+            "near": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "source": "2f1ae33a91d76b6",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 2,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "2f1ae33a91d76b6",
+                "x": 5,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 2
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 77,
+                "outboundTicks": 43,
+                "returnTicks": 45,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 247
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 90,
+                "requiredHaulers": 5,
+                "haulers": 5,
+                "deliveredRate": 5,
+                "netRate": 3.3582568074104264,
+                "energy": {
+                  "mining": 0.39341917024320455,
+                  "hauling": 0.6983240223463687,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 1.6417431925895734
+                },
+                "spawn": {
+                  "mining": 0.015021459227467811,
+                  "hauling": 0.04189944134078212,
+                  "reservation": 0.005,
+                  "total": 0.06192090056824993
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "far": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "source": "c589e33a91e7902",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 2,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "c589e33a91e7902",
+                "x": 45,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 2
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 157,
+                "outboundTicks": 79,
+                "returnTicks": 79,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 972
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 160,
+                "requiredHaulers": 8,
+                "haulers": 8,
+                "deliveredRate": 5,
+                "netRate": 2.886569257057885,
+                "energy": {
+                  "mining": 0.417298937784522,
+                  "hauling": 1.146131805157593,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 2.113430742942115
+                },
+                "spawn": {
+                  "mining": 0.015933232169954476,
+                  "hauling": 0.06876790830945559,
+                  "reservation": 0.005,
+                  "total": 0.08970114047941007
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "portfolio": {
+              "full": {
+                "home": "W0N1",
+                "tick": 2,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": true,
+                    "atomic": false,
+                    "slots": 2,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 2,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 3.3582568074104264,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 1.6417431925895734
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.005,
+                            "total": 0.06192090056824993
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      },
+                      {
+                        "id": "remote-source:4:W0N115:c589e33a91e7902",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "c589e33a91e7902",
+                        "observedAt": 2,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 160,
+                          "requiredHaulers": 8,
+                          "haulers": 8,
+                          "deliveredRate": 5,
+                          "netRate": 2.886569257057885,
+                          "energy": {
+                            "mining": 0.417298937784522,
+                            "hauling": 1.146131805157593,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.113430742942115
+                          },
+                          "spawn": {
+                            "mining": 0.015933232169954476,
+                            "hauling": 0.06876790830945559,
+                            "reservation": 0.005,
+                            "total": 0.08970114047941007
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 6.244826064468311,
+                    "spawnLoad": 0.15162204104766,
+                    "haulers": 13,
+                    "closestTravel": 77,
+                    "totalTravel": 234,
+                    "rank": 7.181549974138558
+                  }
+                ],
+                "slots": 2,
+                "haulers": 13,
+                "spawnLoad": 0.15162204104766,
+                "netRate": 6.244826064468311
+              },
+              "fragment": {
+                "home": "W0N1",
+                "tick": 2,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": false,
+                    "atomic": false,
+                    "slots": 1,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 2,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 2.858256807410427,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 1,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.141743192589573
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.01,
+                            "total": 0.06692090056824992
+                          },
+                          "reservationShares": 1,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 2.858256807410427,
+                    "spawnLoad": 0.06692090056824992,
+                    "haulers": 5,
+                    "closestTravel": 77,
+                    "totalTravel": 77,
+                    "rank": 2.858256807410427
+                  }
+                ],
+                "slots": 1,
+                "haulers": 5,
+                "spawnLoad": 0.06692090056824992,
+                "netRate": 2.858256807410427
+              },
+              "refused": {
+                "home": "W0N1",
+                "tick": 2,
+                "bundles": [],
+                "slots": 0,
+                "haulers": 0,
+                "spawnLoad": 0,
+                "netRate": 0
+              }
+            },
+            "rejected": null,
+            "unaffordable": null,
+            "partial": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "travel:path-incomplete",
+              "refresh": true
+            },
+            "paused": null,
+            "stale": null,
+            "cpu": 6.634,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 3,
+            "visible": true,
+            "observedAt": 3,
+            "capacity": 1500,
+            "near": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "traversal:hostile",
+              "refresh": true
+            },
+            "far": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "reason": "traversal:hostile",
+              "refresh": true
+            },
+            "portfolio": null,
+            "rejected": null,
+            "unaffordable": null,
+            "partial": null,
+            "paused": null,
+            "stale": null,
+            "cpu": 0.4379999999999953,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 4,
+            "visible": true,
+            "observedAt": 4,
+            "capacity": 1500,
+            "near": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "traversal:hostile",
+              "refresh": true
+            },
+            "far": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "reason": "traversal:hostile",
+              "refresh": true
+            },
+            "portfolio": null,
+            "rejected": null,
+            "unaffordable": null,
+            "partial": null,
+            "paused": null,
+            "stale": null,
+            "cpu": 0.46179999999999666,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 5,
+            "visible": true,
+            "observedAt": 5,
+            "capacity": 1500,
+            "near": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "source": "2f1ae33a91d76b6",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 5,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "2f1ae33a91d76b6",
+                "x": 5,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 5
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 77,
+                "outboundTicks": 43,
+                "returnTicks": 45,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 247
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 90,
+                "requiredHaulers": 5,
+                "haulers": 5,
+                "deliveredRate": 5,
+                "netRate": 3.3582568074104264,
+                "energy": {
+                  "mining": 0.39341917024320455,
+                  "hauling": 0.6983240223463687,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 1.6417431925895734
+                },
+                "spawn": {
+                  "mining": 0.015021459227467811,
+                  "hauling": 0.04189944134078212,
+                  "reservation": 0.005,
+                  "total": 0.06192090056824993
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "far": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "source": "c589e33a91e7902",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 5,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "c589e33a91e7902",
+                "x": 45,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "none",
+                "username": null,
+                "remainingTicks": 0,
+                "observedAt": 5
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 157,
+                "outboundTicks": 79,
+                "returnTicks": 79,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 972
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 160,
+                "requiredHaulers": 8,
+                "haulers": 8,
+                "deliveredRate": 5,
+                "netRate": 2.886569257057885,
+                "energy": {
+                  "mining": 0.417298937784522,
+                  "hauling": 1.146131805157593,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 2.113430742942115
+                },
+                "spawn": {
+                  "mining": 0.015933232169954476,
+                  "hauling": 0.06876790830945559,
+                  "reservation": 0.005,
+                  "total": 0.08970114047941007
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "portfolio": {
+              "full": {
+                "home": "W0N1",
+                "tick": 5,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": true,
+                    "atomic": false,
+                    "slots": 2,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 5,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 3.3582568074104264,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 1.6417431925895734
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.005,
+                            "total": 0.06192090056824993
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      },
+                      {
+                        "id": "remote-source:4:W0N115:c589e33a91e7902",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "c589e33a91e7902",
+                        "observedAt": 5,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 160,
+                          "requiredHaulers": 8,
+                          "haulers": 8,
+                          "deliveredRate": 5,
+                          "netRate": 2.886569257057885,
+                          "energy": {
+                            "mining": 0.417298937784522,
+                            "hauling": 1.146131805157593,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.113430742942115
+                          },
+                          "spawn": {
+                            "mining": 0.015933232169954476,
+                            "hauling": 0.06876790830945559,
+                            "reservation": 0.005,
+                            "total": 0.08970114047941007
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 6.244826064468311,
+                    "spawnLoad": 0.15162204104766,
+                    "haulers": 13,
+                    "closestTravel": 77,
+                    "totalTravel": 234,
+                    "rank": 7.181549974138558
+                  }
+                ],
+                "slots": 2,
+                "haulers": 13,
+                "spawnLoad": 0.15162204104766,
+                "netRate": 6.244826064468311
+              },
+              "fragment": {
+                "home": "W0N1",
+                "tick": 5,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": false,
+                    "atomic": false,
+                    "slots": 1,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 5,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 2.858256807410427,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 1,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.141743192589573
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.01,
+                            "total": 0.06692090056824992
+                          },
+                          "reservationShares": 1,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 2.858256807410427,
+                    "spawnLoad": 0.06692090056824992,
+                    "haulers": 5,
+                    "closestTravel": 77,
+                    "totalTravel": 77,
+                    "rank": 2.858256807410427
+                  }
+                ],
+                "slots": 1,
+                "haulers": 5,
+                "spawnLoad": 0.06692090056824992,
+                "netRate": 2.858256807410427
+              },
+              "refused": {
+                "home": "W0N1",
+                "tick": 5,
+                "bundles": [],
+                "slots": 0,
+                "haulers": 0,
+                "spawnLoad": 0,
+                "netRate": 0
+              }
+            },
+            "rejected": null,
+            "unaffordable": null,
+            "partial": null,
+            "paused": null,
+            "stale": null,
+            "cpu": 5.0097999999999985,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 6,
+            "visible": true,
+            "observedAt": 6,
+            "capacity": 1500,
+            "near": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "traversal:hostile",
+              "refresh": true
+            },
+            "far": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "reason": "traversal:hostile",
+              "refresh": true
+            },
+            "portfolio": null,
+            "rejected": null,
+            "unaffordable": null,
+            "partial": null,
+            "paused": null,
+            "stale": null,
+            "cpu": 0.40099999999999625,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 7,
+            "visible": true,
+            "observedAt": 7,
+            "capacity": 1500,
+            "near": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "source": "2f1ae33a91d76b6",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 7,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "2f1ae33a91d76b6",
+                "x": 5,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "ours",
+                "username": "eldrift-smoke",
+                "remainingTicks": 100,
+                "observedAt": 7
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 77,
+                "outboundTicks": 43,
+                "returnTicks": 45,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 247
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 90,
+                "requiredHaulers": 5,
+                "haulers": 5,
+                "deliveredRate": 5,
+                "netRate": 3.3582568074104264,
+                "energy": {
+                  "mining": 0.39341917024320455,
+                  "hauling": 0.6983240223463687,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 1.6417431925895734
+                },
+                "spawn": {
+                  "mining": 0.015021459227467811,
+                  "hauling": 0.04189944134078212,
+                  "reservation": 0.005,
+                  "total": 0.06192090056824993
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "far": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "source": "c589e33a91e7902",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 7,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "c589e33a91e7902",
+                "x": 45,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "ours",
+                "username": "eldrift-smoke",
+                "remainingTicks": 100,
+                "observedAt": 7
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 157,
+                "outboundTicks": 79,
+                "returnTicks": 79,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 972
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 160,
+                "requiredHaulers": 8,
+                "haulers": 8,
+                "deliveredRate": 5,
+                "netRate": 2.886569257057885,
+                "energy": {
+                  "mining": 0.417298937784522,
+                  "hauling": 1.146131805157593,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 2.113430742942115
+                },
+                "spawn": {
+                  "mining": 0.015933232169954476,
+                  "hauling": 0.06876790830945559,
+                  "reservation": 0.005,
+                  "total": 0.08970114047941007
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "portfolio": {
+              "full": {
+                "home": "W0N1",
+                "tick": 7,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": true,
+                    "atomic": false,
+                    "slots": 2,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 7,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 3.3582568074104264,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 1.6417431925895734
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.005,
+                            "total": 0.06192090056824993
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      },
+                      {
+                        "id": "remote-source:4:W0N115:c589e33a91e7902",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "c589e33a91e7902",
+                        "observedAt": 7,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 160,
+                          "requiredHaulers": 8,
+                          "haulers": 8,
+                          "deliveredRate": 5,
+                          "netRate": 2.886569257057885,
+                          "energy": {
+                            "mining": 0.417298937784522,
+                            "hauling": 1.146131805157593,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.113430742942115
+                          },
+                          "spawn": {
+                            "mining": 0.015933232169954476,
+                            "hauling": 0.06876790830945559,
+                            "reservation": 0.005,
+                            "total": 0.08970114047941007
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 6.244826064468311,
+                    "spawnLoad": 0.15162204104766,
+                    "haulers": 13,
+                    "closestTravel": 77,
+                    "totalTravel": 234,
+                    "rank": 7.181549974138558
+                  }
+                ],
+                "slots": 2,
+                "haulers": 13,
+                "spawnLoad": 0.15162204104766,
+                "netRate": 6.244826064468311
+              },
+              "fragment": {
+                "home": "W0N1",
+                "tick": 7,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": false,
+                    "atomic": false,
+                    "slots": 1,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 7,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 2.858256807410427,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 1,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.141743192589573
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.01,
+                            "total": 0.06692090056824992
+                          },
+                          "reservationShares": 1,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 2.858256807410427,
+                    "spawnLoad": 0.06692090056824992,
+                    "haulers": 5,
+                    "closestTravel": 77,
+                    "totalTravel": 77,
+                    "rank": 2.858256807410427
+                  }
+                ],
+                "slots": 1,
+                "haulers": 5,
+                "spawnLoad": 0.06692090056824992,
+                "netRate": 2.858256807410427
+              },
+              "refused": {
+                "home": "W0N1",
+                "tick": 7,
+                "bundles": [],
+                "slots": 0,
+                "haulers": 0,
+                "spawnLoad": 0,
+                "netRate": 0
+              }
+            },
+            "rejected": null,
+            "unaffordable": null,
+            "partial": null,
+            "paused": null,
+            "stale": null,
+            "cpu": 5.7416999999999945,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          },
+          {
+            "tick": 8,
+            "visible": false,
+            "observedAt": 7,
+            "capacity": 1500,
+            "near": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "source": "2f1ae33a91d76b6",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 7,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "2f1ae33a91d76b6",
+                "x": 5,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "ours",
+                "username": "eldrift-smoke",
+                "remainingTicks": 99,
+                "observedAt": 7
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 77,
+                "outboundTicks": 43,
+                "returnTicks": 45,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 247
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 90,
+                "requiredHaulers": 5,
+                "haulers": 5,
+                "deliveredRate": 5,
+                "netRate": 3.3582568074104264,
+                "energy": {
+                  "mining": 0.39341917024320455,
+                  "hauling": 0.6983240223463687,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 1.6417431925895734
+                },
+                "spawn": {
+                  "mining": 0.015021459227467811,
+                  "hauling": 0.04189944134078212,
+                  "reservation": 0.005,
+                  "total": 0.06192090056824993
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "far": {
+              "status": "assessed",
+              "id": "remote-source:4:W0N115:c589e33a91e7902",
+              "source": "c589e33a91e7902",
+              "home": "W0N1",
+              "room": "E0N1",
+              "observedAt": 7,
+              "policy": {
+                "regenerationTicks": 300,
+                "harvestPower": 2,
+                "miner": {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25
+                },
+                "hauler": {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "lifetime": 1500,
+                  "replacementMargin": 25,
+                  "serviceTicks": 2
+                },
+                "reservation": {
+                  "energyPerTick": 1,
+                  "spawnLoad": 0.01,
+                  "shares": 2
+                },
+                "infrastructurePerTick": 0.05,
+                "riskPerTick": 0,
+                "limits": {
+                  "maximumHaulers": 20,
+                  "maximumSpawnLoad": 1,
+                  "minimumNetYield": 0.1
+                }
+              },
+              "sourceFacts": {
+                "id": "c589e33a91e7902",
+                "x": 45,
+                "y": 25,
+                "capacity": 1500
+              },
+              "reservation": {
+                "state": "ours",
+                "username": "eldrift-smoke",
+                "remainingTicks": 99,
+                "observedAt": 7
+              },
+              "travel": {
+                "status": "complete",
+                "minerTicks": 157,
+                "outboundTicks": 79,
+                "returnTicks": 79,
+                "rooms": [
+                  "W0N1",
+                  "E0N1"
+                ],
+                "operations": 972
+              },
+              "economics": {
+                "status": "evaluated",
+                "sourceRate": 5,
+                "harvestRate": 5,
+                "tripTicks": 160,
+                "requiredHaulers": 8,
+                "haulers": 8,
+                "deliveredRate": 5,
+                "netRate": 2.886569257057885,
+                "energy": {
+                  "mining": 0.417298937784522,
+                  "hauling": 1.146131805157593,
+                  "reservation": 0.5,
+                  "infrastructure": 0.05,
+                  "risk": 0,
+                  "total": 2.113430742942115
+                },
+                "spawn": {
+                  "mining": 0.015933232169954476,
+                  "hauling": 0.06876790830945559,
+                  "reservation": 0.005,
+                  "total": 0.08970114047941007
+                },
+                "reservationShares": 2,
+                "accepted": true,
+                "rejected": []
+              }
+            },
+            "portfolio": {
+              "full": {
+                "home": "W0N1",
+                "tick": 8,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": true,
+                    "atomic": false,
+                    "slots": 2,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 7,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 3.3582568074104264,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 1.6417431925895734
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.005,
+                            "total": 0.06192090056824993
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      },
+                      {
+                        "id": "remote-source:4:W0N115:c589e33a91e7902",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "c589e33a91e7902",
+                        "observedAt": 7,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 160,
+                          "requiredHaulers": 8,
+                          "haulers": 8,
+                          "deliveredRate": 5,
+                          "netRate": 2.886569257057885,
+                          "energy": {
+                            "mining": 0.417298937784522,
+                            "hauling": 1.146131805157593,
+                            "reservation": 0.5,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.113430742942115
+                          },
+                          "spawn": {
+                            "mining": 0.015933232169954476,
+                            "hauling": 0.06876790830945559,
+                            "reservation": 0.005,
+                            "total": 0.08970114047941007
+                          },
+                          "reservationShares": 2,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 6.244826064468311,
+                    "spawnLoad": 0.15162204104766,
+                    "haulers": 13,
+                    "closestTravel": 77,
+                    "totalTravel": 234,
+                    "rank": 7.181549974138558
+                  }
+                ],
+                "slots": 2,
+                "haulers": 13,
+                "spawnLoad": 0.15162204104766,
+                "netRate": 6.244826064468311
+              },
+              "fragment": {
+                "home": "W0N1",
+                "tick": 8,
+                "bundles": [
+                  {
+                    "room": "E0N1",
+                    "complete": false,
+                    "atomic": false,
+                    "slots": 1,
+                    "sources": [
+                      {
+                        "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+                        "home": "W0N1",
+                        "room": "E0N1",
+                        "source": "2f1ae33a91d76b6",
+                        "observedAt": 7,
+                        "economics": {
+                          "status": "evaluated",
+                          "sourceRate": 5,
+                          "harvestRate": 5,
+                          "tripTicks": 90,
+                          "requiredHaulers": 5,
+                          "haulers": 5,
+                          "deliveredRate": 5,
+                          "netRate": 2.858256807410427,
+                          "energy": {
+                            "mining": 0.39341917024320455,
+                            "hauling": 0.6983240223463687,
+                            "reservation": 1,
+                            "infrastructure": 0.05,
+                            "risk": 0,
+                            "total": 2.141743192589573
+                          },
+                          "spawn": {
+                            "mining": 0.015021459227467811,
+                            "hauling": 0.04189944134078212,
+                            "reservation": 0.01,
+                            "total": 0.06692090056824992
+                          },
+                          "reservationShares": 1,
+                          "accepted": true,
+                          "rejected": []
+                        }
+                      }
+                    ],
+                    "netRate": 2.858256807410427,
+                    "spawnLoad": 0.06692090056824992,
+                    "haulers": 5,
+                    "closestTravel": 77,
+                    "totalTravel": 77,
+                    "rank": 2.858256807410427
+                  }
+                ],
+                "slots": 1,
+                "haulers": 5,
+                "spawnLoad": 0.06692090056824992,
+                "netRate": 2.858256807410427
+              },
+              "refused": {
+                "home": "W0N1",
+                "tick": 8,
+                "bundles": [],
+                "slots": 0,
+                "haulers": 0,
+                "spawnLoad": 0,
+                "netRate": 0
+              }
+            },
+            "rejected": null,
+            "unaffordable": null,
+            "partial": null,
+            "paused": null,
+            "stale": {
+              "status": "deferred",
+              "id": "remote-source:4:W0N115:2f1ae33a91d76b6",
+              "reason": "traversal:stale",
+              "refresh": true
+            },
+            "cpu": 5.704999999999998,
+            "unchanged": true,
+            "witness": {
+              "owner": "fixture",
+              "version": 1,
+              "data": {
+                "kept": [
+                  "remote",
+                  19
+                ]
+              }
+            }
+          }
+        ],
+        "intel": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 7,
+            "owned": false,
+            "sourceIds": [
+              "2f1ae33a91d76b6",
+              "c589e33a91e7902"
+            ],
+            "structureIds": [
+              "b442e33a91ed7a9",
+              "b800e33a91e4f23"
+            ],
+            "hostileIds": [
+              "b800e33a91e4f23"
+            ],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 7,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "25f2e33a91d3a4a",
+                "x": 20,
+                "y": 20,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": {
+                  "username": "eldrift-smoke",
+                  "ticksToEnd": 100
+                }
+              },
+              "sources": [
+                {
+                  "id": "2f1ae33a91d76b6",
+                  "x": 5,
+                  "y": 25,
+                  "capacity": 1500
+                },
+                {
+                  "id": "c589e33a91e7902",
+                  "x": 45,
+                  "y": 25,
+                  "capacity": 1500
+                }
+              ],
+              "mineral": {
+                "id": "62c1e33a91e194d",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "b442e33a91ed7a9",
+                  "x": 1,
+                  "y": 25,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                },
+                {
+                  "id": "b800e33a91e4f23",
+                  "x": 2,
+                  "y": 25,
+                  "type": "rampart",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                }
+              ],
+              "units": [
+                {
+                  "id": "0606e33a91ef540",
+                  "x": 25,
+                  "y": 40,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        }
+      },
+      "childPids": [
+        65176,
+        44772,
+        63388
+      ]
     }
-  ]
+  ],
+  "cleanEvidenceSha256": "8bf2925d983883608a78de3cf46c1baf94903bc7435660a12e5d8a393d73c7a7"
 }
