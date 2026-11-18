@@ -1,0 +1,347 @@
+{
+  "scope": "Finite-CARRY harvest/handoff forecast correction and affected native scenario regressions. Not reserved-source steady throughput, startup/payback, natural replacement, pressure or soak qualification.",
+  "model": {
+    "carryRate": "C / (ceil(C / P) + 1)",
+    "directZeroCarryRate": "P",
+    "harvestRate": "min(source capacity / regeneration time, cycle rate)",
+    "assumptions": [
+      "Standard mining capability uses separate harvest and handoff body actions.",
+      "Native-style harvesting truncates to remaining CARRY capacity.",
+      "Station sink remains available; repair/build/threat/travel interruptions are outside this steady-state cycle.",
+      "Zero-CARRY direct harvest requires a usable drop/container collection strategy."
+    ]
+  },
+  "qualification": {
+    "unitTests": 1354,
+    "unitFiles": 370,
+    "unitSeconds": 9.48,
+    "focusedTests": 26,
+    "focusedFiles": 4,
+    "focusedMilliseconds": 263,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "packagedBundle": true,
+    "lizard": {
+      "productionFiles": 650,
+      "testFiles": 536,
+      "violations": 0
+    }
+  },
+  "runs": [
+    {
+      "scenario": "--remote-assessment",
+      "sourceEvidence": "artifacts\\engine-x5RxOm\\evidence.json",
+      "sourceEvidenceSha256": "2adc630dbd08e7c7948d567cb07a5dc2683c446d02480c2a4ea2209c17ae6f90",
+      "provenance": {
+        "commit": "068049be053f8ef7ee6af1526118a75a216a37c5",
+        "dirty": false,
+        "bundleSha256": "f62a3bb6d9d332e661042572398be89b7525be92336cdac36196194e0972b7a1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null,
+      "status": "passed",
+      "errors": [],
+      "messages": [],
+      "rowsFile": "remote-handoff-assessment-rows.jsonl",
+      "rowsSha256": "7f7a70de4839b33ae3cb904499a23ae1bf215e8b77a8035c602706faef2bee8e",
+      "rowCount": 8,
+      "probe": {
+        "intel": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 7,
+            "owned": false,
+            "sourceIds": [
+              "727f07dfd04a7df",
+              "5a4607dfd0414dd"
+            ],
+            "structureIds": [
+              "81a507dfd051d13",
+              "575407dfd05de42"
+            ],
+            "hostileIds": [
+              "575407dfd05de42"
+            ],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 7,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "43a407dfd043fe7",
+                "x": 20,
+                "y": 20,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": {
+                  "username": "eldrift-smoke",
+                  "ticksToEnd": 100
+                }
+              },
+              "sources": [
+                {
+                  "id": "727f07dfd04a7df",
+                  "x": 5,
+                  "y": 25,
+                  "capacity": 1500
+                },
+                {
+                  "id": "5a4607dfd0414dd",
+                  "x": 45,
+                  "y": 25,
+                  "capacity": 1500
+                }
+              ],
+              "mineral": {
+                "id": "f41b07dfd04222e",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "81a507dfd051d13",
+                  "x": 1,
+                  "y": 25,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                },
+                {
+                  "id": "575407dfd05de42",
+                  "x": 2,
+                  "y": 25,
+                  "type": "rampart",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                }
+              ],
+              "units": [
+                {
+                  "id": "af2207dfd052b5e",
+                  "x": 25,
+                  "y": 40,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        }
+      }
+    },
+    {
+      "scenario": "--remote-management",
+      "sourceEvidence": "artifacts\\engine-o37ftZ\\evidence.json",
+      "sourceEvidenceSha256": "1ef85768517ce34f01d9e6c389e366fa4cd694a60aea168511defd85aebf6091",
+      "provenance": {
+        "commit": "068049be053f8ef7ee6af1526118a75a216a37c5",
+        "dirty": false,
+        "bundleSha256": "011e0ff1443551639393fd3426e2c8fdf84004e019b4104b689e1bb540ae2fc4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "068049be053f8ef7ee6af1526118a75a216a37c5",
+        "dirty": false,
+        "bundleSha256": "512fe27d39bd7455f80bb87e4cea0ab6066cada936adbc0e32ce77694a120a0e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "status": "passed",
+      "errors": [],
+      "messages": [],
+      "rowsFile": "remote-handoff-management-rows.jsonl",
+      "rowsSha256": "ec781208783b1842505720876f910a9e7ac57300f5cbc48a107faa639fcf3cd1",
+      "rowCount": 56,
+      "probe": {
+        "reloads": [
+          2,
+          8,
+          16,
+          27,
+          35,
+          46
+        ]
+      }
+    },
+    {
+      "scenario": "--remote-fleet",
+      "sourceEvidence": "artifacts\\engine-nEJtUM\\evidence.json",
+      "sourceEvidenceSha256": "72cd420e84182d53b4678fd43122a5eefca33f43fb4e1bbad4fddaf32b2c499c",
+      "provenance": {
+        "commit": "068049be053f8ef7ee6af1526118a75a216a37c5",
+        "dirty": false,
+        "bundleSha256": "414301181e82cb109a10a03e053d064d3bf93bffe06f79f7c84b07c67cdcd944",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "068049be053f8ef7ee6af1526118a75a216a37c5",
+        "dirty": false,
+        "bundleSha256": "0abf2d88d69e85386d7859981beeb241c320394004f0c12b75faf090049770e0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "status": "passed",
+      "errors": [],
+      "messages": [],
+      "rowsFile": "remote-handoff-fleet-rows.jsonl",
+      "rowsSha256": "9a62ce79637c2e5e01410d5e9b37b48ededd4b7fab6521e2fb4afedf38f2a844",
+      "rowCount": 260,
+      "probe": {
+        "metadata": {
+          "mode": "normal",
+          "confirmationResets": [
+            50,
+            58,
+            66,
+            67,
+            75,
+            83,
+            84,
+            92,
+            100,
+            101,
+            109,
+            117,
+            118,
+            126,
+            134,
+            135,
+            143,
+            151,
+            152,
+            160,
+            168,
+            169,
+            177,
+            185,
+            201
+          ],
+          "replacement": null,
+          "damage": null
+        },
+        "reloads": [
+          13,
+          50,
+          58,
+          66,
+          67,
+          75,
+          83,
+          84,
+          92,
+          100,
+          101,
+          109,
+          117,
+          118,
+          126,
+          134,
+          135,
+          143,
+          151,
+          152,
+          160,
+          168,
+          169,
+          177,
+          185,
+          201
+        ],
+        "receipts": {
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"43\\\\\\\"]\\\"]\",\"57\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"51\\\\\\\"]\\\"]\",\"65\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"59\\\\\\\"]\\\"]\",\"74\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"67\\\\\\\"]\\\"]\",\"82\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"76\\\\\\\"]\\\"]\",\"91\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"84\\\\\\\"]\\\"]\",\"99\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"93\\\\\\\"]\\\"]\",\"108\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"101\\\\\\\"]\\\"]\",\"116\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"110\\\\\\\"]\\\"]\",\"125\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"118\\\\\\\"]\\\"]\",\"133\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"127\\\\\\\"]\\\"]\",\"142\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"135\\\\\\\"]\\\"]\",\"150\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"144\\\\\\\"]\\\"]\",\"159\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"152\\\\\\\"]\\\"]\",\"167\"]": 56,
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"161\\\\\\\"]\\\"]\",\"176\"]": 56,
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"182\\\\\\\"]\\\"]\",\"184\"]": 56,
+          "logistics:[\"attempt\",\"8ecf07e0c226141\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8ecf07e0c226141\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"194\\\\\\\"]\\\"]\",\"200\"]": 8
+        },
+        "bindings": {
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"43\\\\\\\"]\\\"]\",\"57\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"43\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"51\\\\\\\"]\\\"]\",\"65\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"51\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"59\\\\\\\"]\\\"]\",\"74\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"59\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"67\\\\\\\"]\\\"]\",\"82\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"67\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"76\\\\\\\"]\\\"]\",\"91\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"76\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"84\\\\\\\"]\\\"]\",\"99\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"84\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"93\\\\\\\"]\\\"]\",\"108\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"93\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"101\\\\\\\"]\\\"]\",\"116\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"101\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"110\\\\\\\"]\\\"]\",\"125\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"110\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"118\\\\\\\"]\\\"]\",\"133\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"118\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"127\\\\\\\"]\\\"]\",\"142\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"127\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"135\\\\\\\"]\\\"]\",\"150\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"135\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"144\\\\\\\"]\\\"]\",\"159\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"144\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"152\\\\\\\"]\\\"]\",\"167\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"91b107e10adce86\\\",\\\"c61507e0ad86d00\\\",\\\"152\\\"]\"]",
+          "logistics:[\"attempt\",\"b8fa07e0f1456c4\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"b8fa07e0f1456c4\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"161\\\\\\\"]\\\"]\",\"176\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"remote-fleet:[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\",\\\\\\\"b81b07e0ad81ba1\\\\\\\",\\\\\\\"courier\\\\\\\"]\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:b81b07e0ad81ba1\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"b8fa07e0f1456c4\\\",\\\"c61507e0ad86d00\\\",\\\"161\\\"]\"]",
+          "logistics:[\"attempt\",\"91b107e10adce86\",\"task:[\\\"ed-W0N1-3\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"91b107e10adce86\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"182\\\\\\\"]\\\"]\",\"184\"]": "[\"logistics:[\\\"cargo-recovery\\\",\\\"W0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"91b107e10adce86\\\",\\\"energy\\\",\\\"c61507e0ad86d00\\\",\\\"182\\\"]\"]",
+          "logistics:[\"attempt\",\"8ecf07e0c226141\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"8ecf07e0c226141\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"c61507e0ad86d00\\\\\\\",\\\\\\\"194\\\\\\\"]\\\"]\",\"200\"]": "[\"logistics:[\\\"cargo-recovery\\\",\\\"W0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"8ecf07e0c226141\\\",\\\"energy\\\",\\\"c61507e0ad86d00\\\",\\\"194\\\"]\"]"
+        },
+        "passiveSpawnEnergy": 0,
+        "maximumUncreditedPhysical": 0,
+        "finalWorld": {
+          "sourceEnergy": 484,
+          "containerEnergy": 112
+        }
+      }
+    }
+  ],
+  "cacheAudit": "priceRemoteBundle reprices every selected quote from retained source/body/travel facts through assessRemoteEconomics; cached assessment.economics is not used as authoritative pricing.",
+  "fullEngineSuite": "Not rerun for this increment; preceding full clean 208-case suite remains historical at c3bee10. Bootstrap case 209 is registered."
+}
