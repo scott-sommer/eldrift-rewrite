@@ -12,11 +12,11 @@ export function remoteOffer(room = 'E0N1', distances = [20,40]): RemoteRoomOffer
       reservation: { state: 'none',username: null,remainingTicks: 0,observedAt: 15 },
       travel: { status: 'complete',minerTicks: distance,outboundTicks: distance,returnTicks: distance * 2,
         rooms: room === 'E0N1' ? ['W0N1',room] : ['W0N1','W0N2',room],operations: 100 },
-      economics: { status: 'infeasible',reason: 'no-carry' } },
+      economics: { status: 'infeasible',reason: 'no-carry' },
     policy: { regenerationTicks: 300,harvestPower: 2,miner: { body: ['work','work','work','move','move'],lifetime: 1500 },
       hauler: { body: ['carry','carry','move','move'],lifetime: 1500,serviceTicks: 2 },
       reservation: { energyPerTick: 1,spawnLoad: 0.01,shares: 99 },infrastructurePerTick: 0.05,riskPerTick: 0,
-      limits: { maximumHaulers: 20,maximumSpawnLoad: 1,minimumNetYield: 0.1 } }
+      limits: { maximumHaulers: 20,maximumSpawnLoad: 1,minimumNetYield: 0.1 } } }
   }));
   return { room,sourceIds,quotes,commitment: { atomic: false,slots: 0,energyPerTick: 0,spawnLoad: 0 } };
 }

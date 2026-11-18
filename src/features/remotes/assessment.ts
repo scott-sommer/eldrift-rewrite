@@ -42,7 +42,7 @@ export function assessRemoteSource(input: RemoteAssessmentRequest, ports: Remote
     miner: { ...request.economics.miner, travelTicks: travel.minerTicks },
     hauler: { ...request.economics.hauler, outboundTicks: travel.outboundTicks, returnTicks: travel.returnTicks } });
   return { status: 'assessed', id, source: request.source, home: request.home, room: request.room,
-    observedAt: summary.observedAt, sourceFacts: copyPlain(source), reservation, travel: copyPlain(travel), economics };
+    observedAt: summary.observedAt, policy: copyPlain(request.economics), sourceFacts: copyPlain(source), reservation, travel: copyPlain(travel), economics };
 }
 function validateRequest(request: RemoteAssessmentRequest): void {
   roomCoordinates(request.home); roomCoordinates(request.room);

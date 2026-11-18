@@ -19,7 +19,7 @@ export function priceRemoteBundle(offer: RemoteRoomOffer, quotes: RemoteQuote[],
     totalTravel: distances.reduce((sum,value) => sum + value,0),rank };
 }
 function priceSource(quote: RemoteQuote, shares: number) {
-  const { assessment: facts,policy } = quote;
+  const facts = quote.assessment, policy = facts.policy;
   const economics = assessRemoteEconomics({ ...policy,capacity: facts.sourceFacts.capacity,
     miner: { ...policy.miner,travelTicks: facts.travel.minerTicks },
     hauler: { ...policy.hauler,outboundTicks: facts.travel.outboundTicks,returnTicks: facts.travel.returnTicks },

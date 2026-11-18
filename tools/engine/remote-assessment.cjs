@@ -45,6 +45,15 @@ function verifyRemoteAssessment(memory,evidence) {
     assert.ok(row.near.economics.netRate > row.far.economics.netRate);
     assert.equal(row.near.economics.sourceRate,row.capacity/300);
     assert.equal(row.near.sourceFacts.capacity,row.capacity);
+    assert.equal(row.near.policy.miner.body.filter(part => part === 'work').length,4);
+    const { full,fragment,refused } = row.portfolio;
+    assert.equal(full.slots,2); assert.equal(full.bundles[0].complete,true);
+    assert.equal(full.bundles[0].sources.reduce((sum,item) => sum + item.economics.energy.reservation,0),1);
+    assert.equal(fragment.slots,1); assert.equal(fragment.bundles[0].complete,false);
+    assert.equal(fragment.bundles[0].sources[0].economics.reservationShares,1);
+    assert.equal(fragment.bundles[0].sources[0].economics.energy.reservation,1);
+    assert.equal(fragment.bundles[0].sources[0].source,row.near.source);
+    assert.equal(refused.bundles.length,0);
     assert.ok(row.near.economics.accepted && row.far.economics.accepted);
     assert.deepEqual(row.near.travel.rooms,['W0N1','E0N1']);
   }

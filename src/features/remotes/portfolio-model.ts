@@ -1,8 +1,7 @@
 import type { RemoteEconomics } from '../../capabilities/economy/remote-model';
-import type { RemoteAssessment, RemoteEconomicPolicy } from './assessment-model';
+import type { RemoteAssessment } from './assessment-model';
 export interface RemoteQuote {
   assessment: Extract<RemoteAssessment, { status: 'assessed' }>;
-  policy: RemoteEconomicPolicy;
 }
 /** Inventory is explicit: missing assessments must not turn a partial room into a complete bundle. */
 export interface RemoteRoomOffer {

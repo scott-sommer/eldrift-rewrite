@@ -25,7 +25,7 @@ test('a capacity-limited fragment pays all reservation expense rather than the q
 });
 
 test('an affordable full room can be profitable when no single source can carry its room overhead', () => {
-  const room = remoteOffer(); room.quotes.forEach(quote => { quote.policy.reservation.energyPerTick = 6; });
+  const room = remoteOffer(); room.quotes.forEach(quote => { quote.assessment.policy.reservation.energyPerTick = 6; });
   expect(selectRemotePortfolio([room],portfolioPolicy()).bundles).toHaveLength(1);
   expect(selectRemotePortfolio([room],portfolioPolicy({ maximumSlots: 1 })).bundles).toHaveLength(0);
 });
@@ -43,7 +43,7 @@ test('global hauler and spawn budgets are charged across rooms, not just per quo
 
 test('configurable order trades nearest complete room against net yield deterministically', () => {
   const a = remoteOffer('E0N1',[10]), b = remoteOffer('E0N2',[30]);
-  a.quotes[0]!.policy.riskPerTick = 2;
+  a.quotes[0]!.assessment.policy.riskPerTick = 2;
   expect(selectRemotePortfolio([b,a],portfolioPolicy({ maximumSlots: 1 })).bundles[0]!.room).toBe(a.room);
   expect(selectRemotePortfolio([a,b],portfolioPolicy({ maximumSlots: 1,order: 'net-yield' })).bundles[0]!.room).toBe(b.room);
 });
@@ -78,9 +78,9 @@ test('stale quotes and expired or foreign reservations cannot enter the portfoli
 test('duplicate identities, conflicting reservation charges and wrong-home quotes fail before selection', () => {
   const room = remoteOffer(), policy = portfolioPolicy();
   expect(() => selectRemotePortfolio([room,room],policy)).toThrow('Duplicate remote room');
-  room.quotes[1]!.policy.reservation.energyPerTick = 2;
+  room.quotes[1]!.assessment.policy.reservation.energyPerTick = 2;
   expect(() => selectRemotePortfolio([room],policy)).toThrow('Inconsistent room reservation');
-  room.quotes[1]!.policy.reservation.energyPerTick = 1;
+  room.quotes[1]!.assessment.policy.reservation.energyPerTick = 1;
   room.quotes[0]!.assessment.home = 'W1N1';
   expect(() => selectRemotePortfolio([room],policy)).toThrow('ownership mismatch');
 });
@@ -98,7 +98,7 @@ test('invalid routes, future observations, nonfinite limits and oversized inputs
 
 test('fragment ordering follows the selected strategy and input order cannot change ties', () => {
   const a = remoteOffer('E0N1',[10,20]), b = remoteOffer('E0N2',[30,40]);
-  a.quotes.forEach(quote => { quote.policy.riskPerTick = 2; });
+  a.quotes.forEach(quote => { quote.assessment.policy.riskPerTick = 2; });
   const nearest = portfolioPolicy({ maximumSlots: 1 }), net = { ...nearest,order: 'net-yield' as const };
   expect(selectRemotePortfolio([b,a],nearest).bundles[0]!.room).toBe(a.room);
   expect(selectRemotePortfolio([a,b],net).bundles[0]!.room).toBe(b.room);

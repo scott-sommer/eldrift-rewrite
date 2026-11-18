@@ -33,9 +33,9 @@ function validateQuote(quote: RemoteQuote, offer: RemoteRoomOffer, policy: Remot
   validateRemoteTravel(facts.travel,{ home: policy.home,room: offer.room });
 }
 function validateReservationCosts(quotes: RemoteQuote[]): void {
-  const first = quotes[0]?.policy.reservation;
-  if (quotes.some(quote => quote.policy.reservation.energyPerTick !== first?.energyPerTick
-    || quote.policy.reservation.spawnLoad !== first?.spawnLoad)) throw new Error('Inconsistent room reservation charge');
+  const first = quotes[0]?.assessment.policy.reservation;
+  if (quotes.some(quote => quote.assessment.policy.reservation.energyPerTick !== first?.energyPerTick
+    || quote.assessment.policy.reservation.spawnLoad !== first?.spawnLoad)) throw new Error('Inconsistent room reservation charge');
 }
 function natural(value: number): boolean { return Number.isSafeInteger(value) && value >= 0; }
 function rate(value: number): boolean { return Number.isFinite(value) && value >= 0; }

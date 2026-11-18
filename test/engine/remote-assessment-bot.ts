@@ -4,6 +4,8 @@ import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createIntelStore } from '../../src/features/intel/store';
 import { observeNativeIntel } from '../../src/app/native-intel-observation';
 import { createNativeRemoteAssessment } from '../../src/app/native-remote-assessment';
+import { selectRemotePortfolio } from '../../src/features/remotes/portfolio';
+import type { RemoteAssessment } from '../../src/features/remotes/assessment-model';
 import { sourceMiner, courier } from '../../src/capabilities/spawning/economy-recipes';
 import type { RemoteAssessmentRequest } from '../../src/features/remotes/assessment-model';
 const state = createMemoryPort(() => Memory), intel = createIntelStore(state);
@@ -23,6 +25,7 @@ export function loop() {
   const first = request(sources[0]!.id), second = request(sources[1]!.id);
   const before = JSON.stringify(Memory.eldrift), began = Game.cpu.getUsed();
   const near = assess(first), far = assess(second);
+  const portfolio = portfolios(near,far);
   const rejected = Game.time === 1 ? assess({ ...first,economics: { ...first.economics,riskPerTick: 100 } }) : null;
   const unaffordable = Game.time === 1 ? assess({ ...first,economics: { ...first.economics,
     miner: { ...first.economics.miner,body: sourceMiner(800)!.parts } } }) : null;
@@ -31,7 +34,7 @@ export function loop() {
   const stale = Game.time === 8 ? assess({ ...first,traversal: { ...first.traversal,maximumAge: 0 } }) : null;
   const memory = Memory as Memory & { remoteAssessmentRows?: unknown[] };
   (memory.remoteAssessmentRows ??= []).push({ tick: Game.time,visible: !!Game.rooms.E0N1,
-    observedAt: facts.observedAt,capacity: sources[0]!.capacity,near,far,rejected,unaffordable,partial,paused,stale,
+    observedAt: facts.observedAt,capacity: sources[0]!.capacity,near,far,portfolio,rejected,unaffordable,partial,paused,stale,
     cpu: Game.cpu.getUsed()-began,unchanged: before === JSON.stringify(Memory.eldrift),witness: state.read('sentinel/remote-assessment') });
 }
 function request(source: string): RemoteAssessmentRequest {
@@ -43,4 +46,14 @@ function request(source: string): RemoteAssessmentRequest {
       hauler: { body: courier(200)!.parts,lifetime: CREEP_LIFE_TIME,replacementMargin: 25,serviceTicks: 2 },
       reservation: { energyPerTick: 1,spawnLoad: 0.01,shares: 2 },infrastructurePerTick: 0.05,riskPerTick: 0,
       limits: { maximumHaulers: 20,maximumSpawnLoad: 1,minimumNetYield: 0.1 } } };
+}
+
+function portfolios(near: RemoteAssessment, far: RemoteAssessment) {
+  if (near.status !== 'assessed' || far.status !== 'assessed') return null;
+  const offers = [{ room: near.room,sourceIds: [near.source,far.source],quotes: [{ assessment: near },{ assessment: far }],
+    commitment: { atomic: false,slots: 0,energyPerTick: 0,spawnLoad: 0 } }];
+  const policy = { home: near.home,tick: Game.time,maximumAge: 50,maximumSlots: 2,maximumHaulers: 40,
+    maximumSpawnLoad: 2,minimumNetYield: 0.1,completionBonus: 0.15,order: 'nearest' as const };
+  return { full: selectRemotePortfolio(offers,policy),fragment: selectRemotePortfolio(offers,{ ...policy,maximumSlots: 1 }),
+    refused: selectRemotePortfolio(offers,{ ...policy,maximumSlots: 0 }) };
 }

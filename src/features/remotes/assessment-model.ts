@@ -29,4 +29,4 @@ export interface RemoteReservation {
 export type RemoteAssessment =
   | { status: 'deferred' | 'rejected'; id: string; reason: string; refresh: boolean }
   | { status: 'assessed'; id: string; source: string; home: string; room: string; observedAt: number;
-      sourceFacts: IntelSource; reservation: RemoteReservation; travel: RemoteTravel; economics: RemoteEconomicsResult };
+      policy: RemoteEconomicPolicy; sourceFacts: IntelSource; reservation: RemoteReservation; travel: RemoteTravel; economics: RemoteEconomicsResult };

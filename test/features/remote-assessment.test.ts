@@ -84,3 +84,13 @@ test('mutable estimate ports cannot change source capacity, economic policy or r
   expect(assessRemoteSource(f.request,{ ...f.ports,estimate })).toMatchObject({ status: 'assessed',economics: { harvestRate: 2 } });
   expect(f.request.economics.miner.body).toEqual(['work','move']);
 });
+
+test('assessment retains the exact detached economic policy for later travel-compatible bundle repricing', () => {
+  const f = fixture(), result = f.assess();
+  if (result.status !== 'assessed') throw new Error('Expected assessment');
+  expect(result.policy).toEqual(f.request.economics);
+  f.request.economics.miner.body = ['work','work','move'];
+  expect(result.policy.miner.body).toEqual(['work','move']);
+  result.policy.hauler.body = ['carry','move'];
+  expect(f.request.economics.hauler.body).toEqual(['carry','carry','move']);
+});
