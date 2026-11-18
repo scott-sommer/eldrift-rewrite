@@ -3774,9 +3774,13 @@
     "file": "role.scout.js",
     "sha256": "1E94FF029CB29F63BC995C7D68EB572991944E4DB5586FFCCA46408FB83278E8",
     "physicalLines": 751,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "Partial responsibility review: capture, target ranking, route admission and heartbeat/loss boundaries; movement/controller/operator paths still pending",
+    "implementationStatus": "Partial port: native rich intel capture, bounded risk-aware graph/exploration targets and reset-safe scout loss history; autonomous scout population/movement/visits and observer actions remain ED-28",
+    "evidence": [
+      "docs/intel.md",
+      "docs/evidence/scout-lifecycle-native.json",
+      "docs/evidence/scout-lifecycle-engine-suite.json"
+    ],
     "plannedIssues": [
       "ED-28"
     ],
@@ -4031,10 +4035,19 @@
     "proposedOwner": "features/intel",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "c9f9840df5133816e96da7786de4a781b0c38d87",
+      "required": "Native scenario and behavior tests for each ported responsibility; autonomous controller/observer integration and later operator/migration gates remain open",
+      "tests": [
+        "test/features/intel-traversal.test.ts",
+        "test/features/intel-room-gap.test.ts",
+        "test/features/exploration-plan.test.ts",
+        "test/features/scout-history.test.ts",
+        "test/app/scout-retirement.test.ts",
+        "test/engine/scout-lifecycle-bot.ts"
+      ],
+      "status": "Partial mechanisms qualified; not whole-role parity",
+      "validationCommit": "c9f9840df5133816e96da7786de4a781b0c38d87",
+      "fullNativeSuite": "docs/evidence/scout-lifecycle-engine-suite.json"
     }
   },
   {

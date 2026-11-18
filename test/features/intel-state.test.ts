@@ -35,7 +35,7 @@ test('detailed snapshots survive reset and vision loss with exact freshness boun
   expect(restored.read('W1N1', 13).record.summary!.sources[0]!.capacity).toBe(3000);
 });
 test('observer capture updates ownership and reservation without claiming a physical visit', () => {
-  const { store } = setup();
+  const { store, memory } = setup();
   store.observeSummary(intelSummary(), true);
   const summary = intelSummary(11);
   summary.controller = { ...summary.controller!, owner: null, owned: false, level: 0,
@@ -46,6 +46,7 @@ test('observer capture updates ownership and reservation without claiming a phys
   expect(store.read('W1N1', 11)).toMatchObject({ freshness: 'fresh', record: { lastSeen: 11, lastVisit: 10,
     owned: false, hostileIds: [], structureIds: [], summary: { status: 'novice',
       controller: { owner: null, reservation: { username: 'new-reserver', ticksToEnd: 400 } } } } });
+  expect(memory().unrelated).toEqual({ plan: 'retained' });
 });
 test('a newer ID-only observation preserves old detail but cannot make it fresh', () => {
   const { store } = setup();
