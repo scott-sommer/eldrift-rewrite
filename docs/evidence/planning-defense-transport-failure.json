@@ -1,0 +1,239 @@
+{
+  "status": "failed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9GWRAl",
+  "provenance": {
+    "commit": "fa5dd11f9d7cf90ccfdb566ca1360a5c922ac48f",
+    "dirty": false,
+    "bundleSha256": "ecaf032d078ca797aabb6ef513603f64646f42d373238e5cf64e10d783973dba",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "fa5dd11f9d7cf90ccfdb566ca1360a5c922ac48f",
+    "dirty": false,
+    "bundleSha256": "769fac1092b59192a51fc2ea07bff6de3619b259a220c27434db78ef1586e88f",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "stampPlanning": {
+    "plan": {
+      "room": "W0N1",
+      "revision": 0,
+      "strategy": null,
+      "entries": []
+    },
+    "reloads": [
+      6,
+      101
+    ],
+    "resets": [],
+    "trace": [
+      {
+        "tick": 50,
+        "phase": "draft",
+        "attempts": 1023,
+        "depth": 8
+      },
+      {
+        "tick": 100,
+        "phase": "draft",
+        "attempts": 2338,
+        "depth": 12
+      },
+      {
+        "tick": 150,
+        "phase": "draft",
+        "attempts": 3063,
+        "depth": 14
+      },
+      {
+        "tick": 200,
+        "phase": "draft",
+        "attempts": 3946,
+        "depth": 17
+      },
+      {
+        "tick": 250,
+        "phase": "draft",
+        "attempts": 4728,
+        "depth": 18
+      },
+      {
+        "tick": 300,
+        "phase": "draft",
+        "attempts": 5484,
+        "depth": 20
+      },
+      {
+        "tick": 350,
+        "phase": "draft",
+        "attempts": 6163,
+        "depth": 21
+      },
+      {
+        "tick": 400,
+        "phase": "draft",
+        "attempts": 6932,
+        "depth": 23
+      },
+      {
+        "tick": 450,
+        "phase": "draft",
+        "attempts": 7587,
+        "depth": 24
+      },
+      {
+        "tick": 500,
+        "phase": "draft",
+        "attempts": 8216,
+        "depth": 25
+      },
+      {
+        "tick": 550,
+        "phase": "draft",
+        "attempts": 8866,
+        "depth": 26
+      },
+      {
+        "tick": 600,
+        "phase": "draft",
+        "attempts": 9131,
+        "depth": 27,
+        "roads": 21
+      },
+      {
+        "tick": 650,
+        "phase": "draft",
+        "attempts": 9131,
+        "depth": 27,
+        "roads": 58
+      },
+      {
+        "tick": 700,
+        "phase": "draft",
+        "attempts": 9131,
+        "depth": 27,
+        "roads": 94
+      },
+      {
+        "tick": 750,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 12
+      },
+      {
+        "tick": 800,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 29
+      },
+      {
+        "tick": 850,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 43
+      },
+      {
+        "tick": 900,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 57
+      },
+      {
+        "tick": 950,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 72
+      },
+      {
+        "tick": 1000,
+        "phase": "defense",
+        "defense": 0,
+        "flow": 86
+      },
+      {
+        "tick": 1050,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1100,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1150,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1200,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1250,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1300,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1350,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1400,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1450,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1500,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1550,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      },
+      {
+        "tick": 1600,
+        "phase": "defense",
+        "defense": 3,
+        "flow": 88
+      }
+    ]
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: default allowances must eventually commit the stamp plan\n+ actual - expected\n\n+ undefined\n- 'committed'\n\n    at verifyStampBudget (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\stamp-budget.cjs:15:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:792:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+  "messages": [],
+  "errors": [],
+  "sourceSha256": "8fc10351888497768943489660de85aecab0ee1be96459e18c1f8ea01da0b5e7",
+  "note": "Second clean aggregate failure. Search-matrix reuse alone did not prevent defense-stage admission starvation. The final saved DB snapshot contains three generated defenses and 372 barriers in a 157693-byte object checkpoint (Python JSON spacing)."
+}

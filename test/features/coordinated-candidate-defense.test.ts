@@ -74,3 +74,37 @@ test('a completed selection without eligible defenses rejects rather than passin
   }
   expect(result).toEqual({ status: 'rejected', reason: 'no-valid-defense' });
 });
+
+test('legacy object checkpoints restore and upgrade without changing the selected geometry', () => {
+  const setup = fixture(), defense = setup.create();
+  const first = defense.advance(candidate, setup.entries, null, () => true);
+  if (first.status !== 'pending') throw new Error('Expected progress');
+  const encoded = first.checkpoint as { version: number; request: string; payload: string };
+  expect(encoded.version).toBe(2);
+  const legacy = { version: 1, request: encoded.request, coordinator: JSON.parse(encoded.payload) };
+  let result = setup.create().advance(candidate, setup.entries, legacy, () => true);
+  for (let call = 0; result.status === 'pending' && call < 100; call++) {
+    expect((result.checkpoint as { version: number }).version).toBe(2);
+    result = defense.advance(candidate, setup.entries, result.checkpoint, () => true);
+  }
+  expect(result.status).toBe('complete');
+  if (result.status === 'complete') expect(result.entries.filter(entry => entry.type === 'rampart')).toHaveLength(1);
+});
+test('encoded cache recovery rejects malformed payloads and corrupt generated geometry', () => {
+  const setup = fixture(), defense = setup.create();
+  const first = defense.advance(candidate, setup.entries, null, () => true);
+  if (first.status !== 'pending') throw new Error('Expected progress');
+  const saved = first.checkpoint as { version: number; request: string; payload: string };
+  for (const payload of ['{', 'null', '[]', '{}', 'x'.repeat(2000001)]) {
+    expect(() => setup.create().advance(candidate, setup.entries, { ...saved, payload }, () => true)).toThrow();
+  }
+  const coordinator = JSON.parse(saved.payload);
+  coordinator.generated = [{ id: 'wrong-strategy', status: 'complete', barriers: [] }];
+  expect(() => setup.create().advance(candidate, setup.entries,
+    { ...saved, payload: JSON.stringify(coordinator) }, () => true)).toThrow('order');
+  coordinator.generated = [{ id: 'terrain-cut-v1', status: 'complete', barriers: [
+    { type: 'rampart', position: { x: 50, y: 25 }, rcl: 4 } ] }];
+  expect(() => setup.create().advance(candidate, setup.entries,
+    { ...saved, payload: JSON.stringify(coordinator) }, () => true)).toThrow('position');
+  expect(() => setup.create().advance(candidate, setup.entries, { ...saved, version: 3 }, () => true)).toThrow('checkpoint');
+});
