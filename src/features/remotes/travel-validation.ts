@@ -1,6 +1,6 @@
 import { roomCoordinates } from '../../core/geometry/room-grid';
 import type { RemoteAssessmentRequest, RemoteTravel } from './assessment-model';
-export function validateRemoteTravel(value: RemoteTravel, request: RemoteAssessmentRequest): void {
+export function validateRemoteTravel(value: RemoteTravel, request: Pick<RemoteAssessmentRequest, 'home' | 'room'>): void {
   validateTimes(value);
   if (!Array.isArray(value.rooms) || !value.rooms.length || value.rooms.length > 64) throw new Error('Invalid remote route');
   if (value.rooms[0] !== request.home || value.rooms.at(-1) !== request.room || new Set(value.rooms).size !== value.rooms.length) throw new Error('Invalid remote route endpoints');

@@ -2571,7 +2571,9 @@
     "implementationStatus": "not ported",
     "evidence": [
       "docs/remotes.md",
-      "docs/evidence/remote-assessment-native.json"
+      "docs/evidence/remote-assessment-native.json",
+      "src/features/remotes/portfolio.ts",
+      "test/features/remote-portfolio.test.ts"
     ],
     "plannedIssues": [
       "ED-28",
