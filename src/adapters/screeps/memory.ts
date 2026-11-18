@@ -4,6 +4,10 @@ interface MemoryRoot { eldrift?: unknown }
 interface Store { format: 1; records: Record<string, unknown> }
 function store(root: MemoryRoot): Store {
   if (root.eldrift === undefined) root.eldrift = { format: 1, records: {} };
+  return existingStore(root)!;
+}
+function existingStore(root: MemoryRoot): Store | undefined {
+  if (root.eldrift === undefined) return undefined;
   const value = root.eldrift as Partial<Store> | null;
   if (!value || value.format !== 1 || !value.records || typeof value.records !== 'object' || Array.isArray(value.records)) throw new Error('Unsupported or corrupt Eldrift memory root');
   return value as Store;
@@ -15,8 +19,8 @@ export function createMemoryPort(memory: () => MemoryRoot): RemovableStatePort {
   return {
     read(key) {
       validKey(key);
-      const records = store(memory()).records;
-      return Object.hasOwn(records, key) ? copyPlain(records[key]) : undefined;
+      const records = existingStore(memory())?.records;
+      return records && Object.hasOwn(records, key) ? copyPlain(records[key]) : undefined;
     },
     remove(key, owner) {
       validKey(key);

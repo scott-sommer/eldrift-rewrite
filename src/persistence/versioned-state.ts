@@ -26,6 +26,16 @@ function envelope(value: unknown): value is Envelope {
 export function openState<T>(port: StatePort, key: string, schema: StateSchema<T>): T {
   const raw = port.read(key);
   if (raw === undefined) return initialize(port, key, schema);
+  const data = decodeState(raw, key, schema);
+  if ((raw as Envelope).version !== schema.version) port.write(key, { owner: schema.owner, version: schema.version, data: copyPlain(data) });
+  return data;
+}
+/** Validate and migrate a detached snapshot without initializing or persisting it. */
+export function peekState<T>(port: StatePort, key: string, schema: StateSchema<T>): T | undefined {
+  const raw = port.read(key);
+  return raw === undefined ? undefined : decodeState(raw, key, schema);
+}
+function decodeState<T>(raw: unknown, key: string, schema: StateSchema<T>): T {
   if (!envelope(raw)) throw new Error(`${key}: corrupt state envelope`);
   if (raw.owner !== schema.owner) throw new Error(`${key}: state owner mismatch`);
   if (raw.version > schema.version) throw new Error(`${key}: unsupported future version`);
@@ -36,7 +46,6 @@ export function openState<T>(port: StatePort, key: string, schema: StateSchema<T
     data = migrate(data);
   }
   if (!schema.valid(data)) throw new Error(`${key}: invalid state data`);
-  if (raw.version !== schema.version) port.write(key, { owner: schema.owner, version: schema.version, data: copyPlain(data) });
   return data;
 }
 function initialize<T>(port: StatePort, key: string, schema: StateSchema<T>): T {

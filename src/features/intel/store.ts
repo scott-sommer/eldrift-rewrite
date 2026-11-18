@@ -1,4 +1,4 @@
-import { openState, saveState } from '../../persistence/versioned-state';
+import { openState, peekState, saveState } from '../../persistence/versioned-state';
 import type { StatePort } from '../../persistence/versioned-state';
 import { copyPlain } from '../../persistence/plain-data';
 import { stateKey } from '../../persistence/state-key';
@@ -12,6 +12,12 @@ export function createIntelStore(port: StatePort) {
   const read = (room: string) => openState(port, key(room), intelSchema(room));
   const save = (room: string, record: IntelRecord) => saveState(port, key(room), intelSchema(room), record);
   return {
+    /** Missing rooms remain unknown without creating a persistent record. */
+    peek(room: string, tick: number, maximumAge = 5000) {
+      requireIntelClock(tick, maximumAge);
+      const schema = intelSchema(room);
+      return intelReadModel(peekState(port, key(room), schema) ?? schema.initial(), tick, maximumAge);
+    },
     read(room: string, tick: number, maximumAge = 5000) {
       requireIntelClock(tick, maximumAge);
       return intelReadModel(read(room), tick, maximumAge);
