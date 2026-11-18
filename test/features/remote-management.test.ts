@@ -66,3 +66,11 @@ test('room inventory has its own budget and does not repeat earlier reads during
   expect(f.manager().advance(f.request,budget,() => true).status).toBe('scanning'); expect(f.manager().read().roomIndex).toBe(2);
   expect(f.ports.summary).toHaveBeenCalledTimes(2); expect(f.ports.assess).toHaveBeenCalledTimes(1);
 });
+
+test('zero source capacity immediately revokes managed work without repeating source path searches', () => {
+  const f = managementFixture(); f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true);
+  expect(f.assignments.owner('E0N1',20)).toBeDefined(); const calls = f.ports.assess.mock.calls.length;
+  f.request.tick++; f.request.policy.portfolio.maximumSlots = 0;
+  expect(f.manager().advance(f.request,budget,() => true).status).toBe('applied');
+  expect(f.assignments.owner('E0N1',21)).toBeUndefined(); expect(f.ports.assess).toHaveBeenCalledTimes(calls);
+});

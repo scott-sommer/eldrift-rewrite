@@ -3,7 +3,9 @@ import { roomCoordinates } from '../../../core/geometry/room-grid';
 import type { Position } from '../../../capabilities/movement/step';
 import type { PlanEntry, PlanState } from '../../planning/plan-model';
 import type { RemoteInfrastructureRoute, RemoteOutpostDemand } from './model';
-import { natural, room } from '../assignment-validation';
+import { natural } from '../assignment-validation';
+import { validWorldPosition as position } from '../../../core/geometry/world-position';
+export { position };
 /** Compile complete admitted source routes; engine eligibility remains the construction owner's responsibility. */
 export function compileRemoteInfrastructure(demand: RemoteOutpostDemand, routes: readonly RemoteInfrastructureRoute[], revision: number) {
   validateRoutes(routes,revision);
@@ -28,11 +30,6 @@ export function validInfrastructureRoute(value: RemoteInfrastructureRoute, targe
   if (!validStation(value.target,value.station) || !validPath(value.path)) return false;
   if (value.path.length && distance(value.path.at(-1)!,value.station) !== 0) return false;
   return value.path.every((point,index) => index === 0 || distance(value.path[index-1]!,point) === 1);
-}
-export function position(value: unknown): value is Position {
-  if (!value || typeof value !== 'object') return false;
-  const point = value as Position;
-  return room(point.room) && natural(point.x) && point.x < 50 && natural(point.y) && point.y < 50;
 }
 function distance(a: Position,b: Position): number {
   const left = roomCoordinates(a.room), right = roomCoordinates(b.room);

@@ -1,3 +1,4 @@
+import { createResumableRemoteTravel } from './travel';
 import type { StatePort } from '../../../persistence/versioned-state';
 import { createIntelStore } from '../../../features/intel/store';
 import { createRemoteAssignmentStore } from '../../../features/remotes/assignment-store';
@@ -6,15 +7,16 @@ import type { RemoteManagementRequest, RemoteScanBudget } from '../../../feature
 import { createNativeRemoteAssessment } from '../assessment/native';
 import type { NativeRemoteAssessmentOptions } from '../assessment/native';
 import { createRemoteObservationRefresh } from '../native-observations';
-import { currentRemoteQuote } from './current';
+import { createCurrentRemoteAdmission } from './current';
 /** Explicit policy supplies the candidate set; discovery and population/execution remain separate responsibilities. */
 export function createNativeRemoteManagement(state: StatePort, options: NativeRemoteAssessmentOptions) {
-  const assess = createNativeRemoteAssessment(state,options), refresh = createRemoteObservationRefresh(state);
+  const assess = createNativeRemoteAssessment(state,{ ...options,measure: createResumableRemoteTravel(state) }), refresh = createRemoteObservationRefresh(state);
   const intel = createIntelStore(state), assignments = createRemoteAssignmentStore(state);
   return { advance(request: RemoteManagementRequest, budget: RemoteScanBudget, guard: () => boolean) {
     if (request.tick !== Game.time) throw new Error('Native remote management tick mismatch');
     const home = Game.rooms[request.home];
     if (!home?.controller?.my || home.controller.owner?.username !== request.policy.traversal.username) return { status: 'deferred' as const };
+    const admission = createCurrentRemoteAdmission(state,request,refresh,guard);
     const manager = createRemoteManagement(state,request.home,{
       summary(room) { refresh([room]); return intel.peek(room,Game.time).record.summary ?? undefined; },
       assess(input,admitted) {
@@ -22,8 +24,8 @@ export function createNativeRemoteManagement(state: StatePort, options: NativeRe
         const owner = assignments.owner(input.room,Game.time);
         return assess({ ...input,...(owner ? { assignedHome: owner.home } : {}) },admitted);
       },
-      current: (quote,admitted) => currentRemoteQuote(state,request,quote,refresh,admitted),
+      current: admission.current,
     });
-    return manager.advance(request,budget,guard);
+    return manager.advance(request,budget,admission.guard);
   } };
 }

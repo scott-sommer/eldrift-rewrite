@@ -5,11 +5,11 @@ import type { BodyPart } from '../../../capabilities/spawning/body';
 import type { Position } from '../../../capabilities/movement/step';
 import { prepareRemoteMatrices } from './matrices';
 import type { RemoteEstimateContext, RemoteTravelResult } from '../../../features/remotes/assessment-model';
-interface LegRequest { origin: Position; destination: Position; body: readonly BodyPart[]; load: number }
+export interface RemoteLegRequest { origin: Position; destination: Position; body: readonly BodyPart[]; load: number }
 export function measureRemoteTravel(context: RemoteEstimateContext, origin: Position, rooms: string[], maximumOps: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean): RemoteTravelResult {
   const { miner,hauler } = context.request.economics;
-  const search = (leg: LegRequest) => measureLeg(context,leg,rooms,maximumOps,snapshots,guard);
+  const search = (leg: RemoteLegRequest) => measureRemoteLeg(context,leg,rooms,maximumOps,snapshots,guard);
   const mining = search({ origin,destination: context.target,body: miner.body,load: 0 });
   if (mining.status !== 'complete') return mining;
   const outbound = search({ origin,destination: context.target,body: hauler.body,load: 0 });
@@ -20,7 +20,7 @@ export function measureRemoteTravel(context: RemoteEstimateContext, origin: Posi
   return { status: 'complete',minerTicks: mining.ticks,outboundTicks: outbound.ticks,returnTicks: inbound.ticks,
     rooms: [...rooms],operations: mining.operations+outbound.operations+inbound.operations };
 }
-function measureLeg(context: RemoteEstimateContext, leg: LegRequest, rooms: string[], maximumOps: number,
+export function measureRemoteLeg(context: RemoteEstimateContext, leg: RemoteLegRequest, rooms: string[], maximumOps: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean) {
   if (!guard()) return { status: 'deferred' as const,reason: 'admission' };
   const mobility = plannedMobility(leg.body,leg.load);

@@ -15,6 +15,7 @@ export function createRemoteManagement(state: StatePort, home: string, ports: Re
     if (request.tick < previous.clock) return { status: 'stale' as const };
     if (!guard()) return { status: 'deferred' as const };
     const identity = JSON.stringify(request.policy), record = resumeRecord(previous,request,identity);
+    if (request.policy.portfolio.maximumSlots === 0) { record.offers = []; record.roomIndex = request.policy.candidates.length; record.sourceIndex = 0; }
     const scanned = advanceRemoteScan(record,request,ports,budget,guard);
     record.clock = request.tick;
     if (scanned === 'capacity') return { status: 'capacity' as const };

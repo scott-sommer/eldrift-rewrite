@@ -9,7 +9,7 @@ import { createMatrixSnapshots } from '../../../adapters/screeps/matrix-snapshot
 import { movementPosition } from '../../../adapters/screeps/movement-traffic';
 import { remoteAssessmentRoute } from './route';
 import { measureRemoteTravel } from './travel';
-export interface NativeRemoteAssessmentOptions { maximumRooms: number; maximumOps: number; origin?(home: string): Position | undefined }
+export interface NativeRemoteAssessmentOptions { maximumRooms: number; maximumOps: number; origin?(home: string): Position | undefined; measure?: typeof measureRemoteTravel }
 /** Read-only assessment service; runtime demand and mission commits remain separate owners. */
 export function createNativeRemoteAssessment(state: StatePort, options: NativeRemoteAssessmentOptions) {
   if (!Number.isSafeInteger(options.maximumRooms) || options.maximumRooms < 1 || options.maximumRooms > 64) throw new Error('Invalid remote room limit');
@@ -28,7 +28,7 @@ export function createNativeRemoteAssessment(state: StatePort, options: NativeRe
         if (!origin) return { status: 'deferred',reason: 'home-anchor' };
         const route = remoteAssessmentRoute(context,options.maximumRooms,canContinue);
         if (route.status !== 'complete') return route;
-        return measureRemoteTravel(context,origin,route.rooms,options.maximumOps,snapshots,canContinue);
+        return (options.measure ?? measureRemoteTravel)(context,origin,route.rooms,options.maximumOps,snapshots,canContinue);
       } },guard);
   };
 }
