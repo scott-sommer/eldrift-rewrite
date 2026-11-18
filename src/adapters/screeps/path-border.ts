@@ -7,7 +7,7 @@ type Matrices = (room: string, profile: Readonly<PathProfile>) => CostMatrix | f
 export function repairBorderPath(request: Readonly<PathRequest>, matrix: Matrices, initial: NativePath,
   search: (origin: Position, maximumOps: number) => NativePath): NativePath {
   const first = initial.path[0];
-  if (!first || stepDirection(request.origin,{ room: first.roomName,x: first.x,y: first.y })) return initial;
+  if (!first || executableFirstStep(request.origin,first)) return initial;
   const candidates = inwardSteps(request.origin), costs = matrix(request.origin.room,request.profile);
   let operations = initial.ops, best: NativePath = { ...initial,path: [],incomplete: true };
   for (const [index,point] of candidates.entries()) {
@@ -36,4 +36,11 @@ function entryCost(point: Position, matrix: CostMatrix | false | undefined, prof
   const terrain = Game.map.getRoomTerrain(point.room).get(point.x,point.y);
   if (terrain & TERRAIN_MASK_WALL) return 255;
   return terrain & TERRAIN_MASK_SWAMP ? profile.swampCost : profile.plainCost;
+}
+
+function executableFirstStep(origin: Position, first: RoomPosition): boolean {
+  if (Math.min(origin.x,origin.y,49-origin.x,49-origin.y) > 0) return true;
+  const direction = stepDirection(origin,{ room: first.roomName,x: first.x,y: first.y });
+  const landing = movementTransition(origin,direction)?.landing;
+  return !!landing && landing.room === first.roomName && landing.x === first.x && landing.y === first.y;
 }

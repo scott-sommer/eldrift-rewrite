@@ -46,3 +46,12 @@ test('blocked inward tiles do not authorize an impossible outward path',() => {
   const result = repairBorderPath(f.request,() => ({ get: () => 255 }) as unknown as CostMatrix,f.initial,search);
   expect(result).toMatchObject({ incomplete: true,path: [],ops: 10 }); expect(search).not.toHaveBeenCalled();
 });
+
+test('a lateral arrival-border step is repaired when its actual landing would re-cross the room',() => {
+  const f = fixture({ room: 'W0N1',x: 49,y: 21 });
+  f.initial.path = [f.native({ room: 'W0N1',x: 49,y: 22 })];
+  const search = vi.fn<(origin: Position, maximumOps: number) => typeof f.initial>(() => ({ ...f.initial,path: [] }));
+  const result = repairBorderPath(f.request,f.matrix,f.initial,search);
+  expect(search.mock.calls[0]?.[0]).toEqual({ room: 'W0N1',x: 48,y: 21 });
+  expect(result.path[0]).toMatchObject({ roomName: 'W0N1',x: 48,y: 21 });
+});

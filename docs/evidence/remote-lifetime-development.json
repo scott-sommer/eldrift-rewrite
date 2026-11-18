@@ -363,5 +363,52 @@
       }
     }
   ],
-  "subsequentDevelopment": "Short native reproduction confirmed complete PathFinder path with impossible outward arrival-border first step and invalid-direction. Shared adapter repair passes the border probe. Corrected null-TTL verifier and distinct-successor assertions pass the full 1750-tick development run engine-6E1LRz: miner1446<1477; couriers1458<1487 and1472<1499; all return empty at home. Clean qualification and full regression are pending at this checkpoint."
+  "subsequentDevelopment": "Short native reproduction confirmed complete PathFinder path with impossible outward arrival-border first step and invalid-direction. Shared adapter repair passes the border probe. Corrected null-TTL verifier and distinct-successor assertions pass the full 1750-tick development run engine-6E1LRz: miner1446<1477; couriers1458<1487 and1472<1499; all return empty at home. Clean qualification and full regression are pending at this checkpoint.",
+  "regressionFailure": {
+    "suiteStatus": "failed",
+    "completed": 41,
+    "milliseconds": 154021.28949999998,
+    "failedScenario": "--remote-transport-contention",
+    "suiteSourceSha256": "5084cf9b8b87b3a7b39b99c20b599bd3064edf18a9dac1baa500cf5bffb179ac",
+    "sourceEvidence": "artifacts\\engine-bC96kJ\\evidence.json",
+    "sourceEvidenceSha256": "845a888b713cb1a39d29247548b20e878ebce6036076d593cc0fc19485b4ed29",
+    "provenance": {
+      "commit": "44ca105de4773e4675009a80bd1f52be9cbaa209",
+      "dirty": false,
+      "bundleSha256": "6da7e418239e977dc64ca04492714af404b7784b7d5cf404064c464450e0ebc1",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(last.units.every(unit => unit.room === 'W0N1' && unit.cargo === 0 && unit.tasks.length === 0))\n\n    at verifyRemoteTransport (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\remote-transport.cjs:38:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:844:34\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "finalUnits": [
+      {
+        "name": "ed-W0N1-1",
+        "room": "W0N1",
+        "x": 46,
+        "y": 24,
+        "cargo": 0,
+        "tasks": []
+      },
+      {
+        "name": "ed-W0N1-2",
+        "room": "E0N1",
+        "x": 0,
+        "y": 22,
+        "cargo": 52,
+        "tasks": []
+      },
+      {
+        "name": "ed-W0N1-3",
+        "room": "W0N1",
+        "x": 48,
+        "y": 22,
+        "cargo": 0,
+        "tasks": []
+      }
+    ]
+  },
+  "subsequentRegressionCorrection": "The full 44ca105 suite stopped after 41 successes at remote-transport-contention. Loaded courier repeatedly crossed back from a lateral home-edge move. Shared border repair now compares actual movementTransition landing to the next native path point. Focused regression engine-i8BbYI passes with all units home and empty; fresh full clean qualification remains pending."
 }
