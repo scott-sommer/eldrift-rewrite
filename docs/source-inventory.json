@@ -2573,7 +2573,11 @@
       "docs/remotes.md",
       "docs/evidence/remote-assessment-native.json",
       "src/features/remotes/portfolio.ts",
-      "test/features/remote-portfolio.test.ts"
+      "test/features/remote-portfolio.test.ts",
+      "src/features/remotes/assignment-store.ts",
+      "src/features/remotes/assignment-demand.ts",
+      "test/features/remote-assignments.test.ts",
+      "docs/evidence/remote-portfolio-native.json"
     ],
     "plannedIssues": [
       "ED-28",
