@@ -61,7 +61,7 @@ export function createNativeRemoteBanking(state: StatePort, dispatch: ReturnType
     if (!Game.rooms[home]?.controller?.my || !travel.route(creep,home,home)) return 'hold';
     return undefined;
   }
-  return { definitions: { haul: behavior },
+  return { definitions: { haul: behavior },owns: (task: Readonly<TaskRecord>) => bankingTask(task,home),
     prepare(creep: Creep, definitions: Readonly<Record<string,TaskDefinition>>, interruptKinds: readonly string[] = []): RemoteBankingMode {
       if (!bankActor(creep,home)) return 'hold';
       const tasks = queue(creep,definitions);

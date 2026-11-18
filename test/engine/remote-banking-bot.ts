@@ -1,3 +1,4 @@
+import { traceReceipts } from './receipt-trace';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { observePopulation } from '../../src/adapters/screeps/population';
 import { createNativeDispatch } from '../../src/app/native-dispatch';
@@ -60,7 +61,7 @@ function journal(unit: string) {
 function snapshot(units: Creep[], authority: boolean): void {
   const memory = Memory as ProbeMemory, receipts = memory.remoteBankingReceipts ??= {};
   const records = peekState(state,stateKey('logistics-requests',home),logisticsQueueSchema)?.records ?? [];
-  for (const record of records) for (const receipt of record.receipts) rememberReceipt(receipt.id,receipt.amount,JSON.stringify([record.request.owner,record.request.id]));
+  traceReceipts(records,{ amounts: receipts,bindings: memory.remoteBankingReceiptBindings ??= {} });
   const quantities = peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? [];
   const mutexes = peekState(state,'reservations/empire',reservationSchema)?.claims ?? [];
   const stores = Game.rooms[home]!.find(FIND_STRUCTURES).filter(item => 'store' in item) as AnyStoreStructure[];
@@ -77,11 +78,4 @@ function snapshot(units: Creep[], authority: boolean): void {
         uncertainty: peekState(state,stateKey('logistics-uncertainty',creep.id),incidentSchema)?.entries ?? [] };
     }) };
   (memory.remoteBankingRows ??= []).push(row);
-}
-
-function rememberReceipt(id: string, amount: number, binding: string): void {
-  const memory = Memory as ProbeMemory, receipts = memory.remoteBankingReceipts ??= {}, bindings = memory.remoteBankingReceiptBindings ??= {};
-  if (Object.hasOwn(bindings,id) && bindings[id] !== binding) throw new Error('One receipt credited multiple requests');
-  if (Object.hasOwn(receipts,id) && receipts[id] !== amount) throw new Error('Receipt amount changed after credit');
-  receipts[id] = amount; bindings[id] = binding;
 }
