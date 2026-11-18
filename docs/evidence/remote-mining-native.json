@@ -4753,6 +4753,4601 @@
           29484,
           63780
         ]
+      },
+      "scenario": "remote-mining"
+    },
+    {
+      "scenario": "remote-mining",
+      "scope": "Clean committed post-grouping qualification",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Ta8XvN",
+      "status": "passed",
+      "provenance": {
+        "commit": "b922ad832d8ebbd1d8218558aaceb7e6827e609e",
+        "dirty": false,
+        "bundleSha256": "24846ae36932bf15b7d2f7026eab7489c082e099a03cbee382b32c6d594cf50d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sourceEvidenceSha256": "dc1feaafdd323066131282652c2b99edbdc2bdca7a5273d6f7eb85aa037bdd16",
+      "evidence": {
+        "status": "passed",
+        "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Ta8XvN",
+        "messages": [],
+        "errors": [],
+        "samples": [
+          {
+            "tick": 2,
+            "wallMilliseconds": 249.351,
+            "cpuMilliseconds": 18,
+            "memoryBytes": 5827
+          },
+          {
+            "tick": 3,
+            "wallMilliseconds": 329.17700000000013,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 5957
+          },
+          {
+            "tick": 4,
+            "wallMilliseconds": 21.53859999999986,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 6256
+          },
+          {
+            "tick": 5,
+            "wallMilliseconds": 12.150199999999813,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 6555
+          },
+          {
+            "tick": 6,
+            "wallMilliseconds": 11.675200000000132,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 6854
+          },
+          {
+            "tick": 7,
+            "wallMilliseconds": 11.942199999999957,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 7153
+          },
+          {
+            "tick": 8,
+            "wallMilliseconds": 24.922600000000102,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 7452
+          },
+          {
+            "tick": 9,
+            "wallMilliseconds": 10.363800000000083,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 7751
+          },
+          {
+            "tick": 10,
+            "wallMilliseconds": 27.39020000000005,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 8050
+          },
+          {
+            "tick": 11,
+            "wallMilliseconds": 12.872000000000071,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 8353
+          },
+          {
+            "tick": 12,
+            "wallMilliseconds": 11.257499999999936,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 8653
+          },
+          {
+            "tick": 13,
+            "wallMilliseconds": 10.026900000000069,
+            "cpuMilliseconds": 1,
+            "memoryBytes": 8953
+          },
+          {
+            "tick": 14,
+            "wallMilliseconds": 19.36130000000003,
+            "cpuMilliseconds": 1,
+            "memoryBytes": 9253
+          },
+          {
+            "tick": 15,
+            "wallMilliseconds": 11.350399999999809,
+            "cpuMilliseconds": 1,
+            "memoryBytes": 9553
+          },
+          {
+            "tick": 16,
+            "wallMilliseconds": 22.554000000000087,
+            "cpuMilliseconds": 1,
+            "memoryBytes": 9853
+          },
+          {
+            "tick": 17,
+            "wallMilliseconds": 57.60329999999999,
+            "cpuMilliseconds": 8,
+            "memoryBytes": 10653
+          },
+          {
+            "tick": 18,
+            "wallMilliseconds": 14.767200000000003,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 10954
+          },
+          {
+            "tick": 19,
+            "wallMilliseconds": 27.291400000000067,
+            "cpuMilliseconds": 15,
+            "memoryBytes": 12091
+          },
+          {
+            "tick": 20,
+            "wallMilliseconds": 14.316499999999905,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 12568
+          },
+          {
+            "tick": 21,
+            "wallMilliseconds": 65.53649999999993,
+            "cpuMilliseconds": 21,
+            "memoryBytes": 13065
+          },
+          {
+            "tick": 22,
+            "wallMilliseconds": 14.932099999999991,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 13542
+          },
+          {
+            "tick": 23,
+            "wallMilliseconds": 28.295100000000048,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 14019
+          },
+          {
+            "tick": 24,
+            "wallMilliseconds": 15.624099999999999,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 14496
+          },
+          {
+            "tick": 25,
+            "wallMilliseconds": 45.69800000000009,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 14974
+          },
+          {
+            "tick": 26,
+            "wallMilliseconds": 14.978000000000065,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 15451
+          },
+          {
+            "tick": 27,
+            "wallMilliseconds": 14.865600000000086,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 15929
+          },
+          {
+            "tick": 28,
+            "wallMilliseconds": 12.991100000000188,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 16407
+          },
+          {
+            "tick": 29,
+            "wallMilliseconds": 29.225299999999834,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 16885
+          },
+          {
+            "tick": 30,
+            "wallMilliseconds": 13.634000000000015,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 17363
+          },
+          {
+            "tick": 31,
+            "wallMilliseconds": 22.512900000000172,
+            "cpuMilliseconds": 5,
+            "memoryBytes": 17580
+          },
+          {
+            "tick": 32,
+            "wallMilliseconds": 22.107999999999947,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 17877
+          },
+          {
+            "tick": 33,
+            "wallMilliseconds": 16.077600000000075,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 18174
+          },
+          {
+            "tick": 34,
+            "wallMilliseconds": 27.736400000000003,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 18471
+          },
+          {
+            "tick": 35,
+            "wallMilliseconds": 32.68139999999994,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 18768
+          },
+          {
+            "tick": 36,
+            "wallMilliseconds": 26.925700000000006,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 19065
+          },
+          {
+            "tick": 37,
+            "wallMilliseconds": 33.09230000000002,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 19361
+          },
+          {
+            "tick": 38,
+            "wallMilliseconds": 28.58640000000014,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 19658
+          },
+          {
+            "tick": 39,
+            "wallMilliseconds": 16.07569999999987,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 19955
+          },
+          {
+            "tick": 40,
+            "wallMilliseconds": 29.102100000000064,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 20346
+          },
+          {
+            "tick": 41,
+            "wallMilliseconds": 18.863800000000083,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 20648
+          },
+          {
+            "tick": 42,
+            "wallMilliseconds": 25.857000000000426,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 20950
+          },
+          {
+            "tick": 43,
+            "wallMilliseconds": 14.830800000000181,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 21252
+          },
+          {
+            "tick": 44,
+            "wallMilliseconds": 14.988399999999729,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 21554
+          },
+          {
+            "tick": 45,
+            "wallMilliseconds": 30.43419999999969,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 21856
+          },
+          {
+            "tick": 46,
+            "wallMilliseconds": 12.205799999999726,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 22074
+          },
+          {
+            "tick": 47,
+            "wallMilliseconds": 31.670200000000023,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 22734
+          },
+          {
+            "tick": 48,
+            "wallMilliseconds": 14.323300000000017,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 23212
+          },
+          {
+            "tick": 49,
+            "wallMilliseconds": 16.2158000000004,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 23690
+          },
+          {
+            "tick": 50,
+            "wallMilliseconds": 28.64920000000029,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 24168
+          },
+          {
+            "tick": 51,
+            "wallMilliseconds": 15.388300000000072,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 24646
+          },
+          {
+            "tick": 52,
+            "wallMilliseconds": 14.486699999999928,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 25124
+          },
+          {
+            "tick": 53,
+            "wallMilliseconds": 32.07829999999967,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 25602
+          },
+          {
+            "tick": 54,
+            "wallMilliseconds": 11.497699999999895,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 26080
+          },
+          {
+            "tick": 55,
+            "wallMilliseconds": 12.022600000000239,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 26558
+          },
+          {
+            "tick": 56,
+            "wallMilliseconds": 22.101799999999912,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 27036
+          },
+          {
+            "tick": 57,
+            "wallMilliseconds": 48.260099999999966,
+            "cpuMilliseconds": 18,
+            "memoryBytes": 27517
+          },
+          {
+            "tick": 58,
+            "wallMilliseconds": 31.028299999999945,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 27995
+          },
+          {
+            "tick": 59,
+            "wallMilliseconds": 13.00709999999981,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 28473
+          },
+          {
+            "tick": 60,
+            "wallMilliseconds": 28.402300000000196,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 28951
+          },
+          {
+            "tick": 61,
+            "wallMilliseconds": 20.289800000000014,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 29429
+          },
+          {
+            "tick": 62,
+            "wallMilliseconds": 26.49350000000004,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 29907
+          },
+          {
+            "tick": 63,
+            "wallMilliseconds": 15.139200000000073,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 30385
+          },
+          {
+            "tick": 64,
+            "wallMilliseconds": 13.785899999999856,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 30863
+          },
+          {
+            "tick": 65,
+            "wallMilliseconds": 30.342200000000048,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 31341
+          },
+          {
+            "tick": 66,
+            "wallMilliseconds": 15.716699999999946,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 31820
+          },
+          {
+            "tick": 67,
+            "wallMilliseconds": 45.95310000000018,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 32299
+          },
+          {
+            "tick": 68,
+            "wallMilliseconds": 31.652599999999893,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 32778
+          },
+          {
+            "tick": 69,
+            "wallMilliseconds": 29.91489999999976,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 33257
+          },
+          {
+            "tick": 70,
+            "wallMilliseconds": 29.640600000000177,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 33736
+          },
+          {
+            "tick": 71,
+            "wallMilliseconds": 16.33159999999998,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 34215
+          },
+          {
+            "tick": 72,
+            "wallMilliseconds": 42.6576,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 34694
+          },
+          {
+            "tick": 73,
+            "wallMilliseconds": 17.192099999999755,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 35173
+          },
+          {
+            "tick": 74,
+            "wallMilliseconds": 13.385999999999967,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 35652
+          },
+          {
+            "tick": 75,
+            "wallMilliseconds": 15.327099999999973,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 36131
+          },
+          {
+            "tick": 76,
+            "wallMilliseconds": 42.69939999999997,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 36610
+          },
+          {
+            "tick": 77,
+            "wallMilliseconds": 31.358600000000024,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 37089
+          },
+          {
+            "tick": 78,
+            "wallMilliseconds": 28.965099999999893,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 37568
+          },
+          {
+            "tick": 79,
+            "wallMilliseconds": 31.170200000000023,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 38047
+          },
+          {
+            "tick": 80,
+            "wallMilliseconds": 13.913300000000163,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 38527
+          },
+          {
+            "tick": 81,
+            "wallMilliseconds": 18.217199999999593,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 39007
+          },
+          {
+            "tick": 82,
+            "wallMilliseconds": 25.77430000000004,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 39487
+          },
+          {
+            "tick": 83,
+            "wallMilliseconds": 14.225799999999708,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 39967
+          },
+          {
+            "tick": 84,
+            "wallMilliseconds": 15.398099999999886,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 40447
+          },
+          {
+            "tick": 85,
+            "wallMilliseconds": 31.098999999999705,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 40927
+          },
+          {
+            "tick": 86,
+            "wallMilliseconds": 28.991500000000087,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 41407
+          },
+          {
+            "tick": 87,
+            "wallMilliseconds": 30.90639999999985,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 41887
+          },
+          {
+            "tick": 88,
+            "wallMilliseconds": 15.905099999999948,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 42367
+          },
+          {
+            "tick": 89,
+            "wallMilliseconds": 29.739399999999932,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 42847
+          },
+          {
+            "tick": 90,
+            "wallMilliseconds": 35.73100000000022,
+            "cpuMilliseconds": 7,
+            "memoryBytes": 42965
+          },
+          {
+            "tick": 91,
+            "wallMilliseconds": 325.9724000000001,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 43265
+          },
+          {
+            "tick": 92,
+            "wallMilliseconds": 12.749699999999848,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 43565
+          },
+          {
+            "tick": 93,
+            "wallMilliseconds": 24.23849999999993,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 43865
+          },
+          {
+            "tick": 94,
+            "wallMilliseconds": 15.027799999999843,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 44165
+          },
+          {
+            "tick": 95,
+            "wallMilliseconds": 30.06760000000031,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 44465
+          },
+          {
+            "tick": 96,
+            "wallMilliseconds": 49.527900000000045,
+            "cpuMilliseconds": 20,
+            "memoryBytes": 44768
+          },
+          {
+            "tick": 97,
+            "wallMilliseconds": 13.128900000000158,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 45068
+          },
+          {
+            "tick": 98,
+            "wallMilliseconds": 26.751900000000205,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 45368
+          },
+          {
+            "tick": 99,
+            "wallMilliseconds": 31.48219999999992,
+            "cpuMilliseconds": 4,
+            "memoryBytes": 45669
+          },
+          {
+            "tick": 100,
+            "wallMilliseconds": 16.751800000000003,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 45647
+          },
+          {
+            "tick": 101,
+            "wallMilliseconds": 17.218399999999747,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 45954
+          },
+          {
+            "tick": 102,
+            "wallMilliseconds": 13.97609999999986,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 46256
+          },
+          {
+            "tick": 103,
+            "wallMilliseconds": 40.874799999999595,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 46558
+          },
+          {
+            "tick": 104,
+            "wallMilliseconds": 14.222900000000664,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 46860
+          },
+          {
+            "tick": 105,
+            "wallMilliseconds": 30.555999999999585,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 47162
+          },
+          {
+            "tick": 106,
+            "wallMilliseconds": 30.073199999999815,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 47464
+          },
+          {
+            "tick": 107,
+            "wallMilliseconds": 31.802200000000084,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 47766
+          },
+          {
+            "tick": 108,
+            "wallMilliseconds": 10.61409999999978,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 48068
+          },
+          {
+            "tick": 109,
+            "wallMilliseconds": 19.22440000000006,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 48370
+          },
+          {
+            "tick": 110,
+            "wallMilliseconds": 13.250200000000405,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 48672
+          },
+          {
+            "tick": 111,
+            "wallMilliseconds": 32.40400000000045,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 48974
+          },
+          {
+            "tick": 112,
+            "wallMilliseconds": 11.050199999999677,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 49276
+          },
+          {
+            "tick": 113,
+            "wallMilliseconds": 18.085000000000036,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 49578
+          },
+          {
+            "tick": 114,
+            "wallMilliseconds": 12.932200000000194,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 49880
+          },
+          {
+            "tick": 115,
+            "wallMilliseconds": 17.4342000000006,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 50182
+          },
+          {
+            "tick": 116,
+            "wallMilliseconds": 12.432199999999284,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 50484
+          },
+          {
+            "tick": 117,
+            "wallMilliseconds": 32.42309999999998,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 50786
+          },
+          {
+            "tick": 118,
+            "wallMilliseconds": 14.278400000000147,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 51088
+          },
+          {
+            "tick": 119,
+            "wallMilliseconds": 30.519600000000537,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 51390
+          },
+          {
+            "tick": 120,
+            "wallMilliseconds": 14.851700000000164,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 51692
+          },
+          {
+            "tick": 121,
+            "wallMilliseconds": 15.25919999999951,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 51994
+          },
+          {
+            "tick": 122,
+            "wallMilliseconds": 44.02679999999964,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 52296
+          },
+          {
+            "tick": 123,
+            "wallMilliseconds": 30.052999999999884,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 52598
+          },
+          {
+            "tick": 124,
+            "wallMilliseconds": 31.211299999999937,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 52900
+          },
+          {
+            "tick": 125,
+            "wallMilliseconds": 47.00810000000001,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 53202
+          },
+          {
+            "tick": 126,
+            "wallMilliseconds": 29.260299999999916,
+            "cpuMilliseconds": 3,
+            "memoryBytes": 53504
+          },
+          {
+            "tick": 127,
+            "wallMilliseconds": 46.82050000000072,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 53806
+          },
+          {
+            "tick": 128,
+            "wallMilliseconds": 28.520299999999224,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 54108
+          },
+          {
+            "tick": 129,
+            "wallMilliseconds": 30.688900000000103,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 54410
+          },
+          {
+            "tick": 130,
+            "wallMilliseconds": 13.793900000000576,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 54712
+          },
+          {
+            "tick": 131,
+            "wallMilliseconds": 31.694899999999507,
+            "cpuMilliseconds": 2,
+            "memoryBytes": 55014
+          }
+        ],
+        "provenance": {
+          "commit": "b922ad832d8ebbd1d8218558aaceb7e6827e609e",
+          "dirty": false,
+          "bundleSha256": "24846ae36932bf15b7d2f7026eab7489c082e099a03cbee382b32c6d594cf50d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "reloadProvenance": {
+          "commit": "b922ad832d8ebbd1d8218558aaceb7e6827e609e",
+          "dirty": false,
+          "bundleSha256": "0745829ba71748d1dc29209795170ab553fd4345ca72eee8012c0e10b1d98216",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "remoteMining": {
+          "rows": [
+            {
+              "tick": 1,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 1,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": []
+            },
+            {
+              "tick": 2,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 3,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 4,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 5,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 6,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 7,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 8,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 9,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 10,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 11,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 12,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 13,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 14,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 15,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": true,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 16,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 24,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 17,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 18,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 20
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 0,
+                  "y": 26,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 19,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 21
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 20,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 22
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 26,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 21,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 23
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 26,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 22,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 24
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 23,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1500,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 25
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 24,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1496,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 26
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 4,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 25,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1492,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 27
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 8,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 26,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1488,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 28
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 12,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 27,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1484,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 29
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 16,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 28,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1480,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 30
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 20,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 29,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1476,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 31
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 24,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 30,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 31,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 32,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 33,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 34,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 35,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 23,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 36,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 23,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 37,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 38,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 39,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 49,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 40,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 41,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 42,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 43,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 44,
+              "visible": false,
+              "authority": true,
+              "sourceEnergy": null,
+              "containerEnergy": null,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 45,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 46,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 48
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 0,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 47,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 49
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 26,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 48,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 50
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 26,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 49,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 51
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 26,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 50,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 52
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 26,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 51,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 53
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 26,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 52,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 54
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 26,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 53,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 55
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 54,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 56
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 55,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1472,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 57
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 56,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1468,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 58
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 32,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 57,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1464,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 59
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 36,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 58,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1460,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 60
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 40,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 59,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1456,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 61
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 44,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 60,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1452,
+              "containerEnergy": 0,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 62
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 48,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 61,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1448,
+              "containerEnergy": 2,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 63
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 62,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1448,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 64
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 63,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1444,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 65
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 4,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 64,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1440,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 66
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 8,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 65,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1436,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 67
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 12,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 66,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1432,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 68
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 16,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 67,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1428,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 69
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 20,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 68,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1424,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 70
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 24,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 69,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1420,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 71
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 70,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1416,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 72
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 32,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 71,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1412,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 73
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 36,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 72,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1408,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 74
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 40,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 73,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1404,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 75
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 44,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 74,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1400,
+              "containerEnergy": 52,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 76
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 48,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 75,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1396,
+              "containerEnergy": 54,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 77
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 76,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1396,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 78
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 0,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 77,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1392,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 79
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 4,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 78,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1388,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 80
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 8,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 79,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1384,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 81
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 12,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 80,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1380,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 82
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 16,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 81,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1376,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 83
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 20,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 82,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1372,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 84
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 24,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 83,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1368,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 85
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 28,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 84,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1364,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 86
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 32,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 85,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1360,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 87
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 36,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 86,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1356,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 88
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 40,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 87,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1352,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 89
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 44,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 88,
+              "visible": true,
+              "authority": true,
+              "sourceEnergy": 1348,
+              "containerEnergy": 104,
+              "pending": 0,
+              "tileClaims": [
+                {
+                  "resource": "mining-tile:[\"E0N1\",5,25]",
+                  "holder": "ed-W0N1-1",
+                  "scope": "task:[\"ed-W0N1-1\",\"remote-task:remote-demand:4:W0N14:E0N14:mine15:86a4e899ec165ff:1:16\"]",
+                  "expiresAt": 90
+                }
+              ],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 48,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 89,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 25,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 90,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 91,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 92,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 93,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 3,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 94,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 23,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 95,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 2,
+                  "y": 23,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 96,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 97,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "E0N1",
+                  "x": 1,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 98,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 49,
+                  "y": 25,
+                  "cargo": 50,
+                  "tasks": 1
+                }
+              ]
+            },
+            {
+              "tick": 99,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 100,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 101,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 102,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 103,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 104,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 105,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 106,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 107,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 108,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 109,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 110,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 111,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 112,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 113,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 114,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 115,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 116,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 117,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 118,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 119,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 120,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 121,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 122,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 123,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 124,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 125,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 126,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 127,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 128,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 129,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            },
+            {
+              "tick": 130,
+              "visible": true,
+              "authority": false,
+              "sourceEnergy": 1344,
+              "containerEnergy": 106,
+              "pending": 0,
+              "tileClaims": [],
+              "sentinel": {
+                "resource": "sentinel",
+                "holder": "fixture",
+                "scope": "fixture",
+                "expiresAt": 1000
+              },
+              "units": [
+                {
+                  "name": "ed-W0N1-1",
+                  "spawning": false,
+                  "room": "W0N1",
+                  "x": 48,
+                  "y": 24,
+                  "cargo": 50,
+                  "tasks": 0
+                }
+              ]
+            }
+          ],
+          "reloads": [
+            20,
+            56,
+            95
+          ]
+        },
+        "childPids": [
+          22624,
+          59852,
+          63612
+        ]
       }
     }
   ],
@@ -4770,7 +9365,9 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       },
-      "sourceEvidenceSha256": "b34be19c32aaca05d5f2906dd008b8954f3e24348e5d0d8e4942d175ecde292a"
+      "sourceEvidenceSha256": "b34be19c32aaca05d5f2906dd008b8954f3e24348e5d0d8e4942d175ecde292a",
+      "scenario": "remote-reservation",
+      "scope": "pre-grouping"
     },
     {
       "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fei0tw",
@@ -4785,7 +9382,9 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       },
-      "sourceEvidenceSha256": "8afea4f583051dd8d41e499ae0aafc396cb9bd528b2e3c2ea856670d0773e519"
+      "sourceEvidenceSha256": "8afea4f583051dd8d41e499ae0aafc396cb9bd528b2e3c2ea856670d0773e519",
+      "scenario": "mining-replacement",
+      "scope": "shared owner regression"
     },
     {
       "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5yLYyv",
@@ -4800,7 +9399,9 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       },
-      "sourceEvidenceSha256": "9c714a9fb5dc8657417c611791cc4b796b6a43d742a52713309807fb800eaf2e"
+      "sourceEvidenceSha256": "9c714a9fb5dc8657417c611791cc4b796b6a43d742a52713309807fb800eaf2e",
+      "scenario": "mining-saturation",
+      "scope": "shared owner regression"
     },
     {
       "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PiKCRZ",
@@ -4815,7 +9416,9 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       },
-      "sourceEvidenceSha256": "71836a08718e1c58cce89c6c103933d62152ebfa577b463bf70144cfe73a9a63"
+      "sourceEvidenceSha256": "71836a08718e1c58cce89c6c103933d62152ebfa577b463bf70144cfe73a9a63",
+      "scenario": "colony-mining",
+      "scope": "shared owner regression"
     },
     {
       "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-15CXvf",
@@ -4830,7 +9433,9 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       },
-      "sourceEvidenceSha256": "2e2d4d599f656ca6b22e326874409759ebb0556614d9762f80b22f3222154160"
+      "sourceEvidenceSha256": "2e2d4d599f656ca6b22e326874409759ebb0556614d9762f80b22f3222154160",
+      "scenario": "remote-reservation",
+      "scope": "post-grouping"
     },
     {
       "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-pd8DfK",
@@ -4845,7 +9450,43 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       },
-      "sourceEvidenceSha256": "3c6569e29ffa33e0e02201f5556bfe3c0ae9df90146cd22c005089d0029e48aa"
+      "sourceEvidenceSha256": "3c6569e29ffa33e0e02201f5556bfe3c0ae9df90146cd22c005089d0029e48aa",
+      "scenario": "remote-assessment",
+      "scope": "post-grouping"
+    },
+    {
+      "scenario": "remote-reservation",
+      "scope": "Clean committed post-grouping qualification",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uQgBzq",
+      "status": "passed",
+      "provenance": {
+        "commit": "b922ad832d8ebbd1d8218558aaceb7e6827e609e",
+        "dirty": false,
+        "bundleSha256": "db5e11186940c5915e7945b5d28b345de107740ae440292fe4387b4d6da40ec8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sourceEvidenceSha256": "9d953ad5a30ac209441de91f56702a428df2f2068631962cf56c4487a4168880"
+    },
+    {
+      "scenario": "remote-assessment",
+      "scope": "Clean committed post-grouping qualification",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9kAVrr",
+      "status": "passed",
+      "provenance": {
+        "commit": "b922ad832d8ebbd1d8218558aaceb7e6827e609e",
+        "dirty": false,
+        "bundleSha256": "f298e4aafc3d77cc619405b810b94794cd3f6a3fb7809682ac750d44ec08b95c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "sourceEvidenceSha256": "3aaec0383a21ff0c841ce5c9826b83dfc2d050b1b128b4fddfa5e3beff18295c"
     }
   ]
 }
