@@ -2872,6 +2872,20 @@
         ],
         "evidence": "docs/evidence/remote-management-native.json",
         "reference": "docs/remote-management.md"
+      },
+      "automaticDiscoveryManagement": {
+        "owner": "features/remotes/discovery + app/remotes/discovery + configured management feature",
+        "status": "Default-off main-loop cardinal discovery and bounded portfolio/lease management qualified. Recruitment/execution, adaptive support including starvation, reachability feedback, specialists and public controls remain open.",
+        "validationCommit": "88e4760",
+        "tests": [
+          "test/features/remote-discovery.test.ts",
+          "test/app/remotes/native-management-feature.test.ts",
+          "test/app/remotes/native-travel-progress.test.ts",
+          "test/engine/remote-runtime-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-runtime-native.json",
+        "fullNativeSuite": "docs/evidence/remote-runtime-engine-suite.json",
+        "reference": "docs/remote-discovery.md"
       }
     }
   },
