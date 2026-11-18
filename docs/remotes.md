@@ -1,6 +1,6 @@
 # Remote operations: assessment increment
 
-ED-29 remains In Progress. Implemented boundaries include source assessment, selection, exclusive leases, typed demand, explicit reservation task execution, and live remote energy extraction. Automatic remote discovery/selection and mission registration in the main loop, automatic mining/hauling orchestration, adaptive support and infrastructure activation remain open. The reservation scenario explicitly composes the production task/service with shared population and dispatch; this is not automatic whole-feature activation.
+ED-29 remains In Progress. Implemented boundaries include source assessment, selection, exclusive leases, typed demand, explicit reservation task execution, live remote energy extraction, and confirmed home cargo recovery. Automatic remote discovery/selection and mission registration in the main loop, automatic mining/hauling orchestration, adaptive support and infrastructure activation remain open. The reservation scenario explicitly composes the production task/service with shared population and dispatch; this is not automatic whole-feature activation.
 
 ## Source extraction
 
@@ -62,7 +62,7 @@ docs/evidence/remote-assessment-native.json retains the exact dirty source/bundl
 1. Connect the implemented typed Mine/Reserve/Outpost demand and exclusive room leases to current admission, portfolio reconciliation, population and mission execution; add source/room operator exclusions.
 2. Connect implemented bundle/fragment selection and shared-cost repricing to bounded collection; implement adaptive supported budget and specialist keeper readiness/risk inputs.
 3. Production reserver orchestration around the implemented controller/task boundary: measured body/travel policy, replacement, expiry and cancellation during spawning or damage.
-4. Connect implemented source approach/live station extraction to automatic demand; implement remote hauling, confirmed home banking and road/container construction through the existing owners.
+4. Connect implemented source approach/live station extraction to automatic demand; integrate confirmed home banking into production orchestration and implement dedicated remote hauling and road/container construction through the existing owners.
 5. Hostile/vision/path interruption suspension, retreat and recovery, followed by profitable/rejected, differing-distance, reserver-replacement and return-to-service native scenarios.
 6. Full combined qualification and acceptance audit. ED-39/44 still own public legacy flag/console and memory translation; ED-35 owns specialist keeper/power execution; ED-43 owns measured multi-room pressure/CPU/Memory/soak.
 
@@ -125,3 +125,7 @@ The complete 191-case engine suite passes on clean committed f0ad244 in 704.27 s
 ## Remote energy extraction qualification
 
 Remote application code now lives in app/remotes, with assessment isolated below app/remotes/assessment and matching application tests grouped by responsibility. Reservation and mining share the lease-aware task/assignment mechanism and native movement/retirement boundary. The new extraction component passes its actual 130-tick source/container/vision/threat/expiry scenario. See [remote-mining.md](remote-mining.md) for the implementation boundaries, exact checks, initial fixture failure and remaining integration scope. This is component qualification; ED-29 remains In Progress.
+
+## Confirmed home recovery
+
+The composed mining actor now hands returned cargo to shared hauling/confirmation under an explicit home/population-owner binding. Normal delivery, lost sinks, missed event evidence and full-store recovery pass clean native scenarios. Resource/sink filters and terminal headroom remain injectable policies. See [remote-banking.md](remote-banking.md) for exact proof and limits; dedicated transport and automatic feature orchestration are still open.

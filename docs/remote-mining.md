@@ -21,7 +21,7 @@ The remote task resolves current lease identity/generation/expiry before service
 
 A held tile is preferred across ticks and resets, even when another previously preferred tile becomes free. The query returns detached active claims without initializing missing memory. Role logic never reads the reservation schema to make a competing booking mechanism. Terminal tasks use the existing shared scope cleanup.
 
-Retirement preserves carried resources during movement. This increment returns the miner physically home with its cargo; it does not yet confirm delivery into home storage. Banking must use the shared hauling/transfer confirmation and quantity owners. Measured station extraction or container handoff is not presented as measured profitable transport or colony income.
+Retirement preserves carried resources during movement. This increment returns the miner physically home with its cargo; it does not yet confirm delivery into home storage. The composed actor now hands this cargo to the shared hauling/transfer confirmation and quantity owners; see [remote-banking.md](remote-banking.md). Measured station extraction or container handoff is not presented as measured profitable transport or colony income.
 
 ## Native scenario
 
@@ -43,6 +43,8 @@ Targeted native checks pass: remote mining (130 ticks), reservation (140), asses
 
 The new mining case is registered as case 192. The full 192-case suite has not been run for this component increment; the preceding clean full-suite qualification remains 191 cases on f0ad244. Targeted shared-owner regression plus full fast checks keep this iteration bounded. Combined qualification remains part of subsequent operational integration and ED-29 acceptance.
 
-Remaining work includes bounded automatic assessment/portfolio collection, source/room exclusions and reachability-life reporting, adaptive capacity, production body/travel/replacement policy, damaged-unit and spawn cancellation handling, cross-home handoff, automatic vision refresh/recovery, hauling and confirmed banking, road/container desired state and construction, specialist keeper/mineral admission/tactics, dead-unit maintenance integration, operator/memory translation and final acceptance/performance gates.
+Remaining work includes bounded automatic assessment/portfolio collection, source/room exclusions and reachability-life reporting, adaptive capacity, production body/travel/replacement policy, damaged-unit and spawn cancellation handling, cross-home handoff, automatic vision refresh/recovery, dedicated hauling and production integration of confirmed home banking, road/container desired state and construction, specialist keeper/mineral admission/tactics, dead-unit maintenance integration, operator/memory translation and final acceptance/performance gates.
 
 Clean committed b922ad8 also passes all three remote entrypoints: mining engine-Ta8XvN (130 ticks), reservation engine-uQgBzq (140), and assessment engine-9kAVrr (8). Their exact clean provenance/digests are archived with the preceding runs. These scopes remain targeted component qualification, not a full 192-case or automatic feature acceptance claim.
+
+The standalone extraction service keeps its cargo-preserving retirement contract. The new composed mining actor adds safe-home confirmed banking and explicit population-owner binding without changing that service; its separate qualification is recorded in [remote-banking.md](remote-banking.md).
