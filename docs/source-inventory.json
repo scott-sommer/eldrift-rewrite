@@ -3364,6 +3364,23 @@
       "required": "behavior fixture plus relevant contract/engine scenario",
       "tests": [],
       "status": "not implemented"
+    },
+    "responsibilityEvidence": {
+      "remoteInfrastructure": {
+        "sourceSymbols": [
+          "active buildRoadsFromPath consumer"
+        ],
+        "owner": "features/remotes/infrastructure + app/remotes/infrastructure + shared construction",
+        "status": "Explicit Outpost planning/site execution qualified; automatic orchestration, public console/control mapping ED-39/44 and full module parity remain open.",
+        "validationCommit": "e31ef83",
+        "tests": [
+          "test/features/remote-infrastructure-plan.test.ts",
+          "test/features/remote-infrastructure-execution.test.ts",
+          "test/engine/remote-infrastructure-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-infrastructure-native.json",
+        "reference": "docs/remote-infrastructure.md"
+      }
     }
   },
   {
@@ -3708,6 +3725,23 @@
       "required": "behavior fixture plus relevant contract/engine scenario",
       "tests": [],
       "status": "not implemented"
+    },
+    "responsibilityEvidence": {
+      "remoteInfrastructure": {
+        "sourceSymbols": [
+          "active buildRoadsFromPath consumer"
+        ],
+        "owner": "features/remotes/infrastructure + app/remotes/infrastructure + shared construction",
+        "status": "Explicit Outpost planning/site execution qualified; automatic orchestration, public console/control mapping ED-39/44 and full module parity remain open.",
+        "validationCommit": "e31ef83",
+        "tests": [
+          "test/features/remote-infrastructure-plan.test.ts",
+          "test/features/remote-infrastructure-execution.test.ts",
+          "test/engine/remote-infrastructure-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-infrastructure-native.json",
+        "reference": "docs/remote-infrastructure.md"
+      }
     }
   },
   {
@@ -6568,6 +6602,21 @@
         ],
         "validationCommit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
         "fullNativeSuite": "docs/evidence/ed28-engine-suite.json"
+      },
+      "remoteInfrastructure": {
+        "sourceSymbols": [
+          "buildRoadsFromPath"
+        ],
+        "owner": "features/remotes/infrastructure + app/remotes/infrastructure + shared construction",
+        "status": "Explicit Outpost planning/site execution qualified; automatic orchestration, public console/control mapping ED-39/44 and full module parity remain open.",
+        "validationCommit": "e31ef83",
+        "tests": [
+          "test/features/remote-infrastructure-plan.test.ts",
+          "test/features/remote-infrastructure-execution.test.ts",
+          "test/engine/remote-infrastructure-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-infrastructure-native.json",
+        "reference": "docs/remote-infrastructure.md"
       }
     }
   },
