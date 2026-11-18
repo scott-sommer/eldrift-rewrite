@@ -2569,7 +2569,10 @@
     "physicalLines": 971,
     "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": [],
+    "evidence": [
+      "docs/remotes.md",
+      "docs/evidence/remote-assessment-native.json"
+    ],
     "plannedIssues": [
       "ED-28",
       "ED-29"
@@ -2809,6 +2812,24 @@
       "required": "behavior fixture plus relevant contract/engine scenario",
       "tests": [],
       "status": "not implemented"
+    },
+    "responsibilityEvidence": {
+      "remoteAssessment": {
+        "sourceSymbols": [
+          "getPathDistance",
+          "scoreRemoteSourceCandidate",
+          "buildRemoteSourceCandidates"
+        ],
+        "owner": "capabilities/economy + features/remotes + app/native-remote-assessment",
+        "status": "Read-only assessment/economics increment with targeted dirty native evidence; automatic portfolio/reservation/mining/logistics remain ED-29. Not module-wide parity.",
+        "tests": [
+          "test/capabilities/remote-economics.test.ts",
+          "test/features/remote-assessment.test.ts",
+          "test/app/remote-body-budget.test.ts",
+          "test/app/remote-retained-costs.test.ts",
+          "test/engine/remote-assessment-bot.ts"
+        ]
+      }
     }
   },
   {
