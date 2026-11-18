@@ -7,9 +7,12 @@ async function remoteFleetWorld(server,bot,mode) {
     await server.world.addRoomObject('E0N1','creep',0,24,{ name: 'returning-miner',user: bot.id,
       body: [...Array(4).fill({ type: 'work',hits: 100 }),{ type: 'carry',hits: 100 },...Array(2).fill({ type: 'move',hits: 100 })],
       store: { energy: 24 },storeCapacity: 50,hits: 700,hitsMax: 700,spawning: false,fatigue: 0,ageTime: 1500 });
-    for (const [name,x,y] of [['parked-a',46,24],['parked-b',48,23]]) await server.world.addRoomObject('W0N1','creep',x,y,{
+    for (const [name,x,y] of [['parked-a',46,24],['parked-b',48,22],['parked-c',48,23]]) await server.world.addRoomObject('W0N1','creep',x,y,{
       name,user: bot.id,body: [{ type: 'move',hits: 100 }],store: {},storeCapacity: 0,hits: 100,hitsMax: 100,spawning: false,fatigue: 0,ageTime: 1500 });
   }
+  if (mode === 'border') await server.world.addRoomObject('W0N1','creep',49,22,{ name: 'returning-courier',user: bot.id,
+    body: ['carry','carry','move','move'].map(type => ({ type,hits: 100 })),store: { energy: 52 },storeCapacity: 100,
+    hits: 400,hitsMax: 400,spawning: false,fatigue: 0,ageTime: 1500 });
   if (mode === 'lifetime') {
     const { db } = await server.world.load();
     await db['rooms.objects'].update({ room: 'W0N1',type: 'controller' },{ $set: { level: 8 } });
@@ -55,7 +58,10 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
     evidence.remoteBorder = { rows: memory.borderRows };
     assert.equal(memory.borderRows.length,20); assert.deepEqual(evidence.errors,[]);
     assert.equal(memory.borderRows.at(-1).position.room,'W0N1');
-    assert.ok(memory.borderRows.every(row => row.cargo === 24 && row.outcome.status !== 'failed')); return;
+    assert.ok(memory.borderRows.every(row => row.cargo === 24 && row.outcome.status !== 'failed'));
+    assert.equal(memory.borderRows.at(-1).courier.position.room,'W0N1');
+    assert.ok(memory.borderRows.every(row => row.courier.cargo === 52 && row.courier.outcome.status !== 'failed'));
+    assert.ok(memory.borderRows.some(row => row.batch?.resolution.denied.length > 0),'fixture must exercise actual traffic denial'); return;
   }
   const rows = metadata.mode === 'lifetime' ? [...metadata.streamedRows,...memory.remoteFleetRows] : memory.remoteFleetRows, last = rows.at(-1);
   if (metadata.mode === 'lifetime') { delete metadata.streamedRows; rows.forEach((row,index) => assert.equal(row.tick,index+1)); }

@@ -48,7 +48,10 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
   return Object.assign(navigate, {
     settle(unit: string, tick: number, outcome: 'issued' | 'traffic-blocked'): void {
       if (outcome === 'issued') progress.issued(unit, tick);
-      else progress.trafficBlocked(unit, tick);
+      else {
+        progress.trafficBlocked(unit, tick);
+        detours.blocked(unit,tick);
+      }
     },
   });
 }

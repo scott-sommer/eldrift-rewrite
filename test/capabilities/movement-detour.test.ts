@@ -21,3 +21,13 @@ test('changed goals, expiry and bounded eviction discard old detours', () => {
   detours.avoid('other', view, true);
   expect(detours.avoid('u', view, false)).toBe(false);
 });
+
+test('confirmed traffic denial retains avoidance even when native border transfer changes position',() => {
+  const detours = createMovementDetours();
+  const border = { ...view,position: { room: 'W0N1',x: 49,y: 22 } };
+  expect(detours.avoid('u',border,false)).toBe(false);
+  detours.blocked('u',1);
+  expect(detours.avoid('u',{ ...border,tick: 2,position: { room: 'E0N1',x: 0,y: 22 } },false)).toBe(true);
+  expect(detours.avoid('u',{ ...border,tick: 3,position: { room: 'E0N1',x: 1,y: 22 } },false)).toBe(true);
+  expect(detours.avoid('u',{ ...border,tick: 4,destination: { ...position,x: 30 } },false)).toBe(false);
+});

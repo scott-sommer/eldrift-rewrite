@@ -4,7 +4,7 @@ import { createPathService } from '../../src/capabilities/movement/path-service'
 import { createTrafficDispatch } from '../../src/capabilities/movement/traffic/dispatch';
 const position = { room: 'W0N0', x: 20, y: 20 };
 const target = { ...position, x: 21 };
-test('queued requests do not count as issued; traffic denial triggers replan only after settlement', () => {
+test('queued requests do not count as issued; confirmed traffic denial enables avoidance after settlement', () => {
   let tick = 1;
   let blocker = true;
   let issued = 0;
@@ -27,7 +27,7 @@ test('queued requests do not count as issued; traffic denial triggers replan onl
     expect(issued).toBe(0);
     dispatch.flush(); dispatch.flush();
   }
-  expect(avoidance).toEqual([false, false, true]);
+  expect(avoidance).toEqual([false, true, true]);
   blocker = false;
   expect(navigate('a', { ...view, tick }).status).toBe('running');
   dispatch.flush();

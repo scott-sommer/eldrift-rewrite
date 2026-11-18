@@ -410,5 +410,48 @@
       }
     ]
   },
-  "subsequentRegressionCorrection": "The full 44ca105 suite stopped after 41 successes at remote-transport-contention. Loaded courier repeatedly crossed back from a lateral home-edge move. Shared border repair now compares actual movementTransition landing to the next native path point. Focused regression engine-i8BbYI passes with all units home and empty; fresh full clean qualification remains pending."
+  "subsequentRegressionCorrection": "The full 44ca105 suite stopped after 41 successes at remote-transport-contention. Loaded courier repeatedly crossed back from a lateral home-edge move. Shared border repair now compares actual movementTransition landing to the next native path point. Focused regression engine-i8BbYI passes with all units home and empty; fresh full clean qualification remains pending.",
+  "secondRegressionFailure": {
+    "suiteStatus": "failed",
+    "completed": 41,
+    "milliseconds": 155644.69819999998,
+    "failedScenario": "--remote-transport-contention",
+    "suiteSourceSha256": "8a36703df8ae669d51f5c3d72d47e821c4624c0f158deadf590a6d89215871a5",
+    "sourceEvidence": "artifacts\\engine-Udrfef\\evidence.json",
+    "sourceEvidenceSha256": "2c0475c376e4f7ddc0f31c4bec21a9c03743a251fe20bc715a81b5d9ea18cdc4",
+    "provenance": {
+      "commit": "789cc4c19c8e3def0e73512f52e2405707272e4d",
+      "dirty": false,
+      "bundleSha256": "319a32eb3ffe3a4017d7606ca8a99c19b62c080faae5d23d5ecc77f920ffc255",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "finalUnits": [
+      {
+        "name": "ed-W0N1-1",
+        "room": "W0N1",
+        "x": 46,
+        "y": 24,
+        "cargo": 0
+      },
+      {
+        "name": "ed-W0N1-2",
+        "room": "E0N1",
+        "x": 0,
+        "y": 22,
+        "cargo": 52
+      },
+      {
+        "name": "ed-W0N1-3",
+        "room": "W0N1",
+        "x": 48,
+        "y": 22,
+        "cargo": 0
+      }
+    ]
+  },
+  "trafficCorrection": "A blocked move from an arrival border can automatically re-cross the room, causing position-based progress to reset its failures. Confirmed traffic denial now enables persistent detour avoidance immediately, independent of that position change. Two independent native contention runs pass (engine-x38acH/eTRI1Z). Deterministic 20-tick border probe engine-7FdynT forces denial at tick1 and returns loaded miner/courier to W0N1 preserving24/52 cargo. Full clean regression remains pending."
 }
