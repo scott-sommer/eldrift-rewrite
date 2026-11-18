@@ -17,6 +17,7 @@ export interface MovementCommand {
   priority?: number;
   group?: string;
   allowPartial?: boolean;
+  avoid?: readonly Position[];
 }
 type Arbiter = ReturnType<typeof createActionArbiter>;
 export function createMovementService(arbiter: Arbiter = createActionArbiter(() => Game.time)) {
@@ -31,7 +32,10 @@ export function createMovementService(arbiter: Arbiter = createActionArbiter(() 
   }, (unit, time, outcome) => navigate.settle(unit, time, outcome));
   const navigate = createNavigator({
     paths, direction: stepDirection,
-    request: (view, avoidUnits, unit) => preparation.prepare(creepById(unit), view, avoidUnits, commands.get(unit)!.policy),
+    request: (view, avoidUnits, unit) => {
+      const command = commands.get(unit)!;
+      return preparation.prepare(creepById(unit), view, avoidUnits, command.policy, command.avoid);
+    },
     move: (unit, direction) => {
       const creep = creepById(unit);
       const command = commands.get(unit)!;

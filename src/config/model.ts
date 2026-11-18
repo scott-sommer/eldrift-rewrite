@@ -1,10 +1,12 @@
+import { scoutDefaults } from './scouts';
+import type { ScoutConfig } from './scouts';
 import { intelDefaults } from './intel';
 import type { IntelConfig } from './intel';
 import { constructionDefaults } from './construction';
 import type { ConstructionConfig } from './construction';
 import { planningDefaults } from './planning';
 import type { PlanningConfig } from './planning';
-export interface RuntimeConfig extends PlanningConfig, ConstructionConfig, IntelConfig {
+export interface RuntimeConfig extends PlanningConfig, ConstructionConfig, IntelConfig, ScoutConfig {
   recoverySupportEnabled: boolean;
   recoverySupportReserve: number;
   recoverySupportBodyBudget: number;
@@ -106,7 +108,7 @@ export interface RuntimeConfig extends PlanningConfig, ConstructionConfig, Intel
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
-  ...planningDefaults, ...constructionDefaults, ...intelDefaults,
+  ...planningDefaults, ...constructionDefaults, ...intelDefaults, ...scoutDefaults,
   recoverySupportEnabled: true,
   recoverySupportReserve: 0,
   recoverySupportBodyBudget: 2600,

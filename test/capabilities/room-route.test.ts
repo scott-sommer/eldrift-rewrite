@@ -20,3 +20,16 @@ test('exclusions, unavailable routes and room budgets are distinct', () => {
   expect(long('W0N0', 'E0N0', { ...policy, maximumRooms: 1 })).toMatchObject({ reason: 'room-limit' });
   expect(() => createRoomRouter(() => ['E0S0', 'E0N0'])('W0N0', 'E0N0', policy)).toThrow('violated room policy');
 });
+
+
+test('explicit corridors reject out-of-corridor targets, costs and finder escapes', () => {
+  const corridor = { ...policy, allowedRooms: ['W0N0','E0N0'] };
+  const route = createRoomRouter((_origin,_destination,cost) => {
+    expect(cost('W1N0')).toBe(Infinity);
+    expect(cost('E0N0')).toBe(1);
+    return ['E0N0'];
+  });
+  expect(route('W0N0','E0N0',corridor)).toMatchObject({ status: 'complete' });
+  expect(route('W0N0','W1N0',corridor)).toMatchObject({ reason: 'destination-excluded' });
+  expect(() => createRoomRouter(() => ['W1N0','E0N0'])('W0N0','E0N0',corridor)).toThrow('violated');
+});

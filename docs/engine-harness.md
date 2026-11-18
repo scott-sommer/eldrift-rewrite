@@ -65,3 +65,8 @@ Validation: full units1,073tests/314files8.19s; quality500production/451testfile
 ### Read-only fixture aging
 
 The --scout-lifecycle scenario explicitly calls the pinned driver's activateRoom for its rooms before each tick. getAllRoomsNames consumes the active-room set; read-only observation code emits no room intents to populate it. Without explicit activation, fixture creep lifetime can fall below zero while its object remains present. Do not infer death from predicted expiry or vision loss, or claim natural-expiry evidence from that setup. The scenario separately exercises the real creep tick processor's natural expiry, a test-injected native suicide, module reload, and later actual vision loss. See docs/evidence/scout-lifecycle-native.json for diagnostic failures and corrected evidence.
+
+
+### Scout exploration terrain halo
+
+The new --scout-explore fixture supplies terrain beyond its accepted path corridors. The pinned driver's native/src/pf.cc room_index_from_pos dereferences terrain before invoking roomCallback; a sparse mock world can throw while considering an adjacent room that the callback would reject. Retain complete fixture terrain for those candidates and assert zero reported unit errors, not only zero uncaught engine exceptions. docs/evidence/scout-runtime-native.json retains the initial error-loop diagnostic and corrected default-depth progression. Production route admission still excludes rooms outside its explicit corridor.

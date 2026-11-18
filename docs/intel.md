@@ -1,6 +1,6 @@
 # Scouting and room intelligence (ED-28)
 
-Status: source audit, reusable room graph, rich intel state, native plain-data capture and bounded automatic visible-room refresh are qualified in tested increments. Bounded traversal admission is also qualified as a pure policy/graph composition. Scout/observer demand and action orchestration remain unfinished; no ED-28 acceptance criterion is complete.
+Status: source audit, reusable room graph, rich intel state, native plain-data capture and bounded automatic visible-room refresh are qualified in tested increments. Bounded traversal admission is also qualified as a pure policy/graph composition. Scout/observer demand and action orchestration remain unfinished; see the current acceptance audit below.
 
 ## Source responsibilities and reuse
 
@@ -132,3 +132,8 @@ ED-28's fourth acceptance criterion (regression tests) is evidenced by actual ea
 The source inventory's role.scout row now records partial mechanisms and exact test/native evidence; its legacy hash and all other baseline source hashes remain unchanged. It explicitly retains movement/controller/operator gaps rather than claiming whole-role parity.
 
 Next controller work should compose core/execution/execute and app/task-runner with feature-owned objective/stabilization/visit/avoidance state. Population identity must retain the home demand scope while units travel remotely. Native movement must reuse the single shared dispatch/arbitration/progress/traffic boundary; threat overlays must enter the shared matrix/path revision, including correct private-rampart passability, rather than introducing a private scout moveTo/PathFinder stack. These are pending implementation requirements, not completed behaviors.
+
+
+## Native scout controller increment
+
+Native recruitment, assigned/fallback objectives, stabilized physical visits, hostile escape and route recovery now compose the existing state-machine/population/movement boundaries. See scouts.md for ownership, source mapping, configuration, native scenarios and current limits. Retirement clears scout controls by ID. Planning CPU is shared by all consumers for one home/tick; the shared movement service adds explicit corridors and isolated threat overlays. Default-depth/default-budget unassigned exploration passes110native ticks. Quality550production/483testfiles and full units1,210tests/339files pass9.35s; clean187-case aggregate qualification follows the implementation commit. Observer scheduling/action ownership/delayed visibility remain unfinished; ED-28 stays In Progress.

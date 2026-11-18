@@ -1,0 +1,52 @@
+# Native scout control (ED-28)
+
+Status: native control, recruitment and fallback exploration are implemented in tested increments. Scout/observer acceptance is not complete: observer actions/delayed visibility, operator flag adapters, migration and release pressure/soak qualification remain open.
+
+## Responsibilities and ownership
+
+The scout-control feature owns objectives, assigned-list progress, room-entry stabilization/visits, temporary exclusions and observed progress. It composes core/execution/execute with bounded choose/stabilize/travel/evade handlers; execution fields are passed explicitly so generic checkpoint merging cannot overwrite handler-owned objective/visit state. Four phase evaluations per call bound same-tick work. Repeated invocation at the same persisted tick emits no additional action.
+
+scout-control/empire contains at most512validated controls keyed by native ID. Home demand identity remains separate from current room. Configured list changes reset its progress; exhausted lists use freshness-aware exploration. Native observation captures current-room facts even at a border, but only an interior, stabilized visit advances lastVisit. Danger interrupts idle/retry sleep, captures observation without inventing a stabilized visit, and selects a permitted adjacent escape. Unknown, hostile and stale decisions use the shared traversal policy; a dangerous origin can be left explicitly without exempting destinations from admission.
+
+Stuck observation and rapid room reversals trigger bounded replanning; route failure advances the assigned objective and temporarily excludes the failed room. Stabilization/escape failures rotate their candidate/exit selection. Fatigue and CPU/read-admission deferral do not consume route-failure retries. Unit errors are reported and checkpointed for fair retry; a failed unit or reporting sink does not monopolize the next limited slot. Oldest persisted lastTick wins within a room, including after reset. Corrupt/unwritable state is preserved rather than silently reinitialized.
+
+Native heartbeat/loss history remains in scouting/empire. The ordinary complete-creep retirement boundary removes dead scout controls after replay-safe loss reporting. Name reuse cannot retain old-ID controls. No runtime code calls private scout moveTo or native move directly: all movement uses the existing application dispatch, action arbiter, observed progress, path service and traffic flush.
+
+## Shared movement additions
+
+RoutePolicy.allowedRooms is an optional explicit corridor. The common room router excludes out-of-corridor destinations/costs and rejects a finder result that escapes it. Native scout routing first assesses the route through current map status, retained intel, diplomacy and temporary/repeated-loss exclusions, then supplies its accepted corridor to ordinary movement. The route and cost data determine a stable policy version; arbitrary tick changes do not invalidate unchanged paths.
+
+Command-specific avoid tiles are detached overlays on cloned shared matrix snapshots. They affect topology/cache identity, retain existing obstacles, and never contaminate another mover's base matrix. Threat zones use clipped Chebyshev radii and leave the current tile escapable. The common structure walkability rule preserves private foreign rampart blocking, correcting the old scout matrix's blanket rampart exemption. Goal selection for stabilization is separate from actual pathfinding, and failed goals can rotate.
+
+## Recruitment and configuration
+
+Population ownership is scout:<home>, using the shared demand/queue/body/dispatch machinery and the legacy single-MOVE recipe from spawner.js666–668. Recruitment defaults to RCL2 or later, matching shouldSpawnExplorationScout. The desired effective fleet target follows ordinary replacement timing, including permitted overlap near expiry; it is not a universal hard count of all living scouts. Explicit disablement cancels only this owner’s queued requests. Expired own requests are removed even when planning is paused. Incomplete assessments retain valid existing demand instead of treating unseen rooms as empty; known hostile assigned destinations do not create demand.
+
+The controller runs for visible rooms containing its owned scouts, even if those rooms are foreign or home is not visible. Home configuration is looked up through injected composition. Spawning remains owned-home work. Both activation flags default false.
+
+| Concern | Defaults / controls |
+| --- | --- |
+| Activation | scoutsEnabled=false, scoutSpawningEnabled=false, scoutCount=1, scoutMinimumRcl=2 |
+| Explicit objectives | scoutAssignedRooms=[]; ordered list, maximum64 canonical rooms |
+| Exploration maturity | scoutDepth=2, scoutExtendedDepth=4, scoutExtendedProgress=0.1 at RCL3; RCL4+ uses extended depth |
+| Discovery bounds | scoutExplorationReads=32, scoutExplorationRooms=32, scoutDemandInterval=10 |
+| CPU admission | scoutPlanCpuBudget=3 shared by recruitment and all fallback consumers for one home/tick; scoutControlCpuBudget=5 per current-room execution batch |
+| Entry and recovery | scoutStabilizeTicks=1, scoutStuckTicks=3, scoutOscillationLimit=2 |
+| Threats and routes | scoutThreatRange=5, scoutAllowKeeper=true with penalty, scoutMaximumRouteRooms=16 |
+| Exclusion timing | scoutHostileAvoidTicks=1500, scoutRouteAvoidTicks=1000, scoutDangerWindow=5000, scoutDangerLosses=2 |
+
+These are validated normal configuration layers, including room overrides. Discovery also honors backgroundEnabled, minimumBucket and backgroundCpuFraction. CPU guards are cooperative admission, not hard elapsed ceilings for an atomic room snapshot/path query. A zero control budget pauses unit control; a zero planning allowance pauses new discovery/assessment without cancelling standing valid demand. Disable spawning explicitly to cancel its requests. Danger/current-target movement is urgent execution, independent of optional discovery.
+
+Extended depth uses controller progress fraction rather than the legacy literal135000 total, retaining the current10% threshold while allowing future totals. Assigned physical-visit requests and automatic freshness-based exploration remain distinct: fresh observer/capture facts suppress automatic travel, while explicit room objectives can still request a physical visit. Legacy assigned-flag fallback and legacy creep-memory import remain ED-39/44 adapter work, not silently supported behavior.
+
+## Evidence and remaining scope
+
+New packaged scenarios are --scout-control (entry/visit/reload/static-hostile escape), --scout-spawn (real queue recruitment, early loss and replacement finishing the pending visit), --scout-default (control/evasion at default CPU budgets), --scout-explore (no assigned list, ordinary recruitment and fresh-frontier progression at default depth/budgets), and --scout-blocked (private foreign rampart blocks the first room; another assigned visit completes after reset). Each verifier requires zero reported unit errors and retains a one-time unrelated-state witness. The population tests assert the cap for their particular scenario, not arbitrary lifetime replacement pressure.
+
+During development the unassigned case exposed a fixture defect: the pinned native finder loads neighboring terrain before invoking roomCallback to reject it (driver/native/src/pf.cc room_index_from_pos). A sparse fixture therefore threw even outside the allowed corridor. The corrected fixture supplies a terrain halo, retains the failed evidence, and checks reported messages instead of accepting a caught error loop as progress. This changes test data, not production error classification.
+
+Final-source targeted --scout-explore passes110ticks with default3CPU shared discovery, default5CPU control and default depth2 at RCL2: E0N1 is physically visited at49, later fresh frontiers are selected, W0N2 is visited at105 and W1N1 at110, with no reported errors. The next objective is another depth2 frontier. Other targeted functional increments and the terrain diagnostic are archived in docs/evidence/scout-runtime-native.json with exact dirty/bundle/engine provenance. The full native suite now registers187cases; clean final-source aggregate qualification follows.
+
+Latest full units1,210tests/339files pass9.35s. Quality550production/483testfiles passes with zero Lizard violations. check:bundle passes, including CommonJS execution without Node globals. Whole-fixture samples include probe rows/cold start and are not ED-43 performance/soak proof.
+
+Remaining ED-28 work includes observer action ownership, delayed observation/refresh demand and vision budgeting, further scout/operator integration where the acceptance audit identifies gaps, plus current-source full native qualification. ED-39/44 own external flag/API and memory translation; ED-43 retains larger pressure, CPU/Memory and soak validation. No whole-role release parity or goal completion is claimed here.
