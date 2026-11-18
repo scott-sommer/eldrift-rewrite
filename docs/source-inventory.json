@@ -2861,6 +2861,17 @@
           "test/app/remotes/assessment/retained-costs.test.ts",
           "test/engine/remote-assessment-bot.ts"
         ]
+      },
+      "incrementalManagement": {
+        "owner": "features/remotes/management + app/remotes/management",
+        "status": "Explicit-candidate bounded assessment/portfolio/scoped lease cycle qualified; automatic discovery, adaptive capacity/recruitment, reachability feedback, production registration and full module parity remain open.",
+        "validationCommit": "93f8314",
+        "tests": [
+          "test/features/remote-management.test.ts",
+          "test/engine/remote-management-bot.ts"
+        ],
+        "evidence": "docs/evidence/remote-management-native.json",
+        "reference": "docs/remote-management.md"
       }
     }
   },

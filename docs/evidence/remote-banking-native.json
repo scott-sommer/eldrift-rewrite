@@ -20,7 +20,7 @@
       "scenario": "normal",
       "sourceEvidenceSha256": "b77ce8116f6953b8cd72c1546de49bf05dc7d6fc46a43d9c5b425221ca96dc4b",
       "rowsFile": "remote-banking-normal-rows.jsonl",
-      "rowsSha256": "121f1e69512cb2aad78b85d4d17a8f0e0e82cdf0c4f5052fc9b144df7fd9ac18",
+      "rowsSha256": "02a580b5f1dce3aed41600952d24f5b6ee17d15bc46f710ef1aa89f34aa45102",
       "rowCount": 160,
       "summary": {
         "credited": 48,
@@ -1112,13 +1112,15 @@
           64080,
           57464
         ]
-      }
+      },
+      "originalPhysicalRowsSha256": "121f1e69512cb2aad78b85d4d17a8f0e0e82cdf0c4f5052fc9b144df7fd9ac18",
+      "rowsNormalization": "UTF-8 LF; original physical digest retained (Windows CRLF). JSON row values are unchanged."
     },
     {
       "scenario": "sink-loss",
       "sourceEvidenceSha256": "6013c80dbd6b7d0b7503507377e6f6102ccea07eb5d9c25bbdd2ac87532b6cd1",
       "rowsFile": "remote-banking-sink-loss-rows.jsonl",
-      "rowsSha256": "b86f09a974707e24b0a23ba9120dbe7baabb1e86b4fe2e464f06c3910fbba835",
+      "rowsSha256": "6d98462c400d02091f0cb52a6855a204101cd3b3ea9dfe1e196be6951558efc5",
       "rowCount": 160,
       "summary": {
         "credited": 56,
@@ -2224,13 +2226,15 @@
           55408,
           25000
         ]
-      }
+      },
+      "originalPhysicalRowsSha256": "b86f09a974707e24b0a23ba9120dbe7baabb1e86b4fe2e464f06c3910fbba835",
+      "rowsNormalization": "UTF-8 LF; original physical digest retained (Windows CRLF). JSON row values are unchanged."
     },
     {
       "scenario": "gap",
       "sourceEvidenceSha256": "d1bbbd1a60c4b8e723e919f4d7a06e96bcfac4abc630d2734730bc6a1f00d1b0",
       "rowsFile": "remote-banking-gap-rows.jsonl",
-      "rowsSha256": "fb14d02e5e1032bb186c3e9983b94d10d866056918d1822f9ddd3f08a5b39a65",
+      "rowsSha256": "2c76b19b744e41d2591d3bc19ca1d7b63345239b9fcbe9aa0c61b6839099faf5",
       "rowCount": 160,
       "summary": {
         "credited": 20,
@@ -3316,13 +3320,15 @@
           50372,
           56108
         ]
-      }
+      },
+      "originalPhysicalRowsSha256": "fb14d02e5e1032bb186c3e9983b94d10d866056918d1822f9ddd3f08a5b39a65",
+      "rowsNormalization": "UTF-8 LF; original physical digest retained (Windows CRLF). JSON row values are unchanged."
     },
     {
       "scenario": "full",
       "sourceEvidenceSha256": "0b421245ababf9ffac1d01341e6297d9943e090657f0f7052358e1379b85bfb0",
       "rowsFile": "remote-banking-full-rows.jsonl",
-      "rowsSha256": "0485304380ad06ce80631e07331f30d643bf13f21fe1f8322650b3052b909fc8",
+      "rowsSha256": "2d6a3b09cbb6bf2b304bc508f9c54a3e045c45ac6291cd3ef5143dfe9a0ef63d",
       "rowCount": 160,
       "summary": {
         "credited": 48,
@@ -4414,7 +4420,9 @@
           62872,
           29428
         ]
-      }
+      },
+      "originalPhysicalRowsSha256": "0485304380ad06ce80631e07331f30d643bf13f21fe1f8322650b3052b909fc8",
+      "rowsNormalization": "UTF-8 LF; original physical digest retained (Windows CRLF). JSON row values are unchanged."
     }
   ],
   "initialFixtureFailure": {
