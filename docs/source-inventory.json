@@ -3775,7 +3775,7 @@
     "sha256": "1E94FF029CB29F63BC995C7D68EB572991944E4DB5586FFCCA46408FB83278E8",
     "physicalLines": 751,
     "reviewStatus": "Responsibilities reviewed through native control, movement, demand, loss and typed assigned-flag fallback; public per-creep flag/memory adapters remain ED-39/44",
-    "implementationStatus": "Core native scout runtime and typed flag fallback implemented; clean188 baseline and targeted140tick fallback qualified, combined189 qualification pending. Public controls/memory/release gates remain explicit.",
+    "implementationStatus": "ED-28 core native runtime, demand, movement, loss handling and typed flag fallback qualified by clean189-case8fef163; public per-creep controls/memory and release gates remain ED-39/42/43/44.",
     "evidence": [
       "docs/intel.md",
       "docs/evidence/scout-lifecycle-native.json",
@@ -3783,7 +3783,10 @@
       "docs/scouts.md",
       "docs/evidence/scout-runtime-engine-suite.json",
       "docs/evidence/scout-runtime-clean-native.json",
-      "docs/evidence/scout-fallback-native.json"
+      "docs/evidence/scout-fallback-native.json",
+      "docs/ed28-acceptance.md",
+      "docs/evidence/ed28-engine-suite.json",
+      "docs/evidence/scout-fallback-clean-native.json"
     ],
     "plannedIssues": [
       "ED-28"
@@ -4040,7 +4043,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "1a539c24fa0ad1a1fc0f7054fc304ca06273ed63",
-      "required": "Combined189 native qualification and ED-28 acceptance audit; public per-creep assignedFlag/console and legacy-memory translation ED-39/44, release pressure/soak ED-43",
+      "required": "Public per-creep flag/console compatibility ED-39, legacy-memory translation ED-44, capability-matrix closure ED-42 and release pressure/soak ED-43 remain open.",
       "tests": [
         "test/features/intel-traversal.test.ts",
         "test/features/intel-room-gap.test.ts",
@@ -4056,9 +4059,9 @@
         "test/adapters/flag-targets.test.ts",
         "test/engine/scout-fallback-bot.ts"
       ],
-      "status": "Native scout control/demand qualified; not whole-role release parity",
-      "validationCommit": "6380e92cc8a53429a523006e43b6b9bfa8a0d725",
-      "fullNativeSuite": "docs/evidence/scout-runtime-engine-suite.json"
+      "status": "ED-28 runtime qualified; not whole-role public compatibility or release parity",
+      "validationCommit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+      "fullNativeSuite": "docs/evidence/ed28-engine-suite.json"
     }
   },
   {
@@ -5819,7 +5822,8 @@
       "docs/logistics-acceptance.md",
       "docs/logistics.md",
       "docs/observers.md",
-      "docs/evidence/observer-native.json"
+      "docs/evidence/observer-native.json",
+      "docs/ed28-acceptance.md"
     ],
     "plannedIssues": [
       "ED-12",
@@ -6479,8 +6483,8 @@
           "test/app/native-observers.test.ts",
           "test/engine/observer-runtime-bot.ts"
         ],
-        "validationCommit": "d215833",
-        "fullNativeSuite": "docs/evidence/observer-engine-suite.json"
+        "validationCommit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+        "fullNativeSuite": "docs/evidence/ed28-engine-suite.json"
       }
     }
   },

@@ -147,3 +147,8 @@ The scout increment is now qualified by the clean187-case6380e92 suite (694.37s)
 ## Final ED-28 runtime increment
 
 The clean188-case d215833 observer/scout run passes693.90s and is archived in docs/evidence/observer-engine-suite.json. The source-audited scout assigned-flag fallback is now implemented as an optional typed controller port with native configured goals, shared risk-aware movement and bounded population demand. Its targeted140tick native scenario and1238unit tests pass; see scouts.md. Current-source189-case combined qualification and the final acceptance audit remain pending. Public console/memory adapters and release pressure/soak remain their later ED gates.
+
+
+## Final ED-28 audit
+
+All189packaged native checks pass717.88s on clean8fef163, with per-case clean provenance/status/digests verified. The four ED-28 runtime criteria and source integration scope are audited in ed28-acceptance.md; full report ed28-engine-suite.json and complete clean fallback evidence are under docs/evidence. Default/late-reset stamp planning commits1207/1297 with equal plans. The runtime acceptance audit is supported; public adapters, specialist/remote missions and release/performance gates remain their planned ED issues. The whole rewrite goal remains active.

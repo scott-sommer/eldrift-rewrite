@@ -59,3 +59,8 @@ This increment supplies the shared observer boundary. ED-35 still owns power-ban
 ### Clean combined qualification
 
 All188packaged native engine checks pass in693.90s on cleand215833; every case's source provenance was checked for that commit and clean status. docs/evidence/observer-engine-suite.json archives the combined run; docs/evidence/observer-clean-native.json preserves the complete clean observer case. This qualifies the observer boundary described above. ED-28 remains open for the source-audited scout assigned-flag fallback before final acceptance; public console/memory adapters and later release gates remain separate obligations.
+
+
+## Final ED-28 audit
+
+All189packaged native checks pass717.88s on clean8fef163, with per-case clean provenance/status/digests verified. The four ED-28 runtime criteria and source integration scope are audited in ed28-acceptance.md; full report ed28-engine-suite.json and complete clean fallback evidence are under docs/evidence. Default/late-reset stamp planning commits1207/1297 with equal plans. The runtime acceptance audit is supported; public adapters, specialist/remote missions and release/performance gates remain their planned ED issues. The whole rewrite goal remains active.

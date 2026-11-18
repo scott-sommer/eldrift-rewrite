@@ -1,0 +1,3985 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-18T06:58:09.844Z",
+  "milliseconds": 717880.4079999999,
+  "activeScenario": null,
+  "results": [
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 960.764,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hwEOET\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--reload",
+      "milliseconds": 1037.2007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lXomzS\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--actions",
+      "milliseconds": 1029.7705,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hx8rvj\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stations",
+      "milliseconds": 953.3316,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uaaJid\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining",
+      "milliseconds": 1112.5922000000005,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NO10rr\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-storage",
+      "milliseconds": 1088.3564999999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mctW0q\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-work",
+      "milliseconds": 1080.7921999999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hXisqa\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-mining",
+      "milliseconds": 2263.0024999999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XrtQQ0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-mineral",
+      "milliseconds": 1555.1897000000008,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6M8t91\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-replacement",
+      "milliseconds": 1528.0782,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ThDaUU\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-saturation",
+      "milliseconds": 1355.7492000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4aPSIi\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--extractor-fault",
+      "milliseconds": 1190.8102,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UokQhc\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mining-interrupted",
+      "milliseconds": 1123.9914000000008,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Vt3BJF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--specialist-mining",
+      "milliseconds": 1143.4416999999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Vy08Ut\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-depletion",
+      "milliseconds": 1080.6645000000026,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-21FXq1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-capacity",
+      "milliseconds": 1085.3222999999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-n6F7k4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1172.0584999999992,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oAIdZF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--spawn-contention",
+      "milliseconds": 1056.3703999999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Kwly2s\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--tasks",
+      "milliseconds": 1018.3306000000011,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HKwiRl\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work",
+      "milliseconds": 1035.3382999999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xgy0gX\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work-selection",
+      "milliseconds": 1021.7629000000015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Ta2I0M\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--room-assessment",
+      "milliseconds": 1542.4593999999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EzcMxd\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--intel-observation",
+      "milliseconds": 1350.3207000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Zqs7Lz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--intel-capture",
+      "milliseconds": 1439.0491000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-v9KVMT\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--observer-runtime",
+      "milliseconds": 2203.535500000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tzEKah\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-lifecycle",
+      "milliseconds": 1518.492500000004,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GwtzWQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-control",
+      "milliseconds": 1900.5594000000056,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7NfiM0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-spawn",
+      "milliseconds": 5959.715400000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hwQupT\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-default",
+      "milliseconds": 1956.0548000000053,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-v033XN\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-explore",
+      "milliseconds": 6125.6103,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-8x5UKF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-blocked",
+      "milliseconds": 5052.059699999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JET0AO\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--scout-fallback",
+      "milliseconds": 7499.199200000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-l0EF1D\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--layout-placement",
+      "milliseconds": 1279.0976999999984,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VYhmOj\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-route-resume",
+      "milliseconds": 1081.859199999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1iPXQI\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-route-reload",
+      "milliseconds": 1258.7030000000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hnnPaC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-commit",
+      "milliseconds": 1265.3234999999913,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yLIGRI\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--standard-draft-resume",
+      "milliseconds": 1798.7331999999878,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aeBRk7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--constrained-draft-resume",
+      "milliseconds": 3653.2808000000077,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iaoaUg\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-job",
+      "milliseconds": 8967.813999999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7eXDLz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-cpu",
+      "milliseconds": 9624.065000000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-r3XcRt\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-runtime",
+      "milliseconds": 1775.0829999999987,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-KSEyUA\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-budget",
+      "milliseconds": 3928.1586000000098,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-keONHu\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--planning-room",
+      "milliseconds": 33878.8312,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iQmGkQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction",
+      "milliseconds": 1121.1621000000014,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4Ba59i\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-runtime",
+      "milliseconds": 1105.8831000000064,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-rSqaHm\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-lifecycle",
+      "milliseconds": 2570.517300000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xZRkBF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-budget",
+      "milliseconds": 1704.6227999999828,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hJWaT6\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-remote",
+      "milliseconds": 1078.1698000000033,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XRtvqv\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--construction-retry",
+      "milliseconds": 1280.9538999999932,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ez9pes\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--defense-cut",
+      "milliseconds": 10286.701000000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lkVKAi\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--defense-cut-reload",
+      "milliseconds": 9186.987599999993,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ucLCq8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-draft",
+      "milliseconds": 6058.050199999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IkYuAr\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-room",
+      "milliseconds": 13195.545799999993,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XXtsGY\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--auto-stamp-room",
+      "milliseconds": 23437.018500000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VM7GAS\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--irregular-stamp-room",
+      "milliseconds": 12489.016400000022,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6NpnTh\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-failure",
+      "milliseconds": 14540.405599999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RPOEG8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-budget",
+      "milliseconds": 57482.2102,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tE9gfZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--stamp-late-reset",
+      "milliseconds": 65573.82050000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2drFmd\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work-dependencies",
+      "milliseconds": 1097.3994999999995,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vTWgmC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-runtime",
+      "milliseconds": 1039.0825000000186,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-KIn1UB\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-position",
+      "milliseconds": 1091.3366999999853,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-flZ7up\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-position-wide",
+      "milliseconds": 1001.0669999999809,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-g6xXMM\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-population",
+      "milliseconds": 1773.8689000000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UGIWOq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mixed-workers",
+      "milliseconds": 1073.1453999999794,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ojPq7b\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--fortifier-work",
+      "milliseconds": 1204.706600000034,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6bmOAA\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--legacy-fortifier",
+      "milliseconds": 1199.294899999979,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tVofeV\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--art-region",
+      "milliseconds": 1633.171399999992,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PnrHIR\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--art-builder",
+      "milliseconds": 1310.7603000000236,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zeP2b4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--energy-recovery",
+      "milliseconds": 1103.649700000009,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CxaqGJ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-economy",
+      "milliseconds": 5932.958900000027,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6fb2cx\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-scavenging",
+      "milliseconds": 1932.8166000000201,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WZAHN1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-scavenger-spawn",
+      "milliseconds": 9386.200699999987,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tfkIGG\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery-banking",
+      "milliseconds": 4940.582300000009,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ri8rFS\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--distributor-recovery",
+      "milliseconds": 3292.6876000000047,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RLhveT\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--automatic-support",
+      "milliseconds": 4682.445400000026,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jKapQW\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-replacement",
+      "milliseconds": 35296.72470000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-atUOu8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-sponsor-loss",
+      "milliseconds": 2592.524000000034,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IdgLde\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-terminal",
+      "milliseconds": 1642.4134000000195,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uN7m58\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-terminal-full",
+      "milliseconds": 1621.66459999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CWMLRz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-target-loss",
+      "milliseconds": 1684.82779999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ehxrNV\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-fleet",
+      "milliseconds": 11353.861700000009,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-cTEkuK\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-fleet-loss",
+      "milliseconds": 1259.9177999999956,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9997Sq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-cycle",
+      "milliseconds": 2225.526499999978,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jv6WKp\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-cargo",
+      "milliseconds": 2019.0364000000409,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-u6uRBQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-cargo-hold",
+      "milliseconds": 1286.8485000000219,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FqtVT5\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--supply-master",
+      "milliseconds": 2233.3041000000085,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7rihDQ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--ground-recovery",
+      "milliseconds": 1056.758199999982,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-M1lu6Q\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--ground-delivery",
+      "milliseconds": 1082.011200000008,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yjPACz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-supply-transport",
+      "milliseconds": 2589.8596000000252,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-sFQuDU\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--support-transport",
+      "milliseconds": 2882.0616000000155,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DJkNwx\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--support-loss",
+      "milliseconds": 1348.1023000000278,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wHjrtl\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--support-reserve-change",
+      "milliseconds": 2344.479799999972,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fHbgtC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-service",
+      "milliseconds": 9367.333400000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HeeGGv\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--structure-actions",
+      "milliseconds": 977.1652999999933,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PIgl3y\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-bootstrap",
+      "milliseconds": 6674.585800000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JlfdFD\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-handoff",
+      "milliseconds": 1743.4066000000457,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CnUSNt\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-master",
+      "milliseconds": 4400.6973,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-I9u1he\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-layout-loss",
+      "milliseconds": 6631.701100000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mpedf0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-storage-loss",
+      "milliseconds": 6906.167399999977,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YcdILZ\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--master-loaded-loss",
+      "milliseconds": 5493.032999999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xtssvu\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-master-contention",
+      "milliseconds": 1352.8540000000503,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gtj9C9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-fleet",
+      "milliseconds": 8648.675699999963,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fC4HT0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-fleet-loss",
+      "milliseconds": 1065.2706000000471,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7jzXl0\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-loss",
+      "milliseconds": 8687.769100000034,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3zdbpV\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-harvest",
+      "milliseconds": 8439.123000000021,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Sr0BPb\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-assignment",
+      "milliseconds": 1412.6906999999192,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZZIIHp\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-salvage",
+      "milliseconds": 1456.1681999999564,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-rdSZrE\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-salvage-disabled",
+      "milliseconds": 1609.8721000000369,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oHfhCi\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--bootstrap-salvage-depleted",
+      "milliseconds": 1756.9579999999842,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Fmt1z9\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-bootstrap",
+      "milliseconds": 4232.309800000046,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-K9bu5R\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-rebuild",
+      "milliseconds": 29119.46199999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-N0UHHF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-cycle",
+      "milliseconds": 2642.589099999983,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VHI70Z\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-claim",
+      "milliseconds": 2480.9944000000833,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BXwEa4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-room",
+      "milliseconds": 1800.375400000019,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RXKSi1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--upgrade-room-shortage",
+      "milliseconds": 1789.5141000000294,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6j7nka\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-cargo",
+      "milliseconds": 1531.060999999987,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1ZiY8l\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-cargo-drop",
+      "milliseconds": 1313.860800000024,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Y0BSP6\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-cargo-hold",
+      "milliseconds": 1170.060599999968,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fpQe0S\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-collection",
+      "milliseconds": 1191.8978000000352,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-K4kcyg\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner",
+      "milliseconds": 1410.5093999999808,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Wk5o49\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner-automatic",
+      "milliseconds": 1319.2759999999544,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-pPvzLE\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner-replacement",
+      "milliseconds": 1347.4455999999773,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NSPXuk\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-miner-travel",
+      "milliseconds": 2407.5920999998925,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-p4oUdX\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-pickup",
+      "milliseconds": 1064.1922999999952,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NtuqeK\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-builder",
+      "milliseconds": 1068.7943000000669,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gIrVl2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-fortifier",
+      "milliseconds": 1210.027699999977,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7YvCYM\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-upgrader",
+      "milliseconds": 1223.8636999999871,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CdvMxq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-upgrader-v2",
+      "milliseconds": 1154.2743000000482,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-8WTZSe\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-hold",
+      "milliseconds": 1031.5598000000464,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-q44nNd\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--worker-profile-flag-hold",
+      "milliseconds": 996.54720000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-v4VY5I\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--resources",
+      "milliseconds": 1015.7256000000052,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yzOw9m\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--transfer-confirmation",
+      "milliseconds": 1138.9349999999395,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qcI99B\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--hauling-cycle",
+      "milliseconds": 1333.4412000000011,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WxjdHq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--energy-logistics",
+      "milliseconds": 1056.3649999999907,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PCHUPq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--reclamation",
+      "milliseconds": 1116.6140999998897,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VVOrTF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--work-supply",
+      "milliseconds": 1207.8689000000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-OUD3xI\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--tower-supply",
+      "milliseconds": 1170.0783999999985,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Y0XA4v\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-supply",
+      "milliseconds": 993.2153999999864,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ImmGoI\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--controller-links",
+      "milliseconds": 985.6609999999637,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3Yudj1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-contention",
+      "milliseconds": 1012.8375999999698,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jeB1Uo\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-service",
+      "milliseconds": 1071.7324000000954,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-dGq7n2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--link-reversal",
+      "milliseconds": 1164.2641000000294,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZTUkzz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-transport",
+      "milliseconds": 1174.3342000000412,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kldydF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--courier-death",
+      "milliseconds": 1085.5559999999823,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-0vJdEw\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--cargo-death",
+      "milliseconds": 1212.0139999999665,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mgrK0g\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--storage-loss",
+      "milliseconds": 1050.5060000000522,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aQeE7W\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--energy-banking",
+      "milliseconds": 1061.1680000000633,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7tSlhs\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--banking-fallback",
+      "milliseconds": 1065.1324999999488,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5cu6le\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--banking-demand",
+      "milliseconds": 1167.9353999999585,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hUpXBO\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-fill",
+      "milliseconds": 1044.969299999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iR57Cj\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-guard",
+      "milliseconds": 1061.186699999962,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FQfX1X\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-drain",
+      "milliseconds": 1108.7123000000138,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kDy5Rf\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--store-mineral",
+      "milliseconds": 1049.513500000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-F1pZt8\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-reload",
+      "milliseconds": 1324.7728000000352,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MIYPVp\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-recovery",
+      "milliseconds": 1073.886999999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vtWgZY\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-recovery-fallback",
+      "milliseconds": 1056.638099999982,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EW3S0L\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--courier-bootstrap",
+      "milliseconds": 1571.3064000000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Y2Q18B\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--courier-routes",
+      "milliseconds": 990.733499999973,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-eRqTDD\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--mineral-routes",
+      "milliseconds": 969.6830000000773,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BpahiA\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-resilience",
+      "milliseconds": 39368.11090000009,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zveePw\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--colony-economy",
+      "milliseconds": 4169.19160000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-n199B4\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--empty-source",
+      "milliseconds": 1223.8011999999871,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ajVUeC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--cargo-recovery",
+      "milliseconds": 1123.6797999999253,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UfiO3B\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--expiry-recovery",
+      "milliseconds": 1135.483899999992,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IrU0CK\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--expiry-delivery",
+      "milliseconds": 1121.8148999999976,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nShOrd\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--unknown-recovery",
+      "milliseconds": 1166.422499999986,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EEswTT\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--unknown-delivery",
+      "milliseconds": 1246.394900000072,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2zKMWn\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--missing-sink",
+      "milliseconds": 1156.6321999999927,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UNPAGa\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--pickup-admission",
+      "milliseconds": 1142.2865999999922,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-l7Ktqb\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--remains-supply",
+      "milliseconds": 1237.9435000000522,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HtCoQ1\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--drop-supply",
+      "milliseconds": 1214.5518999999622,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9mpAjF\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--large-drop",
+      "milliseconds": 1228.4861999999266,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EZHCjz\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--preservation",
+      "milliseconds": 1345.356700000004,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uoS1RH\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--full-sink",
+      "milliseconds": 1223.0252999999793,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yZ7pDq\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--preservation-decay",
+      "milliseconds": 1284.2723000000697,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-H0TJhk\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--source-loss",
+      "milliseconds": 1303.3327000000281,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xkzdKT\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--movement",
+      "milliseconds": 1149.1186999999918,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-02sTb7\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--maintenance",
+      "milliseconds": 1152.402599999914,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hSLlU2\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--retirement",
+      "milliseconds": 1244.0566000000108,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lXkvai\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--paths",
+      "milliseconds": 1172.2727000000887,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WMNFAo\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--recovery",
+      "milliseconds": 1230.9930000000168,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PKLErC\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--traffic",
+      "milliseconds": 1115.5611999999965,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-u3O4AP\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--exits",
+      "milliseconds": 1192.8289999999106,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6wV7AI\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--navigation",
+      "milliseconds": 1221.5123000000603,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MNTE8z\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--unseen",
+      "milliseconds": 1279.0291000000434,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-pz4HEy\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--occupied-exit",
+      "milliseconds": 1234.142300000065,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1P2EnK\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--service-recovery",
+      "milliseconds": 1495.9827000000514,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Wkezwo\\evidence.json",
+      "expectedFailure": false
+    },
+    {
+      "scenario": "--inject-error",
+      "milliseconds": 1028.1831999999704,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-LotTcy\\evidence.json",
+      "expectedFailure": true
+    },
+    {
+      "scenario": "--inject-timeout",
+      "milliseconds": 1819.8789000000106,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YTldaY\\evidence.json",
+      "expectedFailure": true
+    }
+  ],
+  "qualification": {
+    "runtimeCommit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+    "allCasesClean": true,
+    "legacyBaseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+    "legacyModulesHashVerified": 60,
+    "cases": [
+      {
+        "scenario": "packaged-smoke",
+        "evidenceSha256": "359945d4c7aecbacbcdf45be8a659391773d9d7762d19fca8bd3d505e3befd17",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "62ec706563a353d193d17dc172bf1b4e8687325ed1f8555a449385f6079da9b5",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--reload",
+        "evidenceSha256": "cf95d7e20ed5e0c1705980554a68cd181b3d93583284926a68374b02223a441c",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "62ec706563a353d193d17dc172bf1b4e8687325ed1f8555a449385f6079da9b5",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--actions",
+        "evidenceSha256": "2698e5f3fb4dce3f8217498d8ddcaf792f579d05c371797f23369915de9752cf",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "71f6af1e7c610731cb197aecce61ecf3e6db82913464ad9bcc4267688e270484",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--stations",
+        "evidenceSha256": "5e6138ebb4addd52a6f0e60416448dbf56de4168aa0ad021d2667a73eca30890",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "74e767d1ae57bd2757dd5e3207a5439a01c6e46205ecb891e63d371a9d687802",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mining",
+        "evidenceSha256": "e587874e9a1281a5f2d92a98ea1a573fbae6e627f3b8309903e939ae1a7faac6",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "6c63ef87da8d9eb66712a767e34c753d8203b8646dd79e506bdc0841ec12de5b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mining-storage",
+        "evidenceSha256": "995beb9d806eff82efedbe6ab55a458ed8dab57739db6fbd0c3ef482f5ef12dd",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "6c63ef87da8d9eb66712a767e34c753d8203b8646dd79e506bdc0841ec12de5b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mining-work",
+        "evidenceSha256": "29d724d1fbb3fd560f34c84b4496774db7bccf096a2fd39b8ac23363afea6569",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f17d58d922c84ef5868c83846a590fdc4bc7d1e35d75df27606b007ddfd933bb",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--colony-mining",
+        "evidenceSha256": "0082cac3cb85ce049cb9ddc4655f414024aed57c8bd4524c3b3ddb66edd01f35",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f51c5f7c5fb2c508241c9bd045ad85c9881539981ae958292aae75563c43aae2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--colony-mineral",
+        "evidenceSha256": "2c657456ec13353f78cfb3f69b3eed53180dc11adb52d1ab4f2d2763b5b60697",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "e12dd858deb6bf3a68534b51620f1f0fbcd5b406463a3a6b4dbbf90a647461a3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mining-replacement",
+        "evidenceSha256": "e8f1c6c493abe75d70c889160f1ad2e444e2be86366b80740df3c3a2dced93a5",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "43e89a27e38b4db82c97062d0ec0707e1bbc73e3c2b5cc0e41ce15c45770204d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mining-saturation",
+        "evidenceSha256": "1dfb8ce78b09fe3a28c8f7fdd9603c37ef1cc9bc51afaff391c42fb26533ab47",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "475a0405559a02f6e21613346cb7dcdbf3c72edda4dba6e2efb61eeadac197c2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--extractor-fault",
+        "evidenceSha256": "d6ef9bab6196b92622377fcb4a628f4e0619a5edffeaccbf9e334f5c819ab2d1",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fc6f2945496dad937ef8716875ec0dc576335e06c31d7c2baf5e8f100d4354f1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mining-interrupted",
+        "evidenceSha256": "603c9b24621e6dcef747be625d912a18c3d973d622faf13828473f6604b40966",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "6c63ef87da8d9eb66712a767e34c753d8203b8646dd79e506bdc0841ec12de5b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--specialist-mining",
+        "evidenceSha256": "e74bc52e7902450f0df27a00b01f336fb44d4ae93a0cafae7a8df015e87e9a56",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "0c4b27be9b7d2327c78900a2f143f15fd4eb1aba1d778b98938d417de8e88ee3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-depletion",
+        "evidenceSha256": "5dca455b2bd40c5ff7dba835cf88a0b900e3994733eb2b8fd70d0231ecca6a8d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2d54346c928d3935e293081edb912463e82ad4f7bcf0c7d60919e185046661ef",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-capacity",
+        "evidenceSha256": "8ae954f508ffe56ef0c90c4b89de4658ff732524ebea48e6ae431f72745e5415",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2d54346c928d3935e293081edb912463e82ad4f7bcf0c7d60919e185046661ef",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--spawn",
+        "evidenceSha256": "986d0825ecb18fb483ea79437e9741fa34296b774766630cdbbd175891551981",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "a89ad316a51b5a28f8d996e64e3d04b8ad7bbae689436fab9167cf1eb95b1506",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--spawn-contention",
+        "evidenceSha256": "19dc0216ecae6d75fe458ae481358dbe0c9e7e2cf376a126435450fd9601c447",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "848d96aecd51369266b0a40bbc5787742c1fdaf7d1ceeb640826448c50e2ab84",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--tasks",
+        "evidenceSha256": "eb5127bc0cbc26dd02d87158b558bfda515c57705eb5699e1080c931dccf5943",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "eba7b973c54b9d04c58f9895a1087a9ce812d01ab65ebb5cbeef264ef39d341b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--work",
+        "evidenceSha256": "cca2220b38c44cb9f51d0e7f047cc23a4ce96f30e64840a09a16351d04b38316",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "a70f3e5bc0dc9fa6e5eb9e4a87a7c7eac9cb72ce0c1818a773353a570efffbf0",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--work-selection",
+        "evidenceSha256": "c52b26eacc6a00562fb24c66f1b1c626aee5e019db4033db571187193ce381e9",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "015dd457b7bc98808f8310797a6886051919892abc2a6fffc151afe27ca7f62a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--room-assessment",
+        "evidenceSha256": "cd784e700e199740a5c839e817b6ceeada0e7ec2ae34a06d1bd5fc622af6589d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "a6d3e61aa42bf8eb5fb0bee5121517a54407d1de33d30ef34b4dece7c997ea8a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--intel-observation",
+        "evidenceSha256": "bec7edaf3b63bb346c54f78b4ee503a0e91064be74e1879ab5c1722ee5068bb5",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "28041d876c18518bbe1f6f35573155b1389632f86094ecf7acedec19a241b5a9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--intel-capture",
+        "evidenceSha256": "1c9df1cddb32236350296c2808f8f07c48d673987103d92c75f840bbf9f51488",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "006f41c41ff63c224f98b64a0f89b47b1e56fe64ede44bb7db752ad8ffa11b1e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--observer-runtime",
+        "evidenceSha256": "c6beac5845e2556952dd44032ad87911d9c0b27190bcd90f691ab507d3cb1517",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "71926d0003dee702433631a852766a6b6387d0490e074d397f05a50e5f203c63",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-lifecycle",
+        "evidenceSha256": "b7c43fb47cdf215793a95c13dcf29e14b55ac7cd707a842a922f7a63b76012c7",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "646c2398c57534301ac76ca8df85931ffa8b120889bb9f43ff6584cd2474de6c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-control",
+        "evidenceSha256": "0cd39579a7f4d38c8046cbffaee3022a0f651e088bfe46de1351ada91f54bdbf",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "b405b1398fb6d461174e33d18a572a7d8acada211d759276d910256237436541",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-spawn",
+        "evidenceSha256": "e15348a24f4c7996a7c2e2c48108f6400bd69f0432fbcd43c940cfa31a41609c",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "c34a700bed2edae6e893f944847a6879f3482fa6c3de071689ca1366903fa110",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-default",
+        "evidenceSha256": "0defa45f52e9a45ed3ec580e4d781f4a9be6165c57f374e002f3292a705ba2f9",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "4eb63d8cd93ef867ae02632fb608957b7f6596d7712f9d487508cba13c56459f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-explore",
+        "evidenceSha256": "57508e4e063696d33351c69624fbb83bfbe5f9c9e10fd86c3860bea53655326f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "3d6152a8a40dbc7c7ccf112eb587a43eff3b810a357c67a9342022636f994f32",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-blocked",
+        "evidenceSha256": "7ec4fc15030231aba750a0d85e1008674ca2f224d5fc236e7209926e52090603",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "7399988cfbe7da402f6a6c0640de267cb40243f360e8b1942b9ef2479c99e4b6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--scout-fallback",
+        "evidenceSha256": "1c42bdc1ef6c53e15f4e2b43b53b1d8f3ce081373f8618c3a98d84319874f2dc",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "74058e694e63b467fa3ac3dfa38eff5eca9f7a56d5867686b509a71c7ea8a77e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--layout-placement",
+        "evidenceSha256": "c5d3b9d09947772bb6726945db1d46c4a651199eb542700af891951393c214ea",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "ba4a8efeec88a6664b632fb2c654f406238d3d637be542b42aa3f3793eeb20f3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-route-resume",
+        "evidenceSha256": "2ff99113b0c408ea61b8573109e87bdfe495faf66b6f46563b551d4ab182fc1f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "deee4e554bdb7a0d976757bc6c296efc281fe67d1dccaac0fd77ff8518ba39ff",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-route-reload",
+        "evidenceSha256": "8ce24b6a4729391b06fb66a45e66a29bb75d80b3c0546048a28734f55c5b498a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "deee4e554bdb7a0d976757bc6c296efc281fe67d1dccaac0fd77ff8518ba39ff",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-commit",
+        "evidenceSha256": "155568b3f93dfa105140a642d9c9e3e9b7d1246b4b93eb51472cbd0a1b353dfb",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "165b7aef799efda70fde3aac2a202522a5b69f125f7001e27c2b04c66adcc1d4",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--standard-draft-resume",
+        "evidenceSha256": "4f43a4f662a82233a999cf1491560aa455fea2bf4afbf711c380f2647788e544",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "8b0811bab16aa43e2598b043d6773e4581e5bcbebc6b51e71e98640e85110e28",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--constrained-draft-resume",
+        "evidenceSha256": "4e7720a0dc6efba29202edbe7cfb804eff4b28956dc44710adc8272f6be04e75",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "185e39377f6dd9e9b6ce5e2e0c3a301ca3560a6e6b9c5bae4b3adf0abd621e92",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-job",
+        "evidenceSha256": "ee8a89e3ea2740830fb06c9696575abaaa50fdcf9d3f22b8876d1d4cf476bb38",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "ad664bcb3902280b5c9861f2fb6a78770456e947cf858d8fb3f9d14c11abfb7d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-cpu",
+        "evidenceSha256": "e3afb324f5b78f985d891186375772ee84b1b042d19ec1f541d83e64332fde95",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "59b5c5c0fd51736ce122794ce49359df7651bed37c0fe2fb57a66a7ee06deafa",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-runtime",
+        "evidenceSha256": "3f192100c07d8c8818e210d82a7150eb1f0aa89eb2f9068aa66d9422d03951a4",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "81eea16a61613a8ef3433ef599bb691047006fe9283a9151d039dd5097d1fe5c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-budget",
+        "evidenceSha256": "f529c1b3c3df65466cfb3ad3157a2e6385b445ad23e10d88b8997e0243a708a7",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "36c4c4bb2f26882a04d4372e8fe8800582aed4d7c902ced6ab9ff7e8263381fd",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--planning-room",
+        "evidenceSha256": "3e28e135af8ce57e769cfc1d10dfeb1cc8b3db3fa377899ffcf303156ff11fc6",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "80a9bd92222c0fa9f9f5b34b61328ec8a9b972ac6ec718ac08749343ccbc13c7",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--construction",
+        "evidenceSha256": "0c9f5277025da3e8033c034eaf777b390ae01d110660ce1e59527d374340b216",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f9deb10b7ca3b386840fd31d06b5b4a501b0687ecd39d29eb71b214fddd7ba28",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--construction-runtime",
+        "evidenceSha256": "fc95e6d2a37faafdceffad04cee8065a84b40330bb0fc08cbc1d66b179c8e4d9",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d4b29afb014b32c1081faa104ed8d20b3b868b602a6c03f9d825fe152a9320f6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--construction-lifecycle",
+        "evidenceSha256": "93f39684859c3adcef64b190d54734cf29bb98d923090ac1509d92a774252562",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d4b29afb014b32c1081faa104ed8d20b3b868b602a6c03f9d825fe152a9320f6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--construction-budget",
+        "evidenceSha256": "ebcd709346bfeb940a66a9e519ebaf56b1a23e98499ae17a70c1a7e9000f9430",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "9acf4ae4f54b18df26c740c72e479577eb756f4c0bc6669eec1ddfd07026b449",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--construction-remote",
+        "evidenceSha256": "007ccda40dfcdd8b92d106f00c74f3ff36e2013f3cbfcc1aef842feb5ed2332d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d89a4938bf4848ccba45d17345dd3e3d4ca4001b78090663057e953f12958d47",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--construction-retry",
+        "evidenceSha256": "687472f6c9282088b2506ba5a7e72291de4ff7d4767a3d0686f416b07ad23696",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "c6ab752bb88aec6b0961f6213e701cd7093ebc4bd76ae4101f16de1ac69822e3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--defense-cut",
+        "evidenceSha256": "b7b625772c121e1c6695e04f9bb6545e70077e3a155f6410c48b369d78e060ab",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1a3f734895b33ccec0ce697920571cfb8b24676f53f9beef00a31d9590f1d9d1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--defense-cut-reload",
+        "evidenceSha256": "1c0f5b859fdba80f4992058a2e277e5d2091e4f4b8040e8a4bc45a8b5f8492f2",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1a3f734895b33ccec0ce697920571cfb8b24676f53f9beef00a31d9590f1d9d1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--stamp-draft",
+        "evidenceSha256": "dce8545b7afcf6f09627b1374310b323844ae970d73a3301cfc1b5773471cb87",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "0fadc1475f1243e383a2e5bf4fe82ad3ff165a7d512b02bdddc4244c9769403b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--stamp-room",
+        "evidenceSha256": "8c5a4abcb99b7643caf1bb44524fbaab18c387bf465ab9b1f470af36d844f92c",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d9f95a92dcf0d2bb1acea657af613067917ea6934af299db1f4cac3b311adca3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--auto-stamp-room",
+        "evidenceSha256": "b045554ecce9ef987182f2574279a9e67525a7ef1a0d3ffbf7b24091f795adb3",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "55fe42f8da856fad1a2dec97f622781badf3cb02f9a99efe4fd764bf692cb1bf",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--irregular-stamp-room",
+        "evidenceSha256": "1ccf0068d283299f7e66b8337c68a1e46c5037532077d1e197f66d177ec47a38",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d9f95a92dcf0d2bb1acea657af613067917ea6934af299db1f4cac3b311adca3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--stamp-failure",
+        "evidenceSha256": "3fca81e3069dbcb95db1b2e721ea2e95748cb41b9b3bfa90ae2a95c0502f8b91",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2ac41382f2808cde6ac6cc6fc18926f14a1e9953aab39a2543d5f1fac25b8884",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--stamp-budget",
+        "evidenceSha256": "e094844893445800c3455244bfe2a04683c4d32cc005a5843b045b447aa33f39",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2c883088735f14d9be2107089046590e7c085b74242f9012cca465d7eeb2201a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--stamp-late-reset",
+        "evidenceSha256": "668654ad131df7343ecb47c2a8da3e1c618f773a39bcc5f3cda2745b9b2b3b99",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2c883088735f14d9be2107089046590e7c085b74242f9012cca465d7eeb2201a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--work-dependencies",
+        "evidenceSha256": "c6f00de21cb30f0a6da2e529b30c4c4f333464169423c74e079d9c26aed85331",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "383ccac60ce9718abe5c35db4c5c51aea76fff0c910c383d6166733ad0c54bc2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-runtime",
+        "evidenceSha256": "b412a8f863d6ee847ceedba5db192bc958b797d489f637b286f2300fdff907d5",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d6c39248d5260b9007983fcc497fa7e8e8e4323b3bab08115d145f14d04229b9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-position",
+        "evidenceSha256": "535b78fa36cebaa8711968affad4c1a2ee7ba535f5d2705c096cbd580694858b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "53e0768529934cb527dfb97a8b0f2aba8b6a17893694d8108858381ead659de1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-position-wide",
+        "evidenceSha256": "50a7fe073e7b944e384284fdb97e370afdd338f1c1af96e0767ed1d2d62d42ac",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "53e0768529934cb527dfb97a8b0f2aba8b6a17893694d8108858381ead659de1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-population",
+        "evidenceSha256": "1ec2abac591337629803cdb54f2c1c48e482633b68dde2a26ac184aab62c34f6",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "af93009687afc95f681963d1dbcc41d3f3f990e3e32a41f3340097e44aeca8b9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mixed-workers",
+        "evidenceSha256": "7df9df35a091303ca4fac106ee557a5fd96a7706a8c839222fe4c6c3749ea189",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "3a558f1aa001b7c80d7d73f8e2d0597f02e437e88bdf8d27a2ad86eb30a37901",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--fortifier-work",
+        "evidenceSha256": "26579f0efdd7301983bd37b85a250b4aa362409c4ac22a577d55d5c824160190",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "19a326ec68963a4780e95be716cd321b1fef39757b8a5aec2a2dbcf2f8805aef",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--legacy-fortifier",
+        "evidenceSha256": "8ac9c638c6af7f75e1a7ac8758c84a00829fa3e2e5f92780092505637d01f80a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "19a326ec68963a4780e95be716cd321b1fef39757b8a5aec2a2dbcf2f8805aef",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--art-region",
+        "evidenceSha256": "afc386dfc937f1984f80b4b21a6b0fe49e24d3491fe3281ff0ce5f1dfdd5e43a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "aa48e7e3484b6b8143bbd8ecb357507eed9e80d7960711cc01fa40e85f413719",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--art-builder",
+        "evidenceSha256": "5c5eadf3bb8406272eefd86659c73d236d0646c3c9b1c84243d1a611e28112b4",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "aa48e7e3484b6b8143bbd8ecb357507eed9e80d7960711cc01fa40e85f413719",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--energy-recovery",
+        "evidenceSha256": "a5096b2e90cda2e7bc5a05b637baf5d4d40a745d68737333b857a4403e6c3730",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "39fdd8ed2026798d9091256a12dffbf67b39593d7635bf3ee187496a344e839d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--recovery-economy",
+        "evidenceSha256": "edf4b36a3a1111780488ef81ecb60efb7e3f837733818f6232bb394d3584dd5d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "ba72c2d14d3ab3b7b51143b771f4c20f533a35d665fb2ec288650c89d32cb248",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--recovery-scavenging",
+        "evidenceSha256": "ffc712f30f65731e0c299fd148536c32e9f82f44545717413488bdeb51e44d39",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "dd4d594b906d35f8f33756852f7b2068374bcf8bf25a658ef83c8296f7f9b93e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--recovery-scavenger-spawn",
+        "evidenceSha256": "b65015a11e1cec95ebd997e48de3421dc6d0eee2368064aa5310bd71c56f578a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fc38d280042f7ba83cc95722b1831ccb6e4949bacbebff5d6cfd19ac57bac66c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--recovery-banking",
+        "evidenceSha256": "433f12ae68c29750db1efcc6e7a27f9d2eb2272a1a9395458d2dd42827e39074",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "63c0a3502ab452fcc9d0b1ff14a31481b6749df29d3cbf32f9184d88f3fea6ce",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--distributor-recovery",
+        "evidenceSha256": "05b060382a0205a5b78ac7016a495b67ba1a8377155ad4644957b371208f766d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fc95ce4e4b97f3aac56feac8c072e30001394557e84b9cc840e6389cd22ccaa6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--automatic-support",
+        "evidenceSha256": "2e4e674e33c343cbffba61a7feb991697d16a366aba59799ed80460d2289481a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "3d27811ce537d0f8cbbeb5260a315561abf6e4fea6a6df9d0a1592d9b9b041d9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-replacement",
+        "evidenceSha256": "66bd2f8b4d481d53e96fd080ec81efa3dd9c23a746cf4444f891198a28fa6f53",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "bdd6d8e85dd9f8ad2d1762d88ba6f8df2af24febba3147eeae1c949fbdb84742",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-sponsor-loss",
+        "evidenceSha256": "ea84e00c42828e9231666854a470aec0a75043cacc8b11ba88459ec2537c437a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "b87158c333a806481e98dd56e57ae3a7ede7fb48dcda75d681c046563d558397",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-terminal",
+        "evidenceSha256": "db12bb9c379e2e89d399cb1ce2e59eb6683a8b442bb4ffad58c76a18310768a2",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-terminal-full",
+        "evidenceSha256": "87f14502be45153129837dd9945661a39c54efe43004f562fb45675adb9a6453",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-target-loss",
+        "evidenceSha256": "a4bf57f7a4c219cde9354d210b15e6a1293fb62c38d8387bbbc67a000dcbc309",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-fleet",
+        "evidenceSha256": "9ec27ceec82ed75a062db9b1d8f992164ca011f1262c17d8d6510038264e1074",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "33a17e4d88c64bfae1691daed1848202ab64c341511f414535efacc891d790f7",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-fleet-loss",
+        "evidenceSha256": "55d083cfe8453ecb6c4c304c41d086cf7c0866a1135760501c22506f616efc8a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "33a17e4d88c64bfae1691daed1848202ab64c341511f414535efacc891d790f7",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-cycle",
+        "evidenceSha256": "781ded015b63d25844974a0ec6c75f52dc5f247cb8f3bde7c3fa7f18cc59487b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-cargo",
+        "evidenceSha256": "24912d5cc36f5000b43f1d725028a78fd953d8c4092289353375989404802e95",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-cargo-hold",
+        "evidenceSha256": "746be53ff0adc6d30d2cb775fb8b5c2f1e47861af5d5842f2f17208faf2144b0",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--supply-master",
+        "evidenceSha256": "412c5fc13201ead3362186f30aa8a80394f0e4f6754ec5f3e6e0d4c8dc4fd53b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1add3a2211d3b60bd777cc00fa942d85cc0020269d628b6dd8c7657313b1d3ed",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--ground-recovery",
+        "evidenceSha256": "936f5586d97ac42431ff72a73b2d2c7a94418e1a439a9b60c6a9059d30694d84",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "95c8cc9d0d024cfab1a3605432f595f1f8619960fc03846684957c816e11de21",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--ground-delivery",
+        "evidenceSha256": "071914122506eeffbca4374d293cc15a30d51b81cf5799c4bac5f2a667b8cc68",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "0dc2548c5bd39dc6548c4bb902dd70ee0e55037b5abe8f54c174fcb249535a15",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-supply-transport",
+        "evidenceSha256": "e4c90412a1287dd42440a42d6564445f12906c501bd16590beb5728d96fa7bb9",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "ce86065aea4b9b95f171edd9f02c0a48157da1050912bda6de0a5ea64d5895f5",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--support-transport",
+        "evidenceSha256": "026218c33b2db5f68b9a900b7b28d37940d76086cfe000408b90b000a3b6bd9a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f43f6ddb706c998559e7b6e9e645e98e418dc580a4b06304b7164f0a84266cfc",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--support-loss",
+        "evidenceSha256": "690ac74ba302eb566ec905b01a1745db706181bbe05cba69ab19c24f20e7855f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f43f6ddb706c998559e7b6e9e645e98e418dc580a4b06304b7164f0a84266cfc",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--support-reserve-change",
+        "evidenceSha256": "64c2062592896f0cbce29a6d4268c24132c2296613e49d3c49fbef7e3863cce2",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f43f6ddb706c998559e7b6e9e645e98e418dc580a4b06304b7164f0a84266cfc",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-service",
+        "evidenceSha256": "bcfb4304e795714158fc0a0d8abc65575ebce353769f5849e65561f361789994",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "4b625764c1c1296b5b22dcf6300c027fc74e8fbffc9af4f50b1c88d81e60cdff",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--structure-actions",
+        "evidenceSha256": "700bb48245c120ef3e44c7cf7c5c45e46ee9162b7ae14267370b5affe4f9e391",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "18238787a1ef848de8c7a4a57c137c35bc5a248834fef38d2b0f70257a3ebcd9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--master-bootstrap",
+        "evidenceSha256": "9345fec07d63b4f1d2be643797a76d00a64511c050b755413020a020c4f8c2f0",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "eed061701c0b56419a6b73d1ad3358755d137e1da6f3563851ec4907b3cf7ba9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--master-handoff",
+        "evidenceSha256": "9e0ed0ca0c406a99221622417897085b4a862a5ee80e71da3c98643d6ff28184",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "46ef5e1ad2ccf7a7f027a2e3bc7ff2d9234c103c3490d44c7941cea85e73e9f9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-master",
+        "evidenceSha256": "edf6e68c014e7e60b601be4651d524ede25826b975846ff3995d51e76b35ef93",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "98071a7b5fa6da5d1be98073be77dbd119adb1ddd889fe6b97ab50e91d1ffe86",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--master-layout-loss",
+        "evidenceSha256": "11a77204acabcec4cfae89233ce2cb5316ea8f8b06eeff35668f882fd25d44d1",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "98071a7b5fa6da5d1be98073be77dbd119adb1ddd889fe6b97ab50e91d1ffe86",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--master-storage-loss",
+        "evidenceSha256": "b5b53293dd1f7fde22218bd81343883e6c4a39c29130ed9552ed0d967b7500cd",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "98071a7b5fa6da5d1be98073be77dbd119adb1ddd889fe6b97ab50e91d1ffe86",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--master-loaded-loss",
+        "evidenceSha256": "078f20fe8bf96e494ae18b233f924bfa8bdf2e0df4b4d6f5610cc2b5a33c3e21",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "98071a7b5fa6da5d1be98073be77dbd119adb1ddd889fe6b97ab50e91d1ffe86",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-master-contention",
+        "evidenceSha256": "6f6af427ff67cb573704d315b42a29005d97a90b025fe5c79aa780306ce6f4f5",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "98071a7b5fa6da5d1be98073be77dbd119adb1ddd889fe6b97ab50e91d1ffe86",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-fleet",
+        "evidenceSha256": "151835b7ebcc6273fa1ec355a51c66fada92189011ccd89d243e1270693eb2d3",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "08e4efaa7418fcc4a80e8441314dfa10e9732c5ae79427174d1ece073b68192b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-fleet-loss",
+        "evidenceSha256": "ccab646645b08c579b5f1ec179ecac3de34b46e691f086f523b3e7a5e0df0cbb",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "08e4efaa7418fcc4a80e8441314dfa10e9732c5ae79427174d1ece073b68192b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-loss",
+        "evidenceSha256": "5f641eb4f81350f9cdfe8b6a9523aa9a59b911eb3c9401ed73dc4582fab87ad0",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "ae7382b2c7442142243c00db4359cb7b597cfc6c22b24d83ada8e517d142df14",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--bootstrap-harvest",
+        "evidenceSha256": "830afd79826a0d375e92f49df0a7e7c0558780f7b7ded96f01f5cd3cc3157dbd",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "45c7be23bce1029d780f0690744c5745955ef0d4e1590829c9124335e09a8b63",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--bootstrap-assignment",
+        "evidenceSha256": "caa09f36edc09d4e7bab277faa8c6c717308fa08111bfb4c439d65a9bd9dba60",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "494f0d2048387a0898c598f14e787ab80b0e38cb2f8255afa5d6541297e2acf7",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--bootstrap-salvage",
+        "evidenceSha256": "26fdd0adc06ce7090621940c30fa50259bf6322cbc1b173634343431650ffa71",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fc8174b6ca3e7af01c2227c7075df466e5f94b252c5b10fe487befbfb90e07d2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--bootstrap-salvage-disabled",
+        "evidenceSha256": "32af71be842227fb2ba402bdcd23d504fe8c272f412bef67b0d4c575f6716501",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fc8174b6ca3e7af01c2227c7075df466e5f94b252c5b10fe487befbfb90e07d2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--bootstrap-salvage-depleted",
+        "evidenceSha256": "c5bb8726b60cd9d5cac5949d68c0b937a244b3404de10e4f354572696f14dd01",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fc8174b6ca3e7af01c2227c7075df466e5f94b252c5b10fe487befbfb90e07d2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-bootstrap",
+        "evidenceSha256": "2a943a343830b66663fa79f6a39c1a855a97696d29425dda5d2843862ff710d8",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "45c7be23bce1029d780f0690744c5745955ef0d4e1590829c9124335e09a8b63",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-rebuild",
+        "evidenceSha256": "61844c757df98a7cd04c62c5c295b2f98261ce446a8a8863c6fde5aeb5082d31",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "6ac158910886d70ea401205ca1741f1530842d4cd7d9d06370edaedf15fbbdc3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-cycle",
+        "evidenceSha256": "fb1683d585752d8892848d4e055cad169c470ed4a98020c9d3e357bb4e32e19d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "6d1f600aa5a5b92e09839cb2009fc922ae14a835c29a112d2a7f8fb8a3df3f8a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-claim",
+        "evidenceSha256": "1866d740be64fd570bc28e1dbb315933efa66b270eef23c4341e38b4c7ac8d67",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "6862fc467b9f9bc552eea0d2323b219ba2ffd020fb14b719731cb7ad0261a602",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-room",
+        "evidenceSha256": "164d9493bda9bf7c4f3dfe619a12961814c334c1847eaea0be40d972ece683e8",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "78593f36281f36404157330612cb64c6174ab6fda0ca502dac03e8c025ca4c33",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--upgrade-room-shortage",
+        "evidenceSha256": "5d26a3de2b8e5c17961ae7ac9636107d6e397733b71006062386facf0757fdda",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "78593f36281f36404157330612cb64c6174ab6fda0ca502dac03e8c025ca4c33",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-cargo",
+        "evidenceSha256": "8e62c61fa82467a40c2675fdec8537784501dec0157b79858a259edaabb6a002",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fba327b1902378505626aa3000d92bb2c3e441660296f86025f8a2a65631b626",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-cargo-drop",
+        "evidenceSha256": "0e5d177a7ddcb28ab71ff1a76e5076f1187feb88205b4bb49243c31a1cc96b68",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fba327b1902378505626aa3000d92bb2c3e441660296f86025f8a2a65631b626",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-cargo-hold",
+        "evidenceSha256": "aea6149b5dbe24fff672799d6444f1408ae0eb904b3b671e311fc9ce629df91f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fba327b1902378505626aa3000d92bb2c3e441660296f86025f8a2a65631b626",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-collection",
+        "evidenceSha256": "8577c9b01937b760c221e5e652ac1aa42c1a16817a7d3f686f9f61c2b8ead966",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "14cc8674676da5f9c73d911c0a91e4c7ff5850c60af511f560aa1422677d5e07",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-miner",
+        "evidenceSha256": "85d964f18772c092c5d3156c8cb32b2bc982a3ef54a3c7eea58019a0c9c9d663",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "bd69392a4c48ccacdb868ef2d01776a26ce300f57cb7924d58f53e4c9e38eda1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-miner-automatic",
+        "evidenceSha256": "c44884ef4a95eedd44beaccf7deb599f32b8d723ec615d6afd52a557b19a5180",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "bd69392a4c48ccacdb868ef2d01776a26ce300f57cb7924d58f53e4c9e38eda1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-miner-replacement",
+        "evidenceSha256": "f0d6670284bd595902edfc10fb93b66e422c7fe0a65b934445128ca09e04eeb8",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "bd69392a4c48ccacdb868ef2d01776a26ce300f57cb7924d58f53e4c9e38eda1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-miner-travel",
+        "evidenceSha256": "95f70eb35000a4904efd1e8a2cc797b4cf00684cd0ddffb5ae8bea554fa61368",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1a26c080f34b0a1f7893e8c7dd35f29aa5d2eae42f91be0d4b5f303d08092d35",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-pickup",
+        "evidenceSha256": "5bf5b4904b34a6adf061d3f2db07f7e0899d045b15790174ad6f87ee539da070",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "59b256bc9374e8face7666e6795265d7c5d9bb00609f07ba89f9ef19e3575967",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-profile-builder",
+        "evidenceSha256": "f180c665bc30e1e4df6977f28ba46ac45d7aca72302fd250865e13329aacce25",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "499e693c507fd799081c42a3d732e731af93f5408948a3750c9c690f346ec559",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-profile-fortifier",
+        "evidenceSha256": "8e588000637e2e6695121b99c4352f35653828c67c24ad4595d46fad3e228ee7",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "499e693c507fd799081c42a3d732e731af93f5408948a3750c9c690f346ec559",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-profile-upgrader",
+        "evidenceSha256": "1a7b887404698d3bb633755bee85453891d1d210aae6c2a2ca9d764ad47f92f0",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "499e693c507fd799081c42a3d732e731af93f5408948a3750c9c690f346ec559",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-profile-upgrader-v2",
+        "evidenceSha256": "b41811a298698de0319f17b8c02f88b7a98d731ac9de5850bc1161a3829bd61d",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "499e693c507fd799081c42a3d732e731af93f5408948a3750c9c690f346ec559",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-profile-hold",
+        "evidenceSha256": "27db20964cffd48e8e16f54bfc396e179082fb58ab7c878695aab717500a22fb",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "499e693c507fd799081c42a3d732e731af93f5408948a3750c9c690f346ec559",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--worker-profile-flag-hold",
+        "evidenceSha256": "7fdc51866a466bf1a1904c52a3c6e32c40af0765d3f0954ce10f9ce67a052ac8",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "499e693c507fd799081c42a3d732e731af93f5408948a3750c9c690f346ec559",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--resources",
+        "evidenceSha256": "62a3179d0b85476c040ed556bd48c624cd9ca645e4fc9e99c3a90fbf7f92ee57",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "23bc3f7b7b2d16cbf8aa8b78c0db2e49e835d2684057e2be3340ea3e11c19992",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--transfer-confirmation",
+        "evidenceSha256": "7dd60b7ff3d0716aeeeac81307c6a165dff6d74e59fdaa82ad5e58e5e8caa867",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "7309a7bede8ae46e522a49e98a29cb936c2e8930400c0d5db48f44d4b4fb621c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--hauling-cycle",
+        "evidenceSha256": "8b79b4839c0e24b2e879acc6c0b06f290661b1c5497c079d6dc73351474a3960",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "19d8afd89a1b59128dc44f8eaceb8f6eac58df109b3937c5dd05a497b66ab504",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--energy-logistics",
+        "evidenceSha256": "f68a6b37858905d9570930e5a5d446160a03f3221c45d04959cbe96b31ec8597",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "313fa53fc7836248afefff633718a8aee609e3113748ecea15d8619f553faab6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--reclamation",
+        "evidenceSha256": "c7229197170922232a5d057423ee4768aea99c75f33fc13730eef31d78a59fed",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "123f5a60d94d813a6079f18b60388a8874a5070c1617ce151799d95e902a8627",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--work-supply",
+        "evidenceSha256": "ad294d4c92b6dbf890bd0daa3e703c38a3996a9f03eb97a0f36e4057e748b595",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "be0523b8c9314514030b361c4550be6c16c97b9ea605478d58897a310cbbddd3",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--tower-supply",
+        "evidenceSha256": "828832aff2c6e4cd420a02ef2e28938193376c1fc49b16aea8bd103712ab826e",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "7b033af8fbce3d94b0a4e94dd753261622cd92457cba989389acb3e42327732a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--link-supply",
+        "evidenceSha256": "71f3ddc0a596a09da878f118ccea13975603cea6857621866145739806348b52",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "b0f46f15cc168e4a809fe67d31122d633b544ca0b201507ced717e47757a3149",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--controller-links",
+        "evidenceSha256": "840e4a899c3889dadbf07d64b13372892d5f181a6c7e027c052de3ea025f6ecb",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "542ef3cf2ef4ed5e46ddc097b9222c0bf4e00ffc4e68b620e62c1e1a94e04a02",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--link-contention",
+        "evidenceSha256": "5d14135b9a5f89c1ef7268ec37608a9cd4c9f27058806a765fd5b4916ecf73c0",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "b1b789bda5f06c4cb32034ec6d0998f15080198ef8e4481738c3048c30afc5a9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--link-service",
+        "evidenceSha256": "22f4a6c1b3e841cf0dc68df92bfab71958c7b4492902a25d4e954cc748a5a5dc",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "e4fb5d56d67d5f02442a02b32e724fad76dfad881797cad3a8104e3510c7f5b9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--link-reversal",
+        "evidenceSha256": "f0153701e83ec43f80f0fa388b5b797afea14b4fee938225be9d4e0716af6c41",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "9425742d3757617a677e0c54d4bb041f1f4bde9acc44bdd604239a27216813c9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-transport",
+        "evidenceSha256": "9c5f1ce5fadc936bcbd9ca3873394517ab9dd520d1385fd1c8ae697ca5be96ca",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f9e21094ebf9914601a0bf911508d4508a1dec7bbacff4f01a006d4fe4ff9308",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--courier-death",
+        "evidenceSha256": "44fb65a35d8626133b2e4ff2668039b5c79afc2cd5bd3c29750f7ec480825bdc",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "502bccdab9fe02eb7bfae836a9e5cd28abc4c2f2dd552eac6fa16abf1b02df76",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--cargo-death",
+        "evidenceSha256": "e6eec22c71af394f391d1dcba6585f58fd99b64de91982e9b9c038f41f741d56",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "4d3cae40b0797a23ba4e523b16e0c470a6439b8b34042e8ea6ea1418eaf024ae",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--storage-loss",
+        "evidenceSha256": "b45c94e4b1fe59f1de95d25a1a0dbb9de7af3d06f35455bb52a9d739fdad1f7f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "4c6c2de4b3becd60b1a8c43ff0c95a7ce60adafdd96f20f68d47ff448af93ae5",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--energy-banking",
+        "evidenceSha256": "7869499f960cedbfe2fa5586338283ee676cb0f62fb8158e47eeba562ac4645b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1f78cbcf01323285353c3cb75e73359d3a80d9abbe5494db4ea151d4238de51c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--banking-fallback",
+        "evidenceSha256": "2be94022d62c617992481486a4c1cd24f2483e97eac555ca595ba3d17120a011",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1f78cbcf01323285353c3cb75e73359d3a80d9abbe5494db4ea151d4238de51c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--banking-demand",
+        "evidenceSha256": "774eb7bf65fa5a846f1d172dfa0580ee712a06b05ca32b52fcc70fe1481031a7",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "33753787f5d797d6851b6d6a31b0a20ae123887ed25e831c55ddeb25cecbfa53",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--store-fill",
+        "evidenceSha256": "8827e84d0e11aa042ba14d650d453136005b4d350cbbf57b5eda662a2d5a6e31",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "431fa7d71fa0d5eb9514f6ed5da53ddbe16c2f67f5633a3506c0bcea6b2e393d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--store-guard",
+        "evidenceSha256": "cded192265ed9051940fb8ac3c5f9e938413528da2a2574c85b0a7c0672d71cf",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "431fa7d71fa0d5eb9514f6ed5da53ddbe16c2f67f5633a3506c0bcea6b2e393d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--store-drain",
+        "evidenceSha256": "a54ee6812008d44037bf5da1d2622baf0ca64321485f3ef432a08d82be57503b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "431fa7d71fa0d5eb9514f6ed5da53ddbe16c2f67f5633a3506c0bcea6b2e393d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--store-mineral",
+        "evidenceSha256": "0ff3da43c31f00c5ace7fff52c2ca8959f40c4ec3679cbdc2ce0f8cac738515f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "431fa7d71fa0d5eb9514f6ed5da53ddbe16c2f67f5633a3506c0bcea6b2e393d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-reload",
+        "evidenceSha256": "1f750e9e865488601ee7dd41052e665e22dd869a04f99bf83f3c23a282d23fe5",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f9e21094ebf9914601a0bf911508d4508a1dec7bbacff4f01a006d4fe4ff9308",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-recovery",
+        "evidenceSha256": "157ceca97d954d8c5945fffdd1da1adaf835650bbb459f7ce18bb3376d80a950",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2a2a41a17ac5ec282555fbe7d63dda8adc60d364fd67c2ef1b7e46707e3c1357",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-recovery-fallback",
+        "evidenceSha256": "1400aa353b3b9e1751ef37c2092c7bf1a021bed6de8ed8af635961d885cb0b8e",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2a2a41a17ac5ec282555fbe7d63dda8adc60d364fd67c2ef1b7e46707e3c1357",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--courier-bootstrap",
+        "evidenceSha256": "5082e73710983b697a71e4a24719ed35f31a99a806cf535c782579c8d605ba78",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1ba6a7192eb6bd568472f46f08928934dacc054386bc280a2de7e5d21385433e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--courier-routes",
+        "evidenceSha256": "c135e6c95efd2e9204e34067c453170e24d07864b59347c5423cc9b8574dbb08",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "5526334ce3fd27f0ad3f8c18c53a45f198d6fe28c733bd4a8962f29570ffe0b2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--mineral-routes",
+        "evidenceSha256": "67871e546b969f9d502735483a5e77b32798a35b767c9a2215a9734a1bc97ebb",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "5526334ce3fd27f0ad3f8c18c53a45f198d6fe28c733bd4a8962f29570ffe0b2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--colony-resilience",
+        "evidenceSha256": "48fbbb3f26d8e6db439bb2491fd977e8be86139cd3ced7a80b4ad3495f718775",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "9964f9dac33bfb8408e4fe756facaa9d5d05f720f8480833b3fdde7a3769acbf",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--colony-economy",
+        "evidenceSha256": "e2f5f1356ac37ed0a05c359d584c58bc51ae78bad3effc834bdad20cc4dfab9b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "21b608445cc436cf270bf6f3d6200a37a325212a56cb75d889c85856f48edc6d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--empty-source",
+        "evidenceSha256": "a213c149964a54b48122b19b97de36a7c1508fda44b1e2741f854787a937752f",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "e8f4c37ccc541991c39a65539831717c7e958925e007684488c738699b5ef248",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--cargo-recovery",
+        "evidenceSha256": "d632a27c9a82427135f491cd2b84c60bc7fa5a35db3d56e94a3ed07c95c427e9",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "1f9168e173a09427113b6bf91a1b158b83f0b488955323a5352245e084229211",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--expiry-recovery",
+        "evidenceSha256": "bab80f0372171144e54ac22db8a21ab2dff0758babcc8c64e3df279419b783b4",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "f72b07531aae8a87cc715c42c764f85dde1de53484151ca2d3b5dd095840cf72",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--expiry-delivery",
+        "evidenceSha256": "3587b9cab14642ca9db6fdda74357a2d8fb3dea7243a994ad51baa36a2e7ce17",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "30a5eb59b48399d93db82b047952a8025d814590a164cdcb7fe28ae8b591d81d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--unknown-recovery",
+        "evidenceSha256": "87f9fe5607779bc60f5db9605573ab06df982a5a860f7bb1d3b4f469242070a3",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "e702aab47a7692b163ec432ecc0c3c1c3dc06480b0041cb731129d83977ffe82",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--unknown-delivery",
+        "evidenceSha256": "0c3f1928a42f276b5268a3294dcc83e4aa598cba855f7a6e1e750197294464d4",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2fdff0cbdad4ca78a14ae02755290f585e8b1394336c6e2b886021fa2e13a670",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--missing-sink",
+        "evidenceSha256": "093d03e112b638efe953b7c30c433545a189bcdc473f140762c915b951a110e1",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fab2e061a3022a19cd7e413d60ac3cfca771a7e9ff16036953e61a3031bd40c4",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--pickup-admission",
+        "evidenceSha256": "47e309281aa9b8ce93e12772384f9c8afd9ff5980626eb934545c5ceb18e15b3",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "d49a4287c7e4f677924aa7f2b9a843e1380c7ba7bafdc24e4c908f24d044a16c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--remains-supply",
+        "evidenceSha256": "c6d69757cc7afb1ec2ed152f5de0041d07f3755760efaaed199a9ea0ab8055a1",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "3de081c8357c6ecc131c3bc3162221c0e35f2dba9d57526b48c0ad2765f820ab",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--drop-supply",
+        "evidenceSha256": "4bd46610b725968dc9820e99f94c7e330bde583949fdacbcb4496ea8e8726d34",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "313fa53fc7836248afefff633718a8aee609e3113748ecea15d8619f553faab6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--large-drop",
+        "evidenceSha256": "af1d34cdfe90f0a039f714658d82e0a62073156ae8b9527ea9efe80e75d24623",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "9e50d8c396f5dc742036909421a4b28448d7415eb6172c470783550733998d56",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--preservation",
+        "evidenceSha256": "49ae3ebb7c30ddc3fb76493cc1fdf105ed47e6b79cf3d8caeda6a7c31c65cb49",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "85c446f5f9fc0955a6b8ccc8260db6bcebc51efe19f9faadb5211fd75fd79de9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--full-sink",
+        "evidenceSha256": "aec544456011281f95491caeff257aa5bc2793c617cbd81a0dd3974ab2880ccb",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fab2e061a3022a19cd7e413d60ac3cfca771a7e9ff16036953e61a3031bd40c4",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--preservation-decay",
+        "evidenceSha256": "5e817c19c90b7092235ce252346c9ca1fb44203462b102f8e533ed4b23dccb6a",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "85c446f5f9fc0955a6b8ccc8260db6bcebc51efe19f9faadb5211fd75fd79de9",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--source-loss",
+        "evidenceSha256": "9541470d0e046f5c515f839c03e64403a9ce974c3c3ed5f3b0952bfed8bc5659",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "313fa53fc7836248afefff633718a8aee609e3113748ecea15d8619f553faab6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--movement",
+        "evidenceSha256": "987c07ea248167a0abc16bbbed51b05ac7e06df950c0751b334a7d6ecd2460d3",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "2009cf85c9bd2edc155fb6a987055f0617589f6e6a176bf5e7e03ebb3d33bb32",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--maintenance",
+        "evidenceSha256": "78b71a2c065e9357ed27295a133bab4ed38ead83b760b352a6695bfc5883b9d3",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "49f06e8fd1af6608fd3b9ad3a37701215a9155ebc9a97efd419a1cce3a68ef07",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--retirement",
+        "evidenceSha256": "c384de2b335a53c479ce837d2b86dec217be4ba27d105f0c68011933adfd17ec",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "dcb5af04286465193e78388fcd13c01d0ca682cc65f6b9bae6c2ef620bdb5923",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--paths",
+        "evidenceSha256": "48409a6e74144faf0e6863b604389434456da4cee1ba731938776b5dfe03035e",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "fabb1be5cff6dcb7a989b186cfc8371fcd580fcfc2281ffb228489168eadc015",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--recovery",
+        "evidenceSha256": "5a0129f323cfaa88a7e1bc7efa57ec9695c90f6bb4ad89d03b990e5c5069f31c",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "63235d564b45a78044e8af5d8d957bd1a151f8672762f6b087e564af02d5a9f4",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--traffic",
+        "evidenceSha256": "24563380da6f1da2f86b46f16f0be91736dfa1a4772ed7440545e4bace4e652e",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "129256c83e79b672052d68a9959783b3f0d16528c804fef2c5e48c7212e87c42",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--exits",
+        "evidenceSha256": "3bb54da7775594edcf716d92977a056bfce38b0fa1c239984937a6ea1fc349e7",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "4a002904a1c387f86ab689d5c6f5dc289bd5e110e0337ef04214a3787e9277c6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--navigation",
+        "evidenceSha256": "f673072443c6e3896681355f53975c6bb44d65fb221c64b1c58aeaa71172576b",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "67e009c1cc902a4940c3e1a6033f12d8efd300984e4a784091cbd01c2620ab7e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--unseen",
+        "evidenceSha256": "17672b8cd5688525254b757cb34acf5da1f4d4b67205fd46b629aeb980e40102",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "ae1f2b4074b982bcc5ceb7c3bee5690cfdb71553711a409fd158f990451fa5e0",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--occupied-exit",
+        "evidenceSha256": "0976374b80c2ec8c8055e5114df55b23acf84b96b6e5496da3dbc5e52d7525ad",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "3f776a4437ae83d460a02fd0598ec8a12917a1c6f0b046b759bbecd43b60062d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--service-recovery",
+        "evidenceSha256": "35632ae6095bde3bc6181a7d5b6110e86fd95759c568748c72faf0a6fb19bb02",
+        "status": "passed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "a9b2e1e7399a603122a3d8aac25b3520c85b2d13cb5b2e93184213444ae5e7d2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--inject-error",
+        "evidenceSha256": "df1ff3dfac0b2a93d4cbca3cd2467a0584dd79aca180196ed63fb2e21ea51ac4",
+        "status": "failed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "c14d41a31fb5b86a70987b0f7b12d0f4071d490478d4d7528d0649b0406d9818",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      },
+      {
+        "scenario": "--inject-timeout",
+        "evidenceSha256": "bdf33a18a7c10b070c3b2c40008882b1276006f4973e97718a98feb6a939fd2a",
+        "status": "failed",
+        "provenance": {
+          "commit": "8fef16329bf172757ae8113ae739bcf39ab2bd5f",
+          "dirty": false,
+          "bundleSha256": "62ec706563a353d193d17dc172bf1b4e8687325ed1f8555a449385f6079da9b5",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        }
+      }
+    ]
+  }
+}

@@ -89,3 +89,8 @@ Deliberate corrections: the selector is explicit and empty means disabled; ambig
 Focused checks cover detached matching, moved/removed targets, absence, objective/danger priority, same-tick deduplication, arrival holds through reset, failure-to-fallback recovery, configuration validation, real demand and hostile-target cancellation without touching other owners. Final targeted --scout-fallback passes140native ticks at ordinary3CPU planning/5CPU control with zero exploration depth: real spawning, initial goal, moved goal, removed-match replacement, final disappearance, resets12/60/110, stable one-unit demand, physical visit stabilization and unchanged unrelated witness. No errors/messages occur. docs/evidence/scout-fallback-native.json retains complete dirty provenance and the earlier successful but tightly timed development fixture.
 
 Quality564production/491testfiles passes with zero Lizard violations. Full units1238tests/345files pass9.00s; bundle check passes. This completes the implemented ED-28 runtime paths subject to clean combined189-case qualification and the acceptance audit; it is not a release/whole-goal completion claim.
+
+
+## Final ED-28 audit
+
+All189packaged native checks pass717.88s on clean8fef163, with per-case clean provenance/status/digests verified. The four ED-28 runtime criteria and source integration scope are audited in ed28-acceptance.md; full report ed28-engine-suite.json and complete clean fallback evidence are under docs/evidence. Default/late-reset stamp planning commits1207/1297 with equal plans. The runtime acceptance audit is supported; public adapters, specialist/remote missions and release/performance gates remain their planned ED issues. The whole rewrite goal remains active.
