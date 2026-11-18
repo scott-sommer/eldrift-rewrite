@@ -1,6 +1,6 @@
 # Remote operations: assessment increment
 
-ED-29 remains In Progress. Implemented boundaries include source assessment, selection, exclusive leases, typed demand, and explicit reservation task execution. Automatic remote discovery/selection and mission registration in the main loop, remote mining/hauling, adaptive support and infrastructure activation remain open. The reservation scenario explicitly composes the production task/service with shared population and dispatch; this is not automatic whole-feature activation.
+ED-29 remains In Progress. Implemented boundaries include source assessment, selection, exclusive leases, typed demand, explicit reservation task execution, and live remote energy extraction. Automatic remote discovery/selection and mission registration in the main loop, automatic mining/hauling orchestration, adaptive support and infrastructure activation remain open. The reservation scenario explicitly composes the production task/service with shared population and dispatch; this is not automatic whole-feature activation.
 
 ## Source extraction
 
@@ -17,7 +17,7 @@ Read-only reference: remote.manager.js at f2bbf7e8c44addc7c426abb5458e393c9502ff
 
 ## Model and units
 
-capabilities/economy owns plain formulas and body lifetime validation; features/remotes owns freshness/ownership/reservation admission; app/native-remote-assessment composes native room routing, shared snapshots/path search and retained geometry. Request IDs use an exact framed home/source tuple. Reports retain observed source facts and timestamps, independent miner/empty-outbound/loaded-return travel, current reservation metadata and each economic charge. Results are detached; the service does not write state.
+capabilities/economy owns plain formulas and body lifetime validation; features/remotes owns freshness/ownership/reservation admission; app/remotes/assessment/native composes native room routing, shared snapshots/path search and retained geometry. Request IDs use an exact framed home/source tuple. Reports retain observed source facts and timestamps, independent miner/empty-outbound/loaded-return travel, current reservation metadata and each economic charge. Results are detached; the service does not write state.
 
 | Quantity | Definition |
 | --- | --- |
@@ -61,8 +61,8 @@ docs/evidence/remote-assessment-native.json retains the exact dirty source/bundl
 
 1. Connect the implemented typed Mine/Reserve/Outpost demand and exclusive room leases to current admission, portfolio reconciliation, population and mission execution; add source/room operator exclusions.
 2. Connect implemented bundle/fragment selection and shared-cost repricing to bounded collection; implement adaptive supported budget and specialist keeper readiness/risk inputs.
-3. Reserver controller actions/state machine, correct body lifetime/travel replacement, expiry and cancellation without stranded requests.
-4. Shared station extraction, remote hauling/return cargo and explicit road/container construction through the existing owners.
+3. Production reserver orchestration around the implemented controller/task boundary: measured body/travel policy, replacement, expiry and cancellation during spawning or damage.
+4. Connect implemented source approach/live station extraction to automatic demand; implement remote hauling, confirmed home banking and road/container construction through the existing owners.
 5. Hostile/vision/path interruption suspension, retreat and recovery, followed by profitable/rejected, differing-distance, reserver-replacement and return-to-service native scenarios.
 6. Full combined qualification and acceptance audit. ED-39/44 still own public legacy flag/console and memory translation; ED-35 owns specialist keeper/power execution; ED-43 owns measured multi-room pressure/CPU/Memory/soak.
 
@@ -96,7 +96,7 @@ The expanded read-only native probe also passes8ticks on clean8fc6b86 (engine-hu
 
 ## Reservation execution increment
 
-app/reservation-task adapts typed lease authority into the existing durable task runner. It continuously resolves current demand, treats transient waits as running work rather than exhausting failure retries, and retires toward an owned home refuge when authority expires or changes. A terminal retreat uses the task runner's existing scope cleanup. app/assign-reservation-task preserves unrelated queued work, renews only the same assignment generation, and lets revoked tasks retire before accepting a new generation. Task lifetime is separate from lease lifetime so authority expiry can trigger actual return travel.
+app/remotes/reservation-task adapts typed lease authority into the existing durable task runner. It continuously resolves current demand, treats transient waits as running work rather than exhausting failure retries, and retires toward an owned home refuge when authority expires or changes. A terminal retreat uses the task runner's existing scope cleanup. app/remotes/assign-reservation-task preserves unrelated queued work, renews only the same assignment generation, and lets revoked tasks retire before accepting a new generation. Task lifetime is separate from lease lifetime so authority expiry can trigger actual return travel.
 
 Native service uses current visible observations for home/current/target rooms, known-safe intel traversal and the shared movement service. Its allowed room corridor is explicit; normal work does not exempt origin or destination from policy. Retreat may escape an excluded origin, but never exempts its destination. CPU/read/route admission failure holds service. Threat or ownership rejection directs an active reserver toward its owned home; after fresh safe observations it can resume. Missing home ownership/refuge cannot be certified as successful retirement.
 
@@ -121,3 +121,7 @@ The complete 191-case engine suite passes on clean committed f0ad244 in 704.27 s
 - role.minerV2.js has active arrival reporting and end-of-life failure reporting, source/container positioning, low-container-health repair, adjacent-site work during source depletion, nearby energy recovery and keeper flee behavior. remote.manager.js records source success/failure and blacklists both source and room after two consecutive unsuccessful miner lives. Do not count each blocked tick as a failed life or infer a combat cause merely from missing vision. Keeper tactics remain ED-35/ED-33 work, not implied by an atomic portfolio commitment.
 - Shared station store deliberately downgrades risk without current vision; current mining task requires a live safe station/tile before running. Add an authority/travel phase using retained source geometry and admitted traversal, then acquire the actual tile and reuse extraction after arrival. Do not fabricate a safe unseen station or weaken shared station admission. Source demand ownership is currently room/source based; the remote home lease must fence old-home actors and requests on handoff.
 - The existing route courier wrapper requires an owned destination and is therefore unsuitable unchanged for neutral remotes. Reuse hauling tasks, transfer confirmation, quantity reservations and cargo recovery behind explicit endpoint/lease admission. Loaded return on retirement/threat must remain distinct from retiring an empty unit. Existing construction reconciliation owns accepted site intent and shared limits; remote road/container desired state must enter that boundary rather than invoke an independent planner/actuator.
+
+## Remote energy extraction qualification
+
+Remote application code now lives in app/remotes, with assessment isolated below app/remotes/assessment and matching application tests grouped by responsibility. Reservation and mining share the lease-aware task/assignment mechanism and native movement/retirement boundary. The new extraction component passes its actual 130-tick source/container/vision/threat/expiry scenario. See [remote-mining.md](remote-mining.md) for the implementation boundaries, exact checks, initial fixture failure and remaining integration scope. This is component qualification; ED-29 remains In Progress.

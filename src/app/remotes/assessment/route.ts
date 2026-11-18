@@ -1,4 +1,4 @@
-import type { RemoteEstimateContext } from '../features/remotes/assessment-model';
+import type { RemoteEstimateContext } from '../../../features/remotes/assessment-model';
 export function remoteAssessmentRoute(context: RemoteEstimateContext, maximumRooms: number, guard: () => boolean) {
   const { home,room } = context.request;
   if (!guard()) return { status: 'deferred' as const, reason: 'admission' };

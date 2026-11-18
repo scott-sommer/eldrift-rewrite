@@ -1,16 +1,16 @@
 import { expect, test, vi } from 'vitest';
-import { createMemoryPort } from '../../src/adapters/screeps/memory';
-import { createRemoteAssignmentStore } from '../../src/features/remotes/assignment-store';
-import { remoteAssignmentDemands } from '../../src/features/remotes/assignment-demand';
-import type { ReservationTaskPorts } from '../../src/app/reservation-task';
-import { createReservationTaskBehavior, validReservationPayload } from '../../src/app/reservation-task';
-import { assignReservationTask } from '../../src/app/assign-reservation-task';
-import { createTaskRunner, taskScope } from '../../src/app/task-runner';
-import { openState, saveState } from '../../src/persistence/versioned-state';
-import { taskSchema } from '../../src/persistence/tasks/schema';
-import { createReservations } from '../../src/persistence/reservations/store';
-import { reservationSchema } from '../../src/persistence/reservations/schema';
-import type { Outcome } from '../../src/core/execution/model';
+import { createMemoryPort } from '../../../src/adapters/screeps/memory';
+import { createRemoteAssignmentStore } from '../../../src/features/remotes/assignment-store';
+import { remoteAssignmentDemands } from '../../../src/features/remotes/assignment-demand';
+import type { ReservationTaskPorts } from '../../../src/app/remotes/reservation-task';
+import { createReservationTaskBehavior, validReservationPayload } from '../../../src/app/remotes/reservation-task';
+import { assignReservationTask } from '../../../src/app/remotes/assign-reservation-task';
+import { createTaskRunner, taskScope } from '../../../src/app/task-runner';
+import { openState, saveState } from '../../../src/persistence/versioned-state';
+import { taskSchema } from '../../../src/persistence/tasks/schema';
+import { createReservations } from '../../../src/persistence/reservations/store';
+import { reservationSchema } from '../../../src/persistence/reservations/schema';
+import type { Outcome } from '../../../src/core/execution/model';
 function fixture() {
   let tick = 1;
   const root = {}, port = createMemoryPort(() => root), assignments = createRemoteAssignmentStore(port);

@@ -1,10 +1,10 @@
-import { plannedMobility } from '../adapters/screeps/travel-estimate';
-import { createNativePathSearch } from '../adapters/screeps/path-search';
-import type { createMatrixSnapshots } from '../adapters/screeps/matrix-snapshots';
-import type { BodyPart } from '../capabilities/spawning/body';
-import type { Position } from '../capabilities/movement/step';
-import { prepareRemoteMatrices } from './remote-matrices';
-import type { RemoteEstimateContext, RemoteTravelResult } from '../features/remotes/assessment-model';
+import { plannedMobility } from '../../../adapters/screeps/travel-estimate';
+import { createNativePathSearch } from '../../../adapters/screeps/path-search';
+import type { createMatrixSnapshots } from '../../../adapters/screeps/matrix-snapshots';
+import type { BodyPart } from '../../../capabilities/spawning/body';
+import type { Position } from '../../../capabilities/movement/step';
+import { prepareRemoteMatrices } from './matrices';
+import type { RemoteEstimateContext, RemoteTravelResult } from '../../../features/remotes/assessment-model';
 interface LegRequest { origin: Position; destination: Position; body: readonly BodyPart[]; load: number }
 export function measureRemoteTravel(context: RemoteEstimateContext, origin: Position, rooms: string[], maximumOps: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean): RemoteTravelResult {

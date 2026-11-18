@@ -1,6 +1,6 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { retainedRemoteCosts } from '../../src/app/remote-retained-costs';
-import { intelSummary } from '../fixtures/intel-summary';
+import { retainedRemoteCosts } from '../../../../src/app/remotes/assessment/retained-costs';
+import { intelSummary } from '../../../fixtures/intel-summary';
 afterEach(() => vi.unstubAllGlobals());
 test('retained infrastructure keeps blockers and roads, conservatively blocks foreign ramparts and detaches coordinates', () => {
   vi.stubGlobal('OBSTACLE_OBJECT_TYPES',['spawn','rampart']);

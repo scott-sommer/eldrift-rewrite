@@ -1,9 +1,9 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { nativeRemoteRoute } from '../../src/app/native-remote-route';
-import { createMemoryPort } from '../../src/adapters/screeps/memory';
-import { createIntelStore } from '../../src/features/intel/store';
-import type { IntelTraversalPolicy } from '../../src/features/intel/traversal-model';
-import { intelSummary } from '../fixtures/intel-summary';
+import { nativeRemoteRoute } from '../../../src/app/remotes/native-route';
+import { createMemoryPort } from '../../../src/adapters/screeps/memory';
+import { createIntelStore } from '../../../src/features/intel/store';
+import type { IntelTraversalPolicy } from '../../../src/features/intel/traversal-model';
+import { intelSummary } from '../../fixtures/intel-summary';
 afterEach(() => vi.unstubAllGlobals());
 function fixture() {
   const root = {}, port = createMemoryPort(() => root), intel = createIntelStore(port);

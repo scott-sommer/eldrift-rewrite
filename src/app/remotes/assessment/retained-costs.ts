@@ -1,5 +1,5 @@
-import type { RoomSummary } from '../features/intel/model';
-import type { CostObservation } from '../capabilities/movement/costs';
+import type { RoomSummary } from '../../../features/intel/model';
+import type { CostObservation } from '../../../capabilities/movement/costs';
 /** Unknown public-rampart state is conservative; live rooms use the shared native snapshot instead. */
 export function retainedRemoteCosts(summary: RoomSummary): CostObservation {
   const obstacles = summary.structures.filter(structure => structure.type === 'rampart' ? !structure.owned

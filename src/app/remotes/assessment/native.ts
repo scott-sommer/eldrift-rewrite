@@ -1,14 +1,14 @@
-import { copyPlain } from '../persistence/plain-data';
-import { remoteBodiesWithinBudget } from './remote-body-budget';
-import type { StatePort } from '../persistence/versioned-state';
-import type { Position } from '../capabilities/movement/step';
-import { createIntelStore } from '../features/intel/store';
-import { assessRemoteSource } from '../features/remotes/assessment';
-import type { RemoteAssessmentRequest } from '../features/remotes/assessment-model';
-import { createMatrixSnapshots } from '../adapters/screeps/matrix-snapshots';
-import { movementPosition } from '../adapters/screeps/movement-traffic';
-import { remoteAssessmentRoute } from './remote-route';
-import { measureRemoteTravel } from './remote-travel';
+import { copyPlain } from '../../../persistence/plain-data';
+import { remoteBodiesWithinBudget } from './body-budget';
+import type { StatePort } from '../../../persistence/versioned-state';
+import type { Position } from '../../../capabilities/movement/step';
+import { createIntelStore } from '../../../features/intel/store';
+import { assessRemoteSource } from '../../../features/remotes/assessment';
+import type { RemoteAssessmentRequest } from '../../../features/remotes/assessment-model';
+import { createMatrixSnapshots } from '../../../adapters/screeps/matrix-snapshots';
+import { movementPosition } from '../../../adapters/screeps/movement-traffic';
+import { remoteAssessmentRoute } from './route';
+import { measureRemoteTravel } from './travel';
 export interface NativeRemoteAssessmentOptions { maximumRooms: number; maximumOps: number; origin?(home: string): Position | undefined }
 /** Read-only assessment service; runtime demand and mission commits remain separate owners. */
 export function createNativeRemoteAssessment(state: StatePort, options: NativeRemoteAssessmentOptions) {

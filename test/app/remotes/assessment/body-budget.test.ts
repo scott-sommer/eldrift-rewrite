@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { remoteBodiesWithinBudget } from '../../src/app/remote-body-budget';
-import type { RemoteEconomicPolicy } from '../../src/features/remotes/assessment-model';
+import { remoteBodiesWithinBudget } from '../../../../src/app/remotes/assessment/body-budget';
+import type { RemoteEconomicPolicy } from '../../../../src/features/remotes/assessment-model';
 test('buildability uses configured bodies against maximum home energy capacity without mutating them', () => {
   const bodies: Pick<RemoteEconomicPolicy,'miner' | 'hauler'> = {
     miner: { body: ['work','work','move'],lifetime: 1500 },

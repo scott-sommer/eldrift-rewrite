@@ -1,4 +1,4 @@
-import { openState, saveState } from '../versioned-state';
+import { openState, peekState, saveState } from '../versioned-state';
 import type { StatePort } from '../versioned-state';
 import { reservationSchema } from './schema';
 import type { Claim } from './schema';
@@ -12,6 +12,10 @@ export function createReservations(port: StatePort) {
     return before - state.claims.length;
   }
   return {
+    held(scope: string, tick: number): Claim[] {
+      if (!scope || !Number.isSafeInteger(tick) || tick < 0) throw new Error('Invalid reservation query');
+      return (peekState(port,key,reservationSchema)?.claims ?? []).filter(claim => claim.scope === scope && claim.expiresAt > tick);
+    },
     acquire(claim: Claim, tick: number): boolean {
       const state = openState(port, key, reservationSchema);
       if (!reservationSchema.valid({ claims: [claim] }) || claim.expiresAt <= tick) throw new Error('Invalid or expired claim');

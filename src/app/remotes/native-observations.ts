@@ -1,6 +1,6 @@
-import type { StatePort } from '../persistence/versioned-state';
-import { createIntelStore } from '../features/intel/store';
-import { observeNativeIntel } from './native-intel-observation';
+import type { StatePort } from '../../persistence/versioned-state';
+import { createIntelStore } from '../../features/intel/store';
+import { observeNativeIntel } from '../native-intel-observation';
 /** Refresh only visible requested rooms, once per tick, before operational admission. */
 export function createRemoteObservationRefresh(state: StatePort) {
   const intel = createIntelStore(state), refreshed = new Set<string>();

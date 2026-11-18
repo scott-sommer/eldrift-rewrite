@@ -1,13 +1,13 @@
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { observePopulation } from '../../src/adapters/screeps/population';
 import { createNativeDispatch } from '../../src/app/native-dispatch';
-import { createNativeReservationService } from '../../src/app/native-reservation-service';
-import { createReservationTaskBehavior } from '../../src/app/reservation-task';
-import { assignReservationTask } from '../../src/app/assign-reservation-task';
+import { createNativeReservationService } from '../../src/app/remotes/native-reservation-service';
+import { createReservationTaskBehavior } from '../../src/app/remotes/reservation-task';
+import { assignReservationTask } from '../../src/app/remotes/assign-reservation-task';
 import { createTaskRunner } from '../../src/app/task-runner';
 import { createRemoteAssignmentStore } from '../../src/features/remotes/assignment-store';
 import { remoteAssignmentDemands } from '../../src/features/remotes/assignment-demand';
-import { createRemoteObservationRefresh } from '../../src/app/native-remote-observations';
+import { createRemoteObservationRefresh } from '../../src/app/remotes/native-observations';
 import { applyPopulationDemand } from '../../src/features/population/apply-demand';
 import { createSpawnQueue } from '../../src/features/population/spawn-queue';
 import { openState, peekState } from '../../src/persistence/versioned-state';

@@ -26,3 +26,14 @@ test('ownership transfer releases old scope while unrelated claims persist; expi
   expect(claims.expire(19)).toBe(0);
   expect(claims.expire(20)).toBe(1);
 });
+
+test('held-claim queries are detached, scope-specific and do not initialize missing memory', () => {
+  const root = {}, claims = createReservations(createMemoryPort(() => root));
+  expect(claims.held('mine',1)).toEqual([]); expect(root).toEqual({});
+  claims.acquire({ resource: 'tile',holder: 'unit',scope: 'mine',expiresAt: 5 },1);
+  claims.acquire({ resource: 'other',holder: 'other',scope: 'other',expiresAt: 9 },1);
+  const result = claims.held('mine',2); expect(result.map(claim => claim.resource)).toEqual(['tile']);
+  result[0]!.expiresAt = 99;
+  expect(claims.held('mine',5)).toEqual([]);
+  expect(() => claims.held('mine',-1)).toThrow('query');
+});

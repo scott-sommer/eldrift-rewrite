@@ -1,8 +1,8 @@
-import type { StatePort } from '../persistence/versioned-state';
-import type { IntelTraversalPolicy } from '../features/intel/traversal-model';
-import type { RoutePolicy } from '../capabilities/movement/room-route';
-import { createIntelTraversal } from '../features/intel/traversal';
-import { nativeScoutIntelPorts } from './native-scout-policy';
+import type { StatePort } from '../../persistence/versioned-state';
+import type { IntelTraversalPolicy } from '../../features/intel/traversal-model';
+import type { RoutePolicy } from '../../capabilities/movement/room-route';
+import { createIntelTraversal } from '../../features/intel/traversal';
+import { nativeScoutIntelPorts } from '../native-scout-policy';
 /** A denied origin can be escaped, but an unsafe destination is never exempted. */
 export function nativeRemoteRoute(state: StatePort, origin: string, target: string, policy: IntelTraversalPolicy,
   maximumRooms: number, retreat: boolean, guard: () => boolean): RoutePolicy | undefined {

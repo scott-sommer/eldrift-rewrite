@@ -1335,7 +1335,11 @@
     "implementationStatus": "not ported",
     "evidence": [
       "docs/remotes.md",
-      "docs/evidence/remote-reservation-engine-suite.json"
+      "docs/evidence/remote-reservation-engine-suite.json",
+      "docs/remote-mining.md",
+      "src/app/remotes/native-mining-service.ts",
+      "test/engine/remote-mining-bot.ts",
+      "docs/evidence/remote-mining-native.json"
     ],
     "plannedIssues": [
       "ED-12",
@@ -2581,11 +2585,15 @@
       "src/features/remotes/assignment-demand.ts",
       "test/features/remote-assignments.test.ts",
       "docs/evidence/remote-portfolio-native.json",
-      "src/app/reservation-task.ts",
-      "src/app/native-reservation-service.ts",
+      "src/app/remotes/reservation-task.ts",
+      "src/app/remotes/native-reservation-service.ts",
       "test/engine/remote-reservation-bot.ts",
       "docs/evidence/remote-reservation-native.json",
-      "docs/evidence/remote-reservation-engine-suite.json"
+      "docs/evidence/remote-reservation-engine-suite.json",
+      "docs/remote-mining.md",
+      "src/app/remotes/native-mining-service.ts",
+      "test/engine/remote-mining-bot.ts",
+      "docs/evidence/remote-mining-native.json"
     ],
     "plannedIssues": [
       "ED-28",
@@ -2834,13 +2842,13 @@
           "scoreRemoteSourceCandidate",
           "buildRemoteSourceCandidates"
         ],
-        "owner": "capabilities/economy + features/remotes + app/native-remote-assessment",
+        "owner": "capabilities/economy + features/remotes + app/remotes/assessment/native",
         "status": "Read-only assessment/economics increment with targeted dirty native evidence; automatic portfolio/reservation/mining/logistics remain ED-29. Not module-wide parity.",
         "tests": [
           "test/capabilities/remote-economics.test.ts",
           "test/features/remote-assessment.test.ts",
-          "test/app/remote-body-budget.test.ts",
-          "test/app/remote-retained-costs.test.ts",
+          "test/app/remotes/assessment/body-budget.test.ts",
+          "test/app/remotes/assessment/retained-costs.test.ts",
           "test/engine/remote-assessment-bot.ts"
         ]
       }
@@ -3035,8 +3043,8 @@
     "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
     "evidence": [
-      "src/app/reservation-task.ts",
-      "src/app/native-reservation-service.ts",
+      "src/app/remotes/reservation-task.ts",
+      "src/app/remotes/native-reservation-service.ts",
       "test/engine/remote-reservation-bot.ts",
       "docs/evidence/remote-reservation-native.json",
       "docs/remotes.md",
@@ -3618,7 +3626,11 @@
       "docs/logistics-acceptance.md",
       "docs/logistics.md",
       "docs/remotes.md",
-      "docs/evidence/remote-reservation-engine-suite.json"
+      "docs/evidence/remote-reservation-engine-suite.json",
+      "docs/remote-mining.md",
+      "src/app/remotes/native-mining-service.ts",
+      "test/engine/remote-mining-bot.ts",
+      "docs/evidence/remote-mining-native.json"
     ],
     "plannedIssues": [
       "ED-17",
@@ -5455,7 +5467,11 @@
     "implementationStatus": "not ported",
     "evidence": [
       "docs/remotes.md",
-      "docs/evidence/remote-reservation-engine-suite.json"
+      "docs/evidence/remote-reservation-engine-suite.json",
+      "docs/remote-mining.md",
+      "src/app/remotes/native-mining-service.ts",
+      "test/engine/remote-mining-bot.ts",
+      "docs/evidence/remote-mining-native.json"
     ],
     "plannedIssues": [
       "ED-12",

@@ -3,7 +3,7 @@ import { operatorSchema } from '../../src/features/operator/state';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createIntelStore } from '../../src/features/intel/store';
 import { observeNativeIntel } from '../../src/app/native-intel-observation';
-import { createNativeRemoteAssessment } from '../../src/app/native-remote-assessment';
+import { createNativeRemoteAssessment } from '../../src/app/remotes/assessment/native';
 import { selectRemotePortfolio } from '../../src/features/remotes/portfolio';
 import type { RemoteAssessment } from '../../src/features/remotes/assessment-model';
 import { sourceMiner, courier } from '../../src/capabilities/spawning/economy-recipes';

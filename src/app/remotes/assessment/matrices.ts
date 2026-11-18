@@ -1,7 +1,7 @@
-import { createStaticCostMatrix } from '../adapters/screeps/static-cost-matrix';
-import type { createMatrixSnapshots } from '../adapters/screeps/matrix-snapshots';
-import { retainedRemoteCosts } from './remote-retained-costs';
-import type { RemoteEstimateContext } from '../features/remotes/assessment-model';
+import { createStaticCostMatrix } from '../../../adapters/screeps/static-cost-matrix';
+import type { createMatrixSnapshots } from '../../../adapters/screeps/matrix-snapshots';
+import { retainedRemoteCosts } from './retained-costs';
+import type { RemoteEstimateContext } from '../../../features/remotes/assessment-model';
 export function prepareRemoteMatrices(context: RemoteEstimateContext, rooms: readonly string[], roadCost: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>) {
   const visible = rooms.filter(room => Game.rooms[room]), live = snapshots.prepare(visible,{ roadCost,avoidUnits: false });
