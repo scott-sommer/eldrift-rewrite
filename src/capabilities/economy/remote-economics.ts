@@ -1,4 +1,4 @@
-import { operatingBody } from './remote-body';
+import { operatingBody, operatingHauler } from './remote-body';
 import { remoteProduction } from './remote-production';
 import { validateEconomicResult, validateRemoteEconomics } from './remote-validation';
 import type { RemoteEconomicsInput, RemoteEconomicsResult, RemoteEconomics, RemoteBudgetRejection } from './remote-model';
@@ -7,7 +7,7 @@ export function assessRemoteEconomics(input: RemoteEconomicsInput): RemoteEconom
   validateRemoteEconomics(input);
   const miner = operatingBody(input.miner);
   if (!miner) return { status: 'infeasible', reason: 'miner-service' };
-  const hauler = operatingBody({ ...input.hauler, travelTicks: input.hauler.outboundTicks });
+  const hauler = operatingHauler(input.hauler);
   if (!hauler) return { status: 'infeasible', reason: 'hauler-service' };
   if (!miner.work) return { status: 'infeasible', reason: 'no-harvest' };
   if (!hauler.capacity) return { status: 'infeasible', reason: 'no-carry' };

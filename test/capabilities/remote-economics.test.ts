@@ -87,3 +87,14 @@ test('replacement handoff margin increases ongoing body and spawn cost without s
   value.miner.replacementMargin = -1;
   expect(() => assessRemoteEconomics(value)).toThrow('margin');
 });
+
+test('a hauler must finish a loaded delivery within its lifetime and handoff margin', () => {
+  const value = input(); value.hauler.outboundTicks = 25; value.hauler.returnTicks = 1474;
+  expect(assessRemoteEconomics(value)).toMatchObject({ status: 'infeasible',reason: 'hauler-service' });
+  value.hauler.replacementMargin = 25; value.hauler.returnTicks = 1448;
+  expect(assessRemoteEconomics(value)).toMatchObject({ status: 'infeasible',reason: 'hauler-service' });
+  value.hauler.returnTicks = 1447;
+  expect(assessRemoteEconomics(value).status).toBe('evaluated');
+  value.hauler.body = ['carry']; value.hauler.outboundTicks = 0; value.hauler.returnTicks = 1;
+  expect(assessRemoteEconomics(value)).toMatchObject({ status: 'infeasible',reason: 'hauler-service' });
+});
