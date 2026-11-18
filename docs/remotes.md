@@ -67,3 +67,5 @@ docs/evidence/remote-assessment-native.json retains the exact dirty source/bundl
 6. Full combined qualification and acceptance audit. ED-39/44 still own public legacy flag/console and memory translation; ED-35 owns specialist keeper/power execution; ED-43 owns measured multi-room pressure/CPU/Memory/soak.
 
 The first-delivery correction also passes the8-tick native scenario (engine-MKpGF8, dirty6e28b2a). The initial committed assessment passed engine-v6QO8M on clean6e28b2a; exact evidence is retained in remote-assessment-clean-native.json. These scopes remain read-only assessment qualification.
+
+Clean committed correction1ff5297 also passes engine-Ok5XeE (8ticks); full provenance/rows are archived with the preceding runs.
