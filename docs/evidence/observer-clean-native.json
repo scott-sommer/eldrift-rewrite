@@ -1,0 +1,5966 @@
+{
+  "sourceSha256": "3f8ae65fe588a067f42ae3f42a19d794105bda6b94d03ac2d8847f79814e20f3",
+  "evidence": {
+    "status": "passed",
+    "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-0JbD7L",
+    "messages": [],
+    "errors": [],
+    "samples": [
+      {
+        "tick": 2,
+        "wallMilliseconds": 242.2188,
+        "cpuMilliseconds": 37,
+        "memoryBytes": 1943
+      },
+      {
+        "tick": 3,
+        "wallMilliseconds": 23.824100000000044,
+        "cpuMilliseconds": 5,
+        "memoryBytes": 4036
+      },
+      {
+        "tick": 4,
+        "wallMilliseconds": 22.920200000000023,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 6298
+      },
+      {
+        "tick": 5,
+        "wallMilliseconds": 80.10760000000005,
+        "cpuMilliseconds": 28,
+        "memoryBytes": 7647
+      },
+      {
+        "tick": 6,
+        "wallMilliseconds": 21.104000000000042,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 9611
+      },
+      {
+        "tick": 7,
+        "wallMilliseconds": 21.61259999999993,
+        "cpuMilliseconds": 4,
+        "memoryBytes": 11146
+      },
+      {
+        "tick": 8,
+        "wallMilliseconds": 32.46649999999988,
+        "cpuMilliseconds": 5,
+        "memoryBytes": 13200
+      },
+      {
+        "tick": 9,
+        "wallMilliseconds": 19.132299999999987,
+        "cpuMilliseconds": 5,
+        "memoryBytes": 15713
+      },
+      {
+        "tick": 10,
+        "wallMilliseconds": 23.43529999999987,
+        "cpuMilliseconds": 6,
+        "memoryBytes": 18272
+      },
+      {
+        "tick": 11,
+        "wallMilliseconds": 23.5308,
+        "cpuMilliseconds": 3,
+        "memoryBytes": 20272
+      },
+      {
+        "tick": 12,
+        "wallMilliseconds": 23.897699999999986,
+        "cpuMilliseconds": 5,
+        "memoryBytes": 22797
+      },
+      {
+        "tick": 13,
+        "wallMilliseconds": 65.53610000000003,
+        "cpuMilliseconds": 31,
+        "memoryBytes": 25781
+      },
+      {
+        "tick": 14,
+        "wallMilliseconds": 33.173,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 28641
+      },
+      {
+        "tick": 15,
+        "wallMilliseconds": 29.145700000000033,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 31966
+      },
+      {
+        "tick": 16,
+        "wallMilliseconds": 21.288400000000138,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 35362
+      },
+      {
+        "tick": 17,
+        "wallMilliseconds": 21.80190000000016,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 38972
+      },
+      {
+        "tick": 18,
+        "wallMilliseconds": 22.039799999999786,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 42858
+      },
+      {
+        "tick": 19,
+        "wallMilliseconds": 38.0150000000001,
+        "cpuMilliseconds": 8,
+        "memoryBytes": 47281
+      },
+      {
+        "tick": 20,
+        "wallMilliseconds": 29.1253999999999,
+        "cpuMilliseconds": 8,
+        "memoryBytes": 51861
+      },
+      {
+        "tick": 21,
+        "wallMilliseconds": 23.528099999999995,
+        "cpuMilliseconds": 8,
+        "memoryBytes": 56238
+      },
+      {
+        "tick": 22,
+        "wallMilliseconds": 35.116199999999935,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 61061
+      },
+      {
+        "tick": 23,
+        "wallMilliseconds": 33.09889999999996,
+        "cpuMilliseconds": 7,
+        "memoryBytes": 65540
+      },
+      {
+        "tick": 24,
+        "wallMilliseconds": 21.644000000000005,
+        "cpuMilliseconds": 8,
+        "memoryBytes": 70612
+      },
+      {
+        "tick": 25,
+        "wallMilliseconds": 38.36079999999993,
+        "cpuMilliseconds": 9,
+        "memoryBytes": 75340
+      }
+    ],
+    "provenance": {
+      "commit": "d2158331b28183ddcc5b59f3af6e2d90752ecea2",
+      "dirty": false,
+      "bundleSha256": "17163e681c37e5880b7c92f3c179491e70ab1d9cd6452ce3990429096a22d89f",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "reloadProvenance": {
+      "commit": "d2158331b28183ddcc5b59f3af6e2d90752ecea2",
+      "dirty": false,
+      "bundleSha256": "70839427d35f5f01a1e1c8f55c5bc56da8a27a91066cc23c95d9403e2f72bf19",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "observers": {
+      "rows": [
+        {
+          "tick": 1,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [],
+          "receipts": [],
+          "issued": [],
+          "pending": [
+            "manual-initial"
+          ],
+          "cursors": [],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 2,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0
+            }
+          ],
+          "receipts": [],
+          "issued": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:2",
+            "observer-refresh:W1N1:W2N1:2"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 3,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 3,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:2",
+            "observer-refresh:W1N1:W2N1:2"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 4,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:2",
+            "observer-refresh:W1N1:W2N1:2"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 5,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:2",
+            "observer-refresh:W0N1:E0N1:5"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 6,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:2",
+            "observer-refresh:W0N1:E0N1:5"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 7,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:E0N1:5"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 8,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 8,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W0N1:E0N1:5"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 9,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:9",
+            "observer-refresh:W1N1:W2N1:9"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 10,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:9",
+            "observer-refresh:W1N1:W2N1:9"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 11,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:9"
+          ],
+          "cursors": [
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            },
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 12,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": null,
+              "visited": null,
+              "freshness": "unknown",
+              "owner": null,
+              "sources": null,
+              "mineral": null,
+              "exits": null
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": 12,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:9"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 13,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:E0N1:13"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 14,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 8,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 14,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:E0N1:13",
+            "observer-refresh:W0N1:W1N0:14"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 15,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:14",
+            "observer-refresh:W1N1:W2N1:15"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 16,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 3,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 16,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:15",
+            "manual-unowned"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 17,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 16,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": 12,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 16,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": 17,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "manual-unowned",
+            "observer-refresh:W0N1:E0N1:17"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 18,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 16,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 17,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 14,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 16,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 17,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 18,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:18"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 19,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 16,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 17,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 19,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 17,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:19"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 20,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": 17,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": true,
+              "seen": 20,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0,
+              "completedAt": 20,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W1N1:W2N1:19",
+            "observer-refresh:W0N1:E0N1:20"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "E0N1"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 21,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:19",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 19,
+                "expiresAt": 44
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 21,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0,
+              "completedAt": 20,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:19",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 19,
+                "expiresAt": 44
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 21,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:E0N1:20",
+            "observer-refresh:W0N1:W1N0:21"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 22,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 18,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": true,
+              "seen": 22,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0,
+              "completedAt": 20,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:19",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 19,
+                "expiresAt": 44
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 21,
+              "code": 0,
+              "completedAt": 22,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W0N1:E0N1:20",
+            "observer-refresh:W0N1:W1N0:21"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 23,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 22,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": false,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 22,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:20",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 20,
+                "expiresAt": 45
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 23,
+              "code": 0
+            }
+          ],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0,
+              "completedAt": 20,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:19",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 19,
+                "expiresAt": 44
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 21,
+              "code": 0,
+              "completedAt": 22,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:20",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 20,
+                "expiresAt": 45
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 23,
+              "code": 0
+            }
+          ],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:21",
+            "observer-refresh:W1N1:W2N1:23"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        },
+        {
+          "tick": 24,
+          "before": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 19,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 22,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "after": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "seen": 24,
+              "visited": null,
+              "freshness": "fresh",
+              "owner": null,
+              "sources": 2,
+              "mineral": "H",
+              "exits": 4
+            },
+            {
+              "room": "W1N0",
+              "visible": false,
+              "seen": 20,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "O",
+              "exits": 4
+            },
+            {
+              "room": "W2N1",
+              "visible": false,
+              "seen": 22,
+              "visited": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1,
+              "mineral": "X",
+              "exits": 4
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0,
+              "completedAt": 20,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:19",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 19,
+                "expiresAt": 44
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 21,
+              "code": 0,
+              "completedAt": 22,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:20",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 20,
+                "expiresAt": 45
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 23,
+              "code": 0,
+              "completedAt": 24,
+              "outcome": "observed"
+            }
+          ],
+          "issued": [],
+          "pending": [
+            "observer-refresh:W0N1:W1N0:21",
+            "observer-refresh:W1N1:W2N1:23"
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ],
+          "witness": {
+            "owner": "observer-witness",
+            "version": 1,
+            "data": {
+              "initializedAt": 1,
+              "value": [
+                "retained"
+              ]
+            }
+          }
+        }
+      ],
+      "reloads": [
+        4,
+        12
+      ],
+      "state": {
+        "owner": "observations",
+        "version": 1,
+        "data": {
+          "revision": 128,
+          "homeCursor": "W0N1",
+          "requestCursor": "observer-refresh:W0N1:E0N1:20",
+          "requests": [
+            {
+              "id": "observer-refresh:W0N1:W1N0:21",
+              "owner": "observer-refresh:W0N1",
+              "home": "W0N1",
+              "room": "W1N0",
+              "priority": -100,
+              "requestedAt": 21,
+              "expiresAt": 46
+            },
+            {
+              "id": "observer-refresh:W1N1:W2N1:23",
+              "owner": "observer-refresh:W1N1",
+              "home": "W1N1",
+              "room": "W2N1",
+              "priority": -100,
+              "requestedAt": 23,
+              "expiresAt": 48
+            }
+          ],
+          "flights": [],
+          "receipts": [
+            {
+              "request": {
+                "id": "manual-initial",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": 100,
+                "requestedAt": 1,
+                "expiresAt": 50
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 2,
+              "code": 0,
+              "completedAt": 3,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:2",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 5,
+              "code": 0,
+              "completedAt": 7,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:2",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 2,
+                "expiresAt": 27
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 7,
+              "code": 0,
+              "completedAt": 8,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:5",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 5,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 9,
+              "code": 0,
+              "completedAt": 11,
+              "outcome": "missed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:9",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 11,
+              "code": 0,
+              "completedAt": 12,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:9",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 9,
+                "expiresAt": 34
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 13,
+              "code": 0,
+              "completedAt": 14,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-far",
+                "owner": "operator",
+                "home": "W0N1",
+                "room": "W30N30",
+                "priority": 100,
+                "requestedAt": 14,
+                "expiresAt": 30
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 14,
+              "code": -9,
+              "completedAt": 14,
+              "outcome": "rejected"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:13",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 13,
+                "expiresAt": 38
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 15,
+              "code": 0,
+              "completedAt": 16,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:14",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 14,
+                "expiresAt": 39
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 16,
+              "code": 0,
+              "completedAt": 17,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:15",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 15,
+                "expiresAt": 40
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 17,
+              "code": 0,
+              "completedAt": 18,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "manual-unowned",
+                "owner": "operator",
+                "home": "W9N9",
+                "room": "W10N9",
+                "priority": 100,
+                "requestedAt": 16,
+                "expiresAt": 18
+              },
+              "observer": null,
+              "issuedAt": null,
+              "completedAt": 18,
+              "outcome": "expired",
+              "code": null
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:17",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 17,
+                "expiresAt": 42
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 18,
+              "code": 0,
+              "completedAt": 19,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:W1N0:18",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "W1N0",
+                "priority": -100,
+                "requestedAt": 18,
+                "expiresAt": 43
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 19,
+              "code": 0,
+              "completedAt": 20,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W1N1:W2N1:19",
+                "owner": "observer-refresh:W1N1",
+                "home": "W1N1",
+                "room": "W2N1",
+                "priority": -100,
+                "requestedAt": 19,
+                "expiresAt": 44
+              },
+              "observer": "91dbd4986475096",
+              "issuedAt": 21,
+              "code": 0,
+              "completedAt": 22,
+              "outcome": "observed"
+            },
+            {
+              "request": {
+                "id": "observer-refresh:W0N1:E0N1:20",
+                "owner": "observer-refresh:W0N1",
+                "home": "W0N1",
+                "room": "E0N1",
+                "priority": -100,
+                "requestedAt": 20,
+                "expiresAt": 45
+              },
+              "observer": "d39ad49864786df",
+              "issuedAt": 23,
+              "code": 0,
+              "completedAt": 24,
+              "outcome": "observed"
+            }
+          ],
+          "cursors": [
+            {
+              "home": "W1N1",
+              "room": "W2N1"
+            },
+            {
+              "home": "W0N1",
+              "room": "W1N0"
+            }
+          ]
+        }
+      },
+      "intel": {
+        "intel/E0N1": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 24,
+            "owned": false,
+            "sourceIds": [
+              "5796d498644599f",
+              "dfc2d4986457101"
+            ],
+            "structureIds": [
+              "d0fbd49864567d1"
+            ],
+            "hostileIds": [],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 24,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "6f9bd498644cf2b",
+                "x": 20,
+                "y": 20,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "5796d498644599f",
+                  "x": 10,
+                  "y": 10,
+                  "capacity": 3000
+                },
+                {
+                  "id": "dfc2d4986457101",
+                  "x": 35,
+                  "y": 35,
+                  "capacity": 3000
+                }
+              ],
+              "mineral": {
+                "id": "5805d498645927d",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "d0fbd49864567d1",
+                  "x": 21,
+                  "y": 21,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                }
+              ],
+              "units": [],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        },
+        "intel/W2N1": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 22,
+            "owned": false,
+            "sourceIds": [
+              "9129d49858b63c5"
+            ],
+            "structureIds": [],
+            "hostileIds": [],
+            "summary": {
+              "room": "W2N1",
+              "observedAt": 22,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": false,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "a23dd49858b116b",
+                "x": 30,
+                "y": 17,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "9129d49858b63c5",
+                  "x": 11,
+                  "y": 34,
+                  "capacity": 1000
+                }
+              ],
+              "mineral": {
+                "id": "350ed49858b032c",
+                "x": 47,
+                "y": 30,
+                "type": "X"
+              },
+              "structures": [],
+              "units": [],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "W2N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "W1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "W2N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W3N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        },
+        "intel/W1N0": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 20,
+            "owned": false,
+            "sourceIds": [
+              "e586d4985909e29"
+            ],
+            "structureIds": [],
+            "hostileIds": [],
+            "summary": {
+              "room": "W1N0",
+              "observedAt": 20,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "39dcd498590af06",
+                "x": 6,
+                "y": 16,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "e586d4985909e29",
+                  "x": 18,
+                  "y": 3,
+                  "capacity": 1000
+                }
+              ],
+              "mineral": {
+                "id": "8633d4985901585",
+                "x": 38,
+                "y": 11,
+                "type": "O"
+              },
+              "structures": [],
+              "units": [],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "W1N1"
+                },
+                {
+                  "direction": 3,
+                  "room": "W0N0"
+                },
+                {
+                  "direction": 5,
+                  "room": "W1S0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W2N0"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        }
+      }
+    },
+    "childPids": [
+      5156,
+      45068,
+      60012
+    ]
+  }
+}

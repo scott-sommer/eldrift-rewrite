@@ -6469,13 +6469,15 @@
           "monitorObservations"
         ],
         "owner": "features/intel/observation + app/native-observers",
-        "status": "Implemented shared observer boundary; targeted dirty native evidence, clean aggregate pending. Power-bank mission extraction ED-35 and operator/memory adapters ED-39/44 remain open.",
+        "status": "Shared observer boundary qualified; specialist mission ED-35 and public control/migration ED-39/44 remain open. Not module-wide parity.",
         "tests": [
           "test/features/observation-owner.test.ts",
           "test/features/observation-refresh.test.ts",
           "test/app/native-observers.test.ts",
           "test/engine/observer-runtime-bot.ts"
-        ]
+        ],
+        "validationCommit": "d215833",
+        "fullNativeSuite": "docs/evidence/observer-engine-suite.json"
       }
     }
   },

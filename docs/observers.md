@@ -54,3 +54,8 @@ Targeted --observer-runtime passes24real-engine ticks at default3CPU, global iss
 Full units1231tests/344files pass9.66s; quality563production/489testfiles has zero Lizard violations; packaged CommonJS/no-Node-globals check passes. The prior clean6380e92 run passes187engine cases in694.37s and is archived separately. Current-source clean188-case qualification is pending.
 
 This increment supplies the shared observer boundary. ED-35 still owns power-bank/keeper mission discovery and operation, ED-39 public controls, ED-44 legacy-memory translation/rollback, and ED-43 fleet/queue pressure, CPU/Memory and soak qualification. It is not a release-candidate or whole-goal completion claim.
+
+
+### Clean combined qualification
+
+All188packaged native engine checks pass in693.90s on cleand215833; every case's source provenance was checked for that commit and clean status. docs/evidence/observer-engine-suite.json archives the combined run; docs/evidence/observer-clean-native.json preserves the complete clean observer case. This qualifies the observer boundary described above. ED-28 remains open for the source-audited scout assigned-flag fallback before final acceptance; public console/memory adapters and later release gates remain separate obligations.
