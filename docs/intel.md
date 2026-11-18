@@ -137,3 +137,8 @@ Next controller work should compose core/execution/execute and app/task-runner w
 ## Native scout controller increment
 
 Native recruitment, assigned/fallback objectives, stabilized physical visits, hostile escape and route recovery now compose the existing state-machine/population/movement boundaries. See scouts.md for ownership, source mapping, configuration, native scenarios and current limits. Retirement clears scout controls by ID. Planning CPU is shared by all consumers for one home/tick; the shared movement service adds explicit corridors and isolated threat overlays. Default-depth/default-budget unassigned exploration passes110native ticks. Quality550production/483testfiles and full units1,210tests/339files pass9.35s; clean187-case aggregate qualification follows the implementation commit. Observer scheduling/action ownership/delayed visibility remain unfinished; ED-28 stays In Progress.
+
+
+## Observer owner increment
+
+The scout increment is now qualified by the clean187-case6380e92 suite (694.37s), archived in docs/evidence/scout-runtime-engine-suite.json. Native observer requests/actions/delayed capture are implemented separately in features/intel/observation and app/native-observers. See observers.md for legacy source mapping, exact budgets, queue/receipt ownership, the targeted24tick native evidence and remaining specialist/operator/migration gates. Current-source combined188-case qualification remains pending; ED-28 stays In Progress until its final acceptance audit.

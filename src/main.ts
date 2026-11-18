@@ -1,3 +1,4 @@
+import { createNativeObservers } from './app/native-observers';
 import { createNativeScouts } from './app/native-scouts';
 import { withScoutRetirement } from './app/scout-retirement';
 import { createNativeIntelFeature } from './app/native-intel';
@@ -47,7 +48,7 @@ const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions
   recovering);
 const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions }, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time));
 // Gameplay registration is separate from configuration-controlled activation.
-export const loop = createGameLoop([scouts.feature, scouts.demand, createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state)], {
+export const loop = createGameLoop([scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state)], {
   ...ports,
   config: configuration,
 }, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), dispatch.flush);

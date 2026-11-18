@@ -50,3 +50,18 @@ test('uncertain and rejected effects retain admission for this tick; ownership r
   expect(f.make().boost({ ...f.lab, my: false } as StructureLab, f.creep, 'upgrade')).toBe(-1);
   expect(f.make().boost(f.lab, f.creep, 'upgrade')).toBe(0);
 });
+
+test('observation has one durable structure owner even after rejection, interruption or recreation', () => {
+  const f = fixture(), invoke = vi.fn(() => -9);
+  const observer = { id: 'observer', my: true, observeRoom: invoke } as unknown as StructureObserver;
+  expect(f.make().observe(observer, 'E0N1', 'scanning')).toBe(-9);
+  expect(f.make().observe(observer, 'W1N1', 'operator')).toBe(-4);
+  expect(invoke).toHaveBeenCalledTimes(1);
+  Game.time++;
+  invoke.mockImplementation(() => { throw new Error('interrupted observer'); });
+  expect(() => f.make().observe(observer, 'E0N1', 'scanning')).toThrow('interrupted');
+  expect(f.make().observe(observer, 'W1N1', 'operator')).toBe(-4);
+  Game.time++;
+  expect(f.make().observe({ ...observer, my: false }, 'E0N1', 'scanning')).toBe(-1);
+  expect(invoke).toHaveBeenCalledTimes(2);
+});

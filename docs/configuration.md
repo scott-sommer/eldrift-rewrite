@@ -102,3 +102,10 @@ The shared empire job uses `intelCaptureCpuBudget=3`, `intelCaptureRooms=4` (att
 scoutsEnabled and scoutSpawningEnabled both default false. scoutAssignedRooms supplies an ordered physical-visit list; exhausted lists fall back to freshness-aware exploration. scoutCount=1 is an effective fleet target under shared replacement timing. scoutMinimumRcl=2 gates automatic recruitment. Local/extended depth defaults2/4, with extended depth at RCL4 or scoutExtendedProgress=0.1 through RCL3. All scout policy settings accept normal room/profile/temporary layers; see scouts.md and config/scouts.ts for validated bounds.
 
 scoutPlanCpuBudget=3 is shared by recruitment/assigned assessment/fallback consumers for a home/tick, with existing background/bucket/fraction admission. scoutControlCpuBudget=5 bounds admission to a current-room unit batch; oldest persisted execution ticks receive priority, and zero pauses control. Atomic captures/path queries can finish after the allowance. scoutDemandInterval=10 limits optional unassigned discovery refresh; cancellation and expired-owner cleanup still run promptly. Explicit spawning disablement cancels own requests; an incomplete/paused plan preserves valid outstanding demand. Threat/routing/entry/death-window controls remain separate from population ownership and actual dispatch.
+
+
+## Observer vision
+
+observersEnabled defaultsfalse. observerAssignedRooms is an ordered per-home list; observerRefreshInterval=1 preserves continuous single-target capability, observerRequestLifetime=25 bounds requests, and observerFailureDelay=25 spaces unsuccessful assigned attempts. Specialists submit explicit owner/id/home/room/priority/expiry requests through the same observation owner.
+
+observerCpuBudget=3, observerVisionBudget=4, observerCaptureBudget=4 and observerScanBudget=32 are shared environment/empire-only budgets. Per-home background/bucket/fraction policy gates new vision; pending next-tick capture remains urgent within the observer limits. See observers.md for lifecycle, caps and the difference between observation receipts and physical visits.

@@ -30,6 +30,11 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
       if (!admission.admit(owner, [structureKey(spawn.id), bodyKey(creep.id)], energy(spawn.room, cost))) return ERR_BUSY;
       return spawn.renewCreep(creep);
     },
+    observe(observer: StructureObserver, room: string, owner: string): number {
+      if (!observer.my) return ERR_NOT_OWNER;
+      if (!admission.admit(owner, [structureKey(observer.id)])) return ERR_BUSY;
+      return observer.observeRoom(room);
+    },
     boost(lab: StructureLab, creep: Creep, owner: string): number {
       if (!lab.my || !creep.my) return ERR_NOT_OWNER;
       if (lab.room.name !== creep.room.name) return ERR_INVALID_TARGET;

@@ -5814,7 +5814,9 @@
     "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
     "evidence": [
       "docs/logistics-acceptance.md",
-      "docs/logistics.md"
+      "docs/logistics.md",
+      "docs/observers.md",
+      "docs/evidence/observer-native.json"
     ],
     "plannedIssues": [
       "ED-12",
@@ -5828,7 +5830,8 @@
       "ED-38",
       "ED-39",
       "ED-44",
-      "ED-42"
+      "ED-42",
+      "ED-28"
     ],
     "capabilityWork": [
       "Enforce Lizard complexity and size limits in local checks and CI",
@@ -6457,6 +6460,23 @@
       "required": "behavior fixture plus relevant contract/engine scenario",
       "tests": [],
       "status": "not implemented"
+    },
+    "responsibilityEvidence": {
+      "observerScheduling": {
+        "sourceSymbols": [
+          "observeRooms",
+          "observeRoom",
+          "monitorObservations"
+        ],
+        "owner": "features/intel/observation + app/native-observers",
+        "status": "Implemented shared observer boundary; targeted dirty native evidence, clean aggregate pending. Power-bank mission extraction ED-35 and operator/memory adapters ED-39/44 remain open.",
+        "tests": [
+          "test/features/observation-owner.test.ts",
+          "test/features/observation-refresh.test.ts",
+          "test/app/native-observers.test.ts",
+          "test/engine/observer-runtime-bot.ts"
+        ]
+      }
     }
   },
   {

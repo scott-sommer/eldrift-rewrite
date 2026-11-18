@@ -1,3 +1,4 @@
+import { observerValidators, validateObserverScope } from './observers';
 import { scoutValidators } from './scouts';
 import { intelValidators, validateIntelScope } from './intel';
 import { constructionValidators } from './construction';
@@ -7,7 +8,7 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
-  ...planningValidators, ...constructionValidators, ...intelValidators, ...scoutValidators,
+  ...planningValidators, ...constructionValidators, ...intelValidators, ...scoutValidators, ...observerValidators,
   recoverySupportEnabled: value => typeof value === 'boolean',
   recoverySupportReserve: value => bounded(value, 1300000) && Number.isInteger(value),
   recoverySupportBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
@@ -114,6 +115,7 @@ export function validatePatch(input: unknown, layer: string): Partial<RuntimeCon
   for (const [key, value] of Object.entries(input)) {
     if (!Object.hasOwn(validators, key)) throw new Error(`${layer}.${key}: unknown configuration key`);
     validateIntelScope(key, layer);
+    validateObserverScope(key, layer);
     if (!validators[key as ConfigKey](value)) throw new Error(`${layer}.${key}: invalid value`);
     patch[key] = Array.isArray(value) ? Object.freeze([...value]) : value;
   }
