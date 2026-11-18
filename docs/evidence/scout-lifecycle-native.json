@@ -1,0 +1,1604 @@
+{
+  "registeredSuiteCases": 182,
+  "runs": [
+    {
+      "description": "failed: read-only fixture did not activate aging; strict heartbeat rejected observed past-deadline presence",
+      "status": "failed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-89BTXm",
+      "provenance": {
+        "commit": "c76b3fa2ec24661cdd1797ab0d97a2657692a3e3",
+        "dirty": true,
+        "bundleSha256": "6c9cfc5875feffa90680eed9c7ade61449bc39aa64dfd952d135baa38e1169cb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "c76b3fa2ec24661cdd1797ab0d97a2657692a3e3",
+        "dirty": true,
+        "bundleSha256": "dc73421b4622721b59d1557c3826fc1a25ff4a27c80c9733aa1bc9b6aa9e3d1f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [
+        "Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":5,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\n    at Object.loop2 (main:14260:46)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n",
+        "Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":6,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\n    at Object.loop2 (main:14260:46)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n",
+        "Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":7,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\n    at Object.loop2 (main:14260:46)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n",
+        "Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":8,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\n    at Object.loop2 (main:14260:46)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n",
+        "Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":9,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\n    at Object.loop2 (main:14260:46)\n    at __mainLoop:1:52\n    at __mainLoop:2:3\n    at exports.evalCode (&lt;runtime>:15381:76)\n    at exports.run (&lt;runtime>:20866:24)\n"
+      ],
+      "messages": [],
+      "failure": "AssertionError [ERR_ASSERTION]: Engine reported bot exceptions\n+ actual - expected\n\n+ [\n+   'Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":5,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\\n' +\n+     '    at Object.loop2 (main:14260:46)\\n' +\n+     '    at __mainLoop:1:52\\n' +\n+     '    at __mainLoop:2:3\\n' +\n+     '    at exports.evalCode (&lt;runtime>:15381:76)\\n' +\n+     '    at exports.run (&lt;runtime>:20866:24)\\n',\n+   'Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":6,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\\n' +\n+     '    at Object.loop2 (main:14260:46)\\n' +\n+     '    at __mainLoop:1:52\\n' +\n+     '    at __mainLoop:2:3\\n' +\n+     '    at exports.evalCode (&lt;runtime>:15381:76)\\n' +\n+     '    at exports.run (&lt;runtime>:20866:24)\\n',\n+   'Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":7,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\\n' +\n+     '    at Object.loop2 (main:14260:46)\\n' +\n+     '    at __mainLoop:1:52\\n' +\n+     '    at __mainLoop:2:3\\n' +\n+     '    at exports.evalCode (&lt;runtime>:15381:76)\\n' +\n+     '    at exports.run (&lt;runtime>:20866:24)\\n',\n+   'Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":8,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\\n' +\n+     '    at Object.loop2 (main:14260:46)\\n' +\n+     '    at __mainLoop:1:52\\n' +\n+     '    at __mainLoop:2:3\\n' +\n+     '    at exports.evalCode (&lt;runtime>:15381:76)\\n' +\n+     '    at exports.run (&lt;runtime>:20866:24)\\n',\n+   'Error: Invalid native scout facts: {\"id\":\"ea25c33da0eb17c\",\"name\":\"expiring-scout\",\"home\":\"W0N1\",\"target\":\"E0N1\",\"seenAt\":9,\"expiresAt\":4,\"position\":{\"room\":\"W0N1\",\"x\":24,\"y\":24}}\\n' +\n+     '    at Object.loop2 (main:14260:46)\\n' +\n+     '    at __mainLoop:1:52\\n' +\n+     '    at __mainLoop:2:3\\n' +\n+     '    at exports.evalCode (&lt;runtime>:15381:76)\\n' +\n+     '    at exports.run (&lt;runtime>:20866:24)\\n'\n+ ]\n- []\n\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:653:28\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "samples": [
+        {
+          "tick": 2,
+          "wallMilliseconds": 243.41679999999997,
+          "cpuMilliseconds": 36,
+          "memoryBytes": 3413
+        },
+        {
+          "tick": 3,
+          "wallMilliseconds": 17.4307,
+          "cpuMilliseconds": 4,
+          "memoryBytes": 3827
+        },
+        {
+          "tick": 4,
+          "wallMilliseconds": 327.2165,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 4232
+        },
+        {
+          "tick": 5,
+          "wallMilliseconds": 16.140300000000025,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 4646
+        },
+        {
+          "tick": 6,
+          "wallMilliseconds": 58.59180000000015,
+          "cpuMilliseconds": 27,
+          "memoryBytes": 4755
+        },
+        {
+          "tick": 7,
+          "wallMilliseconds": 14.863500000000158,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 4755
+        },
+        {
+          "tick": 8,
+          "wallMilliseconds": 14.610400000000027,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 4755
+        },
+        {
+          "tick": 9,
+          "wallMilliseconds": 12.994799999999941,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 4755
+        },
+        {
+          "tick": 10,
+          "wallMilliseconds": 12.540099999999939,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 4755
+        }
+      ],
+      "scoutLifecycle": null
+    },
+    {
+      "description": "failed: death was incorrectly assumed to end room visibility immediately",
+      "status": "failed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tV7j5m",
+      "provenance": {
+        "commit": "c76b3fa2ec24661cdd1797ab0d97a2657692a3e3",
+        "dirty": true,
+        "bundleSha256": "96562ecaf1249cdf2156a9296abc463052b2206c99e9b08edead0130e662d38d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "c76b3fa2ec24661cdd1797ab0d97a2657692a3e3",
+        "dirty": true,
+        "bundleSha256": "af059a4c8aee00dd5dc84538f06c2234145ebca4e2cbc19c6c2be16e699fb560",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(rows.slice(4).every(row => !row.visible && row.remoteSeen === 4 && row.sources === 2))\n\n    at verifyScoutLifecycle (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\scout-lifecycle.cjs:35:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:735:23\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "samples": [
+        {
+          "tick": 2,
+          "wallMilliseconds": 249.33730000000003,
+          "cpuMilliseconds": 37,
+          "memoryBytes": 3413
+        },
+        {
+          "tick": 3,
+          "wallMilliseconds": 18.581300000000056,
+          "cpuMilliseconds": 4,
+          "memoryBytes": 3827
+        },
+        {
+          "tick": 4,
+          "wallMilliseconds": 38.70749999999998,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 4232
+        },
+        {
+          "tick": 5,
+          "wallMilliseconds": 375.91880000000003,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 4668
+        },
+        {
+          "tick": 6,
+          "wallMilliseconds": 59.17509999999993,
+          "cpuMilliseconds": 26,
+          "memoryBytes": 5336
+        },
+        {
+          "tick": 7,
+          "wallMilliseconds": 33.95229999999992,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 5981
+        },
+        {
+          "tick": 8,
+          "wallMilliseconds": 34.09850000000006,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 6626
+        },
+        {
+          "tick": 9,
+          "wallMilliseconds": 41.93979999999988,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 7271
+        },
+        {
+          "tick": 10,
+          "wallMilliseconds": 33.146999999999935,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 7917
+        }
+      ],
+      "scoutLifecycle": {
+        "rows": [
+          {
+            "tick": 1,
+            "visible": true,
+            "active": [
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 1,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              },
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 1,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                }
+              }
+            ],
+            "losses": [],
+            "danger": [],
+            "remoteSeen": 1,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 1
+          },
+          {
+            "tick": 2,
+            "visible": true,
+            "active": [
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 2,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              },
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 2,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                }
+              }
+            ],
+            "losses": [],
+            "danger": [],
+            "remoteSeen": 2,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 2
+          },
+          {
+            "tick": 3,
+            "visible": true,
+            "active": [
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              },
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                }
+              }
+            ],
+            "losses": [],
+            "danger": [],
+            "remoteSeen": 3,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 3
+          },
+          {
+            "tick": 4,
+            "visible": true,
+            "active": [
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              }
+            ],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              }
+            ],
+            "danger": [],
+            "remoteSeen": 4,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 4
+          },
+          {
+            "tick": 5,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 5,
+            "remoteFailure": {
+              "id": "scout-loss:fd19c4114f28e8c",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 5
+          },
+          {
+            "tick": 6,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 6,
+            "remoteFailure": {
+              "id": "scout-loss:fd19c4114f28e8c",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 6
+          },
+          {
+            "tick": 7,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 7,
+            "remoteFailure": {
+              "id": "scout-loss:fd19c4114f28e8c",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 7
+          },
+          {
+            "tick": 8,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:fd19c4114f28e8c",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 8
+          },
+          {
+            "tick": 9,
+            "visible": false,
+            "active": [],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:fd19c4114f28e8c",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 9
+          }
+        ],
+        "history": {
+          "owner": "scouting",
+          "version": 1,
+          "data": {
+            "revision": 10,
+            "active": [],
+            "losses": [
+              {
+                "id": "6dfbc4114f2a9e6",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "fd19c4114f28e8c",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ]
+          }
+        },
+        "witness": {
+          "initializedAt": 1,
+          "value": "{\"owner\":\"fixture\",\"version\":1,\"data\":{\"kept\":17}}"
+        },
+        "sentinel": {
+          "owner": "fixture",
+          "version": 1,
+          "data": {
+            "kept": 17
+          }
+        },
+        "remote": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 8,
+            "owned": false,
+            "sourceIds": [
+              "4c1ac4114f1996b",
+              "cbcfc4114f1e1e9"
+            ],
+            "structureIds": [
+              "c790c4114f1b17f"
+            ],
+            "hostileIds": [],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 8,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "fafdc4114f1d421",
+                "x": 20,
+                "y": 20,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "4c1ac4114f1996b",
+                  "x": 10,
+                  "y": 10,
+                  "capacity": 1500
+                },
+                {
+                  "id": "cbcfc4114f1e1e9",
+                  "x": 35,
+                  "y": 35,
+                  "capacity": 1500
+                }
+              ],
+              "mineral": {
+                "id": "b011c4114f1ad2c",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "c790c4114f1b17f",
+                  "x": 21,
+                  "y": 21,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                }
+              ],
+              "units": [],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": {
+              "id": "scout-loss:fd19c4114f28e8c",
+              "tick": 5,
+              "reason": "early-disappearance"
+            }
+          }
+        },
+        "injectedDeath": {
+          "tick": 4,
+          "result": 0
+        },
+        "reloads": [
+          5
+        ]
+      }
+    },
+    {
+      "description": "passed: real early engine death, natural expiry, delayed vision loss and reset",
+      "status": "passed",
+      "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NlqupF",
+      "provenance": {
+        "commit": "c76b3fa2ec24661cdd1797ab0d97a2657692a3e3",
+        "dirty": true,
+        "bundleSha256": "96562ecaf1249cdf2156a9296abc463052b2206c99e9b08edead0130e662d38d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "c76b3fa2ec24661cdd1797ab0d97a2657692a3e3",
+        "dirty": true,
+        "bundleSha256": "af059a4c8aee00dd5dc84538f06c2234145ebca4e2cbc19c6c2be16e699fb560",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "errors": [],
+      "messages": [],
+      "failure": null,
+      "samples": [
+        {
+          "tick": 2,
+          "wallMilliseconds": 256.7759,
+          "cpuMilliseconds": 39,
+          "memoryBytes": 3413
+        },
+        {
+          "tick": 3,
+          "wallMilliseconds": 32.17089999999996,
+          "cpuMilliseconds": 4,
+          "memoryBytes": 3827
+        },
+        {
+          "tick": 4,
+          "wallMilliseconds": 44.364599999999996,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 4232
+        },
+        {
+          "tick": 5,
+          "wallMilliseconds": 67.21929999999998,
+          "cpuMilliseconds": 4,
+          "memoryBytes": 4668
+        },
+        {
+          "tick": 6,
+          "wallMilliseconds": 63.146999999999935,
+          "cpuMilliseconds": 26,
+          "memoryBytes": 5336
+        },
+        {
+          "tick": 7,
+          "wallMilliseconds": 29.4063000000001,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 5981
+        },
+        {
+          "tick": 8,
+          "wallMilliseconds": 24.312299999999823,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 6626
+        },
+        {
+          "tick": 9,
+          "wallMilliseconds": 21.2029,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 7271
+        },
+        {
+          "tick": 10,
+          "wallMilliseconds": 18.518600000000106,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 7917
+        },
+        {
+          "tick": 11,
+          "wallMilliseconds": 19.178300000000036,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 8567
+        },
+        {
+          "tick": 12,
+          "wallMilliseconds": 22.443700000000035,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 9215
+        },
+        {
+          "tick": 13,
+          "wallMilliseconds": 28.7183,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 9863
+        }
+      ],
+      "scoutLifecycle": {
+        "rows": [
+          {
+            "tick": 1,
+            "visible": true,
+            "active": [
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 1,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              },
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 1,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                }
+              }
+            ],
+            "losses": [],
+            "danger": [],
+            "remoteSeen": 1,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 1
+          },
+          {
+            "tick": 2,
+            "visible": true,
+            "active": [
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 2,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              },
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 2,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                }
+              }
+            ],
+            "losses": [],
+            "danger": [],
+            "remoteSeen": 2,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 2
+          },
+          {
+            "tick": 3,
+            "visible": true,
+            "active": [
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              },
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                }
+              }
+            ],
+            "losses": [],
+            "danger": [],
+            "remoteSeen": 3,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 3
+          },
+          {
+            "tick": 4,
+            "visible": true,
+            "active": [
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                }
+              }
+            ],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              }
+            ],
+            "danger": [],
+            "remoteSeen": 4,
+            "remoteFailure": null,
+            "sources": 2,
+            "homeSeen": 4
+          },
+          {
+            "tick": 5,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 5,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 5
+          },
+          {
+            "tick": 6,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 6,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 6
+          },
+          {
+            "tick": 7,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 7,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 7
+          },
+          {
+            "tick": 8,
+            "visible": true,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 8
+          },
+          {
+            "tick": 9,
+            "visible": false,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 9
+          },
+          {
+            "tick": 10,
+            "visible": false,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 10
+          },
+          {
+            "tick": 11,
+            "visible": false,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 11
+          },
+          {
+            "tick": 12,
+            "visible": false,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ],
+            "danger": [
+              {
+                "room": "E0N1",
+                "count": 1,
+                "until": 5006
+              }
+            ],
+            "remoteSeen": 8,
+            "remoteFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            },
+            "sources": 2,
+            "homeSeen": 12
+          }
+        ],
+        "history": {
+          "owner": "scouting",
+          "version": 1,
+          "data": {
+            "revision": 10,
+            "active": [],
+            "losses": [
+              {
+                "id": "8de0c429f01133c",
+                "name": "expiring-scout",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 3,
+                "expiresAt": 4,
+                "position": {
+                  "room": "W0N1",
+                  "x": 24,
+                  "y": 24
+                },
+                "detectedAt": 4,
+                "kind": "expired",
+                "failurePending": false
+              },
+              {
+                "id": "8213c429f018a3d",
+                "name": "intel-visitor",
+                "home": "W0N1",
+                "target": "E0N1",
+                "seenAt": 4,
+                "expiresAt": 1500,
+                "position": {
+                  "room": "E0N1",
+                  "x": 25,
+                  "y": 25
+                },
+                "detectedAt": 5,
+                "kind": "early-disappearance",
+                "failurePending": false
+              }
+            ]
+          }
+        },
+        "witness": {
+          "initializedAt": 1,
+          "value": "{\"owner\":\"fixture\",\"version\":1,\"data\":{\"kept\":17}}"
+        },
+        "sentinel": {
+          "owner": "fixture",
+          "version": 1,
+          "data": {
+            "kept": 17
+          }
+        },
+        "remote": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 8,
+            "owned": false,
+            "sourceIds": [
+              "11f9c429f003ea6",
+              "9710c429f0060b7"
+            ],
+            "structureIds": [
+              "48d1c429f01ff1b"
+            ],
+            "hostileIds": [],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 8,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "9dc8c429f006921",
+                "x": 20,
+                "y": 20,
+                "level": 0,
+                "owned": false,
+                "owner": null,
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "11f9c429f003ea6",
+                  "x": 10,
+                  "y": 10,
+                  "capacity": 1500
+                },
+                {
+                  "id": "9710c429f0060b7",
+                  "x": 35,
+                  "y": 35,
+                  "capacity": 1500
+                }
+              ],
+              "mineral": {
+                "id": "db6cc429f0198d3",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "48d1c429f01ff1b",
+                  "x": 21,
+                  "y": 21,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                }
+              ],
+              "units": [],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": {
+              "id": "scout-loss:8213c429f018a3d",
+              "tick": 5,
+              "reason": "early-disappearance"
+            }
+          }
+        },
+        "injectedDeath": {
+          "tick": 4,
+          "result": 0
+        },
+        "reloads": [
+          5
+        ]
+      }
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { withScoutRetirement } from './app/scout-retirement';
 import { createNativeIntelFeature } from './app/native-intel';
 import { createNativeConstructionFeature } from './app/native-construction';
 import { createNativePlanningFeature } from './app/native-planning';
@@ -42,7 +43,7 @@ const logistics = createNativeLogisticsFeature(state, dispatch, recovering);
 const upgradeMaster = createNativeUpgradeMaster(state, dispatch, recovering);
 const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions, ...logistics.definitions },
   recovering);
-const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions }, createLogisticsRetirement(state));
+const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions }, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time));
 // Gameplay registration is separate from configuration-controlled activation.
 export const loop = createGameLoop([createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state)], {
   ...ports,
