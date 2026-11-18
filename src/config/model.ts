@@ -1,8 +1,10 @@
+import { intelDefaults } from './intel';
+import type { IntelConfig } from './intel';
 import { constructionDefaults } from './construction';
 import type { ConstructionConfig } from './construction';
 import { planningDefaults } from './planning';
 import type { PlanningConfig } from './planning';
-export interface RuntimeConfig extends PlanningConfig, ConstructionConfig {
+export interface RuntimeConfig extends PlanningConfig, ConstructionConfig, IntelConfig {
   recoverySupportEnabled: boolean;
   recoverySupportReserve: number;
   recoverySupportBodyBudget: number;
@@ -104,7 +106,7 @@ export interface RuntimeConfig extends PlanningConfig, ConstructionConfig {
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
-  ...planningDefaults, ...constructionDefaults,
+  ...planningDefaults, ...constructionDefaults, ...intelDefaults,
   recoverySupportEnabled: true,
   recoverySupportReserve: 0,
   recoverySupportBodyBudget: 2600,

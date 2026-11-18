@@ -88,3 +88,10 @@ Error retry controls: `constructionRetryAttempts=3`, `constructionRetryDelay=10`
 workerUpgradeApproachRange is an integer1–3, default2. It applies when workerMode=upgrader and workerEnergyProfile=upgrader; balanced, builder, fortifier and upgrader-v2 work retain action range3. Upgrade-room station geometry remains separately owned. A room override of3 preserves the old W3N58 exception without a hardcoded room name in runtime code. ED-44 must translate any retained legacy configuration deliberately; no automatic legacy memory import occurs.
 
 An upgrader already within API range3 can issue its upgrade while moving toward the preferred distance on the same tick. Positioning shares the task owner and movement boundary. Rejected or blocked work does not issue an extra positioning request. Build/repair distances remain3. A preferred distance is a policy goal, not permission to cross blocked terrain or issue conflicting actions.
+
+
+## Visible-room intel capture
+
+`intelEnabled=false` by default. Per-room activation consumes existing vision; it does not spawn scouts or command observers. `intelCaptureInterval=50` sets periodic refresh and capture-failure cooldown. `intelMaximumAge=5000` marks retained detail stale; stale/unknown detail is eligible earlier than the periodic interval. Freshness zero is valid.
+
+The shared empire job uses `intelCaptureCpuBudget=3`, `intelCaptureRooms=4` (attempts, including failed/hidden captures), and `intelCaptureScans=32` (candidate metadata scans). These limits may only be set in environment/empire configuration; profile, room and temporary overrides reject. Zero for any shared limit pauses capture. CPU admission is cooperative: a room snapshot/write can finish after the deadline. Room backgroundEnabled, minimumBucket and backgroundCpuFraction still gate that room's capture. A persisted cursor rotates service across the visible set and survives resets; unobserved rooms remain unknown rather than receiving empty snapshots.

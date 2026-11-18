@@ -1,0 +1,1287 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vDMdGG",
+  "provenance": {
+    "commit": "13b52dcb5afc01664159795e1e7ed6a67d3f2059",
+    "dirty": true,
+    "bundleSha256": "64acea903caf1fbbd9de8cbb26b46893c39c71cff875b5e21e6a645c911f68c1",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "13b52dcb5afc01664159795e1e7ed6a67d3f2059",
+    "dirty": true,
+    "bundleSha256": "a5bafd8330a0ecd15c5743d8e801ea3d89dfa3504a32babcc5332251c210fbef",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 239.35969999999998,
+      "cpuMilliseconds": 36,
+      "memoryBytes": 2062
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 17.194000000000074,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 3417
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 19.01189999999997,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 4705
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 15.190500000000043,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 5196
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 13.814200000000028,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 5646
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 14.727800000000002,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 6144
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 57.64320000000009,
+      "cpuMilliseconds": 25,
+      "memoryBytes": 6661
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 16.060500000000047,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 7206
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 15.314400000000205,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 7683
+    },
+    {
+      "tick": 11,
+      "wallMilliseconds": 15.09660000000008,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 8173
+    },
+    {
+      "tick": 12,
+      "wallMilliseconds": 15.55880000000002,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 8667
+    },
+    {
+      "tick": 13,
+      "wallMilliseconds": 13.732799999999997,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 9183
+    },
+    {
+      "tick": 14,
+      "wallMilliseconds": 18.359699999999975,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 9689
+    },
+    {
+      "tick": 15,
+      "wallMilliseconds": 13.89409999999998,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 10195
+    },
+    {
+      "tick": 16,
+      "wallMilliseconds": 13.41619999999989,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 10701
+    },
+    {
+      "tick": 17,
+      "wallMilliseconds": 13.897199999999884,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 11207
+    },
+    {
+      "tick": 18,
+      "wallMilliseconds": 13.556299999999965,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 11713
+    },
+    {
+      "tick": 19,
+      "wallMilliseconds": 14.705400000000054,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 12219
+    }
+  ],
+  "intelCapture": {
+    "rows": [
+      {
+        "tick": 1,
+        "before": [
+          null,
+          null,
+          null
+        ],
+        "beforeCursor": {
+          "revision": 0,
+          "cursor": null
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": null,
+            "lastVisit": null,
+            "freshness": "unknown",
+            "owner": null,
+            "sources": null
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": null,
+            "lastVisit": null,
+            "freshness": "unknown",
+            "owner": null,
+            "sources": null
+          }
+        ],
+        "cursor": {
+          "revision": 1,
+          "cursor": "E0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "E0N1"
+        ]
+      },
+      {
+        "tick": 2,
+        "before": [
+          1,
+          null,
+          null
+        ],
+        "beforeCursor": {
+          "revision": 1,
+          "cursor": "E0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 2,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": null,
+            "lastVisit": null,
+            "freshness": "unknown",
+            "owner": null,
+            "sources": null
+          }
+        ],
+        "cursor": {
+          "revision": 2,
+          "cursor": "W0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W0N1"
+        ]
+      },
+      {
+        "tick": 3,
+        "before": [
+          1,
+          2,
+          null
+        ],
+        "beforeCursor": {
+          "revision": 2,
+          "cursor": "W0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 2,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 3,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 3,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W1N1"
+        ]
+      },
+      {
+        "tick": 4,
+        "before": [
+          1,
+          2,
+          3
+        ],
+        "beforeCursor": {
+          "revision": 3,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 2,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 3,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 3,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": []
+      },
+      {
+        "tick": 5,
+        "before": [
+          1,
+          2,
+          3
+        ],
+        "beforeCursor": {
+          "revision": 3,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": false,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 5,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 3,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 4,
+          "cursor": "W0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W0N1"
+        ]
+      },
+      {
+        "tick": 6,
+        "before": [
+          1,
+          5,
+          3
+        ],
+        "beforeCursor": {
+          "revision": 4,
+          "cursor": "W0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": false,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 5,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 6,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 5,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W1N1"
+        ]
+      },
+      {
+        "tick": 7,
+        "before": [
+          1,
+          5,
+          6
+        ],
+        "beforeCursor": {
+          "revision": 5,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": false,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 7,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 6,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 6,
+          "cursor": "W0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W0N1"
+        ]
+      },
+      {
+        "tick": 8,
+        "before": [
+          1,
+          7,
+          6
+        ],
+        "beforeCursor": {
+          "revision": 6,
+          "cursor": "W0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 1,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 7,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 8,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 7,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W1N1"
+        ]
+      },
+      {
+        "tick": 9,
+        "before": [
+          1,
+          7,
+          8
+        ],
+        "beforeCursor": {
+          "revision": 7,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 9,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 7,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 8,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 8,
+          "cursor": "E0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "E0N1"
+        ]
+      },
+      {
+        "tick": 10,
+        "before": [
+          9,
+          7,
+          8
+        ],
+        "beforeCursor": {
+          "revision": 8,
+          "cursor": "E0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 9,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 10,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 8,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 9,
+          "cursor": "W0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W0N1"
+        ]
+      },
+      {
+        "tick": 11,
+        "before": [
+          9,
+          10,
+          8
+        ],
+        "beforeCursor": {
+          "revision": 9,
+          "cursor": "W0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 9,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 10,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 11,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 10,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W1N1"
+        ]
+      },
+      {
+        "tick": 12,
+        "before": [
+          9,
+          10,
+          11
+        ],
+        "beforeCursor": {
+          "revision": 10,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 12,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 10,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 11,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 11,
+          "cursor": "E0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "E0N1"
+        ]
+      },
+      {
+        "tick": 13,
+        "before": [
+          12,
+          10,
+          11
+        ],
+        "beforeCursor": {
+          "revision": 11,
+          "cursor": "E0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 12,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 13,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 11,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 12,
+          "cursor": "W0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W0N1"
+        ]
+      },
+      {
+        "tick": 14,
+        "before": [
+          12,
+          13,
+          11
+        ],
+        "beforeCursor": {
+          "revision": 12,
+          "cursor": "W0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 12,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 13,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 14,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 13,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W1N1"
+        ]
+      },
+      {
+        "tick": 15,
+        "before": [
+          12,
+          13,
+          14
+        ],
+        "beforeCursor": {
+          "revision": 13,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 15,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 13,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 14,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 14,
+          "cursor": "E0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "E0N1"
+        ]
+      },
+      {
+        "tick": 16,
+        "before": [
+          15,
+          13,
+          14
+        ],
+        "beforeCursor": {
+          "revision": 14,
+          "cursor": "E0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 15,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 16,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 14,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 15,
+          "cursor": "W0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W0N1"
+        ]
+      },
+      {
+        "tick": 17,
+        "before": [
+          15,
+          16,
+          14
+        ],
+        "beforeCursor": {
+          "revision": 15,
+          "cursor": "W0N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 15,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 16,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 17,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 16,
+          "cursor": "W1N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "W1N1"
+        ]
+      },
+      {
+        "tick": 18,
+        "before": [
+          15,
+          16,
+          17
+        ],
+        "beforeCursor": {
+          "revision": 16,
+          "cursor": "W1N1"
+        },
+        "rooms": [
+          {
+            "room": "E0N1",
+            "visible": true,
+            "lastSeen": 18,
+            "lastVisit": null,
+            "freshness": "fresh",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W0N1",
+            "visible": true,
+            "lastSeen": 16,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": "eldrift-smoke",
+            "sources": 2
+          },
+          {
+            "room": "W1N1",
+            "visible": true,
+            "lastSeen": 17,
+            "lastVisit": null,
+            "freshness": "stale",
+            "owner": null,
+            "sources": 1
+          }
+        ],
+        "cursor": {
+          "revision": 17,
+          "cursor": "E0N1"
+        },
+        "cpuBudget": 3,
+        "updated": [
+          "E0N1"
+        ]
+      }
+    ],
+    "reloads": [
+      7
+    ],
+    "sentinel": {
+      "initializedAt": 1
+    },
+    "records": {
+      "intel/E0N1": {
+        "owner": "intel",
+        "version": 2,
+        "data": {
+          "lastSeen": 18,
+          "owned": true,
+          "sourceIds": [
+            "28c4bfd585f3731",
+            "e9acbfd585fad9d"
+          ],
+          "structureIds": [
+            "7b71bfd585fee92"
+          ],
+          "hostileIds": [],
+          "summary": {
+            "room": "E0N1",
+            "observedAt": 18,
+            "status": "normal",
+            "statusTimestamp": null,
+            "highway": true,
+            "keeper": false,
+            "center": false,
+            "controller": {
+              "id": "5420bfd585fcb86",
+              "x": 20,
+              "y": 20,
+              "level": 1,
+              "owned": true,
+              "owner": "eldrift-smoke",
+              "reservation": null
+            },
+            "sources": [
+              {
+                "id": "28c4bfd585f3731",
+                "x": 10,
+                "y": 10,
+                "capacity": 3000
+              },
+              {
+                "id": "e9acbfd585fad9d",
+                "x": 35,
+                "y": 35,
+                "capacity": 3000
+              }
+            ],
+            "mineral": {
+              "id": "ff5fbfd585f244d",
+              "x": 30,
+              "y": 10,
+              "type": "H"
+            },
+            "structures": [
+              {
+                "id": "7b71bfd585fee92",
+                "x": 21,
+                "y": 21,
+                "type": "road",
+                "owned": false,
+                "owner": null,
+                "hostile": false
+              }
+            ],
+            "units": [
+              {
+                "id": "1abfbfd5a33512f",
+                "x": 25,
+                "y": 25,
+                "owner": "eldrift-smoke",
+                "owned": true,
+                "power": false
+              }
+            ],
+            "exits": [
+              {
+                "direction": 1,
+                "room": "E0N2"
+              },
+              {
+                "direction": 3,
+                "room": "E1N1"
+              },
+              {
+                "direction": 5,
+                "room": "E0N0"
+              },
+              {
+                "direction": 7,
+                "room": "W0N1"
+              }
+            ]
+          },
+          "lastVisit": null,
+          "lastFailure": null
+        }
+      },
+      "intel/W0N1": {
+        "owner": "intel",
+        "version": 2,
+        "data": {
+          "lastSeen": 16,
+          "owned": true,
+          "sourceIds": [
+            "c6adbfd57b2b3c0",
+            "3459bfd57b36780"
+          ],
+          "structureIds": [
+            "bbb3bfd5858b88a"
+          ],
+          "hostileIds": [],
+          "summary": {
+            "room": "W0N1",
+            "observedAt": 16,
+            "status": "normal",
+            "statusTimestamp": null,
+            "highway": true,
+            "keeper": false,
+            "center": false,
+            "controller": {
+              "id": "7a0dbfd57b20ca3",
+              "x": 8,
+              "y": 43,
+              "level": 1,
+              "owned": true,
+              "owner": "eldrift-smoke",
+              "reservation": null
+            },
+            "sources": [
+              {
+                "id": "c6adbfd57b2b3c0",
+                "x": 14,
+                "y": 18,
+                "capacity": 1000
+              },
+              {
+                "id": "3459bfd57b36780",
+                "x": 39,
+                "y": 14,
+                "capacity": 1000
+              }
+            ],
+            "mineral": {
+              "id": "21eabfd57b2ffe5",
+              "x": 11,
+              "y": 37,
+              "type": "H"
+            },
+            "structures": [
+              {
+                "id": "bbb3bfd5858b88a",
+                "x": 15,
+                "y": 15,
+                "type": "spawn",
+                "owned": true,
+                "owner": "eldrift-smoke",
+                "hostile": false
+              }
+            ],
+            "units": [],
+            "exits": [
+              {
+                "direction": 1,
+                "room": "W0N2"
+              },
+              {
+                "direction": 7,
+                "room": "W1N1"
+              }
+            ]
+          },
+          "lastVisit": null,
+          "lastFailure": null
+        }
+      },
+      "intel/W1N1": {
+        "owner": "intel",
+        "version": 2,
+        "data": {
+          "lastSeen": 17,
+          "owned": false,
+          "sourceIds": [
+            "280cbfd57b1bfb3"
+          ],
+          "structureIds": [],
+          "hostileIds": [],
+          "summary": {
+            "room": "W1N1",
+            "observedAt": 17,
+            "status": "normal",
+            "statusTimestamp": null,
+            "highway": false,
+            "keeper": false,
+            "center": false,
+            "controller": {
+              "id": "3252bfd57b1a8cf",
+              "x": 39,
+              "y": 11,
+              "level": 0,
+              "owned": false,
+              "owner": null,
+              "reservation": null
+            },
+            "sources": [
+              {
+                "id": "280cbfd57b1bfb3",
+                "x": 4,
+                "y": 15,
+                "capacity": 1000
+              }
+            ],
+            "mineral": {
+              "id": "0599bfd57b13f23",
+              "x": 7,
+              "y": 36,
+              "type": "O"
+            },
+            "structures": [],
+            "units": [
+              {
+                "id": "840dbfd58648844",
+                "x": 25,
+                "y": 25,
+                "owner": "eldrift-smoke",
+                "owned": true,
+                "power": false
+              }
+            ],
+            "exits": [
+              {
+                "direction": 1,
+                "room": "W1N2"
+              },
+              {
+                "direction": 3,
+                "room": "W0N1"
+              },
+              {
+                "direction": 5,
+                "room": "W1N0"
+              },
+              {
+                "direction": 7,
+                "room": "W2N1"
+              }
+            ]
+          },
+          "lastVisit": null,
+          "lastFailure": null
+        }
+      }
+    },
+    "progress": {
+      "owner": "intel-capture",
+      "version": 1,
+      "data": {
+        "revision": 17,
+        "cursor": "E0N1"
+      }
+    }
+  },
+  "messages": [],
+  "errors": [],
+  "scenario": "--intel-capture",
+  "registeredSuiteCases": 181
+}

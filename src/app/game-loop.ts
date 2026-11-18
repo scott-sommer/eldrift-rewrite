@@ -1,6 +1,6 @@
 import { createRuntime } from './runtime';
-import type { RoomFeature, RuntimePorts } from './runtime-model';
-export function createGameLoop(features: readonly RoomFeature[], ports: RuntimePorts, beforeTick: () => boolean = () => true, afterTick: () => void = () => {}): () => void {
+import type { RuntimeFeature, RuntimePorts } from './runtime-model';
+export function createGameLoop(features: readonly RuntimeFeature[], ports: RuntimePorts, beforeTick: () => boolean = () => true, afterTick: () => void = () => {}): () => void {
   const runtime = createRuntime(features, ports);
   let dispatchedTick: number | undefined;
   function report(error: unknown, id: string, room?: string): void {

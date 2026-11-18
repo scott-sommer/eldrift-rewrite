@@ -13,6 +13,19 @@ export interface RoomFeature {
   readonly interval: number;
   run(context: FeatureContext): void;
 }
+export interface EmpireFeatureContext {
+  readonly world: TickView;
+  readonly config: EffectiveConfig;
+  readonly rooms: ReadonlyMap<string, EffectiveConfig>;
+}
+export interface EmpireFeature {
+  readonly id: string;
+  readonly scope: 'empire';
+  readonly urgency: 'urgent' | 'background';
+  readonly interval: number;
+  run(context: EmpireFeatureContext): void;
+}
+export type RuntimeFeature = RoomFeature | EmpireFeature;
 export interface RuntimePorts extends SchedulerPorts {
   observations: ObservationSource;
   config(room?: string): ConfigInput;

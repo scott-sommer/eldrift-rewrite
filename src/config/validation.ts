@@ -1,3 +1,4 @@
+import { intelValidators, validateIntelScope } from './intel';
 import { constructionValidators } from './construction';
 import { planningValidators } from './planning';
 import type { ConfigKey, RuntimeConfig } from './model';
@@ -5,7 +6,7 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
-  ...planningValidators, ...constructionValidators,
+  ...planningValidators, ...constructionValidators, ...intelValidators,
   recoverySupportEnabled: value => typeof value === 'boolean',
   recoverySupportReserve: value => bounded(value, 1300000) && Number.isInteger(value),
   recoverySupportBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,
@@ -111,6 +112,7 @@ export function validatePatch(input: unknown, layer: string): Partial<RuntimeCon
   const patch: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(input)) {
     if (!Object.hasOwn(validators, key)) throw new Error(`${layer}.${key}: unknown configuration key`);
+    validateIntelScope(key, layer);
     if (!validators[key as ConfigKey](value)) throw new Error(`${layer}.${key}: invalid value`);
     patch[key] = Array.isArray(value) ? Object.freeze([...value]) : value;
   }
