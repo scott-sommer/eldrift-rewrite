@@ -1333,7 +1333,10 @@
     "physicalLines": 2067,
     "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": [],
+    "evidence": [
+      "docs/remotes.md",
+      "docs/evidence/remote-reservation-engine-suite.json"
+    ],
     "plannedIssues": [
       "ED-12",
       "ED-16",
@@ -2581,7 +2584,8 @@
       "src/app/reservation-task.ts",
       "src/app/native-reservation-service.ts",
       "test/engine/remote-reservation-bot.ts",
-      "docs/evidence/remote-reservation-native.json"
+      "docs/evidence/remote-reservation-native.json",
+      "docs/evidence/remote-reservation-engine-suite.json"
     ],
     "plannedIssues": [
       "ED-28",
@@ -3034,7 +3038,9 @@
       "src/app/reservation-task.ts",
       "src/app/native-reservation-service.ts",
       "test/engine/remote-reservation-bot.ts",
-      "docs/evidence/remote-reservation-native.json"
+      "docs/evidence/remote-reservation-native.json",
+      "docs/remotes.md",
+      "docs/evidence/remote-reservation-engine-suite.json"
     ],
     "plannedIssues": [
       "ED-27",
@@ -3610,7 +3616,9 @@
     "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
     "evidence": [
       "docs/logistics-acceptance.md",
-      "docs/logistics.md"
+      "docs/logistics.md",
+      "docs/remotes.md",
+      "docs/evidence/remote-reservation-engine-suite.json"
     ],
     "plannedIssues": [
       "ED-17",
@@ -5445,7 +5453,10 @@
     "physicalLines": 2766,
     "reviewStatus": "static inventory complete; individual behavior review pending",
     "implementationStatus": "not ported",
-    "evidence": [],
+    "evidence": [
+      "docs/remotes.md",
+      "docs/evidence/remote-reservation-engine-suite.json"
+    ],
     "plannedIssues": [
       "ED-12",
       "ED-13",
