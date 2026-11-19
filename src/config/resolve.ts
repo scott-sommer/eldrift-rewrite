@@ -21,6 +21,7 @@ export function resolveConfig(input: ConfigInput, tick: number): EffectiveConfig
     const patch = validatePatch(temporary, 'temporary');
     if (tick < expiresAt) apply('temporary', patch);
   }
+  if (values.remoteAdaptiveIncreaseAt >= values.remoteAdaptiveDecreaseAt) throw new Error('Remote adaptive increase threshold must be below decrease threshold');
   if (values.remoteLeaseLifetime <= values.remoteScanLifetime+values.remoteReassessInterval) throw new Error('Remote lease lifetime must cover scan and reassessment intervals');
   if (values.constructionRetryMaximumDelay < values.constructionRetryDelay) throw new Error('Construction retry maximum delay must cover initial delay');
   if (values.upgradeFleetStopEnergy >= values.upgradeFleetStartEnergy) throw new Error('Upgrade fleet stop must be below start energy');

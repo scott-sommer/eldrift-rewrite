@@ -1,5 +1,7 @@
 import { roomCoordinates } from '../core/geometry/room-grid';
 export interface RemoteConfig {
+  remoteAdaptiveEnabled: boolean; remoteAdaptiveInitialSources: number; remoteAdaptiveMaximumSources: number;
+  remoteAdaptiveInterval: number; remoteAdaptiveIncreaseAt: number; remoteAdaptiveDecreaseAt: number;
   remoteReservationEnabled: boolean; remoteReservationBodyBudget: number; remoteReservationMinimumBuffer: number; remoteReservationMargin: number;
   remoteReservationQuoteRooms: number; remoteReservationEnergyReserve: number;
   remoteWorkersEnabled: boolean; remoteSpawningEnabled: boolean; remoteWorkerCpuBudget: number; remoteWorkerMaximumUnits: number;
@@ -17,6 +19,8 @@ export interface RemoteConfig {
   remoteRiskPerTick: number; remoteInfrastructurePerTick: number;
 }
 export const remoteDefaults: Readonly<RemoteConfig> = Object.freeze({
+  remoteAdaptiveEnabled: false,remoteAdaptiveInitialSources: 3,remoteAdaptiveMaximumSources: 128,
+  remoteAdaptiveInterval: 1500,remoteAdaptiveIncreaseAt: .75,remoteAdaptiveDecreaseAt: .90,
   remoteReservationEnabled: false,remoteReservationBodyBudget: 5200,remoteReservationMinimumBuffer: 100,remoteReservationMargin: 25,
   remoteReservationQuoteRooms: 1,remoteReservationEnergyReserve: 50000,
   remoteWorkersEnabled: false,remoteSpawningEnabled: false,remoteWorkerCpuBudget: 5,remoteWorkerMaximumUnits: 40,
@@ -41,6 +45,8 @@ function rooms(value: unknown): boolean {
   try { for (const name of value) roomCoordinates(name); return new Set(value).size === value.length; } catch { return false; }
 }
 export const remoteValidators: { [K in keyof RemoteConfig]: (value: unknown) => boolean } = {
+  remoteAdaptiveEnabled: enabled,remoteAdaptiveInitialSources: value => integer(value,0,128),remoteAdaptiveMaximumSources: value => integer(value,0,128),
+  remoteAdaptiveInterval: value => integer(value,1,1000000),remoteAdaptiveIncreaseAt: value => rate(value,1),remoteAdaptiveDecreaseAt: value => rate(value,1),
   remoteReservationEnabled: enabled,remoteReservationBodyBudget: value => integer(value,0,5200),remoteReservationMinimumBuffer: value => integer(value,0,4999),remoteReservationMargin: value => integer(value,0,600),
   remoteReservationQuoteRooms: value => integer(value,0,64),remoteReservationEnergyReserve: value => integer(value,0,1000000),
   remoteWorkersEnabled: enabled,remoteSpawningEnabled: enabled,remoteWorkerCpuBudget: value => rate(value,1000),remoteWorkerMaximumUnits: value => integer(value,0,100),

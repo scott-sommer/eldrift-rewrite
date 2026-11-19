@@ -1,3 +1,4 @@
+import { limitRemoteSources } from '../capacity/feature';
 import { createNativeReservationCandidates } from '../reservation/candidates';
 import type { RemoteManagementRequest } from '../../../features/remotes/management/model';
 import type { RemoteAssignment } from '../../../features/remotes/assignment-model';
@@ -23,7 +24,7 @@ export function createNativeRemoteManagementFeature(state: StatePort, committed:
     const policy = nativeRemoteManagementPolicy(home,discovered.rooms,config);
     if (!policy || !guard()) return;
     if (discovered.status !== 'complete' && !discovered.rooms.length) return;
-    const request = { home: home.name,tick: Game.time,policy: reservationCandidates(home,policy,config,guard) };
+    const request = { home: home.name,tick: Game.time,policy: limitRemoteSources(state,home,reservationCandidates(home,policy,config,guard),config) };
     const result = createNativeRemoteManagement(state,{ maximumRooms: config.remoteMaximumRouteRooms,maximumOps: config.remoteMaximumPathOps })
       .advance(request,{ rooms: config.remoteScanRooms,sources: config.remoteScanSources },guard);
     if (result.status === 'applied') committed(request,result);
