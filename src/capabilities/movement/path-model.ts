@@ -1,4 +1,5 @@
 import type { Position } from './step';
+export interface StaticTravelLeg { ticks: number; operations: number; arrival: Position }
 export interface PathProfile {
   id: string;
   plainCost: number;

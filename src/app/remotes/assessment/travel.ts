@@ -22,7 +22,7 @@ export function measureRemoteTravel(context: RemoteEstimateContext, origin: Posi
   return { status: 'complete',minerReturnTicks: returningMiner.ticks,minerTicks: mining.ticks,outboundTicks: outbound.ticks,returnTicks: inbound.ticks,
     rooms: [...rooms],operations: mining.operations+outbound.operations+inbound.operations+returningMiner.operations };
 }
-export function measureRemoteLeg(context: RemoteEstimateContext, leg: RemoteLegRequest, rooms: string[], maximumOps: number,
+export function measureRemoteLeg(context: Pick<RemoteEstimateContext, 'intel'>, leg: RemoteLegRequest, rooms: string[], maximumOps: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean) {
   if (!guard()) return { status: 'deferred' as const,reason: 'admission' };
   const mobility = plannedMobility(leg.body,leg.load);

@@ -3,8 +3,8 @@ import type { StatePort, StateSchema } from '../../../persistence/versioned-stat
 import { stateKey } from '../../../persistence/state-key';
 import { natural, object } from '../assignment-validation';
 import { validWorldPosition as position } from '../../../core/geometry/world-position';
-import type { Position } from '../../../capabilities/movement/step';
-export interface RemoteTravelLeg { ticks: number; operations: number; arrival: Position }
+import type { StaticTravelLeg } from '../../../capabilities/movement/path-model';
+export type RemoteTravelLeg = StaticTravelLeg;
 interface Progress { revision: number; clock: number; identity: string; legs: RemoteTravelLeg[] }
 /** One active source per home; completed quotes own their final result, so cache namespaces cannot grow per source. */
 export function createRemoteTravelProgress(state: StatePort, home: string) {
