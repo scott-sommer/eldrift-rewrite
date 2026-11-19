@@ -1,0 +1,3572 @@
+{
+  "scope": "Native sensor departure, configured observation expiry, hostile re-observation and fresh generation recovery for ordinary reservation actors. Operator controls initiate withdrawal; this qualifies stale restart suppression and fresh recovery.",
+  "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+  "checks": {
+    "unitTests": 1461,
+    "unitFiles": 397,
+    "unitSeconds": 10.34,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 713,
+      "testFiles": 583,
+      "violations": 0
+    }
+  },
+  "productionSourceUnchangedSince": "39722c0e3881f3af5f8d313f7606c1849ddd1fb2",
+  "fullNativeBaseline": "remote-pipeline-engine-suite.json",
+  "registeredCases": 224,
+  "fullRegistryRerun": false,
+  "runs": [
+    {
+      "scenario": "--reservation-vision",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-bgiO07\\evidence.json",
+      "sourceEvidenceSha256": "5805509dd36949044526f4e90ab0b31e78d3abb1f4c9951826b895c94dbf22a6",
+      "provenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "84107180237cc365e578ef020a40065d6fcf75b600c93f3c7346234412a2c3c1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "b8076fef1a34c25a209f2e676d47808f58181ae29be7ad7c40ad542136793397",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "reservation-vision-rows.jsonl",
+      "rowsSha256": "03b97dd41b0d2a029d838312311f54957e271c5e3322761a2546442979572c79",
+      "rowCount": 550,
+      "probe": {
+        "births": {
+          "ed-W0N1-1": {
+            "cost": 150,
+            "family": "distributor",
+            "seenAt": 1,
+            "owner": "logistics:\"W0N1\":distributor",
+            "id": "b89447156d0a8d2",
+            "activeAt": 10
+          },
+          "ed-W0N1-2": {
+            "cost": 1300,
+            "family": "reserver",
+            "seenAt": 10,
+            "owner": "remote-reservation:[\"W0N1\",\"E0N1\",1]",
+            "target": "E0N1",
+            "id": "941e47158889fb1",
+            "activeAt": 22
+          }
+        },
+        "reloads": [
+          21,
+          271,
+          351,
+          411,
+          491
+        ]
+      },
+      "summary": {
+        "initialCapital": 10300,
+        "firstHidden": 210,
+        "expiredSnapshot": {
+          "observedAt": 201,
+          "sources": [
+            "edd947155ae6bf1"
+          ],
+          "reservation": {
+            "username": "eldrift-smoke",
+            "ticksToEnd": 174
+          },
+          "foreignUnits": 0
+        },
+        "firstHostileVisible": 336,
+        "firstRecoveredService": 404,
+        "originalGeneration": 1,
+        "recoveredBinding": {
+          "name": "ed-W0N1-2",
+          "generation": 399
+        },
+        "recoveredLease": {
+          "generation": 399,
+          "sources": 1,
+          "reserve": true
+        },
+        "births": {
+          "ed-W0N1-1": {
+            "cost": 150,
+            "family": "distributor",
+            "seenAt": 1,
+            "owner": "logistics:\"W0N1\":distributor",
+            "id": "b89447156d0a8d2",
+            "activeAt": 10
+          },
+          "ed-W0N1-2": {
+            "cost": 1300,
+            "family": "reserver",
+            "seenAt": 10,
+            "owner": "remote-reservation:[\"W0N1\",\"E0N1\",1]",
+            "target": "E0N1",
+            "id": "941e47158889fb1",
+            "activeAt": 22
+          }
+        },
+        "final": {
+          "tick": 550,
+          "stopped": 470,
+          "homeEnergy": 8850,
+          "birthCost": 1450,
+          "income": 0,
+          "quantityClaims": 0,
+          "miningClaims": 0,
+          "remotePending": 0,
+          "lease": null,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 959,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "reserver",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 71,
+              "cargo": 0,
+              "tasks": 0
+            }
+          ]
+        }
+      },
+      "samples": [
+        {
+          "tick": 2,
+          "wallMilliseconds": 310.76710000000014,
+          "cpuMilliseconds": 73,
+          "memoryBytes": 25093
+        },
+        {
+          "tick": 3,
+          "wallMilliseconds": 34.64570000000003,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 26187
+        },
+        {
+          "tick": 4,
+          "wallMilliseconds": 38.833900000000085,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 27134
+        },
+        {
+          "tick": 5,
+          "wallMilliseconds": 30.048999999999978,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 28081
+        },
+        {
+          "tick": 6,
+          "wallMilliseconds": 42.26409999999987,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 29028
+        },
+        {
+          "tick": 7,
+          "wallMilliseconds": 30.238200000000006,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 29975
+        },
+        {
+          "tick": 8,
+          "wallMilliseconds": 33.98559999999998,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 30922
+        },
+        {
+          "tick": 9,
+          "wallMilliseconds": 63.05140000000006,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 31869
+        },
+        {
+          "tick": 10,
+          "wallMilliseconds": 46.322200000000066,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 32816
+        },
+        {
+          "tick": 11,
+          "wallMilliseconds": 74.30719999999997,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 36177
+        },
+        {
+          "tick": 12,
+          "wallMilliseconds": 35.79160000000002,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 40302
+        },
+        {
+          "tick": 13,
+          "wallMilliseconds": 37.18380000000002,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 43782
+        },
+        {
+          "tick": 14,
+          "wallMilliseconds": 36.00150000000008,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 46954
+        },
+        {
+          "tick": 15,
+          "wallMilliseconds": 36.319099999999935,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 47965
+        },
+        {
+          "tick": 16,
+          "wallMilliseconds": 32.93270000000007,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 49118
+        },
+        {
+          "tick": 17,
+          "wallMilliseconds": 30.292000000000144,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 51746
+        },
+        {
+          "tick": 18,
+          "wallMilliseconds": 33.4371000000001,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 52758
+        },
+        {
+          "tick": 19,
+          "wallMilliseconds": 37.39560000000006,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 55195
+        },
+        {
+          "tick": 20,
+          "wallMilliseconds": 49.31169999999997,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 56206
+        },
+        {
+          "tick": 21,
+          "wallMilliseconds": 36.43780000000015,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 57109
+        },
+        {
+          "tick": 22,
+          "wallMilliseconds": 126.13969999999972,
+          "cpuMilliseconds": 71,
+          "memoryBytes": 59750
+        },
+        {
+          "tick": 23,
+          "wallMilliseconds": 60.591899999999896,
+          "cpuMilliseconds": 26,
+          "memoryBytes": 61484
+        },
+        {
+          "tick": 24,
+          "wallMilliseconds": 40.53949999999986,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 62570
+        },
+        {
+          "tick": 25,
+          "wallMilliseconds": 39.95820000000003,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 63655
+        },
+        {
+          "tick": 26,
+          "wallMilliseconds": 52.78240000000005,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 64741
+        },
+        {
+          "tick": 27,
+          "wallMilliseconds": 37.75930000000017,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 65769
+        },
+        {
+          "tick": 28,
+          "wallMilliseconds": 36.43510000000015,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 63700
+        },
+        {
+          "tick": 29,
+          "wallMilliseconds": 37.55490000000009,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 68138
+        },
+        {
+          "tick": 30,
+          "wallMilliseconds": 43.16219999999976,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 69289
+        },
+        {
+          "tick": 31,
+          "wallMilliseconds": 36.616799999999785,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 70440
+        },
+        {
+          "tick": 32,
+          "wallMilliseconds": 54.32529999999997,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 71564
+        },
+        {
+          "tick": 33,
+          "wallMilliseconds": 46.02629999999999,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 72532
+        },
+        {
+          "tick": 34,
+          "wallMilliseconds": 49.21250000000009,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 75247
+        },
+        {
+          "tick": 35,
+          "wallMilliseconds": 42.1549,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 76397
+        },
+        {
+          "tick": 36,
+          "wallMilliseconds": 46.191100000000006,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 77550
+        },
+        {
+          "tick": 37,
+          "wallMilliseconds": 45.17370000000028,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 78702
+        },
+        {
+          "tick": 38,
+          "wallMilliseconds": 35.54449999999997,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 79854
+        },
+        {
+          "tick": 39,
+          "wallMilliseconds": 35.80109999999968,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 81006
+        },
+        {
+          "tick": 40,
+          "wallMilliseconds": 36.458000000000084,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 82158
+        },
+        {
+          "tick": 41,
+          "wallMilliseconds": 52.21469999999999,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 83310
+        },
+        {
+          "tick": 42,
+          "wallMilliseconds": 46.35329999999976,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 84463
+        },
+        {
+          "tick": 43,
+          "wallMilliseconds": 369.46500000000015,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 85586
+        },
+        {
+          "tick": 44,
+          "wallMilliseconds": 34.083300000000236,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 86691
+        },
+        {
+          "tick": 45,
+          "wallMilliseconds": 43.39429999999993,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 87844
+        },
+        {
+          "tick": 46,
+          "wallMilliseconds": 32.966799999999694,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 88997
+        },
+        {
+          "tick": 47,
+          "wallMilliseconds": 41.10669999999982,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 90150
+        },
+        {
+          "tick": 48,
+          "wallMilliseconds": 48.30380000000014,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 91303
+        },
+        {
+          "tick": 49,
+          "wallMilliseconds": 47.809099999999944,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 92456
+        },
+        {
+          "tick": 50,
+          "wallMilliseconds": 340.3467999999998,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 93609
+        },
+        {
+          "tick": 51,
+          "wallMilliseconds": 46.86860000000024,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 94735
+        },
+        {
+          "tick": 52,
+          "wallMilliseconds": 44.67069999999967,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 95705
+        },
+        {
+          "tick": 53,
+          "wallMilliseconds": 44.98050000000012,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 98422
+        },
+        {
+          "tick": 54,
+          "wallMilliseconds": 46.763900000000376,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 99574
+        },
+        {
+          "tick": 55,
+          "wallMilliseconds": 33.982200000000375,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 100726
+        },
+        {
+          "tick": 56,
+          "wallMilliseconds": 40.42699999999968,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 101878
+        },
+        {
+          "tick": 57,
+          "wallMilliseconds": 46.165100000000166,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 103030
+        },
+        {
+          "tick": 58,
+          "wallMilliseconds": 34.180099999999584,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 104182
+        },
+        {
+          "tick": 59,
+          "wallMilliseconds": 43.32480000000032,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 105334
+        },
+        {
+          "tick": 60,
+          "wallMilliseconds": 52.155799999999545,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 106457
+        },
+        {
+          "tick": 61,
+          "wallMilliseconds": 43.797999999999774,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 107562
+        },
+        {
+          "tick": 62,
+          "wallMilliseconds": 333.2536,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 108715
+        },
+        {
+          "tick": 63,
+          "wallMilliseconds": 50.4380000000001,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 109868
+        },
+        {
+          "tick": 64,
+          "wallMilliseconds": 46.849999999999454,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 111021
+        },
+        {
+          "tick": 65,
+          "wallMilliseconds": 46.58259999999973,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 112174
+        },
+        {
+          "tick": 66,
+          "wallMilliseconds": 43.834899999999834,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 113327
+        },
+        {
+          "tick": 67,
+          "wallMilliseconds": 46.1241,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 114480
+        },
+        {
+          "tick": 68,
+          "wallMilliseconds": 44.80540000000019,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 115633
+        },
+        {
+          "tick": 69,
+          "wallMilliseconds": 47.063999999999396,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 116786
+        },
+        {
+          "tick": 70,
+          "wallMilliseconds": 37.42410000000018,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 117912
+        },
+        {
+          "tick": 71,
+          "wallMilliseconds": 35.97810000000027,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 118882
+        },
+        {
+          "tick": 72,
+          "wallMilliseconds": 48.15850000000046,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 121599
+        },
+        {
+          "tick": 73,
+          "wallMilliseconds": 46.560599999999795,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 122751
+        },
+        {
+          "tick": 74,
+          "wallMilliseconds": 33.63640000000032,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 123903
+        },
+        {
+          "tick": 75,
+          "wallMilliseconds": 38.465799999999945,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 125055
+        },
+        {
+          "tick": 76,
+          "wallMilliseconds": 45.293400000000474,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 126207
+        },
+        {
+          "tick": 77,
+          "wallMilliseconds": 45.1279999999997,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 127359
+        },
+        {
+          "tick": 78,
+          "wallMilliseconds": 42.04400000000078,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 128511
+        },
+        {
+          "tick": 79,
+          "wallMilliseconds": 49.4380000000001,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 129663
+        },
+        {
+          "tick": 80,
+          "wallMilliseconds": 36.545100000000275,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 130815
+        },
+        {
+          "tick": 81,
+          "wallMilliseconds": 47.807199999999284,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 131938
+        },
+        {
+          "tick": 82,
+          "wallMilliseconds": 49.49369999999999,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 133043
+        },
+        {
+          "tick": 83,
+          "wallMilliseconds": 35.40900000000056,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 134196
+        },
+        {
+          "tick": 84,
+          "wallMilliseconds": 33.19970000000012,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 135349
+        },
+        {
+          "tick": 85,
+          "wallMilliseconds": 52.29100000000017,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 136502
+        },
+        {
+          "tick": 86,
+          "wallMilliseconds": 41.14559999999983,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 137655
+        },
+        {
+          "tick": 87,
+          "wallMilliseconds": 45.101700000000164,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 138808
+        },
+        {
+          "tick": 88,
+          "wallMilliseconds": 44.27430000000004,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 139961
+        },
+        {
+          "tick": 89,
+          "wallMilliseconds": 44.66200000000026,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 141114
+        },
+        {
+          "tick": 90,
+          "wallMilliseconds": 45.98419999999987,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 142267
+        },
+        {
+          "tick": 91,
+          "wallMilliseconds": 47.73210000000017,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 143420
+        },
+        {
+          "tick": 92,
+          "wallMilliseconds": 35.19579999999951,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 144546
+        },
+        {
+          "tick": 93,
+          "wallMilliseconds": 37.6296999999995,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 145516
+        },
+        {
+          "tick": 94,
+          "wallMilliseconds": 45.285499999999956,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 148233
+        },
+        {
+          "tick": 95,
+          "wallMilliseconds": 36.43249999999989,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 149385
+        },
+        {
+          "tick": 96,
+          "wallMilliseconds": 33.105899999999565,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 150537
+        },
+        {
+          "tick": 97,
+          "wallMilliseconds": 35.9353000000001,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 151689
+        },
+        {
+          "tick": 98,
+          "wallMilliseconds": 44.36369999999988,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 152841
+        },
+        {
+          "tick": 99,
+          "wallMilliseconds": 44.58460000000014,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 153994
+        },
+        {
+          "tick": 100,
+          "wallMilliseconds": 43.72179999999935,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 155146
+        },
+        {
+          "tick": 101,
+          "wallMilliseconds": 51.550100000000384,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 156313
+        },
+        {
+          "tick": 102,
+          "wallMilliseconds": 66.17150000000038,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 157478
+        },
+        {
+          "tick": 103,
+          "wallMilliseconds": 59.84720000000016,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 158632
+        },
+        {
+          "tick": 104,
+          "wallMilliseconds": 61.53729999999996,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 159759
+        },
+        {
+          "tick": 105,
+          "wallMilliseconds": 60.44369999999981,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 160866
+        },
+        {
+          "tick": 106,
+          "wallMilliseconds": 35.84410000000025,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 162021
+        },
+        {
+          "tick": 107,
+          "wallMilliseconds": 41.01139999999941,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 163176
+        },
+        {
+          "tick": 108,
+          "wallMilliseconds": 45.42360000000008,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 164331
+        },
+        {
+          "tick": 109,
+          "wallMilliseconds": 34.85440000000017,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 165486
+        },
+        {
+          "tick": 110,
+          "wallMilliseconds": 35.03139999999985,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 166641
+        },
+        {
+          "tick": 111,
+          "wallMilliseconds": 49.59940000000006,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 167796
+        },
+        {
+          "tick": 112,
+          "wallMilliseconds": 38.47370000000046,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 167892
+        },
+        {
+          "tick": 113,
+          "wallMilliseconds": 48.10580000000027,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 169174
+        },
+        {
+          "tick": 114,
+          "wallMilliseconds": 44.095800000000054,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 168603
+        },
+        {
+          "tick": 115,
+          "wallMilliseconds": 38.80059999999958,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 169758
+        },
+        {
+          "tick": 116,
+          "wallMilliseconds": 35.02099999999973,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 170913
+        },
+        {
+          "tick": 117,
+          "wallMilliseconds": 356.22580000000016,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 172068
+        },
+        {
+          "tick": 118,
+          "wallMilliseconds": 46.22280000000046,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 173223
+        },
+        {
+          "tick": 119,
+          "wallMilliseconds": 43.47150000000056,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 174277
+        },
+        {
+          "tick": 120,
+          "wallMilliseconds": 43.879800000000614,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 174945
+        },
+        {
+          "tick": 121,
+          "wallMilliseconds": 43.60019999999986,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 177723
+        },
+        {
+          "tick": 122,
+          "wallMilliseconds": 57.5012999999999,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 178830
+        },
+        {
+          "tick": 123,
+          "wallMilliseconds": 46.884500000000116,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 179985
+        },
+        {
+          "tick": 124,
+          "wallMilliseconds": 58.894100000000435,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 181140
+        },
+        {
+          "tick": 125,
+          "wallMilliseconds": 46.60609999999997,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 182295
+        },
+        {
+          "tick": 126,
+          "wallMilliseconds": 59.303499999999985,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 183453
+        },
+        {
+          "tick": 127,
+          "wallMilliseconds": 34.79349999999977,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 184610
+        },
+        {
+          "tick": 128,
+          "wallMilliseconds": 52.59190000000035,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 185767
+        },
+        {
+          "tick": 129,
+          "wallMilliseconds": 46.1934999999994,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 186897
+        },
+        {
+          "tick": 130,
+          "wallMilliseconds": 32.257800000000316,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 187870
+        },
+        {
+          "tick": 131,
+          "wallMilliseconds": 38.00889999999981,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 190602
+        },
+        {
+          "tick": 132,
+          "wallMilliseconds": 37.906300000000556,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 191759
+        },
+        {
+          "tick": 133,
+          "wallMilliseconds": 36.31790000000001,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 192915
+        },
+        {
+          "tick": 134,
+          "wallMilliseconds": 35.743900000001304,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 194071
+        },
+        {
+          "tick": 135,
+          "wallMilliseconds": 38.72989999999845,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 195227
+        },
+        {
+          "tick": 136,
+          "wallMilliseconds": 33.83269999999902,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 196383
+        },
+        {
+          "tick": 137,
+          "wallMilliseconds": 43.45880000000034,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 197539
+        },
+        {
+          "tick": 138,
+          "wallMilliseconds": 36.726300000000265,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 198666
+        },
+        {
+          "tick": 139,
+          "wallMilliseconds": 38.363499999999476,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 199775
+        },
+        {
+          "tick": 140,
+          "wallMilliseconds": 56.490999999999985,
+          "cpuMilliseconds": 25,
+          "memoryBytes": 200932
+        },
+        {
+          "tick": 141,
+          "wallMilliseconds": 56.9387999999999,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 202089
+        },
+        {
+          "tick": 142,
+          "wallMilliseconds": 59.9434999999994,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 203246
+        },
+        {
+          "tick": 143,
+          "wallMilliseconds": 368.6912000000011,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 204403
+        },
+        {
+          "tick": 144,
+          "wallMilliseconds": 38.86399999999958,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 205560
+        },
+        {
+          "tick": 145,
+          "wallMilliseconds": 37.33640000000014,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 206717
+        },
+        {
+          "tick": 146,
+          "wallMilliseconds": 35.89439999999922,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 207847
+        },
+        {
+          "tick": 147,
+          "wallMilliseconds": 36.85750000000007,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 208820
+        },
+        {
+          "tick": 148,
+          "wallMilliseconds": 48.790499999999156,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 211552
+        },
+        {
+          "tick": 149,
+          "wallMilliseconds": 352.4557999999997,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 212708
+        },
+        {
+          "tick": 150,
+          "wallMilliseconds": 46.441899999999805,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 213864
+        },
+        {
+          "tick": 151,
+          "wallMilliseconds": 44.42540000000008,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 215020
+        },
+        {
+          "tick": 152,
+          "wallMilliseconds": 38.61280000000079,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 216176
+        },
+        {
+          "tick": 153,
+          "wallMilliseconds": 51.20399999999972,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 217332
+        },
+        {
+          "tick": 154,
+          "wallMilliseconds": 33.1200000000008,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 218488
+        },
+        {
+          "tick": 155,
+          "wallMilliseconds": 39.76269999999931,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 219615
+        },
+        {
+          "tick": 156,
+          "wallMilliseconds": 45.60370000000148,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 220724
+        },
+        {
+          "tick": 157,
+          "wallMilliseconds": 59.614300000001094,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 221881
+        },
+        {
+          "tick": 158,
+          "wallMilliseconds": 45.08430000000044,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 223038
+        },
+        {
+          "tick": 159,
+          "wallMilliseconds": 49.02770000000055,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 224195
+        },
+        {
+          "tick": 160,
+          "wallMilliseconds": 43.19180000000051,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 225352
+        },
+        {
+          "tick": 161,
+          "wallMilliseconds": 45.08859999999913,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 226509
+        },
+        {
+          "tick": 162,
+          "wallMilliseconds": 53.47810000000027,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 227666
+        },
+        {
+          "tick": 163,
+          "wallMilliseconds": 61.411700000000565,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 228823
+        },
+        {
+          "tick": 164,
+          "wallMilliseconds": 41.79199999999946,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 229980
+        },
+        {
+          "tick": 165,
+          "wallMilliseconds": 51.76720000000023,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 231110
+        },
+        {
+          "tick": 166,
+          "wallMilliseconds": 40.88839999999982,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 232083
+        },
+        {
+          "tick": 167,
+          "wallMilliseconds": 46.266599999999016,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 234815
+        },
+        {
+          "tick": 168,
+          "wallMilliseconds": 37.37069999999949,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 235971
+        },
+        {
+          "tick": 169,
+          "wallMilliseconds": 50.25489999999991,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 237127
+        },
+        {
+          "tick": 170,
+          "wallMilliseconds": 34.24239999999918,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 238283
+        },
+        {
+          "tick": 171,
+          "wallMilliseconds": 40.59859999999935,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 239439
+        },
+        {
+          "tick": 172,
+          "wallMilliseconds": 43.5601000000006,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 240595
+        },
+        {
+          "tick": 173,
+          "wallMilliseconds": 34.734300000000076,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 241751
+        },
+        {
+          "tick": 174,
+          "wallMilliseconds": 36.33779999999933,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 242907
+        },
+        {
+          "tick": 175,
+          "wallMilliseconds": 35.83250000000044,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 244063
+        },
+        {
+          "tick": 176,
+          "wallMilliseconds": 41.61659999999938,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 245190
+        },
+        {
+          "tick": 177,
+          "wallMilliseconds": 45.10580000000118,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 246299
+        },
+        {
+          "tick": 178,
+          "wallMilliseconds": 74.68119999999908,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 247456
+        },
+        {
+          "tick": 179,
+          "wallMilliseconds": 43.91469999999936,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 248613
+        },
+        {
+          "tick": 180,
+          "wallMilliseconds": 44.912500000000364,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 249770
+        },
+        {
+          "tick": 181,
+          "wallMilliseconds": 46.15699999999924,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 250927
+        },
+        {
+          "tick": 182,
+          "wallMilliseconds": 40.73160000000098,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 252084
+        },
+        {
+          "tick": 183,
+          "wallMilliseconds": 46.49709999999868,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 253241
+        },
+        {
+          "tick": 184,
+          "wallMilliseconds": 56.86959999999999,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 254398
+        },
+        {
+          "tick": 185,
+          "wallMilliseconds": 45.44520000000011,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 255555
+        },
+        {
+          "tick": 186,
+          "wallMilliseconds": 34.3747000000003,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 256712
+        },
+        {
+          "tick": 187,
+          "wallMilliseconds": 35.3809999999994,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 257869
+        },
+        {
+          "tick": 188,
+          "wallMilliseconds": 38.545099999999366,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 258999
+        },
+        {
+          "tick": 189,
+          "wallMilliseconds": 53.86160000000018,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 259972
+        },
+        {
+          "tick": 190,
+          "wallMilliseconds": 40.50169999999889,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 262704
+        },
+        {
+          "tick": 191,
+          "wallMilliseconds": 353.83820000000014,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 263860
+        },
+        {
+          "tick": 192,
+          "wallMilliseconds": 47.097100000000864,
+          "cpuMilliseconds": 24,
+          "memoryBytes": 265016
+        },
+        {
+          "tick": 193,
+          "wallMilliseconds": 41.14100000000144,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 266172
+        },
+        {
+          "tick": 194,
+          "wallMilliseconds": 42.94750000000022,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 267328
+        },
+        {
+          "tick": 195,
+          "wallMilliseconds": 45.208300000000236,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 268484
+        },
+        {
+          "tick": 196,
+          "wallMilliseconds": 45.218699999999444,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 269640
+        },
+        {
+          "tick": 197,
+          "wallMilliseconds": 43.518599999999424,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 270796
+        },
+        {
+          "tick": 198,
+          "wallMilliseconds": 35.302599999999074,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 271952
+        },
+        {
+          "tick": 199,
+          "wallMilliseconds": 36.822000000000116,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 273108
+        },
+        {
+          "tick": 200,
+          "wallMilliseconds": 43.39419999999882,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 274264
+        },
+        {
+          "tick": 201,
+          "wallMilliseconds": 42.70970000000125,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 270918
+        },
+        {
+          "tick": 202,
+          "wallMilliseconds": 36.14190000000053,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 271849
+        },
+        {
+          "tick": 203,
+          "wallMilliseconds": 32.97350000000006,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 272919
+        },
+        {
+          "tick": 204,
+          "wallMilliseconds": 47.42410000000018,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 273899
+        },
+        {
+          "tick": 205,
+          "wallMilliseconds": 47.62710000000152,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 274879
+        },
+        {
+          "tick": 206,
+          "wallMilliseconds": 41.63520000000062,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 275859
+        },
+        {
+          "tick": 207,
+          "wallMilliseconds": 31.519399999999223,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 276839
+        },
+        {
+          "tick": 208,
+          "wallMilliseconds": 35.02219999999943,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 277819
+        },
+        {
+          "tick": 209,
+          "wallMilliseconds": 35.0044999999991,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 278772
+        },
+        {
+          "tick": 210,
+          "wallMilliseconds": 34.15090000000055,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 279568
+        },
+        {
+          "tick": 211,
+          "wallMilliseconds": 39.35240000000158,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 282194
+        },
+        {
+          "tick": 212,
+          "wallMilliseconds": 32.36510000000089,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 280019
+        },
+        {
+          "tick": 213,
+          "wallMilliseconds": 56.78410000000076,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 281501
+        },
+        {
+          "tick": 214,
+          "wallMilliseconds": 43.179300000001604,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 280151
+        },
+        {
+          "tick": 215,
+          "wallMilliseconds": 61.523699999999735,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 281105
+        },
+        {
+          "tick": 216,
+          "wallMilliseconds": 44.0635999999995,
+          "cpuMilliseconds": 10,
+          "memoryBytes": 282059
+        },
+        {
+          "tick": 217,
+          "wallMilliseconds": 40.30950000000121,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 283014
+        },
+        {
+          "tick": 218,
+          "wallMilliseconds": 33.796800000000076,
+          "cpuMilliseconds": 10,
+          "memoryBytes": 283969
+        },
+        {
+          "tick": 219,
+          "wallMilliseconds": 32.98869999999988,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 284895
+        },
+        {
+          "tick": 220,
+          "wallMilliseconds": 35.22509999999966,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 285803
+        },
+        {
+          "tick": 221,
+          "wallMilliseconds": 49.154499999998734,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 286759
+        },
+        {
+          "tick": 222,
+          "wallMilliseconds": 31.462999999999738,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 287715
+        },
+        {
+          "tick": 223,
+          "wallMilliseconds": 31.19300000000112,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 286622
+        },
+        {
+          "tick": 224,
+          "wallMilliseconds": 29.741500000000087,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 287578
+        },
+        {
+          "tick": 225,
+          "wallMilliseconds": 43.661299999999756,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 288534
+        },
+        {
+          "tick": 226,
+          "wallMilliseconds": 32.379000000000815,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 289490
+        },
+        {
+          "tick": 227,
+          "wallMilliseconds": 29.269599999999627,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 290419
+        },
+        {
+          "tick": 228,
+          "wallMilliseconds": 41.299300000000585,
+          "cpuMilliseconds": 10,
+          "memoryBytes": 291191
+        },
+        {
+          "tick": 229,
+          "wallMilliseconds": 44.454099999999016,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 293722
+        },
+        {
+          "tick": 230,
+          "wallMilliseconds": 40.88119999999981,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 294677
+        },
+        {
+          "tick": 231,
+          "wallMilliseconds": 41.866900000000896,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 295632
+        },
+        {
+          "tick": 232,
+          "wallMilliseconds": 43.842900000001464,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 296587
+        },
+        {
+          "tick": 233,
+          "wallMilliseconds": 44.57760000000053,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 297542
+        },
+        {
+          "tick": 234,
+          "wallMilliseconds": 45.15090000000055,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 298497
+        },
+        {
+          "tick": 235,
+          "wallMilliseconds": 44.31620000000112,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 299452
+        },
+        {
+          "tick": 236,
+          "wallMilliseconds": 44.94160000000011,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 300378
+        },
+        {
+          "tick": 237,
+          "wallMilliseconds": 42.95190000000002,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 301286
+        },
+        {
+          "tick": 238,
+          "wallMilliseconds": 43.933899999999994,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 302242
+        },
+        {
+          "tick": 239,
+          "wallMilliseconds": 43.37740000000122,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 303198
+        },
+        {
+          "tick": 240,
+          "wallMilliseconds": 43.29449999999997,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 304154
+        },
+        {
+          "tick": 241,
+          "wallMilliseconds": 50.509000000000015,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 305110
+        },
+        {
+          "tick": 242,
+          "wallMilliseconds": 65.247800000001,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 306066
+        },
+        {
+          "tick": 243,
+          "wallMilliseconds": 29.311799999999494,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 307022
+        },
+        {
+          "tick": 244,
+          "wallMilliseconds": 28.49800000000141,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 307978
+        },
+        {
+          "tick": 245,
+          "wallMilliseconds": 42.738399999998364,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 308934
+        },
+        {
+          "tick": 246,
+          "wallMilliseconds": 31.849099999999453,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 309890
+        },
+        {
+          "tick": 247,
+          "wallMilliseconds": 39.82940000000053,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 310846
+        },
+        {
+          "tick": 248,
+          "wallMilliseconds": 43.46680000000015,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 311775
+        },
+        {
+          "tick": 249,
+          "wallMilliseconds": 43.858799999999974,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 312547
+        },
+        {
+          "tick": 250,
+          "wallMilliseconds": 44.705799999999726,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 315078
+        },
+        {
+          "tick": 251,
+          "wallMilliseconds": 43.69789999999921,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 316033
+        },
+        {
+          "tick": 252,
+          "wallMilliseconds": 44.356400000000576,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 316988
+        },
+        {
+          "tick": 253,
+          "wallMilliseconds": 45.871900000000096,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 317943
+        },
+        {
+          "tick": 254,
+          "wallMilliseconds": 30.45719999999892,
+          "cpuMilliseconds": 10,
+          "memoryBytes": 318898
+        },
+        {
+          "tick": 255,
+          "wallMilliseconds": 35.634500000000116,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 319853
+        },
+        {
+          "tick": 256,
+          "wallMilliseconds": 32.46010000000024,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 320808
+        },
+        {
+          "tick": 257,
+          "wallMilliseconds": 35.8078000000005,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 321763
+        },
+        {
+          "tick": 258,
+          "wallMilliseconds": 34.949500000000626,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 322718
+        },
+        {
+          "tick": 259,
+          "wallMilliseconds": 32.45399999999972,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 323673
+        },
+        {
+          "tick": 260,
+          "wallMilliseconds": 41.57339999999931,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 324628
+        },
+        {
+          "tick": 261,
+          "wallMilliseconds": 49.81529999999839,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 325847
+        },
+        {
+          "tick": 262,
+          "wallMilliseconds": 39.08560000000034,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 326809
+        },
+        {
+          "tick": 263,
+          "wallMilliseconds": 40.20900000000074,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 327819
+        },
+        {
+          "tick": 264,
+          "wallMilliseconds": 43.66449999999895,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 328829
+        },
+        {
+          "tick": 265,
+          "wallMilliseconds": 46.54109999999855,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 329839
+        },
+        {
+          "tick": 266,
+          "wallMilliseconds": 39.44970000000103,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 330849
+        },
+        {
+          "tick": 267,
+          "wallMilliseconds": 31.403200000000652,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 331859
+        },
+        {
+          "tick": 268,
+          "wallMilliseconds": 41.40030000000115,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 332869
+        },
+        {
+          "tick": 269,
+          "wallMilliseconds": 42.936499999999796,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 333879
+        },
+        {
+          "tick": 270,
+          "wallMilliseconds": 44.29269999999997,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 334889
+        },
+        {
+          "tick": 271,
+          "wallMilliseconds": 43.563500000000204,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 335899
+        },
+        {
+          "tick": 272,
+          "wallMilliseconds": 103.08669999999984,
+          "cpuMilliseconds": 62,
+          "memoryBytes": 336913
+        },
+        {
+          "tick": 273,
+          "wallMilliseconds": 54.597499999999854,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 337896
+        },
+        {
+          "tick": 274,
+          "wallMilliseconds": 43.5041999999994,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 338722
+        },
+        {
+          "tick": 275,
+          "wallMilliseconds": 43.690599999999904,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 341307
+        },
+        {
+          "tick": 276,
+          "wallMilliseconds": 34.48579999999856,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 342316
+        },
+        {
+          "tick": 277,
+          "wallMilliseconds": 36.94340000000011,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 343325
+        },
+        {
+          "tick": 278,
+          "wallMilliseconds": 32.19410000000062,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 344334
+        },
+        {
+          "tick": 279,
+          "wallMilliseconds": 41.181000000000495,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 345343
+        },
+        {
+          "tick": 280,
+          "wallMilliseconds": 41.667999999999665,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 346352
+        },
+        {
+          "tick": 281,
+          "wallMilliseconds": 45.52189999999973,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 347361
+        },
+        {
+          "tick": 282,
+          "wallMilliseconds": 36.0041999999994,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 348370
+        },
+        {
+          "tick": 283,
+          "wallMilliseconds": 43.21379999999954,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 349379
+        },
+        {
+          "tick": 284,
+          "wallMilliseconds": 47.34639999999854,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 350388
+        },
+        {
+          "tick": 285,
+          "wallMilliseconds": 41.91359999999986,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 351397
+        },
+        {
+          "tick": 286,
+          "wallMilliseconds": 34.78319999999985,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 352377
+        },
+        {
+          "tick": 287,
+          "wallMilliseconds": 31.460500000001048,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 353339
+        },
+        {
+          "tick": 288,
+          "wallMilliseconds": 46.264499999999316,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 354349
+        },
+        {
+          "tick": 289,
+          "wallMilliseconds": 30.181500000000597,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 355359
+        },
+        {
+          "tick": 290,
+          "wallMilliseconds": 33.13760000000002,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 356369
+        },
+        {
+          "tick": 291,
+          "wallMilliseconds": 36.21769999999924,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 357379
+        },
+        {
+          "tick": 292,
+          "wallMilliseconds": 45.5467000000026,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 358389
+        },
+        {
+          "tick": 293,
+          "wallMilliseconds": 40.591700000000856,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 359399
+        },
+        {
+          "tick": 294,
+          "wallMilliseconds": 43.89349999999831,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 360409
+        },
+        {
+          "tick": 295,
+          "wallMilliseconds": 44.539700000001176,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 361419
+        },
+        {
+          "tick": 296,
+          "wallMilliseconds": 35.53429999999935,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 362402
+        },
+        {
+          "tick": 297,
+          "wallMilliseconds": 31.797699999999168,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 363229
+        },
+        {
+          "tick": 298,
+          "wallMilliseconds": 33.49669999999969,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 365815
+        },
+        {
+          "tick": 299,
+          "wallMilliseconds": 40.14490000000296,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 366825
+        },
+        {
+          "tick": 300,
+          "wallMilliseconds": 56.64400000000023,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 367835
+        },
+        {
+          "tick": 301,
+          "wallMilliseconds": 57.35710000000108,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 368845
+        },
+        {
+          "tick": 302,
+          "wallMilliseconds": 46.018599999999424,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 369855
+        },
+        {
+          "tick": 303,
+          "wallMilliseconds": 45.46480000000156,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 370865
+        },
+        {
+          "tick": 304,
+          "wallMilliseconds": 38.97850000000108,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 371875
+        },
+        {
+          "tick": 305,
+          "wallMilliseconds": 46.70210000000225,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 372885
+        },
+        {
+          "tick": 306,
+          "wallMilliseconds": 42.29580000000351,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 373895
+        },
+        {
+          "tick": 307,
+          "wallMilliseconds": 36.76180000000022,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 374876
+        },
+        {
+          "tick": 308,
+          "wallMilliseconds": 35.53470000000016,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 375839
+        },
+        {
+          "tick": 309,
+          "wallMilliseconds": 44.84270000000106,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 376850
+        },
+        {
+          "tick": 310,
+          "wallMilliseconds": 42.85650000000169,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 377861
+        },
+        {
+          "tick": 311,
+          "wallMilliseconds": 44.29520000000048,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 378872
+        },
+        {
+          "tick": 312,
+          "wallMilliseconds": 41.15439999999944,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 379883
+        },
+        {
+          "tick": 313,
+          "wallMilliseconds": 37.998899999998685,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 379730
+        },
+        {
+          "tick": 314,
+          "wallMilliseconds": 47.08860000000277,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 379518
+        },
+        {
+          "tick": 315,
+          "wallMilliseconds": 42.964200000002165,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 380529
+        },
+        {
+          "tick": 316,
+          "wallMilliseconds": 34.64380000000165,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 381540
+        },
+        {
+          "tick": 317,
+          "wallMilliseconds": 36.77809999999954,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 382551
+        },
+        {
+          "tick": 318,
+          "wallMilliseconds": 37.02900000000227,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 383562
+        },
+        {
+          "tick": 319,
+          "wallMilliseconds": 37.446100000001024,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 384469
+        },
+        {
+          "tick": 320,
+          "wallMilliseconds": 41.482300000003306,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 384993
+        },
+        {
+          "tick": 321,
+          "wallMilliseconds": 50.57790000000023,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 387627
+        },
+        {
+          "tick": 322,
+          "wallMilliseconds": 48.47139999999854,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 388590
+        },
+        {
+          "tick": 323,
+          "wallMilliseconds": 46.512399999999616,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 389601
+        },
+        {
+          "tick": 324,
+          "wallMilliseconds": 35.63810000000012,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 390612
+        },
+        {
+          "tick": 325,
+          "wallMilliseconds": 32.44869999999719,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 391623
+        },
+        {
+          "tick": 326,
+          "wallMilliseconds": 47.68960000000152,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 392634
+        },
+        {
+          "tick": 327,
+          "wallMilliseconds": 42.954499999999825,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 393645
+        },
+        {
+          "tick": 328,
+          "wallMilliseconds": 43.484300000000076,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 394656
+        },
+        {
+          "tick": 329,
+          "wallMilliseconds": 44.37840000000142,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 395667
+        },
+        {
+          "tick": 330,
+          "wallMilliseconds": 46.85180000000037,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 396678
+        },
+        {
+          "tick": 331,
+          "wallMilliseconds": 40.46280000000115,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 397695
+        },
+        {
+          "tick": 332,
+          "wallMilliseconds": 42.99360000000161,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 398706
+        },
+        {
+          "tick": 333,
+          "wallMilliseconds": 43.73579999999856,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 399690
+        },
+        {
+          "tick": 334,
+          "wallMilliseconds": 44.10099999999875,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 400517
+        },
+        {
+          "tick": 335,
+          "wallMilliseconds": 47.488900000000285,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 403103
+        },
+        {
+          "tick": 336,
+          "wallMilliseconds": 39.97409999999945,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 404113
+        },
+        {
+          "tick": 337,
+          "wallMilliseconds": 45.68449999999939,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 405078
+        },
+        {
+          "tick": 338,
+          "wallMilliseconds": 37.01250000000073,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 406111
+        },
+        {
+          "tick": 339,
+          "wallMilliseconds": 36.82610000000204,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 407144
+        },
+        {
+          "tick": 340,
+          "wallMilliseconds": 34.72319999999672,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 408177
+        },
+        {
+          "tick": 341,
+          "wallMilliseconds": 52.95530000000144,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 409212
+        },
+        {
+          "tick": 342,
+          "wallMilliseconds": 61.512399999999616,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 410245
+        },
+        {
+          "tick": 343,
+          "wallMilliseconds": 56.87010000000009,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 411277
+        },
+        {
+          "tick": 344,
+          "wallMilliseconds": 34.463700000000244,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 412310
+        },
+        {
+          "tick": 345,
+          "wallMilliseconds": 52.09439999999813,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 413343
+        },
+        {
+          "tick": 346,
+          "wallMilliseconds": 47.116100000002916,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 414347
+        },
+        {
+          "tick": 347,
+          "wallMilliseconds": 43.749900000002526,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 415335
+        },
+        {
+          "tick": 348,
+          "wallMilliseconds": 32.146600000000035,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 416370
+        },
+        {
+          "tick": 349,
+          "wallMilliseconds": 41.27860000000146,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 417405
+        },
+        {
+          "tick": 350,
+          "wallMilliseconds": 43.88929999999891,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 418440
+        },
+        {
+          "tick": 351,
+          "wallMilliseconds": 44.16729999999734,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 419475
+        },
+        {
+          "tick": 352,
+          "wallMilliseconds": 107.12029999999868,
+          "cpuMilliseconds": 65,
+          "memoryBytes": 420514
+        },
+        {
+          "tick": 353,
+          "wallMilliseconds": 38.12790000000314,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 421549
+        },
+        {
+          "tick": 354,
+          "wallMilliseconds": 48.13319999999658,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 422584
+        },
+        {
+          "tick": 355,
+          "wallMilliseconds": 46.26590000000215,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 423619
+        },
+        {
+          "tick": 356,
+          "wallMilliseconds": 36.1836000000003,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 424654
+        },
+        {
+          "tick": 357,
+          "wallMilliseconds": 48.661700000000565,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 425689
+        },
+        {
+          "tick": 358,
+          "wallMilliseconds": 37.231299999999464,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 426697
+        },
+        {
+          "tick": 359,
+          "wallMilliseconds": 50.20760000000155,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 427548
+        },
+        {
+          "tick": 360,
+          "wallMilliseconds": 43.62589999999909,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 430158
+        },
+        {
+          "tick": 361,
+          "wallMilliseconds": 45.12550000000192,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 431192
+        },
+        {
+          "tick": 362,
+          "wallMilliseconds": 33.7000999999982,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 432226
+        },
+        {
+          "tick": 363,
+          "wallMilliseconds": 48.74649999999747,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 433260
+        },
+        {
+          "tick": 364,
+          "wallMilliseconds": 42.55789999999979,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 434294
+        },
+        {
+          "tick": 365,
+          "wallMilliseconds": 42.29630000000179,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 435328
+        },
+        {
+          "tick": 366,
+          "wallMilliseconds": 42.36309999999867,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 436362
+        },
+        {
+          "tick": 367,
+          "wallMilliseconds": 44.467100000001665,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 437393
+        },
+        {
+          "tick": 368,
+          "wallMilliseconds": 42.08399999999892,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 438425
+        },
+        {
+          "tick": 369,
+          "wallMilliseconds": 42.36860000000161,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 439457
+        },
+        {
+          "tick": 370,
+          "wallMilliseconds": 42.573199999998906,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 440489
+        },
+        {
+          "tick": 371,
+          "wallMilliseconds": 42.62709999999788,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 441492
+        },
+        {
+          "tick": 372,
+          "wallMilliseconds": 33.856700000000274,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 442477
+        },
+        {
+          "tick": 373,
+          "wallMilliseconds": 53.217899999999645,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 443510
+        },
+        {
+          "tick": 374,
+          "wallMilliseconds": 42.36160000000018,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 444543
+        },
+        {
+          "tick": 375,
+          "wallMilliseconds": 43.771200000002864,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 445576
+        },
+        {
+          "tick": 376,
+          "wallMilliseconds": 39.95980000000054,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 446534
+        },
+        {
+          "tick": 377,
+          "wallMilliseconds": 43.6945999999989,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 447531
+        },
+        {
+          "tick": 378,
+          "wallMilliseconds": 58.259500000000116,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 448528
+        },
+        {
+          "tick": 379,
+          "wallMilliseconds": 46.12910000000193,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 449525
+        },
+        {
+          "tick": 380,
+          "wallMilliseconds": 40.880599999996775,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 450522
+        },
+        {
+          "tick": 381,
+          "wallMilliseconds": 46.76469999999972,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 451492
+        },
+        {
+          "tick": 382,
+          "wallMilliseconds": 37.43840000000273,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 452305
+        },
+        {
+          "tick": 383,
+          "wallMilliseconds": 32.10859999999957,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 454877
+        },
+        {
+          "tick": 384,
+          "wallMilliseconds": 53.855100000000675,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 455873
+        },
+        {
+          "tick": 385,
+          "wallMilliseconds": 46.35740000000078,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 456869
+        },
+        {
+          "tick": 386,
+          "wallMilliseconds": 37.31869999999981,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 457865
+        },
+        {
+          "tick": 387,
+          "wallMilliseconds": 43.052199999998265,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 458861
+        },
+        {
+          "tick": 388,
+          "wallMilliseconds": 42.07690000000002,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 459857
+        },
+        {
+          "tick": 389,
+          "wallMilliseconds": 42.866900000000896,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 460853
+        },
+        {
+          "tick": 390,
+          "wallMilliseconds": 43.17039999999906,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 461849
+        },
+        {
+          "tick": 391,
+          "wallMilliseconds": 44.327399999998306,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 462845
+        },
+        {
+          "tick": 392,
+          "wallMilliseconds": 36.65140000000247,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 463812
+        },
+        {
+          "tick": 393,
+          "wallMilliseconds": 38.3820999999989,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 464761
+        },
+        {
+          "tick": 394,
+          "wallMilliseconds": 36.99749999999767,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 465758
+        },
+        {
+          "tick": 395,
+          "wallMilliseconds": 36.316100000000006,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 466755
+        },
+        {
+          "tick": 396,
+          "wallMilliseconds": 36.865200000000186,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 467752
+        },
+        {
+          "tick": 397,
+          "wallMilliseconds": 53.425899999998364,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 468749
+        },
+        {
+          "tick": 398,
+          "wallMilliseconds": 38.55780000000232,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 469746
+        },
+        {
+          "tick": 399,
+          "wallMilliseconds": 45.257400000002235,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 470743
+        },
+        {
+          "tick": 400,
+          "wallMilliseconds": 43.07900000000154,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 471740
+        },
+        {
+          "tick": 401,
+          "wallMilliseconds": 53.593300000000454,
+          "cpuMilliseconds": 25,
+          "memoryBytes": 478600
+        },
+        {
+          "tick": 402,
+          "wallMilliseconds": 46.07199999999648,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 480004
+        },
+        {
+          "tick": 403,
+          "wallMilliseconds": 54.93819999999687,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 480919
+        },
+        {
+          "tick": 404,
+          "wallMilliseconds": 58.665100000001985,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 483594
+        },
+        {
+          "tick": 405,
+          "wallMilliseconds": 41.202699999998,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 484725
+        },
+        {
+          "tick": 406,
+          "wallMilliseconds": 44.034599999999045,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 482668
+        },
+        {
+          "tick": 407,
+          "wallMilliseconds": 59.53180000000066,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 487120
+        },
+        {
+          "tick": 408,
+          "wallMilliseconds": 58.560199999999895,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 488284
+        },
+        {
+          "tick": 409,
+          "wallMilliseconds": 43.60869999999704,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 489448
+        },
+        {
+          "tick": 410,
+          "wallMilliseconds": 56.40269999999873,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 490612
+        },
+        {
+          "tick": 411,
+          "wallMilliseconds": 57.563500000000204,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 491776
+        },
+        {
+          "tick": 412,
+          "wallMilliseconds": 118.97049999999945,
+          "cpuMilliseconds": 74,
+          "memoryBytes": 492944
+        },
+        {
+          "tick": 413,
+          "wallMilliseconds": 51.590500000002066,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 492532
+        },
+        {
+          "tick": 414,
+          "wallMilliseconds": 56.76840000000084,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 492622
+        },
+        {
+          "tick": 415,
+          "wallMilliseconds": 43.96149999999761,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 493741
+        },
+        {
+          "tick": 416,
+          "wallMilliseconds": 49.93700000000172,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 494908
+        },
+        {
+          "tick": 417,
+          "wallMilliseconds": 45.77059999999983,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 496075
+        },
+        {
+          "tick": 418,
+          "wallMilliseconds": 49.81079999999929,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 497242
+        },
+        {
+          "tick": 419,
+          "wallMilliseconds": 56.11000000000058,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 498409
+        },
+        {
+          "tick": 420,
+          "wallMilliseconds": 58.19239999999991,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 499576
+        },
+        {
+          "tick": 421,
+          "wallMilliseconds": 64.35069999999905,
+          "cpuMilliseconds": 24,
+          "memoryBytes": 500744
+        },
+        {
+          "tick": 422,
+          "wallMilliseconds": 52.9230000000025,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 501911
+        },
+        {
+          "tick": 423,
+          "wallMilliseconds": 39.703999999997905,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 503078
+        },
+        {
+          "tick": 424,
+          "wallMilliseconds": 56.49159999999756,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 504245
+        },
+        {
+          "tick": 425,
+          "wallMilliseconds": 62.14559999999983,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 505412
+        },
+        {
+          "tick": 426,
+          "wallMilliseconds": 55.936499999999796,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 506552
+        },
+        {
+          "tick": 427,
+          "wallMilliseconds": 42.58610000000044,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 507535
+        },
+        {
+          "tick": 428,
+          "wallMilliseconds": 58.620600000002014,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 510277
+        },
+        {
+          "tick": 429,
+          "wallMilliseconds": 56.212500000001455,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 511443
+        },
+        {
+          "tick": 430,
+          "wallMilliseconds": 43.285899999998946,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 512609
+        },
+        {
+          "tick": 431,
+          "wallMilliseconds": 58.99920000000202,
+          "cpuMilliseconds": 25,
+          "memoryBytes": 513775
+        },
+        {
+          "tick": 432,
+          "wallMilliseconds": 44.06580000000031,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 514941
+        },
+        {
+          "tick": 433,
+          "wallMilliseconds": 45.20560000000114,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 516107
+        },
+        {
+          "tick": 434,
+          "wallMilliseconds": 57.638200000001234,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 517273
+        },
+        {
+          "tick": 435,
+          "wallMilliseconds": 54.86829999999827,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 518439
+        },
+        {
+          "tick": 436,
+          "wallMilliseconds": 57.51060000000143,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 519605
+        },
+        {
+          "tick": 437,
+          "wallMilliseconds": 46.46519999999873,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 520771
+        },
+        {
+          "tick": 438,
+          "wallMilliseconds": 44.91310000000158,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 521937
+        },
+        {
+          "tick": 439,
+          "wallMilliseconds": 50.59940000000279,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 523074
+        },
+        {
+          "tick": 440,
+          "wallMilliseconds": 56.98749999999927,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 524193
+        },
+        {
+          "tick": 441,
+          "wallMilliseconds": 57.081099999999424,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 525360
+        },
+        {
+          "tick": 442,
+          "wallMilliseconds": 56.06760000000213,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 526527
+        },
+        {
+          "tick": 443,
+          "wallMilliseconds": 72.73400000000038,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 527694
+        },
+        {
+          "tick": 444,
+          "wallMilliseconds": 40.829900000000634,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 528861
+        },
+        {
+          "tick": 445,
+          "wallMilliseconds": 42.963299999999435,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 530028
+        },
+        {
+          "tick": 446,
+          "wallMilliseconds": 58.01840000000084,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 531195
+        },
+        {
+          "tick": 447,
+          "wallMilliseconds": 40.85450000000128,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 532362
+        },
+        {
+          "tick": 448,
+          "wallMilliseconds": 41.17760000000271,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 533529
+        },
+        {
+          "tick": 449,
+          "wallMilliseconds": 64.98389999999927,
+          "cpuMilliseconds": 29,
+          "memoryBytes": 534669
+        },
+        {
+          "tick": 450,
+          "wallMilliseconds": 56.64429999999993,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 535652
+        },
+        {
+          "tick": 451,
+          "wallMilliseconds": 45.285899999998946,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 538394
+        },
+        {
+          "tick": 452,
+          "wallMilliseconds": 47.163900000003196,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 539560
+        },
+        {
+          "tick": 453,
+          "wallMilliseconds": 40.80760000000009,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 540726
+        },
+        {
+          "tick": 454,
+          "wallMilliseconds": 50.895300000000134,
+          "cpuMilliseconds": 18,
+          "memoryBytes": 541892
+        },
+        {
+          "tick": 455,
+          "wallMilliseconds": 58.274600000000646,
+          "cpuMilliseconds": 21,
+          "memoryBytes": 543058
+        },
+        {
+          "tick": 456,
+          "wallMilliseconds": 40.554400000000896,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 544224
+        },
+        {
+          "tick": 457,
+          "wallMilliseconds": 44.859300000000076,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 545390
+        },
+        {
+          "tick": 458,
+          "wallMilliseconds": 46.076099999998405,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 546556
+        },
+        {
+          "tick": 459,
+          "wallMilliseconds": 58.02629999999772,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 547722
+        },
+        {
+          "tick": 460,
+          "wallMilliseconds": 54.89749999999913,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 548859
+        },
+        {
+          "tick": 461,
+          "wallMilliseconds": 56.661299999999756,
+          "cpuMilliseconds": 25,
+          "memoryBytes": 549978
+        },
+        {
+          "tick": 462,
+          "wallMilliseconds": 44.45709999999963,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 551145
+        },
+        {
+          "tick": 463,
+          "wallMilliseconds": 72.34280000000217,
+          "cpuMilliseconds": 25,
+          "memoryBytes": 552312
+        },
+        {
+          "tick": 464,
+          "wallMilliseconds": 42.970000000001164,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 553479
+        },
+        {
+          "tick": 465,
+          "wallMilliseconds": 47.60610000000088,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 554646
+        },
+        {
+          "tick": 466,
+          "wallMilliseconds": 54.11120000000301,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 555813
+        },
+        {
+          "tick": 467,
+          "wallMilliseconds": 47.436499999999796,
+          "cpuMilliseconds": 22,
+          "memoryBytes": 556980
+        },
+        {
+          "tick": 468,
+          "wallMilliseconds": 55.535799999997835,
+          "cpuMilliseconds": 20,
+          "memoryBytes": 558120
+        },
+        {
+          "tick": 469,
+          "wallMilliseconds": 40.34490000000005,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 559103
+        },
+        {
+          "tick": 470,
+          "wallMilliseconds": 59.8621000000021,
+          "cpuMilliseconds": 23,
+          "memoryBytes": 561845
+        },
+        {
+          "tick": 471,
+          "wallMilliseconds": 43.91949999999997,
+          "cpuMilliseconds": 19,
+          "memoryBytes": 558461
+        },
+        {
+          "tick": 472,
+          "wallMilliseconds": 44.46940000000177,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 559445
+        },
+        {
+          "tick": 473,
+          "wallMilliseconds": 41.564800000000105,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 560520
+        },
+        {
+          "tick": 474,
+          "wallMilliseconds": 57.963299999999435,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 561505
+        },
+        {
+          "tick": 475,
+          "wallMilliseconds": 39.76759999999922,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 562490
+        },
+        {
+          "tick": 476,
+          "wallMilliseconds": 42.47229999999763,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 563475
+        },
+        {
+          "tick": 477,
+          "wallMilliseconds": 43.90600000000268,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 564431
+        },
+        {
+          "tick": 478,
+          "wallMilliseconds": 54.36030000000028,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 565369
+        },
+        {
+          "tick": 479,
+          "wallMilliseconds": 39.82210000000123,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 566355
+        },
+        {
+          "tick": 480,
+          "wallMilliseconds": 42.17239999999947,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 567341
+        },
+        {
+          "tick": 481,
+          "wallMilliseconds": 49.50170000000071,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 568399
+        },
+        {
+          "tick": 482,
+          "wallMilliseconds": 61.92109999999957,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 569361
+        },
+        {
+          "tick": 483,
+          "wallMilliseconds": 43.56890000000203,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 570323
+        },
+        {
+          "tick": 484,
+          "wallMilliseconds": 41.83380000000034,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 571285
+        },
+        {
+          "tick": 485,
+          "wallMilliseconds": 42.18279999999868,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 572220
+        },
+        {
+          "tick": 486,
+          "wallMilliseconds": 42.11330000000089,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 572998
+        },
+        {
+          "tick": 487,
+          "wallMilliseconds": 42.34070000000065,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 575536
+        },
+        {
+          "tick": 488,
+          "wallMilliseconds": 42.79069999999774,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 576498
+        },
+        {
+          "tick": 489,
+          "wallMilliseconds": 41.990499999999884,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 577460
+        },
+        {
+          "tick": 490,
+          "wallMilliseconds": 47.234800000002,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 578422
+        },
+        {
+          "tick": 491,
+          "wallMilliseconds": 51.57159999999931,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 579384
+        },
+        {
+          "tick": 492,
+          "wallMilliseconds": 114.21500000000015,
+          "cpuMilliseconds": 60,
+          "memoryBytes": 580350
+        },
+        {
+          "tick": 493,
+          "wallMilliseconds": 55.95969999999943,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 579263
+        },
+        {
+          "tick": 494,
+          "wallMilliseconds": 58.25720000000001,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 580196
+        },
+        {
+          "tick": 495,
+          "wallMilliseconds": 55.435899999996764,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 581111
+        },
+        {
+          "tick": 496,
+          "wallMilliseconds": 44.070599999999104,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 582074
+        },
+        {
+          "tick": 497,
+          "wallMilliseconds": 54.26469999999972,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 583037
+        },
+        {
+          "tick": 498,
+          "wallMilliseconds": 42.15850000000137,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 584000
+        },
+        {
+          "tick": 499,
+          "wallMilliseconds": 42.698599999999715,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 584963
+        },
+        {
+          "tick": 500,
+          "wallMilliseconds": 42.22680000000037,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 585926
+        },
+        {
+          "tick": 501,
+          "wallMilliseconds": 54.58429999999862,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 586889
+        },
+        {
+          "tick": 502,
+          "wallMilliseconds": 43.78390000000218,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 587852
+        },
+        {
+          "tick": 503,
+          "wallMilliseconds": 42.86869999999908,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 588815
+        },
+        {
+          "tick": 504,
+          "wallMilliseconds": 44.26220000000103,
+          "cpuMilliseconds": 16,
+          "memoryBytes": 589778
+        },
+        {
+          "tick": 505,
+          "wallMilliseconds": 40.74869999999646,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 590741
+        },
+        {
+          "tick": 506,
+          "wallMilliseconds": 41.964899999999034,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 591677
+        },
+        {
+          "tick": 507,
+          "wallMilliseconds": 42.10829999999987,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 592456
+        },
+        {
+          "tick": 508,
+          "wallMilliseconds": 42.351299999998446,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 594994
+        },
+        {
+          "tick": 509,
+          "wallMilliseconds": 43.21700000000055,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 595956
+        },
+        {
+          "tick": 510,
+          "wallMilliseconds": 54.184799999999086,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 596918
+        },
+        {
+          "tick": 511,
+          "wallMilliseconds": 38.482599999999366,
+          "cpuMilliseconds": 15,
+          "memoryBytes": 597879
+        },
+        {
+          "tick": 512,
+          "wallMilliseconds": 45.80880000000252,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 598840
+        },
+        {
+          "tick": 513,
+          "wallMilliseconds": 56.753600000000006,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 599801
+        },
+        {
+          "tick": 514,
+          "wallMilliseconds": 42.93609999999899,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 596154
+        },
+        {
+          "tick": 515,
+          "wallMilliseconds": 43.51629999999932,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 598691
+        },
+        {
+          "tick": 516,
+          "wallMilliseconds": 56.00720000000001,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 599652
+        },
+        {
+          "tick": 517,
+          "wallMilliseconds": 42.964200000002165,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 600613
+        },
+        {
+          "tick": 518,
+          "wallMilliseconds": 39.50149999999849,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 601574
+        },
+        {
+          "tick": 519,
+          "wallMilliseconds": 42.28069999999934,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 602535
+        },
+        {
+          "tick": 520,
+          "wallMilliseconds": 42.39730000000054,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 603467
+        },
+        {
+          "tick": 521,
+          "wallMilliseconds": 52.84140000000116,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 604381
+        },
+        {
+          "tick": 522,
+          "wallMilliseconds": 35.98919999999998,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 605343
+        },
+        {
+          "tick": 523,
+          "wallMilliseconds": 35.287499999998545,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 606304
+        },
+        {
+          "tick": 524,
+          "wallMilliseconds": 42.98189999999886,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 607265
+        },
+        {
+          "tick": 525,
+          "wallMilliseconds": 41.97320000000036,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 608226
+        },
+        {
+          "tick": 526,
+          "wallMilliseconds": 42.33399999999892,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 609187
+        },
+        {
+          "tick": 527,
+          "wallMilliseconds": 41.22659999999814,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 610148
+        },
+        {
+          "tick": 528,
+          "wallMilliseconds": 37.693599999998696,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 611109
+        },
+        {
+          "tick": 529,
+          "wallMilliseconds": 45.64180000000124,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 612070
+        },
+        {
+          "tick": 530,
+          "wallMilliseconds": 44.60529999999926,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 613031
+        },
+        {
+          "tick": 531,
+          "wallMilliseconds": 40.389100000000326,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 613992
+        },
+        {
+          "tick": 532,
+          "wallMilliseconds": 41.8022000000019,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 614926
+        },
+        {
+          "tick": 533,
+          "wallMilliseconds": 41.70630000000165,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 615703
+        },
+        {
+          "tick": 534,
+          "wallMilliseconds": 36.88840000000346,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 616663
+        },
+        {
+          "tick": 535,
+          "wallMilliseconds": 36.78989999999976,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 617623
+        },
+        {
+          "tick": 536,
+          "wallMilliseconds": 35.16960000000108,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 618583
+        },
+        {
+          "tick": 537,
+          "wallMilliseconds": 54.81199999999808,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 619543
+        },
+        {
+          "tick": 538,
+          "wallMilliseconds": 53.32900000000154,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 616893
+        },
+        {
+          "tick": 539,
+          "wallMilliseconds": 36.972600000000966,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 617853
+        },
+        {
+          "tick": 540,
+          "wallMilliseconds": 34.54149999999936,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 618813
+        },
+        {
+          "tick": 541,
+          "wallMilliseconds": 40.61150000000271,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 619773
+        },
+        {
+          "tick": 542,
+          "wallMilliseconds": 53.572800000001735,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 620733
+        },
+        {
+          "tick": 543,
+          "wallMilliseconds": 42.66869999999835,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 621693
+        },
+        {
+          "tick": 544,
+          "wallMilliseconds": 54.02470000000176,
+          "cpuMilliseconds": 13,
+          "memoryBytes": 622653
+        },
+        {
+          "tick": 545,
+          "wallMilliseconds": 32.02189999999973,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 623613
+        },
+        {
+          "tick": 546,
+          "wallMilliseconds": 38.66670000000158,
+          "cpuMilliseconds": 14,
+          "memoryBytes": 624573
+        },
+        {
+          "tick": 547,
+          "wallMilliseconds": 41.75399999999718,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 625533
+        },
+        {
+          "tick": 548,
+          "wallMilliseconds": 35.00619999999981,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 626493
+        },
+        {
+          "tick": 549,
+          "wallMilliseconds": 47.686499999999796,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 627453
+        },
+        {
+          "tick": 550,
+          "wallMilliseconds": 41.22089999999662,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 628413
+        },
+        {
+          "tick": 551,
+          "wallMilliseconds": 42.46719999999914,
+          "cpuMilliseconds": 11,
+          "memoryBytes": 629373
+        }
+      ]
+    },
+    {
+      "scenario": "--reservation-population",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WnyVT0\\evidence.json",
+      "sourceEvidenceSha256": "4c17d16e976a13bf7a765f5c70677f92e1ae153b6d60c8941df32769a671f153",
+      "provenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "e97a4032035642a0404986291bc6da975c079df700de84ce69e362f110fde74e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "7a170aa2858893a334e89d1882167b19fa0e9f2a83c52d29819a5ff9863fb26e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--reservation-population-admission",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kSrxeu\\evidence.json",
+      "sourceEvidenceSha256": "3f38d92ae231bcb6bad051645b478de4b958e1fbc0366c170fe7dba3faea74e9",
+      "provenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "3bc82ca0d55c5340862521d51e189f60673a82a9a68c4bc1cac12ce9124650c0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "5629cc6d1521a4c1a59e4a6900d59619eeb989d0ff8488df7697a23e31d8211d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--reservation-population-cancel",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-LIs1yZ\\evidence.json",
+      "sourceEvidenceSha256": "e0dbc39003d4d8ec7459e68b746d3f8ce542b84366ff42f9b6be9f3b6eb41bae",
+      "provenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "61b0608139e037cd3170292c2f00ea37022cddb8aef7057f78f8a144a9f8350c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "b840c6c7ad38417fa805dbbc8a12e6d1f54b27c8e7eaf32d8fa7eeb6bd81e9e9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-pipeline",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Lnq5Lw\\evidence.json",
+      "sourceEvidenceSha256": "d339d8da5a2b264a10928287e413cb92551a8f8cd8489c5e404335577d1689b7",
+      "provenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "c294d898ba1d278321b7044266409cf85670061a9cc6320dec2ae5e6aed782e4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "83c01129149e7596d90811f6ac59fd4bd90572dd",
+        "dirty": false,
+        "bundleSha256": "8667ab0f4c073efb445521e3cf72e585135a4f6837f00bfe42d18384321e252f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    }
+  ],
+  "limitations": [
+    "A supplied MOVE-only sensor grants initial vision and walks out/in through native movement. Candidate management is driven by the fixture; normal recruitment, funding and actors use the ordinary main loop. Combined autonomous discovery is qualified separately.",
+    "Operator maximum-slot controls initiate withdrawal. The boundary tested is suppression of restart after the20-tick freshness window, not a blanket immediate-stop policy for still-fresh retained observations.",
+    "The hostile is introduced while the room is genuinely unseen, then observed by the returning sensor. No own creep is removed/teleported, and no resources or lifetimes are injected during the run.",
+    "Initial home capital is2300 spawn/extension energy plus8000 storage. A150-energy distributor and1300-energy reserver are born; the healthy reserver adopts fresh authority rather than adding another birth. Source energy is never extracted or credited.",
+    "The test-harness-only increment ran full units and five clean focused native scenarios. Production source matches the prior clean223-case baseline exactly; the224-case registry was not rerun in full.",
+    "Long-route stale approach, full infrastructure/startup payback, adaptive capacity/reachability, alternate-home ownership and aggregate pressure/soak remain open. CPU/memory samples include probe overhead."
+  ]
+}

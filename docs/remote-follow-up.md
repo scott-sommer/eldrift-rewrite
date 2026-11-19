@@ -37,3 +37,7 @@ a376519 adds funded recruitment, current final admission, shared controller acto
 ## Combined ordinary pipeline status
 
 39722c0 qualifies ordinary scout-to-discovery-to-priced selection-to-miner/courier/reserver/distributor operation for one configured outpost. Independently confirmed deliveries cover workforce births and final capital reconciles after loaded withdrawal. See remote-pipeline-qualification.md. Prebuilt infrastructure, multi-room startup stability, controlled vision loss and the broader obligations above remain open.
+
+## Controlled reservation vision status
+
+83c0112 qualifies native sensor departure, suppression of restart after the configured observation-expiry window, hostile re-observation and fresh-generation recovery using the same returned reserver. See reservation-vision-qualification.md and evidence/reservation-vision-native.json. This is a focused test-harness increment on unchanged production source; the223-case full baseline remains current. Adaptive capacity/reachability, long-route stale approach and broader gates remain open.
