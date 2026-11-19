@@ -1,3 +1,4 @@
+import { excludeUnreachableRooms } from '../reachability/policy';
 import { createResumableRemoteTravel } from './travel';
 import type { StatePort } from '../../../persistence/versioned-state';
 import { createIntelStore } from '../../../features/intel/store';
@@ -12,7 +13,8 @@ import { createCurrentRemoteAdmission } from './current';
 export function createNativeRemoteManagement(state: StatePort, options: NativeRemoteAssessmentOptions) {
   const assess = createNativeRemoteAssessment(state,{ ...options,measure: createResumableRemoteTravel(state) }), refresh = createRemoteObservationRefresh(state);
   const intel = createIntelStore(state), assignments = createRemoteAssignmentStore(state);
-  return { advance(request: RemoteManagementRequest, budget: RemoteScanBudget, guard: () => boolean) {
+  return { advance(input: RemoteManagementRequest, budget: RemoteScanBudget, guard: () => boolean) {
+    const request = excludeUnreachableRooms(state,input);
     if (request.tick !== Game.time) throw new Error('Native remote management tick mismatch');
     const home = Game.rooms[request.home];
     if (!home?.controller?.my || home.controller.owner?.username !== request.policy.traversal.username) return { status: 'deferred' as const };

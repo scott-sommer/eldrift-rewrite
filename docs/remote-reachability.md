@@ -1,0 +1,37 @@
+# Remote miner reachability feedback
+
+ED-29 remains In Progress. This working increment ports legacy source-arrival success and two consecutive full-life never-arrived failures into bounded per-home state. Portable tests and runtime integration pass. All three development native cases pass, including full lifetime and interrupted-lifetime behavior. Clean committed traces and relevant regressions are still pending. Do not treat this document as qualification.
+
+## Responsibilities and evidence
+
+`features/remotes/reachability` owns the attempt lifecycle, source outcomes, permanent room blocks and validated state. It has no game globals. The app adapter supplies actual owned creep identity, native spawning/TTL/body observations, current fleet and lease eligibility, and actual source proximity. A separate urgent feature samples before optional actor work. Background discovery and actor CPU budgets do not gate observation or blacklist enforcement.
+
+A positive observation requires the creep to be within range one of its actual source in the target room. A quoted route or merely entering a room cannot establish arrival. Arrival reports once and resets the source's failure streak. It remains useful evidence for an older or interrupted miner. Existing permanent blacklists survive later success, matching the legacy policy.
+
+Failure requires an observed spawning phase followed by uninterrupted active-lifetime observations and its real TTL-one tick. The first active native observation can have TTL1,499; readiness is therefore established from the observed spawning transition, accepting the lifetime or lifetime-minus-one boundary rather than a guessed age. Missing observations, unexplained aging/renewal, body damage, explicit withdrawal, missing current eligibility and identity/source changes interrupt failure attribution. Early disappearance removes the live attempt and never implies failure. Natural TTL-based actor retirement does not erase an otherwise continuous lifetime observation. An interrupted miner can still produce actual arrival success.
+
+This deliberately strengthens the legacy evidence rule: an already-aged imported miner or a miner interrupted by policy, damage or observation loss cannot be used to condemn a source. Legacy source locations and original behavior are in remote-adaptive-porting-audit.md. These corrections need their own tests and must not be represented as byte-for-byte event parity.
+
+## Exclusion and ownership
+
+Two consecutive failures saturate the stored streak at two, preserve the first blacklist tick, and block both source and room for that home. Source identities cannot move between rooms. Blocks remain permanent until a future explicit operator workflow changes them; toggling an actor policy does not clear them. Blocked candidates are removed at the native manager boundary, including explicit/manual callers of that boundary. The exclusion applies to selecting that remote; it does not prohibit transit through the room for other routes.
+
+Before observing new attempts, the urgent feature enforces existing blocks. It then enforces newly committed blocks in the same tick. Scoped assignment withdrawal preserves other homes and rooms. Cancellation recognizes fleet, reservation and construction population families and their home/room identities, preserving unrelated demand. Final dispatch admission independently fences blocked remote births. State is committed before native cancellation; a failed withdrawal remains visible and can be retried on the next tick.
+
+Existing task/actor retirement owns movement home and claim release after authority withdrawal. This feature does not introduce a competing movement or reservation owner. Return work still uses the configured actor budget. Home-loss and broader operating gates remain separate ED-29 requirements.
+
+## Persistence and bounds
+
+Namespace `remoteReachability/<home>`, owner remotes, schema1. Records use detached reads, revision comparison, monotonic clock checks, unique live actors, validated blacklist/source links and refusal of corrupt data. At most200 live attempts,128 source outcomes and128 room blocks are stored per home. Dead attempts disappear on the next complete owned-creep observation. At source capacity, only resolved successful, unblocked outcomes may be evicted by oldest report and source identity; unresolved failures and permanent blocks are never silently forgotten. If no safe entry can be evicted, the transition is refused visibly without writing partial state. An operator history-management workflow belongs to ED-39.
+
+Default-off remote management registration performs no native or state reads. With management active, no reachability namespace is opened until there are tracked miner observations. Disabling management stops observations; a gap prevents later failure attribution on resumption. Existing blocks are enforced when management resumes. Core lifetime logic uses injected observations and is independently testable.
+
+## Qualification work
+
+Development arrival case uses ordinary main, automatic source-fleet recruitment and real births. Its miner is first observed spawning at tick3, becomes active at23 withTTL1,499, and reports actual source-range arrival at35. Two code reloads preserve that one-time success. These are diagnostic observations from an uncommitted worktree until clean qualification is archived. The blocked run reports failures at ticks1,521 and2,923 with actor budget zero on those exact frames, withdraws the lease at2,923, and returns all surviving fleet actors home by3,100. The withdrawal case restores work at110 but records no source failures when the original reachesTTL1 at1,521; it runs through1,550.
+
+The blocked fixture surrounds the source with eight initially supplied stationary friendly TOUGH bodies; their extended fixture lifetimes maintain physical congestion and are not recruited-worker lifetime evidence. Workers must be ordinary native births with unmodified lifetime and energy. The 3,100-tick case should qualify two actual final-lifetime failures, zero actor budget only on those final ticks, immediate same-home exclusion and subsequent retirement. A separate1,550-tick withdrawal case disables work at100 and restores110 to prove that the first original's natural final tick does not become a failure. No worker energy, position, age or observation history may be injected mid-run.
+
+Portable/app tests and full units:1,520 tests /405 files in10.72s. Typecheck, lint, boundaries, bundle and pinned Lizard pass (734 production /600 test files, zero violations). The registry contains231 scenarios after adding the three reachability cases; a full-registry rerun is still pending. Diagnostic case paths remain in local artifacts; only a clean source run can supply the versioned qualification archive. The blocked scenario takes about four minutes on this machine, so the harness allows seven minutes plus runner shutdown margin. This is a targeted lifetime qualification, not ED-43 aggregate soak.
+
+This adapter covers the automatic source fleet. Low-level task/cycle callers with custom ownership need explicit population/birth metadata before negative lifetime evidence can be attributed; an already-aged manually supplied creep does not provide that proof. Operator and specialist integration remains traceable to ED-39/ED-35 and must not be inferred from the automatic fleet tests.
