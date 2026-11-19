@@ -1,0 +1,82 @@
+{
+  "scope": "Pure construction capital/slot admission, body/owner contracts, validated controls and shared live outpost observation. Automatic recruitment and main-loop registration are not wired.",
+  "commit": "3921fc1d987b005949dac0264bb89ba7ba4ccd7f",
+  "checks": {
+    "unitTests": 1395,
+    "unitFiles": 379,
+    "unitSeconds": 9.96,
+    "focusedTestsIncludingSmoke": 13,
+    "focusedFiles": 4,
+    "focusedMilliseconds": 328,
+    "types": true,
+    "lint": true,
+    "boundaries": true,
+    "lizard": {
+      "productionFiles": 662,
+      "testFiles": 551,
+      "violations": 0
+    }
+  },
+  "nativeRoadRegression": {
+    "status": "passed",
+    "provenance": {
+      "commit": "3921fc1d987b005949dac0264bb89ba7ba4ccd7f",
+      "dirty": false,
+      "bundleSha256": "d875e0d1b8a2925cd75c14d454ed3b9df9b2746142c18332e91941c3b478268f",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "reloadProvenance": {
+      "commit": "3921fc1d987b005949dac0264bb89ba7ba4ccd7f",
+      "dirty": false,
+      "bundleSha256": "1dc8ecdc10c3054e7261fdb58b138257765a7cfbdaea5d3d1fa0b21c2fbc9aa1",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "sourceEvidence": "artifacts\\engine-53Rsaa\\evidence.json",
+    "sourceEvidenceSha256": "570dac975bd0c7b205bf435a0050a5ecb4238750f3bc051c151272645a305726",
+    "rowCount": 400,
+    "summary": {
+      "tick": 400,
+      "revoked": 282,
+      "storage": 1800,
+      "cargo": 0,
+      "progress": 0,
+      "refunded": 100,
+      "claims": 0,
+      "roads": [
+        {
+          "room": "W0N1",
+          "x": 46,
+          "y": 24
+        },
+        {
+          "room": "W0N1",
+          "x": 47,
+          "y": 24
+        },
+        {
+          "room": "W0N1",
+          "x": 48,
+          "y": 23
+        },
+        {
+          "room": "E0N1",
+          "x": 1,
+          "y": 25
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Capital/slot allocation and configuration are unit qualified only; new controls do not yet activate automatic construction spawning.",
+    "Native regression protects the previously qualified existing-worker road cycle after shared-view extraction. Detailed baseline trace remains remote-road-work-native.json.",
+    "Expanded 214-case full native suite not rerun for this increment; previous clean full 212-case timing baseline remains recorded."
+  ]
+}
