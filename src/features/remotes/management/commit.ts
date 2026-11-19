@@ -1,3 +1,5 @@
+import { refreshAdmittedReservations } from './live-reservation';
+import { managedSourceFactsChanged } from './changed-facts';
 import { currentRoomReservation, selectedRoomController } from './reservation-admission';
 import { copyPlain } from '../../../persistence/plain-data';
 import { selectRemotePortfolio } from '../portfolio';
@@ -9,10 +11,12 @@ import type { RemoteManagementPorts, RemoteManagementRecord, RemoteManagementReq
 export function commitRemotePortfolio(state: StatePort, record: RemoteManagementRecord, request: RemoteManagementRequest,
   ports: RemoteManagementPorts, guard: () => boolean, stillCurrent: () => boolean = () => true) {
   const assignments = createRemoteAssignmentStore(state), revision = assignments.read().revision;
+  if (managedSourceFactsChanged(record,ports,guard)) return { status: 'inventory-changed' as const };
   const offers = copyPlain(record.offers).map(offer => ({ ...offer,quotes: manageable(assignments,record,offer.room,request.tick) && guard() && currentRoomReservation(offer,request,ports,guard) ? offer.quotes.filter(quote => {
     return manageable(assignments,record,offer.room,request.tick) && guard() && ports.current(quote,guard);
   }) : [] }));
   if (!guard()) return { status: 'deferred' as const };
+  for (const offer of offers) offer.quotes = refreshAdmittedReservations(offer.quotes,ports,request);
   const portfolio = selectRemotePortfolio(offers,{ ...request.policy.portfolio,home: request.home,tick: request.tick });
   const plans: RemoteRoomPlan[] = [];
   for (const bundle of portfolio.bundles) {

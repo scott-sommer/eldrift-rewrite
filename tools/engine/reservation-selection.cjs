@@ -20,6 +20,9 @@ function verifyReservationSelection(memory,evidence) {
     assert.equal(row.spawnEnergy,1300); assert.equal(row.reservation,null); assert.deepEqual(row.sentinel,rows[0].sentinel);
     for (const offer of row.offers) { assert.ok(offer.capacity.every(capacity => capacity === 1500)); assert.ok(offer.fees.every(fee => fee.energyPerTick === 0 && fee.spawnLoad === 0)); }
   }
+  assert.equal(rows.find(row => row.tick === 9).beforeCacheVersion,1);
+  assert.ok(rows.some(row => row.tick >= 9 && row.cacheVersion === 2));
+  assert.equal(rows.at(-1).cacheVersion,2);
   assert.deepEqual(memory.stampReloads,[3,9,23]);
 }
 module.exports = { reservationSelectionWorld: roomReservationWorld,changeReservationSelection,verifyReservationSelection };

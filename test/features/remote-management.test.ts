@@ -74,3 +74,26 @@ test('zero source capacity immediately revokes managed work without repeating so
   expect(f.manager().advance(f.request,budget,() => true).status).toBe('applied');
   expect(f.assignments.owner('E0N1',21)).toBeUndefined(); expect(f.ports.assess).toHaveBeenCalledTimes(calls);
 });
+
+test('changed managed source capacity triggers repricing without renewing or revoking the current lease',() => {
+  const f = managementFixture(); f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true);
+  const before = f.assignments.owner('E0N1',20)!;
+  f.summary.sources[0]!.capacity += 1500; f.request.tick++;
+  expect(f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true).status).toBe('inventory-changed');
+  expect(f.assignments.owner('E0N1',21)).toEqual(before);
+  f.offer.quotes[0]!.assessment.sourceFacts.capacity = f.summary.sources[0]!.capacity; f.request.tick++;
+  expect(f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true).status).toBe('applied');
+  expect(f.assignments.owner('E0N1',22)!.generation).toBe(before.generation);
+  expect(f.manager().read().offers[0]!.quotes[0]!.assessment.sourceFacts.capacity).toBe(f.summary.sources[0]!.capacity);
+});
+test('live reservation growth refreshes admission without making old source measurements younger',() => {
+  const f = managementFixture(); f.summary.observedAt = 20;
+  Reflect.set(f.summary.controller,'reservation',{ username: 'bot',ticksToEnd: 2 });
+  for (const quote of f.offer.quotes) quote.assessment.reservation = { state: 'ours',username: 'bot',remainingTicks: 2,observedAt: 20 };
+  f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true);
+  const observed = f.manager().read().offers[0]!.quotes[0]!.assessment.observedAt, generation = f.assignments.owner('E0N1',20)!.generation;
+  f.request.tick = 25; f.summary.observedAt = 25; Reflect.set(f.summary.controller,'reservation',{ username: 'bot',ticksToEnd: 10 });
+  const result = f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true);
+  expect(result.status).toBe('applied'); expect(f.assignments.owner('E0N1',25)!.generation).toBe(generation);
+  expect(f.manager().read().offers[0]!.quotes[0]!.assessment.observedAt).toBe(observed);
+});

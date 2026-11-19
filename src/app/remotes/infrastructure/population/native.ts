@@ -5,8 +5,9 @@ import type { createNativeDispatch } from '../../../native-dispatch';
 import { validRemoteTaskPayload } from '../../task';
 import { createNativeConstructionRecruitment } from './recruitment';
 import { createNativeConstructionActors } from './actors';
+export const remoteConstructionDefinitions = { 'remote-work': { phases: ['work'],validPayload: validRemoteTaskPayload } };
 export function createNativeRemoteConstructionWorkers(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, config: (home: string) => Readonly<RuntimeConfig>,
   otherDefinitions: Readonly<Record<string,TaskDefinition>>) {
-  const definitions = { 'remote-work': { phases: ['work'],validPayload: validRemoteTaskPayload } };
+  const definitions = remoteConstructionDefinitions;
   return { definitions,recruitment: createNativeConstructionRecruitment(state,dispatch),actors: createNativeConstructionActors(state,dispatch,config,{ ...otherDefinitions,...definitions }) };
 }

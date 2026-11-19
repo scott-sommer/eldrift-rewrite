@@ -21,5 +21,5 @@ export function loop(): void {
   const buffer = Game.time === 1 ? quote({ ...request,minimumBufferTicks: 5000 }) : null;
   const memory = Memory as Memory & { reservationQuoteRows?: unknown[] };
   (memory.reservationQuoteRows ??= []).push({ tick: Game.time,result,budget,buffer,paused,pausedUnchanged,reservation: Game.rooms[room]!.controller!.reservation ?? null,spawnEnergy: Game.rooms[home]!.energyAvailable,
-    progress: createReservationTravelProgress(state,home).read(),sourceProgress: createRemoteTravelProgress(state,home).read(),sentinel: state.read('fixture/reserve-quote') });
+    progress: createReservationTravelProgress(state,home,room).read(),sourceProgress: createRemoteTravelProgress(state,home).read(),sentinel: state.read('fixture/reserve-quote') });
 }

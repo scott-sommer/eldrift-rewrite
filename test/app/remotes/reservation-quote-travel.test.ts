@@ -34,8 +34,36 @@ test('controller and topology changes invalidate measured legs, while pricing-on
   f.resume(); vi.mocked(prepareRemoteMatrices).mockReturnValueOnce({ version: 'new-topology',matrix: () => false }); f.run(); expect(vi.mocked(measureRemoteLeg)).toHaveBeenCalledTimes(4);
 });
 test('controller progress retains CAS/clock fencing and rejects corrupt over-capacity or negative leg state',() => {
-  const f = fixture(); f.run(); const store = createReservationTravelProgress(f.state,'W0N1'), record = store.read();
+  const f = fixture(); f.run(); const store = createReservationTravelProgress(f.state,'W0N1','E0N1'), record = store.read();
   expect(store.save(record.revision-1,2,'new',[])).toBe(false); expect(store.save(record.revision,0,'new',[])).toBe(false);
   expect(() => store.save(record.revision,2,'new',Array(3).fill(record.legs[0]!))).toThrow();
   f.state.write('remoteReserveTravel/W0N1',{ owner: 'remotes',version: 1,data: { ...record,legs: [{ ...record.legs[0]!,ticks: -1 }] } }); expect(() => store.read()).toThrow();
+});
+
+test('interleaved controllers retain independent completed legs instead of evicting each other',() => {
+  const f = fixture(); f.run(); f.resume(); f.run();
+  const second = structuredClone({ ...f.context,intel: undefined });
+  const north = { ...second,intel: f.context.intel,request: { ...f.context.request,room: 'W0N2' },rooms: ['W0N1','W0N2'],controller: { id: 'north',position: { room: 'W0N2',x: 20,y: 20 } } };
+  const measure = createReservationQuoteTravel(f.state,1000);
+  vi.mocked(measureRemoteLeg).mockImplementation((_context,leg) => ({ status: 'complete',ticks: 15,operations: 10,arrival: leg.destination }));
+  expect(measure(north,() => true).status).toBe('complete');
+  f.resume(); expect(f.run().status).toBe('complete');
+  expect(vi.mocked(measureRemoteLeg)).toHaveBeenCalledTimes(4);
+  expect(createReservationTravelProgress(f.state,'W0N1','W0N2').read().legs).toHaveLength(2);
+});
+test('valid legacy controller measurements invalidate once while revision and clock fencing survive',() => {
+  const f = fixture(); f.state.write('remoteReserveTravel/W0N1',{ owner: 'remotes',version: 1,data: { revision: 9,clock: 10,identity: 'old-controller',legs: [] } });
+  const store = createReservationTravelProgress(f.state,'W0N1','E0N1');
+  expect(store.read()).toEqual({ revision: 9,clock: 10,identity: '',legs: [] });
+  expect(store.save(9,9,'new',[])).toBe(false); expect(store.save(9,10,'new',[])).toBe(true);
+  expect(f.state.read('remoteReserveTravel/W0N1')).toMatchObject({ version: 2,data: { revision: 10,clock: 10 } });
+});
+test('controller cache history is bounded and evicts the oldest measured room safely',() => {
+  const f = fixture();
+  for (let index=0; index<65; index++) {
+    const store = createReservationTravelProgress(f.state,'W0N1',`E${index}N1`);
+    expect(store.save(index,index,'controller-'+index,[])).toBe(true);
+  }
+  expect(createReservationTravelProgress(f.state,'W0N1','E0N1').read().identity).toBe('');
+  expect(createReservationTravelProgress(f.state,'W0N1','E64N1').read().identity).toBe('controller-64');
 });

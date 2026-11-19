@@ -9,7 +9,7 @@ export function createReservationQuoteTravel(state: StatePort, maximumOps: numbe
   const snapshots = createMatrixSnapshots();
   return (context: ReservationTravelContext, guard: () => boolean) => {
     if (!guard()) return { status: 'deferred' as const,reason: 'admission' };
-    const matrices = prepareRemoteMatrices(context,context.rooms,1,snapshots), store = createReservationTravelProgress(state,context.request.home);
+    const matrices = prepareRemoteMatrices(context,context.rooms,1,snapshots), store = createReservationTravelProgress(state,context.request.home,context.request.room);
     const identity = JSON.stringify([context.request.home,context.controller,context.origin,context.rooms,context.body.parts,matrices.version]);
     let record = store.read(); const legs = record.identity === identity ? record.legs : [];
     for (let index=legs.length; index<2; index++) {
