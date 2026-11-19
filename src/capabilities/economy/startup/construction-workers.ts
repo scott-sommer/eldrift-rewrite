@@ -23,5 +23,6 @@ function workerBody(input: StartupConstructionInput, worker: StartupConstruction
   if (request.body.some(part => !['work','carry','move'].includes(part))) throw new Error('Unsupported construction worker body');
   const work = request.body.filter(part => part === 'work').length, carry = request.body.filter(part => part === 'carry').length;
   if (!work || !carry) throw new Error('Construction worker requires WORK and CARRY');
+  if (worker.travelTicks > 0 && !request.body.includes('move')) throw new Error('Travelling construction worker requires MOVE');
   return { work,carry };
 }

@@ -1,7 +1,7 @@
+import { advanceStartupSource } from './source';
 import { forecastSelfBuild } from './self-build';
 import { forecastStartupSpawns } from './spawns';
 import { startupConstructionWaves } from './construction-workers';
-import type { SelfBuildInput } from './build-model';
 import type { StartupConstructionInput, StartupConstructionForecast, StartupBuildWave } from './construction-model';
 /** Composition only: supplied spawn/refill schedules determine finite builder lives; no income is invented. */
 export function forecastStartupConstruction(input: StartupConstructionInput) {
@@ -14,7 +14,7 @@ export function forecastStartupConstruction(input: StartupConstructionInput) {
   let tick = 0;
   for (const wave of waves) {
     if (construction.status === 'complete') break;
-    construction.regeneratedEnergy += advanceIdleSource(construction.source,wave.startAt-tick);
+    construction.regeneratedEnergy += advanceStartupSource(construction.source,wave.startAt-tick);
     applyWave(construction,wave); tick = wave.endAt;
   }
   return { spawning,construction };
@@ -27,12 +27,4 @@ function applyWave(result: StartupConstructionForecast, wave: StartupBuildWave):
   result.regeneratedEnergy += work.regeneratedEnergy; result.unusedCargoEnergy += work.carriedEnergy;
   result.remainingProgress = work.remainingProgress; result.source = { ...result.source,energy: work.sourceEnergy,regenerationIn: work.regenerationIn };
   if (work.status === 'complete') { result.status = 'complete'; result.completeAt = wave.startAt+work.ticks; }
-}
-function advanceIdleSource(source: SelfBuildInput['source'], ticks: number): number {
-  if (ticks === 0 || source.energy === source.capacity) return 0;
-  const remaining = Math.max(1,source.regenerationIn ?? source.regenerationTicks);
-  if (ticks < remaining) { source.regenerationIn = remaining-ticks; return 0; }
-  const regenerated = source.capacity-source.energy;
-  source.energy = source.capacity; source.regenerationIn = null;
-  return regenerated;
 }

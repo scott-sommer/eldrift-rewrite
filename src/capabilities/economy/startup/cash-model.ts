@@ -1,3 +1,4 @@
+export interface StartupCashReceipt { id: string; tick: number; energy: number }
 export type StartupCashKind = 'birth' | 'home-construction' | 'upkeep' | 'delivery';
 export interface StartupCashFlow {
   id: string; kind: StartupCashKind; energy: number; firstTick: number; interval: number | null; occurrences: number;
