@@ -1,5 +1,6 @@
 import type { StatePort } from '../../../../persistence/versioned-state';
 import type { RuntimeConfig } from '../../../../config/model';
+import { remoteWorkforceOwner } from '../../../../features/remotes/workforce';
 import { observePopulation } from '../../../../adapters/screeps/population';
 import { createSpawnQueue } from '../../../../features/population/spawn-queue';
 import { remoteConstructionBody } from '../../../../features/remotes/infrastructure/worker-budget';
@@ -14,9 +15,9 @@ export function constructionHome(state: StatePort, name: string, config: Readonl
 export function constructionBudget(snapshot: ConstructionHomeSnapshot, config: Readonly<RuntimeConfig>) {
   const liveWorkers = snapshot.roster.filter(unit => remoteConstructionIdentity(unit.owner)).length;
   const remoteUnits = snapshot.roster.filter(unit => remoteOwner(unit.owner)).length;
-  const sourcePending = snapshot.pending.filter(request => request.owner.startsWith('remote-fleet:') && !Game.creeps[request.name]).length;
+  const otherPending = snapshot.pending.filter(request => remoteWorkforceOwner(request.owner) && !remoteConstructionIdentity(request.owner) && !Game.creeps[request.name]).length;
   return { storageEnergy: snapshot.home.storage?.store.energy ?? 0,storageReserve: config.remoteConstructionEnergyReserve,
     spawnEnergy: snapshot.home.energyAvailable,maximumWorkers: config.remoteConstructionMaximumWorkers,liveWorkers,
-    additionalSlots: Math.max(0,config.remoteWorkerMaximumUnits-remoteUnits-sourcePending) };
+    additionalSlots: Math.max(0,config.remoteWorkerMaximumUnits-remoteUnits-otherPending) };
 }
-export function remoteOwner(owner: string): boolean { return owner.startsWith('remote-fleet:') || !!remoteConstructionIdentity(owner); }
+export function remoteOwner(owner: string): boolean { return remoteWorkforceOwner(owner); }

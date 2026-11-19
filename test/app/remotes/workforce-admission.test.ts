@@ -1,3 +1,5 @@
+import { constructionBudget } from '../../../src/app/remotes/infrastructure/population/home';
+import { reservationOwner } from '../../../src/features/remotes/reservation/identity';
 import { afterEach, expect, test, vi } from 'vitest';
 import { admitRemoteWorkforceSpawn } from '../../../src/app/remotes/workforce-admission';
 import { createMemoryPort } from '../../../src/adapters/screeps/memory';
@@ -29,4 +31,24 @@ test('actual home-scoped workforce replaces prior tick reservations and duplicat
 test('unrelated population requests do not create remote workforce admission state',() => {
   const f = fixture(); expect(admitRemoteWorkforceSpawn(f.state,{ ...f.request('other'),owner: 'unrelated' },() => f.settings)).toBe(true);
   expect(f.state.read('structure-intents/dispatch')).toBeUndefined();
+});
+
+test('reservations share same-tick and observed capacity with miners and construction workers',() => {
+  const f = fixture(), owner = reservationOwner({ home: 'W0N1',room: 'E0N1',generation: 1 });
+  expect(admitRemoteWorkforceSpawn(f.state,{ ...f.request('reserve'),owner },() => f.settings)).toBe(true);
+  expect(f.run('source')).toBe(true); expect(f.run('builder',true)).toBe(false);
+  Game.time = 2; Game.creeps = { reserver: { name: 'reserver',memory: { population: { home: 'W0N1',owner } },spawning: true } as Creep };
+  expect(f.run('builder',true)).toBe(true); expect(f.run('source-next')).toBe(false);
+  expect(admitRemoteWorkforceSpawn(f.state,{ ...f.request('malformed'),owner: 'remote-reservation:[]' },() => f.settings)).toBe(false);
+});
+
+test('pending reservers reduce construction capacity before they appear in the roster',() => {
+  const f = fixture(), owner = reservationOwner({ home: 'W0N1',room: 'E0N1',generation: 1 });
+  const snapshot = { home: { energyAvailable: 1300,storage: { store: { energy: 3000 } } } as Room,
+    body: { parts: ['move'] as const,cost: 50,spawnTicks: 3 },
+    roster: [{ name: 'miner',owner: f.request('source').owner,room: 'W0N1',spawning: false,ticksToLive: 100 }],
+    pending: [{ ...f.request('reserve'),owner }] };
+  const input = { ...snapshot,body: { ...snapshot.body,parts: [...snapshot.body.parts] } };
+  expect(constructionBudget(input,f.settings).additionalSlots).toBe(0);
+  input.pending = []; expect(constructionBudget(input,f.settings).additionalSlots).toBe(1);
 });
