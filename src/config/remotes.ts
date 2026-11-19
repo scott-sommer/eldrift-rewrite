@@ -1,6 +1,7 @@
 import { roomCoordinates } from '../core/geometry/room-grid';
 export interface RemoteConfig {
   remoteWorkersEnabled: boolean; remoteSpawningEnabled: boolean; remoteWorkerCpuBudget: number; remoteWorkerMaximumUnits: number;
+  remoteConstructionWorkersEnabled: boolean; remoteConstructionMaximumWorkers: number; remoteConstructionBodyBudget: number; remoteConstructionEnergyReserve: number;
   remoteMinimumBatch: number; remoteTripLifetime: number; remoteSpawnRequestLifetime: number;
   remoteManagementEnabled: boolean; remoteMinimumRcl: number; remoteDepth: number;
   remoteDiscoveryReads: number; remoteDiscoveryRooms: number; remoteDiscoveryRefresh: number;
@@ -15,6 +16,7 @@ export interface RemoteConfig {
 }
 export const remoteDefaults: Readonly<RemoteConfig> = Object.freeze({
   remoteWorkersEnabled: false,remoteSpawningEnabled: false,remoteWorkerCpuBudget: 5,remoteWorkerMaximumUnits: 40,
+  remoteConstructionWorkersEnabled: false,remoteConstructionMaximumWorkers: 2,remoteConstructionBodyBudget: 300,remoteConstructionEnergyReserve: 50000,
   remoteMinimumBatch: 20,remoteTripLifetime: 200,remoteSpawnRequestLifetime: 100,
   remoteManagementEnabled: false,remoteMinimumRcl: 3,remoteDepth: 2,
   remoteDiscoveryReads: 4,remoteDiscoveryRooms: 64,remoteDiscoveryRefresh: 100,
@@ -36,6 +38,7 @@ function rooms(value: unknown): boolean {
 }
 export const remoteValidators: { [K in keyof RemoteConfig]: (value: unknown) => boolean } = {
   remoteWorkersEnabled: enabled,remoteSpawningEnabled: enabled,remoteWorkerCpuBudget: value => rate(value,1000),remoteWorkerMaximumUnits: value => integer(value,0,100),
+  remoteConstructionWorkersEnabled: enabled,remoteConstructionMaximumWorkers: value => integer(value,0,20),remoteConstructionBodyBudget: value => integer(value,0,3000),remoteConstructionEnergyReserve: value => integer(value,0,1000000),
   remoteMinimumBatch: value => integer(value,1,10000),remoteTripLifetime: value => integer(value,1,1000000),remoteSpawnRequestLifetime: value => integer(value,1,1000000),
   remoteManagementEnabled: enabled,remoteMinimumRcl: value => integer(value,1,8),remoteDepth: value => integer(value,0,8),
   remoteDiscoveryReads: value => integer(value,0,1000),remoteDiscoveryRooms: value => integer(value,0,64),remoteDiscoveryRefresh: value => integer(value,1,1000000),
