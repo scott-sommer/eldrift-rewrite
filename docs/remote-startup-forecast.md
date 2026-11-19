@@ -1,0 +1,34 @@
+# Remote startup forecasts
+
+ED-29 remains In Progress. The portable construction-duty and finite cash-schedule forecasts are implemented and tested. Runtime survey, source selection, staged recruitment, protected-capital admission, multi-wave startup planning and new native payback qualification remain pending. These functions do not yet control ordinary gameplay.
+
+## Construction warmup
+
+`capabilities/economy/startup/self-build.ts` projects one supplied uninterrupted at-station worker interval, bounded to 1,500 ticks. It calls the existing `minerStep` action selector with local projected effects. Construction therefore takes priority whenever the miner carries energy, exactly as execution does. Inputs supply actual remaining progress, cargo/capacity, effective harvest/build power, source stock/capacity, regeneration period/phase and available work ticks. A clipped horizon returns incomplete progress; it does not invent replacement workers. Travel, spawning, retirement, unsafe periods, traffic, source-capacity changes, powers, boosts, repairs, competing miners and alternative builders require separate facts/schedules or remeasurement before this projection can be used as a runtime guarantee.
+
+Unboosted construction consumes one energy per progress. Engine4.3.2 sources start a regeneration clock when stock becomes partial and refill after the action frame with timer one. The local engine implementation and existing archived trace support this ordering. The forecast reports harvested, constructed and regenerated energy, cargo, source stock, action/idle ticks and remaining progress. Conservation checks distinguish source refill from new harvest and avoid treating carried energy as new funding. An already due timer remains representable as zero.
+
+The 4-WORK source miner harvests8 energy, then builds8 on the next tick even with CARRY50. The archived bootstrap starts that cycle at35; after1,250 actions the container is observed complete at1,285. Forecast checkpoints reproduce site progress, cargo and actual source stock through all four regeneration boundaries, including final stock1,300. This calibrates the current duty policy rather than assuming full-CARRY batches or continuous production while building.
+
+## Cash, replacement and recovery
+
+`startup/cash.ts` evaluates explicit finite flows for births, home-funded construction, upkeep and confirmed/projected deliveries. Recurrence counts are finite, IDs unique, at most128 schedules and a10,000-tick inclusive horizon. Schedules can represent each idle courier and each replacement birth at its own admission time. This layer does not choose spawn timing, infer travel readiness, create income or reserve anything. A caller must supply achievable schedules and enough worker/recruitment/dispatch facts before using a projection for admission.
+
+Costs occur before receipts in a frame: incoming effects cannot finance an earlier native spawn admission. Minimum bank balance determines required home capital and any shortfall against a protected reserve. Initial bank is excluded from cash surplus and recovery income. Home-funded construction is a real cash debit; construction supplied from remote harvest is instead an explicit recovery target and is never subtracted from initial home cash. `constructionRecoveryMargin` is the delivered cash surplus after covering that target. This is a conservative construction-recovery benchmark, not a second physical expense or an assertion that self-harvested energy was taken from home.
+
+`firstRecoveryAt` is the first threshold crossing after declared readiness and actual positive deliveries. It is not a promise of sustained profit: later replacement costs may reduce the margin. Selection policy must inspect the declared horizon, final margin, funding shortfall, unpriced future costs and startup facts rather than accepting that timestamp alone. Finite schedules avoid silently double-charging initial births through both one-off capital and recurring amortized body rates.
+
+## Calibration and validation
+
+The calibration test reads the immutable `evidence/remote-bootstrap-rows.jsonl` trace from native source85bdf3870b93a1d3770a627736460edd3d91eeb4, described in `evidence/remote-bootstrap-native.json`. Source/engine ordering was checked against the pinned local engine build/source processors and constants (HARVEST_POWER2, BUILD_POWER5). This is historical native-data calibration, not a new engine execution of a runtime startup controller.
+
+Observed bootstrap cash reconciles initial home energy1,300, births950, minimum bank350, first confirmed delivery1,303, cumulative deliveries288 and ending bank638. The home funding requirement is950 with reserve zero. No recovery is reached in the1,500-tick trace; against the5,000 construction-energy target the margin is-5,662. Positive steady-state yield did not establish startup recovery in that window.
+
+Full units:1,548 tests /408 files in10.83s. Focused forecast/calibration plus smoke:27 tests /4 files in280ms. Typecheck, ESLint, architecture boundaries, packaged CommonJS bundle and pinned Lizard pass (741 production /603 test files, zero violations). No new native scenario or runtime activation was introduced in this increment. Prior native reachability/regression evidence remains scoped to its source commits.
+
+## Next integration boundary
+
+1. Survey current container/road structures, live site progress and missing planned work separately from pricing. Unknown or stale infrastructure must defer, not appear free. Keep source stock/capacity observed rather than projecting reservation effects into observations.
+2. Build achievable worker and birth schedules using current body/service/retirement timing, physical spawns, shared queue/energy admission, actual home capital and construction funding ownership. Model multi-wave gaps explicitly when one remaining worker interval cannot complete construction. Cache/resume forecasting within caller CPU budgets; bounded loops alone do not establish native CPU affordability.
+3. Inject interchangeable eager/staged startup policies. Stage courier/reserver commitments and additional rooms against first-delivery readiness and protected funding, without creating a competing energy-reservation or movement owner. Final dispatch must revalidate current startup eligibility after configuration, lease, site or funding changes.
+4. Run ordinary discovery and all requested workforces without a prebuilt remote container, only initial funding and no mid-run worker energy/lifetime/position changes. Qualify initial refusal, construction expenditure, idle actors, first delivery, natural replacement, horizon recovery and dynamic multi-room funding. Distinguish home redistribution/refunds from confirmed remote income. Preserve the existing eager capability while the new policy is qualified.
