@@ -1,6 +1,6 @@
 # Pending ED-29 integration audit (read-only findings)
 
-This audit separates completed components from remaining integration. Clean 29d3cfd passes all 212 engine checks in 1,209.91 seconds; see evidence/remote-timing-native.json and evidence/remote-timing-engine-suite.json. The remaining obligations below are still required.
+This audit separates completed components from remaining integration. Latest clean 672077c passes all 216 engine checks in 1,306.38 seconds; see evidence/remote-construction-native.json and evidence/remote-construction-engine-suite.json. Earlier timing evidence remains archived separately. The remaining obligations below are still required.
 
 ## Actual replacement interval
 
@@ -25,3 +25,7 @@ A valid reservation body can consume all initial spawn energy before extraction 
 Implemented in the current timing component: assessment and resumable management now measure four legs, including full-CARRY miner return from the actual outbound arrival. Travel progress, management and fleet envelopes advance to schema 2. Validated schema-1 travel/cache records are invalidated for remeasurement; lease generations and scoped fleet identities are preserved, while stale fleet demand is disabled until qualified profiles are republished. Corrupt legacy records fail validation. Native upgrade qualification exercises active workers, receipts, reloads and unrelated state preservation.
 
 The native assessment fixture includes a farther source whose loaded miner return estimate exceeds its unloaded outbound estimate. This qualifies engine path quotation, not actual long-distance loaded retirement. The existing natural-lifetime fleet fixture remains a short route. A focused clean 947ac1f controlled-retirement fixture now qualifies an initially-aged, fully loaded miner across a swamp interior: home at tick 184, 50 energy confirmed at 192 with 28 TTL remaining, natural expiry at 220; see evidence/remote-swamp-return-native.json. This does not qualify long-route recruitment/handoff overlap. Contention during handoff, damage after quotation and alternate-home recovery still require dedicated runtime evidence. Controller travel for reservers remains a separate obligation.
+
+## Automatic construction status
+
+Construction workforce now has ordinary main-loop recruitment, route/body-aware service timing, capital/worker controls, final dispatch revalidation and shared source/construction same-tick slot accounting. Native proof starts without a builder and separates birth stock, construction expenditure and home-funded refund. See remote-construction-recruitment.md. Automatic source selection/discovery is not part of that fixture, and whole-project startup capital/payback, replacement/pressure, stale-site cleanup and reservation remain open.

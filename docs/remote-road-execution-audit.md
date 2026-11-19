@@ -37,3 +37,9 @@ Clean f811faf qualifies a stricter 400-tick native scenario using one pre-existi
 Full units pass (1390 tests / 378 files / 9.78s), focused tests/smoke pass (15 / 280ms), and type/lint/boundaries/Lizard pass (659 production / 550 test files, zero violations). Native infrastructure and loaded-return regressions pass at clean 8e44376; the stronger road case passes at f811faf. The expanded 214-case engine suite is registered, not rerun at this isolated service increment.
 
 Remaining: automatic builder recruitment and main-loop registration, configurable capital/body/workforce limits and economic accounting; real threat/vision and replacement qualification. A completed worker service cycle does not establish automatic road construction. Road topology replanning also left non-current sites during the probe; current selection excludes them, but route stability and stale-site cleanup require assessment.
+
+## Automatic workforce milestone
+
+The previously open recruitment/runtime wiring is implemented at clean 672077c and passes all 216 engine checks in 1306.38 seconds. The ordinary main loop now spawns a builder from no initial builder, completes remote road work, withdraws remotely with cargo and confirms home refund. Configurable body/worker/storage limits, shared source/construction same-tick workforce ceilings and final spawn revalidation are active. See remote-construction-recruitment.md and evidence/remote-construction-native.json for exact scope and limits. Full units 1407 / 383 files / 9.90s; Lizard675 production /557 test files, zero violations. Earlier sections describe the historical component stages, not current missing recruitment.
+
+Remaining reservation dependencies are audited in remote-reservation-implementation-audit.md. Combined discovery/source pipeline, threat/vision/replacement, home loss, startup/payback, site cleanup and pressure remain unqualified; this milestone does not close ED-29.
