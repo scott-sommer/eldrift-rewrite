@@ -35,6 +35,7 @@ export function totalRemotePortfolio(bundles: RemoteBundle[], policy: RemotePort
 export function affordableRemotePortfolio(bundles: RemoteBundle[], policy: RemotePortfolioPolicy): boolean {
   const total = totalRemotePortfolio(bundles,policy);
   if (![total.slots,total.haulers,total.spawnLoad,total.netRate].every(Number.isFinite)) return false;
-  return total.slots <= policy.maximumSlots && total.haulers <= policy.maximumHaulers
+  const sources = bundles.reduce((sum,bundle) => sum+bundle.sources.length,0);
+  return sources <= (policy.maximumSources ?? Infinity) && total.slots <= policy.maximumSlots && total.haulers <= policy.maximumHaulers
     && total.spawnLoad <= policy.maximumSpawnLoad && total.slots+total.haulers <= (policy.maximumUnits ?? Infinity);
 }

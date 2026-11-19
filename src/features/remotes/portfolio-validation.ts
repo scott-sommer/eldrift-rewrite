@@ -7,6 +7,7 @@ export function validateRemoteOffers(offers: RemoteRoomOffer[], policy: RemotePo
   roomCoordinates(policy.home);
   if (![policy.tick,policy.maximumAge,policy.maximumSlots,policy.maximumHaulers].every(natural)) throw new Error('Invalid remote portfolio clock or capacity');
   validateWorkforce(policy.maximumUnits);
+  validateSourceCapacity(policy.maximumSources);
   if (![policy.maximumSpawnLoad,policy.completionBonus].every(rate) || !rate(policy.minimumNetYield)) throw new Error('Invalid remote portfolio rates');
   if (!['nearest','net-yield'].includes(policy.order)) throw new Error('Invalid remote portfolio strategy');
   if (offers.length > 64 || offers.reduce((sum,offer) => sum + offer.quotes.length,0) > 128) throw new Error('Remote portfolio input limit');
@@ -53,4 +54,8 @@ function validateInventory(offer: RemoteRoomOffer): void {
 
 function validateWorkforce(value: number | undefined): void {
   if (value !== undefined && (!natural(value) || value > 1000)) throw new Error('Invalid remote workforce budget');
+}
+
+function validateSourceCapacity(value: number | undefined): void {
+  if (value !== undefined && (!natural(value) || value > 128)) throw new Error('Invalid remote source budget');
 }
