@@ -14,7 +14,7 @@ Reserve effect is active CLAIM count times CONTROLLER_RESERVE. A new reservation
 
 Source capacity changes between SOURCE_ENERGY_NEUTRAL_CAPACITY and SOURCE_ENERGY_CAPACITY as reservation/ownership changes. Capacity increase does not instantly refill stock: regeneration remains a separate timer. Preserve observed source facts separately from projected reservation-enabled production. Existing current-admission compares actual source capacity, so overwriting sourceFacts.capacity with a hypothetical capacity would invalidate authority or misrepresent observation.
 
-Existing portfolio commitment fields already support one whole-room energy/spawn/slot overhead. A per-room reserver quote could use those fields while each source quote retains explicit observed/projected facts; avoid charging the same reserver both in a commitment and per-source reservation shares. This is an option to assess, not an adopted API decision. Controller travel must be measured separately from source travel with bounded/resumable work.
+Existing portfolio commitment fields already support one whole-room energy/spawn/slot overhead. A per-room reserver quote could use those fields while each source quote retains explicit observed/projected facts; avoid charging the same reserver both in a commitment and per-source reservation shares. Buffered quote output now supplies this room-level commitment contract, with unit proof of one charge for two sources. Separately measured, bounded/resumable controller travel is implemented at 14cf721; see remote-reservation-quotes.md. Managed-room selection, quote persistence and automatic population still need integration. The buffer remains a model until native handoff/missed-tick qualification.
 
 ## Startup funding
 

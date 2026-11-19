@@ -1,0 +1,318 @@
+{
+  "scope": "Buffered CLAIM/MOVE recipes, reservation growth/replacement economics, once-per-room commitment contract and bounded resumable native controller travel. Managed-room reservation selection and automatic population remain unwired.",
+  "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+  "checks": {
+    "unitTests": 1418,
+    "unitFiles": 386,
+    "unitSeconds": 10.97,
+    "focusedTestsIncludingSmoke": 12,
+    "focusedFiles": 4,
+    "focusedMilliseconds": 254,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 684,
+      "testFiles": 561,
+      "violations": 0
+    }
+  },
+  "runs": [
+    {
+      "scenario": "--reservation-quote",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-eyNejU\\evidence.json",
+      "sourceEvidenceSha256": "a55d65eb14a29f5b964143a305b724e2a39851240a1b5b142145f17fea2c5a34",
+      "provenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "d2ba2ee5e0c22e5ef77965f350a3dd2d272546ce71e63a76e40687e08ac704b4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "c6af01b1774c28fed17fc4f0a2becdd87719901713cfdc3c1502d2205a983b1e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "reservation-quote-rows.jsonl",
+      "rowsSha256": "e4325437e03f64dc9e9c03670157b646693dc2af778bb836abef88a1528e0e1b",
+      "rowCount": 8,
+      "probe": {
+        "reloads": [
+          2,
+          6
+        ]
+      },
+      "samples": [
+        {
+          "tick": 2,
+          "wallMilliseconds": 232.40050000000008,
+          "cpuMilliseconds": 17,
+          "memoryBytes": 7326
+        },
+        {
+          "tick": 3,
+          "wallMilliseconds": 46.54059999999993,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 9254
+        },
+        {
+          "tick": 4,
+          "wallMilliseconds": 57.87889999999993,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 10506
+        },
+        {
+          "tick": 5,
+          "wallMilliseconds": 12.907699999999977,
+          "cpuMilliseconds": 2,
+          "memoryBytes": 11656
+        },
+        {
+          "tick": 6,
+          "wallMilliseconds": 31.52890000000002,
+          "cpuMilliseconds": 5,
+          "memoryBytes": 13479
+        },
+        {
+          "tick": 7,
+          "wallMilliseconds": 57.559799999999996,
+          "cpuMilliseconds": 12,
+          "memoryBytes": 15399
+        },
+        {
+          "tick": 8,
+          "wallMilliseconds": 23.43029999999999,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 17317
+        },
+        {
+          "tick": 9,
+          "wallMilliseconds": 22.35329999999999,
+          "cpuMilliseconds": 3,
+          "memoryBytes": 19235
+        }
+      ]
+    },
+    {
+      "scenario": "--remote-assessment",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-goCvUn\\evidence.json",
+      "sourceEvidenceSha256": "31c0a2af6760ed54ddc15e020e0ee73b6fe0466540e87b7522afe60775c03a76",
+      "provenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "a8f88b34979e34bf69f6e6ee5c13b96e0bac58877a188a3b0af1f93af35933c5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-management",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-8iCiPb\\evidence.json",
+      "sourceEvidenceSha256": "af580e8248ea43e3a9ca1511452b1f91cfe30e23a0173757c46bbe66dee0ddbb",
+      "provenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "65a3eaa45d26b96b9a406fc03e812085c984de389f9caaa62ef202a086a2673f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "0c1e582a9aec08968c280ede158313c2eb03c899e31721bd810dd9a51b1f432d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-reservation",
+      "status": "passed",
+      "sourceEvidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VOz8I7\\evidence.json",
+      "sourceEvidenceSha256": "e011bef8874da588a6b0f3eb1b8be4df8643e73bfbdee7f483ad0b9940abcc78",
+      "provenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "57d821d29175c33157371cb6d93e00ee5b86a2813ba1c43f63558232cc9f9180",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "14cf7215d0da22b25ed0ec0548f09926fc8717bc",
+        "dirty": false,
+        "bundleSha256": "2a3d34e8261ad9c8da51ab20d19a466d2a2f879e75b8269f5d9bc41077640840",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    }
+  ],
+  "summary": {
+    "near": {
+      "status": "quoted",
+      "body": {
+        "parts": [
+          "claim",
+          "claim",
+          "move",
+          "move"
+        ],
+        "cost": 1300,
+        "spawnTicks": 12
+      },
+      "economics": {
+        "status": "evaluated",
+        "claims": 2,
+        "cost": 1300,
+        "spawnTicks": 12,
+        "timing": {
+          "travelTicks": 5,
+          "retireTicks": 29,
+          "marginTicks": 25,
+          "serviceTicks": 566,
+          "replacementTicks": 540
+        },
+        "netReservePerTick": 1,
+        "usefulBufferTicks": 566,
+        "requiredBufferTicks": 142,
+        "recoveryTicks": 42,
+        "energyPerTick": 2.4074074074074074,
+        "spawnLoad": 0.022222222222222223
+      },
+      "commitment": {
+        "atomic": false,
+        "slots": 1,
+        "energyPerTick": 2.4074074074074074,
+        "spawnLoad": 0.022222222222222223
+      },
+      "home": "W0N1",
+      "room": "E0N1",
+      "controller": {
+        "id": "712e315c6a4e9b4",
+        "position": {
+          "room": "E0N1",
+          "x": 3,
+          "y": 25
+        }
+      },
+      "observedAt": 1,
+      "travel": {
+        "status": "complete",
+        "outboundTicks": 5,
+        "returnTicks": 4,
+        "rooms": [
+          "W0N1",
+          "E0N1"
+        ],
+        "operations": 8,
+        "profile": "balanced-claim-move"
+      }
+    },
+    "far": {
+      "status": "quoted",
+      "body": {
+        "parts": [
+          "claim",
+          "claim",
+          "move",
+          "move"
+        ],
+        "cost": 1300,
+        "spawnTicks": 12
+      },
+      "economics": {
+        "status": "evaluated",
+        "claims": 2,
+        "cost": 1300,
+        "spawnTicks": 12,
+        "timing": {
+          "travelTicks": 45,
+          "retireTicks": 69,
+          "marginTicks": 25,
+          "serviceTicks": 486,
+          "replacementTicks": 460
+        },
+        "netReservePerTick": 1,
+        "usefulBufferTicks": 486,
+        "requiredBufferTicks": 182,
+        "recoveryTicks": 82,
+        "energyPerTick": 2.8260869565217392,
+        "spawnLoad": 0.02608695652173913
+      },
+      "commitment": {
+        "atomic": false,
+        "slots": 1,
+        "energyPerTick": 2.8260869565217392,
+        "spawnLoad": 0.02608695652173913
+      },
+      "home": "W0N1",
+      "room": "E0N1",
+      "controller": {
+        "id": "712e315c6a4e9b4",
+        "position": {
+          "room": "E0N1",
+          "x": 43,
+          "y": 25
+        }
+      },
+      "observedAt": 5,
+      "travel": {
+        "status": "complete",
+        "outboundTicks": 45,
+        "returnTicks": 44,
+        "rooms": [
+          "W0N1",
+          "E0N1"
+        ],
+        "operations": 45,
+        "profile": "balanced-claim-move"
+      }
+    },
+    "deferredThreatTicks": [
+      3,
+      4
+    ]
+  },
+  "developmentFailure": {
+    "sourceEvidence": "artifacts\\engine-JCMHbH\\evidence.json",
+    "sourceEvidenceSha256": "a5016ea73bf0b8fc1c5ced83c489f54e3bc88686b10536973d7ccce9abf0680f",
+    "status": "failed",
+    "failure": "TypeError: Cannot read properties of undefined (reading 'owner')\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:862:58\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "reason": "The new native fixture omitted the operator/config harness initialization. Generic harness verification failed before the new case verifier. Initialization was added; the final clean quote case passes."
+  },
+  "limitations": [
+    "Native quotation verifies controller paths, distance-sensitive cost, hostile deferral/recovery, identity/topology cache invalidation, reloads and unchanged source progress. It emits no reservation intents or resource expenditure.",
+    "Useful-buffer and recovery coverage are engine-grounded mathematical predictions verified by unit contracts. Actual missed-tick buffer growth and natural automatic replacement still need native qualification.",
+    "Body mobility-class equivalence is tested for balanced CLAIM/MOVE pairs; alternate body recipes must be measured independently.",
+    "Existing remote-reservation actuator regression uses controlled lifetime/funding changes and is not automatic/natural replacement proof.",
+    "Current source capacity facts are preserved. No immediate doubled source energy, reserved-production projection or startup/payback claim is made.",
+    "Native management still has a global reserve flag and native policy remains false. Per-room policy/quote persistence, generation/funding recruitment, home redistribution and threat/vision/replacement remain open.",
+    "The expanded 217-case full suite is registered but not rerun for this isolated non-actuating quotation component; previous clean 216-case construction baseline remains archived."
+  ]
+}

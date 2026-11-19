@@ -31,3 +31,7 @@ Recruitment, final spawn admission and actor service should remain separate. Gen
 - Keep controller attack/downer missions in ED-33 and specialist/keeper behavior in ED-35; ordinary reservation is not those paths.
 
 Construction runtime qualification does not close these ED-29 obligations or the broader RC gate.
+
+## Quotation component status
+
+14cf721 implements buffered balanced bodies, service/replacement pricing, one-room cost commitment and independent two-leg controller measurement with bounded persistent progress. Clean focused native quotation/assessment/management/actuator regressions pass; full units1418, zero Lizard violations. See remote-reservation-quotes.md for scope, exact evidence and remaining per-room policy/recruitment/funding gates. Automatic reserve remains disabled; no quoted source-production projection or natural handoff claim follows.
