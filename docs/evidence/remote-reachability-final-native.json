@@ -1,0 +1,552 @@
+{
+  "scope": "Final-source local/mineral guards plus automatic source-fleet actual arrival, two complete never-arrived lifetimes, explicit withdrawal interruption, mandatory terminal sampling independent of actor budget, home-scoped exclusion and relevant native regressions. Custom operator/specialist population metadata, alternate-home operating behavior and broader ED-29/ED-43 gates remain open.",
+  "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+  "status": "passed",
+  "registeredCases": 231,
+  "fullRegistryRerun": false,
+  "fullNativeBaseline": "remote-pipeline-engine-suite.json",
+  "focusedNativeBaseline": "remote-reachability-native.json",
+  "milliseconds": 251168,
+  "checks": {
+    "unitTests": 1522,
+    "unitFiles": 405,
+    "unitSeconds": 10.76,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 734,
+      "testFiles": 600,
+      "violations": 0
+    }
+  },
+  "runs": [
+    {
+      "scenario": "--remote-reachability-arrival",
+      "milliseconds": 5659,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GqvhXo\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "75cb510458d5bdeb4793d3995ba93dab880e509a4ffa1e4e6103b4830e3d6cc1",
+      "provenance": {
+        "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+        "dirty": false,
+        "bundleSha256": "624115bcd6a229bac1af43b533911f36e158d45b92659f0eec2b46da88598f11",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+        "dirty": false,
+        "bundleSha256": "1e7b74ea756ce19f7e88112f21cc4e764c561376f02e1e490439d27e53af2fae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 100,
+        "meanCpuMilliseconds": 18.19,
+        "maximumCpuMilliseconds": 79,
+        "maximumMemoryBytes": 36940
+      },
+      "remoteReachability": {
+        "mode": "arrival",
+        "record": {
+          "home": "W0N1",
+          "revision": 98,
+          "clock": 100,
+          "attempts": [
+            {
+              "name": "ed-W0N1-1",
+              "id": "d38b4e30d151307",
+              "room": "E0N1",
+              "source": "66444e30bc7648e",
+              "phase": "success",
+              "startedAt": 3,
+              "lastSeen": 100,
+              "expiresAt": 1521
+            }
+          ],
+          "sources": [
+            {
+              "source": "66444e30bc7648e",
+              "room": "E0N1",
+              "consecutiveFailures": 0,
+              "lastResult": "success",
+              "reportedAt": 35,
+              "blockedAt": null
+            }
+          ],
+          "blocked": []
+        },
+        "births": {
+          "ed-W0N1-1": {
+            "bornAt": 2,
+            "readyAt": 23
+          },
+          "ed-W0N1-2": {
+            "bornAt": 23,
+            "readyAt": 35
+          },
+          "ed-W0N1-3": {
+            "bornAt": 35,
+            "readyAt": 47
+          }
+        },
+        "zeroTicks": [],
+        "reloads": [
+          21,
+          61
+        ],
+        "rows": 5,
+        "rowsFile": "reachability-final-arrival-rows.jsonl",
+        "rowsSha256": "9fba141d2dbe35a6108c237464fa0e9660870bed0af7c02e351c50b3e3bc9c97",
+        "last": {
+          "tick": 100,
+          "sources": [
+            {
+              "source": "66444e30bc7648e",
+              "room": "E0N1",
+              "consecutiveFailures": 0,
+              "lastResult": "success",
+              "reportedAt": 35,
+              "blockedAt": null
+            }
+          ],
+          "blocked": [],
+          "attempts": [
+            {
+              "name": "ed-W0N1-1",
+              "id": "d38b4e30d151307",
+              "room": "E0N1",
+              "source": "66444e30bc7648e",
+              "phase": "success",
+              "startedAt": 3,
+              "lastSeen": 100,
+              "expiresAt": 1521
+            }
+          ],
+          "lease": {
+            "id": "remote-assignment:4:W0N14:E0N1",
+            "home": "W0N1",
+            "plan": {
+              "room": "E0N1",
+              "sources": [
+                "66444e30bc7648e"
+              ],
+              "reserve": null,
+              "infrastructure": {
+                "roads": false,
+                "containers": false
+              }
+            },
+            "generation": 1,
+            "renewedAt": 100,
+            "expiresAt": 300
+          },
+          "budget": 100,
+          "pending": [
+            {
+              "id": "unrelated-reachability",
+              "owner": "unrelated"
+            }
+          ],
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "kind": "miner",
+              "spawning": false,
+              "ttl": 1422,
+              "room": "E0N1",
+              "x": 5,
+              "y": 25
+            },
+            {
+              "name": "ed-W0N1-2",
+              "kind": "courier",
+              "spawning": false,
+              "ttl": 1434,
+              "room": "W0N1",
+              "x": 48,
+              "y": 24
+            },
+            {
+              "name": "ed-W0N1-3",
+              "kind": "courier",
+              "spawning": false,
+              "ttl": 1446,
+              "room": "E0N1",
+              "x": 0,
+              "y": 26
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-reachability-blocked",
+      "milliseconds": 166432,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-dgaDWR\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "e52b5081c7f738a900d571adcf3b8ea1ec9d940c324f289c91bd9b8b9395743a",
+      "provenance": {
+        "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+        "dirty": false,
+        "bundleSha256": "59e11c3bf0faaa0958d7299b3fad21bd5a8bc2386034c35535f872e8ea7ef9a8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+        "dirty": false,
+        "bundleSha256": "acb75f2bcd471ba5c04889c19aaef741298588ef69b0b6c71299887495039aca",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 3100,
+        "meanCpuMilliseconds": 19.982580645161292,
+        "maximumCpuMilliseconds": 96,
+        "maximumMemoryBytes": 42366
+      },
+      "remoteReachability": {
+        "mode": "blocked",
+        "record": {
+          "home": "W0N1",
+          "revision": 3098,
+          "clock": 3100,
+          "attempts": [
+            {
+              "name": "ed-W0N1-7",
+              "id": "45304e56a12a403",
+              "room": "E0N1",
+              "source": "fb7d4e321ca7bcf",
+              "phase": "interrupted",
+              "startedAt": 2807,
+              "lastSeen": 3100,
+              "expiresAt": 4325
+            }
+          ],
+          "sources": [
+            {
+              "source": "fb7d4e321ca7bcf",
+              "room": "E0N1",
+              "consecutiveFailures": 2,
+              "lastResult": "failure",
+              "reportedAt": 2923,
+              "blockedAt": 2923
+            }
+          ],
+          "blocked": [
+            {
+              "room": "E0N1",
+              "source": "fb7d4e321ca7bcf",
+              "tick": 2923
+            }
+          ]
+        },
+        "births": {
+          "ed-W0N1-1": {
+            "bornAt": 2,
+            "readyAt": 23
+          },
+          "ed-W0N1-2": {
+            "bornAt": 23,
+            "readyAt": 35
+          },
+          "ed-W0N1-3": {
+            "bornAt": 35,
+            "readyAt": 47
+          },
+          "ed-W0N1-4": {
+            "bornAt": 1404,
+            "readyAt": 1425
+          },
+          "ed-W0N1-5": {
+            "bornAt": 1440,
+            "readyAt": 1452
+          },
+          "ed-W0N1-6": {
+            "bornAt": 1452,
+            "readyAt": 1464
+          },
+          "ed-W0N1-7": {
+            "bornAt": 2806,
+            "readyAt": 2827
+          },
+          "ed-W0N1-8": {
+            "bornAt": 2857,
+            "readyAt": 2869
+          },
+          "ed-W0N1-9": {
+            "bornAt": 2869,
+            "readyAt": 2881
+          }
+        },
+        "zeroTicks": [
+          1521,
+          2923
+        ],
+        "reloads": [
+          21,
+          701,
+          1491,
+          2101,
+          2901
+        ],
+        "rows": 21,
+        "rowsFile": "reachability-final-blocked-rows.jsonl",
+        "rowsSha256": "6f5125628f469bf1bead4b58098743a1ac0a38ca45edf841a282a2e63759037c",
+        "last": {
+          "tick": 3100,
+          "sources": [
+            {
+              "source": "fb7d4e321ca7bcf",
+              "room": "E0N1",
+              "consecutiveFailures": 2,
+              "lastResult": "failure",
+              "reportedAt": 2923,
+              "blockedAt": 2923
+            }
+          ],
+          "blocked": [
+            {
+              "room": "E0N1",
+              "source": "fb7d4e321ca7bcf",
+              "tick": 2923
+            }
+          ],
+          "attempts": [
+            {
+              "name": "ed-W0N1-7",
+              "id": "45304e56a12a403",
+              "room": "E0N1",
+              "source": "fb7d4e321ca7bcf",
+              "phase": "interrupted",
+              "startedAt": 2807,
+              "lastSeen": 3100,
+              "expiresAt": 4325
+            }
+          ],
+          "lease": null,
+          "budget": 100,
+          "pending": [
+            {
+              "id": "unrelated-reachability",
+              "owner": "unrelated"
+            }
+          ],
+          "units": [
+            {
+              "name": "ed-W0N1-7",
+              "kind": "miner",
+              "spawning": false,
+              "ttl": 1226,
+              "room": "W0N1",
+              "x": 48,
+              "y": 24
+            },
+            {
+              "name": "ed-W0N1-8",
+              "kind": "courier",
+              "spawning": false,
+              "ttl": 1268,
+              "room": "W0N1",
+              "x": 47,
+              "y": 22
+            },
+            {
+              "name": "ed-W0N1-9",
+              "kind": "courier",
+              "spawning": false,
+              "ttl": 1280,
+              "room": "W0N1",
+              "x": 48,
+              "y": 25
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-reachability-withdraw",
+      "milliseconds": 79037,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-q3I5cQ\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "387cdee1700457d9218c4aeae2f65b5a954e1b904e5a8fd7d285846e06808e14",
+      "provenance": {
+        "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+        "dirty": false,
+        "bundleSha256": "47e30393b81194211c12940f3242230c0ab0fd231b6f5b5872c60429e7087d57",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "73e8fa9810eec8fa26b7fc7ac88a57061ba431b7",
+        "dirty": false,
+        "bundleSha256": "c4660d715d01b35ab69ad7724d9f9f8fd73c910efcb8d5b594218b2c7298b7bd",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 1550,
+        "meanCpuMilliseconds": 20.728387096774192,
+        "maximumCpuMilliseconds": 89,
+        "maximumMemoryBytes": 35470
+      },
+      "remoteReachability": {
+        "mode": "withdraw",
+        "record": {
+          "home": "W0N1",
+          "revision": 1548,
+          "clock": 1550,
+          "attempts": [
+            {
+              "name": "ed-W0N1-4",
+              "id": "46b44e6b85b2102",
+              "room": "E0N1",
+              "source": "4aeb4e5abf0053f",
+              "phase": "approach",
+              "startedAt": 1405,
+              "lastSeen": 1550,
+              "expiresAt": 2923
+            }
+          ],
+          "sources": [],
+          "blocked": []
+        },
+        "births": {
+          "ed-W0N1-1": {
+            "bornAt": 2,
+            "readyAt": 23
+          },
+          "ed-W0N1-2": {
+            "bornAt": 23,
+            "readyAt": 35
+          },
+          "ed-W0N1-3": {
+            "bornAt": 35,
+            "readyAt": 47
+          },
+          "ed-W0N1-4": {
+            "bornAt": 1404,
+            "readyAt": 1425
+          },
+          "ed-W0N1-5": {
+            "bornAt": 1440,
+            "readyAt": 1452
+          },
+          "ed-W0N1-6": {
+            "bornAt": 1452,
+            "readyAt": 1464
+          }
+        },
+        "zeroTicks": [
+          1521
+        ],
+        "reloads": [
+          21,
+          701,
+          1491
+        ],
+        "rows": 13,
+        "rowsFile": "reachability-final-withdraw-rows.jsonl",
+        "rowsSha256": "55e7fe1722653ae4c67dac2b0e3813188e3b92b75935437a5831285afe4be57c",
+        "last": {
+          "tick": 1550,
+          "sources": [],
+          "blocked": [],
+          "attempts": [
+            {
+              "name": "ed-W0N1-4",
+              "id": "46b44e6b85b2102",
+              "room": "E0N1",
+              "source": "4aeb4e5abf0053f",
+              "phase": "approach",
+              "startedAt": 1405,
+              "lastSeen": 1550,
+              "expiresAt": 2923
+            }
+          ],
+          "lease": {
+            "id": "remote-assignment:4:W0N14:E0N1",
+            "home": "W0N1",
+            "plan": {
+              "room": "E0N1",
+              "sources": [
+                "4aeb4e5abf0053f"
+              ],
+              "reserve": null,
+              "infrastructure": {
+                "roads": false,
+                "containers": false
+              }
+            },
+            "generation": 1,
+            "renewedAt": 1550,
+            "expiresAt": 1750
+          },
+          "budget": 100,
+          "pending": [
+            {
+              "id": "unrelated-reachability",
+              "owner": "unrelated"
+            }
+          ],
+          "units": [
+            {
+              "name": "ed-W0N1-4",
+              "kind": "miner",
+              "spawning": false,
+              "ttl": 1374,
+              "room": "E0N1",
+              "x": 4,
+              "y": 24
+            },
+            {
+              "name": "ed-W0N1-5",
+              "kind": "courier",
+              "spawning": false,
+              "ttl": 1401,
+              "room": "E0N1",
+              "x": 4,
+              "y": 26
+            },
+            {
+              "name": "ed-W0N1-6",
+              "kind": "courier",
+              "spawning": false,
+              "ttl": 1413,
+              "room": "E0N1",
+              "x": 4,
+              "y": 25
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

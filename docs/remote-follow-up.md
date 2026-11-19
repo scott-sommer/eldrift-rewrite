@@ -41,3 +41,9 @@ a376519 adds funded recruitment, current final admission, shared controller acto
 ## Controlled reservation vision status
 
 83c0112 qualifies native sensor departure, suppression of restart after the configured observation-expiry window, hostile re-observation and fresh-generation recovery using the same returned reserver. See reservation-vision-qualification.md and evidence/reservation-vision-native.json. This is a focused test-harness increment on unchanged production source; the223-case full baseline remains current. Adaptive capacity/reachability, long-route stale approach and broader gates remain open.
+
+## Adaptive capacity and automatic reachability status
+
+721c935 integrates default-off per-home adaptive source capacity, bounded occupied/starved observation and separate source/workforce budgets; nine clean focused cases are archived in evidence/adaptive-capacity-native.json. f058e77 adds mandatory automatic-fleet source-arrival/full-life observation and home-scoped exclusion;73e8fa9 adds explicit local/mineral target guards. Ten baseline and three final-source native cases pass; see remote-reachability.md and its two evidence manifests. The earlier open-status paragraphs describe their original commits.
+
+Custom operator/specialist population metadata remains ED-39/ED-35 work. Whole-project startup solvency, construction warmup, idle couriers, infrastructure payback, multi-room stability, longer-route/alternate-home behavior and ED-43 pressure remain open. The next source-backed audit is remote-startup-economics-audit.md. None of these gates follows from steady-state profitability or the prebuilt-container pipeline.

@@ -1,0 +1,15 @@
+# Remote startup economics: next implementation audit
+
+This is a source audit and proposed next boundary, not implemented qualification.
+
+ED-29 next dependency: startup capital, miner build duty and idle couriers.
+
+Legacy baseline remote.manager.js499-500 ranks source capacity/regeneration divided by path distance. This establishes the ranking at that boundary, not the absence of every possible cost helper elsewhere. Any startup-economics enhancement needs explicit provenance and must not be described as porting an unverified legacy estimator.
+
+Current remote-economics.ts is explicitly steady-state. Body costs and spawn occupancy are charged against retirement-aware recurring replacement intervals. remote-production.ts models steady source/harvest/delivered rate and finite-hauler throughput. infrastructurePerTick is a flat input (default .05); neither measured startup construction progress nor one-time cost/warmup is represented. Existing worker-budget.ts allocates home-funded construction capital separately and reserves each selected room's remaining energy once, with cargo already funded. Do not charge that same investment twice or reserve home capital for a miner's self-harvested construction energy.
+
+minerStep workAtStation establishes whenever energy>0, before repair/handoff/harvest. A 4-WORK miner with 8 energy/harvest and build capacity20 cannot batch to CARRY50 under this policy: it alternates harvesting8 then building8, about4 construction progress per tick while source stock is available. This qualitatively matches the actual bootstrap trace: first progress37, completion1285, first confirmed home credit1303, 5000-energy container, 288 credits after withdrawal. Do not use a full-CARRY batching forecast that contradicts the current action policy. This explanation remains an inference until exact native progress deltas and powered constants are checked.
+
+Next architecture: keep steady-state valuation, infrastructure survey/remaining-progress facts, startup funding allocation, warmup/first-delivery forecast, horizon/payback policy and ordinary execution/observed receipts separate. Reuse current miner duty rules, actual paths/body timing, current construction plans and ledger/capital reservations. Price idle recruited couriers during the no-container interval; stage births/reserver commitments to protect extraction/bootstrap where configuration requests it. Preserve observed source capacity separately from hypothetical reservation production.
+
+Qualification should run ordinary discovery and all required workforces without a prebuilt remote container, only initial funding, no mid-run worker energy/age/position changes, and receipt-based separation of home-funded construction refunds versus remote income. Record all workforce births, actual construction expenditure, harvested/stock flows, first delivery, successive natural readiness and payback for a declared horizon. Include rejection/deferral when protected capital is insufficient, and dynamic multi-room capital stability. A positive steady net rate is not proof of startup solvency or infrastructure payback.
