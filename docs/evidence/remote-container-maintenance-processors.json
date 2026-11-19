@@ -50,5 +50,39 @@
     "moderate": 2,
     "isolatedUpstreamLodash": "3.10.1",
     "compatibleAutomaticFix": false
+  },
+  "sourceCommit": "7cb0751789386691abda3cd2aa406d9202c2e5c0",
+  "hostedCI": {
+    "runId": 44635379758,
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44635379758",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "databaseId": 135952412127,
+        "name": "verify (ubuntu-24.04)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-19T23:10:49Z",
+        "completedAt": "2026-11-19T23:11:59Z",
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44635379758/job/135952412127"
+      },
+      {
+        "databaseId": 135952412628,
+        "name": "verify (windows-2022)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-19T23:10:49Z",
+        "completedAt": "2026-11-19T23:13:41Z",
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44635379758/job/135952412628"
+      }
+    ],
+    "verifiedRequiredSteps": [
+      "Run npm run quality",
+      "Run npm test",
+      "Install pinned processor sources without native install scripts",
+      "Run npm run test:processors",
+      "Run npm run check:bundle"
+    ]
   }
 }
