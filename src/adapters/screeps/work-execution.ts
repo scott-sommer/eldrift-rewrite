@@ -1,3 +1,4 @@
+import type { RoutePolicy } from '../../capabilities/movement/room-route';
 import { movementArrived } from '../../capabilities/movement/step';
 import { movementPosition } from './movement-traffic';
 import type { WorkOrder } from '../../capabilities/work/assessment';
@@ -5,15 +6,20 @@ import { workStep } from '../../capabilities/work/step';
 import { createCreepActions } from './creep-actions';
 import type { createActionArbiter } from '../../core/execution/action-arbiter';
 import type { createMovementService } from './movement-service';
-export function createNativeWork(arbiter: ReturnType<typeof createActionArbiter>, movement: Pick<ReturnType<typeof createMovementService>, 'move'>) {
+export type NativeWorkPolicy = (creep: Creep, order: WorkOrder, owner: string) => RoutePolicy | undefined;
+const ownedWorkPolicy: NativeWorkPolicy = () => ({ version: 'owned-work',blockedRooms: [],costs: {},maximumRooms: 4 });
+export function createNativeWork(arbiter: ReturnType<typeof createActionArbiter>, movement: Pick<ReturnType<typeof createMovementService>, 'move'>,
+  policyFor: NativeWorkPolicy = ownedWorkPolicy) {
   return (creep: Creep, order: WorkOrder, owner: string, upgradeRange = 3) => {
     validateUpgradeRange(upgradeRange);
+    const policy = policyFor(creep,order,owner);
+    if (!policy) return { status: 'blocked' as const,reason: 'work-authority-unavailable',retryAt: Game.time+1 };
     const target = Game.getObjectById(order.id as Id<ConstructionSite | Structure>);
     const actions = createCreepActions(creep, owner, arbiter);
     const preferredRange = order.kind === 'upgrade' ? upgradeRange : 3;
     const arrived = (range: number) => movementArrived({ position: movementPosition(creep.pos), destination: order.position, range });
     const approach = () => movement.move(creep, { owner, destination: order.position, range: preferredRange,
-      policy: { version: 'owned-work', blockedRooms: [], costs: {}, maximumRooms: 4 } });
+      policy });
     const act = () => {
       const intent = issueWork(actions, order, target);
       if (intent.status === 'issued' && order.kind === 'upgrade' && !arrived(preferredRange)) approach();
