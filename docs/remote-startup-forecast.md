@@ -1,6 +1,6 @@
 # Remote startup forecasts
 
-ED-29 remains In Progress. The portable construction-duty and finite cash-schedule forecasts are implemented and tested. Runtime survey, source selection, staged recruitment, protected-capital admission, multi-wave startup planning and new native payback qualification remain pending. These functions do not yet control ordinary gameplay.
+ED-29 remains In Progress. The portable construction-duty and finite cash-schedule forecasts are implemented and tested. The later [staged runtime](remote-startup-runtime.md) integrates current source survey, bounded build lead, crew commitments and protected birth admission, with clean one-outpost native recovery over 5,000 ticks. Whole-project candidate selection and achievable multi-wave schedules remain pending. The calibration and checks below describe this earlier portable-layer increment.
 
 ## Construction warmup
 

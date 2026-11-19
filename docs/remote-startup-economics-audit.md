@@ -1,6 +1,6 @@
 # Remote startup economics: next implementation audit
 
-This is a source audit. The calibrated portable construction/cash forecast layer now follows in remote-startup-forecast.md; runtime integration and new native startup/payback qualification remain pending.
+This is a source audit. The calibrated portable construction/cash forecast layer now follows in remote-startup-forecast.md; the later [staged runtime](remote-startup-runtime.md) qualifies current-crew funding, birth timing and one-outpost native construction recovery. Whole-project horizon selection, multi-wave schedules and multi-room capital stability remain open. The requirements below retain the audit context.
 
 ED-29 next dependency: startup capital, miner build duty and idle couriers.
 
