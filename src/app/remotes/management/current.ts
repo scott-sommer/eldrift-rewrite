@@ -1,3 +1,6 @@
+import { createCurrentReservationAdmission } from './current-reservation';
+import type { ReservationQuoteOptions } from '../reservation/quote-context';
+import { reservationSourcePolicy } from '../../../features/remotes/reservation/room-offer';
 import type { StatePort } from '../../../persistence/versioned-state';
 import { createIntelStore } from '../../../features/intel/store';
 import { createIntelTraversal } from '../../../features/intel/traversal';
@@ -9,20 +12,23 @@ import { nativeScoutIntelPorts } from '../../native-scout-policy';
 import { remoteBodiesWithinBudget } from '../assessment/body-budget';
 /** Native facts are immutable within a tick; reuse a request snapshot while assignment CAS remains independent. */
 export function createCurrentRemoteAdmission(state: StatePort, request: RemoteManagementRequest,
-  refresh: (rooms: readonly string[]) => void, guard: () => boolean) {
+  refresh: (rooms: readonly string[]) => void, guard: () => boolean, options: ReservationQuoteOptions = { maximumRooms: 8,maximumOps: 4000 }) {
   const intel = createIntelStore(state), summaries = new Map<string,RoomSummary | null>();
   const native = nativeScoutIntelPorts(state), traversal = createIntelTraversal({ ...native,intel(room) { refresh([room]); return native.intel(room); } },request.policy.traversal,Game.time,guard);
-  const home = Game.rooms[request.home], policyIdentity = JSON.stringify(request.policy.economics);
+  const home = Game.rooms[request.home], legacyPolicy = JSON.stringify(request.policy.economics);
+  const explicitPolicy = JSON.stringify(reservationSourcePolicy(request.policy.economics,true));
+  const explicitRooms = new Set(request.policy.candidates.filter(candidate => candidate.reservation !== undefined).map(candidate => candidate.room));
   const affordable = readyHome(home,request) && remoteBodiesWithinBudget(request.policy.economics,home!.energyCapacityAvailable);
   const admitted = () => guard() && !traversal.diagnostics().incomplete;
   function summary(room: string): RoomSummary | null {
     if (!summaries.has(room)) { refresh([room]); summaries.set(room,intel.peek(room,Game.time).record.summary); }
     return summaries.get(room)!;
   }
-  return { guard: admitted,current(quote: RemoteQuote): boolean {
+  const currentReservation = createCurrentReservationAdmission(state,request,options,admitted);
+  return { guard: admitted,currentReservation,current(quote: RemoteQuote): boolean {
     if (!admitted() || !affordable) return false;
     const facts = quote.assessment;
-    if (JSON.stringify(facts.policy) !== policyIdentity) return false;
+    if (JSON.stringify(facts.policy) !== (explicitRooms.has(facts.room) ? explicitPolicy : legacyPolicy)) return false;
     const room = summary(facts.room);
     if (!eligibleSource(room,facts.sourceFacts)) return false;
     const reservation = remoteReservation(room,request.policy.traversal.username,Game.time);

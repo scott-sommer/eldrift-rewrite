@@ -1,3 +1,4 @@
+import { migrateReservationManagement } from './reservation-migration';
 import { migrateRemoteManagement } from './migration';
 import { openState, peekState, saveState } from '../../../persistence/versioned-state';
 import type { StatePort, StateSchema } from '../../../persistence/versioned-state';
@@ -17,7 +18,7 @@ export function createRemoteManagementStore(state: StatePort, home: string) {
   } };
 }
 function managementSchema(home: string): StateSchema<RemoteManagementRecord> {
-  return { owner: 'remotes',version: 2,migrations: { 1: value => migrateRemoteManagement(value,managementSchema(home).valid) },initial: () => ({ home,revision: 0,clock: 0,identity: '',startedAt: 0,
+  return { owner: 'remotes',version: 3,migrations: { 1: value => migrateRemoteManagement(value,managementSchema(home).valid),2: value => migrateReservationManagement(value,managementSchema(home).valid) },initial: () => ({ home,revision: 0,clock: 0,identity: '',startedAt: 0,
     roomIndex: 0,sourceIndex: 0,offers: [],reports: [],scannedAt: null,committedAt: null,managed: [] }),
     valid(value: unknown): value is RemoteManagementRecord {
       if (!object(value) || value.home !== home || !validClock(value) || !validCursor(value)) return false;

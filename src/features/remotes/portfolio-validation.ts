@@ -1,3 +1,4 @@
+import { validateOfferReservation } from './reservation/offer-validation';
 import { roomCoordinates } from '../../core/geometry/room-grid';
 import { framedIdentity } from '../../core/framed-identity';
 import { validateRemoteTravel } from './travel-validation';
@@ -25,6 +26,7 @@ function validateOffer(offer: RemoteRoomOffer, policy: RemotePortfolioPolicy, so
     quoted.add(source); sources.add(source);
   }
   validateReservationCosts(offer.quotes);
+  validateOfferReservation(offer,policy.home,policy.tick);
 }
 function validateQuote(quote: RemoteQuote, offer: RemoteRoomOffer, policy: RemotePortfolioPolicy): void {
   const facts = quote.assessment;

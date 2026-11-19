@@ -16,7 +16,7 @@ export function createNativeRemoteManagement(state: StatePort, options: NativeRe
     if (request.tick !== Game.time) throw new Error('Native remote management tick mismatch');
     const home = Game.rooms[request.home];
     if (!home?.controller?.my || home.controller.owner?.username !== request.policy.traversal.username) return { status: 'deferred' as const };
-    const admission = createCurrentRemoteAdmission(state,request,refresh,guard);
+    const admission = createCurrentRemoteAdmission(state,request,refresh,guard,options);
     const manager = createRemoteManagement(state,request.home,{
       summary(room) { refresh([room]); return intel.peek(room,Game.time).record.summary ?? undefined; },
       assess(input,admitted) {
@@ -24,7 +24,7 @@ export function createNativeRemoteManagement(state: StatePort, options: NativeRe
         const owner = assignments.owner(input.room,Game.time);
         return assess({ ...input,...(owner ? { assignedHome: owner.home } : {}) },admitted);
       },
-      current: admission.current,
+      current: admission.current,currentReservation: admission.currentReservation,
     });
     return manager.advance(request,budget,admission.guard);
   } };

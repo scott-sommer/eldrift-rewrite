@@ -1,3 +1,4 @@
+import { currentRoomReservation, selectedRoomController } from './reservation-admission';
 import { copyPlain } from '../../../persistence/plain-data';
 import { selectRemotePortfolio } from '../portfolio';
 import { createRemoteAssignmentStore } from '../assignment-store';
@@ -8,9 +9,9 @@ import type { RemoteManagementPorts, RemoteManagementRecord, RemoteManagementReq
 export function commitRemotePortfolio(state: StatePort, record: RemoteManagementRecord, request: RemoteManagementRequest,
   ports: RemoteManagementPorts, guard: () => boolean, stillCurrent: () => boolean = () => true) {
   const assignments = createRemoteAssignmentStore(state), revision = assignments.read().revision;
-  const offers = copyPlain(record.offers).map(offer => ({ ...offer,quotes: offer.quotes.filter(quote => {
+  const offers = copyPlain(record.offers).map(offer => ({ ...offer,quotes: manageable(assignments,record,offer.room,request.tick) && guard() && currentRoomReservation(offer,request,ports,guard) ? offer.quotes.filter(quote => {
     return manageable(assignments,record,offer.room,request.tick) && guard() && ports.current(quote,guard);
-  }) }));
+  }) : [] }));
   if (!guard()) return { status: 'deferred' as const };
   const portfolio = selectRemotePortfolio(offers,{ ...request.policy.portfolio,home: request.home,tick: request.tick });
   const plans: RemoteRoomPlan[] = [];
@@ -18,9 +19,9 @@ export function commitRemotePortfolio(state: StatePort, record: RemoteManagement
     if (!guard()) return { status: 'deferred' as const };
     const summary = ports.summary(bundle.room);
     if (!sameInventory(summary?.sources.map(source => source.id),record.offers.find(offer => offer.room === bundle.room)!.sourceIds)) return { status: 'inventory-changed' as const };
-    const controller = summary?.controller;
+    const offer = offers.find(offer => offer.room === bundle.room)!;
     plans.push({ room: bundle.room,sources: bundle.sources.map(source => source.source),infrastructure: request.policy.infrastructure,
-      reserve: request.policy.reserve && controller ? { id: controller.id,position: { room: bundle.room,x: controller.x,y: controller.y } } : null });
+      reserve: selectedRoomController(offer,summary,request) });
   }
   if (!guard()) return { status: 'deferred' as const };
   const scope = [...new Set([...record.managed.map(item => item.room).filter(room => manageable(assignments,record,room,request.tick)),...plans.map(plan => plan.room)])];

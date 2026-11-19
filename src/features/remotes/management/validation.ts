@@ -1,3 +1,4 @@
+import { createRemoteRoomOffer } from '../reservation/room-offer';
 import { validateRemoteOffers } from '../portfolio-validation';
 import { selectRemotePortfolio } from '../portfolio';
 import { assessRemoteEconomics } from '../../../capabilities/economy/remote-economics';
@@ -9,7 +10,7 @@ export function validateManagementRequest(request: RemoteManagementRequest): voi
   const policy = request.policy;
   if (policy.traversal.mode !== 'known-safe') throw new Error('Remote management requires known-safe policy');
   validateTraversalPolicy(policy.traversal,request.tick);
-  const offers = policy.candidates.map(candidate => ({ ...candidate,sourceIds: ['validation'],quotes: [] }));
+  const offers = policy.candidates.map(candidate => createRemoteRoomOffer(candidate,['validation']));
   validateRemoteOffers(offers,{ ...policy.portfolio,home: request.home,tick: request.tick });
   const economic = policy.economics;
   assessRemoteEconomics({ ...economic,capacity: 1500,miner: { ...economic.miner,travelTicks: 0,returnTicks: 0 },

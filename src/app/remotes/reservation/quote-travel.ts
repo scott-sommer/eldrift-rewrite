@@ -21,7 +21,7 @@ export function createReservationQuoteTravel(state: StatePort, maximumOps: numbe
       if (!store.save(record.revision,context.request.tick,identity,legs)) return { status: 'deferred' as const,reason: 'progress-conflict' };
       record = store.read();
     }
-    return { status: 'complete' as const,outboundTicks: legs[0]!.ticks,returnTicks: legs[1]!.ticks,rooms: [...context.rooms],
+    return { status: 'complete' as const,identity,outboundTicks: legs[0]!.ticks,returnTicks: legs[1]!.ticks,rooms: [...context.rooms],
       operations: legs.reduce((sum,leg) => sum+leg.operations,0),profile: 'balanced-claim-move' as const };
   };
 }

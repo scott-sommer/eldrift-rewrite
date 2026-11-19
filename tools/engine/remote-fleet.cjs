@@ -114,7 +114,7 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
   for (const tick of metadata.confirmationResets) assert.ok(memory.stampReloads.includes(tick));
   if (metadata.mode === 'migration') {
     assert.equal(last.migratedAt,100);
-    assert.ok(rows.filter(row => row.tick >= 101).every(row => row.schemaVersions.every(version => version === 2)));
+    for (const row of rows.filter(row => row.tick >= 101)) assert.deepEqual(row.schemaVersions,[3,2,2]);
     assert.deepEqual(rows.find(row => row.tick === 99).fleet.actors.map(actor => actor.owner).sort(),last.fleet.actors.map(actor => actor.owner).sort());
     assert.ok(rows.some(row => row.tick > 110 && row.credited > rows.find(row => row.tick === 99).credited),'migration must return to productive service');
   }

@@ -6,7 +6,7 @@ import type { RemoteBundle, RemotePortfolioPolicy, RemoteQuote, RemoteRoomOffer 
 export function selectRemotePortfolio(input: RemoteRoomOffer[], inputPolicy: RemotePortfolioPolicy) {
   validateRemoteOffers(input,inputPolicy);
   const offers = copyPlain(input), policy = copyPlain(inputPolicy);
-  const eligible = offers.map(offer => ({ ...offer,quotes: offer.quotes.filter(quote => freshQuote(quote,policy)) }));
+  const eligible = offers.map(offer => ({ ...offer,quotes: freshReservation(offer,policy) ? offer.quotes.filter(quote => freshQuote(quote,policy)) : [] }));
   const selected = new Map<string,RemoteBundle>();
   const full = eligible.map(offer => priceRemoteBundle(offer,offer.quotes,policy))
     .filter((bundle): bundle is RemoteBundle => bundle !== undefined && bundle.complete);
@@ -15,6 +15,9 @@ export function selectRemotePortfolio(input: RemoteRoomOffer[], inputPolicy: Rem
   selectFragments(eligible,selected,policy);
   const result = totalRemotePortfolio([...selected.values()],policy);
   return result.netRate >= policy.minimumNetYield ? result : totalRemotePortfolio([],policy);
+}
+function freshReservation(offer: RemoteRoomOffer, policy: RemotePortfolioPolicy): boolean {
+  return !offer.reservation || policy.tick-offer.reservation.quote.observedAt <= policy.maximumAge;
 }
 function freshQuote(quote: RemoteQuote, policy: RemotePortfolioPolicy): boolean {
   const facts = quote.assessment;

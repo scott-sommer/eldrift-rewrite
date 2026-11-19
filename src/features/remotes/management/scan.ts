@@ -1,3 +1,4 @@
+import { createRemoteRoomOffer, reservationSourcePolicy } from '../reservation/room-offer';
 import { copyPlain } from '../../../persistence/plain-data';
 import type { RemoteManagementPorts, RemoteManagementRecord, RemoteManagementRequest, RemoteScanBudget } from './model';
 /** Room inventory and expensive source assessment have separate per-call bounds. */
@@ -12,7 +13,7 @@ export function advanceRemoteScan(record: RemoteManagementRecord, request: Remot
     }
     const sourceIds = summary.sources.map(source => source.id).sort();
     if (record.offers.reduce((sum,offer) => sum+offer.sourceIds.length,0)+sourceIds.length > 128) return 'capacity';
-    record.offers.push({ room: candidate.room,sourceIds,quotes: [],commitment: copyPlain(candidate.commitment) });
+    record.offers.push(createRemoteRoomOffer(candidate,sourceIds));
   }
   if (record.roomIndex < request.policy.candidates.length) return 'pending';
   const work = record.offers.flatMap(offer => offer.sourceIds.map(source => ({ offer,source })));
@@ -20,7 +21,7 @@ export function advanceRemoteScan(record: RemoteManagementRecord, request: Remot
   while (record.sourceIndex < work.length && sources < budget.sources && guard()) {
     const { offer,source } = work[record.sourceIndex]!; sources++;
     const result = ports.assess({ home: request.home,room: offer.room,source,tick: request.tick,
-      traversal: request.policy.traversal,economics: request.policy.economics },guard);
+      traversal: request.policy.traversal,economics: reservationSourcePolicy(request.policy.economics,offer.reservation !== undefined) },guard);
     if (result.status === 'deferred' && result.reason.endsWith(':admission')) return 'pending';
     record.sourceIndex++;
     if (result.status === 'assessed') offer.quotes.push({ assessment: copyPlain(result) });

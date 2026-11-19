@@ -16,10 +16,11 @@ export function createNativeReservationQuote(state: StatePort, options: Reservat
     if (context.status !== 'ready') return context;
     const travel = measure(context,guard);
     if (travel.status !== 'complete') return travel;
-    const selected = selectBufferedReservation(Math.min(request.bodyBudget,Game.rooms[request.home]!.energyCapacityAvailable),{
+    const policy = {
       lifetime: CREEP_CLAIM_LIFE_TIME,outboundTicks: travel.outboundTicks,returnTicks: travel.returnTicks,replacementMargin: request.replacementMargin,
-      reservePerClaim: CONTROLLER_RESERVE,decayPerTick: 1,maximumReservation: CONTROLLER_RESERVE_MAX,minimumBufferTicks: request.minimumBufferTicks });
-    return selected ? { status: 'quoted',...selected,home: request.home,room: request.room,controller: context.controller,observedAt: context.observedAt,travel }
+      reservePerClaim: CONTROLLER_RESERVE,decayPerTick: 1,maximumReservation: CONTROLLER_RESERVE_MAX,minimumBufferTicks: request.minimumBufferTicks };
+    const selected = selectBufferedReservation(Math.min(request.bodyBudget,Game.rooms[request.home]!.energyCapacityAvailable),policy);
+    return selected ? { status: 'quoted',...selected,policy,home: request.home,room: request.room,controller: context.controller,observedAt: context.observedAt,travel }
       : { status: 'infeasible',reason: 'buffer' };
   };
 }

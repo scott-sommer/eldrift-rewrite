@@ -1,9 +1,11 @@
+import type { ReservationQuote } from '../reservation/model';
 import type { RemoteEconomicPolicy, RemoteAssessment, RemoteAssessmentRequest } from '../assessment-model';
 import type { RemotePortfolioPolicy, RemoteRoomOffer, RemoteQuote } from '../portfolio-model';
 import type { IntelTraversalPolicy } from '../../intel/traversal-model';
 import type { RoomSummary } from '../../intel/model';
+export interface RemoteRoomCandidate { room: string; commitment: RemoteRoomOffer['commitment']; reservation?: ReservationQuote | null }
 export interface RemoteManagementPolicy {
-  candidates: { room: string; commitment: RemoteRoomOffer['commitment'] }[];
+  candidates: RemoteRoomCandidate[];
   traversal: IntelTraversalPolicy; economics: RemoteEconomicPolicy;
   portfolio: Omit<RemotePortfolioPolicy,'home' | 'tick'>;
   infrastructure: { roads: boolean; containers: boolean } | null; reserve: boolean;
@@ -20,5 +22,6 @@ export interface RemoteManagementPorts {
   summary(room: string): RoomSummary | undefined;
   assess(request: RemoteAssessmentRequest, guard: () => boolean): RemoteAssessment;
   current(quote: RemoteQuote, guard: () => boolean): boolean;
+  currentReservation?(quote: ReservationQuote, guard: () => boolean): boolean;
 }
 export interface RemoteScanBudget { rooms: number; sources: number }

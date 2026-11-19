@@ -30,7 +30,7 @@ test('legacy manager quotes are discarded while managed lease generations and re
   const store = createRemoteManagementStore(f.state,'W0N1'), migrated = store.read();
   expect(migrated).toMatchObject({ revision: old.revision,clock: old.clock,managed: old.managed,identity: '',offers: [],reports: [],scannedAt: null });
   expect(JSON.stringify(f.root)).toBe(before); expect(store.save(migrated.revision,{ ...migrated,clock: 21 })).toBe(true);
-  expect(f.state.read(key)).toMatchObject({ version: 2 });
+  expect(f.state.read(key)).toMatchObject({ version: 3 });
 });
 test('legacy fleet withdraws only its own unmeasured profiles without changing unrelated state',() => {
   const { state } = legacyTravel(), identity = { home: 'W0N1',room: 'E0N1',source: 'source',kind: 'miner' as const };
