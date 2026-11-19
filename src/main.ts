@@ -1,3 +1,4 @@
+import { createNativeRemoteStartup } from './app/remotes/startup/native';
 import { createNativeRemoteReachabilityFeature } from './app/remotes/reachability/feature';
 import { admitReachableRemoteSpawn } from './app/remotes/reachability/policy';
 import { createNativeRemoteCapacityFeature } from './app/remotes/capacity/feature';
@@ -46,10 +47,11 @@ import { createMemoryPort } from './adapters/screeps/memory';
 const constructionLedger = createConstructionReservationLedger();
 const ports = createGamePorts();
 const state = createMemoryPort(() => Memory);
-const dispatch = createNativeDispatch(state,request => admitReachableRemoteSpawn(state,request) && admitRemoteFleetSpawn(state,request,runtimeConfig) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig));
+const dispatch = createNativeDispatch(state,request => startup.admit(request) && admitReachableRemoteSpawn(state,request) && admitRemoteFleetSpawn(state,request,runtimeConfig) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig));
 const recovery = createNativeRecovery(state);
 const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
 const runtimeConfig = (room: string) => resolveConfig(configuration(room), Game.time).values;
+const startup = createNativeRemoteStartup(state,dispatch.structures,runtimeConfig);
 const observeSpawnLoad = createNativeSpawnLoadObserver(state,dispatch.structures,runtimeConfig,ports.reportFailure);
 const scouts = createNativeScouts(state,dispatch,runtimeConfig,ports);
 const support = createNativeSupportFeature(state, dispatch, runtimeConfig, recovery);
@@ -63,9 +65,9 @@ const upgradeMaster = createNativeUpgradeMaster(state, dispatch, recovering);
 const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions, ...logistics.definitions },
   recovering);
 const taskDefinitions = { ...mining.definitions,...logistics.definitions,...workers.definitions,...remoteFleetDefinitions,...remoteConstructionDefinitions,...reservationDefinitions };
-const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions);
-const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,taskDefinitions);
-const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions);
+const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
+const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
+const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
 const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, taskDefinitions, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time));
 // Gameplay registration is separate from configuration-controlled activation.
 export const loop = createGameLoop([createNativeRemoteReachabilityFeature(state,dispatch), createNativeRemoteCapacityFeature(state), scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors, constructionWorkers.recruitment, constructionWorkers.actors, reservationWorkers.recruitment, reservationWorkers.actors], {

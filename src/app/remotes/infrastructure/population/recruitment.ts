@@ -1,3 +1,4 @@
+import type { RemoteBirthPermit } from '../../startup/model';
 import type { StatePort } from '../../../../persistence/versioned-state';
 import type { RoomFeature } from '../../../runtime-model';
 import type { createNativeDispatch } from '../../../native-dispatch';
@@ -10,7 +11,7 @@ import { createNativeConstructionPlans } from './plans';
 import { constructionPopulation, healthyConstructionWorker } from './model';
 import type { NativeConstructionPlan } from './model';
 import { constructionSpawningEnabled } from './policy';
-export function createNativeConstructionRecruitment(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>): RoomFeature {
+export function createNativeConstructionRecruitment(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, permit: RemoteBirthPermit = () => true): RoomFeature {
   const planHome = createNativeConstructionPlans(state);
   return { id: 'remote-construction-recruitment',scope: 'owned',urgency: 'urgent',interval: 1,run(context) {
     const home = context.room.name, config = context.config.values;
@@ -18,6 +19,7 @@ export function createNativeConstructionRecruitment(state: StatePort, dispatch: 
     const result = planHome(home,config,guard);
     if (!result.complete) return;
     const selected = constructionSpawningEnabled(config) ? result.selected : new Set<string>();
+    for (const plan of result.plans) if (!permit(plan.owner,plan.body.parts,config)) selected.delete(plan.owner);
     cancelUnselected(state,dispatch,home,selected);
     for (const plan of result.plans.filter(plan => selected.has(plan.owner))) {
       if (!guard()) break;

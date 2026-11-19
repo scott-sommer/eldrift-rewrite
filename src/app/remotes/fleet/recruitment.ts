@@ -1,3 +1,4 @@
+import type { RemoteBirthPermit } from '../startup/model';
 import { remoteFleetDemand } from '../../../features/remotes/fleet/demand';
 import type { StatePort } from '../../../persistence/versioned-state';
 import type { RoomFeature } from '../../runtime-model';
@@ -16,7 +17,7 @@ import { nativeRemoteTraversal } from '../management/policy';
 import { resolveRemoteFleetAssignment } from '../../../features/remotes/fleet/authority';
 import { remoteFleetBodyAllowed, remoteFleetSpawningEnabled } from './spawn-policy';
 import { healthyRemoteActor } from './health';
-export function createNativeRemoteRecruitment(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>): RoomFeature {
+export function createNativeRemoteRecruitment(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, permit: RemoteBirthPermit = () => true): RoomFeature {
   const assignments = createRemoteAssignmentStore(state), refresh = createRemoteObservationRefresh(state);
   return { id: 'remote-recruitment',scope: 'owned',urgency: 'urgent',interval: 1,run(context) {
     const home = context.room.name, store = createRemoteFleetStore(state,home), record = store.read();
@@ -28,10 +29,13 @@ export function createNativeRemoteRecruitment(state: StatePort, dispatch: Return
     const safe = new Map<string,boolean>(), roster = observePopulation(); let processed = 0;
     function desired(profile: RemoteFleetProfile): number {
       if (!remoteFleetBodyAllowed(profile.body,profile.kind,room!,config) || !resolveRemoteFleetAssignment(assignments,profile,Game.time)) return 0;
-      if (!safe.has(profile.room)) {
-        refresh([home,profile.room]); safe.set(profile.room,nativeRemoteTarget(state,profile.room,room!.controller!.owner!.username) && !!nativeRemoteRoute(state,home,profile.room,nativeRemoteTraversal(room!,config),config.remoteMaximumRouteRooms,false,guard));
+      return reachable(profile.room) && permit(profile.owner,profile.body,config) ? profile.desired : 0;
+    }
+    function reachable(target: string): boolean {
+      if (!safe.has(target)) {
+        refresh([home,target]); safe.set(target,nativeRemoteTarget(state,target,room!.controller!.owner!.username) && !!nativeRemoteRoute(state,home,target,nativeRemoteTraversal(room!,config),config.remoteMaximumRouteRooms,false,guard));
       }
-      return safe.get(profile.room) ? profile.desired : 0;
+      return safe.get(target) ?? false;
     }
     for (let count=0; count<record.actors.length && guard(); count++) {
       const profile = record.actors[(record.next+count)%record.actors.length]!, target = desired(profile);

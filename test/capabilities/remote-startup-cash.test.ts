@@ -38,3 +38,7 @@ test('finite recurrence counts and zero horizon have explicit inclusive frame se
 test.each([{ horizon: 10001 },{ protectedEnergy: -1 },{ flows: [birth,birth] },{ flows: [{ ...birth,interval: 0 }] },{ flows: [{ ...birth,occurrences: 2 }] }])('invalid capital/schedule inputs are rejected',(overrides) => {
   expect(() => forecastStartupCash(input([birth],overrides))).toThrow();
 });
+
+test('capital can include developed storage and terminal balances above one million energy',() => {
+  expect(forecastStartupCash(input([],{ homeEnergy: 1300000 })).endingEnergy).toBe(1300000);
+});
