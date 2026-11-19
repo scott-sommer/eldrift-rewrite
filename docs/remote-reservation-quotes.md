@@ -1,6 +1,6 @@
 # Buffered reservation quotation
 
-Implementation 14cf721 provides a reservation quote independently from source travel and source production facts. Native management still leaves automatic reservation disabled. This component does not recruit or reserve a controller.
+Implementation 14cf721 provides a reservation quote independently from source travel and source production facts. Native management defaults reservation selection off. This component does not recruit or reserve a controller.
 
 ## Mechanics and selection
 
@@ -45,3 +45,5 @@ Full units:1427 tests /389 files /10.10s. Quality, packaged bundle and Lizard690
 The next increment adds generation-scoped remote-reservation owners and a pure population-plan binding. Only a current managed lease generation with a matching controller and a valid, fresh priced offer produces a plan. Expired/manual/unreserved leases and corrupt or stale quotes produce no automatic population. Workforce family recognition now includes reservers in live and same-tick ceilings, and construction budgeting includes pending reserver requests before they appear in the native roster. Malformed remote-family owners are refused at shared admission and conservatively consume roster capacity.
 
 Verification:1432 tests /390 files /10.24s, type/lint/boundaries/bundle passed, Lizard693 production /567 test files with zero violations. Focused development native --remote-road-auto and --remote-fleet-budget regressions passed on the modified worktree. The clean218-case management milestone above remains the last full-suite qualification. The authority foundation does not register recruitment or a new actor, enable reservation configuration, or qualify actual buffered reserve service; those remain the next integration work.
+
+Configurable ordinary candidate generation is now implemented at8300dca through bounded stable sweeps; see remote-reservation-selection.md. Automatic actor recruitment remains unregistered. Earlier integration status in this document is historical to its stated commits.
