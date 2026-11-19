@@ -7,7 +7,7 @@ export function validateStartupSpawns(input: StartupSpawnInput): void {
   if (input.requests.length > 64 || input.spawns.length > 16 || input.cash.flows.length+input.requests.length > 128) throw new Error('Startup spawn capacity');
   if (input.cash.flows.some(flow => flow.kind === 'birth')) throw new Error('Startup births must come from scheduled requests');
   unique(input.spawns.map(spawn => spawn.id)); unique(input.requests.map(request => request.id)); unique(input.requests.map(request => request.name));
-  validateSlots(input); validateRequests(input);
+  validateSlots(input); validateRequests(input); validateFunding(input);
   const ids = [...input.cash.flows.map(flow => flow.id),...input.requests.map(request => 'birth:'+request.id)];
   unique(ids);
 }
@@ -25,4 +25,11 @@ function validateRequests(input: StartupSpawnInput): void {
 
 function unique(ids: readonly string[]): void {
   if (ids.some(id => typeof id !== 'string' || !id.length) || new Set(ids).size !== ids.length) throw new Error('Duplicate/invalid startup spawn identity');
+}
+
+function validateFunding(input: StartupSpawnInput): void {
+  const funding = input.funding;
+  if (![funding.capacity,funding.initialEnergy].every(value => Number.isSafeInteger(value) && value >= 0 && value <= 1000000)) throw new Error('Invalid startup spawn energy');
+  if (funding.initialEnergy > Math.min(funding.capacity,input.cash.homeEnergy) || funding.refills.length > 64) throw new Error('Invalid startup spawn funding');
+  validateStartupCash({ ...input.cash,flows: funding.refills.map(flow => ({ ...flow,kind: 'delivery' })) });
 }
