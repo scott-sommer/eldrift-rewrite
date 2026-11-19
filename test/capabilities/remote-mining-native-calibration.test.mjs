@@ -1,3 +1,4 @@
+import { createStartupContainer } from '../../src/capabilities/economy/startup/container';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { expect, test } from 'vitest';
@@ -22,10 +23,11 @@ test('native 4-WORK/CARRY50 station harvests full output, drops overflow and han
   const result = { source: { energy: first.source.energy,capacity: first.source.capacity,regenerationTicks: 300,regenerationIn: null },
     containerEnergy: 0,minerCargoEnergy: 0,harvestedEnergy: 0,overflowEnergy: 0,uncapturedOverflowEnergy: 0 };
   const wave = { request: 'native-miner',startAt: 1305,endAt: 1340,carryCapacity: 50,harvestPower: 8,buildPower: 20 };
+  const container = createStartupContainer({ hits: 250000,hitsMax: 250000,decayAmount: 5000,decayInterval: 99,decayIn: 99,repairPolicy: { criticalFraction: 0.2,energyReserve: 20 } });
   let observedCollection = 0;
   for (let tick = first.tick; tick < last.tick; tick++) {
     const before = at(tick), after = at(tick+1);
-    const deposit = startupMiningFrame(result,wave,tick,2000);
+    const deposit = startupMiningFrame(result,wave,tick,2000,container);
     // Replay observed courier collection only; this does not predict native courier/task travel timing.
     const collected = after.units.filter(unit => unit.family === 'courier').reduce((sum,unit) => {
       const previous = before.units.find(value => value.name === unit.name);
@@ -33,7 +35,7 @@ test('native 4-WORK/CARRY50 station harvests full output, drops overflow and han
     },0);
     expect(result.containerEnergy,'pre-frame container can fund collection at '+tick).toBeGreaterThanOrEqual(collected);
     result.containerEnergy -= collected; observedCollection += collected;
-    result.containerEnergy += deposit; advanceStartupSource(result.source,1);
+    result.containerEnergy += deposit; container.finish(tick,result.containerEnergy); advanceStartupSource(result.source,1);
     expect(result.source.energy,'source stock at '+after.tick).toBe(after.source.energy);
     expect(result.minerCargoEnergy,'miner CARRY at '+after.tick).toBe(after.units.find(unit => unit.family === 'miner').cargo);
   }

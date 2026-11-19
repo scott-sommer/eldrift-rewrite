@@ -1,17 +1,22 @@
+import type { StartupContainer } from './container';
 import { energyHarvestEffect } from '../../mining/harvest-effect';
 import { minerStep } from '../../mining/step';
 import type { StartupBuildWave } from './construction-model';
 import type { StartupDeliveryForecast } from './delivery-model';
 /** Same action selector as execution; local effects only, with handoff committed after courier collection. */
-export function startupMiningFrame(result: StartupDeliveryForecast, wave: StartupBuildWave | undefined, tick: number, capacity: number): number {
-  if (!wave) return 0;
+export function startupMiningFrame(result: StartupDeliveryForecast, wave: StartupBuildWave | undefined, tick: number, capacity: number, container: StartupContainer): number {
+  if (!wave || !container.alive()) return 0;
   let deposit = 0;
   const impossible = (): never => { throw new Error('Unexpected startup mining action'); };
   const energy = result.minerCargoEnergy;
   minerStep({ tick,spawning: false,unsafe: false,target: 'visible',assigned: true,atStation: true,carried: energy,energy,
-    carryCapacity: wave.carryCapacity,freeCapacity: wave.carryCapacity-energy,establish: false,repair: false,
+    carryCapacity: wave.carryCapacity,freeCapacity: wave.carryCapacity-energy,establish: false,repair: container.needsRepair(energy,result.source.energy === 0),
     ...(result.source.energy === 0 ? { readiness: { status: 'blocked' as const,reason: 'source-depleted',retryAt: tick+1 } } : {}) },{
-    approach: impossible,retreat: impossible,establish: impossible,repair: impossible,rejected: impossible,
+    approach: impossible,retreat: impossible,establish: impossible,rejected: impossible,
+    repair() {
+      result.minerCargoEnergy -= container.repair(energy,wave.harvestPower/2);
+      return { status: 'issued',code: 0 };
+    },
     handoff() {
       deposit = Math.min(energy,capacity-result.containerEnergy); result.minerCargoEnergy -= deposit;
       return { status: 'issued',code: 0 };

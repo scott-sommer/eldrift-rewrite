@@ -1,6 +1,6 @@
 import type { StartupDeliveryInput } from '../../src/capabilities/economy/startup/delivery-model';
 export function startupDeliveryInput(): StartupDeliveryInput {
-  return { containerCapacity: 2000,homeSink: { capacity: 1000000,freeCapacity: 1000000,changes: [] },couriers: [{ request: 'courier',outboundTicks: 1,returnTicks: 2,retireTicks: 10,minimumBatch: 4 }],
+  return { containerCapacity: 2000,container: { hits: 250000,hitsMax: 250000,decayAmount: 5000,decayInterval: 99,decayIn: 99,repairPolicy: { criticalFraction: 0.2,energyReserve: 20 } },homeSink: { capacity: 1000000,freeCapacity: 1000000,changes: [] },couriers: [{ request: 'courier',outboundTicks: 1,returnTicks: 2,retireTicks: 10,minimumBatch: 4 }],
     project: { remainingProgress: 4,source: { energy: 100,capacity: 100,regenerationTicks: 300,regenerationIn: null },
       workers: [{ request: 'miner',travelTicks: 0,retireTicks: 10 }],
       spawning: { room: 'home',requests: [

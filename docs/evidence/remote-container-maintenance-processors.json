@@ -1,0 +1,54 @@
+{
+  "scope": "Controlled comparisons with pinned repair/container processor functions through fixture clock/bulk ports. Not a live server/native full-runtime scenario or complete project-payback qualification.",
+  "validationWorkingTree": true,
+  "modelSha256": {
+    "src/capabilities/mining/repair-effect.ts": "a45f7e3c58e145a6038ad6bc76ecb42f6715be03096af1a534eef981c5a4abdb",
+    "src/capabilities/economy/startup/container.ts": "5f3ae78b65a21d697bd495c1ae07a08dbe85164595f022d92f6f86fb24425f47",
+    "src/capabilities/economy/startup/delivery-mining.ts": "0d9ad0d0392c3eb5008136039f99ea7f796e3785001dffc8875ca53bc3e736a8",
+    "src/capabilities/economy/startup/delivery.ts": "e232004475c315f2e273a1f7cea8b3a286be8a0c3cba7783358635dc576b845e"
+  },
+  "engine": "4.3.2",
+  "common": "2.16.1",
+  "processorLockSha256": "ee8b14cbee7db9eea8ae912d39717caf5d2c7e44d082ef7bbb5bfcb57006dc7c",
+  "processorSourceSha256": {
+    "src/processor/intents/creeps/repair.js": "bb10d6a721b9f9113db79ee7ce6fe3f9fa8e68531dd5ce6bdcbe19a29b79c844",
+    "src/processor/intents/containers/tick.js": "116ad87ae8e6b40cc165ee3cb52ad37806f2ad1cefe88413884c8c4c6fbef96d",
+    "src/processor/intents/creeps/build.js": "e722864f85dcdc21458bdc2b4fd1e3c57eb76a0b890eb7faf210d3e67441c3e4"
+  },
+  "checks": {
+    "unitTests": 1632,
+    "unitFiles": 420,
+    "unitSeconds": 11.35,
+    "processorTests": 4,
+    "processorFiles": 1,
+    "processorSeconds": 0.228,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 767,
+      "testFiles": 622,
+      "violations": 0
+    }
+  },
+  "runtimeArtifact": {
+    "bundleSha256": "2f84cee435e77f1801a46ca86357bf85e228064838661104cd5ee1e836c59cd1",
+    "identicalToCleanNativeSource": "08afcf27c3db5eac5f0ebba547c1ab6251c9afc0",
+    "evidenceManifest": "remote-harvest-overflow-calibration.json"
+  },
+  "nativeScenarioRegistry": 233,
+  "fullRegistryRerun": false,
+  "processorCases": [
+    "unboosted repair cost and partial damage rounding",
+    "neutral action-frame decay recurrence99 from native constant100/trigger-1",
+    "owned-room action-frame decay recurrence499 from native constant500/trigger-1",
+    "container destruction and actual drop creation versus uncredited forecast disposition"
+  ],
+  "dependencyAudit": {
+    "critical": 1,
+    "moderate": 2,
+    "isolatedUpstreamLodash": "3.10.1",
+    "compatibleAutomaticFix": false
+  }
+}

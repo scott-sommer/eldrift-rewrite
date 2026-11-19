@@ -15,7 +15,7 @@ test('funded workers construct, harvest, hand off, collect and return before rec
 test('all mined energy is conserved across construction, container, workers and receipts',() => {
   const result = forecastStartupDelivery(input()), d = result.delivery, c = result.construction;
   expect(100+c.regeneratedEnergy+d.regeneratedEnergy-c.harvestedEnergy-d.harvestedEnergy).toBe(d.source.energy);
-  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy);
+  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy+result.maintenance.repairEnergy+result.maintenance.unrecoveredEnergy);
 });
 test('without a funded courier all output stays remote instead of becoming assumed income',() => {
   const view = input(); view.project.spawning.funding.initialEnergy = 200;
@@ -77,7 +77,7 @@ test('natural service ends and explicitly funded successor workers conserve ener
   expect(d.receipts.some(receipt => receipt.request === 'courier-next')).toBe(true);
   expect(d.receipts.every(receipt => receipt.tick < 3040)).toBe(true);
   expect(100+c.regeneratedEnergy+d.regeneratedEnergy-c.harvestedEnergy-d.harvestedEnergy).toBe(d.source.energy);
-  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy);
+  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy+result.maintenance.repairEnergy+result.maintenance.unrecoveredEnergy);
 });
 test('small full containers impose backpressure without disappearing harvested cargo',() => {
   const view = input(); view.containerCapacity = 3; view.couriers = [];

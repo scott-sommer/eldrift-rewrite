@@ -40,7 +40,7 @@ test('loaded expiry under a blocked sink remains an explicit unreturned disposit
   const view = input(); view.homeSink = { capacity: 100,freeCapacity: 0,changes: [] }; view.project.spawning.cash.horizon = 1600;
   const result = forecastStartupDelivery(view), c = result.construction, d = result.delivery;
   expect(d).toMatchObject({ deliveredEnergy: 0,courierCargoEnergy: 0,unreturnedCourierEnergy: 50 });
-  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy);
+  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy+result.maintenance.repairEnergy+result.maintenance.unrecoveredEnergy);
 });
 test('infeasible capacity-release assumptions and invalid initial facts fail explicitly',() => {
   const view = input(); view.homeSink.freeCapacity = view.homeSink.capacity+1;

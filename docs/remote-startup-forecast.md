@@ -90,3 +90,8 @@ The later [native harvest overflow calibration](remote-harvest-overflow.md) corr
 ## Finite home endpoint refinement
 
 The later [startup sink model](remote-startup-sink.md) replaces the accepting-home assumption with required endpoint capacity, explicit competing occupancy and delayed capacity releases. Full/partial unloads preserve uncredited cargo, while modeled loaded expiry remains a separate disposition. This is portable behavior qualification; ordinary runtime and candidate-selection integration remain unchanged. Earlier check totals and assumptions in this document describe their respective source increments.
+
+
+## Finite container maintenance refinement
+
+The later [maintenance model](remote-startup-maintenance.md) adds required durability/decay facts, ported mining repair duty, exact unboosted repair energy and finite infrastructure failure. It records unrecovered container stock without granting salvage, and permits already loaded home returns. Controlled pinned-processor comparisons now have a separate lightweight install/test command and CI step. Earlier maintained-container assumptions describe their source increments; native operational selection and broader project qualification remain open.
