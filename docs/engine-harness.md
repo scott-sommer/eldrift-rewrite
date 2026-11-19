@@ -79,3 +79,9 @@ The lifetime fixture streams every per-tick row to the host, retaining unique na
 Use the 20-tick remote-fleet-border case for the tight diagnostic loop around arrival-edge direction, actual landing and traffic denial. The full lifetime case verifies distinct successors for each original and cargo-safe retirement through normal TTLs. Recovery/service-recovery timing checks now reflect immediate avoidance after one confirmed denial while retaining fatigue, blocker, duplicate-call, arrival and reset invariants.
 
 Clean ed82a98 passes all 211 engine checks in 1,193.06 seconds, including the expected failure sentinels. Per-case clean provenance and digests are archived in evidence/remote-lifetime-engine-suite.json; exact native traces are in evidence/remote-lifetime-native.json. Fixture trace samples include probe overhead and do not establish production CPU/Memory pressure or soak acceptance. Continue focused plus broad smoke checks during ordinary iterations; the full engine suite is a larger runtime milestone gate.
+
+## Remote timing upgrade regression
+
+The --remote-fleet-migration scenario reconstructs schema-1 travel/cache/fleet state at tick 100 during native service, then exercises schema-2 invalidation and remeasurement through the ordinary main loop. Cargo, lifetimes, assignments and journals are not replaced by the upgrade fixture. The existing receipt conservation, ownership, unrelated queue/state, reload and final cleanup checks remain active.
+
+Clean 29d3cfd passed the expanded 212-case suite in 1,209.91 seconds. evidence/remote-timing-engine-suite.json records every outcome and clean bundle provenance; evidence/remote-timing-native.json retains assessment, upgrade and lifetime traces. The injected error/timeout cases pass only when their intended failures are detected. Use focused cases during development; repeat the full suite at larger runtime milestones.

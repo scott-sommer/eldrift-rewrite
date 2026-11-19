@@ -1,6 +1,6 @@
 # Pending ED-29 integration audit (read-only findings)
 
-This note is not implementation or qualification. The clean ed82a98 full suite has now passed; these source-audited follow-ups are still required.
+This audit separates completed components from remaining integration. Clean 29d3cfd passes all 212 engine checks in 1,209.91 seconds; see evidence/remote-timing-native.json and evidence/remote-timing-engine-suite.json. The remaining obligations below are still required.
 
 ## Actual replacement interval
 
