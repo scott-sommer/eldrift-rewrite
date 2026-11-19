@@ -1,3 +1,4 @@
+import type { StartupSink } from './sink';
 import type { StartupScheduledBirth } from './spawn-model';
 import type { StartupCourierState, StartupDeliveryForecast, StartupDeliveryInput, StartupCourier } from './delivery-model';
 export function startupDeliveryCouriers(input: StartupDeliveryInput, births: readonly StartupScheduledBirth[]): StartupCourierState[] {
@@ -22,10 +23,11 @@ function courierCapacity(input: StartupDeliveryInput, id: string): number {
   return capacity;
 }
 /** Effects become available next frame. Collection never borrows a later same-frame miner handoff. */
-export function advanceStartupCouriers(workers: StartupCourierState[], result: StartupDeliveryForecast, tick: number, horizon: number): void {
+export function advanceStartupCouriers(workers: StartupCourierState[], result: StartupDeliveryForecast, tick: number, horizon: number, sink: StartupSink): void {
   for (const worker of workers) {
     if (tick < worker.nextAt) continue;
-    if (worker.phase === 'deliver') { deliver(worker,result,tick,horizon); continue; }
+    if (tick >= worker.expiresAt) { result.unreturnedCourierEnergy += worker.cargo; worker.cargo = 0; worker.nextAt = Infinity; continue; }
+    if (worker.phase === 'deliver') { deliver(worker,result,tick,horizon,sink); continue; }
     collect(worker,result,tick);
   }
 }
@@ -34,11 +36,14 @@ function collect(worker: StartupCourierState, result: StartupDeliveryForecast, t
   worker.cargo = Math.min(worker.capacity,result.containerEnergy); result.containerEnergy -= worker.cargo;
   worker.phase = 'deliver'; worker.nextAt = tick+worker.collectionTicks+worker.returnTicks;
 }
-function deliver(worker: StartupCourierState, result: StartupDeliveryForecast, tick: number, horizon: number): void {
-  if (tick+worker.deliveryTicks > horizon) return;
-  result.receipts.push({ tick: tick+worker.deliveryTicks,energy: worker.cargo,request: worker.request });
-  result.deliveredEnergy += worker.cargo; result.firstDeliveryAt = Math.min(result.firstDeliveryAt ?? Infinity,tick+worker.deliveryTicks);
-  worker.cargo = 0; worker.phase = 'collect'; worker.nextAt = tick+worker.deliveryTicks+worker.outboundTicks;
+function deliver(worker: StartupCourierState, result: StartupDeliveryForecast, tick: number, horizon: number, sink: StartupSink): void {
+  if (tick+worker.deliveryTicks > horizon || tick+worker.deliveryTicks >= worker.expiresAt) return;
+  const amount = sink.take(worker.cargo);
+  if (amount === 0) return;
+  result.receipts.push({ tick: tick+worker.deliveryTicks,energy: amount,request: worker.request });
+  result.deliveredEnergy += amount; result.firstDeliveryAt = Math.min(result.firstDeliveryAt ?? Infinity,tick+worker.deliveryTicks);
+  worker.cargo -= amount; worker.nextAt = tick+worker.deliveryTicks;
+  if (worker.cargo === 0) { worker.phase = 'collect'; worker.nextAt += worker.outboundTicks; }
 }
 
 function courierTiming(worker: StartupCourier, capacity: number) {

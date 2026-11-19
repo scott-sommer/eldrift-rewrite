@@ -85,3 +85,8 @@ Eleven delivery tests cover exact first-credit causality, full source/cargo cons
 ## Native overflow correction
 
 The later [native harvest overflow calibration](remote-harvest-overflow.md) corrects the original free-CARRY clipping assumption in construction/delivery effects. Full WORK output depletes source stock; cargo clipping produces explicit overflow. Live underfoot containers can capture it; otherwise it remains an uncredited cumulative disposition. The new model matches archived source/CARRY frames1305..1322 exactly, replaying observed courier collection rather than claiming calibrated courier timing. Earlier checks in this document describe their original commits. Whole-project runtime selection and broader native qualification remain open.
+
+
+## Finite home endpoint refinement
+
+The later [startup sink model](remote-startup-sink.md) replaces the accepting-home assumption with required endpoint capacity, explicit competing occupancy and delayed capacity releases. Full/partial unloads preserve uncredited cargo, while modeled loaded expiry remains a separate disposition. This is portable behavior qualification; ordinary runtime and candidate-selection integration remain unchanged. Earlier check totals and assumptions in this document describe their respective source increments.

@@ -1,16 +1,7 @@
 import { expect, test } from 'vitest';
 import { forecastStartupDelivery } from '../../src/capabilities/economy/startup/delivery';
-import type { StartupDeliveryInput } from '../../src/capabilities/economy/startup/delivery-model';
-function input(): StartupDeliveryInput {
-  return { containerCapacity: 2000,couriers: [{ request: 'courier',outboundTicks: 1,returnTicks: 2,retireTicks: 10,minimumBatch: 4 }],
-    project: { remainingProgress: 4,source: { energy: 100,capacity: 100,regenerationTicks: 300,regenerationIn: null },
-      workers: [{ request: 'miner',travelTicks: 0,retireTicks: 10 }],
-      spawning: { room: 'home',requests: [
-        { id: 'miner',name: 'miner',owner: 'remote',room: 'home',body: ['work','carry','move'],priority: 0,readyAt: 0,expiresAt: 100 },
-        { id: 'courier',name: 'courier',owner: 'remote',room: 'home',body: ['carry','move'],priority: 1,readyAt: 0,expiresAt: 100 },
-      ],spawns: [{ id: 'spawn',room: 'home',availableAt: 0 }],liveNames: new Set(),unaffordable: 'skip',
-      funding: { capacity: 300,initialEnergy: 300,refills: [] },cash: { homeEnergy: 300,protectedEnergy: 0,horizon: 100,readyAt: 0,selfHarvestedConstruction: 4,flows: [] } } } };
-}
+import { startupDeliveryInput as input } from '../fixtures/startup-delivery';
+
 test('funded workers construct, harvest, hand off, collect and return before receipts exist',() => {
   const result = forecastStartupDelivery(input());
   expect(result.spawning.births.map(birth => [birth.request,birth.activeAt])).toEqual([['miner',9],['courier',15]]);
@@ -24,7 +15,7 @@ test('funded workers construct, harvest, hand off, collect and return before rec
 test('all mined energy is conserved across construction, container, workers and receipts',() => {
   const result = forecastStartupDelivery(input()), d = result.delivery, c = result.construction;
   expect(100+c.regeneratedEnergy+d.regeneratedEnergy-c.harvestedEnergy-d.harvestedEnergy).toBe(d.source.energy);
-  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy);
+  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy);
 });
 test('without a funded courier all output stays remote instead of becoming assumed income',() => {
   const view = input(); view.project.spawning.funding.initialEnergy = 200;
@@ -86,7 +77,7 @@ test('natural service ends and explicitly funded successor workers conserve ener
   expect(d.receipts.some(receipt => receipt.request === 'courier-next')).toBe(true);
   expect(d.receipts.every(receipt => receipt.tick < 3040)).toBe(true);
   expect(100+c.regeneratedEnergy+d.regeneratedEnergy-c.harvestedEnergy-d.harvestedEnergy).toBe(d.source.energy);
-  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy);
+  expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.deliveredEnergy+d.containerEnergy+d.minerCargoEnergy+d.courierCargoEnergy+d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy);
 });
 test('small full containers impose backpressure without disappearing harvested cargo',() => {
   const view = input(); view.containerCapacity = 3; view.couriers = [];
