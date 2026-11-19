@@ -20,6 +20,7 @@ function verifyRemoteRoadWork(memory,evidence) {
   assert.ok(rows.some(row => row.progress > 0),'builder must issue real native construction');
   assert.ok(last.roads.some(road => road.room === 'E0N1' && road.x <= 2),'a remote road away from the source station must actually complete');
   assert.ok(last.revoked && rows.find(row => row.tick === last.revoked).cargo > 0,'withdrawal must retain unused construction energy');
+  assert.equal(rows.find(row => row.tick === last.revoked).room,'E0N1','withdrawal must occur while loaded in the remote room');
   assert.equal(last.room,'W0N1'); assert.equal(last.cargo,0); assert.deepEqual(last.tasks,[]); assert.equal(last.claims,0);
   assert.ok(last.refunded > 0,'unused home-funded energy must be returned and confirmed as a refund, not remote income');
   for (const row of rows) {

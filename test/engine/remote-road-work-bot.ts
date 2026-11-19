@@ -28,7 +28,7 @@ export function loop(): void {
   if (Game.time === 1) setup(creep);
   refresh([home,remote]);
   const roads = Object.values(Game.rooms).flatMap(room => room.find(FIND_STRUCTURES).filter(item => item.structureType === STRUCTURE_ROAD));
-  if (!memory.roadRevoked && roads.some(road => road.pos.roomName === remote && road.pos.x <= 2) && creep.store.energy > 0) {
+  if (!memory.roadRevoked && roads.some(road => road.pos.roomName === remote && road.pos.x <= 2) && creep.pos.roomName === remote && creep.store.energy > 0) {
     assignments.reconcile({ home,tick: Game.time,lifetime: 1000,expectedRevision: assignments.read().revision,plans: [] }); memory.roadRevoked = Game.time;
   }
   const lease = assignments.owner(remote,Game.time), demand = lease && remoteAssignmentDemands(lease,Game.time).find((item): item is RemoteOutpostDemand => item.kind === 'outpost');
