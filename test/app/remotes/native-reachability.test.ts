@@ -19,7 +19,7 @@ function fixture() {
   assignments.reconcile({ home: 'W1N1',tick: 1,expectedRevision: 1,lifetime: 100,plans: [{ room: 'E1N1',sources: ['other'],reserve: null,infrastructure: null }] });
   const profile: RemoteFleetProfile = { home: 'W0N1',room: 'E0N1',source: 'source',kind: 'miner',owner: '',generation: 1,body: ['work','carry','move'],desired: 1,travelTicks: 1,marginTicks: 1,retireTicks: 2,priority: 1 };
   profile.owner = remoteFleetOwner(profile); createRemoteFleetStore(state,'W0N1').save(0,1,[profile]);
-  const game = { time: 1,creeps: {} as Record<string,Creep>,spawns: {} as Record<string,StructureSpawn>,getObjectById: vi.fn(() => null) }; vi.stubGlobal('Game',game);
+  const game = { time: 1,creeps: {} as Record<string,Creep>,spawns: {} as Record<string,StructureSpawn>,getObjectById: vi.fn((): Source | Mineral | null => null) }; vi.stubGlobal('Game',game);
   vi.stubGlobal('CLAIM','claim'); vi.stubGlobal('CREEP_CLAIM_LIFE_TIME',3); vi.stubGlobal('CREEP_LIFE_TIME',5);
   const dispatch = { activate: vi.fn(),structures: { cancelSpawning: vi.fn(() => 0) } } as unknown as ReturnType<typeof createNativeDispatch>;
   const reportFailure = vi.fn(), feature = createNativeRemoteReachabilityFeature(state,dispatch);
@@ -72,4 +72,17 @@ test('permanent exclusions cancel only matching home and room families, includin
   f.game.time = 11; f.runtime().tick();
   expect(queue.list().map(item => item.id)).toEqual(['foreign','unrelated']);
   expect(f.dispatch.structures.cancelSpawning).toHaveBeenCalledWith(spawn,'child',owner); expect(f.dispatch.activate).toHaveBeenCalled(); expect(f.reportFailure).not.toHaveBeenCalled();
+});
+
+test('local population identities cannot interrupt the remote home sampler',() => {
+  const f = fixture(), creep = f.creep('local',true,0);
+  creep.memory.population!.owner = remoteFleetOwner({ ...f.profile,room: 'W0N1' }); f.game.creeps = { local: creep };
+  f.runtime().tick();
+  expect(f.state.read('remoteReachability/W0N1')).toBeUndefined(); expect(f.reportFailure).not.toHaveBeenCalled();
+});
+test('visible mineral targets cannot enter the energy-source lifetime tracker',() => {
+  const f = fixture(); f.game.creeps = { miner: f.creep('miner',true,0) };
+  f.game.getObjectById.mockReturnValue({ id: 'source',mineralType: 'H',pos: { roomName: 'E0N1' } } as Mineral);
+  f.runtime().tick();
+  expect(f.state.read('remoteReachability/W0N1')).toBeUndefined(); expect(f.reportFailure).not.toHaveBeenCalled();
 });

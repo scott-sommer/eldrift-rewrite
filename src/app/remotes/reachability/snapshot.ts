@@ -31,10 +31,19 @@ function healthy(creep: Creep, profile: RemoteFleetProfile | undefined): boolean
 function trackedMiner(creep: Creep, home: string): RemoteFleetIdentity | undefined {
   if (!creep.my || !creep.id || creep.memory.population?.home !== home) return undefined;
   const identity = remoteFleetIdentity(creep.memory.population.owner);
-  return identity?.kind === 'miner' && identity.home === home ? identity : undefined;
+  if (!remoteSourceIdentity(identity,home)) return undefined;
+  return energySourceOrUnseen(identity.source) ? identity : undefined;
 }
 function observeMiner(creep: Creep, identity: RemoteFleetIdentity, profile: RemoteFleetProfile | undefined, eligible: boolean): ReachabilityObservation {
   return { name: creep.name,id: creep.id,room: identity.room,source: identity.source,eligible,
     healthy: healthy(creep,profile),spawning: creep.spawning,ttl: creep.ticksToLive ?? 0,
     lifetime: creep.body.some(part => part.type === CLAIM) ? CREEP_CLAIM_LIFE_TIME : CREEP_LIFE_TIME,reached: reachedSource(creep,identity) };
+}
+
+function remoteSourceIdentity(identity: RemoteFleetIdentity | undefined, home: string): identity is RemoteFleetIdentity {
+  return !!identity && identity.kind === 'miner' && identity.home === home && identity.room !== home;
+}
+function energySourceOrUnseen(id: string): boolean {
+  const target = Game.getObjectById(id as Id<Source | Mineral>);
+  return !target || 'energyCapacity' in target;
 }
