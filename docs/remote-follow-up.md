@@ -1,6 +1,6 @@
 # Pending ED-29 integration audit (read-only findings)
 
-This audit separates completed components from remaining integration. Latest clean 672077c passes all 216 engine checks in 1,306.38 seconds; see evidence/remote-construction-native.json and evidence/remote-construction-engine-suite.json. Earlier timing evidence remains archived separately. The remaining obligations below are still required.
+This audit separates completed components from remaining integration. Latest clean a376519 passes all 222 engine checks in 1,358.47 seconds; see evidence/reservation-population-native.json and evidence/reservation-population-engine-suite.json. Earlier construction evidence remains archived separately. Earlier timing evidence remains archived separately. The remaining obligations below are still required.
 
 ## Actual replacement interval
 
@@ -29,3 +29,7 @@ The native assessment fixture includes a farther source whose loaded miner retur
 ## Automatic construction status
 
 Construction workforce now has ordinary main-loop recruitment, route/body-aware service timing, capital/worker controls, final dispatch revalidation and shared source/construction same-tick slot accounting. Native proof starts without a builder and separates birth stock, construction expenditure and home-funded refund. See remote-construction-recruitment.md. Automatic source selection/discovery is not part of that fixture, and whole-project startup capital/payback, replacement/pressure, stale-site cleanup and reservation remain open.
+
+## Automatic reservation population status
+
+a376519 adds funded recruitment, current final admission, shared controller actors, natural buffered replacement, threat retreat/recovery and scoped queue/spawn cancellation. Source-capacity repricing and live reservation duration refresh prevent self-revocation. See remote-reservation-population.md and evidence/reservation-population-native.json. Combined discovery/extraction/home redistribution income and payback, vision loss, adaptive policy and broader gates remain open.

@@ -47,3 +47,5 @@ The next increment adds generation-scoped remote-reservation owners and a pure p
 Verification:1432 tests /390 files /10.24s, type/lint/boundaries/bundle passed, Lizard693 production /567 test files with zero violations. Focused development native --remote-road-auto and --remote-fleet-budget regressions passed on the modified worktree. The clean218-case management milestone above remains the last full-suite qualification. The authority foundation does not register recruitment or a new actor, enable reservation configuration, or qualify actual buffered reserve service; those remain the next integration work.
 
 Configurable ordinary candidate generation is now implemented at8300dca through bounded stable sweeps; see remote-reservation-selection.md. Automatic actor recruitment remains unregistered. Earlier integration status in this document is historical to its stated commits.
+
+Automatic population is implemented and qualified at a376519; see remote-reservation-population.md. Controller travel now uses bounded schema-2 per-room caches rather than one active home measurement. Earlier quote-only evidence and integration status remain historical to their commits.

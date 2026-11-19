@@ -1,6 +1,6 @@
 # Configurable reservation candidate selection
 
-Implementation8300dca decorates ordinary native management candidates with priced reservation or explicit unreserved decisions. It does not recruit actors. This follows the generation-owned population authority foundation at585c4e4; recruitment, funding and final spawn/service admission remain separate work.
+Implementation8300dca decorates ordinary native management candidates with priced reservation or explicit unreserved decisions. This document records the selection-only increment following the generation-owned authority foundation at585c4e4. Automatic population, funding and final admission follow at a376519; see remote-reservation-population.md.
 
 ## Controls
 
@@ -11,7 +11,7 @@ Implementation8300dca decorates ordinary native management candidates with price
 | remoteReservationMinimumBuffer | 100 | Requested missed-tick/handoff reserve buffer; allowed0–4999. |
 | remoteReservationMargin | 25 | Replacement scheduling margin; allowed0–600. |
 | remoteReservationQuoteRooms | 1 | Maximum candidate visits per management call; allowed0–64. |
-| remoteReservationEnergyReserve | 50000 | Reserved configuration for upcoming population funding admission; not consumed by quotation. |
+| remoteReservationEnergyReserve | 50000 | Protect storage capital from new/replacement reservation births; quotation does not spend it. |
 
 Existing remoteReassessInterval controls refresh cadence; intelMaximumAge bounds returned quote age. Existing route/path bounds constrain native measurement. These settings resolve through the shared empire/room/temporary configuration layers. Default-off selection reads no selection state or native quote context. Enabling this increment can publish Reserve leases, but automatic Reserve actors are not registered yet; this is not an operating recommendation to enable unattended reservation.
 
@@ -30,3 +30,5 @@ Full units:1442 tests /392 files /10.28s. Type/lint/boundaries/bundle pass; pinn
 The selection fixture supplies two candidate rooms and passive witnesses. A1299 body budget refuses reservation,1300 enables buffered quotes and Reserve leases, equivalent refreshes remain stable through reloads, disabling pauses selection state and removes reservation decisions, and re-enabling restores priced leases. Native reservation remains absent, spawn energy stays1300 and source capacity stays1500. Three reloads and unrelated state are preserved. No mid-run energy or lifetime injection is used.
 
 The full registry now has219 cases; it was not rerun for this isolated selection increment. The clean218-case6bcfa0e suite remains the broad regression baseline. Natural buffer growth/replacement, resource-funded recruitment, pressure/soak, combined discovery/extraction/redistribution and economic startup/payback remain open ED-29/ED-43 work.
+
+Automatic population follows at a376519 with finite birth funding, shared tasks, natural replacement and scoped recovery; see remote-reservation-population.md. Earlier statements that recruitment is unregistered describe the selection-only increment.

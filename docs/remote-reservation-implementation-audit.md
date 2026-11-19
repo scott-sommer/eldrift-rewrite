@@ -45,3 +45,7 @@ The new population family must join both app/remotes/workforce-admission.ts and 
 ## Configurable selection status
 
 8300dca connects bounded stable candidate quotation to ordinary native management under default-off remoteReservationEnabled. Native automatic policy can now publish priced Reserve leases, but no new Reserve actor is registered. Clean focused native selection/management regressions and1442-unit qualification are documented in remote-reservation-selection.md. Scoped recruitment, actual funding/final dispatch and natural buffered service remain open. The prior statements that native policy is always reserve:false describe earlier commits.
+
+## Population status
+
+a376519 connects automatic funded population and shared actors. The clean 900-tick component fixture qualifies natural replacement, buffered threat retreat/recovery, exact capital accounting and withdrawal; native negative and in-flight cancellation fixtures pass. See remote-reservation-population.md. The earlier missing-population audit statements are historical. Combined extraction/redistribution income, vision loss and startup/payback remain open.
