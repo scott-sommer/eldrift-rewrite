@@ -1,0 +1,531 @@
+{
+  "scope": "Per-home adaptive source capacity: native idle and allocator-skipped energy starvation over 1505 ticks; actual birth occupancy; default-off isolation; five engine regressions. Full-life reachability and wider ED-29 operating gates remain open.",
+  "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+  "registeredCases": 228,
+  "fullRegistryRerun": false,
+  "fullNativeBaseline": "remote-pipeline-engine-suite.json",
+  "status": "passed",
+  "milliseconds": 229491,
+  "checks": {
+    "unitTests": 1504,
+    "unitFiles": 403,
+    "unitSeconds": 10.56,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 723,
+      "testFiles": 594,
+      "violations": 0
+    }
+  },
+  "runs": [
+    {
+      "scenario": "--remote-capacity-idle",
+      "milliseconds": 30613,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-caNzwi\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "4f174f1133223608a5dff9c84e4245888edab08214a9752e3ed3660d8a7b9f20",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "8d542a4db6468270e214a3ed9f0904df9d03d0d9fb9767b4328e6405c5389382",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "07281ab964728927929762d54d93dd61c2c6bbc6fc6a686396bfe6b750dd3a6f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 1505,
+        "meanCpuMilliseconds": 3.4199335548172756,
+        "maximumCpuMilliseconds": 44,
+        "maximumMemoryBytes": 287510
+      },
+      "adaptive": {
+        "mode": "idle",
+        "rows": 1505,
+        "rowsFile": "adaptive-capacity-idle-rows.jsonl",
+        "rowsSha256": "eb7fad56f2e876de46a77680f89a67f1e808b6e2e1cc362e626a956f4febc726",
+        "calls": [],
+        "reloads": [
+          21,
+          751,
+          1500,
+          1502
+        ],
+        "last": {
+          "tick": 1505,
+          "supported": 4,
+          "evaluatedAt": 1501,
+          "observedLoad": 0,
+          "load": 0,
+          "coverage": 1,
+          "busy": 0,
+          "starved": 0,
+          "energy": 2300,
+          "segments": 1,
+          "names": [],
+          "pending": [
+            "unrelated-capacity"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-capacity-starved",
+      "milliseconds": 31798,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2VmpJK\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "8087376587bca23dc473ae6a242f77cfd4d087ec1696125012106913643fb53b",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "9b9f28fdf321390856eebdc7dd0b9eaa67d509df754681a1dbc80fec440ad22d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "50f4136af2f54d2a440dd94c2c6d0323b964d826237d971fe76abc2de4d68b6d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 1505,
+        "meanCpuMilliseconds": 3.8956810631229235,
+        "maximumCpuMilliseconds": 45,
+        "maximumMemoryBytes": 322448
+      },
+      "adaptive": {
+        "mode": "starved",
+        "rows": 1505,
+        "rowsFile": "adaptive-capacity-starved-rows.jsonl",
+        "rowsSha256": "a28a2364e7a9357ca14ca1b23451a45d835f5a9af1934e389ee52135dca4b8ff",
+        "calls": [],
+        "reloads": [
+          21,
+          751,
+          1500,
+          1502
+        ],
+        "last": {
+          "tick": 1505,
+          "supported": 2,
+          "evaluatedAt": 1501,
+          "observedLoad": 1,
+          "load": 1,
+          "coverage": 1,
+          "busy": 0,
+          "starved": 1500,
+          "energy": 0,
+          "segments": 1,
+          "names": [],
+          "pending": [
+            "unrelated-capacity",
+            "pressure"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-capacity-busy",
+      "milliseconds": 1905,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Y45awI\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "a0f791c40827be276f6425883af6ea16ee224fa4a728460a39b5a10b999d6cdf",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "1cea3f26b815591b2bc88daea37a89e5eb5cd87a7ab0a3e009800bbc4bc27889",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "66a4d81013f7f094e5c917ad9669bd389b92de05f2ddcdb4be9bc6b975cfffad",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 30,
+        "meanCpuMilliseconds": 6.366666666666666,
+        "maximumCpuMilliseconds": 45,
+        "maximumMemoryBytes": 7974
+      },
+      "adaptive": {
+        "mode": "busy",
+        "rows": 30,
+        "rowsFile": "adaptive-capacity-busy-rows.jsonl",
+        "rowsSha256": "d1c9db197c5a9d64fa099774d6b131769d354632b635ae8798a8692d800ab867",
+        "calls": [
+          {
+            "tick": 1,
+            "name": "pressure",
+            "code": 0
+          }
+        ],
+        "reloads": [
+          11,
+          21
+        ],
+        "last": {
+          "tick": 30,
+          "supported": 3,
+          "evaluatedAt": 1,
+          "observedLoad": null,
+          "load": 0.008,
+          "coverage": 0.02,
+          "busy": 12,
+          "starved": 0,
+          "energy": 1000,
+          "segments": 2,
+          "names": [
+            "pressure"
+          ],
+          "pending": [
+            "unrelated-capacity"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-capacity-off",
+      "milliseconds": 1749,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-R0kBuh\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "ce43ab8a8bc2bf257fa12d5f083e4930ca80e088162788984a5b41392fb54e92",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "bb4c640406d8fb21192479cbc6f66e8cdc84c9b24825809d1919b06c447e24af",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "07920d9b41d69197153f0fb095209079fcfc78c76e92ae1ae33d6bba851dc455",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 30,
+        "meanCpuMilliseconds": 5.9,
+        "maximumCpuMilliseconds": 43,
+        "maximumMemoryBytes": 7359
+      },
+      "adaptive": {
+        "mode": "off",
+        "rows": 30,
+        "rowsFile": "adaptive-capacity-off-rows.jsonl",
+        "rowsSha256": "d616879c660d0d706db348d4b98bc4c726854eda0d29fd21ee9e71db7ebf5a17",
+        "calls": [],
+        "reloads": [
+          11,
+          21
+        ],
+        "last": {
+          "tick": 30,
+          "supported": null,
+          "evaluatedAt": null,
+          "observedLoad": null,
+          "load": null,
+          "coverage": null,
+          "busy": null,
+          "starved": null,
+          "energy": 0,
+          "segments": null,
+          "names": [],
+          "pending": [
+            "unrelated-capacity",
+            "pressure"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 889,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2PvR7h\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "ad54b5ee409a7306e15a4dc3ba28a6e81c9f3c10e6c5c1749b038ed0018833a8",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "ccf795b07ecdaa28a37277daf7552265f9eea2056d5534a4deb7aee844e3ec1f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedSamples": {
+        "count": 3,
+        "meanCpuMilliseconds": 13.666666666666666,
+        "maximumCpuMilliseconds": 38,
+        "maximumMemoryBytes": 236
+      }
+    },
+    {
+      "scenario": "--spawn-contention",
+      "milliseconds": 1056,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6VH9JC\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "a0b5881b0053638a383815896d3ddb6ce5522bd77b81090b8a839106c2ca62b5",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "7e45211ad8ed06b7bb925dd76c9495da88a74702940851cc5391188a2952ebdd",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedSamples": {
+        "count": 3,
+        "meanCpuMilliseconds": 17,
+        "maximumCpuMilliseconds": 43,
+        "maximumMemoryBytes": 936
+      }
+    },
+    {
+      "scenario": "--structure-actions",
+      "milliseconds": 1032,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-68gRod\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "6225963bb3008fa4c80fcb538ca42a124e478fb4d3c7a08198ecdacd2c7fdbfc",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "ca448088431a8601f0930f54e7ee80091001b6ab517173490a5606a814f7b18e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedSamples": {
+        "count": 3,
+        "meanCpuMilliseconds": 16.666666666666668,
+        "maximumCpuMilliseconds": 43,
+        "maximumMemoryBytes": 1014
+      }
+    },
+    {
+      "scenario": "--remote-runtime",
+      "milliseconds": 4637,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tQwPHd\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "8da895a541678b20bfdce52a141e603f0d1d3fb58dd7278815c1f5082228d5f5",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "856bbcdb2f7003052ded3389f5d1fad0a6a82e7f9f96fe7612d885e0617f6516",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "b56c3eeba497d1c2edd6fac2f531efd8fddb75cab3dc739bfd84e44c1ca12036",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 100,
+        "meanCpuMilliseconds": 9.41,
+        "maximumCpuMilliseconds": 48,
+        "maximumMemoryBytes": 626185
+      }
+    },
+    {
+      "scenario": "--remote-pipeline",
+      "milliseconds": 155770,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GEjHBJ\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "58ffaa2fc8a8783828ba5c3134a9d03b12b3dc2fea2d2445f6f0853892ed9177",
+      "provenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "db872fd266d9982aef53d039add33d3eea01057731c3aec65576b6bb811ff906",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "721c935453f42a01ec9550f542d351bfe309e50f",
+        "dirty": false,
+        "bundleSha256": "a7f76a12e4caf01b6777f031e18899f980239e68134033b984c4a7e06af8e6f5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedSamples": {
+        "count": 1000,
+        "meanCpuMilliseconds": 35.836,
+        "maximumCpuMilliseconds": 121,
+        "maximumMemoryBytes": 1387914
+      },
+      "pipeline": {
+        "rows": 1000,
+        "rowsFile": "adaptive-capacity-pipeline-rows.jsonl",
+        "rowsSha256": "cee88f9cc0e4bb7e24c648dfa030a8c4302882daeb31131be819aa3e5e5a0a2e",
+        "last": {
+          "tick": 1000,
+          "stopped": 800,
+          "visible": false,
+          "discovered": [
+            "E0N1"
+          ],
+          "lease": null,
+          "source": null,
+          "reservation": null,
+          "offers": [],
+          "income": 4564,
+          "localTransfers": 3300,
+          "birthCost": 3750,
+          "homeEnergy": 11114,
+          "remotePending": 0,
+          "unrelated": {
+            "id": "unrelated-pipeline",
+            "name": "unrelated-pipeline",
+            "owner": "unrelated",
+            "room": "W0N1",
+            "body": [
+              "move"
+            ],
+            "priority": 100,
+            "readyAt": 10000,
+            "expiresAt": 20000
+          },
+          "sentinel": {
+            "owner": "fixture",
+            "version": 1,
+            "data": {
+              "preserved": true
+            }
+          },
+          "quantityClaims": 0,
+          "miningClaims": 0,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 509,
+              "cargo": 0,
+              "tasks": 1
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W1N2",
+              "spawning": false,
+              "ttl": 512,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-3",
+              "family": "miner",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 542,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-4",
+              "family": "courier",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 554,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-5",
+              "family": "courier",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 566,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-7",
+              "family": "reserver",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 214,
+              "cargo": 0,
+              "tasks": 0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
