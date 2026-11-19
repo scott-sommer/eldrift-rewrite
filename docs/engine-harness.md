@@ -70,3 +70,12 @@ The --scout-lifecycle scenario explicitly calls the pinned driver's activateRoom
 ### Scout exploration terrain halo
 
 The new --scout-explore fixture supplies terrain beyond its accepted path corridors. The pinned driver's native/src/pf.cc room_index_from_pos dereferences terrain before invoking roomCallback; a sparse mock world can throw while considering an adjacent room that the callback would reject. Retain complete fixture terrain for those candidates and assert zero reported unit errors, not only zero uncaught engine exceptions. docs/evidence/scout-runtime-native.json retains the initial error-loop diagnostic and corrected default-depth progression. Production route admission still excludes rooms outside its explicit corridor.
+
+
+## Long workforce traces and border recovery
+
+The lifetime fixture streams every per-tick row to the host, retaining unique native attempts once and checking repeated unrelated-queue/state invariants in the bot. It does not raise native Memory limits. Pending confirmation snapshots remain explicit and global resets still occur before confirmation; old acknowledged journals need not be copied into every row. The lossless 1,750-row archive is checked against its digest and consecutive tick indices.
+
+Use the 20-tick remote-fleet-border case for the tight diagnostic loop around arrival-edge direction, actual landing and traffic denial. The full lifetime case verifies distinct successors for each original and cargo-safe retirement through normal TTLs. Recovery/service-recovery timing checks now reflect immediate avoidance after one confirmed denial while retaining fatigue, blocker, duplicate-call, arrival and reset invariants.
+
+Clean ed82a98 passes all 211 engine checks in 1,193.06 seconds, including the expected failure sentinels. Per-case clean provenance and digests are archived in evidence/remote-lifetime-engine-suite.json; exact native traces are in evidence/remote-lifetime-native.json. Fixture trace samples include probe overhead and do not establish production CPU/Memory pressure or soak acceptance. Continue focused plus broad smoke checks during ordinary iterations; the full engine suite is a larger runtime milestone gate.

@@ -1,0 +1,4644 @@
+{
+  "status": "passed",
+  "startedAt": "2026-11-19T03:37:39.360Z",
+  "milliseconds": 1193062.1022,
+  "activeScenario": null,
+  "results": [
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 896.1555999999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3vPN92\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "7c3d7e64ce6e79e38a4a3616d69d672d0b8caec83783d759aec31a41abba626e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "95882f723d661a8154ea283936138d8704e66318bbb87f3b1487b9f832b3d218",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--reload",
+      "milliseconds": 1019.6392000000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-OXlkF5\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "1d7d838b2baec7bfb697ecfa3ee2a8d05b8b05feb6b45cad907651779a0c1492",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "95882f723d661a8154ea283936138d8704e66318bbb87f3b1487b9f832b3d218",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3f11799f5876b21e63e19ad1433955e8bc4351caa16cabf1320fc0b3bb815e1d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--actions",
+      "milliseconds": 1047.0423000000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1naftH\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9fdb0d5b8270211d9a342a246191718c4c9463e791238e7aa1704aeadb0db23c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "341b64e95232a03492d0a773444d834c2f2f04ad96782b840f9b0d4bc1537ed3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--stations",
+      "milliseconds": 978.2545999999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-B5Zfd7\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "fa74ad67ce32e387e98b56ec277e62c18b7ff99a1a993794dcbfed72c66121fd",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "07568ac09bb810ddadcaa53edebf17ac23a239297d088328386f604f68320825",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mining",
+      "milliseconds": 1082.5574000000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hOjsFg\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "bfdfc410c1ff3c73ab0150f0eb8ae58b3e0fb5b8fa2314f6f9d1e85ea46bc1fc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2280c3a1fe34b65acaed5f96cc18a4ba9bf82531ad5b9cdaf34e0f6a54c3a342",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mining-storage",
+      "milliseconds": 1091.6849999999995,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WxaEgZ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "add40883fc9a4a9c6a72aa73e2c1a452a9fa69fd9ab73ea931b4fb0b4d2ba84d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2280c3a1fe34b65acaed5f96cc18a4ba9bf82531ad5b9cdaf34e0f6a54c3a342",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mining-work",
+      "milliseconds": 1058.6942,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4W05nH\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "20fdf078cadbb8e865563be33664215fb0580e7ac4bc8feb2b1000de60824a04",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e5440060c925dfe3d8dc38d5344dbbe7f92004b947b2a28116d11b65cac137df",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--colony-mining",
+      "milliseconds": 2213.2677000000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-X94kiy\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ea8c07a2ff56b0c721f3614d2af765a69c41ba82768403c20f8416b36776f9ed",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ed64829d69b4663564293ce8648a07f06f3f6942f6baffb49aed7bcfcf81d924",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--colony-mineral",
+      "milliseconds": 1527.5600000000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2uPILW\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "10be9aa2ff200201bd92ad0d2a8fa7ead358cc59e2b919608fb60d58da27cc86",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "748fe1d1c32b0ad64c003c4c2a95bed0310f50f536b96d54013c193235dc17d5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mining-replacement",
+      "milliseconds": 1506.2313999999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-LptG8s\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8fec44f5def7d4a673e14b5fc2d991d60264493d58809369849c2ac36d9e9725",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "bba6cc3fb2f0002464c3176ff7357224b05244e4671a957a8c7bd1863e0f5bc0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mining-saturation",
+      "milliseconds": 1384.9423000000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3ZMV0i\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "76454c65128c4f8f539a9ab0e648df519aab29f5e62763887169521f88a22f93",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8a2c765d4620497666dfd0c0daccdcc29b8c57a197d996f3d2c9da55ee8e40ed",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "abdfe83b6aa469219e4848f07b56c51d4ebdf6997496f004ddc116a4e917405e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--extractor-fault",
+      "milliseconds": 1219.8122999999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ijq7aa\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9aff49fb16e0a7fa2b908bf94ce4660cf8de0d2acb2ae45531ac1d26b35ee62f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e73579d84d5055f9712d9e96a3ca5c964f764ae70d3880416883ef9e647adb03",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mining-interrupted",
+      "milliseconds": 1207.1159000000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-rXXEU3\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "7c15f1b43a77d0394937afa25f513cdd7000e7ab89e64d52a875ec29dac2e226",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2280c3a1fe34b65acaed5f96cc18a4ba9bf82531ad5b9cdaf34e0f6a54c3a342",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--specialist-mining",
+      "milliseconds": 1124.4504000000015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-i8MyQO\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ddf8c97da7b33d124f4d5d5dfb9096032f4c737116a76673646023def221013f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "d848119b8a8ca1a6019be81f2a32c60ef6f000da62c2bc70a212f7fa80bf47d4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-depletion",
+      "milliseconds": 1041.8286000000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-URqbr7\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f1993626e19f15fb89b62395e7a7a3507e1d5e85dbcd3c6ff60292ab9933f5a6",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ed7075e9aec1d0dff6ee10c56db0ce78e001f368f27c9f2e6acbcc47ca32278d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-capacity",
+      "milliseconds": 1144.119300000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ecBeGE\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e38851b1f5c8ebfe8b205780ed966196fed0e44fc57a88eb3350a88cd69d317a",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ed7075e9aec1d0dff6ee10c56db0ce78e001f368f27c9f2e6acbcc47ca32278d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1179.856399999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NF6QJo\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "46c727728e1d808c3224a91389ed03799a9320b32655d8aa383d1bc9d97d5a3e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b87354b21b0ea210b3c894ec5cef9d7d818d6c7fc7f023555041ec77de32c6fc",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--spawn-contention",
+      "milliseconds": 1060.5653999999995,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UWlFYj\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8135b293bc83bd90673feb8a1f3d172a6bb9c742f873b1fb532b402b0469364d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "534c7a236e75708812e1186f24934523e22dfe14fbb7f619b49d6a3693bbb3b4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--tasks",
+      "milliseconds": 1054.9123,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EzPl69\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0296633b3f5fb67667ab632dcc1103e1dab3139a84a982697c3ee92b2116bd96",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a0ef399bf46c2ff69211a72212e8df3caabc720399281e2df0e33f3b520498db",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--work",
+      "milliseconds": 1051.0084000000024,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DMVUzy\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "19ecaedb598d0c9fab9b32aef3a7401fc7f87d331dfc5c008b46d13133148cda",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "540a6e42b609114ca39d02573b027622ef5e41c6077a01a9b6458deb610f97ed",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--work-selection",
+      "milliseconds": 1042.039200000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Vxo2Hw\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "90d11572cc772268724c2fe9f3eb87486fe28f32e9d68ac05a94045c21fac21e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "d61bd2f56196f2d24f7b20fee0587e01c750c0fc13019d53141640a57544b58a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--room-assessment",
+      "milliseconds": 1197.798200000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Jc4uY5\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "97868a94a9edfff6cc116140082fddeecc64b9966839748e8b2fcf7fadb5e82d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "739867ae72be9ec55c73ab14793cbe7de891f7724eac7e9ec8cc5166c8097aba",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--intel-observation",
+      "milliseconds": 1284.0672999999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oNRbCD\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d8285592d895a6879f1ed317a8491f7973af2c3897175b6e18ff6476b677616f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "30a0663d3a8261d5317aa7b11102eb6e712e1d41fc512c68e7cae30d1cab285e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3352868223d9e826ced053bc331a97d5781b8eeafd21afcc6911379e55b45e79",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--intel-capture",
+      "milliseconds": 1406.434400000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NjhrCT\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8b48e538b936583910efe0363283949737dac477dad8d2abb8b12510a6c73844",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c11bf08c45b6378c480ccbbae7b8acaffabb4266a775e6d890727dee9a848adc",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4bc5dfd117a9d9526707b037f71d23ffe3469c23110c42746a1df3e41e34a6a0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--observer-runtime",
+      "milliseconds": 1928.7152999999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1x5G4K\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "6eb09dcfe8db90b4e9291708f08ef11f5f43f459947be819fde1590b135cc42f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ec470ec749eff13011275a599b3c1d9b3be76264fd0bb0a6052179a09ecc5c2e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "0c0f5d022b1a6787707577384126630bfeaf2f6329914437c03e16b0d58c305b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-lifecycle",
+      "milliseconds": 1424.7261000000035,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VlS7Xu\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9c45710541e31fd146dbb3f61ac33b9d043ab0c11948680e7eea1643a7c78660",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c32db847567c21bdac39d303cc96ee0b830017565506d263b52f5890a424c4af",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4e0a7fdf4064bcd797b968d7e7efbe2762658ce03268544a3f5a2da138b2339d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-control",
+      "milliseconds": 2392.637899999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-L9sFgT\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e4d455d96377b105b07ca720f2f1d875c3b729f457540b0db8d528817e2fc6be",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2c437b0d1ecaffa84ac9881b435fd8c0265e4eaa604cad4d01853306f6bfd9ed",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "50ef55713884b419b458f2d24a422653dbd852e62a44126f0edaf46d57387c07",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-spawn",
+      "milliseconds": 4964.960800000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DkXPOA\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0f19975d791a50626a579ca1d0cadfac9779c79c1a5c9f323d6943db7dac576b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f8f736179215414122307e275ac889897638d1b255203f58262129b8758135fb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3c414d04475a98af865b0483ed3617817afdc943cb2316d309b7dcff0cf39b9d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-default",
+      "milliseconds": 1907.0054000000018,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ldxLZr\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d9fe82614e67bbc8c2f22015535720bb95698b657511318ac12cefe2f1931f83",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e5564f78a228156315e6250d64248ff55415f2b0bc66fb87bbeb90240c7a50ef",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "337290f368ff857aef8414393dbeeaa6cb7440a3c1c09da69577c24b21c18c08",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-explore",
+      "milliseconds": 5620.2543000000005,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2Y1ZWG\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "79ada28ca9542134aaeeb91aaa2c44780bdcea61ad3b7f8c532403a9659b5ce2",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8623cbbc7d43a191802a2bdade3890c16efc2673b6b07f49f455a0cb897f6b43",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "d7f1b7b4eaae93a2d02f0aa9eb9a620b60e4dc504f2dec6531acb60e8c914e2b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-blocked",
+      "milliseconds": 3274.133299999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-E8LzXq\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "fc099246dae6b30e9e8f222480bb4590f379a0c71a25f2668fb9f1486c764a9e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "93e79343603f1b6f70c375a97036c888726cfca2ad44a7cefad33591232a7c51",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e787d1f8434d86becb5313d44a68f7db33fb206e1bb88b0ec9b66f7f9b0a4a0f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--scout-fallback",
+      "milliseconds": 6256.908800000005,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zDIZao\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4016afec708f732393f5d1ca1a2f94c30357a19aec632f977a72c2752c1fb6c3",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8509c85152f95585fb33d396d2382d504c94ab8566815d4ba5132befa33f5726",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "14efcefc9c03ec53bc00c08399bfb7f2ce10418fd779ec2e7000be99efde5853",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-assessment",
+      "milliseconds": 1142.9015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NfO2Jt\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b6d287f15b2e419aa789b137cb4415c81a63f4b1529279e7040b49a1617ca28e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "87c49bac1d6ad0e7995087fcd6e7f8ac9c92469d136f5bd57aac622ff56f714d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-reservation",
+      "milliseconds": 5815.245199999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1OETuY\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "3f4e483d33db02735c3d0d4c503040fc7a206466551671e00deeb447dbc150f0",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "9f688f701f60a2752588971340dffac42c78f96380ee31f44c039ec19b796d7f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "0d26ed59fe77b0b49a2b47b9635f9e505f7001a070c58255ea34b4df0b25b8c3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-mining",
+      "milliseconds": 5122.073200000006,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PzVYbY\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4273bd98f124cb74c56423cce412fbe7b9ad4a937d4bfb79976cc811376c4f82",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "242b24dae0f72ceac71003c98bb5fde7f9c9e61b63caea7f1441637b5b734c25",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3aa738dc9111210417baeafa517be2c8c5a795aab4c5af0199a7b06eab5c6a14",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-banking",
+      "milliseconds": 8250.146600000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-KzJeHN\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "033a5eea668cc222e32cf927aecda197e5fc21d2f3a21e6572d313c8cdd54313",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "36f970d867f14132a95b2c2b47233ec0a1c775512cd59df24dcf43664ec9862d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "149d515401392d587c29e042827da118225e7b1de9c5b7e15795f9144028d469",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-banking-sink-loss",
+      "milliseconds": 9894.919899999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3yzMXP\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0f5f730a41ec090323e687b9e0882162e51f9c48b74976159815aaab046efd98",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "36f970d867f14132a95b2c2b47233ec0a1c775512cd59df24dcf43664ec9862d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "149d515401392d587c29e042827da118225e7b1de9c5b7e15795f9144028d469",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-banking-gap",
+      "milliseconds": 9306.2748,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nDbixq\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "5cb8b7049ae046851a7c5a01b4d053d2f4ca2a1ababcf21aa2f22d36de2b3772",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "754fb75fd1da1c6db7c9ae52a720f5c6544b9aa5beea084954b31fa040498802",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "600a79bc3ae5ef7ccd74994b66ec7abbf89b20ae6b7de868efd9df14ff0df15b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-banking-full",
+      "milliseconds": 10073.555199999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gT2aKn\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e1cf4552735ebd325165f29b85d528ba4ef8cbfe218d77bd76a3e795fbfe3104",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "36f970d867f14132a95b2c2b47233ec0a1c775512cd59df24dcf43664ec9862d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "149d515401392d587c29e042827da118225e7b1de9c5b7e15795f9144028d469",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-transport",
+      "milliseconds": 15624.839399999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3895gB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4943d61bf4ad174d62beebc45c8bf9f46c589f7b391c416395f8fd2b226fd69c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "90ceee26fbc1d516459eda7aba3995e62609cac4e8dbf31878c00711ad533fb6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "00b37f4891c3e653db9da8b14c398f09ff10223d93cc3653d39c493acc4f2002",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-transport-threat",
+      "milliseconds": 17039.810000000012,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hZq2pR\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e9f7eff260378467baa82b55456e8792a94df4fe3dfdadbab406ade09d8d33a9",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "90ceee26fbc1d516459eda7aba3995e62609cac4e8dbf31878c00711ad533fb6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "00b37f4891c3e653db9da8b14c398f09ff10223d93cc3653d39c493acc4f2002",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-transport-contention",
+      "milliseconds": 16578.525800000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BHX2ip\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "db798d8b51edd61b00fde27171548ba9af5448860b2f53c017fb179f965709a6",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "58ea3bdd1ea7f42eda21a895b051c19b0d846d370452169507d8a2ab7fcc5078",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2f73499cf89c45a309c8034e18272d7e531c294b5b4609218b1abc2f60d9b6d3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-transport-drops",
+      "milliseconds": 19678.191699999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yf9FJx\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "a025051894ea70b7f4db798da39bfaebf49d9a4adbc76861e083474eaa50524b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "90ceee26fbc1d516459eda7aba3995e62609cac4e8dbf31878c00711ad533fb6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "00b37f4891c3e653db9da8b14c398f09ff10223d93cc3653d39c493acc4f2002",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-infrastructure",
+      "milliseconds": 3764.6015999999945,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mmrFjn\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "04ab12d15ce0cad48c3acd5cd4ddb0663712dd6f569dc967073176b0603ace79",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "6206cc8be01785f398edd75c975f9262dad22d8b9e34623d6843f9b9ac565bca",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5c5e88f9e681dfc5c216c51ce9e2a89f92310c4d7e7e8cffe6ef0a3e6d7fc788",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-management",
+      "milliseconds": 2681.1951999999874,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-s10LX1\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "710522ce6851e6eb1a4fccf3cb8aeec648109baf9bfa7b01c21e4290f8272149",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "93f4c9b3d684c45badb9c6b032899f36629473214a58a9273cbc7fff3da687a0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "eecc9366a665ca03870a5b830c8009018be09b08b456d6c72060ffc4166f3b5a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-runtime",
+      "milliseconds": 4580.140799999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-w9FQaL\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2f9ede80d4d4ca94fd4503d067fe5008a6115c34a9c3bc681b4fcfc848e23a46",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "bcd9a4b6d54516ab87f296ee48b76cc84a00c2e48a6da8e942495e1529477558",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "002ee2f2b58ea5922e3593435c94c1cba38b4cda874a028105c50956f28f58fb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet",
+      "milliseconds": 21772.32090000002,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-s84mY2\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "77c9b044a1bf0fe642e01fbcdc0a8e12d86ea54902c6c2ae085e98296c70e094",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "845b6d3f0daf910d8bfc22b79dd77694fe8a6fb77bc2a0f6de84a13acbe54d25",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3588d9a2c19283c98975e6fcb54a1b48597f1c584d336b00a6765234740653c4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-cancel",
+      "milliseconds": 18796.19259999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3foVL2\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0dc359948c8234e66eb7dd97dbbb6baa527f57383e7fa175358c5af173c39ded",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "976163f94eef2baa19196f8bef2727f1dfd623fc683aae79bf31423897bb464b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ccc40fc38b247fec17efd98b29286d918a51ece8f30d6cdc917c9b25621fd7c0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-replacement",
+      "milliseconds": 22692.18709999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ndNJOP\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ce904b096d041bb764237d3416f0e4b017e9fc35f92200d1e290c643233a8965",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a76479b374ef3e19a61b1527928b156f3cab124a97966125e87137cdb6bbc495",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "0d7202863f6f134601239b18ac249389ecfdd1f2217e3cd3c099292fca068f03",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-damage",
+      "milliseconds": 22650.99040000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Ewxjxe\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "7a7f98a1aecdac6a2880a1dcac1af347749040b1bcfb225d5c7275b90f64d376",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8a9ddd8fd6491e3da964704ac3fd061a7fff8b8137f47376a0bc8aeb5afbfba9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "89e1a8b26f4dee2119f1d0d67629e4afa3ad7454dcdd4c3302f27b6ee73238f7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-budget",
+      "milliseconds": 19580.173100000015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hKnUeU\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f62e4844209e7a95614d8b6f7980aff31e6fd1c0b8276d45ce92d6d48fe9c574",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3d7858be75db1a7d4696137dfb7622ffc3d32c0e972e58725cea0d963541e0bb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b8f4e2f14b81f36dd1b614f1794d8944e485c36332c0cce50ed457e334525d24",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-bootstrap",
+      "milliseconds": 125111.05679999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2Wlh9P\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0bfd4419527217505eefc3518a29a23e931e71a2fa29d472dd7131e9f5fa38fb",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "135001d233d4a2458c70dbaf1559a40fc8e96729bc73c9bf28aa5ee16afe737f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "59b134958e194de559d079e2137650e34c3308b5f330e80b55a7724e8e1312b5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-lifetime",
+      "milliseconds": 153157.2424,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UMA50p\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f7c1789109558e0a9bf137d3ca27cae18e53196fb04fb7ee649333ff968a4e7f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "40a4924dcb1d1dc70e4c3d5e599c240dd6ecb2b1ac8b2565d1d785b33242cc19",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "075919bcd2f8e359c3be098b251b7d089ab93cf281e6417abc20b9e52b33177c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remote-fleet-border",
+      "milliseconds": 1622.9593999999342,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZoKT6o\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ec8ea46a9da4130d5e94a41d13fb770d43dc5f4141d9579b563fbcf812fcf3b8",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b1c25f488d4cdb73d50c010542ce151bb725ad28ee5681e5bcdc2faa21ad9cd4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c4a2089aa3138ed4ca67dc62ea72333e71a484534e95b588e0600b0aa29fd973",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--layout-placement",
+      "milliseconds": 1303.71669999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JQdCWN\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "fa0015948899e3fca1f9e9702d95525ff874dba8309eaffb5d80ffd9b8a56aa8",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3b24acfcc8abae3e83218cdab99c2daa244b6be9e5f2a54fbf194fe0b714627c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-route-resume",
+      "milliseconds": 1033.5084000000497,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Un16cs\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "749b09fa242f6bf6e0caa8d5fc1c0423cfec16e55488f14fcdae6b6f7855a356",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "63fe85bb0a71a6902d283f9b078b17ef2f768f9ce1de8e470e3b9da33f9f659b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-route-reload",
+      "milliseconds": 1161.7266000000527,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kAF2N7\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e1a37b101388f42462ebf369c334abb5006f7bfc83743b6fbde0373d5fb0f29b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "63fe85bb0a71a6902d283f9b078b17ef2f768f9ce1de8e470e3b9da33f9f659b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e99e78afac567ad0e42cc56ea5b102587b356dcb87d2382e943a4c8b0ba45886",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-commit",
+      "milliseconds": 1246.8895000000484,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wmfaUp\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8b1e6674bd67d1986cb3d776613a14dccb0aae8e5d98440b8e16f2dd06fedb07",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5823c6d0286258a9922f69ca3df63ff4d1d9669e717cc0aba8db6c5b5095f889",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "109c30750ed54269c4dc3cef648207ff43c31f46c75bc63a5c6dea4a5b29a6e9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--standard-draft-resume",
+      "milliseconds": 1435.1788000001106,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Sq8TgT\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ba4cad3dad394ec348acd4a299ffbc734db09014c7cafc3b7a70167c6f1724f5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c530a144b9c585437f7884d567dbcd5b0ec53f0d03db07f23509b44eabd81c06",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "083435b31f794fe84f3664195c25d35cb1b7e9e3b12c5bcc68566f6b18b1356d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--constrained-draft-resume",
+      "milliseconds": 3805.0023999999976,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WVpLUq\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0d0bbd88c30f49cdcefb5bdd083331ecf16abe54f81b32657f173a230c38e1a5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "80c4263b74f63b63fe0103f4f199c2f252d3d6441895cfaf910b1734f4cfd412",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b7c296c6bee77ef1ba68839a747a7ca2c45bca88614bab84fbe4d0b124368525",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-job",
+      "milliseconds": 8992.320799999987,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CRRMpb\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ef4122f99e3c6983d8fd9c4f2f2216b741f50ef769804640959faf6346ae54e0",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f9191f889727777062521da45cd855d1493bc2b024169009761660b94fd4e85f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ed582f3c299e89538fbf0c43ad6db2ff8762bf28ddb94e38af8e88677f060b70",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-cpu",
+      "milliseconds": 9594.473899999983,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-SGp8TJ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f830681106b21b022d290ad33df8773f3ef4565d753b3328d7f768bbbf61442f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f9608e8752890c12f1d64bbf278e3ae9b04a108a02195feaa9f20040e31b8ac0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "adf236a046e52359eea9a85749a9a95d99f547f6e2297b45a7429f9702c486f7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 1
+    },
+    {
+      "scenario": "--planning-runtime",
+      "milliseconds": 1118.3327999999747,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-SEyoVt\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f5a57ed0f6e248a4180e46efafeffceb4c6e1f71fe4ca39538257a8abc3387ea",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "95b82701322d530223707d5f37b350a44aebb6bde5f100dc7c120e665f6130b9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-budget",
+      "milliseconds": 2915.510899999994,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xxF7H8\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "1f703c261619e94c4068b8a547123b7c8f4090f26d63cc21024aed75666fe870",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "81875f89afda0ae765680fac8d360618e7daa13bbe3c6b0853ceff3d7f0e9fc2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--planning-room",
+      "milliseconds": 31714.330799999996,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nZYj0e\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0922c1b51cdd926a0ab2bf8d644a52aaa771885db6173c6ec0cba60a59bafccf",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f882ff5fbb4b84caa0e7958463171c00931517497c4f006f7bdd1efb35a390d0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a96436a1602b6b35393d01f781b3cca55ef076b584678728ca6e81a98bb821a2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--construction",
+      "milliseconds": 1081.32779999997,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IHqQqB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f07342d2edd93a4d6352de858b6db640aac7bd5e07f48abaa6b30abfe1f0b029",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "807e9719ec7adecaadfc9062f20d2ba5a9489d094816086ee85fc6b0af14b889",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--construction-runtime",
+      "milliseconds": 1106.4893999999622,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qkQUHq\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "97ac72af66e9ed3dc330c791bc75b6e42b164f70be4eb212d2b856a2c7afd215",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "cec6292d835f61da16eaf0581e92d84a6f95763d74d7840c162e0f0b297e8d9d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--construction-lifecycle",
+      "milliseconds": 1615.1112999999896,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CcomEQ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f393c4cb810eeb6d94bd792a955db9265b8c441524945a7050ee25f3ee22ea53",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "cec6292d835f61da16eaf0581e92d84a6f95763d74d7840c162e0f0b297e8d9d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7cba2c008c32b922fbd8a45c67c6c0eed9553dbd265393904d389a25ad940715",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--construction-budget",
+      "milliseconds": 1343.4444000000367,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YGF4TN\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "faf9d9052cf293a15b472b11d9fa7d723ac868c665082f2bb18ad4b40ac4b453",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "041aab4331c7cc9a0370583699aa7c18c8c702fc10c25b9fe51c43f8ad67e818",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--construction-remote",
+      "milliseconds": 1071.060599999968,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-rgWKlD\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4e127d58a33a033cf871d61548ff27656acb6138df6b8678a7384f585c8ed570",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f8c7a6eeeea1d2d2ba2798790773d9603e5a79df098e66003144ee2096c8f158",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--construction-retry",
+      "milliseconds": 1295.826999999932,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hSgrtN\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "726c86d06bd8b96169b4eb5741af25c84d49b075672a30d788616732d80855bf",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4a5f805486cac8ac246a8397a02bf06c43cb63d2467cafafccaf3d9ead8f118d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f8700c85e26a5580af4d569dbed1bd5f0ac190c134d8d0cf268e0d06f2187041",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--defense-cut",
+      "milliseconds": 9701.627600000007,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kHrS87\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e028fa5c4100b5a4e09c5f8671b187a463f2cc078a9e68550fa3390f9e085ecc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4b3dc3cca8cee8f8d026aad542155040f122926cb61c1f2d632ea44881a98d61",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--defense-cut-reload",
+      "milliseconds": 11016.552800000063,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Z06MsI\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "02b85d0de561aab8e6f28ac50589563ed8f9db61ee4af0cb4e5a2b3ec63fbaa6",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4b3dc3cca8cee8f8d026aad542155040f122926cb61c1f2d632ea44881a98d61",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f64136583ec95bfbe20b20c39678b68ba86d2847ca932ea5427f4866342b3c36",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--stamp-draft",
+      "milliseconds": 6324.5311999999685,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qLi6A0\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "1659acb67ec33b178e2a9af7f6af918f9743c1dd344a1cca5dac67976e0b9e15",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "96f768700f7da9d68f7ad5edde8edcdf115d7af952896bedf73db6fa8b2ab6e2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "67bf43df2ef17bc5f18eea4e873a1e139682a704c4822b21939b90f5a14ea958",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--stamp-room",
+      "milliseconds": 13549.753600000055,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3bDS7o\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "57522d22b2a91a0138a3e29916578fe799d66ee674b1781cd548a1e3e9b03a47",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "79778db42dbc42079415de09de28f07914a765409d818a8f35914a154f9ee34b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "1313becb2bae8f67bfbde7479d290e7691eca9c41a82237691ea558f5f05848b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--auto-stamp-room",
+      "milliseconds": 22793.213800000027,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jnfPIA\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b1414d22a042395475f4a5ea11e70e6c9b8d8cc3ed4dff647a60a340219dc4f5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ffd2414275f0249ac32de9153158fe65b37f445fb177b497b72d8e05041cc12d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "108a834676722673e426279a24e660e45d905def4b5106464a5232e2153b5d45",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--irregular-stamp-room",
+      "milliseconds": 12927.299100000062,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zOKELt\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b048e9ee3955bdce405d167bb40f08b7643655587e54bf03c4d26ab56e6acc60",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "79778db42dbc42079415de09de28f07914a765409d818a8f35914a154f9ee34b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "1313becb2bae8f67bfbde7479d290e7691eca9c41a82237691ea558f5f05848b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--stamp-failure",
+      "milliseconds": 15043.242599999998,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6p5XTl\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b3eac39d1cd2237f6d9acd137421f430bae29884c57ec8fe102cc38e8be94a5a",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "316b9b322cdab74b9b50712e1f847dbe17b0aaf37d5ba2cc7ac1090683049425",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "29dd588b05c647ca3651f268764e2d978b55c93bee5b8cafcb5833c792a83f93",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--stamp-budget",
+      "milliseconds": 56171.009500000044,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-LE7KHV\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f6e944e4ac0965a65c33739557de71b5cc4c20a3e485bf4187a35ef2cc956981",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "989227fcadb376237582186d7a485d84d4cb54318f124d1e7ef38022f7976b41",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "65894ca852a5a1735dcd70bf408bc976abed551ad5089f26e6ed922152756d22",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--stamp-late-reset",
+      "milliseconds": 60792.569299999974,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ei773d\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "20e35c301d4d5e2640f246b1a0cff196382c994f72a7646f998424dae189e290",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "989227fcadb376237582186d7a485d84d4cb54318f124d1e7ef38022f7976b41",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f8be0fb52737d2efb01893dd50fdb7547ba2ee704e3e3d677a12786733e8a008",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--work-dependencies",
+      "milliseconds": 1149.581200000015,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MtM5Yn\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "edca0c6bf1e2a72079209eb749525b8dadbbe6b6037b9d02f80be4a8a0f7688f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "83294ee0aa798422ab85ddd2297c522222a03092dec09084a5848c74ef9a746a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-runtime",
+      "milliseconds": 1104.048700000043,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-okUE7L\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e8c5f6c707b1eaefa7f201156765c914f0bc5a98f66fe05f8faa4744f278e9a0",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3fa3a12fef74861f83f50bb85e6015de71af9c71ca2fc1077359ab9ce7d23216",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-position",
+      "milliseconds": 1041.6148000000976,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mVwcuk\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "3120ab41a3739472c65ed279544c0e2b3b96f315dd27627f4432e4dcde845d24",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ffb60cbfc27b4cfbe24b811b7201ae249cd9e20bb90c248de99e05953d02be62",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-position-wide",
+      "milliseconds": 1042.3042000000132,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-pEHrAr\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "78a2c7049f1a5e31ad5e1fdacf8dd015a4d0be8a27f6bcacfd52001268eb8f72",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ffb60cbfc27b4cfbe24b811b7201ae249cd9e20bb90c248de99e05953d02be62",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-population",
+      "milliseconds": 1868.0443000000669,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-0k8ORy\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "bcc3f5bb4440baf61db6f49127051e781e53189bb2d31c23274e334497e63d91",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b0aefbffe0590cf5e0309be1c39f750183573459d320fa814f22c3e0b31502c6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mixed-workers",
+      "milliseconds": 1057.8007000000216,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VvrtyH\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "52f3c3205a0368edb13779ef40fcd9a0a021c68b4da7e8d1dc51c89071dda68c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "cac9c3538f64e5e3a54f9d900a8e25044b0730a0a168488d65bec4c8e436ad0e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--fortifier-work",
+      "milliseconds": 1224.0441000000574,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tLPj7q\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "3346bf0a5056300bf3006d090fdd73dc6c931f2d5bc45e0a30d2892df173d5d7",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c5832048964e15b860ffe4a210ee0a67334690641de4da48317d6163d79c3f04",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--legacy-fortifier",
+      "milliseconds": 1214.6471000000602,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-bt1USW\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2c3248598f6de2532eb46a9469d6686d84c2898a6a49e9ace0b499cac78751b6",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c5832048964e15b860ffe4a210ee0a67334690641de4da48317d6163d79c3f04",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--art-region",
+      "milliseconds": 1318.0158999999985,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MoHozD\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e09eec7bd41b9f1bbd2f1b830be3785672264f5481c833de8ae1f5a2dab9c7b3",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "91dc1a56233d5df24e0bc151e9b70b92a8d72ac4b4791a6578fdadbf19d0d0fe",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--art-builder",
+      "milliseconds": 1401.8584000000264,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-S0C3Sp\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "422203132c6049df56121ebb46b5e0f029210e6e87bbb7592867f134fb977937",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "91dc1a56233d5df24e0bc151e9b70b92a8d72ac4b4791a6578fdadbf19d0d0fe",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--energy-recovery",
+      "milliseconds": 1166.641200000071,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VPmw0I\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f464dd70eb6bfde7cdfe019270f37fb852fe10f890451869a56d0e2422a9feb9",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ed2d74415a5bcf38a6f70f62802ded26fc7de9f93a0f58cc43b0f0f8d797a897",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--recovery-economy",
+      "milliseconds": 5809.1385999999475,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-P9ikl7\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "693c148ef6be4d78b3001a0fc2b1bf9becf6ccb408496882382cd8c7532104c5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "017704ee138ade997a00c2c0e3985e796b93e846c9536927fde4b8ff8ef8c623",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--recovery-scavenging",
+      "milliseconds": 1369.1682000000728,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XeGXcn\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b99172c8580272a3a68de1f9548bcbc81a30c789ae8387f8a7b7a38bb14709cb",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "eef7cdfdbd5006f2ade4503ebb535532e4038e52ff52cbd68f380f76af90f76a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--recovery-scavenger-spawn",
+      "milliseconds": 5486.558799999999,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uRbG0t\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d55873276ea38f21e9c24ae5168c3865a8d4a234ad69580db6e22614011cedaa",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8f04b6d1e5aa9c6b5c6cfb0018284d4b19546b1dd4c8ed3a5d939c49129c9043",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--recovery-banking",
+      "milliseconds": 4213.043300000019,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-fuy6Qk\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "130e0ae0f7e583b1e7344a1caa9cf40302978ef9b6edc9dd9f247363ac44dbdc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c11e9b174710bfeb3f40a2a23ffc7b67c52fbf05f58157dec2b7df48e85385bd",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--distributor-recovery",
+      "milliseconds": 2786.412000000011,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Boo1j4\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "cc27e7c19a4ac0b0f39c5d07d0160c899899ed8d885011241a1f773bfe26b3f0",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7e6a5db50db3da1111fa34078a094f36c501ddd0052499774a2ba7e42bb19b2f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "cef1fb88fa97046de743e8fd5e645791f2c3b59b28bc072d8f13e8dc9d61333e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--automatic-support",
+      "milliseconds": 4791.382499999949,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1to5Qs\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "6f1dd6583d8a3f04f98f361ff13f54775682640f41572688f6c56b9b5b563720",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "74d90f4329ec4c62cf4365a704293f941a553b9f50cfe50606b6bb0ff041e99d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-replacement",
+      "milliseconds": 37219.31880000001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zan2hx\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "224255e9dd5621d1b7db921fca63492262ac2e93a659a179339acb6ef5c37c6a",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "60a5126c27bc94402e8239b6ec0e83d371bd6111c5301753766512f8b098fad4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-sponsor-loss",
+      "milliseconds": 1909.3201999999583,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iatAsq\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0fdb9e1f2de5dad44f9eedb4153e5ae7a50b2de20204481527fe0d8bcf9aca38",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c9f417d518b4bec6fc690a9639245b5e26b68a4848ce2b34044ab1090e6e4e64",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-terminal",
+      "milliseconds": 1573.9656999999424,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DfLu2G\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f2651f3db2ffbaef2b4e256a1d22221685e2e18d9e03cccf7b893658ee460bdb",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-terminal-full",
+      "milliseconds": 2271.8968999999342,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EXOvXr\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "17c9b752c50bfe36c8c116381214717c702b74b813f013b41e8719a2edabc032",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-target-loss",
+      "milliseconds": 2066.4895999999717,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ebgbJ8\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d65d69ced4437cf4ea0bed05c5635dfd8b11acd7f061222fd7e0e9946edfce4c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-fleet",
+      "milliseconds": 8872.528599999961,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ejmEyU\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "feed39dfcc3ddcaf61799815c893ba1b73dd4b980e952913125761fccd5c4c92",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e6fb33774fdb6d20e4e120d0e9d59b7000db6a50bcef77d5175a659598b75ad5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-fleet-loss",
+      "milliseconds": 1158.1919000000926,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-79IsDK\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "175e4091b8377429c12b3b2a4a4fb5702189f342e4df996e0420c55bfd42a816",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e6fb33774fdb6d20e4e120d0e9d59b7000db6a50bcef77d5175a659598b75ad5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-cycle",
+      "milliseconds": 2460.431600000011,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ArjG5R\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "5952cdd889c29bac9fd6b8e0edb516f86a6e0e33c872378ae2de6a80a66b8db4",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-cargo",
+      "milliseconds": 2793.5054000000237,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MnNs7Y\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d1ad45acbee2f3f85d99c8670a0331f28e3496506a50eabf99001529d5862b26",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-cargo-hold",
+      "milliseconds": 1521.6332999999868,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-a81HSE\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "1b8abba978fc02681353f2ac2c26294d0b37c580b97a27605cc05ea66adb973d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--supply-master",
+      "milliseconds": 2168.794300000067,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-h6xHoo\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4249e037087edd9915727f5cafed18b2a21d796edcf5ebee2e0563299459525d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e510ff30e076b5a1406474f47263edabb527ed14de7e6bef2047efb9a0d98cbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--ground-recovery",
+      "milliseconds": 1046.9185999999754,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZGBGpJ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ee75c8e0c8fc0d30166426e01d5d987b754870eb70d0bc0304efb59806b5b626",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f2ddc0d74321af4512913c93a40fee473f94e7501d2d87a9cdfc900f56a844d3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b0828093372809261fcd4e77509c5fc2e8c9ba3158e8323f4a4912fa605318d2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--ground-delivery",
+      "milliseconds": 1029.346600000048,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Xc8Cc3\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ffd99b8947b0aaf548f0aff3652a8cad13c1886c7616c8f3efe7c3d309f3fbc5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e66d88c5f9a7a687957a2cf49e93b74ab9d6013ba7797d80fba95c83650a7f78",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8f7481c0cc9b300b4cd520e48260dbd09a24b0f70057a5d119449f1630e3774d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-supply-transport",
+      "milliseconds": 1586.8400000000838,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-J2Ham9\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9ee91b968b25ac827c3b0bd6a8f43c964953db973b08fdf3356bcb8c52f6bc2d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7fdb559f19f68638ede49a1c8eee8319ad059cab0b3ab31596250a27ee4c5dc9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--support-transport",
+      "milliseconds": 2259.546800000011,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lUZvCH\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "689e3691b31573ad461e427a7cf57e7422125bea81b59e6b73f749ca727e85f5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "53dcc4598da8a61bc3e3e4403d0d14261d854ba51d83ad6aa6d8b2fb253b6657",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--support-loss",
+      "milliseconds": 2207.350199999986,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-m0EEq3\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2fdc2fa5a5eab4b9044d56a26e2acce2f4f2a4ccffd6572826fe2db662e3194c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "53dcc4598da8a61bc3e3e4403d0d14261d854ba51d83ad6aa6d8b2fb253b6657",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--support-reserve-change",
+      "milliseconds": 2209.1202999999514,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RbIIzS\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c7e9a43bc2bb5fabd6001a610a9def106fac1727d80b657b440f21010cd62f02",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "53dcc4598da8a61bc3e3e4403d0d14261d854ba51d83ad6aa6d8b2fb253b6657",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-service",
+      "milliseconds": 4979.1110000000335,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UD2EDI\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2de0c89030d266166b79540d698fec72e83545c8eb5810019a390f7aa37a703d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "cd589fea53e4aa224b79c090b620d797552589c0ec1a96c7d7cf8f972b759e72",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--structure-actions",
+      "milliseconds": 1017.0943999999436,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-hIpKt0\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "cc988d7683444366718957ccb3df1611351376466ce5df1cfd6a32722f3e281d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e8a242263f61a40141ca451f2208606d8ca8b82710e14efcce9f851cd9404366",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--master-bootstrap",
+      "milliseconds": 4809.786899999948,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Am0XEB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "27eed9561d9668fa29e13983edce06438135b9d7a69ec0fc1dbb0618ce1d1cf7",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "96efff8b20960abd73b358a726df007c2cbeb55d509f10a31f2fc9e4a426f482",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--master-handoff",
+      "milliseconds": 1767.376200000057,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-D5uhCB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4be8470b4bd7b09ef38d4b4aa4a28a1274444d3084d2d5e1bec1431962c1fc76",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "42fac0039c10e7243a1dedecb58b2c8b2a67d6884aba0a57dc3d8349cc49a669",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e06e5c617aeb86fb5ad539cbfa1a95bad03541305b0a3a3c2fff7b78d7717950",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-master",
+      "milliseconds": 4001.598800000036,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2dvTDX\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "7a842e492a296bd8e6fbc9e6f76fbaabf2e83aee6116eabe870e7a40f02cb284",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2070dbdbfe1142e273a1c977be34358d96b69ee395988aeadab3028fdbcbe5ae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--master-layout-loss",
+      "milliseconds": 3970.346499999985,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-2x9hMe\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d7b634fcf321dfe63ac7e231b2f95c00f74c8dedce116d08e1fab6e57a8f5330",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2070dbdbfe1142e273a1c977be34358d96b69ee395988aeadab3028fdbcbe5ae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--master-storage-loss",
+      "milliseconds": 4522.449499999988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kaiRwz\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "13ae8cccec7277854a979f21c7a5d75c397b9512c41017784542e5d89b6f1db3",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2070dbdbfe1142e273a1c977be34358d96b69ee395988aeadab3028fdbcbe5ae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--master-loaded-loss",
+      "milliseconds": 4581.916199999978,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-QRwQoO\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "07f0b39705898615a156a75be1f8c6e37bdecb7b85c39b9801678a03c10dba45",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2070dbdbfe1142e273a1c977be34358d96b69ee395988aeadab3028fdbcbe5ae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-master-contention",
+      "milliseconds": 2213.7297000000253,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JrhV4X\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0f9183ab052f628973a06eef411892229d293fa9cfc60932d3b998c5dcf6c96a",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2070dbdbfe1142e273a1c977be34358d96b69ee395988aeadab3028fdbcbe5ae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-fleet",
+      "milliseconds": 9365.318300000043,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xJnlcz\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c84ce23b636802b573532ff48bf18c89f2de6e26f13be6aa9affe7d36ef69c19",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "edb8422edc92ae33e2442e32d9173f409fd9ed6701753c967cdfe186e9448ec2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "942d120a36e58b02d5e0e61f5aa3bb274f8943cf61ad0fcddab950ab7e1ae312",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-fleet-loss",
+      "milliseconds": 1125.2733999999473,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wd1ZzP\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "230258ae1c63158da2e5002ba41ff9c9cea7171833db3d450147dbe241647bab",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "edb8422edc92ae33e2442e32d9173f409fd9ed6701753c967cdfe186e9448ec2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-loss",
+      "milliseconds": 6989.298400000087,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uCnaop\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f0f7427681b01fdd1d6db96d355c7d2c7195e0422a3f4bda22acf65f41981a27",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "02be03a6d9edee0a3b7e90e22b9d20a2778b5e97e32974928e1376481c38c0a2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "39cc545b6b2f20e5d871c1ceb97167acd1a24546366bfb010920a8535cd1bf38",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--bootstrap-harvest",
+      "milliseconds": 7162.90260000003,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-t3AXEx\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "097c7ea326c18b3c5dd0b855726e667d91f868965a8f4161a1a636e533d27f26",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8183b33df6605d4bff51ace37934865f49a5af928c3c59cf09af36f635567382",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--bootstrap-assignment",
+      "milliseconds": 1466.8059000000358,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Z4sJAh\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "24c4226caa78365836e304efbf3eccb2132bec3e19a9c96a45976ce58682cb18",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f9d13fe232af5c4d6b11e70a937a6a22dd33a86ec2888efa04a351665e00741f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--bootstrap-salvage",
+      "milliseconds": 1431.2419000000227,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HqhQkI\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c918ed319e619e5eb7bcd36120cc73545013cac6d2a635c8774c1915fcacce61",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5b30816abab5ceb92d00a5b3fbed6c24be95db4edc35692f375ac810f9979d6e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--bootstrap-salvage-disabled",
+      "milliseconds": 1336.1279000000795,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-T3nqTn\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "265a02099f209ef4d31b9534e30db5fa770b32dd37df86e45ff459d8c4a18b6f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5b30816abab5ceb92d00a5b3fbed6c24be95db4edc35692f375ac810f9979d6e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--bootstrap-salvage-depleted",
+      "milliseconds": 1479.9583000000566,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jfqKiY\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9e8a47f4f2743de3d61ff209fb5325248b01e45873cf2b8be3e8001c70f2d06b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5b30816abab5ceb92d00a5b3fbed6c24be95db4edc35692f375ac810f9979d6e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-bootstrap",
+      "milliseconds": 4067.318399999989,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Du4r3t\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b0d6bcfe7e7f9edd2a17af03a8f3d039cdf2dd966cf660209ce69a31b4236b85",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "8183b33df6605d4bff51ace37934865f49a5af928c3c59cf09af36f635567382",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-rebuild",
+      "milliseconds": 29454.172399999923,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-P2TR8i\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "5bc9849de3429c9771ee90174c94e61f56e78a959731623e8a3079b02d4d49ed",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "c1a1c52c302b85a08ce3b24ea2f75166540d6cd343b1d6d5a4dc6ce83e8c6478",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a18c088e8ab4394bc7d32683b535cc2698239bc9cc5c184bf51ee0e261ff983d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-cycle",
+      "milliseconds": 2207.3303999998607,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-R1OyjI\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f93eb0df4de9fd6e0bc286724a2227eb69e4d58d9c4cffe55d180d04b100b35e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4bda75b62451206dc4a5655fe0d545787b2d38f655e9157692d0fd7965f16955",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "da94ca785cb3085bc4f75f88f4f3dfaba65d0e7fe55231e7677033d98263642f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-claim",
+      "milliseconds": 2587.091400000034,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-SiquNN\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "43ecf563b298f49d239bc9f3ad97df6f4c964cf911a6fdb3ce40a91df3c7c9c0",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "9e413e0f421495ed038b3eb0aabffddddb0bcb7980c6a2afec932b562d88c8c3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-room",
+      "milliseconds": 1891.342100000009,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ADfqmT\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8e5ef60ad13a77fa33792d5015595461505228d1dd70ce4ebf639f73af10d1cc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a0f1e0c4b6bad81a9c0a27d18df220040ca070bf95ac04950a419ceefb959201",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "d330dcec00b431cc29d8e9534bb725731d2d58b3debfa13cab62d1bf33e3ac4d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--upgrade-room-shortage",
+      "milliseconds": 1612.3360000001267,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-83alYi\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f0d41f4ba57d5fbdf9bfdb2b78059dd3f9103fcfcc6b3cb20520e4e8104d8266",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a0f1e0c4b6bad81a9c0a27d18df220040ca070bf95ac04950a419ceefb959201",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-cargo",
+      "milliseconds": 1281.1907999999821,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-uB86KY\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8b3475c0a356655f1468b81e53114d4e95ff1da31db17071ed2d2993c1e0e551",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "16889cf0ce4ebcab3b5aa65dabbd4ca6b22fd16dd447a850d7da8ff96ebe5e78",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-cargo-drop",
+      "milliseconds": 1264.3907000001054,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YpRReg\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "41fd3798f2a44f63c430b1e3e2923544976e2a95ffc8afde92271a0e5fe3f0de",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "16889cf0ce4ebcab3b5aa65dabbd4ca6b22fd16dd447a850d7da8ff96ebe5e78",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-cargo-hold",
+      "milliseconds": 1184.3925999999046,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1OGmJB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "eebfe6047af490c6c2fcfbe5d6be69fd8ffb1ea6249f0dfc1d3beb267fc51ae3",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "16889cf0ce4ebcab3b5aa65dabbd4ca6b22fd16dd447a850d7da8ff96ebe5e78",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-collection",
+      "milliseconds": 1185.7660000000615,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MX6vsh\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c555a98ec443cff10d3c19e63827c3af0f9cafe49a34bb368a14beb34b529410",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "fa3f2a19b2c949853078ce0ae6a5860a491e0a52a4b5b7ec368927c3244e998f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-miner",
+      "milliseconds": 1355.527199999895,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9T8v7q\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9f415a496a045927fea3265c5dda8941c1bbba206ac6e4840e2903e598239515",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5f8ad3d6baafde0cd6f3b1f00e8f103382f1422b37c833459c5d5ab23aeec76c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-miner-automatic",
+      "milliseconds": 1381.4203000001144,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-puAa0e\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "bb84d9290fd0831d75ba54de9e7fd96befedaa68f8a95d7077fc12d749c77ade",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5f8ad3d6baafde0cd6f3b1f00e8f103382f1422b37c833459c5d5ab23aeec76c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-miner-replacement",
+      "milliseconds": 1366.972300000023,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1hrw3G\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ca9631af5803a366292461a36b3730112ff1a60c5d76141feff8786bfd08cce9",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5f8ad3d6baafde0cd6f3b1f00e8f103382f1422b37c833459c5d5ab23aeec76c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-miner-travel",
+      "milliseconds": 2019.186699999962,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YnzKCk\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "43208d94506e495739001bef110121bd3c57dad5849d8bdc0c2d74624b7697cf",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a9b0f61656ee55c419e6087d077ccf43fcd713164939251c907b24bf74822dee",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-pickup",
+      "milliseconds": 1115.1471000001766,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-9nepDv\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4b6528dbc88186b956d1ab5eed7be6f8218e311101484a54b5b70547d9fa2d9b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "90371874cfb6695d06ccd6770124f66263c4be060c12729e6e6f8d58f62f0467",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-profile-builder",
+      "milliseconds": 1062.0737000000663,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xOjwMR\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "00c46df5e221770bd3fb8f7a1c57b642027815cd826ba3cd0e9f30cfecf495c9",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "77025fb738e32f4ca7d9c8bbfc52f0aeec0c24ca070cf225ad11529ce8c4689e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-profile-fortifier",
+      "milliseconds": 1054.7689000000246,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Z5zkXh\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "1c510991ba373df78ef7a3bd9747e4cea50a9994e91b9d6a98fc7c96ea94e830",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "77025fb738e32f4ca7d9c8bbfc52f0aeec0c24ca070cf225ad11529ce8c4689e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-profile-upgrader",
+      "milliseconds": 1057.910600000061,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IwcQ1w\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "482656b71297f5812333ee7ac7ef62614d5efa1fdf37b0a1305b7830bf4dd378",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "77025fb738e32f4ca7d9c8bbfc52f0aeec0c24ca070cf225ad11529ce8c4689e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-profile-upgrader-v2",
+      "milliseconds": 1107.0783999999985,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XSGxZy\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "32904552df48650648151344547053d10004a6443452ba69c6190e5c3b7094b6",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "77025fb738e32f4ca7d9c8bbfc52f0aeec0c24ca070cf225ad11529ce8c4689e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-profile-hold",
+      "milliseconds": 980.6862000001129,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-LqWAGh\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c58eeeb517a210ed67ea081b299e72b8a7368d2b2eb09612034a294132b59e76",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "77025fb738e32f4ca7d9c8bbfc52f0aeec0c24ca070cf225ad11529ce8c4689e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--worker-profile-flag-hold",
+      "milliseconds": 1020.345900000073,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-QjhLF4\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "a5b62bbdbdb11dd92ef1bff60f8f62ac90b92baa48411fd71e09186bfcd786f8",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "77025fb738e32f4ca7d9c8bbfc52f0aeec0c24ca070cf225ad11529ce8c4689e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--resources",
+      "milliseconds": 1049.8552000001073,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-irSrWz\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "a42fd864fee8f7f939be6a73a18ce7ebe774975ed985b75d0ee8e83380e56437",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "34faac2662b85ac8477d8c3bb2ceeaeacae8f02d28735cef51ad3f8b84f6c0d2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--transfer-confirmation",
+      "milliseconds": 1062.1319999999832,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JBAuWm\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "573973308e9dda77abd519d469eb965228dc209a5fbd734c74a92c0d770475b4",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ea25e327e80386401260fe66b3cfab360f23d154f1e18f3badea09fc34ae93e2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--hauling-cycle",
+      "milliseconds": 1103.2909999999683,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CGDbFd\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "307833aa0cb066be508fb3c7e05201f1e0f9c9417757c3fa4384e0f12ffa5fbc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "0fdbef003c7838bee1790081164c6c34da86cbc3b773712ddf068f3c8736f707",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--energy-logistics",
+      "milliseconds": 1075.1380000000354,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jRqAHe\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "6312746780d211e9425102cfdce2bc9899254e461b12459d84edf7b5eeeb7ceb",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "6b84fdbbc5dca6333184584f01413f19bedc0b259c7fc27365813d309413c008",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--reclamation",
+      "milliseconds": 1120.4791999999434,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BMhpBB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "7e7b3d154221fe1eaf2ee505451b29e8b618c9aefb98ca4d541fb88b26116f10",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "0e393fab776a2bcf514afedee3ad888014c7af2fa8dffb9f7ab9df01eac2db46",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--work-supply",
+      "milliseconds": 1184.31380000012,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IoT3sz\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "147904d8f213bf3261fce10f9276d6b7729baafd4bd5529311253c6c85348cff",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "02fc7dcdb0d06d90d138ddb63e5f10884809851dea99d0f4b3fc21ce85fa4ebf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--tower-supply",
+      "milliseconds": 1077.9132000000682,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CDJLhq\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ae773f4116c4b6e831e46165fe5ed737e867bbe99acd91bd30aabcd4489af76f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "509dadcd397e3e626c02fbe78d9b802e60dd10a7e54757e0eec872a8749def2f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--link-supply",
+      "milliseconds": 1011.0142000000924,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EymAeR\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d8df275788c77eaad1dd18d5c52103dc4ec995a9e851eb01f9732a2d439be91f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "0d784fed8d98fc0a1ea00f17fac6fb95f047c5c6d5b72bea1725b2df7f2a8b6c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--controller-links",
+      "milliseconds": 1033.0257000001147,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aTUs1s\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "14c60c3d86128c2c0b3290bc8914c8d465a8935d072f9541c4bafb01198eab4f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7bc33852ad4a4f6f30bb89836a55cfdb40490e4893c286ca6cc4d66fa56ff0e3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--link-contention",
+      "milliseconds": 1078.624700000044,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5TGIpG\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4b2d1f97b6d963b9d83f4e1df3ad206261fae754bee10c2b91139a0d84210158",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "caaa4c21f8baee5a26738d965deed7ff1ec018b0b61f72dd17c0624fbb5f2ae7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--link-service",
+      "milliseconds": 1072.126500000013,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VMLGQB\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "02e65a9ad1c71eb7cac514b6fa6d7147af4ac9ee9a23e73918b9ebc42217fa84",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3b5f2494d091a3ea82d16bef9b5897cbb8a4baa00ece1b89480206a9d2b41e53",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--link-reversal",
+      "milliseconds": 1132.805999999866,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-irusjx\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f27351507c0683b7ce32cef3d90f0aaf98086f9fd13471a3f4b30064eeebd10d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "509d208742ee97e73bde8d0f87fe0b3ef55a3e81b0669f264d887168be01d5d7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-transport",
+      "milliseconds": 1203.0326999998651,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4L5jIi\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9a8b82b6836ace3d279ff1d96cfedbaa767de42b93a285735603168f0b46c594",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "28c709f01c658b2cbd5b8ec2f8cf2c1919cbb7c0873bbf76c83719b4175078e1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--courier-death",
+      "milliseconds": 1055.9209000000264,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-o74sHJ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9a4ed0f0e5748d52c05101353d8f75b79b86beba7978c37b6bc9dbe0f0f7703e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "be81e5c7397b8f0c1857bffd19cfe507a96482c4bae4047d233f288fca7967df",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--cargo-death",
+      "milliseconds": 1187.937600000063,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZsLipd\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4e83efdcf7862efa169452a3870b6494974a4c6309f9a6474b4557dda0a27cc7",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7d62804aa395d98426d968b810f84ee9ef27eae8f559c53c102574cbbd3a1353",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--storage-loss",
+      "milliseconds": 1067.3573000000324,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MeQXDo\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e4bd0d582452108f6f1fff1f87ed1f5553851d88ec92c28381d241bd6659ac0b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "ce9a13f112cb7770311e0e8e85aa9e93b1b6a0f518ea29e5c2c6066a85850403",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--energy-banking",
+      "milliseconds": 1084.9776999999303,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Zt0nBU\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4a521244384f3aa61d0989cb8b0c70052e41c3e2f1ad681d1825d96b452127f6",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "728a79d1accc1120d6177b98c41293ecd937d6c88cf72481d2cb114abe5e8f30",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--banking-fallback",
+      "milliseconds": 1081.3264999999665,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kBd79j\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "ff53a769b9f39af9508c1accba1ec1000b03f2a202e7385fbec1815d18c8018b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "728a79d1accc1120d6177b98c41293ecd937d6c88cf72481d2cb114abe5e8f30",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--banking-demand",
+      "milliseconds": 1147.2250999999233,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IBabIa\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "8065c660e08f435adbab3fb192582b2695cf80f8369a3360a42dac84027d0086",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4e258890852564ee3809e5f2e638fb7e2d80a06f63f0cc387c3a3a8aa06bc72c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--store-fill",
+      "milliseconds": 1119.2993999999017,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YyKbqD\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "dcadc2322aeb6928548b2dcc7666822deeacb636cf53a48552af0fd36a537f63",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5ae772e0668898995a4c90cda313bf6b5795895b1bc73530ee4a2d0b12303b14",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--store-guard",
+      "milliseconds": 1160.8842000002041,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3MBg03\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "57c6adabaf39f1aff7c89bd5f9567515f9eadb1adf5fbe194e7e4b053839c97f",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5ae772e0668898995a4c90cda313bf6b5795895b1bc73530ee4a2d0b12303b14",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--store-drain",
+      "milliseconds": 1100.1432999998797,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3B2Y2q\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b74606513bb435cf9429cb44d67c0a3a08033c73e611778d4b2b06f116fe05d4",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5ae772e0668898995a4c90cda313bf6b5795895b1bc73530ee4a2d0b12303b14",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--store-mineral",
+      "milliseconds": 1106.7767000000458,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tB0OQu\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "bd9f74f01e0e1db977072718f8470b71e491b4ae6086c4d9aa6c7d3b5c0f57ec",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "5ae772e0668898995a4c90cda313bf6b5795895b1bc73530ee4a2d0b12303b14",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-reload",
+      "milliseconds": 1331.6174000001047,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GeAj6X\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b2ab601934372a0a27407dcecf48b33187d43eedf6a05cec3eccd719417ff18a",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "28c709f01c658b2cbd5b8ec2f8cf2c1919cbb7c0873bbf76c83719b4175078e1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f23d823bd9d3c1914fd439ca5862559dbc9a7fe7df9529eac7dcb8cf25b592c4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-recovery",
+      "milliseconds": 1056.591999999946,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zLshRR\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "47860b30fc281ec0b9b565b73d9ad1f1c988fcf58e41d137f6e744cefa6eda03",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7be676ca8ca28af3c4dc1a219e5c784ef3aec618d26bb0659ab81c86a4f0496a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-recovery-fallback",
+      "milliseconds": 1069.6927000000142,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yC5Dtj\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2837ee99f3026e44112497141fb08599b7177843334b20eab9d3eeb458b005b5",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7be676ca8ca28af3c4dc1a219e5c784ef3aec618d26bb0659ab81c86a4f0496a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--courier-bootstrap",
+      "milliseconds": 1609.0548000000417,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oS2MJg\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "28a7c063abfe92b9d635c0ea065e8fe69c617ca7ebbbbfce3c1ddb7a6ca82661",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7deef855580422b3c5cbb2bec4d55fc6edf2c90bb08d51da0eebcde662464851",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--courier-routes",
+      "milliseconds": 1027.4281999999657,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-1qoQBW\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "33792fe44cce481cf0683fcdfd302b1375d81dea06055bbbc64fea484ee2e28b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "463f0925eaa45555ec7d606ae44136e73df47ef912d72d19e615f1c3166e0503",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--mineral-routes",
+      "milliseconds": 1147.9876999999397,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gIpKkW\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "aaba921f33dec927bfa57d72dcf10bb7c6ae4a8eee7a0afb3839ade3aefaa231",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "463f0925eaa45555ec7d606ae44136e73df47ef912d72d19e615f1c3166e0503",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--colony-resilience",
+      "milliseconds": 39185.957799999975,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7GiKQb\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "cb2a84d740911f775d576b2b028c30523494264e8525ee07b43760d4dbde6838",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "95a7c6f29c6c1a8f7a528c1f627fc776518fe96c26695b8e80f3b51a42092b0c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--colony-economy",
+      "milliseconds": 3589.7698999999557,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jhRhs3\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0cb65e116652d8e9ef5a7ea99771b68f7365b81a79b9879d732e8d6378304ab8",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "9ce8fe22a250ea24fbd544fa3c1a77b43a90af6681d212c22a58e1de19abbd28",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "2ec14a229831bc6844227cb19e348fa5fe71e5e7a49be1ccc7f4b0675797dbfa",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--empty-source",
+      "milliseconds": 1121.871099999873,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6ZoIfY\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "94b81caa3864a9a3ef871e3d579c92e8d7c201324da577c3ffbe372a9656e0a3",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "59edf7ead177c765d6d66afb702dc25c24559e3010784b4fb49703bfad55db52",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--cargo-recovery",
+      "milliseconds": 1049.3359999998938,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IpOcxe\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b5b5c487db572a259526cab4aa80adaed9abb181ddeafa2dce3ca75c43f8272d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "720776a7bca8030fb3503cd29ec7f024bea90d83f84842723f9c53743d79e47f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--expiry-recovery",
+      "milliseconds": 1049.442500000121,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XVDJIJ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f63e52fad2f44b2160a65400d48eddabe84cba28efb7c9a609a5108ff9b40345",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "72b0ad212331d171d63580c9e18284f4df3be8b0d667b9a7a96a0622bf95556b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--expiry-delivery",
+      "milliseconds": 1055.7528999999631,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-16wuF7\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "59f0b977314d7b0cd96fdb47a36c47f2eac7c0d76981ac3803264ad6ab5770be",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7952c5e04d7d28731d5a399989f45bbe6da7423f4e4954aaba72e29c0472fd95",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--unknown-recovery",
+      "milliseconds": 1114.4427000000142,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-K75t4y\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "090895a2e017012be4e5a8957441f4e38d40ded90290043ace552bcf45d7459a",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a0447eee52388e110d39e625827b14cb403e48bf67644ea221be6df43dd827b7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--unknown-delivery",
+      "milliseconds": 1155.5195000001695,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-I0tmgm\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "bced54f8f658dae38b889b3e89d05df0e7a6f20f1dbfe1936b0bba2186531b9b",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "a8996a57c0f436879a752fc21fa524e070fd9bd894e00d211d3d78e9638a6ea7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--missing-sink",
+      "milliseconds": 1081.3310000000056,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3bU9K5\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c9c44909f03bb45c5bf72a4d4096ce58b8c07c7133c1f8d06f5d6847eb6c2874",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e6f7cfeed6ba7777740ae32da65bc141efd9d7561a3b2a19065b083fe1b987d0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--pickup-admission",
+      "milliseconds": 1074.0110000001732,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-HB1Lgw\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "0499560515b7f2af5dd60fb658d09c7925cf763e7df4597340567889a8e3806e",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "635311579ac9bd15010b4261f574e6ab666d2094d867ffa86f801bf496dcc0ad",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--remains-supply",
+      "milliseconds": 1125.8518000000622,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nfyAlb\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "d06554da2acc9ada8e1147d4588a23eb340c5e41aae07ea3945a95f06a6018a8",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "bfa8cc753ad7d20c77aadb53f340cafd7ed952f1949d7c71db51acde24ad14ec",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--drop-supply",
+      "milliseconds": 1114.5206999999937,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nuJgdT\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "190040b04159e033ac9e294a86e09c8c6986cda56ff197ad3eb79ad2904f738c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "6b84fdbbc5dca6333184584f01413f19bedc0b259c7fc27365813d309413c008",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--large-drop",
+      "milliseconds": 1068.939500000095,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-8kq4aa\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "87c2ee9b506a1542f1908385353963718f5f41433f5be7347eb7d01be309dc57",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "24c0eabe746ead72adef902a4e3e686c71b2953ecb4654f22db0b7da764973c5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--preservation",
+      "milliseconds": 1162.2894999999553,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-E4ql6A\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "b807362a014fad39ea3682015e0ac0d1d3bcba6a2d78c702c05d3be4fdb04026",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "9c18e3352331749f373cde3036db9f29b3bc752772342623972f96e3a12444d4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--full-sink",
+      "milliseconds": 1067.3615999999456,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-44jVjM\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f80383679f64a7e16daa521f319d18eac9c8dd237c83497eabcfc0c0258aaef4",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "e6f7cfeed6ba7777740ae32da65bc141efd9d7561a3b2a19065b083fe1b987d0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--preservation-decay",
+      "milliseconds": 1197.4512000000104,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NxFnLZ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "807505aa0249c5932d0c8a81c5cc3820419cade689cb0ea03c23e81d12d994f2",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "9c18e3352331749f373cde3036db9f29b3bc752772342623972f96e3a12444d4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--source-loss",
+      "milliseconds": 1103.375400000019,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-d1hrFT\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2d1f7465625debccde5bb0b4f4828b0f76507b1a32bd22661699b46b380bd9f0",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "6b84fdbbc5dca6333184584f01413f19bedc0b259c7fc27365813d309413c008",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--movement",
+      "milliseconds": 1037.6426999999676,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-MyKCaJ\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "f8f098eca408e4f5d4761ba43455ce9ef8cd98b704e47eb3dbd1c79e6e30addd",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "f3bd5d17541a0972928b959d99300848a37cfb4e2859e97d5abf042b95468c8c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--maintenance",
+      "milliseconds": 994.8888000000734,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ieWG3W\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "e46e7fd3dc4d20f145885c4da9b2a889dcb4b1395a701cc395cb4818e626326d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "935301c7cee58db061ea793bdd5e8829c8c5f5d5691e069e6515016e1ac2cc9c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--retirement",
+      "milliseconds": 1040.000500000082,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-K5qh66\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4e56af54ece0a6fa26045c7d3863fc06fe7349c90c9ccdff57f07ca43c9a1429",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4166d814044216d8b16be4a4cd077a35fc45f02e3e14b3f6797aa848fe0ac6c8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--paths",
+      "milliseconds": 1029.1133999999147,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Tq6ZMz\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "05dd5630032085cebe78dd1cf9c7e79a0491d25d3e1868cb9ebb734a93cfb6c4",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "3095aecf630e9942d8f02f56cffdbc8d41e5c3b1d95d7a2110b73d72eb96d784",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--recovery",
+      "milliseconds": 1085.8269999998156,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-85jeju\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "07486c56f577e7895021c476013b993307eb85c77c5f4dbb20c392a1d2e2be49",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "860d3c4451f84195d9f34b1c851816653ac844c2fae41abaaf93662228c935b8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--traffic",
+      "milliseconds": 1329.4095999998972,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-C9kLC1\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "4599454e259d51a09ddeaf1944b89c7264e559df1e2fc4bc2a4c033539ae019c",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "7d76464d9aff69ffaf6b589c2550b70c1ac30d50e14d1bc1f0f584d1b1b5767f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--exits",
+      "milliseconds": 1091.5959999999031,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iaho0C\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "9e807bfbacd778ddabf2a463ce5e6fc5bf38963cae08cf28bf47db6df362a6b4",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "b29ea0f361c1e417018c0aee84e6dedc50d51b31d9ace280306592a8fed2ebff",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--navigation",
+      "milliseconds": 1127.5394999999553,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-SMFlEI\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "cb9b25a966999579bbac4ae6a2583704428e4dd2cfa65f3108d4f1e84c00adbc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "64ef4d6f11cfe39e4ccbbfc505d6df494b6540629bd21d7be660517f8a3ea373",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--unseen",
+      "milliseconds": 1063.43479999993,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GaRpCN\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "c4695f4514beb99b863aaf063e9683cc06a57d84139184219788eb210cd61f2d",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "cd9e0cc75a3e99a8a9b9660dc575a5764579342922fd61bb9c472441c56872c0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--occupied-exit",
+      "milliseconds": 986.3219999999274,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vzBLcd\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "1a5ee19d1d4fe70ac550a20fb1acf55d7664d827b6c017d7c5a4a51ddd952400",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "4a510a09e65fb15966060fb4bd426340c52cbe4d8345b02f0c4153cf15bab23f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--service-recovery",
+      "milliseconds": 1120.3819999999832,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-QfLdza\\evidence.json",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidenceSha256": "2fcf8959d23571234d82ed002aa6a1af808704515617ce71ac811c589fc0f925",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "983697eb6e33f9f8aa1c7e29321aeb0363c447c479b7f0c98203020c6a0febf0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    },
+    {
+      "scenario": "--inject-error",
+      "milliseconds": 808.6335999998264,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VCJdc5\\evidence.json",
+      "expectedFailure": true,
+      "status": "failed",
+      "evidenceSha256": "ad13969d2dfc1af9e75054ed5f273082dfc8d8f5eb3e0c072018a7f59f2cfb97",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "17cfa29416b1052f76eced3881781ead72dab159c018a5e90037b2ab925a57e0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 3
+    },
+    {
+      "scenario": "--inject-timeout",
+      "milliseconds": 1780.3571999999695,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-CPrvS8\\evidence.json",
+      "expectedFailure": true,
+      "status": "failed",
+      "evidenceSha256": "f325ce27ba22b9e9265a357deac29c410c5eb833a6e594556b544286a0285cdc",
+      "provenance": {
+        "commit": "ed82a98c2248b5f442d766f2c6b6cb5e0d31915b",
+        "dirty": false,
+        "bundleSha256": "95882f723d661a8154ea283936138d8704e66318bbb87f3b1487b9f832b3d218",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0
+    }
+  ],
+  "qualification": {
+    "unitTests": 1367,
+    "unitFiles": 372,
+    "unitSeconds": 9.51,
+    "focusedTests": 14,
+    "focusedFiles": 4,
+    "focusedMilliseconds": 243,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "packagedBundle": true,
+    "lizard": {
+      "productionFiles": 652,
+      "testFiles": 540,
+      "violations": 0
+    }
+  }
+}
