@@ -6,7 +6,7 @@ import type { SelfBuildForecast, SelfBuildInput, SelfBuildState } from './build-
 export function forecastSelfBuild(input: SelfBuildInput): SelfBuildForecast {
   validateSelfBuild(input);
   const state: SelfBuildState = { ticks: 0,remainingProgress: input.remainingProgress,carriedEnergy: input.carriedEnergy,sourceEnergy: input.source.energy,
-    regenerateAt: input.source.regenerationIn,harvestedEnergy: 0,constructionEnergy: 0,regeneratedEnergy: 0,harvestTicks: 0,buildTicks: 0,idleTicks: 0 };
+    regenerateAt: input.source.regenerationIn,harvestedEnergy: 0,overflowEnergy: 0,constructionEnergy: 0,regeneratedEnergy: 0,harvestTicks: 0,buildTicks: 0,idleTicks: 0 };
   const actions = selfBuildActions(input,state);
   while (state.remainingProgress > 0 && state.ticks < input.maximumTicks) {
     minerStep(selfBuildView(input,state),actions); regenerate(input,state); state.ticks++;

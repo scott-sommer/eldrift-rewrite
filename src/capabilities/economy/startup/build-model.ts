@@ -5,7 +5,7 @@ export interface SelfBuildInput {
 }
 export interface SelfBuildState {
   ticks: number; remainingProgress: number; carriedEnergy: number; sourceEnergy: number; regenerateAt: number | null;
-  harvestedEnergy: number; constructionEnergy: number; regeneratedEnergy: number; harvestTicks: number; buildTicks: number; idleTicks: number;
+  harvestedEnergy: number; overflowEnergy: number; constructionEnergy: number; regeneratedEnergy: number; harvestTicks: number; buildTicks: number; idleTicks: number;
 }
 export interface SelfBuildForecast extends Omit<SelfBuildState,'regenerateAt'> {
   status: 'complete' | 'incomplete'; regenerationIn: number | null;

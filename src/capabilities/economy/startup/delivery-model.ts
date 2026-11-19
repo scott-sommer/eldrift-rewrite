@@ -7,6 +7,7 @@ export interface StartupCourier {
 export interface StartupDeliveryInput { project: StartupConstructionInput; couriers: readonly StartupCourier[]; containerCapacity: number }
 export interface StartupDeliveryForecast {
   firstDeliveryAt: number | null; deliveredEnergy: number; harvestedEnergy: number; regeneratedEnergy: number;
+  overflowEnergy: number; uncapturedOverflowEnergy: number;
   containerEnergy: number; minerCargoEnergy: number; courierCargoEnergy: number; unusedMinerCargoEnergy: number;
   projectedThrough: number; source: SelfBuildInput['source']; receipts: { tick: number; energy: number; request: string }[];
 }

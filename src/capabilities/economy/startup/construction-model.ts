@@ -10,7 +10,7 @@ export interface StartupBuildWave {
 }
 export interface StartupConstructionForecast {
   status: 'complete' | 'incomplete'; completeAt: number | null; remainingProgress: number;
-  harvestedEnergy: number; constructionEnergy: number; regeneratedEnergy: number; unusedCargoEnergy: number;
+  harvestedEnergy: number; overflowEnergy: number; constructionEnergy: number; regeneratedEnergy: number; unusedCargoEnergy: number;
   /** Source/cargo projection stops here, rather than advancing silently to the cash horizon. */
   projectedThrough: number; source: SelfBuildInput['source'];
   waves: { request: string; startAt: number; endAt: number; work: SelfBuildForecast }[];

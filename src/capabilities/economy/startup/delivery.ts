@@ -11,7 +11,7 @@ export function forecastStartupDelivery(input: StartupDeliveryInput) {
   const project = forecastStartupConstruction(input.project), construction = project.construction;
   const waves = startupConstructionWaves(input.project,project.spawning.births), couriers = startupDeliveryCouriers(input,project.spawning.births);
   const delivery: StartupDeliveryForecast = { firstDeliveryAt: null,deliveredEnergy: 0,harvestedEnergy: 0,regeneratedEnergy: 0,
-    containerEnergy: 0,minerCargoEnergy: 0,courierCargoEnergy: 0,unusedMinerCargoEnergy: construction.unusedCargoEnergy,projectedThrough: construction.projectedThrough,source: { ...construction.source },receipts: [] };
+    overflowEnergy: 0,uncapturedOverflowEnergy: construction.overflowEnergy,containerEnergy: 0,minerCargoEnergy: 0,courierCargoEnergy: 0,unusedMinerCargoEnergy: construction.unusedCargoEnergy,projectedThrough: construction.projectedThrough,source: { ...construction.source },receipts: [] };
   if (construction.completeAt === null) return { ...project,delivery,cash: startupDeliveryCash(input,project.spawning,construction,delivery) };
   const lastBuilder = construction.waves.at(-1);
   let previous = lastBuilder?.request;

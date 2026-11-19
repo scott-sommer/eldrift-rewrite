@@ -1,3 +1,4 @@
+import { energyHarvestEffect } from '../../mining/harvest-effect';
 import type { MinerPorts, MinerView } from '../../mining/step';
 import type { SelfBuildInput, SelfBuildState } from './build-model';
 export function selfBuildView(input: SelfBuildInput, state: SelfBuildState): MinerView {
@@ -17,9 +18,10 @@ export function selfBuildActions(input: SelfBuildInput, state: SelfBuildState): 
       return { status: 'running' };
     },
     harvest() {
-      const amount = Math.min(input.harvestPower,state.sourceEnergy,input.carryCapacity-state.carriedEnergy);
-      state.sourceEnergy -= amount; state.carriedEnergy += amount; state.harvestedEnergy += amount;
-      if (amount > 0) state.harvestTicks++;
+      const effect = energyHarvestEffect(input.harvestPower,state.sourceEnergy,state.carriedEnergy,input.carryCapacity);
+      state.sourceEnergy -= effect.harvestedEnergy; state.carriedEnergy = effect.carriedEnergy;
+      state.harvestedEnergy += effect.harvestedEnergy; state.overflowEnergy += effect.overflowEnergy;
+      if (effect.harvestedEnergy > 0) state.harvestTicks++;
       return { status: 'issued',code: 0 };
     } };
 }

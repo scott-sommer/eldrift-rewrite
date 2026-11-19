@@ -10,7 +10,7 @@ export function forecastStartupConstruction(input: StartupConstructionInput) {
   // Validate source/progress even when no worker can be born.
   forecastSelfBuild({ remainingProgress: input.remainingProgress,source: input.source,carriedEnergy: 0,carryCapacity: 50,harvestPower: 2,buildPower: 5,maximumTicks: 0 });
   const construction: StartupConstructionForecast = { status: input.remainingProgress === 0 ? 'complete' : 'incomplete',completeAt: input.remainingProgress === 0 ? 0 : null,
-    remainingProgress: input.remainingProgress,harvestedEnergy: 0,constructionEnergy: 0,regeneratedEnergy: 0,unusedCargoEnergy: 0,projectedThrough: 0,source: { ...input.source },waves: [] };
+    remainingProgress: input.remainingProgress,harvestedEnergy: 0,overflowEnergy: 0,constructionEnergy: 0,regeneratedEnergy: 0,unusedCargoEnergy: 0,projectedThrough: 0,source: { ...input.source },waves: [] };
   let tick = 0;
   for (const wave of waves) {
     if (construction.status === 'complete') break;
@@ -23,7 +23,7 @@ function applyWave(result: StartupConstructionForecast, wave: StartupBuildWave):
   const work = forecastSelfBuild({ ...wave,source: result.source,remainingProgress: result.remainingProgress,carriedEnergy: 0,maximumTicks: wave.endAt-wave.startAt });
   result.projectedThrough = wave.startAt+work.ticks;
   result.waves.push({ request: wave.request,startAt: wave.startAt,endAt: wave.startAt+work.ticks,work });
-  result.harvestedEnergy += work.harvestedEnergy; result.constructionEnergy += work.constructionEnergy;
+  result.harvestedEnergy += work.harvestedEnergy; result.overflowEnergy += work.overflowEnergy; result.constructionEnergy += work.constructionEnergy;
   result.regeneratedEnergy += work.regeneratedEnergy; result.unusedCargoEnergy += work.carriedEnergy;
   result.remainingProgress = work.remainingProgress; result.source = { ...result.source,energy: work.sourceEnergy,regenerationIn: work.regenerationIn };
   if (work.status === 'complete') { result.status = 'complete'; result.completeAt = wave.startAt+work.ticks; }

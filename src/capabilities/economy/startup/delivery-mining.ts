@@ -1,3 +1,4 @@
+import { energyHarvestEffect } from '../../mining/harvest-effect';
 import { minerStep } from '../../mining/step';
 import type { StartupBuildWave } from './construction-model';
 import type { StartupDeliveryForecast } from './delivery-model';
@@ -16,8 +17,10 @@ export function startupMiningFrame(result: StartupDeliveryForecast, wave: Startu
       return { status: 'issued',code: 0 };
     },
     harvest() {
-      const harvested = Math.min(wave.harvestPower,result.source.energy,wave.carryCapacity-energy);
-      result.source.energy -= harvested; result.minerCargoEnergy += harvested; result.harvestedEnergy += harvested;
+      const effect = energyHarvestEffect(wave.harvestPower,result.source.energy,energy,wave.carryCapacity);
+      result.source.energy -= effect.harvestedEnergy; result.minerCargoEnergy = effect.carriedEnergy; result.harvestedEnergy += effect.harvestedEnergy;
+      deposit = Math.min(effect.overflowEnergy,capacity-result.containerEnergy);
+      result.overflowEnergy += effect.overflowEnergy; result.uncapturedOverflowEnergy += effect.overflowEnergy-deposit;
       return { status: 'issued',code: 0 };
     },
   });

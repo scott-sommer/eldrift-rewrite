@@ -1,8 +1,9 @@
+import { energyHarvestEffect } from '../../src/capabilities/mining/harvest-effect';
 import { expect, test } from 'vitest';
 import { harvestCycleRate } from '../../src/capabilities/mining/harvest-cycle';
 import { minerStep } from '../../src/capabilities/mining/step';
 import { assessRemoteEconomics } from '../../src/capabilities/economy/remote-economics';
-/** Exercise the station state machine with finite CARRY and separate native-style harvest/transfer effects. */
+/** Exercise carried-only transfer throughput; finite-CARRY overflow is deliberately not collected by these ports. */
 function runStation(power: number, capacity: number, ticks: number): number {
   let cargo = 0, delivered = 0;
   const issued = () => ({ status: 'issued' as const,code: 0 });
@@ -12,15 +13,15 @@ function runStation(power: number, capacity: number, ticks: number): number {
     establish: () => { throw new Error('Unexpected build'); },repair: () => { throw new Error('Unexpected repair'); },
     rejected: () => { throw new Error('Unexpected rejection'); },
     handoff: () => { delivered += cargo; cargo = 0; return issued(); },
-    harvest: () => { if (capacity === 0) delivered += power; else cargo += Math.min(power,capacity-cargo); return issued(); },
+    harvest: () => { if (capacity === 0) delivered += power; else cargo = energyHarvestEffect(power,1000000,cargo,capacity).carriedEnergy; return issued(); },
   });
   return delivered;
 }
 test.each([[8,50,160],[2,50,260],[8,100,140],[8,0,100],[100,50,100]])(
-  'forecast matches actual station harvest/handoff decisions for power %i, CARRY %i', (power,capacity,ticks) => {
+  'carried-only forecast matches station harvest/handoff decisions for power %i, CARRY %i', (power,capacity,ticks) => {
     expect(runStation(power,capacity,ticks)/ticks).toBeCloseTo(harvestCycleRate(power,capacity));
   });
-test('handoff limits required transport and prevents false break-even acceptance',() => {
+test('carried-only pricing can reject a source independently of possible overflow recovery',() => {
   const result = assessRemoteEconomics({ capacity: 3000,regenerationTicks: 300,harvestPower: 2,
     miner: { body: ['work','work','work','work','carry','move'],lifetime: 1500,travelTicks: 25,returnTicks: 25 },
     hauler: { body: ['carry','carry','move'],lifetime: 1500,outboundTicks: 10,returnTicks: 10,serviceTicks: 2 },
