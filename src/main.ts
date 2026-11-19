@@ -1,3 +1,6 @@
+import { admitRemoteWorkforceSpawn } from './app/remotes/workforce-admission';
+import { admitRemoteConstructionSpawn } from './app/remotes/infrastructure/population/admission';
+import { createNativeRemoteConstructionWorkers } from './app/remotes/infrastructure/population/native';
 import { createNativeRemoteInfrastructureFeature } from './app/remotes/infrastructure/feature';
 import { createConstructionReservationLedger } from './app/native-construction';
 import { createNativeRemoteWorkers } from './app/remotes/fleet/native';
@@ -37,7 +40,7 @@ import { createMemoryPort } from './adapters/screeps/memory';
 const constructionLedger = createConstructionReservationLedger();
 const ports = createGamePorts();
 const state = createMemoryPort(() => Memory);
-const dispatch = createNativeDispatch(state,request => admitRemoteFleetSpawn(state,request,runtimeConfig));
+const dispatch = createNativeDispatch(state,request => admitRemoteFleetSpawn(state,request,runtimeConfig) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig));
 const recovery = createNativeRecovery(state);
 const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
 const runtimeConfig = (room: string) => resolveConfig(configuration(room), Game.time).values;
@@ -53,9 +56,10 @@ const upgradeMaster = createNativeUpgradeMaster(state, dispatch, recovering);
 const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions, ...logistics.definitions },
   recovering);
 const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,{ ...mining.definitions,...logistics.definitions,...workers.definitions });
-const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions, ...remoteWorkers.definitions }, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time));
+const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,{ ...mining.definitions,...logistics.definitions,...workers.definitions,...remoteWorkers.definitions });
+const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, { ...mining.definitions, ...logistics.definitions, ...workers.definitions, ...remoteWorkers.definitions,...constructionWorkers.definitions }, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time));
 // Gameplay registration is separate from configuration-controlled activation.
-export const loop = createGameLoop([scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors], {
+export const loop = createGameLoop([scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors, constructionWorkers.recruitment, constructionWorkers.actors], {
   ...ports,
   config: configuration,
 }, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), dispatch.flush);
