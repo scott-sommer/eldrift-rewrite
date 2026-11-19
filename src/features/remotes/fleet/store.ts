@@ -16,7 +16,7 @@ export function createRemoteFleetStore(state: StatePort, home: string) {
   } };
 }
 function fleetSchema(home: string): StateSchema<RemoteFleetRecord> {
-  return { owner: 'remotes',version: 1,migrations: {},initial: () => ({ home,revision: 0,clock: 0,next: 0,actors: [] }),
+  return { owner: 'remotes',version: 2,migrations: { 1: value => migrateFleet(value,home) },initial: () => ({ home,revision: 0,clock: 0,next: 0,actors: [] }),
     valid(value: unknown): value is RemoteFleetRecord {
       return object(value) && value.home === home && natural(value.revision) && natural(value.clock)
         && natural(value.next) && value.next <= 256
@@ -38,4 +38,9 @@ function metrics(value: Record<string,unknown>): boolean {
 
 function body(value: unknown): boolean {
   return Array.isArray(value) && value.length > 0 && value.length <= 50 && value.every(part => typeof part === 'string' && Object.hasOwn(partCosts,part));
+}
+
+function migrateFleet(value: unknown, home: string): RemoteFleetRecord {
+  if (!fleetSchema(home).valid(value)) throw new Error('Invalid legacy remote fleet');
+  return { ...value,actors: value.actors.map(actor => ({ ...actor,desired: 0 })) };
 }

@@ -39,7 +39,7 @@ export function assessRemoteSource(input: RemoteAssessmentRequest, ports: Remote
   if (incomplete) return { status: 'deferred', id, reason: 'travel:' + incomplete, refresh: false };
   if (unsafe) return { status: 'deferred', id, reason: 'travel:room-policy', refresh: true };
   const economics = assessRemoteEconomics({ ...request.economics, capacity: source.capacity,
-    miner: { ...request.economics.miner, travelTicks: travel.minerTicks },
+    miner: { ...request.economics.miner, travelTicks: travel.minerTicks,returnTicks: travel.minerReturnTicks },
     hauler: { ...request.economics.hauler, outboundTicks: travel.outboundTicks, returnTicks: travel.returnTicks } });
   return { status: 'assessed', id, source: request.source, home: request.home, room: request.room,
     observedAt: summary.observedAt, policy: copyPlain(request.economics), sourceFacts: copyPlain(source), reservation, travel: copyPlain(travel), economics };

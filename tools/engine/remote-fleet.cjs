@@ -112,6 +112,12 @@ async function verifyRemoteFleet(memory,evidence,metadata,server) {
   }
   assert.ok(metadata.confirmationResets.length >= 4);
   for (const tick of metadata.confirmationResets) assert.ok(memory.stampReloads.includes(tick));
+  if (metadata.mode === 'migration') {
+    assert.equal(last.migratedAt,100);
+    assert.ok(rows.filter(row => row.tick >= 101).every(row => row.schemaVersions.every(version => version === 2)));
+    assert.deepEqual(rows.find(row => row.tick === 99).fleet.actors.map(actor => actor.owner).sort(),last.fleet.actors.map(actor => actor.owner).sort());
+    assert.ok(rows.some(row => row.tick > 110 && row.credited > rows.find(row => row.tick === 99).credited),'migration must return to productive service');
+  }
   if (metadata.mode === 'cancel') {
     assert.ok(last.cancelled); const { tick,name } = last.cancelled;
     assert.ok(rows.filter(row => row.tick > tick).every(row => !row.units.some(unit => unit.name === name)),'cancelled spawning worker must actually disappear');

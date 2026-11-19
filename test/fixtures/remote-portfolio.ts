@@ -10,7 +10,7 @@ export function remoteOffer(room = 'E0N1', distances = [20,40]): RemoteRoomOffer
     assessment: { status: 'assessed',id: 'remote-source:' + framedIdentity(['W0N1',sourceIds[index]!]),home: 'W0N1',room,
       source: sourceIds[index]!,observedAt: 15,sourceFacts: { id: sourceIds[index]!,x: 10,y: 10,capacity: 1500 },
       reservation: { state: 'none',username: null,remainingTicks: 0,observedAt: 15 },
-      travel: { status: 'complete',minerTicks: distance,outboundTicks: distance,returnTicks: distance * 2,
+      travel: { status: 'complete',minerTicks: distance,minerReturnTicks: distance*2,outboundTicks: distance,returnTicks: distance * 2,
         rooms: room === 'E0N1' ? ['W0N1',room] : ['W0N1','W0N2',room],operations: 100 },
       economics: { status: 'infeasible',reason: 'no-carry' },
     policy: { regenerationTicks: 300,harvestPower: 2,miner: { body: ['work','work','work','move','move'],lifetime: 1500 },

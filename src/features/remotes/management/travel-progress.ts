@@ -17,11 +17,19 @@ export function createRemoteTravelProgress(state: StatePort, home: string) {
     openState(state,key,schema); saveState(state,key,schema,record); return true;
   } };
 }
-const schema: StateSchema<Progress> = { owner: 'remotes',version: 1,migrations: {},initial: () => ({ revision: 0,clock: 0,identity: '',legs: [] }),
+const schema: StateSchema<Progress> = { owner: 'remotes',version: 2,migrations: { 1: migrate },initial: () => ({ revision: 0,clock: 0,identity: '',legs: [] }),
   valid(value: unknown): value is Progress {
-    return object(value) && natural(value.revision) && natural(value.clock) && typeof value.identity === 'string' && value.identity.length <= 100000
-      && Array.isArray(value.legs) && value.legs.length <= 3 && value.legs.every(leg);
+    return validProgress(value,4);
   } };
 function leg(value: unknown): value is RemoteTravelLeg {
   return object(value) && typeof value.ticks === 'number' && Number.isFinite(value.ticks) && value.ticks >= 0 && natural(value.operations) && position(value.arrival);
+}
+
+function validProgress(value: unknown, maximumLegs: number): value is Progress {
+  return object(value) && natural(value.revision) && natural(value.clock) && typeof value.identity === 'string' && value.identity.length <= 100000
+    && Array.isArray(value.legs) && value.legs.length <= maximumLegs && value.legs.every(leg);
+}
+function migrate(value: unknown): Progress {
+  if (!validProgress(value,3)) throw new Error('Invalid legacy remote travel progress');
+  return { ...value,identity: '',legs: [] };
 }

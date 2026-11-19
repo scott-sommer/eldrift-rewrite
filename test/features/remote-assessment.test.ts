@@ -20,7 +20,7 @@ function fixture() {
       reservation: { energyPerTick: 0, spawnLoad: 0, shares: 1 }, infrastructurePerTick: 0, riskPerTick: 0,
       limits: { maximumHaulers: 10, maximumSpawnLoad: 1, minimumNetYield: 0.1 } } };
   const ports = { intel: vi.fn((room: string) => store.peek(room,request.tick).record), status: vi.fn(() => 'normal' as const),
-    estimate: vi.fn<() => RemoteTravelResult>(() => ({ status: 'complete', minerTicks: 30,outboundTicks: 20,returnTicks: 30,
+    estimate: vi.fn<() => RemoteTravelResult>(() => ({ status: 'complete', minerTicks: 30,minerReturnTicks: 40,outboundTicks: 20,returnTicks: 30,
       rooms: ['W0N1','E0N1'],operations: 12 })) };
   const assess = () => assessRemoteSource(request,ports);
   return { root,store,request,ports,assess,remote };
@@ -67,10 +67,10 @@ test('a partial path or exhausted admission has no economic score', () => {
 });
 test('complete travel claims must retain cardinal route evidence and cannot bypass unsafe intermediates', () => {
   const f = fixture();
-  f.ports.estimate.mockReturnValue({ status: 'complete',minerTicks: 30,outboundTicks: 20,returnTicks: 30,
+  f.ports.estimate.mockReturnValue({ status: 'complete',minerTicks: 30,minerReturnTicks: 40,outboundTicks: 20,returnTicks: 30,
     rooms: ['W0N1','W0N2','E0N2','E0N1'],operations: 12 });
   expect(f.assess()).toMatchObject({ status: 'deferred',reason: 'travel:room-policy' });
-  f.ports.estimate.mockReturnValue({ status: 'complete',minerTicks: 30,outboundTicks: 20,returnTicks: 30,
+  f.ports.estimate.mockReturnValue({ status: 'complete',minerTicks: 30,minerReturnTicks: 40,outboundTicks: 20,returnTicks: 30,
     rooms: ['W0N1','W0N0','E0N1'],operations: 12 });
   expect(() => f.assess()).toThrow('crossing');
 });
@@ -79,7 +79,7 @@ test('mutable estimate ports cannot change source capacity, economic policy or r
   const estimate = vi.fn<NonNullable<Parameters<typeof assessRemoteSource>[1]['estimate']>>((context) => {
     context.request.economics.miner.body = ['move'];
     context.intel('E0N1').summary!.sources[0]!.capacity = 0;
-    return { status: 'complete',minerTicks: 30,outboundTicks: 20,returnTicks: 30,rooms: ['W0N1','E0N1'],operations: 12 };
+    return { status: 'complete',minerTicks: 30,minerReturnTicks: 40,outboundTicks: 20,returnTicks: 30,rooms: ['W0N1','E0N1'],operations: 12 };
   });
   expect(assessRemoteSource(f.request,{ ...f.ports,estimate })).toMatchObject({ status: 'assessed',economics: { harvestRate: 2 } });
   expect(f.request.economics.miner.body).toEqual(['work','move']);

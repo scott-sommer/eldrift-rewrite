@@ -22,7 +22,7 @@ test.each([[8,50,160],[2,50,260],[8,100,140],[8,0,100],[100,50,100]])(
   });
 test('handoff limits required transport and prevents false break-even acceptance',() => {
   const result = assessRemoteEconomics({ capacity: 3000,regenerationTicks: 300,harvestPower: 2,
-    miner: { body: ['work','work','work','work','carry','move'],lifetime: 1500,travelTicks: 25 },
+    miner: { body: ['work','work','work','work','carry','move'],lifetime: 1500,travelTicks: 25,returnTicks: 25 },
     hauler: { body: ['carry','carry','move'],lifetime: 1500,outboundTicks: 10,returnTicks: 10,serviceTicks: 2 },
     reservation: { energyPerTick: 0,spawnLoad: 0,shares: 1 },infrastructurePerTick: 0,riskPerTick: 0,
     limits: { maximumHaulers: 20,maximumSpawnLoad: 1,minimumNetYield: 6 } });

@@ -1,3 +1,4 @@
+import { installLegacyRemoteTiming, remoteTimingVersions } from './remote-timing-upgrade';
 import { loop as runtimeLoop } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState, saveState, peekState } from '../../src/persistence/versioned-state';
@@ -18,11 +19,11 @@ import { traceReceipts } from './receipt-trace';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
 const definitions = { 'remote-mine': { phases: ['work'],validPayload: validRemoteTaskPayload },haul: { phases: ['work'],validPayload: validHaulingPayload } };
 interface ProbeMemory extends Memory {
-  remoteFleetExpectedUnrelated?: unknown; remoteFleetRows?: unknown[]; remoteFleetAttempts?: Record<string,unknown>; remoteFleetRevokedAt?: number; remoteFleetCancel?: { tick: number; name: string }; remoteFleetResumeAt?: number;
+  remoteFleetMigratedAt?: number; remoteFleetExpectedUnrelated?: unknown; remoteFleetRows?: unknown[]; remoteFleetAttempts?: Record<string,unknown>; remoteFleetRevokedAt?: number; remoteFleetCancel?: { tick: number; name: string }; remoteFleetResumeAt?: number;
   remoteFleetReceipts?: Record<string,number>; remoteFleetBindings?: Record<string,string>; remoteFleetBirthCosts?: Record<string,number>;
 }
 export function loop(): void { runFleetProbe('normal'); }
-export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damage' | 'budget' | 'bootstrap' | 'lifetime'): void {
+export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damage' | 'budget' | 'bootstrap' | 'lifetime' | 'migration'): void {
   const memory = Memory as ProbeMemory;
   if (Game.time === 1) {
     const config = openState(state,'operator/config',operatorSchema);
@@ -32,6 +33,7 @@ export function runFleetProbe(mode: 'normal' | 'cancel' | 'replacement' | 'damag
     createSpawnQueue(state,home).submit({ id: 'unrelated-request',name: 'unrelated-request',owner: 'unrelated',room: home,body: ['move'],priority: 100,readyAt: 10000,expiresAt: 20000 });
     state.write('sentinel/remote-fleet',{ owner: 'fixture',version: 1,data: { kept: ['fleet',29] } });
   }
+  if (mode === 'migration' && Game.time === 100) { installLegacyRemoteTiming(state,home); memory.remoteFleetMigratedAt = Game.time; }
   updatePolicy(memory,mode);
   runtimeLoop(); snapshot(memory,mode);
 }
@@ -70,7 +72,7 @@ function snapshot(memory: ProbeMemory, mode: string): void {
     if (JSON.stringify(sentinel) !== JSON.stringify({ owner: 'fixture',version: 1,data: { kept: ['fleet',29] } })) throw new Error('Sentinel changed');
   }
   if (mode === 'lifetime') memory.remoteFleetRows = [];
-  (memory.remoteFleetRows ??= []).push({ tick: Game.time,revokedAt: memory.remoteFleetRevokedAt ?? null,cancelled: memory.remoteFleetCancel ?? null,
+  (memory.remoteFleetRows ??= []).push({ tick: Game.time,...(mode === 'migration' ? { migratedAt: memory.remoteFleetMigratedAt ?? null,schemaVersions: remoteTimingVersions(state,home) } : {}),revokedAt: memory.remoteFleetRevokedAt ?? null,cancelled: memory.remoteFleetCancel ?? null,
     credited: Object.values(amounts).reduce((sum,amount) => sum+amount,0),birthCost: Object.values(costs).reduce((sum,cost) => sum+cost,0),
     spawnEnergy: Game.rooms[home]!.energyAvailable,storageEnergy: Game.rooms[home]!.storage?.store.energy ?? 0,
     homeTotal: stores.reduce((sum,item) => sum+item.store.energy,0),sourceEnergy: source?.energy ?? null,containerEnergy: container?.store.energy ?? null,

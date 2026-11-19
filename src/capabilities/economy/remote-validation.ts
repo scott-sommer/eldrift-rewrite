@@ -1,6 +1,6 @@
 import type { RemoteEconomicsInput, RemoteEconomics } from './remote-model';
 export function validateRemoteEconomics(input: RemoteEconomicsInput): void {
-  nonnegative([input.capacity, input.infrastructurePerTick, input.riskPerTick,
+  nonnegative([input.capacity,input.miner.returnTicks, input.infrastructurePerTick, input.riskPerTick,
     input.reservation.energyPerTick, input.reservation.spawnLoad,
     input.limits.maximumSpawnLoad, input.limits.minimumNetYield,
     input.hauler.outboundTicks, input.hauler.returnTicks]);
@@ -12,7 +12,7 @@ export function validateRemoteEconomics(input: RemoteEconomicsInput): void {
 }
 export function validateEconomicResult(result: RemoteEconomics): void {
   const values = [result.sourceRate, result.harvestRate, result.deliveredRate, result.netRate, result.tripTicks,
-    result.requiredHaulers, result.haulers, ...Object.values(result.energy), ...Object.values(result.spawn)];
+    result.requiredHaulers, result.haulers, ...Object.values(result.energy), ...Object.values(result.spawn),...Object.values(result.timing.miner),...Object.values(result.timing.hauler)];
   if (!values.every(Number.isFinite)) throw new Error('Non-finite remote economics');
 }
 function nonnegative(values: readonly number[]): void {

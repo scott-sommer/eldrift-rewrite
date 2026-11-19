@@ -27,10 +27,10 @@ function bundleProfiles(home: string, assignments: RemoteAssignment[], offers: R
 function sourceProfiles(home: string, assignment: RemoteAssignment, offers: RemoteRoomOffer[], source: RemoteBundle['sources'][number]): RemoteFleetProfile[] {
   const facts = workforceQuote(assignment,offers,source.source);
   const common = { home,room: assignment.plan.room,source: source.source,generation: assignment.generation };
-  return [profile({ ...common,kind: 'miner',body: [...facts.policy.miner.body],desired: 1,travelTicks: facts.travel.minerTicks,
-    marginTicks: facts.policy.miner.replacementMargin ?? 0,retireTicks: facts.travel.minerTicks+(facts.policy.miner.replacementMargin ?? 0),priority: 20 }),
-    profile({ ...common,kind: 'courier',body: [...facts.policy.hauler.body],desired: source.economics.haulers,travelTicks: facts.travel.outboundTicks,
-      marginTicks: facts.policy.hauler.replacementMargin ?? 0,retireTicks: source.economics.tripTicks+(facts.policy.hauler.replacementMargin ?? 0),priority: 30 })];
+  return [profile({ ...common,kind: 'miner',body: [...facts.policy.miner.body],desired: 1,travelTicks: source.economics.timing.miner.travelTicks,
+    marginTicks: source.economics.timing.miner.marginTicks,retireTicks: source.economics.timing.miner.retireTicks,priority: 20 }),
+    profile({ ...common,kind: 'courier',body: [...facts.policy.hauler.body],desired: source.economics.haulers,travelTicks: source.economics.timing.hauler.travelTicks,
+      marginTicks: source.economics.timing.hauler.marginTicks,retireTicks: source.economics.timing.hauler.retireTicks,priority: 30 })];
 }
 
 function workforceQuote(assignment: RemoteAssignment, offers: RemoteRoomOffer[], source: string) {

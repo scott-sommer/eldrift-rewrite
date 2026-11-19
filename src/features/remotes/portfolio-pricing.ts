@@ -21,7 +21,7 @@ export function priceRemoteBundle(offer: RemoteRoomOffer, quotes: RemoteQuote[],
 function priceSource(quote: RemoteQuote, shares: number) {
   const facts = quote.assessment, policy = facts.policy;
   const economics = assessRemoteEconomics({ ...policy,capacity: facts.sourceFacts.capacity,
-    miner: { ...policy.miner,travelTicks: facts.travel.minerTicks },
+    miner: { ...policy.miner,travelTicks: facts.travel.minerTicks,returnTicks: facts.travel.minerReturnTicks },
     hauler: { ...policy.hauler,outboundTicks: facts.travel.outboundTicks,returnTicks: facts.travel.returnTicks },
     reservation: { ...policy.reservation,shares } });
   if (economics.status !== 'evaluated' || !economics.accepted) return undefined;

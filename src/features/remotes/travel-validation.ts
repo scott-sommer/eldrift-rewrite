@@ -12,6 +12,6 @@ export function validateRemoteTravel(value: RemoteTravel, request: Pick<RemoteAs
 }
 
 function validateTimes(value: RemoteTravel): void {
-  if (![value.minerTicks,value.outboundTicks,value.returnTicks].every(time => Number.isFinite(time) && time >= 0)) throw new Error('Invalid remote travel time');
+  if (![value.minerTicks,value.minerReturnTicks,value.outboundTicks,value.returnTicks].every(time => Number.isFinite(time) && time >= 0)) throw new Error('Invalid remote travel time');
   if (!Number.isSafeInteger(value.operations) || value.operations < 0) throw new Error('Invalid remote path operations');
 }

@@ -12,7 +12,7 @@ export function validateManagementRequest(request: RemoteManagementRequest): voi
   const offers = policy.candidates.map(candidate => ({ ...candidate,sourceIds: ['validation'],quotes: [] }));
   validateRemoteOffers(offers,{ ...policy.portfolio,home: request.home,tick: request.tick });
   const economic = policy.economics;
-  assessRemoteEconomics({ ...economic,capacity: 1500,miner: { ...economic.miner,travelTicks: 0 },
+  assessRemoteEconomics({ ...economic,capacity: 1500,miner: { ...economic.miner,travelTicks: 0,returnTicks: 0 },
     hauler: { ...economic.hauler,outboundTicks: 0,returnTicks: 0 } });
   if (!validTiming(policy)) throw new Error('Invalid remote management timing');
   if (typeof policy.reserve !== 'boolean' || !validInfrastructure(policy.infrastructure)) throw new Error('Invalid remote management work policy');

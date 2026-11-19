@@ -17,8 +17,10 @@ export function measureRemoteTravel(context: RemoteEstimateContext, origin: Posi
   const capacity = hauler.body.filter(part => part === 'carry').length * 50;
   const inbound = search({ origin: outbound.arrival,destination: origin,body: hauler.body,load: capacity });
   if (inbound.status !== 'complete') return inbound;
-  return { status: 'complete',minerTicks: mining.ticks,outboundTicks: outbound.ticks,returnTicks: inbound.ticks,
-    rooms: [...rooms],operations: mining.operations+outbound.operations+inbound.operations };
+  const returningMiner = search({ origin: mining.arrival,destination: origin,body: miner.body,load: miner.body.filter(part => part === 'carry').length*50 });
+  if (returningMiner.status !== 'complete') return returningMiner;
+  return { status: 'complete',minerReturnTicks: returningMiner.ticks,minerTicks: mining.ticks,outboundTicks: outbound.ticks,returnTicks: inbound.ticks,
+    rooms: [...rooms],operations: mining.operations+outbound.operations+inbound.operations+returningMiner.operations };
 }
 export function measureRemoteLeg(context: RemoteEstimateContext, leg: RemoteLegRequest, rooms: string[], maximumOps: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean) {

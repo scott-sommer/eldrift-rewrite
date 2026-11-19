@@ -4,7 +4,7 @@ import type { IntelTraversalPolicy, IntelTraversalPorts } from '../intel/travers
 import type { createIntelTraversal } from '../intel/traversal';
 import type { IntelRecord, IntelSource } from '../intel/model';
 export interface RemoteEconomicPolicy extends Omit<RemoteEconomicsInput, 'capacity' | 'miner' | 'hauler'> {
-  miner: Omit<RemoteEconomicsInput['miner'], 'travelTicks'>;
+  miner: Omit<RemoteEconomicsInput['miner'], 'travelTicks' | 'returnTicks'>;
   hauler: Omit<RemoteEconomicsInput['hauler'], 'outboundTicks' | 'returnTicks'>;
 }
 export interface RemoteAssessmentRequest {
@@ -12,7 +12,7 @@ export interface RemoteAssessmentRequest {
   traversal: IntelTraversalPolicy; economics: RemoteEconomicPolicy;
 }
 export interface RemoteTravel {
-  status: 'complete'; minerTicks: number; outboundTicks: number; returnTicks: number;
+  status: 'complete'; minerTicks: number; minerReturnTicks: number; outboundTicks: number; returnTicks: number;
   rooms: string[]; operations: number;
 }
 export type RemoteTravelResult = RemoteTravel | { status: 'deferred'; reason: string };

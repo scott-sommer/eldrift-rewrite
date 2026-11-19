@@ -41,6 +41,12 @@ function verifyRemoteAssessment(memory,evidence) {
   for (const row of rows.filter(row => [1,2,5,7,8].includes(row.tick))) {
     assert.equal(row.near.status,'assessed'); assert.equal(row.far.status,'assessed');
     assert.ok(row.far.travel.outboundTicks > row.near.travel.outboundTicks);
+    for (const quote of [row.near,row.far]) {
+      assert.ok(quote.travel.minerReturnTicks > quote.travel.minerTicks,'full miner CARRY must increase the separately measured return cost');
+      const timing = quote.economics.timing.miner;
+      assert.equal(timing.retireTicks,quote.travel.minerReturnTicks+quote.policy.miner.replacementMargin);
+      assert.equal(timing.replacementTicks,1500-timing.travelTicks-timing.retireTicks-timing.marginTicks-1);
+    }
     assert.ok(row.far.economics.energy.hauling > row.near.economics.energy.hauling);
     assert.ok(row.near.economics.netRate > row.far.economics.netRate);
     assert.equal(row.near.economics.sourceRate,row.capacity/300);

@@ -12,7 +12,7 @@ export function createResumableRemoteTravel(state: StatePort): typeof measureRem
     const identity = JSON.stringify([context.request.home,context.request.source,origin,context.target,rooms,context.request.economics,matrices.version]);
     let record = store.read();
     const legs = record.identity === identity ? record.legs : [];
-    for (let index=legs.length; index<3; index++) {
+    for (let index=legs.length; index<4; index++) {
       if (!guard()) return { status: 'deferred',reason: 'admission' };
       const request = legRequest(index,context.request.economics,origin,context.target,legs);
       const result = measureRemoteLeg(context,request,rooms,maximumOps,snapshots,guard);
@@ -21,7 +21,7 @@ export function createResumableRemoteTravel(state: StatePort): typeof measureRem
       if (!store.save(record.revision,context.request.tick,identity,legs)) return { status: 'deferred',reason: 'progress-conflict' };
       record = store.read();
     }
-    return { status: 'complete',minerTicks: legs[0]!.ticks,outboundTicks: legs[1]!.ticks,returnTicks: legs[2]!.ticks,
+    return { status: 'complete',minerReturnTicks: legs[3]!.ticks,minerTicks: legs[0]!.ticks,outboundTicks: legs[1]!.ticks,returnTicks: legs[2]!.ticks,
       rooms: [...rooms],operations: legs.reduce((sum,leg) => sum+leg.operations,0) };
   };
 }
@@ -29,5 +29,6 @@ function legRequest(index: number, policy: Parameters<typeof measureRemoteTravel
   origin: RemoteLegRequest['origin'], target: RemoteLegRequest['origin'], legs: RemoteTravelLeg[]): RemoteLegRequest {
   if (index === 0) return { origin,destination: target,body: policy.miner.body,load: 0 };
   if (index === 1) return { origin,destination: target,body: policy.hauler.body,load: 0 };
-  return { origin: legs[1]!.arrival,destination: origin,body: policy.hauler.body,load: policy.hauler.body.filter(part => part === 'carry').length*50 };
+  if (index === 2) return { origin: legs[1]!.arrival,destination: origin,body: policy.hauler.body,load: policy.hauler.body.filter(part => part === 'carry').length*50 };
+  return { origin: legs[0]!.arrival,destination: origin,body: policy.miner.body,load: policy.miner.body.filter(part => part === 'carry').length*50 };
 }

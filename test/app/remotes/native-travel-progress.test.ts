@@ -21,9 +21,10 @@ test('completed travel legs survive recreation/CPU deferral and are not searched
   const f = fixture();
   expect(f.run()).toEqual({ status: 'deferred',reason: 'admission' }); expect(measureRemoteLeg).toHaveBeenCalledTimes(1);
   f.resume(); expect(f.run()).toEqual({ status: 'deferred',reason: 'admission' }); expect(measureRemoteLeg).toHaveBeenCalledTimes(2);
-  f.resume(); expect(f.run()).toMatchObject({ status: 'complete',minerTicks: 10,outboundTicks: 10,returnTicks: 10,operations: 60 });
-  expect(measureRemoteLeg).toHaveBeenCalledTimes(3);
-  f.resume(); expect(f.run().status).toBe('complete'); expect(measureRemoteLeg).toHaveBeenCalledTimes(3);
+  f.resume(); expect(f.run()).toEqual({ status: 'deferred',reason: 'admission' }); expect(measureRemoteLeg).toHaveBeenCalledTimes(3);
+  f.resume(); expect(f.run()).toMatchObject({ status: 'complete',minerTicks: 10,minerReturnTicks: 10,outboundTicks: 10,returnTicks: 10,operations: 80 });
+  expect(measureRemoteLeg).toHaveBeenCalledTimes(4);
+  f.resume(); expect(f.run().status).toBe('complete'); expect(measureRemoteLeg).toHaveBeenCalledTimes(4);
 });
 test('body policy changes discard cached legs before further measurement', () => {
   const f = fixture(); f.run(); f.resume();
@@ -32,4 +33,12 @@ test('body policy changes discard cached legs before further measurement', () =>
   expect(vi.mocked(measureRemoteLeg).mock.calls[1]?.[1].body).toEqual(f.context.request.economics.miner.body);
   f.resume(); vi.mocked(prepareRemoteMatrices).mockReturnValueOnce({ version: 'changed',matrix: () => false });
   f.run(); expect(vi.mocked(measureRemoteLeg).mock.calls[2]?.[1].body).toEqual(f.context.request.economics.miner.body);
+});
+
+test('loaded miner return is a distinct fourth leg from the measured mining arrival',() => {
+  const f = fixture(); f.context.request.economics.miner.body = ['work','carry','move'];
+  for (let index=0; index<4; index++) { f.run(); f.resume(); }
+  const request = vi.mocked(measureRemoteLeg).mock.calls[3]![1];
+  expect(request).toEqual({ origin: f.context.target,destination: { room: 'W0N1',x: 25,y: 25 },body: ['work','carry','move'],load: 50 });
+  expect(vi.mocked(measureRemoteLeg).mock.calls[2]![1].load).toBe(100);
 });
