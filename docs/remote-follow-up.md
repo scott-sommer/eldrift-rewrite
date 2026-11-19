@@ -1,6 +1,6 @@
 # Pending ED-29 integration audit (read-only findings)
 
-This audit separates completed components from remaining integration. Latest clean a376519 passes all 222 engine checks in 1,358.47 seconds; see evidence/reservation-population-native.json and evidence/reservation-population-engine-suite.json. Earlier construction evidence remains archived separately. Earlier timing evidence remains archived separately. The remaining obligations below are still required.
+This audit separates completed components from remaining integration. Latest clean39722c0 passes all223 engine checks in 1487.75 seconds; see evidence/remote-pipeline-native.json and evidence/remote-pipeline-engine-suite.json. Earlier construction evidence remains archived separately. Earlier timing evidence remains archived separately. The remaining obligations below are still required.
 
 ## Actual replacement interval
 
@@ -33,3 +33,7 @@ Construction workforce now has ordinary main-loop recruitment, route/body-aware 
 ## Automatic reservation population status
 
 a376519 adds funded recruitment, current final admission, shared controller actors, natural buffered replacement, threat retreat/recovery and scoped queue/spawn cancellation. Source-capacity repricing and live reservation duration refresh prevent self-revocation. See remote-reservation-population.md and evidence/reservation-population-native.json. Combined discovery/extraction/home redistribution income and payback, vision loss, adaptive policy and broader gates remain open.
+
+## Combined ordinary pipeline status
+
+39722c0 qualifies ordinary scout-to-discovery-to-priced selection-to-miner/courier/reserver/distributor operation for one configured outpost. Independently confirmed deliveries cover workforce births and final capital reconciles after loaded withdrawal. See remote-pipeline-qualification.md. Prebuilt infrastructure, multi-room startup stability, controlled vision loss and the broader obligations above remain open.

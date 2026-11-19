@@ -1,0 +1,17 @@
+# ED-29 next dependency: adaptive capacity and full-life reachability
+
+Read-only legacy baseline f2bbf7e8c44addc7c426abb5458e393c9502ff5f. This is an implementation audit, not qualification.
+
+remote.manager.js 454-493: getSupportedRemoteMiners returns2 belowRCL3,3 atRCL3, then stored supportedRemoteMiners/default3 atRCL4+. evaluateSupportedRemoteMiners initializes3 and timestamps on the first ownedRCL3+ evaluation, then evaluates every1500 ticks. Load<=0.75 increments; load>=0.90 decrements; floor0. The stored value can change atRCL3 although its public getter still returns3 untilRCL4. Preserve or explicitly document any deliberate correction to this distinction.
+
+utilV2.js 619-653: getRoomSpawnLoad clips successful spawn-duration events and ongoing/completed starvation intervals to the trailing1500-tick window, then divides by window*current spawn count. Starvation is real ERR_NOT_ENOUGH_ENERGY in spawner.js2681, not just a busy spawn. Successful birth accounting is recorded at2664. The rewrite allocator can skip unaffordable demand before a native call, so recording only native return codes or busy creeps would miss this policy input. Final admission currently combines current eligibility and same-tick reservations; do not call a stateful admission twice merely to inspect demand eligibility.
+
+Legacy duration-event addition can overlap after cancellations; inspect pruning and cancellation semantics before choosing exact event parity versus an explicitly tested observational correction. A bounded per-spawn trailing busy/starved occupancy measure avoids unbounded event history, but its measured meaning must be documented and tested rather than silently called equivalent.
+
+remote.manager.js409-451 and role.minerV2.js36-63: actual arrival reports success once and clears consecutive failures. A never-arrived nonspawning miner withTTL<=1 reports failure once; two consecutive failures blacklist both source and room for that home and drop scoped assignments. Other homes remain eligible. Death before the last lifetime tick does not prove full-life failure. Generic movement blockage, combat loss, deliberate policy withdrawal and a missing body are not substitutes for this evidence.
+
+The rewrite already has per-home assignment/offer stores, generation/current-controller admission, shared task retirement and scoped queue/claim cleanup. Capacity belongs in a separate feature-owned policy state/read model. Reachability observation should be independent from optional actor execution budgets so a skipped final actor tick cannot silently lose feedback. A successful arrival must come from the actual native source approach/service boundary, not from a quoted path or merely entering the target room.
+
+The legacy capacity counts source miners. The rewrite portfolio's maximumSlots also charges per-room reservation commitments; do not replace it directly with the adaptive miner count and accidentally make each reserver consume a supported source slot. Keep source-count admission, physical workforce ceilings and room cost commitments distinct.
+
+Remaining prior to ED-29 completion: native vision-loss suspension/fresh recovery, this adaptive/reachability port, full construction/startup/payback treatment (combined pipeline currently supplies a prebuilt remote container), longer-route contention, alternate-home ownership and ED-43 pressure/soak. The initial unconstrained multi-room pipeline diagnostic also exposed cancellation/startup churn; one admitted outpost does not qualify dynamic multi-room capital stability.

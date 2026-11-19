@@ -47,3 +47,5 @@ A separate 120-tick scenario refuses underfunded, disabled and infeasible reserv
 ## Remaining ED-29 scope
 
 This component does not qualify the combined automatic scouting/discovery/miner/courier/reserver income pipeline, startup capital/warmup/payback, lost vision, longer-route contended handoffs, damaged-return policy, home loss/alternate-home ownership or aggregate pressure/soak. The legacy 1500-tick adaptive capacity policy and full-life per-home reachability feedback remain separate obligations. Specialist, operator and project-wide migration/rollback work remains tracked by ED-35, ED-39 and ED-44. ED-29 and the release-candidate goal stay open.
+
+The combined ordinary main-loop pipeline is now qualified at39722c0 for one configured outpost with prebuilt remote infrastructure; see remote-pipeline-qualification.md. Its deliveries cover workforce births and reconcile final capital. Full infrastructure/startup payback and the other remaining gates above are still open.
