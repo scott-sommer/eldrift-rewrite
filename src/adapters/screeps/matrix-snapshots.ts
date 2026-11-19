@@ -22,6 +22,7 @@ export function createMatrixSnapshots(observe = observeCostMatrix, clock = () =>
       const matrices = new Map(entries);
       return {
         version: JSON.stringify(entries.map(([room, value]) => [room, value.version])),
+        versionFor: (room: string) => matrices.get(room)?.version,
         matrix: (room: string) => matrices.get(room)?.matrix?.clone(),
       };
     },

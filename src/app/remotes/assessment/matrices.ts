@@ -11,6 +11,7 @@ export function prepareRemoteMatrices(context: Pick<RemoteEstimateContext, 'inte
     if (!summary) throw new Error('Missing admitted remote room facts');
     retained.set(room,createStaticCostMatrix(retainedRemoteCosts(summary),roadCost));
   }
-  return { version: JSON.stringify([live.version,[...retained].map(([room,value]) => [room,value.version])]),
+  const versions = [...new Set(rooms)].sort().map(room => [room,live.versionFor(room) ?? room+':'+retained.get(room)!.version]);
+  return { version: JSON.stringify(versions),
     matrix: (room: string) => live.matrix(room) ?? retained.get(room)?.matrix.clone() ?? false };
 }
