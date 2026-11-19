@@ -35,3 +35,9 @@ Construction runtime qualification does not close these ED-29 obligations or the
 ## Quotation component status
 
 14cf721 implements buffered balanced bodies, service/replacement pricing, one-room cost commitment and independent two-leg controller measurement with bounded persistent progress. Clean focused native quotation/assessment/management/actuator regressions pass; full units1418, zero Lizard violations. See remote-reservation-quotes.md for scope, exact evidence and remaining per-room policy/recruitment/funding gates. Automatic reserve remains disabled; no quoted source-production projection or natural handoff claim follows.
+
+## Per-room seam status
+
+6bcfa0e supplies validated quoted/null candidate decisions, once-per-room pricing, current controller/body/route requotation, and schema3 invalidation of old offers while preserving lease generations. The clean218-case native suite and1427-unit gate pass; see remote-reservation-quotes.md and evidence/room-reservation-native.json. The earlier policy/data seam discussion records the original audit state. Automatic native policy remains reserve:false; generation-owned recruitment, final funding/slot admission, actor service and natural buffered replacement remain required.
+
+The new population family must join both app/remotes/workforce-admission.ts and infrastructure/population/home.ts pending-other accounting. Bind its quote to the current managed lease generation and controller, rather than accepting any same-room cached offer. Reuse shared reservation tasks/controller dispatch and movement. A CLAIM/MOVE actor needs no private cargo/refund state machine. Preserve old/manual Reserve actuator access separately.

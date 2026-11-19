@@ -8,7 +8,7 @@ The selective legacy recipe retains balanced CLAIM/MOVE pairs and an eight-pair 
 
 Pricing uses CLAIM lifetime, separately measured outbound/return travel, retirement reserve and scheduling overlap through shared service timing. Useful buffer accounts for controller aging at endTime-1. Required coverage includes configured minimum buffer plus spawn/outbound/margin recovery. One CLAIM has zero net buffer growth and is refused. Body energy and spawn load use the actual replacement interval. No controller capacity or source inventory is invented by this calculation.
 
-The quote supplies a single room commitment (one workforce slot and one energy/spawn charge). Portfolio tests apply it to a two-source room with zero per-source reservation charge, proving the cost is counted once while observed source capacity stays 1500. The managed-room policy seam is still required before using this quote in ordinary selection.
+The quote supplies a single room commitment (one workforce slot and one energy/spawn charge). Portfolio tests apply it to a two-source room with zero per-source reservation charge, proving the cost is counted once while observed source capacity stays 1500. Commit 6bcfa0e adds validated per-room quoted or explicitly unreserved decisions to management. Ordinary automatic candidate generation and population remain disabled.
 
 ## Native quote and persistence
 
@@ -26,4 +26,16 @@ Useful-buffer values remain predictions; this short scenario does not execute re
 
 ## Remaining integration
 
-Introduce a validated per-room reservation decision in management instead of toggling its global flag for every room. Persist/validate selected quotes and migrate/invalidate changed wire schemas deliberately. Add scoped generation-owned population, final spawn admission and actor service to shared workforce limits. Stage actual extraction and home redistribution so a1300 reserver cannot consume all miner startup funding. Then qualify natural buffered handoff, missed ticks, source regeneration, threat/vision/home changes, queue cleanup, economic acceptance/rejection and startup/payback without mid-run funding injection. ED-29 remains open.
+The per-room management seam is implemented and qualified below. Add scoped generation-owned population, final spawn admission and actor service to shared workforce limits. Stage actual extraction and home redistribution so a1300 reserver cannot consume all miner startup funding. Then qualify natural buffered handoff, missed ticks, source regeneration, threat/vision/home changes, queue cleanup, economic acceptance/rejection and startup/payback without mid-run funding injection. ED-29 remains open.
+
+## Per-room management qualification
+
+Implementation 6bcfa0e adds optional per-candidate reservation decisions: omitted retains legacy global behavior, null explicitly disables reservation, and a validated quote enables the selected controller independently of the global flag. Explicit decisions remove source-level reservation fees. The room offer stores the original commitment and adds the complete quoted charge once; validation rejects missing/doubled fees, changed bodies/economics and incorrect target/route provenance.
+
+Commit requires fresh matching controller observations and an injected native re-quote with the same body, pricing policy, route identity and economics. CPU refusal or a missing live-admission port cannot publish a quoted reservation. Quote observation time remains stable across a scan; deliberate refresh starts a new policy scan. This prevents a freshly generated timestamp from restarting every scan.
+
+Management state advances to schema3. Valid old schema2 offers are invalidated because they lack per-room provenance; lease generation, clock and revision survive. Schema1 passes through the existing loaded-travel migration first. Corrupt old records and undeclared quote fields are rejected. Pending scans preserve existing leases without renewal; actors remain responsible for current safety on every action.
+
+The clean 28-tick native scenario supplies two candidate rooms and passive witnesses. East has two sources and one quoted reservation; North has one source and an explicit unreserved decision, despite the global flag being true. It upgrades a schema2 record, reloads three times, refuses the East quote while controller geometry changes, then recovers after restoration. Source capacity stays1500, per-source fees stay zero, spawn energy stays1300, no native reservation executes, and the unrelated manual lease/state stay unchanged. This is management qualification, not population or natural buffering proof.
+
+Full units:1427 tests /389 files /10.10s. Quality, packaged bundle and Lizard690 production /566 test files pass with zero violations. The clean218-case full native suite passed in 1287.44 seconds. Exact rows, clean commit provenance and limitations are in evidence/room-reservation-native.json; all per-case outcomes/digests are in evidence/room-reservation-engine-suite.json. Earlier quote-only evidence above remains historical.
