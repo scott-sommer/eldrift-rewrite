@@ -27,7 +27,7 @@ export function pipelineFamily(owner: string): string | undefined {
   return remoteFleetIdentity(owner)?.kind ?? (reservationIdentity(owner) ? 'reserver' : scoutHome(owner) ? 'scout' : owner === distributorOwner(home) ? 'distributor' : undefined);
 }
 export function pipelineIncome(memory: PipelineMemory): number { return Object.values(memory.pipelineRemote?.amounts ?? {}).reduce((sum,value) => sum+value,0); }
-export function snapshotPipeline(state: StatePort, memory: PipelineMemory): void {
+export function snapshotPipeline(state: StatePort, memory: PipelineMemory, probe?: Record<string,unknown>): void {
   const actors = Object.values(Game.creeps).filter(creep => pipelineFamily(creep.memory.population?.owner ?? ''));
   const births = trackBirths(memory,actors), holders = remoteHolders(births);
   const records = peekState(state,'logistics-requests/'+home,logisticsQueueSchema)?.records ?? [];
@@ -37,7 +37,7 @@ export function snapshotPipeline(state: StatePort, memory: PipelineMemory): void
   const room = Game.rooms[home]!, source = Game.rooms[remote]?.find(FIND_SOURCES)[0];
   const lease = createRemoteAssignmentStore(state).owner(remote,Game.time), manager = createRemoteManagementStore(state,home).read();
   const pending = createSpawnQueue(state,home).list();
-  (memory.pipelineRows ??= []).push({ tick: Game.time,stopped: memory.pipelineStopped ?? null,visible: !!Game.rooms[remote],
+  (memory.pipelineRows ??= []).push({ ...(probe ? { probe } : {}),tick: Game.time,stopped: memory.pipelineStopped ?? null,visible: !!Game.rooms[remote],
     discovered: createRemoteDiscoveryStore(state,home).read().published,lease: lease ? { generation: lease.generation,sources: lease.plan.sources.length,reserve: !!lease.plan.reserve } : null,
     source: source ? { energy: source.energy,capacity: source.energyCapacity } : null,reservation: Game.rooms[remote]?.controller?.reservation?.ticksToEnd ?? null,
     offers: manager.offers.map(offer => ({ room: offer.room,reservationCost: offer.commitment.energyPerTick,sources: offer.quotes.map(quote => ({ capacity: quote.assessment.sourceFacts.capacity,netRate: quote.assessment.economics.status === 'evaluated' ? quote.assessment.economics.netRate : null })) })),

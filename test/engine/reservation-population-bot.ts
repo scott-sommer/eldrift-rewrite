@@ -1,3 +1,4 @@
+import { reservationScenarioConfig } from './reservation-scenario-config';
 import { reservationOwner } from '../../src/features/remotes/reservation/identity';
 import { createRemoteManagementStore } from '../../src/features/remotes/management/store';
 import { loop as runtimeLoop } from '../../src/main';
@@ -41,12 +42,7 @@ export function runReservationPopulation(mode: 'normal' | 'admission' | 'cancel'
 }
 function setup(mode: 'normal' | 'admission' | 'cancel'): void {
   const config = openState(state,'operator/config',operatorSchema);
-  config.empire = { remoteManagementEnabled: true,remoteWorkersEnabled: true,remoteSpawningEnabled: true,remoteReservationEnabled: true,
-    remoteReservationBodyBudget: 1300,remoteReservationEnergyReserve: mode === 'admission' ? 8000 : 0,remoteReservationMinimumBuffer: 100,remoteReservationQuoteRooms: 1,
-    remoteWorkerCpuBudget: 100,remoteCpuBudget: 0,remoteMaximumSlots: 2,remoteMaximumSpawnLoad: 2,remoteMaximumPathOps: 10000,
-    remoteReassessInterval: 30,remoteLeaseLifetime: 200,remoteScanLifetime: 50,intelMaximumAge: 200,remoteContainersEnabled: false,
-    logisticsEnabled: true,energyRequestsEnabled: true,distributorSpawningEnabled: true,distributorTarget: 1,distributorBodyBudget: 150,
-    recoveryEnabled: false,energyBankingEnabled: false,preservationEnabled: false };
+  config.empire = reservationScenarioConfig(mode);
   saveState(state,'operator/config',operatorSchema,config);
   createSpawnQueue(state,home).submit({ id: 'unrelated-reservation',name: 'unrelated-reservation',owner: 'unrelated',room: home,body: ['move'],priority: 100,readyAt: 10000,expiresAt: 20000 });
   state.write('fixture/reservation-population',{ owner: 'fixture',version: 1,data: { preserved: true } });
