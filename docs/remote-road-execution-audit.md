@@ -19,3 +19,11 @@ The clean milestone's assessment test checks native PathFinder quotation on a fa
 ## Still open
 
 Buffered automatic reservation/controller travel, startup funding/payback and home redistribution, 1500-tick adaptive load including energy starvation, per-home full-life reachability, alternate-home recovery, combined scout-discovery-workers and ED-43 pressure. No whole-remote parity or RC claim follows from the timing component.
+
+## Work foundation status
+
+Clean ccc4843 implements the narrow per-call NativeWorkPolicy injection on shared intent execution. An unavailable policy blocks both movement and already-in-range work before consuming action ownership. Existing callers retain their owned-work route. The pure remote infrastructure selector restricts orders to owned, ready, incomplete sites at exact current-plan type/coordinates, admitted route rooms, enabled infrastructure types and matching home/target/generation/expiry. Containers precede roads; same-priority retained targets remain stable. Caller must still resolve current lease authority.
+
+Full units pass: 1,381 tests / 376 files / 11.64s. Focused adapter/selector/position/smoke checks pass (17 tests / 278ms); type/lint/boundaries and Lizard pass (655 production / 547 test files, zero violations). Clean native work, worker-position, worker-position-wide and remote-return scenarios pass; provenance is in evidence/remote-work-authority-native.json. These native checks protect existing behavior; remote service, collection, retirement and recruitment are the next integration work. No automatic road execution claim is made.
+
+The longer loaded-return item above now has a focused controlled-retirement proof at 947ac1f/b35af7c; see evidence/remote-swamp-return-native.json. Long-route natural replacement overlap and contention remain separate open requirements.
