@@ -97,3 +97,12 @@ Native specialist ownership-loss tests exposed shortest-path oscillation: a unit
 Atomic traffic groups are for assembled specialist ring movement, not arbitrary independent travel. Ring execution now groups movements only when the whole roster is physically on ring stations; parking and return/assembly use ordinary dependency-aware traffic dispatch. Native ownership-loss/return verifies every original station is recovered.
 
 Native path search maxRooms is capped by the size of the allowed corridor as well as its mobility profile. This prevents single-room paths from exploring outside their permitted region; it corrected native 'Could not load terrain data' failures encountered on blocked detours in the fixture. Contract coverage asserts maxRooms1 for a one-room corridor even when the profile permits16; full native regression covers multi-room navigation.
+
+
+## Arrival-border paths and confirmed traffic denial
+
+Native PathFinder can return a complete graph path whose first outward step from an arrival border has no executable engine direction. It can also propose a local lateral edge step whose actual movementTransition landing re-crosses into the neighbor room. The shared native path adapter checks that first engine landing and searches a legal inward bounce when needed. Recovery searches share the original maximum-operation allowance and preserve room/matrix policy, terrain costs and incomplete-path handling. They never authorize an occupied tile or a second native movement command.
+
+A traffic-denied arrival-edge move can relocate across the border automatically, even though no move intent was issued. Position change alone must not erase known congestion. Navigator settlement therefore enables the goal's persistent occupancy avoidance immediately after confirmed traffic denial. Queued requests alone do not enable it. Goal changes, arrival, expiry and bounded eviction retain their existing behavior.
+
+The deterministic native border fixture starts loaded units at an outward arrival border and behind occupied home entry tiles, observes actual traffic denial and requires home return with cargo preserved. Recovery fixtures now expect one denied tick before basic detour, with the loaded variant retaining its fatigue delay. They continue to require stationary blockers, diagonal avoidance, final arrival, duplicate-request rejection and reset reconstruction. Full 211-case qualification is being rerun after correcting those historical timing expectations; no terminal full-suite success is claimed here.

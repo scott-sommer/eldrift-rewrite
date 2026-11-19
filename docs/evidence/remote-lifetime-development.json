@@ -453,5 +453,169 @@
       }
     ]
   },
-  "trafficCorrection": "A blocked move from an arrival border can automatically re-cross the room, causing position-based progress to reset its failures. Confirmed traffic denial now enables persistent detour avoidance immediately, independent of that position change. Two independent native contention runs pass (engine-x38acH/eTRI1Z). Deterministic 20-tick border probe engine-7FdynT forces denial at tick1 and returns loaded miner/courier to W0N1 preserving24/52 cargo. Full clean regression remains pending."
+  "trafficCorrection": "A blocked move from an arrival border can automatically re-cross the room, causing position-based progress to reset its failures. Confirmed traffic denial now enables persistent detour avoidance immediately, independent of that position change. Two independent native contention runs pass (engine-x38acH/eTRI1Z). Deterministic 20-tick border probe engine-7FdynT forces denial at tick1 and returns loaded miner/courier to W0N1 preserving24/52 cargo. Full clean regression remains pending.",
+  "recoveryTimingExpectation": {
+    "status": "failed",
+    "completed": 202,
+    "activeScenario": "--recovery",
+    "milliseconds": 1201094.4674,
+    "reportSha256": "d2e7f5fa54d9711bad068bc08342139baefc048b9e8381b3623622f220baaf81",
+    "failure": "AssertionError [ERR_ASSERTION]: --recovery: AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    0,\n-   0,\n    1,\n+   1\n  ]\n\n    at verifyRecovery (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\recovery.cjs:13:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:918:44\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [Array],\n  expected: [Array],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\n\n1 !== 0\n\n    at Object.<anonymous> (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\suite.cjs:19:12)\n    at Module._compile (node:internal/modules/cjs/loader:1929:14)\n    at Object..js (node:internal/modules/cjs/loader:2060:10)\n    at Module.load (node:internal/modules/cjs/loader:1651:32)\n    at Module._load (node:internal/modules/cjs/loader:1443:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47",
+    "correction": "Native recovery expected two traffic-denied ticks before avoiding units. Immediate avoidance after confirmed denial now issues basic detour [0,1,1], loaded/fatigued detour [0,1,0]. Fixtures retain the first blocked tick, stationary blocker, diagonal detour, fatigue, duplicate-call isolation, final arrival and reset assertions."
+  },
+  "recoveryTailPreflight": [
+    {
+      "case": "--recovery",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-pxa96i\\evidence.json",
+      "evidenceSha256": "20c5f2e4b907b2abc2a5f42e6e489e2f117902f13922f719a7a683fa2bb400d9",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "860d3c4451f84195d9f34b1c851816653ac844c2fae41abaaf93662228c935b8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--traffic",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Nm5awu\\evidence.json",
+      "evidenceSha256": "d3d5ee50ae0f3b5de7956dcb34ff165e7d5c6843476bcd110ca54bd604292824",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "7d76464d9aff69ffaf6b589c2550b70c1ac30d50e14d1bc1f0f584d1b1b5767f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--exits",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-RtGv0Z\\evidence.json",
+      "evidenceSha256": "029324dfc94944ebc836d0edf6354efd6e11126eb637aadfc51275eb1d728f00",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "b29ea0f361c1e417018c0aee84e6dedc50d51b31d9ace280306592a8fed2ebff",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--navigation",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5yYhZr\\evidence.json",
+      "evidenceSha256": "c2899bb91f756dae2a8ce37ffaa66ab45a1fcaa64c2b25facd3251db561e0132",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "64ef4d6f11cfe39e4ccbbfc505d6df494b6540629bd21d7be660517f8a3ea373",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--unseen",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PaKIEy\\evidence.json",
+      "evidenceSha256": "ea5b13871d8450be9cfa23611e4ee97882a95a04b6e2e6bf6311a7689aa42618",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "cd9e0cc75a3e99a8a9b9660dc575a5764579342922fd61bb9c472441c56872c0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--occupied-exit",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EHq1ZJ\\evidence.json",
+      "evidenceSha256": "f132e868ed8f2be755f4b1319993eeb2a5c5fd8fb98b78ef6437f89e3f44a268",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "4a510a09e65fb15966060fb4bd426340c52cbe4d8345b02f0c4153cf15bab23f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--service-recovery",
+      "expectedFailure": false,
+      "status": "passed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-QgVSBW\\evidence.json",
+      "evidenceSha256": "f433beb3f35d31fcfec58ef63918b57aa96f404c276d1fe4cf29e0714df7f896",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "983697eb6e33f9f8aa1c7e29321aeb0363c447c479b7f0c98203020c6a0febf0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--inject-error",
+      "expectedFailure": true,
+      "status": "failed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6P7naI\\evidence.json",
+      "evidenceSha256": "6673e26dbfdf20e1b71b6f029424102d055999cff42202b0b0dd7510ad65e8b3",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "17cfa29416b1052f76eced3881781ead72dab159c018a5e90037b2ab925a57e0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "case": "--inject-timeout",
+      "expectedFailure": true,
+      "status": "failed",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-E1Djky\\evidence.json",
+      "evidenceSha256": "892ad9560f2ed7c21e4e081a7d46d7c285777fd78937c0ee24c7ec7afa68aeb3",
+      "provenance": {
+        "commit": "a4af38ce8f235e89a4fb9f8beb804eeaae54d591",
+        "dirty": true,
+        "bundleSha256": "95882f723d661a8154ea283936138d8704e66318bbb87f3b1487b9f832b3d218",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    }
+  ]
 }
