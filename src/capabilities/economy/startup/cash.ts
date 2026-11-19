@@ -1,3 +1,4 @@
+import { startupFlowDue } from './flow';
 import { validateStartupCash } from './cash-validation';
 import type { StartupCashForecast, StartupCashInput, StartupCashFlow } from './cash-model';
 /** Explicit finite schedules; costs precede same-frame receipts, which cannot fund an earlier native admission. */
@@ -6,7 +7,7 @@ export function forecastStartupCash(input: StartupCashInput): StartupCashForecas
   const result: StartupCashForecast = { endingEnergy: input.homeEnergy,minimumEnergy: input.homeEnergy,minimumAt: 0,requiredHomeEnergy: 0,homeShortfall: 0,
     birthEnergy: 0,homeConstructionEnergy: 0,upkeepEnergy: 0,deliveredEnergy: 0,homeCashSurplus: 0,constructionRecoveryMargin: -input.selfHarvestedConstruction,firstDeliveryAt: null,firstRecoveryAt: null };
   for (let tick = 0; tick <= input.horizon; tick++) {
-    const flows = input.flows.filter(flow => due(flow,tick));
+    const flows = input.flows.filter(flow => startupFlowDue(flow,tick));
     spend(result,flows);
     if (result.endingEnergy < result.minimumEnergy) { result.minimumEnergy = result.endingEnergy; result.minimumAt = tick; }
     receive(result,input,flows,tick);
@@ -14,12 +15,6 @@ export function forecastStartupCash(input: StartupCashInput): StartupCashForecas
   result.requiredHomeEnergy = input.protectedEnergy+input.homeEnergy-result.minimumEnergy;
   result.homeShortfall = Math.max(0,result.requiredHomeEnergy-input.homeEnergy);
   return result;
-}
-function due(flow: StartupCashFlow, tick: number): boolean {
-  if (tick < flow.firstTick) return false;
-  if (flow.interval === null) return tick === flow.firstTick;
-  const age = tick-flow.firstTick;
-  return age%flow.interval === 0 && age/flow.interval < flow.occurrences;
 }
 function spend(result: StartupCashForecast, flows: readonly StartupCashFlow[]): void {
   for (const flow of flows) {
