@@ -9,7 +9,7 @@ import { advanceStartupBuilding } from './project-building';
 import { createStartupContainer } from './container';
 import { createStartupSink } from './sink';
 import { advanceStartupSource } from './source';
-import { startupDeliveryCash } from './delivery-cash';
+import { startupDeliveryCash, startupSourceCash } from './delivery-cash';
 import { snapshotStartupProject } from './snapshot';
 import type { StartupDeliveryInput, StartupCourierState } from './delivery-model';
 import type { StartupBuildWave } from './construction-model';
@@ -53,7 +53,7 @@ class StartupProject {
     this.delivery.courierCargoEnergy = this.couriers.reduce((sum,worker) => sum+worker.cargo,0);
     this.delivery.receipts.sort((a,b) => a.tick-b.tick || a.request.localeCompare(b.request));
     return { spawning,construction,delivery: this.delivery,homeSink: this.sink.result(),maintenance: this.container.result(),
-      cash: startupDeliveryCash(this.input,spawning,construction,this.delivery) };
+      cash: startupDeliveryCash(this.input,spawning,construction,this.delivery),projectCash: startupSourceCash(this.input,spawning,construction,this.delivery) };
   }
   private step(): void {
     this.recruit(); this.sink.prepare(this.tick);

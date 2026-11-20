@@ -10,3 +10,8 @@ export function startupDeliveryCash(input: StartupDeliveryInput, spawning: Start
   if (construction.completeAt === null || construction.completeAt > initial.horizon) cash.firstRecoveryAt = null;
   return cash;
 }
+
+/** Outside income can finance a body, but cannot establish this source project's return. */
+export function startupSourceCash(input: StartupDeliveryInput, spawning: StartupSpawnForecast, construction: StartupConstructionForecast, delivery: StartupDeliveryForecast) {
+  return startupDeliveryCash(input,{ ...spawning,flows: spawning.flows.filter(flow => flow.kind !== 'delivery') },construction,delivery);
+}

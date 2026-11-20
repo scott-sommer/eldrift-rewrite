@@ -79,3 +79,13 @@ test('invalid budgets and unsupported source-worker overlap cannot certify a fut
   view.project.workers = [...view.project.workers,{ ...view.project.workers[0]!,request: 'overlap' }];
   expect(() => forecastStartupProject(view)).toThrow('handoff');
 });
+
+test('outside income may finance workers but cannot be claimed as this source project recovery',() => {
+  const view = earningInput(); view.homeSink.freeCapacity = 0;
+  view.project.spawning.cash.flows = [{ id: 'outside-income',kind: 'delivery',energy: 500,firstTick: 30,interval: null,occurrences: 1 }];
+  const result = forecastStartupProject(view);
+  expect(result.spawning.births.some(birth => birth.request === 'later')).toBe(true);
+  expect(result.cash).toMatchObject({ deliveredEnergy: 500,birthEnergy: 400,homeShortfall: 0,homeCashSurplus: 100 });
+  expect(result.delivery.deliveredEnergy).toBe(0);
+  expect(result.projectCash).toMatchObject({ deliveredEnergy: 0,birthEnergy: 400,homeCashSurplus: -400,constructionRecoveryMargin: -404,firstRecoveryAt: null });
+});
