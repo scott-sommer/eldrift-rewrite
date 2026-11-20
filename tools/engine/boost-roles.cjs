@@ -10,8 +10,8 @@ function verifyBoostRoles(memory,mode,evidence) {
   evidence.boostRoles = { mode,rows,state,reloads: memory.stampReloads };
   assert.deepEqual(memory.stampReloads,[8,12,31,181]);
   assert.equal(rows.length,320); assert.equal(state.owner,'industry'); assert.equal(state.version,1);
-  const roleLab = state.data.roles[0]?.lab ?? memory.eldrift.records['operator/config'].data.rooms.W0N1.override.labBoostRoles[0]?.lab;
-  if (roleLab) assert.ok(rows.every(row => !row.reactionLabs.includes(roleLab)),'Configured role lab cannot react');
+  const roleLab = rows[0].lab;
+  assert.ok(rows.filter(row => row.bound || row.desired).every(row => !row.reactionLabs.includes(roleLab)),'Active or retiring role lab cannot react');
   assert.equal(last.bankOH,10); assert.equal(last.bankK,10); assert.equal(last.cargo,0);
   assert.equal(records['tasks/boost-courier'].data.queue.length,0); assert.equal(records['quantity-reservations/empire'].data.claims.filter(claim => claim.expiresAt > 320).length,0);
   if (mode === 'normal') {

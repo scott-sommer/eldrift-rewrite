@@ -6,7 +6,7 @@ import { haulingOwner } from '../../src/features/logistics/identity';
 import { workOwner } from '../../src/features/work/identity';
 import { createBoostRequests } from '../../src/features/industry/boosts/store';
 export type BoostRoleMode = 'normal' | 'switch' | 'remove';
-interface Row { tick: number; desired: string | null; bound: string | null; mineral: string | null; amount: number; energy: number; cargo: number; cargoX: number; bankX: number; bankK: number; bankZO: number; bankOH: number; work: number; ready: boolean; reactionLabs: string[] }
+interface Row { tick: number; lab: string; desired: string | null; bound: string | null; mineral: string | null; amount: number; energy: number; cargo: number; cargoX: number; bankX: number; bankK: number; bankZO: number; bankOH: number; work: number; ready: boolean; reactionLabs: string[] }
 declare global { interface Memory { boostRoleRows?: Row[]; boostRoleChanged?: boolean; boostRoleRequested?: boolean } }
 const state = createMemoryPort(() => Memory), owner = workOwner('W0N1','upgrader');
 export function runBoostRole(mode: BoostRoleMode): void {
@@ -27,7 +27,7 @@ export function runBoostRole(mode: BoostRoleMode): void {
   }
   botLoop();
   const inspect = industry.labs.inspect(room.name), job = createBoostRequests(state).get(owner,'role-boost');
-  (Memory.boostRoleRows ??= []).push({ tick: Game.time,desired: inspect.values.labBoostRoles?.[0]?.resource ?? null,bound: inspect.boostRoles[0]?.resource ?? null,
+  (Memory.boostRoleRows ??= []).push({ tick: Game.time,lab: lab.id,desired: inspect.values.labBoostRoles?.[0]?.resource ?? null,bound: inspect.boostRoles[0]?.resource ?? null,
     mineral: lab.mineralType ?? null,amount: lab.mineralAmount ?? 0,energy: lab.store.getUsedCapacity(RESOURCE_ENERGY),cargo: courier.store.getUsedCapacity(),cargoX: courier.store.getUsedCapacity(RESOURCE_CATALYZED_GHODIUM_ACID),
     bankX: room.storage!.store.getUsedCapacity(RESOURCE_CATALYZED_GHODIUM_ACID),bankK: room.storage!.store.getUsedCapacity(RESOURCE_KEANIUM),bankZO: room.storage!.store.getUsedCapacity(RESOURCE_ZYNTHIUM_OXIDE),bankOH: room.storage!.store.getUsedCapacity(RESOURCE_HYDROXIDE),
     work: creep.body.filter(part => part.type === WORK && part.boost === RESOURCE_CATALYZED_GHODIUM_ACID).length,ready: job?.status === 'confirmed',reactionLabs: inspect.assignment ? [...inspect.assignment.inputs,...inspect.assignment.outputs] : [] });
