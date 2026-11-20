@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict');
+const { TerrainMatrix } = require('screeps-server-mockup');
 const { resourceWorld } = require('./resources.cjs');
 async function fixedHaulingWorld(server,bot) {
+  await server.world.setTerrain('W0N1',new TerrainMatrix());
   await resourceWorld(server,bot);
   await server.world.addRoomObject('W0N1','creep',19,20,{ name: 'station-miner',user: bot.id,body: ['work','carry','move'].map(type => ({ type,hits: 100 })),store: {},storeCapacity: 50,hits: 300,hitsMax: 300,spawning: false,fatigue: 0,ageTime: 1500 });
 }
