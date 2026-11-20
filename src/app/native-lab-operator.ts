@@ -8,7 +8,7 @@ export function createNativeLabOperator(state: StatePort) {
     labs(home) {
       const room = Game.rooms[home]; if (!room) return [];
       return room.find(FIND_MY_STRUCTURES).filter((item): item is StructureLab => item.structureType === STRUCTURE_LAB)
-        .map(lab => ({ id: lab.id,active: lab.isActive(),mineral: lab.mineralType,amount: lab.mineralAmount,energy: lab.store.energy,cooldown: lab.cooldown }));
+        .map(lab => ({ id: lab.id,active: lab.isActive(),mineral: lab.mineralType ?? null,amount: lab.mineralAmount ?? 0,energy: lab.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,cooldown: lab.cooldown ?? 0 }));
     },
   });
 }
