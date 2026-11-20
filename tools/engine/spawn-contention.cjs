@@ -14,9 +14,13 @@ async function contentionWorld(server, bot) {
       storeCapacityResource: { energy: 300 }, hits: 5000, hitsMax: 5000, spawning: null, notifyWhenAttacked: true });
   }
 }
-function verifyContention(memory) {
+function verifyContention(memory,evidence) {
   assert.deepEqual(memory.spawnContention.accepted.sort(), ['first', 'remote']);
   assert.deepEqual(memory.spawnContention.pending, ['second']);
   assert.deepEqual(memory.spawnContention.observed.sort(), ['first', 'remote']);
+  const result = memory.spawnContention;
+  assert.equal(result.homeSpawns.length,2); assert.equal(result.acceptedSpawn,result.selected);
+  assert.deepEqual(result.incubatingAt,{ x: 20,y: 20 });
+  evidence.spawnContention = result;
 }
 module.exports = { contentionWorld, verifyContention };

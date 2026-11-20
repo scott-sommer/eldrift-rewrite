@@ -1,3 +1,4 @@
+import { nativeSpawnDirections } from './spawn-placement';
 import { createIntentAdmission } from '../../persistence/intent-admission';
 import type { StatePort } from '../../persistence/versioned-state';
 import type { SpawnAssignment, SpawnRequest } from '../../capabilities/spawning/request';
@@ -18,6 +19,7 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
     spawn(assignment: SpawnAssignment): number {
       const target = Game.getObjectById(assignment.spawn as Id<StructureSpawn>);
       if (!target?.my || target.room.name !== assignment.request.room) return ERR_INVALID_TARGET;
+      if (nativeSpawnDirections(target,assignment.request) === null) return ERR_INVALID_TARGET;
       const cost = assignment.request.body.reduce((sum, part) => sum + BODYPART_COST[part], 0);
       if (!admission.admit(assignment.request.owner, [structureKey(target.id)], energy(target.room, cost))) return ERR_BUSY;
       return spawn(assignment);

@@ -1,0 +1,19 @@
+import { validWorldPosition } from '../../core/geometry/world-position';
+import type { SpawnPlacement, SpawnRequest, SpawnSlot } from './request';
+export function validateSpawnPlacement(value: unknown, room: string): void {
+  if (value === undefined) return;
+  if (!value || typeof value !== 'object') throw new Error('Invalid spawn placement');
+  const placement = value as Partial<SpawnPlacement>;
+  if (typeof placement.spawn !== 'string' || !placement.spawn.length || placement.spawn.length > 240) throw new Error('Invalid placement spawn');
+  if (!validWorldPosition(placement.exit) || placement.exit.room !== room) throw new Error('Invalid spawn exit');
+}
+export function matchesSpawn(request: SpawnRequest, slot: SpawnSlot): boolean {
+  return slot.room === request.room && (request.placement === undefined || request.placement.spawn === slot.id);
+}
+export function copySpawnRequest(request: SpawnRequest): SpawnRequest {
+  return { ...request,body: [...request.body],...(request.placement ? { placement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
+}
+
+export function sameSpawnPlacement(a: SpawnPlacement, b: SpawnPlacement): boolean {
+  return a.spawn === b.spawn && a.exit.room === b.exit.room && a.exit.x === b.exit.x && a.exit.y === b.exit.y;
+}

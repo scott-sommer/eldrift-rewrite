@@ -1,4 +1,6 @@
+import type { Position } from '../movement/step';
 import type { BodyPart } from './body';
+export interface SpawnPlacement { spawn: string; exit: Position }
 export interface SpawnRequest {
   id: string;
   owner: string;
@@ -10,6 +12,8 @@ export interface SpawnRequest {
   readyAt: number;
   expiresAt: number;
   body: readonly BodyPart[];
+  /** A quoted origin is a constraint, not a preference for any idle room spawn. */
+  placement?: SpawnPlacement;
 }
 export interface SpawnSlot { id: string; room: string; busy: boolean }
 export interface SpawnAssignment { spawn: string; request: SpawnRequest; cost: number }

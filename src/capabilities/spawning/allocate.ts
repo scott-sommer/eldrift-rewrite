@@ -1,3 +1,4 @@
+import { validateSpawnPlacement, matchesSpawn, copySpawnRequest } from './placement';
 import { bodyCost, partCosts } from './body';
 import type { SpawnRequest, SpawnSlot, SpawnAssignment, UnaffordablePolicy } from './request';
 function validate(requests: readonly SpawnRequest[], slots: readonly SpawnSlot[], energy: Readonly<Record<string, number>>, tick: number): void {
@@ -14,6 +15,7 @@ function validate(requests: readonly SpawnRequest[], slots: readonly SpawnSlot[]
 }
 export function validateRequest(request: SpawnRequest): void {
   if (![request.id, request.owner, request.room, request.name].every(value => typeof value === 'string' && value.length > 0) || !Number.isFinite(request.priority)) throw new Error('Invalid spawn identity');
+  validateSpawnPlacement(request.placement,request.room);
   if (!validHome(request.home)) throw new Error('Invalid population home');
   if (![request.readyAt, request.expiresAt].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid spawn timing');
   if (request.expiresAt <= request.readyAt) throw new Error('Empty spawn lifetime');
@@ -31,7 +33,7 @@ export function allocateSpawns(requests: readonly SpawnRequest[], slots: readonl
     .sort((a, b) => a.priority - b.priority || a.id.localeCompare(b.id));
   for (const request of eligible) {
     if (blocked.has(request.room)) continue;
-    const index = available.findIndex(slot => slot.room === request.room);
+    const index = available.findIndex(slot => matchesSpawn(request,slot));
     if (index < 0) continue;
     const cost = bodyCost(request.body);
     const budget = remaining.get(request.room) ?? 0;
@@ -41,7 +43,7 @@ export function allocateSpawns(requests: readonly SpawnRequest[], slots: readonl
     }
     const slot = available.splice(index, 1)[0]!;
     remaining.set(request.room, budget - cost);
-    assignments.push({ spawn: slot.id, request: { ...request, body: [...request.body] }, cost });
+    assignments.push({ spawn: slot.id, request: copySpawnRequest(request), cost });
   }
   return assignments;
 }

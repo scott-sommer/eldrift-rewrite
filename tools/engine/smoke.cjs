@@ -1037,13 +1037,14 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--unseen')) verifyUnseen(memory);
   if (process.argv.includes('--occupied-exit')) verifyOccupiedExit(memory);
   if (process.argv.includes('--spawn')) {
+    require('./spawn-placement-check.cjs').verifySpawnPlacement(memory,evidence);
     assert.equal(memory.spawnEvidence.accepted, 1);
     assert.equal(memory.spawnEvidence.observed[0], false);
     assert.equal(memory.spawnEvidence.observed.at(-1), true);
     assert.ok(memory.spawnEvidence.spawning.includes(true));
     assert.equal(memory.spawnEvidence.spawning.at(-1), false);
   }
-  if (process.argv.includes('--spawn-contention')) verifyContention(memory);
+  if (process.argv.includes('--spawn-contention')) verifyContention(memory,evidence);
   if (process.argv.includes('--mining-storage')) verifyMiningStorage(memory);
   if (process.argv.includes('--mining')) verifyMining(memory);
   if (process.argv.includes('--specialist-mining')) verifySpecialistMining(memory);
