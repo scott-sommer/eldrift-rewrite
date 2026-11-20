@@ -13,7 +13,7 @@ export interface NativeStartupFacts {
   observedAt: number; home: string; room: string; source: { id: string; position: Position; energy: number; capacity: number; regenerationIn: number | null };
   station: Position & { facts: StartupStationFacts };
   endpoint: { id: string; position: Position; type: string; energy: number; capacity: number; freeCapacity: number; claimedCapacity: number; availableCapacity: number };
-  stock: { totalEnergy: number; claimedEnergy: number; availableEnergy: number; spawnEnergy: number; spawnCapacity: number };
+  stock: { totalEnergy: number; claimedEnergy: number; availableEnergy: number; spawnEnergy: number; claimedSpawnEnergy: number; availableSpawnEnergy: number; spawnCapacity: number };
   spawns: { id: string; position: Position; remainingTime: number }[];
   workers: StartupWorkerFacts[];
   authority: { assignment: string; generation: number; expiresAt: number } | null;

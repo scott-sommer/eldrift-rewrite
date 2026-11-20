@@ -21,3 +21,5 @@ Rollback can discard an uncommitted simulation job after disabling its consumer.
 Next is fresh native input/schedule/geometry conversion, followed by calibrated economic candidate policy and ordinary fixed-service adoption. These, broader parity, pressure/soak and release gates remain open.
 
 Hosted [CI44707482019](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44707482019) passes Windows2022 and Ubuntu24.04 on native-qualified sourcee3a9478, with all six required quality/unit/processor/report/bundle steps. ED-29 remains In Progress; ED-44 records the new namespace and rollback boundary.
+
+The subsequent [native prospective conversion](remote-startup-native-projection.md) connects fresh native quote/facts to a finite initial-cohort input and accounts for known queued birth competition. It remains separate from existing-worker import, native strategy calibration and economic selection.

@@ -1,3 +1,4 @@
+import { beginNativeProjection, resumeNativeProjection } from './startup-native-projection';
 import { createRemoteFleetStore } from '../../src/features/remotes/fleet/store';
 import { remoteFleetIdentity } from '../../src/features/remotes/fleet/identity';
 import { createNativeBot } from '../../src/app/native-bot';
@@ -25,6 +26,7 @@ export function createSelectedStartupLoop(expiring = false) {
       const quote = snapshotStartupNativeTravel(state,profile.home,2,guard).result, memory = Memory as SelectionMemory;
       (memory.selectedAttempts ??= []).push({ tick: Game.time,status: quote.status,legs: quote.status === 'complete' ? quote.legs.length : quote.completedLegs });
       if (quote.status !== 'complete' || !guard()) return null;
+      if (!expiring) beginNativeProjection(state,quote);
       const store = createStartupSelections(state,profile.home);
       if (!store.publish(store.read().revision,Game.time,{ generation: profile.generation,binding,expiresAt: expiring ? 29 : Game.time+10000,quote })) return null;
       memory.selectedStartup = { generation: profile.generation,tick: Game.time,identity: quote.identity,plan: quote.plan };
@@ -41,7 +43,7 @@ export function createSelectedStartupLoop(expiring = false) {
     const memory = Memory as SelectionMemory;
     const miner = Object.values(Game.creeps).find(creep => !creep.spawning && remoteFleetIdentity(creep.memory.population?.owner ?? '')?.kind === 'miner');
     if (miner && !memory.selectedReady) memory.selectedReady = { tick: Game.time,x: miner.pos.x,y: miner.pos.y,room: miner.pos.roomName };
-    if ([30,46,81,150].includes(Game.time)) recordSelectionCheck(memory);
+    if ([30,46,81,150].includes(Game.time)) { recordSelectionCheck(memory); if (!expiring) resumeNativeProjection(state); }
   };
 }
 function recordSelectionCheck(memory: SelectionMemory): void {

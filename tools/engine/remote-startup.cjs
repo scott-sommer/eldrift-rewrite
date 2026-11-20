@@ -24,6 +24,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   if (memory.startupTravel) evidence.remoteStartup.nativeTravel = memory.startupTravel;
   if (memory.startupProjectProof) evidence.remoteStartup.projectCheckpoint = memory.startupProjectProof;
   if (memory.startupPlanningProof) evidence.remoteStartup.planningJob = memory.startupPlanningProof;
+  if (memory.nativeProjection) evidence.remoteStartup.nativeProjection = memory.nativeProjection;
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.equal(rows.length,mode === 'staged' ? 5000 : 150); rows.forEach((row,index) => assert.equal(row.tick,index+1));
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null);
@@ -44,6 +45,15 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
     const { tick,...position } = memory.selectedReady;
     assert.equal(tick,miners[0].activeAt); assert.deepEqual(position,selection.plan.spawn.exit);
     assert.equal(last.income,0); assert.deepEqual(memory.stampReloads,[21,81,150]);
+    if (mode === 'selected') {
+      const projection = memory.nativeProjection; assert.ok(projection);
+      assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
+      assert.deepEqual(projection.steps.map(step => [step.tick,step.through,step.revision]),[[25,64,1],[30,564,2],[46,1064,3],[81,1501,4]]);
+      assert.ok(projection.result); assert.equal(projection.readOnly,true);
+      assert.equal(projection.input.project.source.energy,projection.facts.source.energy);
+      assert.equal(projection.input.project.spawning.cash.homeEnergy,projection.facts.stock.availableEnergy);
+      assert.equal(projection.input.project.spawning.funding.initialEnergy,Math.min(projection.facts.stock.availableEnergy,projection.facts.stock.availableSpawnEnergy));
+    }
     return;
   }
   if (mode === 'refusal') {

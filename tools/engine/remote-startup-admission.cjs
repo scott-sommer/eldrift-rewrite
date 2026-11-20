@@ -31,6 +31,8 @@ function verifyStartupAdmission(memory,rows) {
   assert.ok(facts.authority.generation > 0 && facts.authority.expiresAt > facts.observedAt);
   assert.ok(facts.spawns.length === 1 && facts.spawns[0].remainingTime === 0);
   require('./startup-travel-check.cjs').verifyStartupTravel(memory.startupTravel);
+  assert.deepEqual(memory.startupTravel.at(-1).projectionRefusal,{ status: 'deferred',reason: 'existing-workforce' });
+  assert.equal(facts.stock.claimedSpawnEnergy,0); assert.equal(facts.stock.availableSpawnEnergy,facts.stock.spawnEnergy);
   const proof = memory.startupProjectProof; assert.ok(proof);
   assert.equal(proof.savedAt,149); assert.equal(proof.resumedAt,150);
   assert.equal(proof.initialThrough,43); assert.equal(proof.pendingBefore,1);

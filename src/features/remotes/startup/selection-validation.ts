@@ -6,10 +6,10 @@ export function validStartupSelection(value: unknown, home: string, clock: numbe
   if (!object(value) || !natural(value.generation) || value.generation === 0) return false;
   if (!selectionBinding(value.binding) || !natural(value.selectedAt) || !natural(value.expiresAt)) return false;
   if (value.selectedAt > clock || value.expiresAt < value.selectedAt || value.expiresAt-value.selectedAt > 10000) return false;
-  return validQuote(value.quote,home);
+  return validCompleteStartupTravel(value.quote,home);
 }
 export function selectionBinding(value: unknown): value is string { return typeof value === 'string' && value.length > 0 && value.length <= 8192; }
-function validQuote(value: unknown, home: string): value is CompleteStartupTravel {
+export function validCompleteStartupTravel(value: unknown, home: string): value is CompleteStartupTravel {
   if (!quoteShape(value,home)) return false;
   try {
     const quote = value as unknown as CompleteStartupTravel, expected = startupTravelLegs(quote.plan);
