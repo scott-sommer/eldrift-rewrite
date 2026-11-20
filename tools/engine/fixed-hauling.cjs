@@ -5,7 +5,8 @@ async function fixedHaulingWorld(server,bot) {
   await server.world.addRoomObject('W0N1','creep',19,20,{ name: 'station-miner',user: bot.id,body: ['work','carry','move'].map(type => ({ type,hits: 100 })),store: {},storeCapacity: 50,hits: 300,hitsMax: 300,spawning: false,fatigue: 0,ageTime: 1500 });
 }
 function verifyFixedHauling(memory,evidence) {
-  const rows = memory.fixedHauling, calls = memory.fixedCalls, records = memory.eldrift.records;
+  const rows = memory.fixedHauling, calls = memory.fixedCalls ?? [], records = memory.eldrift.records;
+  evidence.fixedHauling = { rows,calls,reloads: memory.stampReloads,records: records['logistics-requests/W0N1'],task: records['tasks/hauler'],quantities: records['quantity-reservations/empire'],journal: records['logistics-attempts/hauler'],diagnostics: records['runtime/diagnostics'] };
   assert.equal(rows.length,16); assert.deepEqual(memory.stampReloads,[5]);
   assert.deepEqual(rows[0].position,{ x: 20,y: 20 }); assert.deepEqual(rows[0].stores,[30,0,0]);
   assert.deepEqual(calls.map(call => [call.kind,call.x,call.y,call.code]),[['collect',18,20,0],['deliver',22,20,0]]);
