@@ -1,0 +1,1388 @@
+{
+  "sourceCommit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+  "implementationCommit": "0a852b3f232f9aa0efaad777ec1bec9fdbe1e7bf",
+  "scope": "Optional exact boost contracts through shared population demand/queue/dispatch and native birth intake before actor scheduling. Schema-3 spawn queue migration/refusal, actual identity binding, expired adoption and conservative queue-pressure fencing. Role-specific automatic policy selection and native unreserved-stock projection remain open.",
+  "checks": {
+    "quality": "passed; pinned Lizard 1.22.2; 865 production / 705 test files; 0 violations; types/lint/boundaries passed",
+    "unit": {
+      "cases": 1891,
+      "files": 463,
+      "seconds": 12.45
+    },
+    "focusedAndSmoke": {
+      "cases": 28,
+      "files": 6,
+      "seconds": 0.311
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.2
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1306742
+    },
+    "bundle": "passed"
+  },
+  "nativeMilliseconds": 32000,
+  "native": [
+    {
+      "scenario": "--boost-birth",
+      "milliseconds": 3895,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-AJ3uzo\\evidence.json",
+      "status": "passed",
+      "rawSha256": "1774c3d4ee5e8e061bdb02d9e4ff054d548a5ef9e46e7bb7fd40fc69fc90f05f",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "55a8adaf65fa19abd45dbd3d390a4c1ee82d3034401e1a3b71037040c0927de8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-birth-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "93965eb29560ffbe81d2f042f6dc0b546d0d70b13f476df557583dbd2e3bac30",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "ae5d85fb1fbf41b61e0e29b86ce8e9ea587a107493073783cba5131980b6e7cd",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "birth",
+        "resets": [
+          {
+            "tick": 23,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 22,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [
+          {
+            "tick": 2,
+            "contract": {
+              "id": "birth:[\"W0N1\",\"boost-target\"]",
+              "owner": "work:W0N1:upgrader",
+              "home": "W0N1",
+              "steps": [
+                {
+                  "part": "work",
+                  "resource": "XGH2O",
+                  "count": 2
+                }
+              ],
+              "required": true,
+              "expiresAt": 93
+            }
+          }
+        ],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 23,
+            "jobs": [
+              {
+                "request": {
+                  "id": "birth:[\"W0N1\",\"boost-target\"]",
+                  "owner": "work:W0N1:upgrader",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "expiresAt": 93,
+                  "unit": "fd45a2bfeead183",
+                  "name": "boost-target"
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": false,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-birth-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "55f51a16b971191ca8fd9f100704dc5e7d3c917e06d0c9ebc3fe00cba27170b3",
+        "last": {
+          "tick": 100,
+          "progress": 260,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": false,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 20,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1236,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VnH47y\\evidence.json",
+      "status": "passed",
+      "rawSha256": "c93869e3fd4a2fae30a1cf945ea32f92026ff50b67efb46a121bdf761368c67b",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "741f7c6dbbc18c6007348703ffe1fc79ccb14372447ccf6d3d948548d5e89ece",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-spawn-measurements.jsonl",
+      "rows": 12,
+      "rowsSha256": "a7e8f9dbafaa2c4922ce14fe9e69b1dd6088c57158aa174c0875d4a971c7263b",
+      "spawnPlacement": {
+        "accepted": 1,
+        "observed": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spawning": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "rejected": [
+          -7
+        ],
+        "selected": "adc9a2c0cc5ccd6",
+        "exit": {
+          "room": "W0N1",
+          "x": 14,
+          "y": 15
+        },
+        "queueVersion": 3,
+        "legacy": {
+          "id": "legacy",
+          "name": "legacy",
+          "owner": "unrelated",
+          "room": "W0N1",
+          "body": [
+            "move"
+          ],
+          "priority": 10,
+          "readyAt": 100,
+          "expiresAt": 200
+        },
+        "directions": [
+          7
+        ],
+        "actualExit": {
+          "room": "W0N1",
+          "x": 14,
+          "y": 15
+        },
+        "activeAt": 11
+      }
+    },
+    {
+      "scenario": "--spawn-contention",
+      "milliseconds": 1092,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NOwEJu\\evidence.json",
+      "status": "passed",
+      "rawSha256": "0ea26c871267809ff30185680b96c3cf0bfc68facc2d23d5b31e7dc56f8559f0",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "88f312ffd956844ec7d3d777315c66cc1926bda44bc4768dc39b75265f2ad863",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-spawn-contention-measurements.jsonl",
+      "rows": 3,
+      "rowsSha256": "a2be9ac083a49d0cf626f2ebed8263ec0ce7f5300cf64a3ef46ddce666be0c8e"
+    },
+    {
+      "scenario": "--worker-population",
+      "milliseconds": 1899,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-lmpTbR\\evidence.json",
+      "status": "passed",
+      "rawSha256": "14c7469e481b6d854e8454b402f095c7787f1bf3f316f719c4df2006b817885d",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "b6018806fd63fe6227ff31d9baaf326c65a826e5d283b14266a411bdbb198a29",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-worker-population-measurements.jsonl",
+      "rows": 44,
+      "rowsSha256": "1a689fdd84fe2a2fae965e15753084aa2ed50a3bffc26624dd1fc1898c8d625e"
+    },
+    {
+      "scenario": "--boost-alias",
+      "milliseconds": 3426,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-dxJ0Dx\\evidence.json",
+      "status": "passed",
+      "rawSha256": "154b11c067b9b7621e2d9834aa4c66841cf5c36d746a9bfff5422ce9fa273543",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "10c0802f4567483885e19c311df85c55dcf1dbe133cd05872c717da9228ac644",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-alias-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "4652f99734f90d7a289c450a32a5041adfa00cdd74428a4e4adbfcd1bbf8c078",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "39d1ea449984a6ceece35c9d5afe808a02df4147d8f9dc15df30882e17dca66a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "alias",
+        "resets": [
+          {
+            "tick": 14,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 13,
+              "before": 0,
+              "count": 2,
+              "resource": "GH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 14,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "5bb6a2c1d417679",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "GH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "6f59a2c1d40d084",
+                  "expiresAt": 80
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": false,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-alias-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "f8c351a41451fd10733996a7793409835989f322b3dbf3a2a651ff3309cd59a6",
+        "last": {
+          "tick": 100,
+          "progress": 228,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": false,
+              "work": 2,
+              "workCompound": "GH2O",
+              "move": 0,
+              "energy": 38,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--boost",
+      "milliseconds": 3592,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Uto89h\\evidence.json",
+      "status": "passed",
+      "rawSha256": "14ee5a98989977e70de49d36813a9052cb98f6e00886f161cbb68d491ba52478",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "8a8c77898f80b4fda04705127a75c73a7e506947ce41ee715b52e70cdf6a3809",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "0128aab5a1d336766ed7ff22b4523d3a3d59fa1caa90a8028cdf395e191f32fd",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "5160df356d6237675e497b70d8157c311683df108a9e307dd59a4b33ac10b9f3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "normal",
+        "resets": [
+          {
+            "tick": 14,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 13,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 14,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "73c9a2c2aa6b81a",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "2da5a2c2aa6e022",
+                  "expiresAt": 80
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": false,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "f7a179d6d034a6f81729684339e603d1ff726504c864aa1ab1ab50e59a98dc82",
+        "last": {
+          "tick": 100,
+          "progress": 304,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": false,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 38,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--boost-coexist",
+      "milliseconds": 3619,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-v7gAG8\\evidence.json",
+      "status": "passed",
+      "rawSha256": "405289144926fa0f4b7b2012c3cd3c222963ee6c7007b0fe86e7f30067476cf8",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "536855eece1b014fb72dfa5e40832d2792af5e51d2fa7cd9f11ad3d80ca9e1f9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-coexist-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "ee5850686a76f77ebdac60c57adef44e63cabe630257ae7c9b182847762d5f30",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "8f88fe8b398ad341a07b6a75a133cfb4daab87eecc2fab4164da20417a5f4248",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "coexist",
+        "resets": [
+          {
+            "tick": 13,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 12,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 13,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "6443a2c38a9a792",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "cfd6a2c38a855c2",
+                  "expiresAt": 80
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": false,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-coexist-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "0dd9ee59c79a9376b9cb1e2640b47be1350a4a4376e89afd662ea5518b8781bf",
+        "last": {
+          "tick": 100,
+          "progress": 296,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": false,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 42,
+              "x": 19,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 10,
+          "reactionLabs": [
+            "533aa2c38a9903b",
+            "2e1fa2c38a9a8bb",
+            "4af1a2c38a91de8",
+            "cfd6a2c38a855c2"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--boost-supply",
+      "milliseconds": 3655,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Z5NXzZ\\evidence.json",
+      "status": "passed",
+      "rawSha256": "be996e3fc2c5c35344a0de2ca061caecacc329bbda5cbb0be9ee608c649398f7",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "712292988f564b3056b1bd25f9369ef1b212f905bad261e5cbe3fd6650a59017",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-supply-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "ac53bd72fb579ad156b96def3135d1e8cc10f646a3e67456ef738c8478aaf7e4",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "c87cd9940fcd54254ca6cf5868e2b91478b91f6fd45f7438e7ba6230171f20fd",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "supply",
+        "resets": [
+          {
+            "tick": 32,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 31,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 32,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "4dcaa2c46e6fc09",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "ed32a2c46e58d3d",
+                  "expiresAt": 80
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": false,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-supply-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "13eb41da7014bfb231f1c8c6d9e42f31c6e09740540e1c8cbc3ad2ab36dd2c51",
+        "last": {
+          "tick": 100,
+          "progress": 244,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": false,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 18,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 10,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--boost-cancel",
+      "milliseconds": 3488,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-efGHhd\\evidence.json",
+      "status": "passed",
+      "rawSha256": "199daf54cc092125319cb2aeaccfbfe24b7dfa3d476cbc31f439948adb481a46",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "73333a834555c769c46df76dcc974482663fd481081d4ce41320ab2193db162f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-cancel-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "c22b8660bf0bd9d69e58fa50a87dc556bb1192e24f399ff6f2b4b13547a38448",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "cf0b014c924d0df6bfc0e26648feaa4724b41ea1b58c35bb1011611076ee5f1d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "cancel",
+        "resets": [
+          {
+            "tick": 14,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 13,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 14,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "3fa2a2c5515bdf0",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "b27fa2c551596b9",
+                  "expiresAt": 80
+                },
+                "status": "cancelled",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": true,
+                "acknowledged": true,
+                "reason": "caller-cancelled"
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-cancel-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "c9d171c19ecc6d937aa03deaee6f72c7d7bb72eb04ca01c800e93fd09aa4a13a",
+        "last": {
+          "tick": 100,
+          "progress": 216,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "cancelled",
+              "ready": false,
+              "acknowledged": true,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 32,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--boost-expiry",
+      "milliseconds": 3209,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-r24b8l\\evidence.json",
+      "status": "passed",
+      "rawSha256": "a9d50450a1a51b42447d7ceb0717ce2c712df09a26cb8ad0260e7cd0b7c847d7",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "f9a09005d4025f9f5d72d7533f1f13a336402711b5d33c4aa5dfee01f2dfe855",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-boost-expiry-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "78630d16197a2962c82df556073d946b7a1c1bc21a70b1728cd27a153d742be1",
+      "boosts": {
+        "mode": "expiry",
+        "resets": [],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 12,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "5117a2c62b48b09",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "c9c1a2c62b30449",
+                  "expiresAt": 12
+                },
+                "status": "expired",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  0
+                ],
+                "cancelRequested": false,
+                "acknowledged": true,
+                "reason": "deadline"
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-birth-qualified-boost-expiry-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "ce5031b817f416c418ed1996212e7e5ede927fcfea35c79202ae514db56fff56",
+        "last": {
+          "tick": 100,
+          "progress": 98,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "expired",
+              "ready": false,
+              "acknowledged": true,
+              "work": 0,
+              "workCompound": null,
+              "move": 0,
+              "energy": 42,
+              "x": 20,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--upgrade-room",
+      "milliseconds": 1986,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Kxmy3j\\evidence.json",
+      "status": "passed",
+      "rawSha256": "81e88b43479f4e1ee05a43d26655798aacc579447d9c7706c9d4177b60d70925",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "e6969b2278fa54d753f23c94b992a2c42d2f9494c3cb0fff2ed64f894626ec4f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-upgrade-room-measurements.jsonl",
+      "rows": 24,
+      "rowsSha256": "3fc85f864487d4c015c29a7ded969f074904cb8aafdbe6817d44dc80e5378837",
+      "reloadProvenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "88a61c86e52ff1d74b0bbd7f976a485924b35e4132095ac47e2e94855655f205",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 899,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-anFDjj\\evidence.json",
+      "status": "passed",
+      "rawSha256": "62068bfa301babf5a2222b416bca3fc9b44008d8b82db2d905f88d46ae07d03e",
+      "provenance": {
+        "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+        "dirty": false,
+        "bundleSha256": "113f9710ed1f39f02dd5e6a043ce77a64f5603f6f49678f3e6491b2da773747d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-birth-qualified-packaged-smoke-measurements.jsonl",
+      "rows": 3,
+      "rowsSha256": "4068e44607f0316c8338391149e028d853e4c7828a92e82fd071491063f42e00"
+    }
+  ],
+  "preservedFixtureFailure": {
+    "scenario": "population-cancellation-fixture",
+    "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-bW6L58\\evidence.json",
+    "status": "failed",
+    "rawSha256": "0db7328c6a38f36896b52335858a7b300875ca9c4a7eb8994b5c1412444b6196",
+    "provenance": {
+      "commit": "0a852b3f232f9aa0efaad777ec1bec9fdbe1e7bf",
+      "dirty": false,
+      "bundleSha256": "25567e944f410e4f3b8107b865ad09c9cf6bf1b721e1238c69c138a81b813f61",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "rowsFile": "boost-birth-failed-population-cancellation-fixture-measurements.jsonl",
+    "rows": 100,
+    "rowsSha256": "88009cce83d6bd98420585d10c5279a7075d327ef1b0e0a50dce8ea0a5366d2e",
+    "boosts": {
+      "mode": "birth",
+      "resets": [],
+      "birthResets": [],
+      "rowsFile": "boost-birth-failed-population-cancellation-fixture-observations.jsonl",
+      "rows": 100,
+      "rowsSha256": "68790b7f9fa85b543dd826f6ee077b8ed67b9fd10a441c699cf5d1a6e7dc78e3",
+      "last": {
+        "tick": 100,
+        "progress": 0,
+        "units": [],
+        "labMineral": 60,
+        "labEnergy": 40,
+        "bankK": 0,
+        "bankOH": 0,
+        "reactionLabs": []
+      }
+    },
+    "failure": "TypeError: Cannot read properties of undefined (reading 'owner')\n    at verifyBoosts (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\boosts.cjs:43:69)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:1108:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "interpretation": "The initial fixture queued an upgrader but configured its ordinary population owner to cancel that demand. No actor or industry queue was created. The verifier failed accessing the absent queue; this remains failed. The fixture correction enables ordinary demand rather than bypassing its owner."
+  },
+  "registry": {
+    "cases": 260,
+    "fullRerun": false
+  },
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T18:17:16Z",
+        "conclusion": "success",
+        "databaseId": 136478684829,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T18:15:54Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T18:15:58Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T18:15:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:06Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T18:15:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:13Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T18:16:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:21Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T18:16:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:23Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T18:16:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:24Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T18:16:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:26Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T18:16:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:28Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T18:16:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:42Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T18:16:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:09Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T18:16:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:10Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T18:17:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:10Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T18:17:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:10Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T18:17:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:11Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T18:17:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T18:17:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T18:17:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:11Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T18:17:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:11Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T18:17:11Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44791110983/job/136478684829"
+      },
+      {
+        "completedAt": "2026-11-20T18:18:54Z",
+        "conclusion": "success",
+        "databaseId": 136478685192,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T18:15:53Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T18:15:54Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T18:15:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:00Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T18:15:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:16:10Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T18:16:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:07Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T18:16:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:22Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T18:17:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:27Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T18:17:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:31Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T18:17:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:34Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T18:17:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:17:59Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T18:17:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:45Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T18:17:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:47Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T18:18:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:48Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T18:18:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:49Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T18:18:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:50Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T18:18:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T18:18:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T18:18:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:52Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T18:18:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T18:18:52Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T18:18:52Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44791110983/job/136478685192"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44791110983"
+  },
+  "sourceSha256": {
+    "src/adapters/screeps/population.ts": "a6452064e49aed437da3287693588700fafa25d4e5a340f345a500968db33509",
+    "src/app/native-boost-births.ts": "9beaff7f976600730164afaf59c90ef8cbeb298ffb407cb789159145e7980788",
+    "src/app/native-boosts.ts": "8150d4ab2156858c6a7191144716455b5542f53f72224ed1fd1d19cc10814862",
+    "src/capabilities/spawning/allocate.ts": "6ceebd9f87389e5978fbe229a23a0c85e8e6b6dc2ace812854e811370dc190df",
+    "src/capabilities/spawning/boost.ts": "af3ce40f646920ed9ea0ca35983ea16c7f9883765f3fef5c1ff1dd037ed12c5c",
+    "src/capabilities/spawning/placement.ts": "1ea1944897d178022d1cb01111f299f53963f8d037b23014b1a114dd6dbbfeb8",
+    "src/capabilities/spawning/request.ts": "d1a5dcc82822a0060884621036134835e7fac7dfab5bcf324a1a482f8eb5a1cb",
+    "src/features/industry/boosts/store.ts": "6864466916e5ea66589628b9890ba07308f264211575d18d062d05e9c1aacc6f",
+    "src/features/population/apply-demand.ts": "54930e0025367bcaab0c92726914e9977e47a51a9edabcf8775092e7698eb786",
+    "src/features/population/spawn-schema.ts": "44a2c937d0abf8c5a66892689e76c2d2f78475f34f781e492fc2fcf078eccb31",
+    "test/app/native-boost-births.test.ts": "c759a8860db6c1934d00de7b335402153e79029671de0ed82e8e9c2a6f025ef0",
+    "test/app/native-boost-gates.test.ts": "c2be65ee8e49a305e66481fc0b920b79f38048d7ba1c4a8c265e49544da9bb3d",
+    "test/capabilities/spawn-boost.test.ts": "290e193b4ec314383737f0c7fee6e08f572da9839bf40c9f2504811cdc65a011",
+    "test/capabilities/spawn-placement.test.ts": "0a1713d49f4001b1b67898498f6f87d0e88e56da1b8283f45ba07407811d1323",
+    "test/engine/boost-birth-bot.ts": "0da47022fcc71733c845e088e6b60ae8da0296100296372dfe7d07d284903cb6",
+    "test/engine/boost-cycle.ts": "3207c12c875b3e50790764ccdad31c08a5ace5a0a368d50c8d7978b940cb9af7",
+    "tools/engine/boosts.cjs": "80ad22fa39ffcf67862f6f30a64f2edb47abd97f166d0c6dd7fe5e60b4861ab3",
+    "tools/engine/smoke.cjs": "6b6c08ad113e460b647a15f1981009858fc220e8b83c4ffeef8813ba2af42f6c",
+    "tools/engine/spawn-placement-check.cjs": "1c5352b1dc4007e607c2e640af1bc41d24a944ca1daaa402c0ff33085905e39f",
+    "tools/engine/suite.cjs": "99ae726d0542d329e714713e00c87f00cd0acdbd9874c040253ed0cc84904ddb"
+  },
+  "limits": [
+    "Fixture selects explicit steps before queue submission; default role/mission producers do not automatically attach boost policy.",
+    "No claim that every boost failure mode is natively exercised on a newly spawned actor.",
+    "Schema migration/refusal has unit and existing ordinary native spawn qualification; cross-version rollback rehearsal remains ED-44.",
+    "No aggregate CPU/memory/soak qualification in this increment."
+  ]
+}

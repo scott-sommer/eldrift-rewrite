@@ -61,9 +61,10 @@
     "sha256": "F0A8EB8822CD221227FD3C511546C732B43FED145B035835AD31511C76A32D2C",
     "physicalLines": 163,
     "reviewStatus": "boost orchestration, nine alias/tier mappings and remote-upgrader exception reviewed; producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: explicit observed boost orchestration plus configurable alias/tier selection qualified; automatic producer/operator/specialist parity remains open",
+    "implementationStatus": "partial: explicit observed boosts, alias/tier selection and shared spawn-contract intake qualified; automatic role policy/operator/specialist parity remains open",
     "evidence": [
-      "docs/industry-boosts.md"
+      "docs/industry-boosts.md",
+      "docs/industry-boost-births.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -97,17 +98,19 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "1ca7137dee3e32795363a7bf83a69cb0e01d4ad7",
-      "required": "Automatic alias request producers and unreserved-stock projection, operator bridges, specialist paths and wider recovery/release evidence remain required",
+      "commit": "abc41296ae488b9be5d81ca9745c52da03b4dd93",
+      "required": "Configurable automatic role/mission boost policies, native unreserved-stock projection, operator bridges, specialist paths and wider recovery/release evidence remain required",
       "tests": [
         "test/capabilities/boost-observation.test.ts",
         "test/features/boost-requests.test.ts",
         "test/features/boost-resources.test.ts",
         "test/app/native-boost-gates.test.ts",
         "test/engine/boost-cycle.ts",
-        "test/features/boost-selection.test.ts"
+        "test/features/boost-selection.test.ts",
+        "test/capabilities/spawn-boost.test.ts",
+        "test/app/native-boost-births.test.ts"
       ],
-      "status": "partial; nine alias policies and native GH2O fallback/reset qualified in addition to prior orchestration; not full module parity"
+      "status": "partial; native shared spawn/birth/reset/boost readiness qualified in addition to alias and orchestration evidence; not full module parity"
     }
   },
   {
