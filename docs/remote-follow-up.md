@@ -61,3 +61,7 @@ The forward model now accumulates household/source-only accounting within guarde
 ## Native startup observation boundary
 
 Source14483a5 adds current read-only source/station/endpoint/stock/claims/workforce/spawn observations, qualified in the fast ordinary native admission guard. See remote-startup-native-facts.md and evidence/remote-startup-native-facts.json. Exact native route/schedule conversion, persistent planning, candidate policy and pressure/parity gates remain open; source-range travel estimates cannot be silently reused for an arbitrary station/deposit pair.
+
+## Exact startup travel quote
+
+Source `d1b31f7` adds a fixed-service prospective travel strategy with five exact legs, chosen spawn exit/collection/deposit tiles, permanent miner-station exclusions and bounded persisted progress that survives native global reset. The portable courier model separates first approach from recurring empty trips. See remote-startup-travel.md and evidence/remote-startup-travel.json. Ordinary movement/selection do not adopt this strategy yet; enforcing quoted spawn/exit and service geometry, complete schedule conversion, persistent forward simulation, economic candidate policy and wider operational/parity gates remain open.

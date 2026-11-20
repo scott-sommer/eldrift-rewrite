@@ -21,3 +21,7 @@ Clean source14483a5 passes positive ordinary startup admission, protected refusa
 Full units1,661/424 files11.55s; controlled processor comparisons4/194ms; suite-report contract1/136.318ms. Quality, bundle and pinned Lizard pass:780 production/629 test files, zero violations. All ten new observation cases pass. Exact source hashes, clean provenance, native observations and two150-row archives are retained in [evidence](evidence/remote-startup-native-facts.json). Registry234 is unchanged; the full234-case registry was not rerun.
 
 Hosted [Quality run44664440814](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44664440814) passes Ubuntu24.04 and Windows2022 on the same native-qualified source14483a5, including all six quality/unit/processor/report/bundle steps.
+
+## Exact travel follow-up
+
+The later [fixed-service startup travel quote](remote-startup-travel.md) now measures exact selected spawn-exit, station, collection and deposit legs with durable guarded progress. It preserves fresh facts and excludes the permanent miner tile from courier paths. Operational strategy adoption and complete forecast-input conversion remain open.
