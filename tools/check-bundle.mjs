@@ -11,7 +11,7 @@ vm.runInContext(source, context, { filename: 'main.js', timeout: 1000 });
 assert.equal(typeof module.exports.loop, 'function');
 assert.deepEqual(Object.keys(module.exports.industry.boosts).sort(), ['acknowledge','aliases','cancel','get','list','request']);
 assert.equal(vm.runInContext('module.exports.industry.boosts.list().length', context), 0);
-assert.deepEqual(Object.keys(module.exports.industry.labs).sort(), ['clearOverride','clearTemporary','configure','inspect','temporary']);
+assert.deepEqual(Object.keys(module.exports.industry.labs).sort(), ['assignBoostRoles','clearOverride','clearTemporary','configure','inspect','previewBoostRoles','temporary']);
 assert.equal(vm.runInContext("module.exports.industry.labs.inspect('W0N1').owned", context), false);
 vm.runInContext('module.exports.loop(); module.exports.loop();', context, { timeout: 1000 });
 assert.deepEqual(messages, []);

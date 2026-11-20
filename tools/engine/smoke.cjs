@@ -1,4 +1,4 @@
-const boostRoleMode = ['switch','remove'].find(mode => process.argv.includes('--boost-role-'+mode)) ?? (process.argv.includes('--boost-role') ? 'normal' : undefined);
+const boostRoleMode = ['automatic','refused','switch','remove'].find(mode => process.argv.includes('--boost-role-'+mode)) ?? (process.argv.includes('--boost-role') ? 'normal' : undefined);
 const { boostRoleWorld,verifyBoostRoles } = require('./boost-roles.cjs');
 const workerBoostMode = process.argv.includes('--worker-boost-shortage') ? 'shortage' : process.argv.includes('--worker-boost-optional') ? 'optional' : process.argv.includes('--worker-boost') ? 'normal' : undefined;
 const { workerBoostWorld,verifyWorkerBoosts } = require('./worker-boosts.cjs');
