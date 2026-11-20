@@ -127,3 +127,6 @@ scoutFallbackFlag='' disables the optional scout flag goal. A nonblank selector 
 ### Dedicated boost-lab buffers
 
 `labBoostRoles` defaults to `[]`; each of at most ten distinct lab records specifies `lab`, `resource`, `mineral` (0–3000) and `energy` (0–2000). These minimum buffers preload through ordinary hauling and stay out of reaction roles. Changes/removal wait for admitted work and pinned boosts to settle. See [boost-lab roles](industry-boost-lab-roles.md) for ownership, scheduler prerequisites and the new persistent namespace/rollback obligations.
+
+
+The lab API also exposes `previewBoostRoles(home, buffers, options?)` and `assignBoostRoles(...)` to select IDs automatically. It excludes manual reserved IDs, preserves a viable reaction network by default when reactions are enabled, and writes only a complete feasible existing `labBoostRoles` policy. See [automatic allocation](boost-lab-allocation.md) for tradeoffs and refusal behavior.

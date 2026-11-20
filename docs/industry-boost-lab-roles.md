@@ -47,3 +47,6 @@ New configuration key: `labBoostRoles`. New namespace: `industry-boost-labs/<hom
 Before pre-role rollback, stop role producers, set desired roles empty under current code, let admitted role transfers and pinned boosts settle, verify current bindings and active role services/claims are empty, and preserve tasks/journals/receipts. Remove the new configured key before earlier configuration validation. Older bots ignore this namespace and would lose retiring-role exclusions, so its presence is not a downgrade refusal gate. Full migration/rollback rehearsal remains ED-44 work.
 
 Remaining ED-36/ED-39 obligations include automatic role allocation strategy (the old nearest-spawn choice), bulk operations/compatibility aliases, specialists, optimized boosted bodies, empire resource/production allocation and broader depletion/visibility/lifecycle evidence. Explicit roles and preload do not establish full legacy lab/console/resource-manager parity.
+
+
+Subsequent increment: [automatic boost-lab allocation](boost-lab-allocation.md) adds bounded topology-preserving preview/apply operations with nearest-spawn scoring. Bulk/compatibility and continuous empire policy obligations remain open.

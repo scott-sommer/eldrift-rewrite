@@ -53,3 +53,6 @@ This supplies safe equivalents for inspecting current production and editing per
 
 
 Subsequent increment: [configured boost-lab roles](industry-boost-lab-roles.md) adds explicit compound buffers, shared preload/refill, durable retiring-role exclusion and role-aware actor funding. Automatic/bulk assignment and remaining legacy compatibility stay open.
+
+
+Subsequent increment: [automatic boost-lab allocation](boost-lab-allocation.md) adds bounded topology-preserving preview/apply operations with nearest-spawn scoring. Bulk/compatibility and continuous empire policy obligations remain open.

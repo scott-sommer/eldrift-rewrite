@@ -102,7 +102,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
-      "required": "Automatic nearest-spawn role allocation, bulk/legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
+      "required": "Bulk owned-room allocation and legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
       "tests": [
         "test/capabilities/boost-observation.test.ts",
         "test/features/boost-requests.test.ts",
@@ -1732,14 +1732,15 @@
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
     "reviewStatus": "reaction, transport, local chain, boost ownership and per-room operator policy reviewed; bulk/legacy lab role aliases and empire allocation retained as open obligations",
-    "implementationStatus": "partial: ordinary reaction/boost paths, configured compound roles with preload/refill and safe retirement qualified; automatic/bulk legacy allocation, specialist/empire parity remain open",
+    "implementationStatus": "partial: reaction/boost ownership, role preload/retirement and per-room topology-preserving nearest-spawn automatic allocation qualified; bulk/legacy console/empire parity remains open",
     "evidence": [
       "docs/industry-lab-reactions.md",
       "docs/industry-lab-transport.md",
       "docs/industry-lab-production.md",
       "docs/industry-boosts.md",
       "docs/operator-labs.md",
-      "docs/industry-boost-lab-roles.md"
+      "docs/industry-boost-lab-roles.md",
+      "docs/boost-lab-allocation.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1805,8 +1806,8 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
-      "required": "Automatic nearest-spawn role allocation, bulk/legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
+      "commit": "3262367684b01f2953a3ef53ff0394ce85d3450d",
+      "required": "Bulk owned-room allocation and legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
       "tests": [
         "test/capabilities/lab-reactions.test.ts",
         "test/features/lab-reaction-claims.test.ts",
@@ -1832,9 +1833,13 @@
         "test/engine/lab-supply-operator-bot.ts",
         "test/features/boost-lab-roles.test.ts",
         "test/config/lab-boost-roles.test.ts",
-        "test/engine/boost-role-cycle.ts"
+        "test/engine/boost-role-cycle.ts",
+        "test/capabilities/boost-lab-allocation.test.ts",
+        "test/features/operator-lab-allocation.test.ts",
+        "test/engine/boost-role-automatic-bot.ts",
+        "test/engine/boost-role-refused-bot.ts"
       ],
-      "status": "partial; native configured-role preload/refill, in-flight switch/removal, reaction exclusion and reload qualified; not full module parity"
+      "status": "partial; native automatic allocation/preload/boost/refill and infeasible no-write refusal qualified alongside prior role/reaction evidence; not full module parity"
     }
   },
   {
