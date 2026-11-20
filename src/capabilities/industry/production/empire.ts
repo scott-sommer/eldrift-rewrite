@@ -8,11 +8,11 @@ interface EmpireProductionInput {
   targets: readonly ProductionTarget[]; stock: Readonly<Record<string,number>>; rooms: readonly EmpireProductionRoom[];
   commitments: readonly ProductionCommitment[]; maximumNodes: number;
 }
-function positive(value: number): boolean { return Number.isSafeInteger(value) && value > 0 && value <= 1000000; }
+function quantity(value: number): boolean { return Number.isSafeInteger(value) && value >= 0 && value <= 1000000; }
 function validateScopes(input: EmpireProductionInput,recipe: RecipeLookup): void {
   if (input.rooms.length > 50 || new Set(input.rooms.map(room => room.home)).size !== input.rooms.length) throw new Error('Invalid empire production rooms');
   if (input.commitments.length > 50 || new Set(input.commitments.map(item => item.home)).size !== input.commitments.length) throw new Error('Invalid empire production commitments');
-  if (input.commitments.some(item => !item.home || !positive(item.amount) || !recipe(item.product))) throw new Error('Invalid empire production commitment');
+  if (input.commitments.some(item => !item.home || !quantity(item.amount) || !recipe(item.product))) throw new Error('Invalid empire production commitment');
 }
 function validateObservedStock(input: EmpireProductionInput): void {
   if (Object.values(input.stock).some(amount => !Number.isSafeInteger(amount) || amount < 0)) throw new Error('Invalid empire stock');

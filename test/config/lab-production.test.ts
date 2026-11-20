@@ -15,4 +15,10 @@ test.each([
   { labProductionTargets: [{ product: 'OH',amount: 10,priority: 0,extra: true }] },
   { labProductionTargets: [{ product: 'OH',amount: 10,priority: 0 },{ product: 'OH',amount: 20,priority: 1 }] },
   { labProductionBatch: 4 },
+  { labProductionScope: 'global' },
 ])('invalid production configuration is refused (%j)',patch => { expect(() => resolveConfig({ empire: patch },1)).toThrow('invalid'); });
+
+test('room production remains default and empire participation can be overridden per room',() => {
+  expect(resolveConfig({},1).values.labProductionScope).toBe('room');
+  expect(resolveConfig({ empire: { labProductionScope: 'empire' },roomOverride: { labProductionScope: 'room' } },1).values.labProductionScope).toBe('room');
+});

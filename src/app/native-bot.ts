@@ -1,3 +1,4 @@
+import { createNativeEmpireProduction } from './native-empire-production';
 import { createNativeBoostLabRoles } from './native-boost-lab-roles';
 import { createNativeBoosts } from './native-boosts';
 import { createNativeLabs } from './native-labs';
@@ -58,7 +59,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   const dispatch = createNativeDispatch(state,request => startup.admit(request) && admitReachableRemoteSpawn(state,request) && remoteWorkers.admit(request) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig));
   const recovery = createNativeRecovery(state);
   const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
-  const runtimeConfig = (room: string) => resolveConfig(configuration(room), Game.time).values;
+  const runtimeConfig = (room?: string) => resolveConfig(configuration(room), Game.time).values;
   const boosts = createNativeBoosts(state,dispatch,runtimeConfig,ports);
   const startup = createNativeRemoteStartup(state,dispatch.structures,runtimeConfig);
   const observeSpawnLoad = createNativeSpawnLoadObserver(state,dispatch.structures,runtimeConfig,ports.reportFailure);
@@ -79,7 +80,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, taskDefinitions, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time), unit => settleHaulingTask(state,taskDefinitions,unit,observeTransfer));
   // Gameplay registration is separate from configuration-controlled activation.
-  return createGameLoop([createNativeBoostLabRoles(state), createNativeLabs(state,dispatch.structures), createNativeRemoteReachabilityFeature(state,dispatch), createNativeRemoteCapacityFeature(state), scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors, constructionWorkers.recruitment, constructionWorkers.actors, reservationWorkers.recruitment, reservationWorkers.actors], {
+  return createGameLoop([createNativeBoostLabRoles(state), createNativeLabs(state,dispatch.structures,createNativeEmpireProduction(state,runtimeConfig)), createNativeRemoteReachabilityFeature(state,dispatch), createNativeRemoteCapacityFeature(state), scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors, constructionWorkers.recruitment, constructionWorkers.actors, reservationWorkers.recruitment, reservationWorkers.actors], {
     ...ports,
     config: configuration,
   }, boosts.before(createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps)), () => { dispatch.flush(); observeSpawnLoad(); });
