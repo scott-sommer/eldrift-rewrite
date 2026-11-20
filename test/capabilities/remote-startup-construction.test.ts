@@ -3,7 +3,7 @@ import { forecastStartupConstruction } from '../../src/capabilities/economy/star
 import type { StartupConstructionInput } from '../../src/capabilities/economy/startup/construction-model';
 function input(): StartupConstructionInput {
   return { remainingProgress: 20,source: { energy: 10,capacity: 10,regenerationTicks: 30,regenerationIn: null },
-    workers: [{ request: 'first',travelTicks: 0,retireTicks: 1490 },{ request: 'second',travelTicks: 0,retireTicks: 1490 }],
+    workers: [{ request: 'first',travelTicks: 0,retireTicks: 1489 },{ request: 'second',travelTicks: 0,retireTicks: 1489 }],
     spawning: { room: 'home',requests: ['first','second'].map((id,index) => ({ id,name: id,owner: 'source',room: 'home',body: ['work','carry','move'],priority: 1,readyAt: index*30,expiresAt: 100 })),
       spawns: [{ id: 'spawn',room: 'home',availableAt: 0 }],liveNames: new Set(),unaffordable: 'skip',
       funding: { capacity: 400,initialEnergy: 400,refills: [] },
@@ -29,14 +29,14 @@ test('a supplied distribution schedule enables the replacement without creating 
   expect(result.spawning.cash).toMatchObject({ deliveredEnergy: 0,birthEnergy: 400,endingEnergy: 0 });
 });
 test('outbound travel consumes the same finite lifetime as construction and delays regeneration phase',() => {
-  const view = input(); view.workers = [{ request: 'first',travelTicks: 5,retireTicks: 1490 }];
+  const view = input(); view.workers = [{ request: 'first',travelTicks: 5,retireTicks: 1489 }];
   const result = forecastStartupConstruction(view).construction;
   expect(result.waves[0]).toMatchObject({ startAt: 14,endAt: 19,work: { ticks: 5,constructionEnergy: 4 } });
   expect(result.remainingProgress).toBe(16);
 });
 test('unused outgoing cargo is accounted but is never inherited by the next newborn worker',() => {
   const view = input(); view.remainingProgress = 10; view.source = { energy: 100,capacity: 100,regenerationTicks: 300,regenerationIn: null };
-  view.workers = [{ request: 'first',travelTicks: 0,retireTicks: 1491 },{ request: 'second',travelTicks: 0,retireTicks: 1498 }];
+  view.workers = [{ request: 'first',travelTicks: 0,retireTicks: 1490 },{ request: 'second',travelTicks: 0,retireTicks: 1497 }];
   const result = forecastStartupConstruction(view).construction;
   expect(result).toMatchObject({ completeAt: 41,harvestedEnergy: 12,constructionEnergy: 10,unusedCargoEnergy: 2 });
   expect(result.harvestedEnergy).toBe(result.constructionEnergy+result.unusedCargoEnergy);
@@ -46,7 +46,7 @@ test('horizon clipping and a worker with no remaining station service cannot com
   const view = input(); view.spawning.cash.horizon = 10;
   const result = forecastStartupConstruction(view).construction;
   expect(result.waves[0]?.work.ticks).toBe(2); expect(result.remainingProgress).toBe(18);
-  view.workers = [{ request: 'first',travelTicks: 10,retireTicks: 1490 }];
+  view.workers = [{ request: 'first',travelTicks: 10,retireTicks: 1489 }];
   expect(forecastStartupConstruction(view).construction.waves).toEqual([]);
 });
 test('overlapping builders and unsupported worker bodies are explicitly refused',() => {

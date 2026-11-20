@@ -1,3 +1,4 @@
+import { spawnedActiveTicks } from '../../spawning/lifetime';
 import type { StartupScheduledBirth } from './spawn-model';
 import type { StartupConstructionInput, StartupBuildWave, StartupConstructionWorker } from './construction-model';
 /** Finite, unboosted standard miner lives only. No CLAIM lifetime or invented active worker. */
@@ -5,10 +6,10 @@ export function startupConstructionWaves(input: StartupConstructionInput, births
   if (input.workers.length > 64 || new Set(input.workers.map(worker => worker.request)).size !== input.workers.length) throw new Error('Invalid construction workers');
   const waves: StartupBuildWave[] = [];
   for (const worker of input.workers) {
-    const { work,carry } = workerBody(input,worker);
+    const { work,carry,lifetime } = workerBody(input,worker);
     const birth = births.find(birth => birth.request === worker.request);
     if (!birth) continue;
-    const startAt = birth.activeAt+worker.travelTicks, endAt = Math.min(input.spawning.cash.horizon+1,birth.activeAt+1500-worker.retireTicks);
+    const startAt = birth.activeAt+worker.travelTicks, endAt = Math.min(input.spawning.cash.horizon+1,birth.activeAt+lifetime-worker.retireTicks);
     if (startAt >= endAt) continue;
     waves.push({ request: worker.request,startAt,endAt,carryCapacity: carry*50,harvestPower: work*2,buildPower: work*5 });
   }
@@ -24,5 +25,5 @@ function workerBody(input: StartupConstructionInput, worker: StartupConstruction
   const work = request.body.filter(part => part === 'work').length, carry = request.body.filter(part => part === 'carry').length;
   if (!work || !carry) throw new Error('Construction worker requires WORK and CARRY');
   if (worker.travelTicks > 0 && !request.body.includes('move')) throw new Error('Travelling construction worker requires MOVE');
-  return { work,carry };
+  return { work,carry,lifetime: spawnedActiveTicks(request.body) };
 }

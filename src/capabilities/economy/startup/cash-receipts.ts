@@ -16,3 +16,5 @@ function validateReceipt(receipt: StartupCashReceipt, horizon: number, ids: Read
   if (!bounded(receipt.energy,1000000)) throw new Error('Invalid startup receipt energy');
 }
 function bounded(value: number, maximum: number): boolean { return Number.isSafeInteger(value) && value >= 0 && value <= maximum; }
+
+export { validateReceipt as validateStartupReceipt };

@@ -1,3 +1,4 @@
+import type { StartupConstructionForecast } from './construction-model';
 import { createStartupContainer } from './container';
 import { createStartupSink } from './sink';
 import { startupDeliveryCash } from './delivery-cash';
@@ -14,8 +15,7 @@ export function forecastStartupDelivery(input: StartupDeliveryInput) {
   const sink = createStartupSink(input.homeSink,input.project.spawning.cash);
   const project = forecastStartupConstruction(input.project), construction = project.construction;
   const waves = startupConstructionWaves(input.project,project.spawning.births), couriers = startupDeliveryCouriers(input,project.spawning.births);
-  const delivery: StartupDeliveryForecast = { firstDeliveryAt: null,deliveredEnergy: 0,harvestedEnergy: 0,regeneratedEnergy: 0,
-    unreturnedCourierEnergy: 0,overflowEnergy: 0,uncapturedOverflowEnergy: construction.overflowEnergy,containerEnergy: 0,minerCargoEnergy: 0,courierCargoEnergy: 0,unusedMinerCargoEnergy: construction.unusedCargoEnergy,projectedThrough: construction.projectedThrough,source: { ...construction.source },receipts: [] };
+  const delivery = initialStartupDelivery(construction);
   if (construction.completeAt === null) return { ...project,delivery,homeSink: sink.result(),maintenance: container.result(),cash: startupDeliveryCash(input,project.spawning,construction,delivery) };
   const lastBuilder = construction.waves.at(-1);
   let previous = lastBuilder?.request;
@@ -42,4 +42,9 @@ export function forecastStartupDelivery(input: StartupDeliveryInput) {
 function switchMiner(result: StartupDeliveryForecast, previous: string | undefined, next: string | undefined): string | undefined {
   if (previous !== next) { result.unusedMinerCargoEnergy += result.minerCargoEnergy; result.minerCargoEnergy = 0; }
   return next;
+}
+
+export function initialStartupDelivery(construction: StartupConstructionForecast): StartupDeliveryForecast {
+  return { firstDeliveryAt: null,deliveredEnergy: 0,harvestedEnergy: 0,regeneratedEnergy: 0,
+    unreturnedCourierEnergy: 0,overflowEnergy: 0,uncapturedOverflowEnergy: construction.overflowEnergy,containerEnergy: 0,minerCargoEnergy: 0,courierCargoEnergy: 0,unusedMinerCargoEnergy: construction.unusedCargoEnergy,projectedThrough: construction.projectedThrough,source: { ...construction.source },receipts: [] };
 }

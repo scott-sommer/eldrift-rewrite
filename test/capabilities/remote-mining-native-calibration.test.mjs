@@ -1,3 +1,4 @@
+import { spawnedActiveTicks } from '../../src/capabilities/spawning/lifetime';
 import { createStartupContainer } from '../../src/capabilities/economy/startup/container';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -42,4 +43,23 @@ test('native 4-WORK/CARRY50 station harvests full output, drops overflow and han
   expect(result).toMatchObject({ harvestedEnergy: 120,overflowEnergy: 12,uncapturedOverflowEnergy: 0,containerEnergy: 0,minerCargoEnergy: 8 });
   expect(observedCollection).toBe(112);
   expect(result.harvestedEnergy).toBe(observedCollection+result.containerEnergy+result.minerCargoEnergy);
+});
+
+test('spawn and first-ready active-life limits match naturally expired native workers',() => {
+  const cases = [
+    { family: 'miner',body: ['work','work','work','work','carry','move','move'] },
+    { family: 'courier',body: ['carry','carry','move','move'] },
+    { family: 'reserver',body: ['claim','claim','move','move'] },
+  ];
+  for (const specimen of cases) {
+    const [name,birth] = Object.entries(run.remoteStartup.births).find(([,birth]) => birth.family === specimen.family);
+    const observed = rows.flatMap(row => row.units.filter(unit => unit.name === name && !unit.spawning).map(unit => ({ tick: row.tick,ttl: unit.ttl })));
+    const lifetime = spawnedActiveTicks(specimen.body);
+    expect(birth.activeAt-birth.seenAt).toBe(specimen.body.length*3);
+    expect(observed[0]).toEqual({ tick: birth.activeAt,ttl: lifetime });
+    expect(observed.at(-1)).toEqual({ tick: birth.activeAt+lifetime-1,ttl: 1 });
+    expect(observed).toHaveLength(lifetime);
+    expect(at(birth.activeAt+lifetime).units.some(unit => unit.name === name)).toBe(false);
+  }
+  expect(() => spawnedActiveTicks([])).toThrow();
 });

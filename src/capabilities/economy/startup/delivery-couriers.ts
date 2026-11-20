@@ -1,3 +1,4 @@
+import { spawnedActiveTicks } from '../../spawning/lifetime';
 import type { StartupSink } from './sink';
 import type { StartupScheduledBirth } from './spawn-model';
 import type { StartupCourierState, StartupDeliveryForecast, StartupDeliveryInput, StartupCourier } from './delivery-model';
@@ -5,22 +6,22 @@ export function startupDeliveryCouriers(input: StartupDeliveryInput, births: rea
   if (input.couriers.length > 16 || new Set(input.couriers.map(worker => worker.request)).size !== input.couriers.length) throw new Error('Invalid startup couriers');
   const result: StartupCourierState[] = [];
   for (const worker of input.couriers) {
-    const capacity = courierCapacity(input,worker.request);
+    const { capacity,lifetime } = courierBody(input,worker.request);
     const { collectionTicks,deliveryTicks } = courierTiming(worker,capacity);
     const birth = births.find(birth => birth.request === worker.request);
     if (!birth) continue;
-    result.push({ ...worker,collectionTicks,deliveryTicks,capacity,expiresAt: birth.activeAt+1500,stopAt: birth.activeAt+1500-worker.retireTicks,
+    result.push({ ...worker,collectionTicks,deliveryTicks,capacity,expiresAt: birth.activeAt+lifetime,stopAt: birth.activeAt+lifetime-worker.retireTicks,
       nextAt: birth.activeAt+worker.outboundTicks,phase: 'collect',cargo: 0 });
   }
   return result.sort((a,b) => a.request.localeCompare(b.request));
 }
-function courierCapacity(input: StartupDeliveryInput, id: string): number {
+function courierBody(input: StartupDeliveryInput, id: string): { capacity: number; lifetime: number } {
   const request = input.project.spawning.requests.find(request => request.id === id);
   if (!request || input.project.workers.some(worker => worker.request === id)) throw new Error('Invalid courier identity');
   if (request.body.some(part => !['carry','move'].includes(part))) throw new Error('Unsupported courier body');
   const capacity = request.body.filter(part => part === 'carry').length*50;
   if (!capacity || !request.body.includes('move')) throw new Error('Courier requires CARRY and MOVE');
-  return capacity;
+  return { capacity,lifetime: spawnedActiveTicks(request.body) };
 }
 /** Effects become available next frame. Collection never borrows a later same-frame miner handoff. */
 export function advanceStartupCouriers(workers: StartupCourierState[], result: StartupDeliveryForecast, tick: number, horizon: number, sink: StartupSink): void {

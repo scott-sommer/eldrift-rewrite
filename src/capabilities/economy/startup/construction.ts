@@ -7,10 +7,7 @@ import type { StartupConstructionInput, StartupConstructionForecast, StartupBuil
 export function forecastStartupConstruction(input: StartupConstructionInput) {
   const spawning = forecastStartupSpawns(input.spawning);
   const waves = startupConstructionWaves(input,spawning.births);
-  // Validate source/progress even when no worker can be born.
-  forecastSelfBuild({ remainingProgress: input.remainingProgress,source: input.source,carriedEnergy: 0,carryCapacity: 50,harvestPower: 2,buildPower: 5,maximumTicks: 0 });
-  const construction: StartupConstructionForecast = { status: input.remainingProgress === 0 ? 'complete' : 'incomplete',completeAt: input.remainingProgress === 0 ? 0 : null,
-    remainingProgress: input.remainingProgress,harvestedEnergy: 0,overflowEnergy: 0,constructionEnergy: 0,regeneratedEnergy: 0,unusedCargoEnergy: 0,projectedThrough: 0,source: { ...input.source },waves: [] };
+  const construction = initialStartupConstruction(input);
   let tick = 0;
   for (const wave of waves) {
     if (construction.status === 'complete') break;
@@ -27,4 +24,10 @@ function applyWave(result: StartupConstructionForecast, wave: StartupBuildWave):
   result.regeneratedEnergy += work.regeneratedEnergy; result.unusedCargoEnergy += work.carriedEnergy;
   result.remainingProgress = work.remainingProgress; result.source = { ...result.source,energy: work.sourceEnergy,regenerationIn: work.regenerationIn };
   if (work.status === 'complete') { result.status = 'complete'; result.completeAt = wave.startAt+work.ticks; }
+}
+
+export function initialStartupConstruction(input: StartupConstructionInput): StartupConstructionForecast {
+  forecastSelfBuild({ remainingProgress: input.remainingProgress,source: input.source,carriedEnergy: 0,carryCapacity: 50,harvestPower: 2,buildPower: 5,maximumTicks: 0 });
+  return { status: input.remainingProgress === 0 ? 'complete' : 'incomplete',completeAt: input.remainingProgress === 0 ? 0 : null,
+    remainingProgress: input.remainingProgress,harvestedEnergy: 0,overflowEnergy: 0,constructionEnergy: 0,regeneratedEnergy: 0,unusedCargoEnergy: 0,projectedThrough: 0,source: { ...input.source },waves: [] };
 }
