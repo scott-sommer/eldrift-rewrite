@@ -95,3 +95,8 @@ The later [startup sink model](remote-startup-sink.md) replaces the accepting-ho
 ## Finite container maintenance refinement
 
 The later [maintenance model](remote-startup-maintenance.md) adds required durability/decay facts, ported mining repair duty, exact unboosted repair energy and finite infrastructure failure. It records unrecovered container stock without granting salvage, and permits already loaded home returns. Controlled pinned-processor comparisons now have a separate lightweight install/test command and CI step. Earlier maintained-container assumptions describe their source increments; native operational selection and broader project qualification remain open.
+
+
+## Forward earned-income refinement
+
+The later [forward project model](remote-startup-project.md) couples future birth admission to settled source receipts and explicit redistribution. It supports guarded computation and pins standard/CLAIM ready-state lifetimes to archived native expiry. The static composition retains its independently funded contract. Native candidate selection and broader runtime qualification remain open.
