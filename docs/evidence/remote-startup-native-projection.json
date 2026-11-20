@@ -1,0 +1,1328 @@
+{
+  "sourceCommit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+  "scope": "Initial prospective native quote/facts conversion, actual observed-input projection in a declared finite unreserved two-birth scenario. Not runtime staged-policy calibration or economic selection.",
+  "checks": {
+    "quality": "passed;Lizard1.22.2,824production/655test files,zero violations",
+    "focused": {
+      "cases": 32,
+      "files": 4,
+      "seconds": 0.443
+    },
+    "unit": {
+      "cases": 1768,
+      "files": 441,
+      "seconds": 12.22
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.195
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1241572
+    },
+    "bundle": "passed"
+  },
+  "native": [
+    {
+      "scenario": "--remote-startup-selected",
+      "milliseconds": 10061,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Th9NoY\\evidence.json",
+      "rawSha256": "6552326834892870982dcf320da462bd3278482ccd76934c088a788615fa1f9c",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "59d4cd00be38cb499c44678d610de19f422bbf911cb1326ee6b885c1495665a6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "b94ebfa9cbead0a680eb8e8414db3d176499b3721c982701d16606b4f50d499b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "native-projection-selected-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+      "nativeReloads": [
+        21,
+        81,
+        150
+      ],
+      "actualNativeConstruction": 360,
+      "prospectiveNativeInputProjection": {
+        "observedAt": 25,
+        "costScope": "prospective",
+        "quoteIdentity": "[{\"home\":\"W0N1\",\"room\":\"E0N1\",\"source\":\"aadb85b757e53bf\",\"spawn\":{\"id\":\"a5d285b74c94673\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"station\":{\"room\":\"E0N1\",\"x\":5,\"y\":24},\"collection\":{\"room\":\"E0N1\",\"x\":4,\"y\":24},\"endpoint\":{\"id\":\"95c185b757fcb2c\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"miner\":[\"work\",\"work\",\"work\",\"work\",\"carry\",\"move\",\"move\"],\"courier\":[\"carry\",\"carry\",\"move\",\"move\"]},\"[\\\"startup-fixed-service-v1\\\",\\\"[[\\\\\\\"E0N1\\\\\\\",\\\\\\\"E0N1:[[3,25,255],[6,25,255]]\\\\\\\"],[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\",\\\"[\\\\\\\"remote\\\\\\\",false,[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\"],{\\\\\\\"E0N1\\\\\\\":1}]\\\",{\\\"mode\\\":\\\"known-safe\\\",\\\"username\\\":\\\"eldrift-smoke\\\",\\\"allies\\\":[],\\\"blockedRooms\\\":[],\\\"avoidUntil\\\":{},\\\"allowKeeper\\\":false,\\\"maximumAge\\\":200,\\\"maximumRooms\\\":128,\\\"unknownCost\\\":8,\\\"staleCost\\\":4,\\\"keeperCost\\\":25},10000,[\\\"remote-assignment:4:W0N14:E0N1\\\",21]]\"]",
+        "facts": {
+          "observedAt": 25,
+          "home": "W0N1",
+          "room": "E0N1",
+          "source": {
+            "id": "aadb85b757e53bf",
+            "position": {
+              "room": "E0N1",
+              "x": 6,
+              "y": 25
+            },
+            "energy": 1500,
+            "capacity": 1500,
+            "regenerationIn": null
+          },
+          "station": {
+            "room": "E0N1",
+            "x": 5,
+            "y": 24,
+            "facts": {
+              "status": "building",
+              "id": "a75a85b7a7c93b7",
+              "remainingProgress": 5000,
+              "progress": 0,
+              "total": 5000
+            }
+          },
+          "endpoint": {
+            "id": "95c185b757fcb2c",
+            "position": {
+              "room": "W0N1",
+              "x": 45,
+              "y": 25
+            },
+            "type": "storage",
+            "energy": 7800,
+            "capacity": 1000000,
+            "freeCapacity": 992200,
+            "claimedCapacity": 0,
+            "availableCapacity": 992200
+          },
+          "stock": {
+            "totalEnergy": 10100,
+            "claimedEnergy": 0,
+            "availableEnergy": 10100,
+            "spawnEnergy": 2300,
+            "claimedSpawnEnergy": 0,
+            "availableSpawnEnergy": 2300,
+            "spawnCapacity": 2300
+          },
+          "workers": [],
+          "spawns": [
+            {
+              "id": "a5d285b74c94673",
+              "position": {
+                "room": "W0N1",
+                "x": 47,
+                "y": 25
+              },
+              "remainingTime": 0
+            }
+          ],
+          "authority": {
+            "assignment": "remote-assignment:4:W0N14:E0N1",
+            "generation": 21,
+            "expiresAt": 224
+          },
+          "reservation": null
+        },
+        "input": {
+          "container": {
+            "decayAmount": 5000,
+            "decayIn": 99,
+            "decayInterval": 99,
+            "hits": 250000,
+            "hitsMax": 250000,
+            "repairPolicy": {
+              "criticalFraction": 0.2,
+              "energyReserve": 20
+            }
+          },
+          "containerCapacity": 2000,
+          "couriers": [
+            {
+              "collectionTicks": 1,
+              "deliveryTicks": 1,
+              "initialOutboundTicks": 8,
+              "minimumBatch": 25,
+              "outboundTicks": 10,
+              "request": "projection-courier",
+              "retireTicks": 15,
+              "returnTicks": 10
+            }
+          ],
+          "homeSink": {
+            "capacity": 1000000,
+            "changes": [],
+            "freeCapacity": 992200
+          },
+          "project": {
+            "remainingProgress": 5000,
+            "source": {
+              "capacity": 1500,
+              "energy": 1500,
+              "regenerationIn": null,
+              "regenerationTicks": 300
+            },
+            "spawning": {
+              "cash": {
+                "flows": [],
+                "homeEnergy": 10100,
+                "horizon": 1500,
+                "protectedEnergy": 350,
+                "readyAt": 0,
+                "selfHarvestedConstruction": 5000
+              },
+              "funding": {
+                "capacity": 2300,
+                "initialEnergy": 2300,
+                "refills": []
+              },
+              "liveNames": [
+                "ed-W0N1-1",
+                "ed-W0N1-2"
+              ],
+              "requests": [
+                {
+                  "body": [
+                    "work",
+                    "work",
+                    "work",
+                    "work",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "expiresAt": 1501,
+                  "home": null,
+                  "id": "projection-miner",
+                  "name": "projection-miner",
+                  "owner": "projection-fixture",
+                  "placement": {
+                    "exit": {
+                      "room": "W0N1",
+                      "x": 46,
+                      "y": 25
+                    },
+                    "spawn": "a5d285b74c94673"
+                  },
+                  "priority": 20,
+                  "readyAt": 0,
+                  "room": "W0N1"
+                },
+                {
+                  "body": [
+                    "carry",
+                    "carry",
+                    "move",
+                    "move"
+                  ],
+                  "expiresAt": 1501,
+                  "home": null,
+                  "id": "projection-courier",
+                  "name": "projection-courier",
+                  "owner": "projection-fixture",
+                  "placement": {
+                    "exit": {
+                      "room": "W0N1",
+                      "x": 46,
+                      "y": 25
+                    },
+                    "spawn": "a5d285b74c94673"
+                  },
+                  "priority": 30,
+                  "readyAt": 0,
+                  "room": "W0N1"
+                }
+              ],
+              "room": "W0N1",
+              "spawns": [
+                {
+                  "availableAt": 0,
+                  "id": "a5d285b74c94673",
+                  "room": "W0N1"
+                }
+              ],
+              "unaffordable": "skip"
+            },
+            "workers": [
+              {
+                "request": "projection-miner",
+                "retireTicks": 38,
+                "travelTicks": 18
+              }
+            ]
+          }
+        },
+        "declaredPolicy": {
+          "finiteBirths": 2,
+          "reservation": "none",
+          "refills": "none",
+          "householdFlows": "none"
+        },
+        "steps": [
+          {
+            "tick": 25,
+            "through": 64,
+            "revision": 1,
+            "status": "deferred"
+          },
+          {
+            "tick": 30,
+            "through": 564,
+            "revision": 2,
+            "status": "deferred"
+          },
+          {
+            "tick": 46,
+            "through": 1064,
+            "revision": 3,
+            "status": "deferred"
+          },
+          {
+            "tick": 81,
+            "through": 1501,
+            "revision": 4,
+            "status": "complete"
+          }
+        ],
+        "result": {
+          "spawning": {
+            "births": [
+              {
+                "request": "projection-miner",
+                "spawn": "a5d285b74c94673",
+                "startAt": 0,
+                "activeAt": 21,
+                "cost": 550
+              },
+              {
+                "request": "projection-courier",
+                "spawn": "a5d285b74c94673",
+                "startAt": 21,
+                "activeAt": 33,
+                "cost": 200
+              }
+            ],
+            "unscheduled": [],
+            "flows": [
+              {
+                "id": "birth:projection-miner",
+                "kind": "birth",
+                "energy": 550,
+                "firstTick": 0,
+                "interval": null,
+                "occurrences": 1
+              },
+              {
+                "id": "birth:projection-courier",
+                "kind": "birth",
+                "energy": 200,
+                "firstTick": 21,
+                "interval": null,
+                "occurrences": 1
+              }
+            ],
+            "funding": {
+              "endingSpawnEnergy": 1550,
+              "refilledEnergy": 0,
+              "unfilledEnergy": 0
+            },
+            "cash": {
+              "endingEnergy": 10206,
+              "minimumEnergy": 9350,
+              "minimumAt": 21,
+              "requiredHomeEnergy": 1100,
+              "homeShortfall": 0,
+              "birthEnergy": 750,
+              "homeConstructionEnergy": 0,
+              "upkeepEnergy": 0,
+              "deliveredEnergy": 856,
+              "homeCashSurplus": 106,
+              "constructionRecoveryMargin": -4894,
+              "firstDeliveryAt": 1309,
+              "firstRecoveryAt": null
+            }
+          },
+          "construction": {
+            "status": "complete",
+            "completeAt": 1289,
+            "remainingProgress": 0,
+            "harvestedEnergy": 5000,
+            "overflowEnergy": 0,
+            "constructionEnergy": 5000,
+            "regeneratedEnergy": 4800,
+            "unusedCargoEnergy": 0,
+            "projectedThrough": 1289,
+            "source": {
+              "energy": 1300,
+              "capacity": 1500,
+              "regenerationTicks": 300,
+              "regenerationIn": 250
+            },
+            "waves": [
+              {
+                "request": "projection-miner",
+                "startAt": 39,
+                "endAt": 1289,
+                "work": {
+                  "ticks": 1250,
+                  "remainingProgress": 0,
+                  "carriedEnergy": 0,
+                  "sourceEnergy": 1300,
+                  "harvestedEnergy": 5000,
+                  "overflowEnergy": 0,
+                  "constructionEnergy": 5000,
+                  "regeneratedEnergy": 4800,
+                  "harvestTicks": 625,
+                  "buildTicks": 625,
+                  "idleTicks": 0,
+                  "status": "complete",
+                  "regenerationIn": 250
+                }
+              }
+            ]
+          },
+          "delivery": {
+            "firstDeliveryAt": 1309,
+            "deliveredEnergy": 856,
+            "harvestedEnergy": 1300,
+            "regeneratedEnergy": 0,
+            "unreturnedCourierEnergy": 0,
+            "overflowEnergy": 138,
+            "uncapturedOverflowEnergy": 0,
+            "containerEnergy": 332,
+            "minerCargoEnergy": 0,
+            "courierCargoEnergy": 100,
+            "unusedMinerCargoEnergy": 0,
+            "projectedThrough": 1501,
+            "source": {
+              "energy": 0,
+              "capacity": 1500,
+              "regenerationTicks": 300,
+              "regenerationIn": 38
+            },
+            "receipts": [
+              {
+                "tick": 1309,
+                "energy": 56,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1331,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1353,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1375,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1397,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1419,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1441,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1463,
+                "energy": 100,
+                "request": "projection-courier"
+              },
+              {
+                "tick": 1485,
+                "energy": 100,
+                "request": "projection-courier"
+              }
+            ]
+          },
+          "homeSink": {
+            "remainingCapacity": 991344,
+            "acceptedEnergy": 856,
+            "projectedThrough": 1501
+          },
+          "maintenance": {
+            "hits": 241200,
+            "decayIn": 85,
+            "destroyedAt": null,
+            "repairedHits": 1200,
+            "repairEnergy": 12,
+            "decayEvents": 2,
+            "unrecoveredEnergy": 0
+          },
+          "cash": {
+            "endingEnergy": 10206,
+            "minimumEnergy": 9350,
+            "minimumAt": 21,
+            "requiredHomeEnergy": 1100,
+            "homeShortfall": 0,
+            "birthEnergy": 750,
+            "homeConstructionEnergy": 0,
+            "upkeepEnergy": 0,
+            "deliveredEnergy": 856,
+            "homeCashSurplus": 106,
+            "constructionRecoveryMargin": -4894,
+            "firstDeliveryAt": 1309,
+            "firstRecoveryAt": null
+          },
+          "projectCash": {
+            "endingEnergy": 10206,
+            "minimumEnergy": 9350,
+            "minimumAt": 21,
+            "requiredHomeEnergy": 1100,
+            "homeShortfall": 0,
+            "birthEnergy": 750,
+            "homeConstructionEnergy": 0,
+            "upkeepEnergy": 0,
+            "deliveredEnergy": 856,
+            "homeCashSurplus": 106,
+            "constructionRecoveryMargin": -4894,
+            "firstDeliveryAt": 1309,
+            "firstRecoveryAt": null
+          }
+        },
+        "readOnly": true
+      }
+    },
+    {
+      "scenario": "--remote-startup-admission",
+      "milliseconds": 9620,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-31jgvf\\evidence.json",
+      "rawSha256": "09575c5f7a0d78f7d015fe4c16c3c0931d8de69f32c14e978d8a4eab3be9276a",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "e2c1b0de4c03178f46a27176b92ebb5a275dddcd97f8d693e4f6457a1be3d93c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "10c80a2b1caf9c352813da9aa0bb3ef6fae56a43af60ee68429dc635e71f30af",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "native-projection-admission-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+      "nativeReloads": [
+        21,
+        81,
+        150
+      ],
+      "actualNativeConstruction": 376,
+      "nativeTravel": [
+        {
+          "tick": 149,
+          "beforeLegs": 0,
+          "afterLegs": 2,
+          "beforeRevision": 0,
+          "afterRevision": 2,
+          "result": {
+            "status": "deferred",
+            "reason": "leg-budget",
+            "completedLegs": 2
+          }
+        },
+        {
+          "projectionRefusal": {
+            "status": "deferred",
+            "reason": "existing-workforce"
+          },
+          "tick": 150,
+          "beforeLegs": 2,
+          "afterLegs": 5,
+          "beforeRevision": 2,
+          "afterRevision": 5,
+          "result": {
+            "status": "complete",
+            "identity": "[{\"home\":\"W0N1\",\"room\":\"E0N1\",\"source\":\"6d8e85b9cb78c8e\",\"spawn\":{\"id\":\"a02d85b9bf6377b\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"station\":{\"room\":\"E0N1\",\"x\":5,\"y\":24},\"collection\":{\"room\":\"E0N1\",\"x\":4,\"y\":24},\"endpoint\":{\"id\":\"7d8485b9cb798c7\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"miner\":[\"work\",\"work\",\"work\",\"work\",\"carry\",\"move\",\"move\"],\"courier\":[\"carry\",\"carry\",\"move\",\"move\"]},\"[\\\"startup-fixed-service-v1\\\",\\\"[[\\\\\\\"E0N1\\\\\\\",\\\\\\\"E0N1:[[3,25,255],[6,25,255]]\\\\\\\"],[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\",\\\"[\\\\\\\"remote\\\\\\\",false,[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\"],{\\\\\\\"W0N2\\\\\\\":1,\\\\\\\"E0N1\\\\\\\":1,\\\\\\\"W0N0\\\\\\\":1,\\\\\\\"W1N1\\\\\\\":1}]\\\",{\\\"mode\\\":\\\"known-safe\\\",\\\"username\\\":\\\"eldrift-smoke\\\",\\\"allies\\\":[],\\\"blockedRooms\\\":[],\\\"avoidUntil\\\":{},\\\"allowKeeper\\\":false,\\\"maximumAge\\\":200,\\\"maximumRooms\\\":128,\\\"unknownCost\\\":8,\\\"staleCost\\\":4,\\\"keeperCost\\\":25},10000,[\\\"remote-assignment:4:W0N14:E0N1\\\",21]]\"]",
+            "plan": {
+              "home": "W0N1",
+              "room": "E0N1",
+              "source": "6d8e85b9cb78c8e",
+              "spawn": {
+                "id": "a02d85b9bf6377b",
+                "position": {
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25
+                },
+                "exit": {
+                  "room": "W0N1",
+                  "x": 46,
+                  "y": 25
+                }
+              },
+              "station": {
+                "room": "E0N1",
+                "x": 5,
+                "y": 24
+              },
+              "collection": {
+                "room": "E0N1",
+                "x": 4,
+                "y": 24
+              },
+              "endpoint": {
+                "id": "7d8485b9cb798c7",
+                "position": {
+                  "room": "W0N1",
+                  "x": 45,
+                  "y": 25
+                },
+                "deposit": {
+                  "room": "W0N1",
+                  "x": 44,
+                  "y": 25
+                }
+              },
+              "miner": [
+                "work",
+                "work",
+                "work",
+                "work",
+                "carry",
+                "move",
+                "move"
+              ],
+              "courier": [
+                "carry",
+                "carry",
+                "move",
+                "move"
+              ]
+            },
+            "legs": [
+              {
+                "ticks": 18,
+                "operations": 56,
+                "arrival": {
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 24
+                },
+                "kind": "miner-approach"
+              },
+              {
+                "ticks": 33,
+                "operations": 93,
+                "arrival": {
+                  "room": "W0N1",
+                  "x": 44,
+                  "y": 25
+                },
+                "kind": "miner-return"
+              },
+              {
+                "ticks": 8,
+                "operations": 8,
+                "arrival": {
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24
+                },
+                "kind": "courier-approach"
+              },
+              {
+                "ticks": 10,
+                "operations": 12,
+                "arrival": {
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24
+                },
+                "kind": "courier-empty"
+              },
+              {
+                "ticks": 10,
+                "operations": 9,
+                "arrival": {
+                  "room": "W0N1",
+                  "x": 44,
+                  "y": 25
+                },
+                "kind": "courier-loaded"
+              }
+            ],
+            "operations": 178,
+            "observedAt": 150,
+            "facts": {
+              "observedAt": 150,
+              "home": "W0N1",
+              "room": "E0N1",
+              "source": {
+                "id": "6d8e85b9cb78c8e",
+                "position": {
+                  "room": "E0N1",
+                  "x": 6,
+                  "y": 25
+                },
+                "energy": 1116,
+                "capacity": 1500,
+                "regenerationIn": 205
+              },
+              "station": {
+                "room": "E0N1",
+                "x": 5,
+                "y": 24,
+                "facts": {
+                  "status": "building",
+                  "id": "954c85ba18a4f71",
+                  "remainingProgress": 4624,
+                  "progress": 376,
+                  "total": 5000
+                }
+              },
+              "endpoint": {
+                "id": "7d8485b9cb798c7",
+                "position": {
+                  "room": "W0N1",
+                  "x": 45,
+                  "y": 25
+                },
+                "type": "storage",
+                "energy": 7250,
+                "capacity": 1000000,
+                "freeCapacity": 992750,
+                "claimedCapacity": 0,
+                "availableCapacity": 992750
+              },
+              "stock": {
+                "totalEnergy": 9550,
+                "claimedEnergy": 0,
+                "availableEnergy": 9550,
+                "spawnEnergy": 2300,
+                "claimedSpawnEnergy": 0,
+                "availableSpawnEnergy": 2300,
+                "spawnCapacity": 2300
+              },
+              "workers": [
+                {
+                  "name": "ed-W0N1-3",
+                  "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"6d8e85b9cb78c8e\",\"miner\"]",
+                  "position": {
+                    "room": "E0N1",
+                    "x": 5,
+                    "y": 24
+                  },
+                  "spawning": false,
+                  "ticksToLive": 1392,
+                  "energy": 8,
+                  "body": [
+                    {
+                      "type": "work",
+                      "hits": 100,
+                      "boost": null
+                    },
+                    {
+                      "type": "work",
+                      "hits": 100,
+                      "boost": null
+                    },
+                    {
+                      "type": "work",
+                      "hits": 100,
+                      "boost": null
+                    },
+                    {
+                      "type": "work",
+                      "hits": 100,
+                      "boost": null
+                    },
+                    {
+                      "type": "carry",
+                      "hits": 100,
+                      "boost": null
+                    },
+                    {
+                      "type": "move",
+                      "hits": 100,
+                      "boost": null
+                    },
+                    {
+                      "type": "move",
+                      "hits": 100,
+                      "boost": null
+                    }
+                  ]
+                }
+              ],
+              "spawns": [
+                {
+                  "id": "a02d85b9bf6377b",
+                  "position": {
+                    "room": "W0N1",
+                    "x": 47,
+                    "y": 25
+                  },
+                  "remainingTime": 0
+                }
+              ],
+              "authority": {
+                "assignment": "remote-assignment:4:W0N14:E0N1",
+                "generation": 21,
+                "expiresAt": 349
+              },
+              "reservation": null
+            },
+            "rooms": [
+              "W0N1",
+              "E0N1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "--remote-startup-selection-expiry",
+      "milliseconds": 9796,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XPBbac\\evidence.json",
+      "rawSha256": "f84e4db6f9144f51be235b47c55a75dd326657284b5ecbe3a72e4cc34bfdf38f",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "64d3697814e0e7657a730afa0dd4cddabb7ec661a7bb355399b8c92ba4976be1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "5eb70162adc56eab770b97d671d445ffb45e438ecf013c7276e67a14a9d871aa",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-startup-refusal",
+      "milliseconds": 9014,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-T8vWWu\\evidence.json",
+      "rawSha256": "b3b0e4aa65626551e4157e8fcd55522d662f0180362c023f75d0203629bd9c53",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "2f9b324150fe12e0b813931afb634d7165cf4b652707ed0fe8c65e381bf512f7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "05588b152c7ef28d96357cc9504f1a34b15a982b65624802e77c53412177960c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1208,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-sQI7JX\\evidence.json",
+      "rawSha256": "738ac68a60f992570579730cfc5bc1e4ff968caf9d9acaac87875ebe0b5ed290",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "b8681403ea6ad2eb4458a130e04dd259110a0705c57fcd4afb9112fc5b344622",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    },
+    {
+      "scenario": "--remote-capacity-starved",
+      "milliseconds": 31973,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-SmE3Dp\\evidence.json",
+      "rawSha256": "8bee8aa2ea4b1ab020473dc60e992172c3869ccf79ed371488406e8c94f3583d",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "cceb336f5676b7b83e73893b49599c78fd0bb3b05172efb6e576b4b7d8d6281a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "b0e4c4af10992244c15f7bf461b7d2ad83d663273b76fcb9cdb6e49497cd84d4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "capacitySummary": {
+        "mode": "starved",
+        "rows": 1505,
+        "first": {
+          "tick": 1,
+          "supported": 3,
+          "evaluatedAt": 1,
+          "observedLoad": null,
+          "load": 0.0006666666666666666,
+          "coverage": 0.0006666666666666666,
+          "busy": 0,
+          "starved": 1,
+          "energy": 0,
+          "segments": 1,
+          "names": [],
+          "pending": [
+            "unrelated-capacity",
+            "pressure"
+          ]
+        },
+        "last": {
+          "tick": 1505,
+          "supported": 2,
+          "evaluatedAt": 1501,
+          "observedLoad": 1,
+          "load": 1,
+          "coverage": 1,
+          "busy": 0,
+          "starved": 1500,
+          "energy": 0,
+          "segments": 1,
+          "names": [],
+          "pending": [
+            "unrelated-capacity",
+            "pressure"
+          ]
+        },
+        "calls": [],
+        "reloads": [
+          21,
+          751,
+          1500,
+          1502
+        ]
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 906,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZX9wou\\evidence.json",
+      "rawSha256": "44c52754f2f80a0732f4bc169fe2147240ac1b3eee590d148355f9180376ae5b",
+      "status": "passed",
+      "provenance": {
+        "commit": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+        "dirty": false,
+        "bundleSha256": "90038b251913579089d6eac67720fafec23698e41217aa6bfb2b2df21c1c0c6f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    }
+  ],
+  "batchMilliseconds": 72582,
+  "sourceFileSha256": {
+    "src/app/remotes/startup/facts-model.ts": "3c288918f9788406b0242bd920eaadae9086ab1e076ae5582766061eb5c98de1",
+    "src/app/remotes/startup/projection/eligibility.ts": "79d057cd31ef103620dcb2590dfcac6fccac09c12baef8f333f067801ade4a76",
+    "src/app/remotes/startup/projection/input.ts": "06b388d154143dd0b171780fc61cf570b7862b35f7e59974e30d45c2d2823fac",
+    "src/app/remotes/startup/projection/model.ts": "155f186dda9784e2993232d79f24051833f014d8a350f88624c0e73f56df6212",
+    "src/app/remotes/startup/projection/native.ts": "5d5da98f3be4c1bfd49125530f2c2c55c5abf54add10cb297cde5bb02c4a6987",
+    "src/app/remotes/startup/projection/schedule.ts": "b4f6865778643c956fc53940da71c1d45dedc6dab36d4281f25e3c8c900b7253",
+    "src/app/remotes/startup/stock.ts": "e0af04c4b7851a090da9d31681833b75f57b154e477c72039603947891828f7d",
+    "src/features/remotes/startup/selection-validation.ts": "a7942b3a294047a1efa5b717c6c41061db09cbd121d49806cc15a1759b4f2861",
+    "test/app/remotes/startup-projection.test.ts": "aa935a3d5b964a8ffd88206d2769dd0b3f02455f1b4d69005b26dd7e1bca31b1",
+    "test/engine/remote-startup-selected-bot.ts": "e89ac6ae4fe8562f45619b64ec3a948c3d9aafbc618510c697a3ce69382302ef",
+    "test/engine/startup-native-projection.ts": "3e38e4824b7926df437ecc5c1505b9d269522fb06383e8b1761feccb361efefe",
+    "test/engine/startup-native-travel.ts": "0e2cfc53fe6e1de91b8d93929389456e577ea4f726fb442a2be0008b0da67b0c",
+    "test/fixtures/native-startup-projection.ts": "d051cb93dd8f97c7498c529cec0f6fb0de9ad3d30893f049b40f16a39c9fb70f",
+    "tools/engine/remote-startup-admission.cjs": "7c457edc3ca6078b8a17d91f0366b288d72dfdcc2fdce94a7ec2769d9f84f1dd",
+    "tools/engine/remote-startup.cjs": "edfd993f755ee4e59f6a6bce5c43f7ad82550fd30738b160f7a0dcfcb6b95226"
+  },
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "9862ebcc566f90e17c1d9938d723f0c0ec1f7c50",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T09:55:53Z",
+        "conclusion": "success",
+        "databaseId": 136213909480,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T09:52:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T09:52:35Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T09:52:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:43Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T09:52:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:55Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T09:52:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:55Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T09:52:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:54:13Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T09:53:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:54:18Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T09:54:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:54:22Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T09:54:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:54:25Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T09:54:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:54:51Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T09:54:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:38Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T09:54:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:45Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T09:55:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:47Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T09:55:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:48Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T09:55:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:49Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T09:55:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T09:55:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T09:55:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:51Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T09:55:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:55:51Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T09:55:51Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44714386525/job/136213909480"
+      },
+      {
+        "completedAt": "2026-11-20T09:53:47Z",
+        "conclusion": "success",
+        "databaseId": 136213910041,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T09:52:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T09:52:36Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T09:52:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:42Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T09:52:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:49Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T09:52:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:56Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T09:52:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:58Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T09:52:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:52:59Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T09:52:58Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:01Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T09:52:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:03Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T09:53:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:16Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T09:53:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:40Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T09:53:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:41Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T09:53:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:41Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T09:53:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:41Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T09:53:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:42Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T09:53:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:42Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T09:53:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:42Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T09:53:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:42Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T09:53:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T09:53:42Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T09:53:42Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44714386525/job/136213910041"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44714386525"
+  },
+  "registryCases": 237,
+  "fullRegistryRerun": false,
+  "lastFullRegistry": {
+    "source": "39722c0",
+    "cases": 223
+  },
+  "modelFinding": {
+    "horizon": 1500,
+    "deliveredEnergy": 856,
+    "birthEnergy": 750,
+    "homeCashSurplus": 106,
+    "constructionRecoveryMargin": -4894,
+    "firstRecoveryAt": null,
+    "interpretation": "Positive modeled cash surplus does not recover construction investment."
+  },
+  "stateChanges": "No new namespace or wire/schema version. Native facts add claim-aware physical spawn funding; new input naturally changes job binding.",
+  "limitations": [
+    "Default bot does not register this conversion/economic strategy.",
+    "Existing workers, positive station stock, queued unrepresented room workforce and reservation transitions defer; their full import/trajectory support remains open.",
+    "Declared source birth schedule, household flows, refills and sink changes are assumptions, not an automatically established future schedule.",
+    "Projection is prospective; past investments and undeclared home activity are excluded.",
+    "Modeled credits are not observed native income. Same-strategy native timing calibration and operational adoption remain open.",
+    "Broader multi-room/CPU-memory pressure/soak/parity/migration-release gates remain open."
+  ]
+}
