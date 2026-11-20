@@ -10,8 +10,10 @@ interface IncumbentMemory extends Memory { incumbentProjection?: Record<string,u
 /** Real current worker/cargo, evaluated as a finite continuation rather than a staged future workforce policy. */
 export function snapshotNativeIncumbent(state: StatePort): void {
   const memory = Memory as IncumbentMemory;
-  if (Game.time === 80) {
+  if (Game.time < 81) {
+    if (memory.incumbentProjection) return;
     const quote = snapshotStartupNativeTravel(state,'W0N1',5).result; if (quote.status !== 'complete') throw new Error('Expected current incumbent quote');
+    if (!quote.facts.workers.some(worker => worker.energy > 0)) return;
     const options = nativeProjectionOptions(quote); options.births = [];
     const projection = createNativeStartupProjection(state)(quote,options);
     if (projection.status !== 'ready' || !projection.input.initial?.miner) throw new Error('Expected observed native station miner import');

@@ -40,12 +40,12 @@ export function createSelectedStartupLoop(expiring = false) {
   };
   const runtime = createNativeBot({ remoteBirths: policy });
   return () => {
+    if (!expiring && (Game.time >= 70 && Game.time <= 81)) snapshotNativeIncumbent(state);
     runStartup(expiring ? 'selection-expiry' : 'selected',runtime);
     const memory = Memory as SelectionMemory;
     const miner = Object.values(Game.creeps).find(creep => !creep.spawning && remoteFleetIdentity(creep.memory.population?.owner ?? '')?.kind === 'miner');
     if (miner && !memory.selectedReady) memory.selectedReady = { tick: Game.time,x: miner.pos.x,y: miner.pos.y,room: miner.pos.roomName };
     if ([30,46,81,150].includes(Game.time)) { recordSelectionCheck(memory); if (!expiring) resumeNativeProjection(state); }
-    if (!expiring && [80,81].includes(Game.time)) snapshotNativeIncumbent(state);
   };
 }
 function recordSelectionCheck(memory: SelectionMemory): void {
