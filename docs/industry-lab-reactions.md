@@ -46,3 +46,5 @@ See the [evidence manifest](evidence/lab-reactions.json), including full product
 API reference: [Screeps StructureLab.runReaction](https://docs.screeps.com/api/#StructureLab.runReaction). Geometry and chemistry are checked against the pinned4.3.2 processor as well as native scenarios; source inspection alone is not counted as execution proof.
 
 Hosted [CI44746517189](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44746517189) passes Windows2022 and Ubuntu24.04 on63964c7, with all six required checks verified in both jobs.
+
+The subsequent [automatic local chain planner](industry-lab-production.md) now qualifies bounded priority/dependency selection and real multistage production. Earlier references above to automatic chains as future work describe the prior increment; empire allocation and boost/operator obligations remain open.

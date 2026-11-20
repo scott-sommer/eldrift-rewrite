@@ -1,0 +1,1388 @@
+{
+  "sourceCommit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+  "scope": "Bounded local production-target dependency planning and persisted absolute stages, recoverable inventory, shared-raw feasibility, priority fallback, input/warehouse floors, immutable target configuration and actual multistage native production. Not empire-wide target allocation, boost orchestration or full resourceManager parity.",
+  "checks": {
+    "quality": "passed;Lizard1.22.2;851production/685testfiles;0violations;types/lint/boundariespassed",
+    "unit": {
+      "cases": 1840,
+      "files": 455,
+      "seconds": 12.42
+    },
+    "focusedAndSmoke": {
+      "cases": 20,
+      "files": 5,
+      "seconds": 0.237,
+      "note": "Final reserve-debt regression included."
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.201
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1218684
+    },
+    "bundle": "passed"
+  },
+  "nativeMilliseconds": 110670,
+  "native": [
+    {
+      "scenario": "--lab-chain",
+      "milliseconds": 19146,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-E4Qicq\\evidence.json",
+      "status": "passed",
+      "rawSha256": "b9d2f4033e1e45aede97417c5ba15c2152501b4467621a2a18fad2eba57828c9",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "bed7e50aa606bda0f6f337cb85af4396c9454a864c54d1d1549e37724a4062a8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-chain-measurements.jsonl",
+      "rows": 640,
+      "rowsSha256": "fe1d4eae8934da2d64f78e7ecfb2e37a7e0251397ac6cbc2cf70a84732d9f165",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "083bc162024ccd1a718ccc0a4e9b2e1f703d40e81a67d61fa43cbb25ed613d41",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "normal",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,0,0,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "3e2298fb9d85589",
+                "b61798fb9d83b1d"
+              ],
+              "outputs": [
+                "cf2698fb9d8ea38"
+              ],
+              "roster": [
+                "3e2298fb9d85589",
+                "b61798fb9d83b1d",
+                "cf2698fb9d8ea38"
+              ]
+            }
+          }
+        },
+        "rowsFile": "lab-chain-lab-chain-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "e33b4cee46f2dc2d11932073bb394a69589316336f4ae828749934a1a8fc2457",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 80,
+            "O": 90,
+            "U": 90
+          },
+          "pool": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 80,
+            "O": 90,
+            "U": 90
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        },
+        "firstStages": [
+          {
+            "tick": 1,
+            "step": "OH",
+            "root": "UH2O",
+            "goal": 10
+          },
+          {
+            "tick": 39,
+            "step": "UH",
+            "root": "UH2O",
+            "goal": 10
+          },
+          {
+            "tick": 69,
+            "step": "UH2O",
+            "root": "UH2O",
+            "goal": 10
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "--lab-chain-prestock",
+      "milliseconds": 18721,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oSJcpy\\evidence.json",
+      "status": "passed",
+      "rawSha256": "5079641e4a683216ad736a59df91ee2ac193bff67109b909b600d1e2e10a1c26",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "d4d1fdc6d6a229232ad8d4a940cee53426882f0ce19073d13a024605c10a972f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-chain-prestock-measurements.jsonl",
+      "rows": 640,
+      "rowsSha256": "9673e5ec6e4569c135332bf5ad768ef43263eaf9aa1d6e7aa579bd7a29600b9e",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "65487110a7013e5f11a9f86ddb50f9c6038fe822fedb6c58b0607e5f16a5ce0c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "prestock",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,5,5,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "24d9990049e2cc0",
+                "6950990049febb3"
+              ],
+              "outputs": [
+                "cd28990049f56ab"
+              ],
+              "roster": [
+                "24d9990049e2cc0",
+                "6950990049febb3",
+                "cd28990049f56ab"
+              ]
+            }
+          }
+        },
+        "rowsFile": "lab-chain-lab-chain-prestock-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "66a1b176c548fa2b9a449e3d125d41bf2bc72b61e854c807bc857fd0f8d90a7d",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 5,
+            "UH": 5,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 20,
+            "H": 95,
+            "O": 95,
+            "U": 100
+          },
+          "pool": {
+            "OH": 10,
+            "UH": 10,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 20,
+            "H": 95,
+            "O": 95,
+            "U": 100
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        },
+        "firstStages": [
+          {
+            "tick": 1,
+            "step": "OH",
+            "root": "UH2O",
+            "goal": 20
+          },
+          {
+            "tick": 17,
+            "step": "UH2O",
+            "root": "UH2O",
+            "goal": 10
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "--lab-chain-reserves",
+      "milliseconds": 19131,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4hiwb4\\evidence.json",
+      "status": "passed",
+      "rawSha256": "3395ecd356d565ef0554ce6e387348e907a912eb0a187a400428054fd4a380dc",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "bc8d68dd6bcb9df7ccd93cc35af1ad174a1bb01fe3e331faa8239c2f477455b4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-chain-reserves-measurements.jsonl",
+      "rows": 640,
+      "rowsSha256": "df71a693813db8369141b8b0f9798fcbb788ee3aedec24da899c28432a46f0f2",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "30819fd59e2d18421a999840f8fb2bb0320de911dd318deb0d8f463036267770",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "reserves",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,5,5,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "248a9904de5f0c1",
+                "966c9904de59750"
+              ],
+              "outputs": [
+                "c38f9904de62328"
+              ],
+              "roster": [
+                "248a9904de5f0c1",
+                "966c9904de59750",
+                "c38f9904de62328"
+              ]
+            }
+          }
+        },
+        "rowsFile": "lab-chain-lab-chain-reserves-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "b97dcb654f4379e12c5cd53e9fd44f31afede78782a0892b6e6b260fba2397d1",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 5,
+            "UH": 5,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 60,
+            "O": 80,
+            "U": 80
+          },
+          "pool": {
+            "OH": 10,
+            "UH": 10,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 60,
+            "O": 80,
+            "U": 80
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        },
+        "firstStages": [
+          {
+            "tick": 1,
+            "step": "OH",
+            "root": "UH2O",
+            "goal": 20
+          },
+          {
+            "tick": 80,
+            "step": "UH",
+            "root": "UH2O",
+            "goal": 20
+          },
+          {
+            "tick": 130,
+            "step": "UH2O",
+            "root": "UH2O",
+            "goal": 10
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "--lab-chain-priority",
+      "milliseconds": 19520,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-XFKTZc\\evidence.json",
+      "status": "passed",
+      "rawSha256": "73c75fee4543bf7bceeb16f4e4729dc1125ea9a0926d1cac7a797086632fb922",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "75439e2af2065729bcec243a999ed80f4808341c7767ecd1f39943eb44d1c8a5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-chain-priority-measurements.jsonl",
+      "rows": 640,
+      "rowsSha256": "3ea551ab9b6e11f96a7fcc37c0fd1189ec078149659fd1f5e1ebea84d2a31580",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "46409e659323df8b5b769fd8c02072974395f97138dd33a72d13e853d5f9d4e8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "priority",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2},{\"product\":\"XUH2O\",\"amount\":10,\"priority\":0},{\"product\":\"ZH\",\"amount\":5,\"priority\":1}],10,0,0,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "5d23990987ef9dd",
+                "83f5990987ecba8"
+              ],
+              "outputs": [
+                "c9f7990987e1c3f"
+              ],
+              "roster": [
+                "5d23990987ef9dd",
+                "83f5990987ecba8",
+                "c9f7990987e1c3f"
+              ]
+            }
+          }
+        },
+        "rowsFile": "lab-chain-lab-chain-priority-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "d59b61d3b354a2f13426617b7103b17a6d5ad0360dd90c65c8a8cad568e82999",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 5,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 75,
+            "O": 90,
+            "U": 90
+          },
+          "pool": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 5,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 75,
+            "O": 90,
+            "U": 90
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        },
+        "firstStages": [
+          {
+            "tick": 1,
+            "step": "ZH",
+            "root": "ZH",
+            "goal": 5
+          },
+          {
+            "tick": 22,
+            "step": "OH",
+            "root": "UH2O",
+            "goal": 10
+          },
+          {
+            "tick": 62,
+            "step": "UH",
+            "root": "UH2O",
+            "goal": 10
+          },
+          {
+            "tick": 92,
+            "step": "UH2O",
+            "root": "UH2O",
+            "goal": 10
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "--lab-chain-depleted",
+      "milliseconds": 12781,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-KGBdlL\\evidence.json",
+      "status": "passed",
+      "rawSha256": "04ba9f0548b7aa281d7b92b53659a168d55138c6330b1772a2eece18bb05290e",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "6370ba2220b964fd9777a7fa3d00a673dcf4ffebc9f8cd802260b032aef1ca74",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-chain-depleted-measurements.jsonl",
+      "rows": 640,
+      "rowsSha256": "b612f572104956532c604588866b3ee396b264aad0d04ac287ff02dc9425d83d",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "04aeb31ccf1daa0c6acbdaa5975920543b68f017a1b24103841eccb3b4c3808a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "depleted",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,0,0,[]]",
+            "step": null
+          }
+        },
+        "rowsFile": "lab-chain-lab-chain-depleted-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "c8d2574b5435737c3404c2ae32922f7a7888a76bb61819c3f6bb8d6068769375",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 0,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 0,
+            "H": 0,
+            "O": 100,
+            "U": 100
+          },
+          "pool": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 0,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 0,
+            "O": 100,
+            "U": 100
+          },
+          "cargo": 0,
+          "assignment": null
+        },
+        "firstStages": []
+      }
+    },
+    {
+      "scenario": "--lab-supply-switch",
+      "milliseconds": 8862,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6BmiAZ\\evidence.json",
+      "status": "passed",
+      "rawSha256": "8a3df534a02d4172d5200cf90a6504f686a0bd62741da40a534903399d09e28b",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "81cf20ebb560415b0b50720fb89ae4e76ad9b82a67ae7389ded435c8f4bed226",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-supply-switch-measurements.jsonl",
+      "rows": 320,
+      "rowsSha256": "792a3cf5917be13756f489217b36bfb9552c83c437da342de8a1d490b3a9d9a3",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "2e10cae8e5b91d7366a18d55558256bbee304d6d2a07469ae9764bd376870bbb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labSupply": {
+        "mode": "switch",
+        "reloads": [
+          31,
+          181
+        ],
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH",
+              "reagents": [
+                "H",
+                "U"
+              ],
+              "inputs": [
+                "3f239911698c7e0",
+                "6cc69911698e27f"
+              ],
+              "outputs": [
+                "b7fb99116989961"
+              ],
+              "roster": [
+                "3f239911698c7e0",
+                "6cc69911698e27f",
+                "b7fb99116989961"
+              ]
+            }
+          }
+        },
+        "retainedReceipts": [
+          {
+            "request": {
+              "id": "[\"refill\",\"b0379911698e980\",\"3f239911698c7e0\",\"H\",140]",
+              "owner": "industry-labs:W0N1:3f239911698c7e0",
+              "source": "b0379911698e980",
+              "sink": "3f239911698c7e0",
+              "resource": "H",
+              "quantity": 15,
+              "priority": 8,
+              "expiresAt": 240
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"80659911698eadb\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"80659911698eadb\\\\\\\",\\\\\\\"industry-labs:W0N1:3f239911698c7e0\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b0379911698e980\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"3f239911698c7e0\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"H\\\\\\\\\\\\\\\",140]\\\\\\\",\\\\\\\"141\\\\\\\"]\\\"]\",\"143\"]",
+                "amount": 15
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"6cc69911698e27f\",\"b0379911698e980\",\"O\",140]",
+              "owner": "industry-labs:W0N1:6cc69911698e27f",
+              "source": "6cc69911698e27f",
+              "sink": "b0379911698e980",
+              "resource": "O",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 240
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"80659911698eadb\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"80659911698eadb\\\\\\\",\\\\\\\"industry-labs:W0N1:6cc69911698e27f\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"6cc69911698e27f\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b0379911698e980\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"O\\\\\\\\\\\\\\\",140]\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"148\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"b0379911698e980\",\"6cc69911698e27f\",\"U\",149]",
+              "owner": "industry-labs:W0N1:6cc69911698e27f",
+              "source": "b0379911698e980",
+              "sink": "6cc69911698e27f",
+              "resource": "U",
+              "quantity": 20,
+              "priority": 8,
+              "expiresAt": 249
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"80659911698eadb\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"80659911698eadb\\\\\\\",\\\\\\\"industry-labs:W0N1:6cc69911698e27f\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b0379911698e980\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"6cc69911698e27f\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"U\\\\\\\\\\\\\\\",149]\\\\\\\",\\\\\\\"150\\\\\\\"]\\\"]\",\"152\"]",
+                "amount": 20
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"b7fb99116989961\",\"b0379911698e980\",\"UH\",154]",
+              "owner": "industry-labs:W0N1:b7fb99116989961",
+              "source": "b7fb99116989961",
+              "sink": "b0379911698e980",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 254
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"80659911698eadb\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"80659911698eadb\\\\\\\",\\\\\\\"industry-labs:W0N1:b7fb99116989961\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b7fb99116989961\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b0379911698e980\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",154]\\\\\\\",\\\\\\\"155\\\\\\\"]\\\"]\",\"157\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"b7fb99116989961\",\"b0379911698e980\",\"UH\",164]",
+              "owner": "industry-labs:W0N1:b7fb99116989961",
+              "source": "b7fb99116989961",
+              "sink": "b0379911698e980",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 264
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"80659911698eadb\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"80659911698eadb\\\\\\\",\\\\\\\"industry-labs:W0N1:b7fb99116989961\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b7fb99116989961\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b0379911698e980\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",164]\\\\\\\",\\\\\\\"165\\\\\\\"]\\\"]\",\"166\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"b7fb99116989961\",\"b0379911698e980\",\"UH\",174]",
+              "owner": "industry-labs:W0N1:b7fb99116989961",
+              "source": "b7fb99116989961",
+              "sink": "b0379911698e980",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 274
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"80659911698eadb\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"80659911698eadb\\\\\\\",\\\\\\\"industry-labs:W0N1:b7fb99116989961\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b7fb99116989961\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b0379911698e980\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",174]\\\\\\\",\\\\\\\"175\\\\\\\"]\\\"]\",\"176\"]",
+                "amount": 5
+              }
+            ]
+          }
+        ],
+        "rowsFile": "lab-chain-lab-supply-switch-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "2c1496493a18bc4f406a6943f6fdb43ed525c01d6c081e276b7dcca53c2be577",
+        "last": {
+          "tick": 320,
+          "product": "UH",
+          "labOH": 0,
+          "labUH": 0,
+          "bankOH": 15,
+          "bankUH": 15,
+          "bankX": 30,
+          "cargo": 0,
+          "assignment": "UH",
+          "receipts": 55
+        }
+      }
+    },
+    {
+      "scenario": "--lab-supply-cancel",
+      "milliseconds": 8652,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IPPiYy\\evidence.json",
+      "status": "passed",
+      "rawSha256": "fd4e11d9a070575d6db59ae16529304ea8d2fa17b2a4ddfccfbcafe3bddb393e",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "9143d63e7004c903a458eb2aa93314c5d61d9ebffc816785af5e7416e2f9f990",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-supply-cancel-measurements.jsonl",
+      "rows": 320,
+      "rowsSha256": "3b160a44bf227f0a2e13ca08524e9bee4a51359042d889617afcb953f185b537",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "e12bf5ac91ba173e345edd461d5492e866eb65341931b463f505ec3089c3b44f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labSupply": {
+        "mode": "cancel",
+        "reloads": [
+          31,
+          181
+        ],
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": null
+          }
+        },
+        "retainedReceipts": [
+          {
+            "request": {
+              "id": "[\"drain\",\"85699913948589f\",\"551899139484ab6\",\"X\",1]",
+              "owner": "industry-labs:W0N1:85699913948589f",
+              "source": "85699913948589f",
+              "sink": "551899139484ab6",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 101
+            },
+            "cancelled": true,
+            "receipts": []
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"4455991394895e8\",\"551899139484ab6\",\"X\",1]",
+              "owner": "industry-labs:W0N1:4455991394895e8",
+              "source": "4455991394895e8",
+              "sink": "551899139484ab6",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 101
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"f8e599139494f89\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"f8e599139494f89\\\\\\\",\\\\\\\"industry-labs:W0N1:4455991394895e8\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"4455991394895e8\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"551899139484ab6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"X\\\\\\\\\\\\\\\",1]\\\\\\\",\\\\\\\"2\\\\\\\"]\\\"]\",\"5\"]",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"660899139493267\",\"551899139484ab6\",\"X\",1]",
+              "owner": "industry-labs:W0N1:660899139493267",
+              "source": "660899139493267",
+              "sink": "551899139484ab6",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 101
+            },
+            "cancelled": true,
+            "receipts": []
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"551899139484ab6\",\"4455991394895e8\",\"H\",6]",
+              "owner": "industry-labs:W0N1:4455991394895e8",
+              "source": "551899139484ab6",
+              "sink": "4455991394895e8",
+              "resource": "H",
+              "quantity": 20,
+              "priority": 8,
+              "expiresAt": 106
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"f8e599139494f89\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"f8e599139494f89\\\\\\\",\\\\\\\"industry-labs:W0N1:4455991394895e8\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"551899139484ab6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"4455991394895e8\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"H\\\\\\\\\\\\\\\",6]\\\\\\\",\\\\\\\"7\\\\\\\"]\\\"]\",\"9\"]",
+                "amount": 20
+              }
+            ]
+          }
+        ],
+        "rowsFile": "lab-chain-lab-supply-cancel-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "34242a0cf9cd15e4ca427e3b927bcef981ef266855847dfc5ea9c7039f8ed3d4",
+        "last": {
+          "tick": 320,
+          "product": "OH",
+          "labOH": 0,
+          "labUH": 0,
+          "bankOH": 0,
+          "bankUH": 0,
+          "bankX": 10,
+          "cargo": 0,
+          "assignment": null,
+          "receipts": 30
+        }
+      }
+    },
+    {
+      "scenario": "--lab-reactions",
+      "milliseconds": 1854,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-zZw97c\\evidence.json",
+      "status": "passed",
+      "rawSha256": "b10667e9c3201c7513aec79abdfefc53acea00f089b28c0f8634eb56126d4623",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "5ef444d1b5cdf32a72420a2b76f12fce448e70ef3e4831a8d91a9c1b94ec0ba2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-lab-reactions-measurements.jsonl",
+      "rows": 25,
+      "rowsSha256": "28a052cff9e613074f3d1374c0bbd6ea7beba5c26d0040e3b79cfd2a6e45cb7e",
+      "reloadProvenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "93b39504d710871f45a9e6b4592181d871b122e8f468bd9f60483959cd3db7af",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labReactions": {
+        "mode": "normal",
+        "reloads": [
+          6
+        ],
+        "rowsFile": "lab-chain-lab-reactions-observations.jsonl",
+        "rows": 25,
+        "rowsSha256": "d52332e583fdb24d8065a6036584c23b3f5945e929cc17c8302ddb849ee5d19e",
+        "last": {
+          "tick": 25,
+          "hydrogen": 5,
+          "oxygen": 5,
+          "product": 15,
+          "reserved": 0,
+          "cooldowns": [
+            0,
+            0,
+            0,
+            16,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--final-delivery",
+      "milliseconds": 1098,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vC1Rma\\evidence.json",
+      "status": "passed",
+      "rawSha256": "74756845e20a14096906ac52c1b31d9b53cb53cdd5d00dabcde40484057360cf",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "7b457ab41d288e635355fd33179a59ddec87a24c40e18f9ce50cb2eb5cf7841f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-final-delivery-measurements.jsonl",
+      "rows": 4,
+      "rowsSha256": "986543432da9c2895f70650fbcbc0d112575ce8a6c7e9a6aa380abfcc1c78c94"
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 901,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gm7cur\\evidence.json",
+      "status": "passed",
+      "rawSha256": "539ad9ea2de3c06e22930446a4dbfe6930ad76ceeebfcfba81d2308fa5e4bf0b",
+      "provenance": {
+        "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+        "dirty": false,
+        "bundleSha256": "5a06855358358ecbcff27add7b543113d7516192d0201ee79b3c1bdd564fd9f8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "lab-chain-packaged-smoke-measurements.jsonl",
+      "rows": 3,
+      "rowsSha256": "a7d6c18f7a8a9efdaa41386d84285ead8828ac995071421f7a12469bb6aa0369"
+    }
+  ],
+  "registry": {
+    "cases": 250,
+    "fullRerun": false
+  },
+  "sourceSha256": {
+    "src/app/native-lab-production.ts": "f3fca8b55c8fec010202667888deda25e5fa09e6a86458d2bb05bc3a3a6d4ec5",
+    "src/app/native-labs.ts": "de95bb47a6bed7071ce6542502893d18359a5d0fbdbad9543383de73eb92a940",
+    "src/app/native-production-inventory.ts": "9462f7d8d11c7516cf500873ae28d134af4b618174ae81e6289e793ab11a051e",
+    "src/capabilities/industry/production/dependencies.ts": "ae39189f3e7e4594ba0d818ae63e0e5a94ab97659312292de4987590820173d4",
+    "src/capabilities/industry/production/model.ts": "aa77c2f85441d3105a9204619e2944282b3e005c0a23b42381e10d9db4da3624",
+    "src/capabilities/industry/production/plan.ts": "4dced9f302989d9c27f2c063f8da2fa2bd434e4c807f7c329f81b9cc881fb84b",
+    "src/config/lab-production.ts": "4e8d3aaf3288965a00d567cca4b9bdc9734341776656758810f05fe7cfc2e7ef",
+    "src/config/labs.ts": "0029dc937ce4a31b2e4696abd0682a2556dcbc4b19e4a39bfe4ae603500abdca",
+    "src/config/validation.ts": "5bf0f5c321bcaea69424f67f09fc4ded92c6328905447de72940faa09389e2b8",
+    "src/features/industry/production-state.ts": "6c50fe4c819e789deb847a0d1e2f072940da860f32dd073de35e46faee85e575",
+    "src/features/industry/production.ts": "fb9ab902f09ccde258d93da46e99311d087cc0bd9b55a16b12e494857905886f",
+    "test/app/native-production-inventory.test.ts": "679601654c0a00ea84bdc5449212be0ab0a79a382f216fd939f354d75c59569d",
+    "test/capabilities/lab-production.test.ts": "8816c1cfca6f8ab0c57f4cd7cea803d3b9054b1fbe45ecc3946ed23bec155cde",
+    "test/config/lab-production.test.ts": "b360db7699b7cb4cbbb47dab592e398a36af54a826c1e8c20bd4049313b47710",
+    "test/engine/lab-chain-bot.ts": "dabd8ea3c1ff8369b03b3d464a766f85d7dd6f90d2f666470d6ba92e97ed5c7f",
+    "test/engine/lab-chain-cycle.ts": "0855d49a3981b90149acfd85353db9126586c64e2b32247853c671a13e5926a8",
+    "test/engine/lab-chain-depleted-bot.ts": "9ec22794fffcd51f59dc2e1f2c6d57e6f0eeb602e77688e96f139690479a7ede",
+    "test/engine/lab-chain-prestock-bot.ts": "152778294823ebe493e79ab3a82194a84d6648ab9db5fa50fa60f982ffe4f130",
+    "test/engine/lab-chain-priority-bot.ts": "7b535229fd18537e5a940717617886a6e2c3685c27a285e16dc82519ec426da7",
+    "test/engine/lab-chain-reserves-bot.ts": "7966ff067cff3b76198b6dda9a957650243acefe6f478399fa12f5ee67bf8b20",
+    "test/features/lab-production.test.ts": "cd6897d7e180bfbf417d85dc323694b9d8daadc89a6f4f4331ff180bcdf36764",
+    "tools/engine/lab-chain.cjs": "a69d53b9213e6b41578681f931148dea836d0f970eabd69d775fa6edef419151",
+    "tools/engine/smoke.cjs": "597b965bf356e06e80dfb8a75c21d33d42369ef99ecf3b0cc0e2da984bca983a",
+    "tools/engine/suite.cjs": "48c5c61bed53e9a76772abd3ec027cb45bddb99a8d25f3b14bfd290bd0521f6b"
+  },
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T15:26:24Z",
+        "conclusion": "success",
+        "databaseId": 136380424126,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T15:25:12Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T15:25:15Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T15:25:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:21Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T15:25:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:26Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T15:25:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:33Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T15:25:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:34Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T15:25:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:35Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T15:25:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:38Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T15:25:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:39Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T15:25:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:54Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T15:25:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:20Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T15:25:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:21Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T15:26:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:21Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T15:26:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:21Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T15:26:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:22Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T15:26:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:22Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T15:26:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:22Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T15:26:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:22Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T15:26:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:26:22Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T15:26:22Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44763079842/job/136380424126"
+      },
+      {
+        "completedAt": "2026-11-20T15:28:58Z",
+        "conclusion": "success",
+        "databaseId": 136380424752,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T15:25:14Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T15:25:17Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T15:25:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:27Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T15:25:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:25:40Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T15:25:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:27:04Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T15:25:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:27:23Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T15:27:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:27:28Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T15:27:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:27:32Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T15:27:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:27:36Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T15:27:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:01Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T15:27:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:48Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T15:28:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:51Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T15:28:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:52Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T15:28:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:53Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T15:28:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:54Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T15:28:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:54Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T15:28:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:54Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T15:28:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:56Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T15:28:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T15:28:56Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T15:28:56Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44763079842/job/136380424752"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44763079842"
+  },
+  "implementationCommit": "b4f5d614e80880ca2b9bf44347d905a2d23b4cb1",
+  "productionContextRevision": "production/2",
+  "regressionBeforeCorrection": {
+    "status": "failed",
+    "productionCommit": "b4f5d614e80880ca2b9bf44347d905a2d23b4cb1",
+    "workingTreeDirty": true,
+    "scope": "New focused pre-stocked-intermediate test against pre-fix planner; not a clean native run. It incorrectly chose UH2O/10 instead of first funding OH/20.",
+    "test": "test/capabilities/lab-production.test.ts",
+    "evidenceFile": "lab-chain-prestock-regression.txt",
+    "sha256": "e28fe467259fd9452f558928451b508b7b6db54319b3dea387fa13d37b73a3b5"
+  }
+}

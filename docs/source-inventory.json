@@ -1707,11 +1707,12 @@
     "file": "labV2.js",
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
-    "reviewStatus": "lab setup and input/output transport reviewed; later boost/specialist/operator obligations retained",
-    "implementationStatus": "partial: direct reactions, persistent assignments and shared reagent/product hauling qualified; boosts/chains/specialist/operator paths remain open",
+    "reviewStatus": "local target/dependency/reaction and stock policies reviewed; empire/boost/operator obligations retained",
+    "implementationStatus": "partial: local prioritized chain planning and native production qualified; empire allocation and boost/operator parity remain open",
     "evidence": [
       "docs/industry-lab-reactions.md",
-      "docs/industry-lab-transport.md"
+      "docs/industry-lab-transport.md",
+      "docs/industry-lab-production.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1777,8 +1778,8 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "87e38d70066e4d7b7c7520399b194b7c8b499839",
-      "required": "Automatic reaction chains, boost reservation/confirmation, specialist structures and operator paths remain required",
+      "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+      "required": "Empire-wide target allocation, boost resource/confirmation, operator controls and wider recovery/release evidence remain required",
       "tests": [
         "test/capabilities/lab-reactions.test.ts",
         "test/features/lab-reaction-claims.test.ts",
@@ -1788,9 +1789,14 @@
         "test/capabilities/lab-transport.test.ts",
         "test/features/lab-assignment.test.ts",
         "test/app/native-lab-transport.test.ts",
-        "test/engine/lab-supply-cycle.ts"
+        "test/engine/lab-supply-cycle.ts",
+        "test/capabilities/lab-production.test.ts",
+        "test/features/lab-production.test.ts",
+        "test/app/native-production-inventory.test.ts",
+        "test/config/lab-production.test.ts",
+        "test/engine/lab-chain-cycle.ts"
       ],
-      "status": "partial; native refill/drain/reset/product-switch/cancel/depleted paths qualified; not full module parity"
+      "status": "partial; local native multistage chains/priority/reserves/reset qualified; not full module parity"
     }
   },
   {
@@ -2920,9 +2926,11 @@
     "file": "resourceManager.js",
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "local target/dependency/reaction and stock policies reviewed; empire/boost/operator obligations retained",
+    "implementationStatus": "partial: local prioritized chain planning and native production qualified; empire allocation and boost/operator parity remain open",
+    "evidence": [
+      "docs/industry-lab-production.md"
+    ],
     "plannedIssues": [
       "ED-13",
       "ED-16",
@@ -2980,10 +2988,16 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
+      "required": "Empire-wide target allocation, boost resource/confirmation, operator controls and wider recovery/release evidence remain required",
+      "tests": [
+        "test/capabilities/lab-production.test.ts",
+        "test/features/lab-production.test.ts",
+        "test/app/native-production-inventory.test.ts",
+        "test/config/lab-production.test.ts",
+        "test/engine/lab-chain-cycle.ts"
+      ],
+      "status": "partial; local native multistage chains/priority/reserves/reset qualified; not full module parity"
     }
   },
   {

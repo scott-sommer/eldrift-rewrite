@@ -1,0 +1,38 @@
+
+ RUN  v5.1.0 E:/dev/personal/screeps/eldrift-rewrite
+
+ ❯ test/capabilities/lab-production.test.ts (8 tests | 1 failed) 14ms
+   × existing lab intermediates fund future warehouse floors before a final step is selected 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/capabilities/lab-production.test.ts > existing lab intermediates fund future warehouse floors before a final step is selected
+AssertionError: expected { root: 'UH2O', product: 'UH2O', …(2) } to match object { product: 'OH', target: 20 }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "product": "OH",
+-   "target": 20,
++   "product": "UH2O",
++   "target": 10,
+  }
+
+ ❯ test/capabilities/lab-production.test.ts:58:82
+     56|   const stock = inventory({ H: 100,O: 100,U: 100,OH: 15,UH: 20 });
+     57|   stock.available = { H: 95,O: 95,U: 95,OH: 15,UH: 15 }; stock.reserve…
+     58|   expect(planProduction([target()],stock,recipe,{ ...options,inputRese…
+       |                                                                                  ^
+     59| });
+     60|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  01:47:46
+   Duration  228ms (transform 40%, import 34%, tests 19%, worker 7%)
+

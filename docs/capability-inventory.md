@@ -13,3 +13,5 @@ Before closing ED-10, complete command-to-operation ownership and flag-handler v
 ED-36 has [configured lab reaction evidence](industry-lab-reactions.md). labV2.js is explicitly partial: direct production/topology/resource claims are qualified, while chains, supply/drain, boosts and operator setup remain open.
 
 ED-36 now also has [persistent lab assignment and shared hauling evidence](industry-lab-transport.md): refill/drain, explicit product change, cancellation while work is admitted, depleted supply, reset and warehouse floors. Automatic chains and boost/specialist/operator paths remain explicit partial-module obligations.
+
+ED-36 now qualifies [automatic local reaction chains](industry-lab-production.md), including shared-raw feasibility, configured priorities, reserve funding and reset continuity. resourceManager.js remains partial until empire allocation and boost/operator policy are ported.
