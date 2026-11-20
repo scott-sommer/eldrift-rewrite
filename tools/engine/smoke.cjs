@@ -676,7 +676,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labSupplyMode) {
-      const reloaded = await reloadStampDraft(server,bot,modules,tick,labSupplyMode === 'replan' ? [8,30,180] : [30,180]);
+      const reloaded = await reloadStampDraft(server,bot,modules,tick,labSupplyMode === 'replan' ? [10,30,180] : [30,180]);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labReactionMode) {
