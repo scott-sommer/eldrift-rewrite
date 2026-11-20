@@ -1,0 +1,817 @@
+{
+  "sourceCommit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+  "scope": "Bounded feature-owned complete geometry selections and explicit invalidation contract, adopted by ordinary recruitment through a fixture policy. Not native economic selection or production binding refresh.",
+  "checks": {
+    "quality": "passed; Lizard1.22.2,799 production files,648 test files,zero violations",
+    "focused": {
+      "cases": 28,
+      "files": 5,
+      "seconds": 1.1
+    },
+    "unit": {
+      "cases": 1728,
+      "files": 438,
+      "seconds": 11.9
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.199
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.123571
+    },
+    "bundle": "passed"
+  },
+  "stateContract": {
+    "namespace": "remoteStartupSelections/<home>",
+    "owner": "remotes",
+    "version": 1,
+    "maximumEntries": 128,
+    "maximumJsonCharacters": 131072,
+    "maximumValidityTicks": 10000,
+    "readSideEffects": "none",
+    "writes": "revision CAS,monotonic clock,source scoped; expired entries reclaimed",
+    "binding": "fresh external context required; fixture keeps controlled geometry constant"
+  },
+  "native": [
+    {
+      "scenario": "--remote-startup-selected",
+      "milliseconds": 12949,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DGk3Lb\\evidence.json",
+      "rawSha256": "cfcdc85ecc667042787a15cc7cfc539ba44e7c551c8980949db3eab39d84b19a",
+      "status": "passed",
+      "provenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "e37089d29b2fee8bb0824dcf275a502285dcb0fef2a70d526a68d8aa8faf5a2b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "79d8b72c038b8f53b7e35e4a88c47f9011999157ed793aaee9770eca54a56676",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "selection-lifecycle-selected-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+      "observations": {
+        "selection": {
+          "generation": 21,
+          "tick": 25,
+          "identity": "[{\"home\":\"W0N1\",\"room\":\"E0N1\",\"source\":\"e19b7e903599c3c\",\"spawn\":{\"id\":\"907b7e9026fbe86\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"station\":{\"room\":\"E0N1\",\"x\":5,\"y\":24},\"collection\":{\"room\":\"E0N1\",\"x\":4,\"y\":24},\"endpoint\":{\"id\":\"bd107e9035a52b4\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"miner\":[\"work\",\"work\",\"work\",\"work\",\"carry\",\"move\",\"move\"],\"courier\":[\"carry\",\"carry\",\"move\",\"move\"]},\"[\\\"startup-fixed-service-v1\\\",\\\"[[\\\\\\\"E0N1\\\\\\\",\\\\\\\"E0N1:[[3,25,255],[6,25,255]]\\\\\\\"],[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\",\\\"[\\\\\\\"remote\\\\\\\",false,[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\"],{\\\\\\\"E0N1\\\\\\\":1}]\\\",{\\\"mode\\\":\\\"known-safe\\\",\\\"username\\\":\\\"eldrift-smoke\\\",\\\"allies\\\":[],\\\"blockedRooms\\\":[],\\\"avoidUntil\\\":{},\\\"allowKeeper\\\":false,\\\"maximumAge\\\":200,\\\"maximumRooms\\\":128,\\\"unknownCost\\\":8,\\\"staleCost\\\":4,\\\"keeperCost\\\":25},10000,[\\\"remote-assignment:4:W0N14:E0N1\\\",21]]\"]",
+          "plan": {
+            "home": "W0N1",
+            "room": "E0N1",
+            "source": "e19b7e903599c3c",
+            "spawn": {
+              "id": "907b7e9026fbe86",
+              "position": {
+                "room": "W0N1",
+                "x": 47,
+                "y": 25
+              },
+              "exit": {
+                "room": "W0N1",
+                "x": 46,
+                "y": 25
+              }
+            },
+            "station": {
+              "room": "E0N1",
+              "x": 5,
+              "y": 24
+            },
+            "collection": {
+              "room": "E0N1",
+              "x": 4,
+              "y": 24
+            },
+            "endpoint": {
+              "id": "bd107e9035a52b4",
+              "position": {
+                "room": "W0N1",
+                "x": 45,
+                "y": 25
+              },
+              "deposit": {
+                "room": "W0N1",
+                "x": 44,
+                "y": 25
+              }
+            },
+            "miner": [
+              "work",
+              "work",
+              "work",
+              "work",
+              "carry",
+              "move",
+              "move"
+            ],
+            "courier": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ]
+          }
+        },
+        "selectionChecks": [
+          {
+            "tick": 30,
+            "available": true,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          },
+          {
+            "tick": 46,
+            "available": true,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          },
+          {
+            "tick": 81,
+            "available": true,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          },
+          {
+            "tick": 150,
+            "available": true,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          }
+        ],
+        "attempts": [
+          {
+            "tick": 23,
+            "status": "deferred",
+            "legs": 2
+          },
+          {
+            "tick": 24,
+            "status": "deferred",
+            "legs": 4
+          },
+          {
+            "tick": 25,
+            "status": "complete",
+            "legs": 5
+          }
+        ],
+        "firstReady": {
+          "tick": 46,
+          "x": 46,
+          "y": 25,
+          "room": "W0N1"
+        },
+        "construction": 360,
+        "reloads": [
+          21,
+          81,
+          150
+        ],
+        "calls": [
+          {
+            "tick": 1,
+            "name": "ed-W0N1-1",
+            "family": "distributor",
+            "code": 0
+          },
+          {
+            "tick": 10,
+            "name": "ed-W0N1-2",
+            "family": "scout",
+            "code": 0
+          },
+          {
+            "tick": 25,
+            "name": "ed-W0N1-3",
+            "family": "miner",
+            "code": 0
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "--remote-startup-selection-expiry",
+      "milliseconds": 11501,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UUfjhc\\evidence.json",
+      "rawSha256": "254589b3e05cbfb50fe0e8dbc7288717c6fc56c7a50343981d0643a70b79ae09",
+      "status": "passed",
+      "provenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "28920334d5859a56fd1379db33d4ffcecb0a066439b8c812559418d3ab441fbc",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "8dd07a47bf8e6bd7b16d205d533db7a6d45dce481382773afb651a7c8d470a6f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "selection-lifecycle-selection-expiry-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+      "observations": {
+        "selection": {
+          "generation": 21,
+          "tick": 25,
+          "identity": "[{\"home\":\"W0N1\",\"room\":\"E0N1\",\"source\":\"41047e9358e1939\",\"spawn\":{\"id\":\"2a307e934abba6f\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"station\":{\"room\":\"E0N1\",\"x\":5,\"y\":24},\"collection\":{\"room\":\"E0N1\",\"x\":4,\"y\":24},\"endpoint\":{\"id\":\"79767e9358ff2e1\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"miner\":[\"work\",\"work\",\"work\",\"work\",\"carry\",\"move\",\"move\"],\"courier\":[\"carry\",\"carry\",\"move\",\"move\"]},\"[\\\"startup-fixed-service-v1\\\",\\\"[[\\\\\\\"E0N1\\\\\\\",\\\\\\\"E0N1:[[3,25,255],[6,25,255]]\\\\\\\"],[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\",\\\"[\\\\\\\"remote\\\\\\\",false,[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\"],{\\\\\\\"E0N1\\\\\\\":1}]\\\",{\\\"mode\\\":\\\"known-safe\\\",\\\"username\\\":\\\"eldrift-smoke\\\",\\\"allies\\\":[],\\\"blockedRooms\\\":[],\\\"avoidUntil\\\":{},\\\"allowKeeper\\\":false,\\\"maximumAge\\\":200,\\\"maximumRooms\\\":128,\\\"unknownCost\\\":8,\\\"staleCost\\\":4,\\\"keeperCost\\\":25},10000,[\\\"remote-assignment:4:W0N14:E0N1\\\",21]]\"]",
+          "plan": {
+            "home": "W0N1",
+            "room": "E0N1",
+            "source": "41047e9358e1939",
+            "spawn": {
+              "id": "2a307e934abba6f",
+              "position": {
+                "room": "W0N1",
+                "x": 47,
+                "y": 25
+              },
+              "exit": {
+                "room": "W0N1",
+                "x": 46,
+                "y": 25
+              }
+            },
+            "station": {
+              "room": "E0N1",
+              "x": 5,
+              "y": 24
+            },
+            "collection": {
+              "room": "E0N1",
+              "x": 4,
+              "y": 24
+            },
+            "endpoint": {
+              "id": "79767e9358ff2e1",
+              "position": {
+                "room": "W0N1",
+                "x": 45,
+                "y": 25
+              },
+              "deposit": {
+                "room": "W0N1",
+                "x": 44,
+                "y": 25
+              }
+            },
+            "miner": [
+              "work",
+              "work",
+              "work",
+              "work",
+              "carry",
+              "move",
+              "move"
+            ],
+            "courier": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ]
+          }
+        },
+        "selectionChecks": [
+          {
+            "tick": 30,
+            "available": false,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          },
+          {
+            "tick": 46,
+            "available": false,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          },
+          {
+            "tick": 81,
+            "available": false,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          },
+          {
+            "tick": 150,
+            "available": false,
+            "revision": 1,
+            "count": 1,
+            "readOnly": true
+          }
+        ],
+        "attempts": [
+          {
+            "tick": 23,
+            "status": "deferred",
+            "legs": 2
+          },
+          {
+            "tick": 24,
+            "status": "deferred",
+            "legs": 4
+          },
+          {
+            "tick": 25,
+            "status": "complete",
+            "legs": 5
+          }
+        ],
+        "firstReady": {
+          "tick": 46,
+          "x": 46,
+          "y": 25,
+          "room": "W0N1"
+        },
+        "construction": 360,
+        "reloads": [
+          21,
+          81,
+          150
+        ],
+        "calls": [
+          {
+            "tick": 1,
+            "name": "ed-W0N1-1",
+            "family": "distributor",
+            "code": 0
+          },
+          {
+            "tick": 10,
+            "name": "ed-W0N1-2",
+            "family": "scout",
+            "code": 0
+          },
+          {
+            "tick": 25,
+            "name": "ed-W0N1-3",
+            "family": "miner",
+            "code": 0
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "--remote-startup-admission",
+      "milliseconds": 14035,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mkpe5q\\evidence.json",
+      "rawSha256": "1afb379669557ab1a648b4ea11ca5071e91aefe1c5313965696f54284067e0b6",
+      "status": "passed",
+      "provenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "e9ae8743197816c8055d70b47d2a2ad36b1d108bab3df53239ff8f92779c66d1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "c165efeaec37e2ae34efddfd2545f790f37accb495ba8b3aa4026bb027e79e5e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-startup-refusal",
+      "milliseconds": 12481,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mZV6BP\\evidence.json",
+      "rawSha256": "1586eb7f38ba6b0774ea84a8b0bb90442b13c4fbb8e7fdee8b425cd7a11d0afd",
+      "status": "passed",
+      "provenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "40c44f1fab62c3121809db0600618a95b46bdee980ed10eb8c97ea15c027216c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "904aa78694afb9c16668989c8f6ac62f1790a93611496b2755dc16969fb3635a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 2109,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-IVCCry\\evidence.json",
+      "rawSha256": "38ee0df118e524883426687e97195f7e4f4e62f2d1ba19f44feafa01f5116d9b",
+      "status": "passed",
+      "provenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "13d0bd6678f4266a2be869ea15644c605a09ebdea3e464dfd1a1dbe0d61ebbb9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 1219,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-bKSL6W\\evidence.json",
+      "rawSha256": "ccf5ec6271dd875bb211bfa6c116243523c27051937a1649b8e725cf2134b0b8",
+      "status": "passed",
+      "provenance": {
+        "commit": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+        "dirty": false,
+        "bundleSha256": "5fb3135e1bdd005b4eb69f8870015774ec604d6dbce83e298b01bcf35897cba2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    }
+  ],
+  "batchMilliseconds": 54299,
+  "sourceFileSha256": {
+    "src/features/remotes/startup/selection-model.ts": "fed2fc22d531bed92c635ebb1e2d7935a80e25b6382b85508171aefe088d7502",
+    "src/features/remotes/startup/selection-store.ts": "0ec95e9740c6988e86ffa0778a25d5831ea55a470ad1fb5156adb45ddd8620c4",
+    "src/features/remotes/startup/selection-validation.ts": "a4220dfad19197577c1ec095cdd5e97f8a8a2fab1fe8640a65d99f2ff8581862",
+    "test/engine/remote-startup-bot.ts": "7c87fa5e5d4227bab0017dff540c2ab9bba73fbd83a2a6212962c6e2fc293e60",
+    "test/engine/remote-startup-selected-bot.ts": "4e0fdd7b8e27826fd5d7be1ed5b631d48ef245c58cdf112923476c22336735f6",
+    "test/engine/remote-startup-selection-expiry-bot.ts": "eca361ae925bdc32676d73775a96a381d52583331afb2cec8d21f9e45ab5d77b",
+    "test/features/remote-startup-selection.test.ts": "3795197e12d7ac528717f775e86100d2d88508d4399f9be9fabb305681be98d5",
+    "tools/engine/remote-startup.cjs": "c814f0e37db8ee8594ea6aed98fcfe9a0009e9ba3c65d3b9c5954b626c716515",
+    "tools/engine/smoke.cjs": "92735538dc6e46110f17331675ed66b5e8c8ea5349d7e84dab7624de2e2daa8b",
+    "tools/engine/suite.cjs": "8297b5267a785736ec12e92bceabd78f194b6c268b2df41d4eb17fcb400edd3e"
+  },
+  "registryCases": 237,
+  "fullRegistryRerun": false,
+  "lastFullRegistry": {
+    "cases": 223,
+    "source": "39722c0"
+  },
+  "limitations": [
+    "The default native bot still has no selection policy.",
+    "Automatic native binding refresh, forward project checkpoints, schedule conversion and economic candidate decisions remain open.",
+    "Read-only expiry does not delete stored evidence; new births cannot reuse it after expiry. Paid births are preserved.",
+    "CPU includes instrumentation; this is not a forecast, pressure or soak qualification.",
+    "Full migration and rollback rehearsal and wider parity gates remain open."
+  ],
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "ceeab2eeed6511e7b087cc81427cda7dad61d6d9",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T07:47:40Z",
+        "conclusion": "success",
+        "databaseId": 136156726671,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T07:44:41Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T07:44:43Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T07:44:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:44:50Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T07:44:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:00Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T07:44:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:56Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T07:45:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:10Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T07:45:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:14Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T07:46:10Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:19Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T07:46:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:22Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T07:46:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:45Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T07:46:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:31Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T07:46:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:33Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T07:47:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:35Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T07:47:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:35Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T07:47:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:36Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T07:47:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T07:47:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T07:47:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:39Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T07:47:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:47:39Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T07:47:39Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44697209480/job/136156726671"
+      },
+      {
+        "completedAt": "2026-11-20T07:46:12Z",
+        "conclusion": "success",
+        "databaseId": 136156726913,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T07:44:42Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T07:44:43Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T07:44:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:44:46Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T07:44:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:44:53Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T07:44:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:01Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T07:44:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:03Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T07:45:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:05Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T07:45:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:07Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T07:45:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:09Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T07:45:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:45:28Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T07:45:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:06Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T07:45:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:06Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T07:46:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:07Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T07:46:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:07Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T07:46:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:08Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T07:46:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T07:46:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T07:46:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:08Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T07:46:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T07:46:08Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T07:46:08Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44697209480/job/136156726913"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44697209480"
+  }
+}
