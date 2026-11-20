@@ -21,3 +21,11 @@ test('rejection frees slots while an uncertain exception retains the reservation
   expect(arbiter.issue('a', 'mine', ['work'], () => 0, accepted).status).toBe('blocked');
   expect(arbiter.issue('b', 'mine', ['work'], () => 0, accepted).status).toBe('issued');
 });
+
+test('an explicit owner gate blocks foreign actions without spending compatible slots',() => {
+  let tick = 1; const arbiter = createActionArbiter(() => tick);
+  expect(arbiter.claim('unit','boost')).toBe(true); expect(arbiter.claim('unit','role')).toBe(false);
+  expect(arbiter.issue('unit','role',['work'],() => { throw new Error('gated action'); },accepted).status).toBe('blocked');
+  expect(arbiter.issue('unit','boost',['move'],() => 0,accepted).status).toBe('issued');
+  tick++; expect(arbiter.claim('unit','role')).toBe(true);
+});

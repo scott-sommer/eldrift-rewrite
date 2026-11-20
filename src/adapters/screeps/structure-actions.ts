@@ -10,10 +10,20 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
   const spawn = createNativeSpawn(memory);
   const structureKey = (id: string) => 'structure:' + id;
   const bodyKey = (id: string) => 'body:' + id;
+  function allowed(identity: string,owner: string): boolean {
+    const held = admission.owner(identity); return held === null || held === owner;
+  }
+  function hold(identity: string,action: string,owner: string): boolean {
+    const held = admission.owner(identity);
+    if (held !== null) return held === owner;
+    return !admission.used(action) && admission.admit(owner,[identity]);
+  }
   function energy(room: Room, amount: number) {
     return { pool: room.name, amount, available: room.energyAvailable };
   }
   return {
+    holdBody: (creep: Creep,owner: string) => creep.my && hold('body-owner:'+creep.id,bodyKey(creep.id),owner),
+    holdLab: (lab: StructureLab,owner: string) => lab.my && hold('lab-owner:'+lab.id,structureKey(lab.id),owner),
     availableSpawn: (id: string) => !admission.used(structureKey(id)),
     availableEnergy: (room: string, available: number) => admission.remaining(room, available),
     spawn(assignment: SpawnAssignment): number {
@@ -36,6 +46,7 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
     renew(spawn: StructureSpawn, creep: Creep, owner: string): number {
       if (!spawn.my || !creep.my) return ERR_NOT_OWNER;
       if (spawn.room.name !== creep.room.name || !creep.body.length) return ERR_INVALID_TARGET;
+      if (!allowed('body-owner:'+creep.id,owner)) return ERR_BUSY;
       const cost = Math.ceil(1.2 * creep.body.reduce((sum, part) => sum + BODYPART_COST[part.type], 0)
         / CREEP_SPAWN_TIME / creep.body.length);
       if (!admission.admit(owner, [structureKey(spawn.id), bodyKey(creep.id)], energy(spawn.room, cost))) return ERR_BUSY;
@@ -49,14 +60,19 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
     react(lab: StructureLab,first: StructureLab,second: StructureLab,owner: string): number {
       if (!lab.my || !first.my || !second.my) return ERR_NOT_OWNER;
       if (new Set([lab.id,first.id,second.id]).size !== 3 || lab.room.name !== first.room.name || lab.room.name !== second.room.name) return ERR_INVALID_TARGET;
+      if (![lab,first,second].every(item => allowed('lab-owner:'+item.id,owner))) return ERR_BUSY;
       if (!admission.admit(owner,[structureKey(lab.id)])) return ERR_BUSY;
       return lab.runReaction(first,second);
     },
-    boost(lab: StructureLab, creep: Creep, owner: string): number {
+    boost(lab: StructureLab, creep: Creep, owner: string,parts?: number): number {
       if (!lab.my || !creep.my) return ERR_NOT_OWNER;
       if (lab.room.name !== creep.room.name) return ERR_INVALID_TARGET;
+      if (!validBoostCount(parts)) return ERR_INVALID_ARGS;
+      if (!allowed('body-owner:'+creep.id,owner) || !allowed('lab-owner:'+lab.id,owner)) return ERR_BUSY;
       if (!admission.admit(owner, [structureKey(lab.id), bodyKey(creep.id)])) return ERR_BUSY;
-      return lab.boostCreep(creep);
+      return parts === undefined ? lab.boostCreep(creep) : lab.boostCreep(creep,parts);
     },
   };
 }
+
+function validBoostCount(parts: number | undefined): boolean { return parts === undefined || (Number.isSafeInteger(parts) && parts >= 1 && parts <= 50); }

@@ -107,3 +107,10 @@ test('reaction admission refuses foreign labs, reused endpoints and other rooms'
   expect(f.make().react(f.lab,first,{ ...second,room: { ...f.room,name: 'elsewhere' } } as StructureLab,'industry')).toBe(-7);
   expect(f.lab.runReaction).not.toHaveBeenCalled();
 });
+
+test('body and lab leases survive reconstruction while allowing the owning exact-count boost',() => {
+  const f = fixture(); expect(f.make().holdBody(f.creep,'boost')).toBe(true); expect(f.make().holdLab(f.lab,'boost')).toBe(true);
+  expect(f.make().renew(f.spawn,f.creep,'role')).toBe(-4);
+  expect(f.make().boost(f.lab,f.creep,'other')).toBe(-4);
+  expect(f.make().boost(f.lab,f.creep,'boost',1)).toBe(0); expect(f.lab.boostCreep).toHaveBeenCalledWith(f.creep,1);
+});

@@ -15,6 +15,10 @@ export function createActionArbiter(clock: () => number) {
     return entry;
   }
   return {
+    claim(unit: string,owner: string): boolean {
+      if (!unit || !owner) throw new Error('Invalid action owner');
+      return budget(unit,owner).owner === owner;
+    },
     issue(unit: string, owner: string, slots: readonly string[], invoke: () => number, accepted: (code: number) => boolean): IntentResult {
       if (!unit || !owner || slots.length === 0 || slots.some(slot => !slot)) throw new Error('Invalid action identity');
       const entry = budget(unit, owner);

@@ -16,7 +16,7 @@ export function generateNativeLabTransport(state: StatePort,room: Room,assignmen
     supplyReserve: config.labSupplyReserve,maximum: config.labTransportBatch }) : [];
   reconcileLabServices(state,room.name,Game.time,desired,config.labTransportPriority);
 }
-function nativeLabWarehouses(state: StatePort,room: Room,config: Readonly<WarehouseConfig>): readonly LabWarehouse[] {
+export function nativeLabWarehouses(state: StatePort,room: Room,config: Readonly<WarehouseConfig>): readonly LabWarehouse[] {
   const claims = createQuantityReservations(state).list(Game.time).flatMap(claim => claim.allocations);
   const claimed = (pool: string) => claims.filter(item => item.pool === pool).reduce((sum,item) => sum+item.amount,0);
   return [room.storage,room.terminal].filter((store): store is StructureStorage | StructureTerminal => !!store?.my && store.isActive()).map(store => ({ id: store.id,

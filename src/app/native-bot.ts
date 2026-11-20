@@ -1,3 +1,4 @@
+import { createNativeBoosts } from './native-boosts';
 import { createNativeLabs } from './native-labs';
 import { observeTransfer } from '../adapters/screeps/transfer-observation';
 import { settleHaulingTask } from './settle-hauling-task';
@@ -57,6 +58,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   const recovery = createNativeRecovery(state);
   const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
   const runtimeConfig = (room: string) => resolveConfig(configuration(room), Game.time).values;
+  const boosts = createNativeBoosts(state,dispatch,runtimeConfig,ports);
   const startup = createNativeRemoteStartup(state,dispatch.structures,runtimeConfig);
   const observeSpawnLoad = createNativeSpawnLoadObserver(state,dispatch.structures,runtimeConfig,ports.reportFailure);
   const scouts = createNativeScouts(state,dispatch,runtimeConfig,ports);
@@ -79,6 +81,6 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   return createGameLoop([createNativeLabs(state,dispatch.structures), createNativeRemoteReachabilityFeature(state,dispatch), createNativeRemoteCapacityFeature(state), scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors, constructionWorkers.recruitment, constructionWorkers.actors, reservationWorkers.recruitment, reservationWorkers.actors], {
     ...ports,
     config: configuration,
-  }, createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps), () => { dispatch.flush(); observeSpawnLoad(); });
+  }, boosts.before(createTickAdmission(state, createMigrationGate(state, [], ports), () => ports.clock().tick, maintainCreeps)), () => { dispatch.flush(); observeSpawnLoad(); });
 
 }

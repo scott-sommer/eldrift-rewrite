@@ -34,6 +34,7 @@ export function createIntentAdmission(port: StatePort, clock: () => number) {
     return state.entries.reduce((sum, entry) => sum + (entry.debit?.pool === pool ? entry.debit.amount : 0), 0);
   }
   return {
+    owner: (identity: string) => current().entries.find(entry => entry.keys.includes(identity))?.owner ?? null,
     used: (identity: string) => current().entries.some(entry => entry.keys.includes(identity)),
     remaining: (pool: string, available: number) => Math.max(0, available - spent(current(), pool)),
     admit(owner: string, keys: readonly string[], budget?: Debit & { available: number }): boolean {
