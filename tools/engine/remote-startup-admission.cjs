@@ -31,7 +31,10 @@ function verifyStartupAdmission(memory,rows) {
   assert.ok(facts.authority.generation > 0 && facts.authority.expiresAt > facts.observedAt);
   assert.ok(facts.spawns.length === 1 && facts.spawns[0].remainingTime === 0);
   require('./startup-travel-check.cjs').verifyStartupTravel(memory.startupTravel);
-  assert.deepEqual(memory.startupTravel.at(-1).projectionRefusal,{ status: 'deferred',reason: 'existing-workforce' });
+  const continuation = memory.startupTravel.at(-1).projectionContinuation; assert.equal(continuation.status,'ready');
+  assert.equal(continuation.input.initial.miner.expiresAt,facts.workers[0].ticksToLive);
+  assert.equal(continuation.input.initial.miner.energy,facts.workers[0].energy);
+  assert.deepEqual(continuation.input.project.spawning.requests,[]);
   assert.equal(facts.stock.claimedSpawnEnergy,0); assert.equal(facts.stock.availableSpawnEnergy,facts.stock.spawnEnergy);
   const proof = memory.startupProjectProof; assert.ok(proof);
   assert.equal(proof.savedAt,149); assert.equal(proof.resumedAt,150);
@@ -41,11 +44,11 @@ function verifyStartupAdmission(memory,rows) {
   assert.ok(proof.checkpointCharacters > 0 && proof.checkpointCharacters < 1048576);
   assert.deepEqual(proof.result,proof.uninterrupted);
   const planning = memory.startupPlanningProof; assert.ok(planning);
-  assert.equal(planning.savedAt,149); assert.equal(planning.resumedAt,150);
+  assert.equal(planning.legacyVersion,1); assert.equal(planning.savedAt,149); assert.equal(planning.resumedAt,150);
   assert.equal(planning.initialThrough,43); assert.equal(planning.initialRevision,1); assert.equal(planning.pendingBefore,1);
   assert.equal(planning.recoveredThrough,43); assert.equal(planning.nextThrough,44); assert.equal(planning.nextRevision,2);
   assert.equal(planning.completeThrough,101); assert.equal(planning.completeRevision,3);
-  assert.equal(planning.readOnly,true); assert.equal(planning.owner,'remotes'); assert.equal(planning.version,1);
+  assert.equal(planning.readOnly,true); assert.equal(planning.owner,'remotes'); assert.equal(planning.version,2);
   assert.deepEqual(planning.result,planning.uninterrupted);
 
 }

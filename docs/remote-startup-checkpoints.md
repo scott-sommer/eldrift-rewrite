@@ -21,3 +21,5 @@ Next: a feature-owned, bounded persistent planning job with current-input invali
 Hosted [CI44702688888](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44702688888) passes Windows2022 and Ubuntu24.04 on the native-qualified source9cf9a12, including all six required checks. ED-29 remains In Progress.
 
 The subsequent [persistent planning-job owner](remote-startup-planning-jobs.md) now stores normalized input and checkpoints with revision, context and expiry fences. Its native fixture still uses synthetic model inputs; current native conversion and economic selection remain open.
+
+The subsequent [incumbent/inventory increment](remote-startup-incumbents.md) adds finite paid worker state, opening-asset accounting, portable checkpoint2 and planning schema2, with explicit legacy compatibility. Its current contract supersedes earlier format1/no-incumbent limitations where qualified.

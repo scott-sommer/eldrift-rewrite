@@ -59,7 +59,7 @@ test('changed serialization property order and live-name insertion order preserv
 test('invalid format, clocks, stock, duplicate births, ledger values and receipt identities fail closed',() => {
   const input = earningInput(), project = createStartupProject(input); project.advance(80); const saved = project.checkpoint();
   const changes = [
-    (wire: typeof saved) => { wire.format = 2 as 1; },(wire: typeof saved) => { wire.tick++; },
+    (wire: typeof saved) => { wire.format = 3 as 2; },(wire: typeof saved) => { wire.tick++; },
     (wire: typeof saved) => { wire.delivery.source.energy = 1001; },(wire: typeof saved) => { wire.timeline.births.push(wire.timeline.births[0]!); },
     (wire: typeof saved) => { wire.houseAccounting.state.endingEnergy++; },(wire: typeof saved) => { wire.timeline.receiptIds.push('unexpected'); },
     (wire: typeof saved) => { wire.couriers[0]!.nextAt = null; },(wire: typeof saved) => { wire.sink.free = -1; },

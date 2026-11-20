@@ -3,12 +3,11 @@ import type { NativeStartupQuote, NativeStartupProjectionOptions } from './model
 export function startupProjectionRefusal(quote: NativeStartupQuote, options: NativeStartupProjectionOptions): string | undefined {
   if (quote.observedAt !== Game.time || quote.facts.observedAt !== Game.time) return 'stale-observation';
   if (!validCompleteStartupTravel(quote,quote.facts.home) || !sameGeometry(quote)) return 'quote-facts';
-  if (quote.facts.workers.length > 0) return 'existing-workforce';
   return sourceStateRefusal(quote,options);
 }
 function sourceStateRefusal(quote: NativeStartupQuote, options: NativeStartupProjectionOptions): string | undefined {
   const station = quote.facts.station.facts;
-  if (station.status === 'ready' && (station.energy > 0 || station.claimedEnergy > 0)) return 'station-stock';
+  if (station.status === 'ready' && station.capacity-Math.min(station.energy,station.claimedEnergy) <= 0) return 'station-reserved-capacity';
   if (quote.facts.reservation && quote.facts.reservation.ticksToEnd <= options.horizon+1) return 'reservation-transition';
   return undefined;
 }

@@ -14,6 +14,8 @@ export function snapshotStartupNativeTravel(state: StatePort, home: string, maxi
     deposit: { room: home,x: endpoint.pos.x-1,y: endpoint.pos.y },miner: sourceMiner(550)!.parts,courier: courier(200)!.parts,
     traversal: { mode: 'known-safe',username: target.username,allies: [],blockedRooms: [],avoidUntil: {},allowKeeper: false,maximumAge: 200,maximumRooms: 128,unknownCost: 8,staleCost: 4,keeperCost: 25 } },maximumLegs,guard);
   const after = progress.read();
-  const refusal = result.status === 'complete' && Game.time === 150 ? createNativeStartupProjection(state)(result,nativeProjectionOptions(result)) : undefined;
-  return { ...(refusal ? { projectionRefusal: refusal } : {}),tick: Game.time,beforeLegs: before.legs.length,afterLegs: after.legs.length,beforeRevision: before.revision,afterRevision: after.revision,result };
+  const options = result.status === 'complete' ? nativeProjectionOptions(result) : undefined;
+  if (options) options.births = [];
+  const continuation = result.status === 'complete' && Game.time === 150 ? createNativeStartupProjection(state)(result,options!) : undefined;
+  return { ...(continuation ? { projectionContinuation: continuation } : {}),tick: Game.time,beforeLegs: before.legs.length,afterLegs: after.legs.length,beforeRevision: before.revision,afterRevision: after.revision,result };
 }

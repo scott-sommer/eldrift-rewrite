@@ -1,5 +1,6 @@
 import type { StartupCashInput, StartupCashFlow } from './cash-model';
 export function validateStartupCash(input: StartupCashInput): void {
+  if (input.openingAssets !== undefined && !capital(input.openingAssets)) throw new Error('Invalid startup opening asset capital');
   if (![input.homeEnergy,input.protectedEnergy,input.selfHarvestedConstruction].every(capital)) throw new Error('Invalid startup cash capital');
   if (![input.horizon,input.readyAt].every(value => bounded(value) && value <= 10000)) throw new Error('Invalid startup cash horizon');
   if (input.flows.length > 128 || new Set(input.flows.map(flow => flow.id)).size !== input.flows.length) throw new Error('Startup cash flow capacity/identity');

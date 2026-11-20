@@ -6,6 +6,7 @@ export interface StartupCashFlow {
 export interface StartupCashInput {
   homeEnergy: number; protectedEnergy: number; horizon: number; readyAt: number;
   /** Recovery benchmark for construction paid from remote harvest; never debited from initial home cash. */
+  openingAssets?: number;
   selfHarvestedConstruction: number; flows: readonly StartupCashFlow[];
 }
 export interface StartupCashForecast {

@@ -19,3 +19,5 @@ The selected native scenario now records an actual pre-birth quote/facts convers
 Next: import real existing workers/stock and reservation trajectories, build achievable future workforce/distribution schedules, calibrate against the same operational strategy, and connect economic selection. Wider multi-room, pressure/soak, parity and release gates remain open.
 
 Hosted [CI44714386525](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44714386525) passes Windows2022 and Ubuntu24.04 on the same native-qualified source, including all six required checks. ED-29 remains In Progress.
+
+The subsequent [incumbent/inventory increment](remote-startup-incumbents.md) adds finite paid worker state, opening-asset accounting, portable checkpoint2 and planning schema2, with explicit legacy compatibility. Its current contract supersedes earlier format1/no-incumbent limitations where qualified.

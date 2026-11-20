@@ -1,3 +1,4 @@
+import { observeStartupIncumbents } from './incumbents';
 import { createStartupProject } from '../../../../capabilities/economy/startup/project';
 import { snapshotStartupProject } from '../../../../capabilities/economy/startup/snapshot';
 import { copyPlain } from '../../../../core/plain-data';
@@ -15,11 +16,12 @@ export function createNativeStartupProjection(state: StatePort) {
     if (!guard()) return { status: 'deferred',reason: 'budget' };
     quote = copyPlain(quote); options = copyPlain(options);
     const reason = startupProjectionRefusal(quote,options); if (reason) return { status: 'deferred',reason };
+    const incumbents = observeStartupIncumbents(state,quote,options); if (incumbents.status === 'deferred') return incumbents;
     const queued = peekState(state,stateKey('spawning',quote.plan.home),spawnQueueSchema(quote.plan.home))?.requests ?? [];
     const schedule = startupProjectionSchedule(quote,options,queued);
     if (schedule.status === 'deferred') return schedule;
     if (!guard()) return { status: 'deferred',reason: 'budget' };
-    const input = snapshotStartupProject(startupProjectionInput(quote,options,schedule.requests));
+    const input = snapshotStartupProject(startupProjectionInput(quote,options,schedule.requests,incumbents.initial));
     createStartupProject(input);
     return { status: 'ready',observedAt: Game.time,quoteIdentity: quote.identity,costScope: 'prospective',input };
   };

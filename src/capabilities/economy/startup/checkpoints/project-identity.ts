@@ -1,9 +1,11 @@
+import { snapshotStartupProject } from '../snapshot';
 import { StartupCheckpointCapacityError } from './capacity';
 import { copyPlain } from '../../../../core/plain-data';
 import type { StartupDeliveryInput } from '../delivery-model';
 import { record } from './validation';
 /** Exact input binding; object property order and live-name Set insertion order are immaterial. */
 export function startupProjectIdentity(input: StartupDeliveryInput): string {
+  input = snapshotStartupProject(input);
   const spawning = input.project.spawning;
   const couriers = input.couriers.map(worker => ({ ...worker,collectionTicks: worker.collectionTicks ?? 1,deliveryTicks: worker.deliveryTicks ?? 1,initialOutboundTicks: worker.initialOutboundTicks ?? worker.outboundTicks }));
   const requests = spawning.requests.map(request => ({ ...request,home: request.home ?? null,placement: request.placement ?? null }));

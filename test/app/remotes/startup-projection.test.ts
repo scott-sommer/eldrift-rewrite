@@ -50,11 +50,11 @@ test('a represented queued birth is charged once and requires matching selected 
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'queue-collision' });
 });
 test('current workers and claimed/stored station energy are not discarded or imported as free labor/income',() => {
-  const f = startupProjectionFixture(); f.quote.facts.workers.push({ name: 'paid',owner: f.miner.owner,position: { room: 'E0N1',x: 5,y: 24 },spawning: true,ticksToLive: null,energy: 0,body: [] });
+  const f = startupProjectionFixture(); f.quote.facts.workers.push({ name: 'paid',owner: f.miner.owner,position: { room: 'E0N1',x: 5,y: 24 },spawning: true,ticksToLive: null,energy: 0,fatigue: 0,body: [] });
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' }); f.quote.facts.workers = [];
   f.structures.push({ id: 'container',structureType: 'container',pos: startupPosition(5,24),hits: 12345,hitsMax: 250000,ticksToDecay: 52,store: { energy: 50,getCapacity: () => 2000 } });
   const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts'); f.quote.facts = observed.facts;
-  expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'station-stock' });
+  expect(f.convert(f.quote,f.options)).toMatchObject({ status: 'ready',input: { initial: { containerEnergy: 50 },project: { spawning: { cash: { openingAssets: 50 } } } } });
 });
 test('empty existing containers preserve actual durability phase and endpoint capacity claims',() => {
   const f = startupProjectionFixture(); f.structures.push({ id: 'container',structureType: 'container',pos: startupPosition(5,24),hits: 12345,hitsMax: 250000,ticksToDecay: 52,store: { energy: 0,getCapacity: () => 2000 } });
@@ -71,4 +71,39 @@ test('stale observation, mismatched facts/legs and known reservation expiry cann
 test('retirement must cover measured loaded return plus deposit and budget refusal publishes nothing',() => {
   const f = startupProjectionFixture(), before = JSON.stringify(f.root); expect(f.convert(f.quote,f.options,() => false)).toEqual({ status: 'deferred',reason: 'budget' });
   f.options.births[0]!.retireTicks = 20; expect(() => f.convert(f.quote,f.options)).toThrow('retirement'); expect(JSON.stringify(f.root)).toBe(before);
+});
+
+test('an observed paid station miner retains its actual life/cargo and requires no new birth',() => {
+  const f = startupProjectionFixture(); f.game.creeps.worker = f.activeMiner(); f.game.creeps.worker!.store.energy = 8;
+  const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts'); f.quote.facts = observed.facts; f.options.births = [];
+  const result = f.convert(f.quote,f.options); if (result.status !== 'ready') throw new Error(result.reason);
+  expect(result.input.initial?.miner).toMatchObject({ id: 'miner',expiresAt: 1400,availableAt: 0,energy: 8,retireTicks: 30 });
+  const forecast = forecastStartupProject(result.input); expect(forecast.spawning.births).toEqual([]); expect(forecast.cash.birthEnergy).toBe(0);
+  expect(forecast.openingAssets?.energy).toBe(8);
+});
+test('claimed station stock remains occupied and cannot fund another cohort or invent free container space',() => {
+  const f = startupProjectionFixture(); f.structures.push({ id: 'container',structureType: 'container',pos: startupPosition(5,24),hits: 250000,hitsMax: 250000,ticksToDecay: 99,store: { energy: 90,getCapacity: () => 2000 } });
+  const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts'); f.quote.facts = observed.facts;
+  const station = f.quote.facts.station.facts; if (station.status !== 'ready') throw new Error('Expected ready stock'); station.claimedEnergy = 40; station.availableEnergy = 50;
+  const result = f.convert(f.quote,f.options); if (result.status !== 'ready') throw new Error(result.reason);
+  expect(result.input.initial?.containerEnergy).toBe(50); expect(result.input.containerCapacity).toBe(1960); expect(result.input.project.spawning.cash.openingAssets).toBe(50);
+});
+
+test('damaged, boosted or off-station current miners defer rather than inheriting healthy quoted powers or travel',() => {
+  const f = startupProjectionFixture(); f.game.creeps.worker = f.activeMiner(); const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts');
+  f.quote.facts = observed.facts; f.options.births = []; const worker = f.quote.facts.workers[0]!;
+  worker.body[0]!.hits = 50; expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' });
+  worker.body[0]!.hits = 100; worker.body[0]!.boost = 'UO'; expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' });
+  worker.body[0]!.boost = null; worker.position.x = 3; expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' });
+});
+test('healthy endpoint couriers retain actual phase/cargo and require an explicit collection policy',() => {
+  const f = startupProjectionFixture(), worker = f.activeMiner();
+  Object.assign(worker,{ name: 'paid-courier',body: f.courier.body.map(type => ({ type,hits: 100 })),memory: { population: { home: f.request.home,owner: f.courier.owner } },pos: startupPosition(4,24),ticksToLive: 100 });
+  f.game.creeps.courier = worker; let observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts'); f.quote.facts = observed.facts; f.options.births = [];
+  expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' }); f.options.incumbentMinimumBatch = 25;
+  expect(f.convert(f.quote,f.options)).toMatchObject({ status: 'ready',input: { initial: { couriers: [{ id: 'paid-courier',expiresAt: 100,availableAt: 0,phase: 'collect',energy: 0,minimumBatch: 25 }] } } });
+  Object.assign(worker,{ pos: startupPosition(26,25,f.request.home) }); worker.store.energy = 50; observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts'); f.quote.facts = observed.facts;
+  const result = f.convert(f.quote,f.options); if (result.status !== 'ready') throw new Error(result.reason);
+  expect(result.input.initial?.couriers[0]).toMatchObject({ phase: 'deliver',energy: 50,availableAt: 0 });
+  expect(forecastStartupProject(result.input).cash.birthEnergy).toBe(0);
 });

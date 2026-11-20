@@ -26,8 +26,8 @@ function courierBody(input: StartupDeliveryInput, id: string): { capacity: numbe
 /** Effects become available next frame. Collection never borrows a later same-frame miner handoff. */
 export function advanceStartupCouriers(workers: StartupCourierState[], result: StartupDeliveryForecast, tick: number, horizon: number, sink: StartupSink): void {
   for (const worker of workers) {
-    if (tick < worker.nextAt) continue;
     if (tick >= worker.expiresAt) { result.unreturnedCourierEnergy += worker.cargo; worker.cargo = 0; worker.nextAt = Infinity; continue; }
+    if (tick < worker.nextAt) continue;
     if (worker.phase === 'deliver') { deliver(worker,result,tick,horizon,sink); continue; }
     collect(worker,result,tick);
   }

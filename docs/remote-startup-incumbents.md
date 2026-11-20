@@ -1,0 +1,25 @@
+# Existing workforce and opening inventory
+
+ED-29 adds finite incumbent service to the forward project. Existing workers retain their identities, paid incubation/arrival delay, remaining expiry, retirement cutoff, cargo and collection/delivery phase. They are not inserted as zero-price births, charged another birth cost or reset to a fresh lifetime. Pending miner cargo remains owned during travel; expiry is processed before a later arrival, so dead workers cannot retain ghost inventory. Future miners cannot overlap an incumbent without an explicit handoff strategy.
+
+Opening container/cargo stock is distinct from newly harvested production. Home cash still increases when that real inventory reaches the endpoint, but the recovery benchmark includes the opening inventory. Initial miner energy actually spent on construction reduces the overlapping construction benchmark once. Thus recovery margin is home cash surplus minus the declared construction benchmark minus opening assets, plus opening energy used on that construction (bounded by the benchmark). This changes valuation, never debits the home bank a second time. Liquidating opening stock alone can recover that inventory value but cannot create new economic profit.
+
+Opening inventory, activation state and construction credit survive checkpoints and feature-owned job persistence. The energy invariant includes pending miner cargo and all opening stock. Both streaming cash ledgers retain the construction adjustment; spawn funding remains physical cash only. Results detach state. The old static precomputed delivery wrapper explicitly refuses the new initial-state input; callers use the forward project instead of silently dropping incumbent semantics.
+
+Native conversion now imports healthy unboosted automatic source workers at known endpoints. A station miner uses its actual TTL/cargo/body and a retirement reserve at least as conservative as the current profile and loaded-return quote. Endpoint couriers preserve cargo/phase and require an explicit incumbent collection batch. Withdrawn couriers are return-only. Unclaimed container stock is opening inventory; claimed stock remains occupied by reducing accessible capacity conservatively, rather than creating free storage space. Worker fatigue is now observed explicitly.
+
+Native paid incubation, arbitrary on-route positions, boosts/damage, different bodies, unrepresented room actors and reservation trajectories still defer. The portable model can represent explicitly supplied paid incubation/arrival intervals, but the adapter does not guess their native future exit or remaining path. Native miner return-only cleanup and automatic future replacement/distribution schedules remain open. The default bot still does not register this economic strategy.
+
+## Compatibility
+
+Portable checkpoints are now format2. Genuine format1 no-incumbent/no-opening-asset progress upgrades without replay; formerly unsupported initial/opening metadata is refused. `remoteStartupPlanning/<home>` advances to schema2, owner remotes. Valid schema1 jobs preserve their input, revision, clock and pending settlement while their checkpoint upgrades. Peeking is read-only; the envelope is persisted as2 only on a subsequent write. Old schema1 readers reject schema2. There is no production downgrade helper: the legacy native test fixture contains only genuine old no-inventory state.
+
+Do not strip new inventory fields or relabel job envelopes for rollback. Disable the consumer and discard/rebuild uncommitted simulation jobs when incompatible; preserve actual selected geometry, spawn/logistics/tasks/journals/claims/confirmed receipts under their owners. This is a focused compatibility proof, not completion of ED-44's full live-memory rehearsal.
+
+## Qualification scope
+
+New model cases cover remaining service/cargo, opening inventory liquidation, loaded return-only workers, expiry before arrival, pending miner assets, paid incubation, reset accounting, overlap, identity and invalid inputs. Migration cases cover checkpoint1->2, job1->2, read-only peeking, pending settlement, old-reader refusal, unsupported legacy metadata and incumbent input-codec recovery. Native conversion cases cover actual finite station workers, claimed stock, unsupported damage/boost/position and explicitly configured endpoint couriers. Exact executed results will be recorded after the committed native run.
+
+The native selected scenario observes the real station miner and cargo at80, saves ten model frames and resumes after global reset81. It compares the finite continuation to uninterrupted evaluation, with no future births or duplicate birth debit. The admission scenario also seeds a genuine legacy job before reset150 and resumes it as schema2. Both remain model/serialization proofs; they do not establish same-strategy full native economic calibration.
+
+Next: native on-route/incubating/boosted actor import, reservation changes, achievable future schedules, calibrated economic candidate selection and ordinary strategy adoption. Multi-room pressure/soak, specialist/operator parity and release gates remain open.

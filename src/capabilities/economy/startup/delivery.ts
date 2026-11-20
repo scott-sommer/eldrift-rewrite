@@ -10,6 +10,7 @@ import { advanceStartupSource } from './source';
 import type { StartupDeliveryForecast, StartupDeliveryInput } from './delivery-model';
 /** Construction and scheduled births establish labor; finite source stock and trips establish receipts. */
 export function forecastStartupDelivery(input: StartupDeliveryInput) {
+  if (input.initial !== undefined) throw new Error('Initial workforce requires the forward startup project');
   if (!Number.isSafeInteger(input.containerCapacity) || input.containerCapacity < 1 || input.containerCapacity > 1000000) throw new Error('Invalid startup container capacity');
   const container = createStartupContainer(input.container);
   const sink = createStartupSink(input.homeSink,input.project.spawning.cash);

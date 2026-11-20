@@ -7,6 +7,7 @@ export type StartupStationFacts =
   | { status: 'ready'; id: string; remainingProgress: 0; energy: number; claimedEnergy: number; availableEnergy: number; capacity: number; hits: number; hitsMax: number; ticksToDecay: number };
 export interface StartupWorkerFacts {
   name: string; owner: string; position: Position; spawning: boolean; ticksToLive: number | null; energy: number;
+  fatigue: number;
   body: { type: BodyPart; hits: number; boost: string | null }[];
 }
 export interface NativeStartupFacts {

@@ -25,6 +25,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   if (memory.startupProjectProof) evidence.remoteStartup.projectCheckpoint = memory.startupProjectProof;
   if (memory.startupPlanningProof) evidence.remoteStartup.planningJob = memory.startupPlanningProof;
   if (memory.nativeProjection) evidence.remoteStartup.nativeProjection = memory.nativeProjection;
+  if (memory.incumbentProjection) evidence.remoteStartup.incumbentProjection = memory.incumbentProjection;
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.equal(rows.length,mode === 'staged' ? 5000 : 150); rows.forEach((row,index) => assert.equal(row.tick,index+1));
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null);
@@ -50,6 +51,13 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
       assert.deepEqual(projection.steps.map(step => [step.tick,step.through,step.revision]),[[25,64,1],[30,564,2],[46,1064,3],[81,1501,4]]);
       assert.ok(projection.result); assert.equal(projection.readOnly,true);
+      const incumbent = memory.incumbentProjection; assert.ok(incumbent);
+      assert.equal(incumbent.observedAt,80); assert.equal(incumbent.resumedAt,81); assert.equal(incumbent.checkpointFormat,2);
+      assert.equal(incumbent.checkpointTick,10); assert.equal(incumbent.recoveredThrough,10); assert.equal(incumbent.readOnly,true);
+      assert.equal(incumbent.initial.miner.expiresAt,incumbent.worker.ticksToLive); assert.equal(incumbent.initial.miner.energy,incumbent.worker.energy);
+      assert.ok(incumbent.worker.energy > 0); assert.deepEqual(incumbent.openingBefore,incumbent.openingAfter);
+      assert.deepEqual(incumbent.result,incumbent.uninterrupted); assert.deepEqual(incumbent.result.spawning.births,[]);
+      assert.equal(incumbent.result.cash.birthEnergy,0); assert.equal(incumbent.result.openingAssets.energy,incumbent.worker.energy);
       assert.equal(projection.input.project.source.energy,projection.facts.source.energy);
       assert.equal(projection.input.project.spawning.cash.homeEnergy,projection.facts.stock.availableEnergy);
       assert.equal(projection.input.project.spawning.funding.initialEnergy,Math.min(projection.facts.stock.availableEnergy,projection.facts.stock.availableSpawnEnergy));

@@ -1,10 +1,10 @@
-import { startupDeliveryCouriers } from '../delivery-couriers';
+import { startupProjectCouriers } from '../initial';
 import { integer, keys, record, requireCheckpoint } from './validation';
 import type { StartupDeliveryInput, StartupCourierState } from '../delivery-model';
 import type { StartupScheduledBirth } from '../spawn-model';
 import type { StartupCourierCheckpoint } from './project-model';
 export function validateProjectCouriers(input: StartupDeliveryInput, births: StartupScheduledBirth[], value: unknown, tick: number): asserts value is StartupCourierCheckpoint[] {
-  const expected = startupDeliveryCouriers(input,births);
+  const expected = startupProjectCouriers(input,births);
   requireCheckpoint(Array.isArray(value) && value.length === expected.length);
   requireCheckpoint((value as unknown[]).every((worker,index) => validWorker(worker,expected[index]!,tick)));
 }
@@ -14,5 +14,5 @@ function validWorker(value: unknown, expected: StartupCourierState, tick: number
   if (!immutable.every(key => value[key] === expected[key as keyof StartupCourierState])) return false;
   if (!['collect','deliver'].includes(String(value.phase)) || !integer(value.cargo,0,expected.capacity)) return false;
   if (value.nextAt === null) return tick > expected.expiresAt && value.cargo === 0;
-  return integer(value.nextAt,expected.nextAt,expected.expiresAt+1500);
+  return integer(value.nextAt,expected.nextAt,Math.max(expected.nextAt,expected.expiresAt+1500));
 }

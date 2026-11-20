@@ -1,3 +1,5 @@
+import { readStartupProjectCheckpoint } from '../../../../capabilities/economy/startup/checkpoints/project';
+import { decodeStartupPlanningInput } from './input';
 import { openState, peekState, saveState } from '../../../../persistence/versioned-state';
 import type { StatePort, StateSchema } from '../../../../persistence/versioned-state';
 import { stateKey } from '../../../../persistence/state-key';
@@ -28,10 +30,22 @@ export function createStartupPlanningStore(state: StatePort, home: string) {
   };
 }
 function planningSchema(home: string): StateSchema<StartupPlanningRecord> {
-  return { owner: 'remotes',version: 1,migrations: {},initial: () => ({ home,revision: 0,clock: 0,job: null }),
+  return { owner: 'remotes',version: 2,migrations: { 1: value => upgradePlanning(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
     valid(value: unknown): value is StartupPlanningRecord {
       if (!object(value) || Object.keys(value).length !== 4 || value.home !== home || !natural(value.revision) || !natural(value.clock)) return false;
       if (JSON.stringify(value).length > 262144) return false;
       return value.job === null || validPlanningJob(value.job,home,value.clock);
     } };
+}
+
+function upgradePlanning(value: unknown, home: string): StartupPlanningRecord {
+  if (!object(value)) throw new Error('Invalid legacy startup planning record');
+  const next = value as unknown as StartupPlanningRecord;
+  if (next.job) {
+    const input = decodeStartupPlanningInput(next.job.input);
+    if (next.job.checkpoint.format !== (1 as number) || input.initial !== undefined || input.project.spawning.cash.openingAssets !== undefined) throw new Error('Unsupported legacy startup planning metadata');
+    next.job.checkpoint = readStartupProjectCheckpoint(input,next.job.checkpoint);
+  }
+  if (!planningSchema(home).valid(next)) throw new Error('Invalid legacy startup planning record');
+  return next;
 }

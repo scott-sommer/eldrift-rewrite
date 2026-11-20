@@ -10,6 +10,7 @@ export interface NativeStartupQuote extends CompleteStartupTravel { observedAt: 
 /** Request ready/expiry clocks are offsets from this observation, never absolute game ticks. */
 export type StartupBirthProposal = { request: SpawnRequest; retireTicks: number } & ({ kind: 'miner' } | { kind: 'courier'; minimumBatch: number });
 export interface NativeStartupProjectionOptions {
+  incumbentMinimumBatch?: number;
   horizon: number; protectedEnergy: number; births: readonly StartupBirthProposal[]; unaffordable: UnaffordablePolicy;
   repairPolicy: Readonly<MiningRepairPolicy> | null;
   refills: StartupSpawnFunding['refills']; householdFlows: readonly StartupCashFlow[]; sinkChanges: StartupSinkInput['changes'];

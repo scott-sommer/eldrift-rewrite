@@ -1,9 +1,10 @@
+import { legacyStartupCheckpoint } from '../fixtures/startup-legacy-checkpoint';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
 import { forecastStartupProject } from '../../src/capabilities/economy/startup/project';
 import { startupDeliveryInput } from '../fixtures/startup-delivery';
 import type { StatePort, Envelope } from '../../src/persistence/versioned-state';
 interface PlanningProof {
-  savedAt: number; initialThrough: number; initialRevision: number; pendingBefore: number;
+  legacyVersion?: number; savedAt: number; initialThrough: number; initialRevision: number; pendingBefore: number;
   resumedAt?: number; recoveredThrough?: number; nextThrough?: number; nextRevision?: number;
   completeThrough?: number; completeRevision?: number; readOnly?: boolean; owner?: string; version?: number;
   result?: ReturnType<typeof forecastStartupProject>; uninterrupted?: ReturnType<typeof forecastStartupProject>;
@@ -20,7 +21,8 @@ export function snapshotStartupPlanningJob(state: StatePort): void {
   if (Game.time === 149) {
     const result = owner.advance({ ...request,expectedRevision: 0 },43), record = owner.read();
     if (result.status !== 'deferred' || result.frames !== 43 || !record.job) throw new Error('Expected persisted partial startup planning job');
-    memory.startupPlanningProof = { savedAt: Game.time,initialThrough: record.job.checkpoint.tick,initialRevision: record.revision,pendingBefore: record.job.checkpoint.due.length };
+    state.write('remoteStartupPlanning/W0N1',{ owner: 'remotes',version: 1,data: { ...record,job: { ...record.job,checkpoint: legacyStartupCheckpoint(input,record.job.checkpoint) } } });
+    memory.startupPlanningProof = { legacyVersion: 1,savedAt: Game.time,initialThrough: record.job.checkpoint.tick,initialRevision: record.revision,pendingBefore: record.job.checkpoint.due.length };
     return;
   }
   const proof = memory.startupPlanningProof, recovered = owner.read();

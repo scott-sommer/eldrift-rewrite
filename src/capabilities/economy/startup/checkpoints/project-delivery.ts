@@ -25,7 +25,7 @@ function validateReceipts(input: StartupDeliveryInput, saved: StartupProjectChec
 }
 function validReceipt(value: unknown, input: StartupDeliveryInput): value is StartupProjectReceipt {
   if (!record(value) || !integer(value.tick,0,input.project.spawning.cash.horizon) || !integer(value.energy,1,1000000)) return false;
-  return input.couriers.some(worker => worker.request === value.request);
+  return input.couriers.some(worker => worker.request === value.request) || (input.initial?.couriers ?? []).some(worker => worker.id === value.request);
 }
 export function receiptId(receipt: { request: string; tick: number }): string { return 'remote-delivery:'+receipt.request+':'+receipt.tick; }
 

@@ -1,3 +1,5 @@
+import { upgradeStartupCheckpoint } from './upgrade';
+import { restoreOpeningStock } from '../opening-stock';
 import { StartupCheckpointCapacityError } from './capacity';
 import { copyPlain } from '../../../../core/plain-data';
 import { startupProjectIdentity } from './project-identity';
@@ -14,13 +16,14 @@ import { integer, keys, record, requireCheckpoint } from './validation';
 import type { StartupDeliveryInput } from '../delivery-model';
 import type { StartupProjectCheckpoint } from './project-model';
 export function readStartupProjectCheckpoint(input: StartupDeliveryInput, value: unknown): StartupProjectCheckpoint {
-  const saved = boundedProjectCheckpoint(value) as StartupProjectCheckpoint;
+  const saved = upgradeStartupCheckpoint(input,boundedProjectCheckpoint(value));
   requireCheckpoint(record(saved));
-  requireCheckpoint(keys(saved as unknown as Record<string,unknown>,['format','binding','tick','timeline','container','sink','construction','delivery','couriers','due','settled','houseAccounting','sourceAccounting']));
-  requireCheckpoint(saved.format === 1 && saved.binding === startupProjectIdentity(input));
+  requireCheckpoint(keys(saved as unknown as Record<string,unknown>,['format','binding','tick','timeline','container','sink','construction','delivery','couriers','due','settled','houseAccounting','sourceAccounting','opening']));
+  requireCheckpoint(saved.format === 2 && saved.binding === startupProjectIdentity(input));
   requireCheckpoint(integer(saved.tick,0,input.project.spawning.cash.horizon+1));
   validateComponents(input,saved);
-  validateProjectConstruction(input.project,saved.construction,saved.tick);
+  validateProjectConstruction(input,saved.construction,saved.tick);
+  restoreOpeningStock(input,saved.opening);
   validateProjectCouriers(input,saved.timeline.births,saved.couriers,saved.tick);
   validateProjectDelivery(input,saved); validateProjectLinks(input,saved);
   return saved;
@@ -34,9 +37,9 @@ function validateComponents(input: StartupDeliveryInput, saved: StartupProjectCh
   const spawning = input.project.spawning;
   restoreTimelineCheckpoint(spawning,saved.timeline);
   restoreFundingCheckpoint(spawning.funding.capacity,saved.timeline.funding);
-  restoreCashCheckpoint(spawning.cash,saved.timeline.accounting);
-  restoreCashCheckpoint(spawning.cash,saved.houseAccounting);
-  restoreCashCheckpoint(spawning.cash,saved.sourceAccounting);
+  saved.timeline.accounting = restoreCashCheckpoint(spawning.cash,saved.timeline.accounting);
+  saved.houseAccounting = restoreCashCheckpoint(spawning.cash,saved.houseAccounting);
+  saved.sourceAccounting = restoreCashCheckpoint(spawning.cash,saved.sourceAccounting);
   restoreContainerCheckpoint(input.container,saved.container);
   restoreSinkCheckpoint(input.homeSink.capacity,spawning.cash.horizon,saved.sink);
 }

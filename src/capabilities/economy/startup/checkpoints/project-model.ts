@@ -1,3 +1,4 @@
+import type { StartupOpeningState } from '../initial-model';
 import type { StartupTimelineCheckpoint } from './timeline';
 import type { StartupCashCheckpoint } from './cash';
 import type { StartupContainerCheckpoint } from './container';
@@ -8,8 +9,9 @@ export type StartupCourierCheckpoint = Omit<StartupCourierState,'nextAt'> & { ne
 export interface StartupProjectReceipt { request: string; id: string; tick: number; energy: number }
 /** Wire format only; mutable Maps, Sets, Infinity and undefined never cross this boundary. */
 export interface StartupProjectCheckpoint {
-  format: 1; binding: string; tick: number; timeline: StartupTimelineCheckpoint;
+  format: 2; binding: string; tick: number; timeline: StartupTimelineCheckpoint;
   container: StartupContainerCheckpoint; sink: StartupSinkCheckpoint;
+  opening: StartupOpeningState;
   construction: StartupConstructionForecast; delivery: StartupDeliveryForecast;
   couriers: StartupCourierCheckpoint[]; due: StartupProjectReceipt[]; settled: StartupDeliveryForecast['receipts'];
   houseAccounting: StartupCashCheckpoint; sourceAccounting: StartupCashCheckpoint;

@@ -1,3 +1,4 @@
+import { snapshotNativeIncumbent } from './startup-native-incumbents';
 import { beginNativeProjection, resumeNativeProjection } from './startup-native-projection';
 import { createRemoteFleetStore } from '../../src/features/remotes/fleet/store';
 import { remoteFleetIdentity } from '../../src/features/remotes/fleet/identity';
@@ -44,6 +45,7 @@ export function createSelectedStartupLoop(expiring = false) {
     const miner = Object.values(Game.creeps).find(creep => !creep.spawning && remoteFleetIdentity(creep.memory.population?.owner ?? '')?.kind === 'miner');
     if (miner && !memory.selectedReady) memory.selectedReady = { tick: Game.time,x: miner.pos.x,y: miner.pos.y,room: miner.pos.roomName };
     if ([30,46,81,150].includes(Game.time)) { recordSelectionCheck(memory); if (!expiring) resumeNativeProjection(state); }
+    if (!expiring && [80,81].includes(Game.time)) snapshotNativeIncumbent(state);
   };
 }
 function recordSelectionCheck(memory: SelectionMemory): void {
