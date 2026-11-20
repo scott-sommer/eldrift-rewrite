@@ -1,0 +1,930 @@
+{
+  "sourceCommit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+  "scope": "Direct validated portable project checkpoint restoration, tested through actual native Memory serialization and global reset. Synthetic model inputs are not native forecast conversion or calibration.",
+  "checks": {
+    "quality": "passed; Lizard1.22.2,813production/650test files,zero violations",
+    "focused": {
+      "cases": 39,
+      "files": 4,
+      "seconds": 0.766
+    },
+    "unit": {
+      "cases": 1742,
+      "files": 439,
+      "seconds": 16.41
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.26
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1290859
+    },
+    "bundle": "passed"
+  },
+  "checkpointFormat": {
+    "version": 1,
+    "maximumCharacters": 1048576,
+    "maximumInputIdentityCharacters": 262144,
+    "copyNodeLimit": 100000,
+    "copyDepthLimit": 100,
+    "receiptHistory": "finite,retained; capacity refusal explicit",
+    "persistentProductionNamespace": null,
+    "retiredCourierNextAt": "null wire sentinel -> Infinity runtime"
+  },
+  "native": [
+    {
+      "scenario": "--remote-startup-admission",
+      "milliseconds": 10489,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oRCW5m\\evidence.json",
+      "rawSha256": "1c0b32c71360c1a30f498ca64cfbc1e49723b5440e07cbb986e662b25edc99a8",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "5d198e01dea2415fd30ee15d34fbdd13ddd6d13542413a3f31e4e5700312a880",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "a96a0758f8d7ca195d4651c782361ea50b882943e66c54c2f321ee6241f950b5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "project-checkpoint-admission-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+      "syntheticProjectProof": {
+        "savedAt": 149,
+        "initialThrough": 43,
+        "pendingBefore": 1,
+        "checkpointCharacters": 4288,
+        "resumedAt": 150,
+        "recoveredThrough": 43,
+        "nextThrough": 44,
+        "frames": 1,
+        "accountedThrough": 44,
+        "result": {
+          "spawning": {
+            "births": [
+              {
+                "request": "miner",
+                "spawn": "spawn",
+                "startAt": 0,
+                "activeAt": 9,
+                "cost": 200
+              },
+              {
+                "request": "courier",
+                "spawn": "spawn",
+                "startAt": 9,
+                "activeAt": 15,
+                "cost": 100
+              }
+            ],
+            "unscheduled": [],
+            "flows": [
+              {
+                "id": "birth:miner",
+                "kind": "birth",
+                "energy": 200,
+                "firstTick": 0,
+                "interval": null,
+                "occurrences": 1
+              },
+              {
+                "id": "birth:courier",
+                "kind": "birth",
+                "energy": 100,
+                "firstTick": 9,
+                "interval": null,
+                "occurrences": 1
+              }
+            ],
+            "funding": {
+              "endingSpawnEnergy": 0,
+              "refilledEnergy": 0,
+              "unfilledEnergy": 0
+            },
+            "cash": {
+              "endingEnergy": 96,
+              "minimumEnergy": 0,
+              "minimumAt": 9,
+              "requiredHomeEnergy": 300,
+              "homeShortfall": 0,
+              "birthEnergy": 300,
+              "homeConstructionEnergy": 0,
+              "upkeepEnergy": 0,
+              "deliveredEnergy": 96,
+              "homeCashSurplus": -204,
+              "constructionRecoveryMargin": -208,
+              "firstDeliveryAt": 43,
+              "firstRecoveryAt": null
+            }
+          },
+          "construction": {
+            "status": "complete",
+            "completeAt": 13,
+            "remainingProgress": 0,
+            "harvestedEnergy": 4,
+            "overflowEnergy": 0,
+            "constructionEnergy": 4,
+            "regeneratedEnergy": 0,
+            "unusedCargoEnergy": 0,
+            "projectedThrough": 13,
+            "source": {
+              "energy": 96,
+              "capacity": 100,
+              "regenerationTicks": 300,
+              "regenerationIn": 296
+            },
+            "waves": [
+              {
+                "request": "miner",
+                "startAt": 9,
+                "endAt": 13,
+                "work": {
+                  "ticks": 4,
+                  "remainingProgress": 0,
+                  "carriedEnergy": 0,
+                  "sourceEnergy": 96,
+                  "harvestedEnergy": 4,
+                  "overflowEnergy": 0,
+                  "constructionEnergy": 4,
+                  "regeneratedEnergy": 0,
+                  "harvestTicks": 2,
+                  "buildTicks": 2,
+                  "idleTicks": 0,
+                  "status": "complete",
+                  "regenerationIn": 296
+                }
+              }
+            ]
+          },
+          "delivery": {
+            "firstDeliveryAt": 43,
+            "deliveredEnergy": 96,
+            "harvestedEnergy": 96,
+            "regeneratedEnergy": 0,
+            "unreturnedCourierEnergy": 0,
+            "overflowEnergy": 0,
+            "uncapturedOverflowEnergy": 0,
+            "containerEnergy": 0,
+            "minerCargoEnergy": 0,
+            "courierCargoEnergy": 0,
+            "unusedMinerCargoEnergy": 0,
+            "projectedThrough": 101,
+            "source": {
+              "energy": 0,
+              "capacity": 100,
+              "regenerationTicks": 300,
+              "regenerationIn": 208
+            },
+            "receipts": [
+              {
+                "tick": 43,
+                "energy": 50,
+                "request": "courier"
+              },
+              {
+                "tick": 67,
+                "energy": 46,
+                "request": "courier"
+              }
+            ]
+          },
+          "homeSink": {
+            "remainingCapacity": 999904,
+            "acceptedEnergy": 96,
+            "projectedThrough": 101
+          },
+          "maintenance": {
+            "hits": 250000,
+            "decayIn": 11,
+            "destroyedAt": null,
+            "repairedHits": 0,
+            "repairEnergy": 0,
+            "decayEvents": 0,
+            "unrecoveredEnergy": 0
+          },
+          "cash": {
+            "endingEnergy": 96,
+            "minimumEnergy": 0,
+            "minimumAt": 9,
+            "requiredHomeEnergy": 300,
+            "homeShortfall": 0,
+            "birthEnergy": 300,
+            "homeConstructionEnergy": 0,
+            "upkeepEnergy": 0,
+            "deliveredEnergy": 96,
+            "homeCashSurplus": -204,
+            "constructionRecoveryMargin": -208,
+            "firstDeliveryAt": 43,
+            "firstRecoveryAt": null
+          },
+          "projectCash": {
+            "endingEnergy": 96,
+            "minimumEnergy": 0,
+            "minimumAt": 9,
+            "requiredHomeEnergy": 300,
+            "homeShortfall": 0,
+            "birthEnergy": 300,
+            "homeConstructionEnergy": 0,
+            "upkeepEnergy": 0,
+            "deliveredEnergy": 96,
+            "homeCashSurplus": -204,
+            "constructionRecoveryMargin": -208,
+            "firstDeliveryAt": 43,
+            "firstRecoveryAt": null
+          }
+        },
+        "uninterrupted": {
+          "spawning": {
+            "births": [
+              {
+                "request": "miner",
+                "spawn": "spawn",
+                "startAt": 0,
+                "activeAt": 9,
+                "cost": 200
+              },
+              {
+                "request": "courier",
+                "spawn": "spawn",
+                "startAt": 9,
+                "activeAt": 15,
+                "cost": 100
+              }
+            ],
+            "unscheduled": [],
+            "flows": [
+              {
+                "id": "birth:miner",
+                "kind": "birth",
+                "energy": 200,
+                "firstTick": 0,
+                "interval": null,
+                "occurrences": 1
+              },
+              {
+                "id": "birth:courier",
+                "kind": "birth",
+                "energy": 100,
+                "firstTick": 9,
+                "interval": null,
+                "occurrences": 1
+              }
+            ],
+            "funding": {
+              "endingSpawnEnergy": 0,
+              "refilledEnergy": 0,
+              "unfilledEnergy": 0
+            },
+            "cash": {
+              "endingEnergy": 96,
+              "minimumEnergy": 0,
+              "minimumAt": 9,
+              "requiredHomeEnergy": 300,
+              "homeShortfall": 0,
+              "birthEnergy": 300,
+              "homeConstructionEnergy": 0,
+              "upkeepEnergy": 0,
+              "deliveredEnergy": 96,
+              "homeCashSurplus": -204,
+              "constructionRecoveryMargin": -208,
+              "firstDeliveryAt": 43,
+              "firstRecoveryAt": null
+            }
+          },
+          "construction": {
+            "status": "complete",
+            "completeAt": 13,
+            "remainingProgress": 0,
+            "harvestedEnergy": 4,
+            "overflowEnergy": 0,
+            "constructionEnergy": 4,
+            "regeneratedEnergy": 0,
+            "unusedCargoEnergy": 0,
+            "projectedThrough": 13,
+            "source": {
+              "energy": 96,
+              "capacity": 100,
+              "regenerationTicks": 300,
+              "regenerationIn": 296
+            },
+            "waves": [
+              {
+                "request": "miner",
+                "startAt": 9,
+                "endAt": 13,
+                "work": {
+                  "ticks": 4,
+                  "remainingProgress": 0,
+                  "carriedEnergy": 0,
+                  "sourceEnergy": 96,
+                  "harvestedEnergy": 4,
+                  "overflowEnergy": 0,
+                  "constructionEnergy": 4,
+                  "regeneratedEnergy": 0,
+                  "harvestTicks": 2,
+                  "buildTicks": 2,
+                  "idleTicks": 0,
+                  "status": "complete",
+                  "regenerationIn": 296
+                }
+              }
+            ]
+          },
+          "delivery": {
+            "firstDeliveryAt": 43,
+            "deliveredEnergy": 96,
+            "harvestedEnergy": 96,
+            "regeneratedEnergy": 0,
+            "unreturnedCourierEnergy": 0,
+            "overflowEnergy": 0,
+            "uncapturedOverflowEnergy": 0,
+            "containerEnergy": 0,
+            "minerCargoEnergy": 0,
+            "courierCargoEnergy": 0,
+            "unusedMinerCargoEnergy": 0,
+            "projectedThrough": 101,
+            "source": {
+              "energy": 0,
+              "capacity": 100,
+              "regenerationTicks": 300,
+              "regenerationIn": 208
+            },
+            "receipts": [
+              {
+                "tick": 43,
+                "energy": 50,
+                "request": "courier"
+              },
+              {
+                "tick": 67,
+                "energy": 46,
+                "request": "courier"
+              }
+            ]
+          },
+          "homeSink": {
+            "remainingCapacity": 999904,
+            "acceptedEnergy": 96,
+            "projectedThrough": 101
+          },
+          "maintenance": {
+            "hits": 250000,
+            "decayIn": 11,
+            "destroyedAt": null,
+            "repairedHits": 0,
+            "repairEnergy": 0,
+            "decayEvents": 0,
+            "unrecoveredEnergy": 0
+          },
+          "cash": {
+            "endingEnergy": 96,
+            "minimumEnergy": 0,
+            "minimumAt": 9,
+            "requiredHomeEnergy": 300,
+            "homeShortfall": 0,
+            "birthEnergy": 300,
+            "homeConstructionEnergy": 0,
+            "upkeepEnergy": 0,
+            "deliveredEnergy": 96,
+            "homeCashSurplus": -204,
+            "constructionRecoveryMargin": -208,
+            "firstDeliveryAt": 43,
+            "firstRecoveryAt": null
+          },
+          "projectCash": {
+            "endingEnergy": 96,
+            "minimumEnergy": 0,
+            "minimumAt": 9,
+            "requiredHomeEnergy": 300,
+            "homeShortfall": 0,
+            "birthEnergy": 300,
+            "homeConstructionEnergy": 0,
+            "upkeepEnergy": 0,
+            "deliveredEnergy": 96,
+            "homeCashSurplus": -204,
+            "constructionRecoveryMargin": -208,
+            "firstDeliveryAt": 43,
+            "firstRecoveryAt": null
+          }
+        }
+      },
+      "nativeReloads": [
+        21,
+        81,
+        150
+      ],
+      "nativeConstruction": 376
+    },
+    {
+      "scenario": "--remote-startup-selected",
+      "milliseconds": 9671,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-qTasp6\\evidence.json",
+      "rawSha256": "42babf9632c93bbf091da7f5463eabb0cf07363bacc4d73a31e871246571a804",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "d93ddbafa9cd1f1037ee376ce78ca22ad1be468e0bb8d4c7be4534845fb362da",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "d5ee33e826e0e62a67ac6ab0bed07f356266c081ce79095aa362253e85b22de6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-startup-selection-expiry",
+      "milliseconds": 9815,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-NcoV58\\evidence.json",
+      "rawSha256": "34993b170a2b55d70206390b3605bae40ae60c6b2328f9b1ea7a55daae01be16",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "80d3596590faa150d48cc1880c4ccb5ac6005bec723055c206165d896d1bc990",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "f58777550546dbadab263c1047f830f6d13e82b77287130d58c0f8f9ad418049",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--remote-startup-refusal",
+      "milliseconds": 9307,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-sL2h2m\\evidence.json",
+      "rawSha256": "059c844cbc89b30e2a4acc253d786dc8ef33384fcc3e963b2afb0db177d11b0b",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "6a3ef25fe54c7894f1755614c6d88e6f51ab7c78547feb49acb40b6efd4a5795",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "e6397cbfb73a13fa3addac4b4b42f4ccb0471ddf3a8fbf3ece8464ece5eab759",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1222,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-4y6mYA\\evidence.json",
+      "rawSha256": "59ba9976b8bc9bb7ef5ff42e739777c737d4b62afb23ed38ad37c08253598b02",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "88d3f19f29a2431a230fcb91b91e75b3af2c6429bf56f535ac23c1affd9231e4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    },
+    {
+      "scenario": "--planning-runtime",
+      "milliseconds": 1137,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ggpAMs\\evidence.json",
+      "rawSha256": "82b7e4032118c2452c643f7556e5c28806647e52d6202eedb3f7d4784b986a35",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "a7d21d30ac6abfe2462e0eb0836deeca4d62e4fb4d9465f1e90e056489a1cb28",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 902,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-69UjAB\\evidence.json",
+      "rawSha256": "49006e7b783b3a90df202bc3edfd9a9f4aa761c64dd5a98f55edec68ff5f0eda",
+      "status": "passed",
+      "provenance": {
+        "commit": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+        "dirty": false,
+        "bundleSha256": "fe59f5d6702100cba4b5439f9cb23836e009c9a46a103da5a7828d18eba76625",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": null
+    }
+  ],
+  "batchMilliseconds": 42548,
+  "sourceFileSha256": {
+    "src/capabilities/economy/startup/cash-ledger.ts": "3bef685f373437adda214e00bebf2c1369c167f7d91da756aa1c9944fe689702",
+    "src/capabilities/economy/startup/checkpoints/cash.ts": "42586b35f7177d5df9ec71f6ffcc15054ae4492d107f8231c71fc81e12f14e38",
+    "src/capabilities/economy/startup/checkpoints/container.ts": "2fcf6d81dd4012c551ab4375c2a328620b7ac6922e111839b3ef3f9fc6c2e9a4",
+    "src/capabilities/economy/startup/checkpoints/funding.ts": "9569bee9da30a5b1aad9971fb779fedbb1626167d67322808581f968017c80a5",
+    "src/capabilities/economy/startup/checkpoints/project-delivery.ts": "947d7084c882eb6a3555dfb3100f5b35b8445071e58f5bcc17c2c51b1722c82f",
+    "src/capabilities/economy/startup/checkpoints/project-identity.ts": "f4922bd6a66d3059276212ac232db06345849e1bc440e96ac239ca2938ac7031",
+    "src/capabilities/economy/startup/checkpoints/project-links.ts": "7db452fe015d04009139258bf0a44e1493231422dd2acc973a146838fd75abaf",
+    "src/capabilities/economy/startup/checkpoints/project-model.ts": "c17e2f8f038d0335b913f68622e52ff3dae3468b585f35749a3cb77396b165b3",
+    "src/capabilities/economy/startup/checkpoints/project-work.ts": "549069ca7e3f5e6a7e80fb238ae2bf80fac9b4efd9cbdd9b2b54ab0dc4027464",
+    "src/capabilities/economy/startup/checkpoints/project-workers.ts": "62761134daae00f29718243530d85c79b33a86d4e57a58b16e5461b2130765d5",
+    "src/capabilities/economy/startup/checkpoints/project.ts": "028881c0395bead697ff7dd6223fd031af990e6d0bbe7b8a330feb59707927c0",
+    "src/capabilities/economy/startup/checkpoints/sink.ts": "b3c49678de141e126310fa60abcf08b060bb811c8bbce42682bc017c6b406e50",
+    "src/capabilities/economy/startup/checkpoints/timeline.ts": "71e1bd59a35a65841acb715ecb2c89bcd80a2ebf0ab645bd357a174949a44945",
+    "src/capabilities/economy/startup/checkpoints/validation.ts": "3de451070581e58a0a279b3fa23e9b419098938d780472b823b7cb4e8b4fa611",
+    "src/capabilities/economy/startup/container.ts": "29b7f10bcc8ff5fc5bf6ea88718e8331b8ae661bd5a32db5aa93256b3bf50d90",
+    "src/capabilities/economy/startup/delivery-couriers.ts": "0556ef4e9604d34a4fe9ff80f50a41acb19708dcfe5d4c9e5c6db47b0740aa75",
+    "src/capabilities/economy/startup/project.ts": "50973aa8e4665333cd36e2f26d75825d070e379beb6e225d58f9c49fa3466a76",
+    "src/capabilities/economy/startup/sink.ts": "70d7a6a69b4942fa4d5850e4b1c6a25c38372251230d46db61de96d4f226f721",
+    "src/capabilities/economy/startup/spawn-funding.ts": "e320dceb5e8addf5f0a928d67e624b6968a9af9f3c0c97039194ae0c7ef4b857",
+    "src/capabilities/economy/startup/spawn-timeline.ts": "54cc89479041d913ab0ec835c40ec4160ebfd5a9fb36adea1e17a77e5280c40f",
+    "src/core/plain-data.ts": "69726132b037257d0ff95a03b47bc222e4c77a5e70f284039a5bbefc4fa5d7ef",
+    "src/persistence/plain-data.ts": "052c82fac2281c74bc0d99ab7d9ba5d81e2642adaf4529f8adec74c62c46ae5e",
+    "test/capabilities/remote-startup-project-checkpoint.test.ts": "89083970da1b031b609a1d9f76bc9cda243f6fc10fcdb546eeda0b6185f31eb9",
+    "test/engine/remote-startup-bot.ts": "e1b25a3bdaff5a1ff191090a23efdaaab7779c55a5775a197d3948f4e9d16329",
+    "test/engine/startup-project-checkpoint.ts": "cb8dc6aaf92e6d6e6d5b06e87e6a74969e18fda372fffa73ce5da2532eacdfd2",
+    "tools/engine/remote-startup-admission.cjs": "426d94bf90c802126b87c3b7cfb2aec1c4044e16b839674f0fc448130b2bae21",
+    "tools/engine/remote-startup.cjs": "bd16dc957c9902608096dc70a006697320071b2897de4f32ad70e62fbf5bc9a5"
+  },
+  "corePlainDataImplementationIdenticalToPreviousPersistenceImplementation": true,
+  "registryCases": 237,
+  "fullRegistryRerun": false,
+  "lastFullRegistry": {
+    "source": "39722c0",
+    "cases": 223
+  },
+  "limitations": [
+    "No production planning job owner or persistence namespace is introduced.",
+    "Native input/schedule conversion, current authority binding, economic selection and operational fixed-service adoption remain open.",
+    "Snapshot/restore cost scales with bounded retained events; CPU/memory pressure is not qualified.",
+    "Native model proof uses test/fixtures/startup-delivery.ts, not actual native observed stock or source facts.",
+    "Parity, aggregate soak, complete migration/rollback and release gates remain open."
+  ],
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "9cf9a126f35561b7a635e7a1fc36ed2b730141b7",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T08:28:40Z",
+        "conclusion": "success",
+        "databaseId": 136174635177,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T08:27:37Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T08:27:39Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T08:27:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:41Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T08:27:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:46Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T08:27:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:53Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T08:27:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:55Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T08:27:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:56Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T08:27:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:57Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T08:27:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:59Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T08:27:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:11Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T08:27:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:35Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T08:28:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:36Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T08:28:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:36Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T08:28:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:36Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T08:28:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:36Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T08:28:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T08:28:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T08:28:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:37Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T08:28:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:37Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T08:28:37Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44702688888/job/136174635177"
+      },
+      {
+        "completedAt": "2026-11-20T08:30:49Z",
+        "conclusion": "success",
+        "databaseId": 136174635761,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T08:27:38Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T08:27:40Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T08:27:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:27:47Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T08:27:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:28:01Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T08:27:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:29:00Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T08:28:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:29:14Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T08:29:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:29:19Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T08:29:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:29:23Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T08:29:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:29:27Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T08:29:23Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:29:52Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T08:29:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:39Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T08:29:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:41Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T08:30:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:42Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T08:30:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:43Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T08:30:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:44Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T08:30:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:44Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T08:30:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:45Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T08:30:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:47Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T08:30:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T08:30:47Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T08:30:47Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44702688888/job/136174635761"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44702688888"
+  }
+}
