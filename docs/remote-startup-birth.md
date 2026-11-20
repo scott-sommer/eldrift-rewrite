@@ -19,3 +19,11 @@ The migration is forward compatibility work, not a complete ED-44 rollback rehea
 ## Remaining integration
 
 This increment enforces birth placement for requests that carry it. Ordinary remote recruitment does not yet publish selected forward-project plans. Enforcing collection/deposit service geometry, handling blocked or damaged/aged cohorts, complete schedule conversion, persistent forward simulation and economic candidate policy remain open, along with wider native pressure/parity gates.
+
+## Qualification
+
+Clean source `9e1bbec` passes six serial native checks in46.801s: spawn1.339s, multi-spawn contention1.175s, remote fleet migration23.200s, startup admission10.581s, protected refusal9.524s and packaged smoke0.976s. The spawn check rejects a nonadjacent exit with-7, preserves native direction[7] through incubation and observes the real newborn at its requested exit(14,15) at tick11. An unrelated schema1 request remains intact after migration to schema2. The contention check uses the selected second home spawn despite another idle candidate and independently observes incubation at its physical coordinates(20,20); shared energy and unrelated-room behavior retain their original assertions.
+
+Latest units:1,695 tests/431 files11.51s; controlled processor comparisons4/201ms; suite-report contract1/122.969ms. Typecheck/lint/boundaries/bundle and pinned Lizard pass (790 production/638 test files, zero violations). Fourteen new behavioral cases cover allocation, schema migration/refusal, native geometry/admission and quote/snapshot binding. The234-case registry is unchanged and was not fully rerun. [Evidence](evidence/remote-startup-birth.json) retains canonical source hashes, clean provenance, native spawn observations and three trace archives. Instrumented samples include probes; no planning pressure/CPU or complete rollback qualification is claimed.
+
+Hosted [Quality run44673973173](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44673973173) passes Windows2022 and Ubuntu24.04 for the same native-qualified source `9e1bbec`, including all six quality/unit/processor/report/bundle steps.

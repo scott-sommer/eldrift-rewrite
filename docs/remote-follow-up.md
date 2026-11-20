@@ -65,3 +65,7 @@ Source14483a5 adds current read-only source/station/endpoint/stock/claims/workfo
 ## Exact startup travel quote
 
 Source `d1b31f7` adds a fixed-service prospective travel strategy with five exact legs, chosen spawn exit/collection/deposit tiles, permanent miner-station exclusions and bounded persisted progress that survives native global reset. The portable courier model separates first approach from recurring empty trips. See remote-startup-travel.md and evidence/remote-startup-travel.json. Ordinary movement/selection do not adopt this strategy yet; enforcing quoted spawn/exit and service geometry, complete schedule conversion, persistent forward simulation, economic candidate policy and wider operational/parity gates remain open.
+
+## Selected spawn and exit enforcement
+
+Source `9e1bbec` adds optional placement constraints carried through schema2 spawn queues, allocation, forecasting and native dispatch, with a geometry/body binding helper for startup travel plans. Actual native birth direction/position and schema1 migration are qualified; see remote-startup-birth.md and evidence/remote-startup-birth.json. Ordinary remote plan publication, service geometry, whole forward scheduling/persistence, candidate policy and wider gates remain open. ED-44 must include schema2 queues and their rollback refusal in the complete rehearsal.

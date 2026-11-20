@@ -29,3 +29,7 @@ Clean source `d1b31f7` passes four serial native guards20.767s: ordinary startup
 Latest full ordinary units1,681/428 files11.53s; controlled processor comparisons4/198ms; suite-report contract1/133.232ms. Typecheck/lint/boundaries/bundle and pinned Lizard pass (787 production/635 test files, zero violations). Twenty new cases cover geometry, partial/reset resumption, cache invalidation, fresh admission, bad measurements and concurrency, request-local exclusions and separate courier first approach. Current registry234 is unchanged; the full234-case suite was not rerun. [Evidence](evidence/remote-startup-travel.json) records canonical source hashes, clean provenance, native quote/progress output and two150-row archives. Instrumented runtime samples include probes and are not isolated native forecast CPU qualification.
 
 Hosted [Quality run44669472049](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44669472049) passes Ubuntu24.04 and Windows2022 for the same native-qualified source `d1b31f7`, including all six quality/unit/processor/report/bundle steps.
+
+## Birth enforcement follow-up
+
+The later [spawn placement contract](remote-startup-birth.md) now enforces selected spawn/exit constraints for bound requests and preserves them through queue serialization and forecast snapshots. Publishing selected remote plans and enforcing collection/deposit geometry remain open.
