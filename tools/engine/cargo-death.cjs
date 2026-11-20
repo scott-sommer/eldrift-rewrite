@@ -20,9 +20,14 @@ function verifyCargoDeath(memory) {
   assert.deepEqual(recovered[0].receipts.map(receipt => receipt.amount), [50, 19]);
   const retired = records['logistics-retired/empire'].data.entries;
   assert.equal(retired.length, 1);
-  assert.equal(retired[0].journal.acknowledged, false);
-  assert.equal(retired[0].journal.attempt.amount, 50);
-  assert.equal(retired[0].journal.attempt.kind, 'withdraw');
+  // This fixture skips the confirmation frame; stale events become archived uncertainty, never a receipt.
+  assert.deepEqual(retired[0].journal, { acknowledged: true,attempt: null,result: null });
+  assert.equal(retired[0].incidents.entries.length, 1);
+  const incident = retired[0].incidents.entries[0];
+  assert.equal(incident.attempt.amount, 50);
+  assert.equal(incident.attempt.kind, 'withdraw');
+  assert.equal(incident.tick, incident.attempt.tick + 2);
+  assert.equal(incident.cargo, null);
   assert.equal(records['logistics-attempts/' + retired[0].unit], undefined);
   assert.deepEqual(records['tasks/a-hauler'].data.queue, []);
   assert.deepEqual(records['tasks/z-hauler'].data.queue, []);
