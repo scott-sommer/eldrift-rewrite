@@ -1,3 +1,5 @@
+import { snapshotStartupNativeFacts } from './startup-native-facts';
+import type { StartupFactsResult } from '../../src/app/remotes/startup/facts-model';
 import { observeStartupAttrition, instrumentStartupCollections } from './startup-attrition';
 import type { StartupAttrition } from './startup-attrition';
 import { loop as runtimeLoop } from '../../src/main';
@@ -10,7 +12,7 @@ import { pipelineScenarioConfig } from './remote-pipeline-config';
 import { snapshotPipeline, pipelineIncome, pipelineFamily } from './remote-pipeline-probe';
 import type { PipelineMemory } from './remote-pipeline-probe';
 interface StartupMemory extends PipelineMemory {
-  startupAttrition?: StartupAttrition;
+  startupAttrition?: StartupAttrition; startupFacts?: StartupFactsResult;
   startupConstruction?: number; startupSites?: Record<string,{ progress: number; total: number; complete: boolean }>;
   startupCalls?: { tick: number; name: string; family: string; code: number }[]; startupStaleAt?: number;
 }
@@ -21,6 +23,7 @@ export function runStartup(mode: StartupMode): void {
   if (Game.time === 1) setup(mode);
   if (mode === 'refusal') refusalStage(memory);
   if (mode === 'staged') considerWithdrawal(memory);
+  if (mode === 'admission' && Game.time === 150) memory.startupFacts = snapshotStartupNativeFacts(state,home);
   const attrition = memory.startupAttrition = observeStartupAttrition(memory.startupAttrition), restoreCollections = instrumentStartupCollections(attrition);
   const original = StructureSpawn.prototype.spawnCreep;
   StructureSpawn.prototype.spawnCreep = function(body,name,options) {

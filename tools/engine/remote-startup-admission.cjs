@@ -16,5 +16,20 @@ function verifyStartupAdmission(memory,rows) {
   const homeCapital = row => row.homeEnergy+row.units.filter(unit => unit.room === 'W0N1').reduce((sum,unit) => sum+unit.cargo,0)+row.birthCost;
   assert.equal(homeCapital(last),homeCapital(rows[0]));
   assert.deepEqual(memory.stampReloads,[21,81]);
+  const observed = memory.startupFacts;
+  assert.equal(observed.status,'observed');
+  const facts = observed.facts;
+  assert.equal(facts.observedAt,150); assert.equal(facts.home,'W0N1'); assert.equal(facts.room,'E0N1');
+  assert.equal(facts.station.facts.status,'building');
+  assert.equal(facts.station.facts.progress+facts.station.facts.remainingProgress,5000);
+  assert.ok(facts.station.facts.progress > 0 && facts.station.facts.progress <= last.probe.construction);
+  assert.equal(facts.stock.totalEnergy,9550); assert.equal(facts.stock.availableEnergy,9550);
+  assert.equal(facts.endpoint.type,'storage'); assert.equal(facts.source.capacity,1500);
+  assert.ok(facts.source.energy >= 0 && facts.source.energy <= facts.source.capacity);
+  assert.equal(facts.workers.length,1); assert.equal(facts.workers[0].spawning,false);
+  assert.equal(facts.workers[0].name,Object.entries(memory.pipelineBirths).find(([,birth]) => birth.family === 'miner')[0]);
+  assert.ok(facts.authority.generation > 0 && facts.authority.expiresAt > facts.observedAt);
+  assert.ok(facts.spawns.length === 1 && facts.spawns[0].remainingTime === 0);
+
 }
 module.exports = { verifyStartupAdmission };
