@@ -1,3 +1,4 @@
+import { createNativeBoostBirths } from './native-boost-births';
 import type { BoostJob } from '../capabilities/industry/boosts/model';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
@@ -11,7 +12,9 @@ import { NativeBoostCycle } from './native-boost-cycle';
 /** Prepare action gates before room scheduling; bounded execution advances eight jobs fairly per tick. */
 export function createNativeBoosts(state: StatePort,dispatch: ReturnType<typeof createNativeDispatch>,config: (home: string) => Readonly<RuntimeConfig>,failures: Pick<SchedulerPorts,'reportFailure'>) {
   const store = createBoostRequests(state), cycle = new NativeBoostCycle(state,dispatch,config);
+  const adoptBirths = createNativeBoostBirths(state,dispatch);
   function run(): void {
+    adoptBirths();
     for (const job of store.read()) prepare(job);
     for (const job of store.batch(Game.time)) {
       try { cycle.run(job.request.owner,job.request.id); }

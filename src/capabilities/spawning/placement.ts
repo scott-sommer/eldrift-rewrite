@@ -1,3 +1,4 @@
+import { copySpawnBoost } from './boost';
 import { validWorldPosition } from '../../core/geometry/world-position';
 import type { SpawnPlacement, SpawnRequest, SpawnSlot } from './request';
 export function validateSpawnPlacement(value: unknown, room: string): void {
@@ -11,7 +12,7 @@ export function matchesSpawn(request: SpawnRequest, slot: SpawnSlot): boolean {
   return slot.room === request.room && (request.placement === undefined || request.placement.spawn === slot.id);
 }
 export function copySpawnRequest(request: SpawnRequest): SpawnRequest {
-  return { ...request,body: [...request.body],...(request.placement ? { placement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
+  return { ...request,body: [...request.body],...(request.boost ? { boost: copySpawnBoost(request.boost) } : {}),...(request.placement ? { placement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
 }
 
 export function sameSpawnPlacement(a: SpawnPlacement | undefined, b: SpawnPlacement | undefined): boolean {

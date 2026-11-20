@@ -15,7 +15,7 @@ async function boostWorld(server,bot,mode) {
     await server.world.addRoomObject('W0N1','lab',x,y,{ user: bot.id,store,storeCapacityResource: { energy: 2000,...(resource ? { [resource]: 3000 } : {}) },
       storeCapacity: resource ? null : 5000,hits: 500,hitsMax: 500,cooldownTime: 0 });
   }
-  const names = mode === 'contention' ? ['boost-target','boost-target-two'] : ['boost-target'];
+  const names = mode === 'birth' ? [] : mode === 'contention' ? ['boost-target','boost-target-two'] : ['boost-target'];
   for (const [index,name] of names.entries()) await server.world.addRoomObject('W0N1','creep',24,20+index,{ user: bot.id,name,
     body: ['work','work','carry','move','move'].map(type => ({ type,hits: 100 })),store: { energy: 40 },storeCapacity: 50,hits: 500,hitsMax: 500,spawning: false,fatigue: 0,ageTime: 1500 });
   await server.world.addRoomObject('W0N1','creep',20,19,{ user: bot.id,name: 'boost-courier',body: ['carry','move'].map(type => ({ type,hits: 100 })),
@@ -25,6 +25,10 @@ function createBoostChanges() {
   const seen = new Set();
   return async (server,bot,modules,index) => {
     const memory = JSON.parse((await bot.memory) || '{}'), units = memory.boostRows?.at(-1)?.units ?? [];
+    if (index === 1 && memory.creeps?.['boost-target']?.industryBoostBirth) {
+      const main = modules.main+'\n(Memory.boostBirthResets ??= []).push({tick:Game.time,contract:Memory.creeps["boost-target"].industryBoostBirth});';
+      return reloadStampDraft(server,bot,{ ...modules,main },index,[index]);
+    }
     const unit = units.find(unit => unit.status === 'issued' && !seen.has(unit.name+':'+unit.attempt.resource));
     if (!unit) return;
     const key = unit.name+':'+unit.attempt.resource; seen.add(key);
@@ -35,10 +39,10 @@ function createBoostChanges() {
 }
 function verifyBoosts(memory,mode,evidence) {
   const rows = memory.boostRows, last = rows.at(-1), records = memory.eldrift.records;
-  evidence.boosts = { mode,rows,resets: memory.boostResets ?? [],queue: records['industry-boosts/empire'] };
+  evidence.boosts = { mode,rows,resets: memory.boostResets ?? [],birthResets: memory.boostBirthResets ?? [],queue: records['industry-boosts/empire'] };
   assert.equal(rows.length,100); assert.equal(evidence.boosts.queue.owner,'industry'); assert.equal(evidence.boosts.queue.version,1);
   for (const row of rows) for (const unit of row.units) {
-    if (!unit.ready && !unit.acknowledged) assert.equal(unit.energy,40,'Ordinary worker must stay action-gated before readiness/explicit release');
+    if (mode !== 'birth' && !unit.ready && !unit.acknowledged) assert.equal(unit.energy,40,'Ordinary worker must stay action-gated before readiness/explicit release');
     if (unit.status === 'issued') assert.equal(unit.ready,false,'Accepted API call is not body confirmation');
     if (unit.ready) { assert.equal(unit.work,2); if (mode === 'multi') assert.equal(unit.move,1); }
   }
@@ -54,6 +58,17 @@ function verifyBoosts(memory,mode,evidence) {
   if (mode === 'coexist') {
     assert.equal(last.bankOH,10,'Ordinary reactions continue alongside the reserved boost');
     for (const row of rows) for (const unit of row.units) if (unit.lab && ['pending','issued'].includes(unit.status)) assert.ok(!row.reactionLabs.includes(unit.lab),'Boost-reserved lab cannot belong to reaction topology');
+  }
+  if (mode === 'birth') {
+    const job = evidence.boosts.queue.data.jobs[0];
+    assert.equal(job.request.id,'birth:["W0N1","boost-target"]' ); assert.equal(job.request.expiresAt,93);
+    assert.equal(evidence.boosts.birthResets.length,1); assert.equal(evidence.boosts.birthResets[0].tick,2);
+    assert.equal(evidence.boosts.birthResets[0].contract.expiresAt,93);
+    assert.ok(rows.some(row => row.units.length === 0),'Birth must come from actual spawn rather than seeded actor');
+    assert.ok(rows.filter(row => row.units.some(unit => !unit.ready)).every(row => row.progress === 0),'Newborn work must remain gated until body confirmation');
+    assert.equal(last.units[0].workCompound,'XGH2O');
+    assert.equal(records['spawning/W0N1'].version,3);
+    assert.equal(records['spawning/W0N1'].data.requests.length,0);
   }
   if (mode === 'alias') {
     assert.deepEqual(evidence.boosts.queue.data.jobs[0].request.steps,[{ part: 'work',resource: 'GH2O',count: 2 }]);

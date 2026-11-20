@@ -35,7 +35,7 @@ test('schema1 pending requests migrate without loss and older readers refuse the
   const root = {}, state = createMemoryPort(() => root), legacy = request(); delete legacy.placement;
   state.write('spawning/W0N1',{ owner: 'population',version: 1,data: { requests: [{ ...legacy,legacyTag: 'keep' }] } });
   expect(createSpawnQueue(state,'W0N1').list()[0]).toMatchObject({ id: 'bound',legacyTag: 'keep' });
-  expect(state.read('spawning/W0N1')).toMatchObject({ version: 2 });
+  expect(state.read('spawning/W0N1')).toMatchObject({ version: 3 });
   expect(() => openState(state,'spawning/W0N1',{ ...spawnQueueSchema('W0N1'),version: 1 })).toThrow('future version');
 });
 test('legacy wire data cannot silently reinterpret an unsupported placement as a new constraint',() => {

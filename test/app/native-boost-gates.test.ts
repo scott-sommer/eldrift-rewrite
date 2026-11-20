@@ -11,7 +11,7 @@ test('native actor gates use the action adapter name key after checking the nati
   const memory = {}, state = createMemoryPort(() => memory), store = createBoostRequests(state), request = boostRequest();
   store.submit(request,1); store.update(request.owner,request.id,job => { job.status = 'failed'; job.reason = 'required'; });
   const creep = { id: request.unit,name: request.name,my: true,spawning: false,memory: { population: { owner: request.owner,home: request.home } },body: [] };
-  vi.stubGlobal('Game',{ time: 1,getObjectById: () => creep });
+  vi.stubGlobal('Game',{ time: 1,creeps: {},getObjectById: () => creep });
   const claim = vi.fn(() => true), holdBody = vi.fn(() => true);
   const dispatch = { arbiter: { claim },structures: { holdBody } } as unknown as ReturnType<typeof createNativeDispatch>;
   const gate = createNativeBoosts(state,dispatch,() => defaults,{ reportFailure: error => { throw error; } });
@@ -21,7 +21,7 @@ test('native actor gates use the action adapter name key after checking the nati
 
 test('a request pointing at a structure becomes a failed boost without claiming another actor',() => {
   const memory = {}, state = createMemoryPort(() => memory), store = createBoostRequests(state), request = boostRequest();
-  store.submit(request,1); vi.stubGlobal('Game',{ time: 1,getObjectById: () => ({ my: true,structureType: 'lab' }) });
+  store.submit(request,1); vi.stubGlobal('Game',{ time: 1,creeps: {},getObjectById: () => ({ my: true,structureType: 'lab' }) });
   const claim = vi.fn(), failure = vi.fn();
   const dispatch = { arbiter: { claim },structures: {} } as unknown as ReturnType<typeof createNativeDispatch>;
   createNativeBoosts(state,dispatch,() => defaults,{ reportFailure: failure }).run();

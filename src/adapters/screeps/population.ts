@@ -1,10 +1,19 @@
+import { copySpawnBoost, spawnBoostIdentity } from '../../capabilities/spawning/boost';
+import type { BoostRequest } from '../../capabilities/industry/boosts/model';
 import type { SpawnRequest } from '../../capabilities/spawning/request';
 import type { PopulationUnit } from '../../capabilities/spawning/demand';
 declare global {
-  interface CreepMemory { population?: { owner: string; home: string } }
+  interface CreepMemory { industryBoostBirth?: Omit<BoostRequest,'unit' | 'name'>; population?: { owner: string; home: string } }
 }
 export function populationMemory(request: SpawnRequest): CreepMemory {
-  return { population: { owner: request.owner, home: request.home ?? request.room } };
+  const home = request.home ?? request.room;
+  if (!request.boost) return { population: { owner: request.owner,home } };
+  const expiresAt = Game.time+request.body.length*CREEP_SPAWN_TIME+request.boost.timeout;
+  if (!Number.isSafeInteger(expiresAt) || expiresAt >= Number.MAX_SAFE_INTEGER) throw new Error('Invalid birth boost deadline');
+  const boost = copySpawnBoost(request.boost);
+  return { population: { owner: request.owner,home },industryBoostBirth: {
+    id: spawnBoostIdentity(request),owner: request.owner,home,steps: boost.steps,required: boost.required,expiresAt,
+  } };
 }
 /** Home is the demand scope, not the current room during remote work. */
 export function observePopulation(): PopulationUnit[] {

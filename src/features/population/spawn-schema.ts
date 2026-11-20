@@ -11,7 +11,7 @@ function validRequest(value: unknown): value is SpawnRequest {
 }
 export function spawnQueueSchema(room: string): StateSchema<SpawnQueue> {
   return {
-    owner: 'population', version: 2, initial: () => ({ requests: [] }), migrations: { 1: migrateLegacy },
+    owner: 'population', version: 3, initial: () => ({ requests: [] }), migrations: { 1: migrateLegacy,2: migratePlacement },
     valid(value: unknown): value is SpawnQueue {
       if (!value || typeof value !== 'object' || !('requests' in value)) return false;
       const requests = value.requests;
@@ -26,5 +26,11 @@ export function spawnQueueSchema(room: string): StateSchema<SpawnQueue> {
 function migrateLegacy(value: unknown): SpawnQueue {
   if (!value || typeof value !== 'object' || !('requests' in value) || !Array.isArray(value.requests)) throw new Error('Invalid legacy spawn queue');
   if (!value.requests.every(validRequest) || value.requests.some(request => request.placement !== undefined)) throw new Error('Invalid legacy spawn placement');
+  return { ...value,requests: value.requests };
+}
+
+function migratePlacement(value: unknown): SpawnQueue {
+  if (!value || typeof value !== 'object' || !('requests' in value) || !Array.isArray(value.requests)) throw new Error('Invalid legacy spawn queue');
+  if (!value.requests.every(validRequest) || value.requests.some(request => request.boost !== undefined)) throw new Error('Invalid legacy spawn boost');
   return { ...value,requests: value.requests };
 }

@@ -11,6 +11,16 @@ export function createBoostRequests(state: StatePort) {
     if (!job) throw new Error('Boost request is absent');
     change(job); saveState(state,key,boostSchema,saved);
   }
+  function submit(request: BoostRequest,tick: number,adoptExpired: boolean): boolean {
+    validateSubmission(request,tick,adoptExpired);
+    const saved = openState(state,key,boostSchema), previous = saved.jobs.find(job => boostIdentity(job.request) === boostIdentity(request));
+    if (previous) { if (requestSignature(previous.request) !== requestSignature(request)) throw new Error('Boost identity conflict'); return true; }
+    if (saved.jobs.some(job => job.request.unit === request.unit && holdsBoostUnit(job))) return false;
+    if (saved.jobs.length >= 64) saved.jobs = saved.jobs.filter(job => !job.acknowledged || job.lab !== null);
+    if (saved.jobs.length >= 64) return false;
+    saved.jobs.push(initialJob(request,tick));
+    saveState(state,key,boostSchema,saved); return true;
+  }
   return {
     read: () => read()?.jobs ?? [], update,
     get: (owner: string,id: string) => read()?.jobs.find(job => job.request.owner === owner && job.request.id === id) ?? null,
@@ -19,16 +29,8 @@ export function createBoostRequests(state: StatePort) {
       if (!job) return 'absent';
       return terminalBoost(job) ? (job.status === 'confirmed' ? 'ready' : 'failed') : 'waiting';
     },
-    submit(request: BoostRequest,tick: number): boolean {
-      if (!validBoostRequest(request) || !Number.isSafeInteger(tick) || tick < 0 || request.expiresAt <= tick) throw new Error('Invalid boost request');
-      const saved = openState(state,key,boostSchema), previous = saved.jobs.find(job => boostIdentity(job.request) === boostIdentity(request));
-      if (previous) { if (requestSignature(previous.request) !== requestSignature(request)) throw new Error('Boost identity conflict'); return true; }
-      if (saved.jobs.some(job => job.request.unit === request.unit && holdsBoostUnit(job))) return false;
-      if (saved.jobs.length >= 64) saved.jobs = saved.jobs.filter(job => !job.acknowledged || job.lab !== null);
-      if (saved.jobs.length >= 64) return false;
-      saved.jobs.push({ request,status: 'pending',lab: null,attempt: null,observed: request.steps.map(() => 0),cancelRequested: false,acknowledged: false,reason: null });
-      saveState(state,key,boostSchema,saved); return true;
-    },
+    submit: (request: BoostRequest,tick: number) => submit(request,tick,false),
+    adoptBirth: (request: BoostRequest,tick: number) => submit(request,tick,true),
     cancel(owner: string,id: string): void { update(owner,id,job => { if (!terminalBoost(job)) job.cancelRequested = true; }); },
     acknowledge(owner: string,id: string): void { update(owner,id,job => { if (!terminalBoost(job)) throw new Error('Boost request is not settled'); job.acknowledged = true; }); },
     batch(tick: number,maximum = 8): readonly BoostJob[] {
@@ -50,4 +52,13 @@ export function reservedBoostLabs(state: StatePort,room: string): readonly strin
 
 function requestSignature(request: BoostRequest): string {
   return JSON.stringify([request.id,request.owner,request.unit,request.name,request.home,request.steps.map(step => [step.part,step.resource,step.count]),request.expiresAt,request.required,request.preferredLab ?? null]);
+}
+
+function validateSubmission(request: BoostRequest,tick: number,adoptExpired: boolean): void {
+  if (!validBoostRequest(request) || !Number.isSafeInteger(tick) || tick < 0 || (request.expiresAt <= tick && !adoptExpired)) throw new Error('Invalid boost request');
+}
+function initialJob(request: BoostRequest,tick: number): BoostJob {
+  const expired = request.expiresAt <= tick;
+  return { request,status: expired ? 'expired' : 'pending',lab: null,attempt: null,observed: request.steps.map(() => 0),
+    cancelRequested: false,acknowledged: false,reason: expired ? 'deadline' : null };
 }

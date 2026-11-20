@@ -1,3 +1,4 @@
+import type { SpawnBoost } from './boost';
 import type { Position } from '../movement/step';
 import type { BodyPart } from './body';
 export interface SpawnPlacement { spawn: string; exit: Position }
@@ -14,6 +15,8 @@ export interface SpawnRequest {
   body: readonly BodyPart[];
   /** A quoted origin is a constraint, not a preference for any idle room spawn. */
   placement?: SpawnPlacement;
+  /** Exact boost policy chosen by the owning producer; industry confirms after birth. */
+  boost?: SpawnBoost;
 }
 export interface SpawnSlot { id: string; room: string; busy: boolean }
 export interface SpawnAssignment { spawn: string; request: SpawnRequest; cost: number }

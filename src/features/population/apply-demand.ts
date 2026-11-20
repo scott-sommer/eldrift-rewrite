@@ -1,3 +1,4 @@
+import type { SpawnBoost } from '../../capabilities/spawning/boost';
 import type { SpawnPlacement } from '../../capabilities/spawning/request';
 import { copySpawnRequest } from '../../capabilities/spawning/placement';
 import { validateRequest } from '../../capabilities/spawning/allocate';
@@ -12,6 +13,7 @@ export interface DemandPlan extends PopulationDemand {
   priority: number;
   requestLifetime: number;
   placement?: SpawnPlacement;
+  boost?: SpawnBoost;
 }
 export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: readonly PopulationUnit[], tick: number) {
   if (plan.body.length !== plan.replacementParts) throw new Error('Replacement body differs from demand timing');
@@ -33,5 +35,5 @@ export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: 
 
 
 function demandRequest(plan: DemandPlan, id: string, tick: number) {
-  return copySpawnRequest({ id,name: id,owner: plan.owner,room: plan.room,priority: plan.priority,readyAt: tick,expiresAt: tick+plan.requestLifetime,body: plan.body,...(plan.placement !== undefined ? { placement: plan.placement } : {}) });
+  return copySpawnRequest({ id,name: id,owner: plan.owner,room: plan.room,priority: plan.priority,readyAt: tick,expiresAt: tick+plan.requestLifetime,body: plan.body,...(plan.boost ? { boost: plan.boost } : {}),...(plan.placement !== undefined ? { placement: plan.placement } : {}) });
 }
