@@ -89,3 +89,27 @@ test('outside income may finance workers but cannot be claimed as this source pr
   expect(result.delivery.deliveredEnergy).toBe(0);
   expect(result.projectCash).toMatchObject({ deliveredEnergy: 0,birthEnergy: 400,homeCashSurplus: -400,constructionRecoveryMargin: -404,firstRecoveryAt: null });
 });
+
+test('late-settling receipts cannot fund early bodies even when an earlier action emitted them first',() => {
+  const view = earningInput(); view.project.spawning.cash.horizon = 100;
+  view.project.spawning.cash.homeEnergy = 400; view.project.spawning.funding.capacity = 400; view.project.spawning.funding.initialEnergy = 400;
+  view.project.spawning.spawns = [{ id: 'a',room: 'home',availableAt: 0 },{ id: 'b',room: 'home',availableAt: 0 }];
+  const base = view.project.spawning.requests[1]!;
+  view.project.spawning.requests = [view.project.spawning.requests[0]!,base,{ ...base,id: 'second',name: 'second',priority: 2 },{ ...base,id: 'future',name: 'future',priority: 3 }];
+  view.couriers = [{ ...view.couriers[0]!,deliveryTicks: 50 },{ ...view.couriers[0]!,request: 'second' },{ ...view.couriers[0]!,request: 'future' }];
+  const project = createStartupProject(view);
+  expect(project.advance(70)).toMatchObject({ through: 70,accountedThrough: 70,done: false });
+  project.advance(31); const result = project.result();
+  expect(result.delivery.receipts.map(receipt => [receipt.tick,receipt.energy])).toEqual([[69,50],[92,50],[95,50]]);
+  expect(result.spawning.births.find(birth => birth.request === 'future')?.startAt).toBe(94);
+});
+test('household recovery waits for actual construction readiness rather than clamping an earlier crossing',() => {
+  const view = earningInput(); view.project.spawning.requests = view.project.spawning.requests.filter(request => request.id !== 'later');
+  view.couriers = view.couriers.filter(worker => worker.request !== 'later');
+  view.project.spawning.cash.flows = [{ id: 'outside',kind: 'delivery',energy: 500,firstTick: 1,interval: null,occurrences: 1 }];
+  const recovered = forecastStartupProject(view);
+  expect(recovered.spawning.cash.firstRecoveryAt).toBe(1); expect(recovered.cash.firstRecoveryAt).toBe(13);
+  view.project.spawning.cash.flows = [...view.project.spawning.cash.flows,{ id: 'expense',kind: 'upkeep',energy: 600,firstTick: 12,interval: null,occurrences: 1 }];
+  const interrupted = forecastStartupProject(view);
+  expect(interrupted.spawning.cash.firstRecoveryAt).toBe(1); expect(interrupted.cash.firstRecoveryAt).toBeNull();
+});

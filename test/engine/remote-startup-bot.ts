@@ -14,8 +14,9 @@ interface StartupMemory extends PipelineMemory {
   startupConstruction?: number; startupSites?: Record<string,{ progress: number; total: number; complete: boolean }>;
   startupCalls?: { tick: number; name: string; family: string; code: number }[]; startupStaleAt?: number;
 }
+type StartupMode = 'staged' | 'refusal' | 'admission';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
-export function runStartup(mode: 'staged' | 'refusal'): void {
+export function runStartup(mode: StartupMode): void {
   const memory = Memory as StartupMemory;
   if (Game.time === 1) setup(mode);
   if (mode === 'refusal') refusalStage(memory);
@@ -32,7 +33,7 @@ export function runStartup(mode: 'staged' | 'refusal'): void {
   const sites = Object.values(memory.startupSites ?? {});
   snapshotPipeline(state,memory,{ construction: memory.startupConstruction ?? 0,sites,staleAt: memory.startupStaleAt ?? null,localExpiryEnergy: attrition.localExpiryEnergy,inactiveEnergy: attrition.inactiveEnergy,recoveredAttempts: attrition.recoveredAttempts });
 }
-function setup(mode: 'staged' | 'refusal'): void {
+function setup(mode: StartupMode): void {
   const config = openState(state,'operator/config',operatorSchema);
   config.empire = { ...pipelineScenarioConfig(),remoteStartupPolicy: 'staged',remoteStartupEnergyReserve: mode === 'refusal' ? 10000 : 350,
     remoteContainersEnabled: true,remoteRoadsEnabled: false,constructionEnabled: true,constructionCpuBudget: 100 };
