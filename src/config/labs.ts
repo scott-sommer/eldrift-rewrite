@@ -1,4 +1,5 @@
 export interface LabConfig {
+  labTransportEnabled: boolean; labTransportBatch: number; labSupplyReserve: number; labTransportPriority: number;
   labReactionsEnabled: boolean;
   labReactionProduct: string;
   labReactionTarget: number;
@@ -6,10 +7,13 @@ export interface LabConfig {
   labReservedIds: readonly string[];
 }
 export const labDefaults: Readonly<LabConfig> = Object.freeze({
+  labTransportEnabled: true,labTransportBatch: 200,labSupplyReserve: 0,labTransportPriority: 8,
   labReactionsEnabled: false,labReactionProduct: '',labReactionTarget: 3000,labReagentReserve: 0,labReservedIds: Object.freeze([]),
 });
 function amount(value: unknown): boolean { return Number.isSafeInteger(value) && Number(value) >= 0 && Number(value) <= 1000000; }
 export const labValidators: { [K in keyof LabConfig]: (value: unknown) => boolean } = {
+  labTransportEnabled: value => typeof value === 'boolean',labTransportBatch: value => amount(value) && Number(value) >= 1 && Number(value) <= 3000,
+  labSupplyReserve: amount,labTransportPriority: amount,
   labReactionsEnabled: value => typeof value === 'boolean',
   labReactionProduct: value => typeof value === 'string' && value.length <= 20 && /^[A-Za-z0-9]*$/.test(value),
   labReactionTarget: amount,labReagentReserve: amount,
