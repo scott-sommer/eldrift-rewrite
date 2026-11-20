@@ -81,3 +81,6 @@ Subsequent increment: [boost requirements through ordinary spawning](industry-bo
 
 
 Subsequent increment: [automatic worker boost policy](worker-boost-policy.md) adds opt-in ordinary upgrader/builder selection, native funding/promise projection and worker-owned outcome consumption. Earlier manifests retain their source-specific scope and configuration.
+
+
+Subsequent increment: [operator boost commands](operator-boosts.md) exposes detached inspection, exact/alias admission, cancellation and settled acknowledgement in the packaged bot. General operator, lab/flag and remaining parity obligations are not closed by this API.

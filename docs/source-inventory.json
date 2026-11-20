@@ -61,11 +61,12 @@
     "sha256": "F0A8EB8822CD221227FD3C511546C732B43FED145B035835AD31511C76A32D2C",
     "physicalLines": 163,
     "reviewStatus": "boost orchestration, nine alias/tier mappings and remote-upgrader exception reviewed; producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: observed boost orchestration, alias/tier selection, shared birth intake and opt-in ordinary worker producers qualified; operator/specialist/empire parity remains open",
+    "implementationStatus": "partial: observed boosts, alias/tier policy, shared birth/worker producers and packaged boost operator commands qualified; specialist/empire/general operator parity remains open",
     "evidence": [
       "docs/industry-boosts.md",
       "docs/industry-boost-births.md",
-      "docs/worker-boost-policy.md"
+      "docs/worker-boost-policy.md",
+      "docs/operator-boosts.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -99,8 +100,8 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "866d7509ae0e278179c34abd6783726157f26a62",
-      "required": "Operator bridges, non-worker/specialist mission producers, optimized boosted body policies, empire allocation and wider recovery/release evidence remain required",
+      "commit": "f3b8cb093b89982fc468486b93186232cf9a2a3c",
+      "required": "General operator/lab/flag controls, non-worker/specialist producers, optimized boosted body policies, empire allocation and wider recovery/release evidence remain required",
       "tests": [
         "test/capabilities/boost-observation.test.ts",
         "test/features/boost-requests.test.ts",
@@ -113,9 +114,11 @@
         "test/features/worker-boost-policy.test.ts",
         "test/app/native-worker-boost-budget.test.ts",
         "test/app/native-worker-boost-outcomes.test.ts",
-        "test/engine/worker-boost-cycle.ts"
+        "test/engine/worker-boost-cycle.ts",
+        "test/features/operator-boosts.test.ts",
+        "test/app/native-industry-operator.test.ts"
       ],
-      "status": "partial; automatic local worker policy/shortage/fallback and observed birth/readiness/reset qualified; not full module parity"
+      "status": "partial; packaged operator inspect/admit/cancel/ack commands and native in-flight cancellation/reset qualified; not full module parity"
     }
   },
   {

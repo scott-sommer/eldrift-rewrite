@@ -44,3 +44,6 @@ The normal case ends with no pending spawn request, lab mineral/energy, boost cl
 No persistence schema changes accompany this increment: spawn queues remain schema 3 and industry queues remain schema 1. Remove `workerBoostPolicy` and `workerBoostTimeout` from configured layers before running earlier configuration validators. Turning the policy off affects new selection, not immutable queued contracts, admitted native effects or required failures. Preserve existing birth metadata, boost outcomes, supply claims, tasks and journals through rollback; ED-44 retains the migration/release rehearsal obligations.
 
 Remaining ED-36 obligations include operator controls, non-worker/specialist mission producers, optimized boosted body policies, empire-wide resource/production allocation and broader visibility/depletion/lifecycle qualification. Automatic worker selection is not full spawner, booster or resource-manager parity.
+
+
+Subsequent increment: [operator boost commands](operator-boosts.md) exposes detached inspection, exact/alias admission, cancellation and settled acknowledgement in the packaged bot. General operator, lab/flag and remaining parity obligations are not closed by this API.
