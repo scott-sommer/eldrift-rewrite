@@ -33,12 +33,13 @@ export function advanceStartupCouriers(workers: StartupCourierState[], result: S
   }
 }
 function collect(worker: StartupCourierState, result: StartupDeliveryForecast, tick: number): void {
-  if (tick >= worker.stopAt || tick+worker.collectionTicks+worker.returnTicks+worker.deliveryTicks >= worker.expiresAt || result.containerEnergy < worker.minimumBatch) return;
+  if (tick >= worker.stopAt || tick+worker.collectionTicks+worker.returnTicks+worker.deliveryTicks > worker.expiresAt || result.containerEnergy < worker.minimumBatch) return;
   worker.cargo = Math.min(worker.capacity,result.containerEnergy); result.containerEnergy -= worker.cargo;
   worker.phase = 'deliver'; worker.nextAt = tick+worker.collectionTicks+worker.returnTicks;
 }
+/** The last live action may settle at expiresAt; only effects after that boundary are refused. */
 function deliver(worker: StartupCourierState, result: StartupDeliveryForecast, tick: number, horizon: number, sink: StartupSink): void {
-  if (tick+worker.deliveryTicks > horizon || tick+worker.deliveryTicks >= worker.expiresAt) return;
+  if (tick+worker.deliveryTicks > horizon || tick+worker.deliveryTicks > worker.expiresAt) return;
   const amount = sink.take(worker.cargo);
   if (amount === 0) return;
   result.receipts.push({ tick: tick+worker.deliveryTicks,energy: amount,request: worker.request });
