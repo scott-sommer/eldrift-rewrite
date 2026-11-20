@@ -84,3 +84,6 @@ Subsequent increment: [automatic worker boost policy](worker-boost-policy.md) ad
 
 
 Subsequent increment: [operator boost commands](operator-boosts.md) exposes detached inspection, exact/alias admission, cancellation and settled acknowledgement in the packaged bot. General operator, lab/flag and remaining parity obligations are not closed by this API.
+
+
+Subsequent increment: [configured boost-lab roles](industry-boost-lab-roles.md) adds explicit compound buffers, shared preload/refill, durable retiring-role exclusion and role-aware actor funding. Automatic/bulk assignment and remaining legacy compatibility stay open.

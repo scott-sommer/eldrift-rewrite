@@ -122,3 +122,8 @@ scoutFallbackFlag='' disables the optional scout flag goal. A nonblank selector 
 ### Lab console operations
 
 `require('main').industry.labs` exposes `inspect`, `configure`, `clearOverride`, `temporary` and `clearTemporary` over existing lab settings. Mutations require current room ownership and preserve unrelated layers/temporary deadlines; gameplay adopts changes at its next configuration snapshot. See [operator lab policy](operator-labs.md) for usage, cancellation/expiry behavior and qualified limits.
+
+
+### Dedicated boost-lab buffers
+
+`labBoostRoles` defaults to `[]`; each of at most ten distinct lab records specifies `lab`, `resource`, `mineral` (0–3000) and `energy` (0–2000). These minimum buffers preload through ordinary hauling and stay out of reaction roles. Changes/removal wait for admitted work and pinned boosts to settle. See [boost-lab roles](industry-boost-lab-roles.md) for ownership, scheduler prerequisites and the new persistent namespace/rollback obligations.

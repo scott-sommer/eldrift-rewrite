@@ -1,0 +1,1458 @@
+{
+  "sourceCommit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+  "implementationCommit": "7246e4a0ba4cce903631c5b0b21175d753288740",
+  "scope": "Configured compound-specific boost-lab buffers with shared preload/refill, bounded durable retiring-role ownership, reaction exclusion and actor/funding access constraints. Native actual boost consumption, in-flight compound switch/removal and module reloads. Automatic nearest-spawn allocation/bulk compatibility remain open.",
+  "checks": {
+    "quality": "passed; pinned Lizard 1.22.2; 882 production / 725 test files; 0 violations; types/lint/boundaries passed",
+    "unit": {
+      "cases": 1926,
+      "files": 473,
+      "seconds": 12.9,
+      "note": "Local checks before fixture-only reload/identity verification additions; final CI reruns exact source."
+    },
+    "focusedAndSmoke": {
+      "cases": 24,
+      "files": 6,
+      "seconds": 0.377
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.223
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1259456
+    },
+    "bundle": "passed"
+  },
+  "nativeMilliseconds": 78023,
+  "native": [
+    {
+      "scenario": "--boost-role",
+      "milliseconds": 10630,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-V9e1Xy\\evidence.json",
+      "status": "passed",
+      "rawSha256": "7cc22f4144d49fa7a3214cff0dc9439cbd5a586e51a3649cf6e36a6830cd6a0d",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "33c504a1e631afb1d4203f05859f5ac81e28977f1e3ef91e76b5a4ea16cbd1c3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-boost-role-measurements.jsonl",
+      "rows": 320,
+      "rowsSha256": "b272ef163c8c96872d8c67dea065a994bbdc636b7b4e8271cd43e52a02f99c2e",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "9fb36267a6f304022539417574569c885529ececd437376fee8106f884b5100d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boostRoles": {
+        "mode": "normal",
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "roles": [
+              {
+                "lab": "647aac697318355",
+                "resource": "XGH2O",
+                "mineral": 60,
+                "energy": 40
+              }
+            ]
+          }
+        },
+        "reloads": [
+          8,
+          12,
+          31,
+          181
+        ],
+        "rowsFile": "boost-roles-boost-role-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "f926c862503e44da114e1742c84b1fc961b8907614025b17e68f52ba95b9ecc5",
+        "last": {
+          "tick": 320,
+          "lab": "647aac697318355",
+          "desired": "XGH2O",
+          "bound": "XGH2O",
+          "mineral": "XGH2O",
+          "amount": 60,
+          "energy": 40,
+          "cargo": 0,
+          "cargoX": 0,
+          "bankX": 0,
+          "bankK": 10,
+          "bankZO": 30,
+          "bankOH": 10,
+          "work": 2,
+          "ready": true,
+          "reactionLabs": [
+            "ec2cac69732d281",
+            "c2f5ac69732c1c4",
+            "0d11ac697325253"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--boost-role-switch",
+      "milliseconds": 9821,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tuyQbn\\evidence.json",
+      "status": "passed",
+      "rawSha256": "9229ed8b9551b8fb55f0283d236457f44aa9a763a06b607dc4ad5e40700556ed",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "c251e6405905cebc0fc856668298064cf7b2b3c98c35e09db41e8556638e7307",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-boost-role-switch-measurements.jsonl",
+      "rows": 320,
+      "rowsSha256": "b39eb8a26b313b0146f392d3335d5155165aea53303ee2ea43ee9688e1368e51",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "ee3d8a8cf38197bcb0b67dc099c7077b0b74c861274a7850de27077fdc532cdf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boostRoles": {
+        "mode": "switch",
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "roles": [
+              {
+                "lab": "f754ac6c09b3c4b",
+                "resource": "ZO",
+                "mineral": 30,
+                "energy": 20
+              }
+            ]
+          }
+        },
+        "reloads": [
+          8,
+          12,
+          31,
+          181
+        ],
+        "rowsFile": "boost-roles-boost-role-switch-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "6ec1c84d75caeb5c71f2ad57dcb2ac3ca1bd4341621c5799438f2eeffc06b916",
+        "last": {
+          "tick": 320,
+          "lab": "f754ac6c09b3c4b",
+          "desired": "ZO",
+          "bound": "ZO",
+          "mineral": "ZO",
+          "amount": 30,
+          "energy": 20,
+          "cargo": 0,
+          "cargoX": 0,
+          "bankX": 120,
+          "bankK": 10,
+          "bankZO": 0,
+          "bankOH": 10,
+          "work": 0,
+          "ready": false,
+          "reactionLabs": [
+            "7afdac6c09c248e",
+            "2254ac6c09cab26",
+            "ffc2ac6c09c0161"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--boost-role-remove",
+      "milliseconds": 9211,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UGaFgL\\evidence.json",
+      "status": "passed",
+      "rawSha256": "e6ad346082e21c2d09a98ad69ffe687de342a781d175c8e27e0116584d833741",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "0f3a8c508af58cca55051eb9dda0e2eb570f73f3d27d1dbb03087382566fc87c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-boost-role-remove-measurements.jsonl",
+      "rows": 320,
+      "rowsSha256": "abfaa788b5c2320ad53e8d2f2c52a11c3f5086ef59a147ec0b0186da4751a35c",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "ad6c483955ac6ce1553360c6bcf9bbae7a9c89225b69d75fd6c804aff44f9b0e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boostRoles": {
+        "mode": "remove",
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "roles": []
+          }
+        },
+        "reloads": [
+          8,
+          12,
+          31,
+          181
+        ],
+        "rowsFile": "boost-roles-boost-role-remove-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "ee2956e7fd4d03e8dccee3f3fd4d4e7ecab15543bec2bbf961abb676127ef424",
+        "last": {
+          "tick": 320,
+          "lab": "b66aac6e6fe5f6c",
+          "desired": null,
+          "bound": null,
+          "mineral": null,
+          "amount": 0,
+          "energy": 0,
+          "cargo": 0,
+          "cargoX": 0,
+          "bankX": 120,
+          "bankK": 10,
+          "bankZO": 30,
+          "bankOH": 10,
+          "work": 0,
+          "ready": false,
+          "reactionLabs": [
+            "caf8ac6e6fe412e",
+            "15aaac6e6ff3b4f",
+            "b66aac6e6fe5f6c",
+            "ff51ac6e6ff82c9"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--lab-operator",
+      "milliseconds": 9862,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GskuEb\\evidence.json",
+      "status": "passed",
+      "rawSha256": "134e773f8fa193079c06ef36635dd2aad3eebdaa126c8bd8d3c2143279323602",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "5ab497305c0ed428037667c1b29b7935260e02212a1100207a8f00dee626aad6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-lab-operator-measurements.jsonl",
+      "rows": 320,
+      "rowsSha256": "d8d101e7e75678e79528e357ab7bba2aee901a651ce5bf7ffb2c7d6443e7c53c",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "dfb24f8c396c44f38abf8173d6a2baab6bd7dde922570b872f0787fc8b48c2d5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labSupply": {
+        "mode": "operator",
+        "reloads": [
+          31,
+          181
+        ],
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH",
+              "reagents": [
+                "H",
+                "U"
+              ],
+              "inputs": [
+                "8e48ac70afa8ca5",
+                "a1caac70af9c10d"
+              ],
+              "outputs": [
+                "f443ac70af938ca"
+              ],
+              "roster": [
+                "8e48ac70afa8ca5",
+                "a1caac70af9c10d",
+                "f443ac70af938ca"
+              ]
+            }
+          }
+        },
+        "retainedReceipts": [
+          {
+            "request": {
+              "id": "[\"drain\",\"a1caac70af9c10d\",\"b28dac70af9ba85\",\"O\",140]",
+              "owner": "industry-labs:W0N1:a1caac70af9c10d",
+              "source": "a1caac70af9c10d",
+              "sink": "b28dac70af9ba85",
+              "resource": "O",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 240
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bc5bac70afa6702\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bc5bac70afa6702\\\\\\\",\\\\\\\"industry-labs:W0N1:a1caac70af9c10d\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"a1caac70af9c10d\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b28dac70af9ba85\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"O\\\\\\\\\\\\\\\",140]\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"147\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"b28dac70af9ba85\",\"8e48ac70afa8ca5\",\"H\",140]",
+              "owner": "industry-labs:W0N1:8e48ac70afa8ca5",
+              "source": "b28dac70af9ba85",
+              "sink": "8e48ac70afa8ca5",
+              "resource": "H",
+              "quantity": 15,
+              "priority": 8,
+              "expiresAt": 240
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bc5bac70afa6702\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bc5bac70afa6702\\\\\\\",\\\\\\\"industry-labs:W0N1:8e48ac70afa8ca5\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b28dac70af9ba85\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8e48ac70afa8ca5\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"H\\\\\\\\\\\\\\\",140]\\\\\\\",\\\\\\\"141\\\\\\\"]\\\"]\",\"143\"]",
+                "amount": 15
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"b28dac70af9ba85\",\"a1caac70af9c10d\",\"U\",148]",
+              "owner": "industry-labs:W0N1:a1caac70af9c10d",
+              "source": "b28dac70af9ba85",
+              "sink": "a1caac70af9c10d",
+              "resource": "U",
+              "quantity": 20,
+              "priority": 8,
+              "expiresAt": 248
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bc5bac70afa6702\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bc5bac70afa6702\\\\\\\",\\\\\\\"industry-labs:W0N1:a1caac70af9c10d\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b28dac70af9ba85\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"a1caac70af9c10d\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"U\\\\\\\\\\\\\\\",148]\\\\\\\",\\\\\\\"149\\\\\\\"]\\\"]\",\"151\"]",
+                "amount": 20
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f443ac70af938ca\",\"b28dac70af9ba85\",\"UH\",153]",
+              "owner": "industry-labs:W0N1:f443ac70af938ca",
+              "source": "f443ac70af938ca",
+              "sink": "b28dac70af9ba85",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 253
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bc5bac70afa6702\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bc5bac70afa6702\\\\\\\",\\\\\\\"industry-labs:W0N1:f443ac70af938ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f443ac70af938ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b28dac70af9ba85\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",153]\\\\\\\",\\\\\\\"154\\\\\\\"]\\\"]\",\"156\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f443ac70af938ca\",\"b28dac70af9ba85\",\"UH\",163]",
+              "owner": "industry-labs:W0N1:f443ac70af938ca",
+              "source": "f443ac70af938ca",
+              "sink": "b28dac70af9ba85",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 263
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bc5bac70afa6702\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bc5bac70afa6702\\\\\\\",\\\\\\\"industry-labs:W0N1:f443ac70af938ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f443ac70af938ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b28dac70af9ba85\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",163]\\\\\\\",\\\\\\\"164\\\\\\\"]\\\"]\",\"165\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f443ac70af938ca\",\"b28dac70af9ba85\",\"UH\",173]",
+              "owner": "industry-labs:W0N1:f443ac70af938ca",
+              "source": "f443ac70af938ca",
+              "sink": "b28dac70af9ba85",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 273
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bc5bac70afa6702\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bc5bac70afa6702\\\\\\\",\\\\\\\"industry-labs:W0N1:f443ac70af938ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f443ac70af938ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"b28dac70af9ba85\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",173]\\\\\\\",\\\\\\\"174\\\\\\\"]\\\"]\",\"175\"]",
+                "amount": 5
+              }
+            ]
+          }
+        ],
+        "rowsFile": "boost-roles-lab-operator-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "9e4e1048a1f681b035f3c46555ed6d07bee4aa332d0ace9af12a2ca2f6c94bff",
+        "last": {
+          "tick": 320,
+          "product": "UH",
+          "enabled": true,
+          "source": "roomOverride",
+          "temporaryActive": false,
+          "labOH": 0,
+          "labUH": 0,
+          "bankOH": 15,
+          "bankUH": 15,
+          "bankX": 30,
+          "cargo": 0,
+          "assignment": "UH",
+          "receipts": 55
+        }
+      }
+    },
+    {
+      "scenario": "--lab-chain",
+      "milliseconds": 20887,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-60x08Y\\evidence.json",
+      "status": "passed",
+      "rawSha256": "66f600b9331277673a5ae70d0f05a6a361b70898f79d66430c916ba71737a1c7",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "d6fccb6d5126dda8bfeee70ab8f62ab4cdb40f45d9e58c02d2f971bcc6132952",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-lab-chain-measurements.jsonl",
+      "rows": 640,
+      "rowsSha256": "dee7dd8a12a8c3ca0dcf5bf71635cdfa8ac423aa68cccbd49921080010faf471",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "0f344d8a1ed241f003fcea5752b59ce527e1806784673db1026e78b9757f4c25",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "normal",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,0,0,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "4abdac731754381",
+                "88c3ac7317475b3"
+              ],
+              "outputs": [
+                "d0cdac7317582cf"
+              ],
+              "roster": [
+                "4abdac731754381",
+                "88c3ac7317475b3",
+                "d0cdac7317582cf"
+              ]
+            }
+          }
+        },
+        "rowsFile": "boost-roles-lab-chain-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "5e8f78d7b1abe6c1902bc2a73407e55fb6d393ec7c71d5697544eea517d63a2f",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 80,
+            "O": 90,
+            "U": 90
+          },
+          "pool": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 80,
+            "O": 90,
+            "U": 90
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        }
+      }
+    },
+    {
+      "scenario": "--boost-operator",
+      "milliseconds": 3405,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-21WN3K\\evidence.json",
+      "status": "passed",
+      "rawSha256": "a6e4b22b9d5d1baad7331c6dc9ee52d1ed5909b9a9daf07e9112c64564b22e78",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "324a952bdda62858bff920827ef348bc07fc95d98d3a87e5e92bf0252e9da2e4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-boost-operator-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "42fe621216607a2e619870f8d83e63e6606a5fc3c5f336417b7f7e335fc22e80",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "39008bff7893d4e468093a9d0ca89728e5f12b718cf0b5a2b873048111c3ed12",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "operator",
+        "resets": [
+          {
+            "tick": 14,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 13,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 14,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "expiresAt": 80,
+                  "required": true,
+                  "preferredLab": "1b95ac783108788",
+                  "unit": "dd14ac783109562",
+                  "name": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ]
+                },
+                "status": "cancelled",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": true,
+                "acknowledged": true,
+                "reason": "caller-cancelled"
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-roles-boost-operator-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "a60fd42d5ff9eb6341cf281c2779fdf4fb3c45fed9dae1d9f71520503b1e718f",
+        "last": {
+          "tick": 100,
+          "progress": 216,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "cancelled",
+              "ready": false,
+              "acknowledged": true,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 32,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--boost-coexist",
+      "milliseconds": 3539,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-f6nB4L\\evidence.json",
+      "status": "passed",
+      "rawSha256": "d28f648d64921834a8d8b69687640e1118a63ec5505d9fe70ea90a972a6d65d5",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "3742682dde99fef6079d41c61892913487ee114260fd24a9faf72837ce880b6b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-boost-coexist-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "ab8d5006bfa362f2c4c0c127a4f9c754f32321e3d77e5263f134b8b65b9ea710",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "1f4919a35a9d998f91f8a7ae90f0e26321cc9dbebf368167429cc95f475cc63e",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "coexist",
+        "resets": [
+          {
+            "tick": 13,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 12,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 13,
+            "jobs": [
+              {
+                "request": {
+                  "id": "boost-target",
+                  "owner": "work:W0N1:upgrader",
+                  "unit": "f635ac790595455",
+                  "name": "boost-target",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "preferredLab": "afbfac7905961e4",
+                  "expiresAt": 80
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": true,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-roles-boost-coexist-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "632b60d9b7078335ea4cb37d302eb2669ac0f9237c5aeb7766088fb9efb15c94",
+        "last": {
+          "tick": 100,
+          "progress": 296,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": true,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 42,
+              "x": 19,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 10,
+          "reactionLabs": [
+            "cb54ac79059a179",
+            "3ae8ac79059113a",
+            "5acfac79059c7a4",
+            "afbfac7905961e4"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--worker-boost",
+      "milliseconds": 3930,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5SNc2D\\evidence.json",
+      "status": "passed",
+      "rawSha256": "7e43bcfe57cc7fb127bb4ad15665797e8ad6fb3a065e5ef0912e76e05bdfb64d",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "462d5a5a1100972d934e2902f5aa323a41fbd8d665e38a31e6d9550d7211c6aa",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-worker-boost-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "6502be6292ac091f731432ce23ccdce55a32ca33bef8c818e812e0038e136193",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "eaf388fb9aad70fafeea9aac38a03f042280a395df92265144bf770f30dc3fff",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "workerBoosts": {
+        "mode": "normal",
+        "jobs": [
+          {
+            "request": {
+              "id": "birth:[\"W0N1\",\"ed-W0N1-1\"]",
+              "owner": "work:W0N1:upgrader",
+              "home": "W0N1",
+              "steps": [
+                {
+                  "part": "work",
+                  "resource": "XGH2O",
+                  "count": 1
+                }
+              ],
+              "required": true,
+              "expiresAt": 93,
+              "unit": "3473ac79f2d1729",
+              "name": "ed-W0N1-1"
+            },
+            "status": "confirmed",
+            "lab": null,
+            "attempt": null,
+            "observed": [
+              1
+            ],
+            "cancelRequested": false,
+            "acknowledged": true,
+            "reason": null
+          }
+        ],
+        "resets": [
+          {
+            "tick": 19,
+            "name": "ed-W0N1-1",
+            "attempt": {
+              "tick": 18,
+              "before": 0,
+              "count": 1,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [
+          {
+            "tick": 2,
+            "contract": {
+              "id": "birth:[\"W0N1\",\"ed-W0N1-1\"]",
+              "owner": "work:W0N1:upgrader",
+              "home": "W0N1",
+              "steps": [
+                {
+                  "part": "work",
+                  "resource": "XGH2O",
+                  "count": 1
+                }
+              ],
+              "required": true,
+              "expiresAt": 93
+            }
+          }
+        ],
+        "rowsFile": "boost-roles-worker-boost-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "15313a6d07d405adbaf87ba2b6602caf474db614a412aeb8423d7d3fdaaabcd0",
+        "last": {
+          "tick": 100,
+          "progress": 144,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "ready": true,
+              "status": "confirmed",
+              "acknowledged": true,
+              "work": 1,
+              "energy": 28,
+              "attempt": null
+            }
+          ],
+          "pending": 0,
+          "contracts": 0,
+          "labMineral": 0,
+          "labEnergy": 0
+        }
+      }
+    },
+    {
+      "scenario": "--boost-birth",
+      "milliseconds": 3692,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tJQE1g\\evidence.json",
+      "status": "passed",
+      "rawSha256": "9a2ede86499e994a93280e2b626b9f59f33331427fcde497f75e5e847301abc9",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "6c06180f18331cfedf1f68453db5e58f12e3cad63db6f4f1a86bfafadee263d0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-boost-birth-measurements.jsonl",
+      "rows": 100,
+      "rowsSha256": "5334b4137b4813ee61e2f00a950cd1f41732afb1be25e3a144b2d4204796d11e",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "38c71bb33e232029b120ca0f788fdc71aba569ec99245b85782c47544e96a069",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boosts": {
+        "mode": "birth",
+        "resets": [
+          {
+            "tick": 23,
+            "name": "boost-target",
+            "attempt": {
+              "tick": 22,
+              "before": 0,
+              "count": 2,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [
+          {
+            "tick": 2,
+            "contract": {
+              "id": "birth:[\"W0N1\",\"boost-target\"]",
+              "owner": "work:W0N1:upgrader",
+              "home": "W0N1",
+              "steps": [
+                {
+                  "part": "work",
+                  "resource": "XGH2O",
+                  "count": 2
+                }
+              ],
+              "required": true,
+              "expiresAt": 93
+            }
+          }
+        ],
+        "queue": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "cursor": 0,
+            "processedAt": 23,
+            "jobs": [
+              {
+                "request": {
+                  "id": "birth:[\"W0N1\",\"boost-target\"]",
+                  "owner": "work:W0N1:upgrader",
+                  "home": "W0N1",
+                  "steps": [
+                    {
+                      "part": "work",
+                      "resource": "XGH2O",
+                      "count": 2
+                    }
+                  ],
+                  "required": true,
+                  "expiresAt": 93,
+                  "unit": "040bac7ae7ca30f",
+                  "name": "boost-target"
+                },
+                "status": "confirmed",
+                "lab": null,
+                "attempt": null,
+                "observed": [
+                  2
+                ],
+                "cancelRequested": false,
+                "acknowledged": true,
+                "reason": null
+              }
+            ]
+          }
+        },
+        "rowsFile": "boost-roles-boost-birth-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "bddef87ad36efbf78ab697d6dc61d854006dfeba000a3ee9c62518f84c6542b8",
+        "last": {
+          "tick": 100,
+          "progress": 260,
+          "units": [
+            {
+              "name": "boost-target",
+              "status": "confirmed",
+              "ready": true,
+              "acknowledged": true,
+              "work": 2,
+              "workCompound": "XGH2O",
+              "move": 0,
+              "energy": 20,
+              "x": 18,
+              "y": 20,
+              "lab": null,
+              "attempt": null
+            }
+          ],
+          "labMineral": 0,
+          "labEnergy": 0,
+          "bankK": 0,
+          "bankOH": 0,
+          "reactionLabs": []
+        }
+      }
+    },
+    {
+      "scenario": "--upgrade-room",
+      "milliseconds": 1988,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tD96EY\\evidence.json",
+      "status": "passed",
+      "rawSha256": "fa96d325818f5bbe7aec719147db08e0953db4c2bd37df941b53a84fafbcd3fd",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "86e208adbae4bf0cc28f16161e7329c5a81e3a38d0a74bceff930386019eecbf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-upgrade-room-measurements.jsonl",
+      "rows": 24,
+      "rowsSha256": "d44b4f559b5e352cd91601275e1698f1944f1b391c3ba0cb08d33cafa3bc3bf3",
+      "reloadProvenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "673985d68c631fbdb9ff32388075a7b69afa36d83a31468c880368b94ea4d32a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 1056,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-YWUELU\\evidence.json",
+      "status": "passed",
+      "rawSha256": "0a6bb1c92ae5ff00fa7d9415676dbd59fde163d0551d7a02ed7e830fa065ea96",
+      "provenance": {
+        "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+        "dirty": false,
+        "bundleSha256": "1a7409abf0ba6f653a355f8a99d7f57e6060cb6e92549a460cfc8799a8120c12",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "boost-roles-packaged-smoke-measurements.jsonl",
+      "rows": 3,
+      "rowsSha256": "175ac8ae50ce0523625dbccf782e04fc1896112be29eaf9bed180265e4c34e95"
+    }
+  ],
+  "registry": {
+    "cases": 268,
+    "fullRerun": false
+  },
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T21:05:55Z",
+        "conclusion": "success",
+        "databaseId": 136568029753,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T21:04:45Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T21:04:48Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T21:04:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:04:53Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T21:04:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:04:57Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T21:04:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:05Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T21:04:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:06Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T21:05:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:07Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T21:05:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:09Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T21:05:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:11Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T21:05:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:25Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T21:05:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:51Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T21:05:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:52Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T21:05:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:52Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T21:05:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:52Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T21:05:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:53Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T21:05:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:53Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T21:05:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:53Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T21:05:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:53Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T21:05:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:53Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T21:05:53Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44817068492/job/136568029753"
+      },
+      {
+        "completedAt": "2026-11-20T21:09:40Z",
+        "conclusion": "success",
+        "databaseId": 136568030118,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T21:04:45Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T21:04:47Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T21:04:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:07Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T21:04:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:05:24Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T21:05:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:07:32Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T21:05:24Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:07:57Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T21:07:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:08:03Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T21:07:57Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:08:08Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T21:08:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:08:12Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T21:08:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:08:41Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T21:08:12Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:30Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T21:08:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:32Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T21:09:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:34Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T21:09:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:34Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T21:09:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:36Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T21:09:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T21:09:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:36Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T21:09:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:38Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T21:09:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T21:09:38Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T21:09:38Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44817068492/job/136568030118"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44817068492"
+  },
+  "sourceSha256": {
+    "src/app/native-boost-budget.ts": "3bb5cb2962fd8856e46579eeec66294b75f387dd039542412cd9c1907e19b0f8",
+    "src/app/native-boost-cycle.ts": "ef2ca429e687520e90446ebd0b42bbdd17e7e9ae76fb7055b411f61cf3ff27bd",
+    "src/app/native-boost-lab-roles.ts": "450aed6178054521aac788c6df60b045c087c4eccf6bff68fb7584b4300d563a",
+    "src/app/native-boost-labs.ts": "598ccdfe18603495ba02b0d50fad33d8305296050fb2470b7760949fc969e894",
+    "src/app/native-boost-role-access.ts": "98f9007d0cfb51c96865d32a9cb4b59270c26edf20c9868052fe33ca8faa1632",
+    "src/app/native-bot.ts": "7d400242228fafcf14ffe5e26cdb9dabc5d52eb7cfb888d308db87150e3da235",
+    "src/app/native-lab-operator.ts": "a95730e32b39184f22992ac0f8fa979d33331aaaed3fdae14745ca2b47bb5cf2",
+    "src/app/native-labs.ts": "98a1024f342be5dd69036b2510b5c8e74d2d1401152807fb88c39b0e31002d2c",
+    "src/config/lab-boost-roles.ts": "0add7befadf314b6ccd9efc26f138ab04fdece55bced00bbed4ece51614e1f44",
+    "src/config/labs.ts": "eee602722ae7190502f1036d8b1ac3a3e3f462ac49013044416d65c3f98e8426",
+    "src/config/validation.ts": "56e8a7c5729db5ff407f52fff97c409d6bb0c47609efcf150a8533434574c50b",
+    "src/features/industry/boost-labs/services.ts": "f87e964b4194507d8d765ad2abf02635d1afb16640bd060b35bfaad8be8d0b9f",
+    "src/features/industry/boost-labs/store.ts": "fc73d1072a8e58828c28cf9791cd2abf098248a2b278ce10154cdadfac6f864b",
+    "src/features/industry/boosts/funding.ts": "275dac780ca441dfa65f1a8ef8274bf9fd570ad07bdf2e88860d7caba3db3585",
+    "src/features/operator/lab-inspection.ts": "30f3438e763b7bb2fbcd793186094574889d4827b0786abbdad68f0c655fc2e5",
+    "src/features/operator/labs.ts": "b40cee7df4b5685bd87681c328886ad9bbbfbd83c4de4f7e5e5fba957f0efbab",
+    "test/app/native-worker-boost-budget.test.ts": "72965d9eb2471fbbca21e504ec2d721ad9d33d6244eed32810ccb92de5141883",
+    "test/config/lab-boost-roles.test.ts": "235bc77581d188ce71ec4be477f3b0129d5b437e7adac2a801d4ed83349c1656",
+    "test/engine/boost-role-bot.ts": "89acd0d1d3cdedb01400a5f58d006e9f23d6114e4d65808e81b17b5ef62bcff1",
+    "test/engine/boost-role-cycle.ts": "8f1ccd31944eaac4021910d5223703c0a5b2fb0a7b1bdb1a63509c70c419c9d6",
+    "test/engine/boost-role-remove-bot.ts": "bc5729d8b63e20561fc247b84c5c0ed6bbdc4500a9e8b3e6d7f70a4a207cba6a",
+    "test/engine/boost-role-switch-bot.ts": "e709518cce1b5afdc006f07b8e2fe46b0a76850ace8937811a4764b9d62a0b9f",
+    "test/features/boost-lab-roles.test.ts": "6060cbd39607dae1b07e23292ccd477d6de48f05ed2d2173c0d58f86b088d673",
+    "test/features/operator-labs.test.ts": "f0b17fbbcd0265a232c298a3284f96112541d8f8a394b1c6c1b7118273a061fa",
+    "test/features/worker-boost-policy.test.ts": "d3000a68317b92bf83b445466c723ae2d0b57db56efbdf847897f82e482e21df",
+    "tools/engine/boost-roles.cjs": "988e3b3ee814ad2402f5d8f26826eae165f75485ae56a880f80aff0aa5e0c471",
+    "tools/engine/smoke.cjs": "481e2dea580f0d57bb3fbceca92e5abe1dfa946e5846a7cb193dcf6e7960d7c3",
+    "tools/engine/suite.cjs": "047c4b0ce73c9364cafb481808b3170b18b52fb9f4ba114aed40bececd1f9982"
+  },
+  "persistence": {
+    "key": "industry-boost-labs/<home>",
+    "owner": "industry",
+    "version": 1,
+    "maximumBindings": 10,
+    "configurationKey": "labBoostRoles; default []"
+  },
+  "limits": [
+    "Explicit lab IDs are implemented; legacy automatic nearest-spawn assignment and bulk/console aliases remain unported.",
+    "Targets are minimum buffers; no guarantee of immediately draining compatible excess on target reduction.",
+    "Background role execution and ordinary logistics/couriers are prerequisites; actual per-creep boost remains separately owned.",
+    "One matching lab per compound is used by conservative funding, not globally optimal multi-lab matching.",
+    "Wider destruction/visibility/pressure and cross-version rollback/CPU-memory-soak qualification remain open."
+  ]
+}

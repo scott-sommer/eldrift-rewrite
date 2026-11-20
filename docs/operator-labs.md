@@ -50,3 +50,6 @@ The manifest retains failed measurement/domain rows when available, original err
 No schema or configuration keys are added: `operator/config` remains version 1 and all edits use existing lab settings. Pre-API rollback removes the console functions, while earlier controllers can still interpret those configured layers subject to their existing supported keys. Preserve admitted tasks, stock claims and native receipts through rollback; full rehearsal remains ED-44.
 
 This supplies safe equivalents for inspecting current production and editing per-room desired lab policy. It does not claim legacy `removeLabs`/`removeAllLabs` cache-clearing aliases, `setAllBoosts`, every dedicated boost-lab role assignment or the full `consoleCommands.js` contract. Bulk/compatibility operations, specialist mission producers, optimized boosted bodies, empire allocation, broader visibility/depletion recovery and remaining ED-39 flags/controls remain open. Normal replanning and these controls never destroy structures.
+
+
+Subsequent increment: [configured boost-lab roles](industry-boost-lab-roles.md) adds explicit compound buffers, shared preload/refill, durable retiring-role exclusion and role-aware actor funding. Automatic/bulk assignment and remaining legacy compatibility stay open.

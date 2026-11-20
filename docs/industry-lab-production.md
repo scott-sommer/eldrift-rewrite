@@ -65,3 +65,6 @@ The subsequent [explicit boost orchestration](industry-boosts.md) now qualifies 
 
 
 Subsequent increment: [operator lab policy and inspection](operator-labs.md) adds validated per-room configuration/clear operations, temporary lifetime controls and detached state/config provenance. It preserves admitted work and does not close general legacy console/flag compatibility.
+
+
+Subsequent increment: [configured boost-lab roles](industry-boost-lab-roles.md) adds explicit compound buffers, shared preload/refill, durable retiring-role exclusion and role-aware actor funding. Automatic/bulk assignment and remaining legacy compatibility stay open.

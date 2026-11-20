@@ -61,12 +61,13 @@
     "sha256": "F0A8EB8822CD221227FD3C511546C732B43FED145B035835AD31511C76A32D2C",
     "physicalLines": 163,
     "reviewStatus": "boost orchestration, nine alias/tier mappings and remote-upgrader exception reviewed; producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: observed boosts, alias/tier policy, shared birth/worker producers and packaged boost operator commands qualified; specialist/empire/general operator parity remains open",
+    "implementationStatus": "partial: ordinary reaction/boost paths, configured compound roles with preload/refill and safe retirement qualified; automatic/bulk legacy allocation, specialist/empire parity remain open",
     "evidence": [
       "docs/industry-boosts.md",
       "docs/industry-boost-births.md",
       "docs/worker-boost-policy.md",
-      "docs/operator-boosts.md"
+      "docs/operator-boosts.md",
+      "docs/industry-boost-lab-roles.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -100,8 +101,8 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "f3b8cb093b89982fc468486b93186232cf9a2a3c",
-      "required": "General operator/lab/flag controls, non-worker/specialist producers, optimized boosted body policies, empire allocation and wider recovery/release evidence remain required",
+      "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+      "required": "Automatic nearest-spawn role allocation, bulk/legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
       "tests": [
         "test/capabilities/boost-observation.test.ts",
         "test/features/boost-requests.test.ts",
@@ -116,9 +117,12 @@
         "test/app/native-worker-boost-outcomes.test.ts",
         "test/engine/worker-boost-cycle.ts",
         "test/features/operator-boosts.test.ts",
-        "test/app/native-industry-operator.test.ts"
+        "test/app/native-industry-operator.test.ts",
+        "test/features/boost-lab-roles.test.ts",
+        "test/config/lab-boost-roles.test.ts",
+        "test/engine/boost-role-cycle.ts"
       ],
-      "status": "partial; packaged operator inspect/admit/cancel/ack commands and native in-flight cancellation/reset qualified; not full module parity"
+      "status": "partial; native configured-role preload/refill, in-flight switch/removal, reaction exclusion and reload qualified; not full module parity"
     }
   },
   {
@@ -1728,13 +1732,14 @@
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
     "reviewStatus": "reaction, transport, local chain, boost ownership and per-room operator policy reviewed; bulk/legacy lab role aliases and empire allocation retained as open obligations",
-    "implementationStatus": "partial: ordinary reactions/topology, shared transport/local chains, boost orchestration and validated lab operator policy/inspection qualified; legacy role/console/empire parity remains open",
+    "implementationStatus": "partial: ordinary reaction/boost paths, configured compound roles with preload/refill and safe retirement qualified; automatic/bulk legacy allocation, specialist/empire parity remain open",
     "evidence": [
       "docs/industry-lab-reactions.md",
       "docs/industry-lab-transport.md",
       "docs/industry-lab-production.md",
       "docs/industry-boosts.md",
-      "docs/operator-labs.md"
+      "docs/operator-labs.md",
+      "docs/industry-boost-lab-roles.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1800,8 +1805,8 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "61c75717f42ebd5546b45813c49919312522470c",
-      "required": "Legacy bulk/per-lab boost role operations and console compatibility, specialists, empire allocation and wider visibility/depletion/release evidence remain required",
+      "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
+      "required": "Automatic nearest-spawn role allocation, bulk/legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
       "tests": [
         "test/capabilities/lab-reactions.test.ts",
         "test/features/lab-reaction-claims.test.ts",
@@ -1824,9 +1829,12 @@
         "test/engine/boost-cycle.ts",
         "test/features/operator-labs.test.ts",
         "test/app/native-lab-operator.test.ts",
-        "test/engine/lab-supply-operator-bot.ts"
+        "test/engine/lab-supply-operator-bot.ts",
+        "test/features/boost-lab-roles.test.ts",
+        "test/config/lab-boost-roles.test.ts",
+        "test/engine/boost-role-cycle.ts"
       ],
-      "status": "partial; native operator pause/expiry/product switch with actual admitted settlement qualified alongside prior reaction/chain/boost evidence; not full module parity"
+      "status": "partial; native configured-role preload/refill, in-flight switch/removal, reaction exclusion and reload qualified; not full module parity"
     }
   },
   {
