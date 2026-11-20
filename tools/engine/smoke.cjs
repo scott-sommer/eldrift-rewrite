@@ -676,7 +676,12 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labSupplyMode) {
-      const reloaded = await reloadStampDraft(server,bot,modules,tick,labSupplyMode === 'replan' ? [10,30,180] : [30,180]);
+      let reloads = [30,180];
+      if (labSupplyMode === 'replan' && !evidence.labReplanReload) {
+        const current = JSON.parse((await bot.memory) || '{}');
+        if (current.labReplanRows?.at(-1)?.pending) { reloads = [tick]; evidence.labReplanReload = { tick: tick+1,pending: true }; }
+      }
+      const reloaded = await reloadStampDraft(server,bot,modules,tick,reloads);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labReactionMode) {

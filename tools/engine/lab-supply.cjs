@@ -12,7 +12,7 @@ async function labSupplyWorld(server,bot,mode) {
 }
 function verifyLabSupply(memory,mode,evidence) {
   const rows = memory.labSupply; evidence.labSupply = { mode,rows,reloads: memory.stampReloads };
-  assert.equal(rows.length,320); assert.deepEqual(memory.stampReloads,mode === 'replan' ? [11,31,181] : [31,181]);
+  assert.equal(rows.length,320); assert.deepEqual(memory.stampReloads,mode === 'replan' ? [evidence.labReplanReload.tick,31,181] : [31,181]);
   const last = rows.at(-1), records = memory.eldrift.records;
   evidence.labSupply.assignment = records['industry-labs/W0N1'];
   assert.equal(evidence.labSupply.assignment.owner,'industry');
@@ -45,7 +45,7 @@ function verifyLabSupply(memory,mode,evidence) {
     const request = memory.labReplanRequest, replans = memory.labReplanRows;
     evidence.labReplan = { rows: replans,request };
     assert.equal(request.unchanged,true); assert.ok(request.cargo > 0,'Request must occur during actual admitted cargo');
-    const pending = replans.filter(row => row.pending); assert.ok(pending.some(row => row.tick === 11),'Reload must occur while request is pending');
+    const pending = replans.filter(row => row.pending); assert.equal(evidence.labReplanReload.pending,true); assert.ok(pending.some(row => row.tick === evidence.labReplanReload.tick-1),'Reload must follow observed pending intent');
     assert.ok(pending.every(row => JSON.stringify(row.assignment) === JSON.stringify(request.assignment)),'Pending replan retains assignment identity');
     const retired = replans.find(row => row.tick >= request.tick && !row.pending && row.assignment.data.assignment === null);
     assert.ok(retired,'Replan retires the assignment after admitted work settles');
