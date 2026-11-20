@@ -31,3 +31,6 @@ Twelve clean final-source engine scenarios pass in 32.000 s: birth, spawn placem
 The first clean-source birth fixture run at `0a852b3` remains failed: it submitted an upgrader contract while configuring its ordinary population owner to cancel all upgrader demand. No actor or industry boost queue was created; the verifier then failed while accessing the absent queue. The correction enables that ordinary demand rather than bypassing its owner. The manifest retains its actual empty-target rows and failure separately from the twelve final successes. It is a fixture setup failure, not evidence of successful birth adoption.
 
 The registry has 260 scenarios; the full registry was not rerun. This increment supplies lifecycle and regression evidence, not cross-version rollback or aggregate CPU/memory/soak qualification. ED-36 remains in progress.
+
+
+Subsequent increment: [automatic worker boost policy](worker-boost-policy.md) adds opt-in ordinary upgrader/builder selection, native funding/promise projection and worker-owned outcome consumption. Earlier manifests retain their source-specific scope and configuration.

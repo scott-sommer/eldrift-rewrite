@@ -112,3 +112,8 @@ observerCpuBudget=3, observerVisionBudget=4, observerCaptureBudget=4 and observe
 
 
 scoutFallbackFlag='' disables the optional scout flag goal. A nonblank selector (maximum100characters) matches flag names by substring in stable name order. It follows normal room/profile/temporary scope. Safe matching goals can sustain bounded scout demand with zero discovery depth; existing objectives and danger evasion take precedence. All fallback movement uses the shared scout route/movement boundary. Public per-creep flag-memory translation remains ED-39/44.
+
+
+### Automatic worker boosts
+
+`workerBoostPolicy` defaults to `off`. With ordinary workers and spawning enabled, `optional` selects affordable legacy upgrader/builder boosts or deliberately creates an unboosted worker; `required` waits for a complete kit before creating that request. `workerBoostTimeout` defaults to 200 and accepts 1–1500 ticks after ordinary body spawn duration. Policies apply to new requests; queued contracts and required failures retain their original ownership. See [worker boost policy](worker-boost-policy.md) for resource floors, stock promises, readiness and rollback details.

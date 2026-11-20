@@ -78,3 +78,6 @@ Qualification is recorded separately in [boost-selection.json](evidence/boost-se
 
 
 Subsequent increment: [boost requirements through ordinary spawning](industry-boost-births.md) adds optional exact contracts to shared demand/dispatch, automatic native birth intake and spawn queue schema 3. Generic queue and role/mission adoption limits are documented there; earlier manifests retain their original source/schema context.
+
+
+Subsequent increment: [automatic worker boost policy](worker-boost-policy.md) adds opt-in ordinary upgrader/builder selection, native funding/promise projection and worker-owned outcome consumption. Earlier manifests retain their source-specific scope and configuration.
