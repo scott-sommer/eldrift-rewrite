@@ -1,3 +1,4 @@
+import { createLabMaintenanceOperator } from '../features/operator/lab-maintenance';
 import { createNativeLabAllocation } from './native-lab-allocation';
 import type { StatePort } from '../persistence/versioned-state';
 import { createLabOperator } from '../features/operator/labs';
@@ -13,5 +14,5 @@ export function createNativeLabOperator(state: StatePort) {
         .map(lab => ({ id: lab.id,active: lab.isActive(),mineral: lab.mineralType ?? null,amount: lab.mineralAmount ?? 0,energy: lab.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,cooldown: lab.cooldown ?? 0 }));
     },
   });
-  return { ...commands,...createNativeLabAllocation(commands) };
+  return { ...commands,...createNativeLabAllocation(commands),...createLabMaintenanceOperator(state,home => Game.rooms[home]?.controller?.my === true) };
 }

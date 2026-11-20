@@ -1,3 +1,4 @@
+import { pendingLabReplans, settleLabReplan } from '../features/industry/lab-replan';
 import { boostRoleLabIds } from '../features/industry/boost-labs/store';
 import { reservedBoostLabs } from '../features/industry/boosts/store';
 import { nativeLabProduction } from './native-lab-production';
@@ -17,9 +18,10 @@ export function createNativeLabs(state: StatePort,actions: Pick<ReturnType<typeo
   return { id: 'lab-reactions',urgency: 'background',interval: 1,run(context) {
     const settings = context.config.values;
     const config = { ...settings,labReservedIds: [...settings.labReservedIds,...boostRoleLabIds(state,context.room.name,settings.labBoostRoles),...reservedBoostLabs(state,context.room.name)] };
-    if (!config.labReactionsEnabled && state.read(stateKey('industry-labs',context.room.name)) === undefined) return;
+    if (!config.labReactionsEnabled && state.read(stateKey('industry-labs',context.room.name)) === undefined && !pendingLabReplans(state).includes(context.room.name)) return;
     const room = Game.rooms[context.room.name];
     if (!room) return;
+    if (settleLabReplan(state,room.name,Game.time)) return;
     const { recipe,needed } = nativeLabProduction(state,room,config);
     const facts = nativeReactionLabs(state,room,config.labReservedIds);
     const assignment = reconcileLabAssignment(state,room.name,Game.time,facts.physical,recipe);
