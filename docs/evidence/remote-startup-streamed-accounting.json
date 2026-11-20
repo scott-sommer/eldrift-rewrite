@@ -548,7 +548,8 @@
       "productionFiles": 773,
       "testFiles": 626,
       "violations": 0
-    }
+    },
+    "sourceCommit": "cb681d26d941d086b3cf16cb38f26c5599a22771"
   },
   "archivalCashReplay": {
     "nativeEvidence": "remote-startup-runtime-native.json",
@@ -561,5 +562,31 @@
     "firstRecoveryAt": 3401,
     "scope": "Observed births and receipts replayed through shared accounting; not forward native timing prediction."
   },
-  "toolingTimeoutCorrection": "Lizard subprocess cases allow 25 seconds for up to two individually bounded 10-second Python checks. Observed default 5-second timeout at 5.786 seconds under parallel load; all assertions retained."
+  "toolingTimeoutCorrection": "Lizard subprocess cases allow 25 seconds for up to two individually bounded 10-second Python checks. Observed default 5-second timeout at 5.786 seconds under parallel load; all assertions retained.",
+  "hostedCI": {
+    "sourceCommit": "cb681d26d941d086b3cf16cb38f26c5599a22771",
+    "runId": 44661649417,
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44661649417",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 136041050427,
+        "name": "verify (ubuntu-24.04)",
+        "conclusion": "success"
+      },
+      {
+        "id": 136041050836,
+        "name": "verify (windows-2022)",
+        "conclusion": "success"
+      }
+    ],
+    "requiredSteps": [
+      "Run npm run quality",
+      "Run npm test",
+      "Install pinned processor sources without native install scripts",
+      "Run npm run test:processors",
+      "Run node --test tools/engine/suite-report-check.cjs",
+      "Run npm run check:bundle"
+    ]
+  }
 }
