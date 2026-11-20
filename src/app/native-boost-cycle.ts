@@ -41,7 +41,7 @@ export class NativeBoostCycle {
       if (!lab?.my || lab.structureType !== STRUCTURE_LAB || !lab.isActive()) { this.fail(job,'lab-lost'); return null; }
       return lab;
     }
-    const lab = selectNativeBoostLab(this.state,job,step,this.dispatch.structures);
+    const lab = selectNativeBoostLab(this.state,job,step,this.dispatch.structures,this.config(job.request.home).labBoostRoles);
     if (!lab) return null;
     job.lab = lab.id; this.save(job); return lab;
   }

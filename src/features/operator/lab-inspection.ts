@@ -1,3 +1,4 @@
+import { boostLabRoles } from '../industry/boost-labs/store';
 import type { StatePort } from '../../persistence/versioned-state';
 import { peekState } from '../../persistence/versioned-state';
 import type { ConfigurationStore } from '../../config/provider';
@@ -17,6 +18,6 @@ export function inspectLabSettings(saved: ConfigurationStore,home: string,tick: 
     override: onlyLabKeys(room?.override),temporary: temporarySettings(room?.temporary,tick) };
 }
 export function inspectLabRuntime(state: StatePort,home: string) {
-  return { assignment: peekState(state,'industry-labs/'+home,labStateSchema)?.assignment ?? null,
+  return { boostRoles: boostLabRoles(state,home),assignment: peekState(state,'industry-labs/'+home,labStateSchema)?.assignment ?? null,
     production: peekState(state,'industry-production/'+home,productionSchema)?.step ?? null,reservedBoostLabs: reservedBoostLabs(state,home) };
 }

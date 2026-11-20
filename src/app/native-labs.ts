@@ -1,3 +1,4 @@
+import { boostRoleLabIds } from '../features/industry/boost-labs/store';
 import { reservedBoostLabs } from '../features/industry/boosts/store';
 import { nativeLabProduction } from './native-lab-production';
 import type { ReactionLab, ReactionNetwork } from '../capabilities/industry/labs/model';
@@ -15,7 +16,7 @@ import { nativeReactionLabs } from './native-lab-facts';
 export function createNativeLabs(state: StatePort,actions: Pick<ReturnType<typeof createNativeStructureActions>,'react'>): RoomFeature {
   return { id: 'lab-reactions',urgency: 'background',interval: 1,run(context) {
     const settings = context.config.values;
-    const config = { ...settings,labReservedIds: [...settings.labReservedIds,...reservedBoostLabs(state,context.room.name)] };
+    const config = { ...settings,labReservedIds: [...settings.labReservedIds,...boostRoleLabIds(state,context.room.name,settings.labBoostRoles),...reservedBoostLabs(state,context.room.name)] };
     if (!config.labReactionsEnabled && state.read(stateKey('industry-labs',context.room.name)) === undefined) return;
     const room = Game.rooms[context.room.name];
     if (!room) return;

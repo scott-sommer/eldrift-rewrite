@@ -1,6 +1,8 @@
+import { validBoostRoles } from './lab-boost-roles';
+import type { LabBoostRoleConfig } from './lab-boost-roles';
 import { labProductionDefaults, labProductionValidators } from './lab-production';
 import type { LabProductionConfig } from './lab-production';
-export interface LabConfig extends LabProductionConfig {
+export interface LabConfig extends LabProductionConfig, LabBoostRoleConfig {
   labTransportEnabled: boolean; labTransportBatch: number; labSupplyReserve: number; labTransportPriority: number;
   labReactionsEnabled: boolean;
   labReactionProduct: string;
@@ -9,13 +11,13 @@ export interface LabConfig extends LabProductionConfig {
   labReservedIds: readonly string[];
 }
 export const labDefaults: Readonly<LabConfig> = Object.freeze({
-  ...labProductionDefaults,
+  ...labProductionDefaults,labBoostRoles: Object.freeze([]),
   labTransportEnabled: true,labTransportBatch: 200,labSupplyReserve: 0,labTransportPriority: 8,
   labReactionsEnabled: false,labReactionProduct: '',labReactionTarget: 3000,labReagentReserve: 0,labReservedIds: Object.freeze([]),
 });
 function amount(value: unknown): boolean { return Number.isSafeInteger(value) && Number(value) >= 0 && Number(value) <= 1000000; }
 export const labValidators: { [K in keyof LabConfig]: (value: unknown) => boolean } = {
-  ...labProductionValidators,
+  ...labProductionValidators,labBoostRoles: validBoostRoles,
   labTransportEnabled: value => typeof value === 'boolean',labTransportBatch: value => amount(value) && Number(value) >= 1 && Number(value) <= 3000,
   labSupplyReserve: amount,labTransportPriority: amount,
   labReactionsEnabled: value => typeof value === 'boolean',

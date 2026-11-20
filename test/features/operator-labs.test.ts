@@ -6,7 +6,7 @@ import { openState, saveState } from '../../src/persistence/versioned-state';
 function fixture() {
   let memory = {}, tick = 1, owned = true;
   const state = createMemoryPort(() => memory), facts = [{ id: 'lab',active: true,mineral: 'H',amount: 10,energy: 20,cooldown: 0 }];
-  const commands = () => createLabOperator(state,{ clock: () => tick,owns: () => owned,labs: () => facts,productSupported: product => ['OH','UH','UH2O'].includes(product) });
+  const commands = () => createLabOperator(state,{ clock: () => tick,owns: () => owned,labs: () => facts,productSupported: product => ['OH','UH','UH2O'].includes(product),boostSupported: resource => ['GH2O','XGH2O','ZO'].includes(resource) });
   return { state,facts,commands,raw: () => JSON.stringify(memory),tick: (value: number) => { tick = value; },own: (value: boolean) => { owned = value; },reset: () => { memory = JSON.parse(JSON.stringify(memory)); } };
 }
 test('inspection and absent clears do not initialize namespaces; detached values cannot change effective policy',() => {
@@ -66,4 +66,12 @@ test('unseen-room inspection retains observed assignments and production without
   f.state.write('industry-production/W0N1',{ owner: 'industry',version: 1,data: { context: 'configured',step: { root: 'UH2O',product: 'OH',reagents: ['H','O'],target: 10 } } });
   const before = f.raw(); f.own(false);
   expect(f.commands().inspect('W0N1')).toMatchObject({ owned: false,assignment,production: { product: 'OH',target: 10 } }); expect(f.raw()).toBe(before);
+});
+
+test('operator role bindings validate owned labs and actual boost compounds before any write',() => {
+  const f = fixture();
+  expect(() => f.commands().configure('W0N1',{ labBoostRoles: [{ lab: 'foreign',resource: 'GH2O',mineral: 30,energy: 20 }] })).toThrow('owned lab');
+  expect(() => f.commands().configure('W0N1',{ labBoostRoles: [{ lab: 'lab',resource: 'OH',mineral: 30,energy: 20 }] })).toThrow('compound');
+  expect(f.raw()).toBe('{}');
+  expect(f.commands().configure('W0N1',{ labBoostRoles: [{ lab: 'lab',resource: 'GH2O',mineral: 30,energy: 20 }] }).values.labBoostRoles).toEqual([{ lab: 'lab',resource: 'GH2O',mineral: 30,energy: 20 }]);
 });

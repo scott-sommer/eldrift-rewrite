@@ -1,3 +1,4 @@
+import { nativeBoostRoleAccess } from './native-boost-role-access';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
 import { spendBoostBudget } from '../features/industry/boosts/funding';
@@ -20,12 +21,12 @@ function bankStock(objects: readonly StockObject[],claims: readonly QuantityAllo
   return total;
 }
 /** Match the executor's largest matching-lab preference; never pool inaccessible energy from other labs. */
-function localKits(room: Room,claims: readonly QuantityAllocation[],preferredLab?: string): Record<string,LocalBoostKit> {
+function localKits(room: Room,claims: readonly QuantityAllocation[],preferredLab: string | undefined,allows: (lab: string,resource: string) => boolean): Record<string,LocalBoostKit> {
   const kits: Record<string,LocalBoostKit> = {};
   const labs = room.find(FIND_MY_STRUCTURES).filter((item): item is StructureLab => item.structureType === STRUCTURE_LAB && item.isActive() && (preferredLab === undefined || item.id === preferredLab));
   labs.sort((a,b) => b.mineralAmount-a.mineralAmount || a.id.localeCompare(b.id));
   for (const lab of labs) {
-    if (!lab.mineralType || kits[lab.mineralType]) continue;
+    if (!lab.mineralType || kits[lab.mineralType] || !allows(lab.id,lab.mineralType)) continue;
     const blocked = [logisticsPool('capacity',lab.id,'mineral'),logisticsPool('capacity',lab.id,'energy'),logisticsPool('stock',lab.id,lab.mineralType),logisticsPool('stock',lab.id,RESOURCE_ENERGY)];
     if (claims.some(item => blocked.includes(item.pool))) continue;
     kits[lab.mineralType] = { mineral: Math.max(0,lab.mineralAmount-claimed(claims,lab.id,lab.mineralType)),energy: Math.max(0,lab.store.energy-claimed(claims,lab.id,RESOURCE_ENERGY)) };
@@ -39,8 +40,10 @@ export function nativeBoostBudget(state: StatePort,room: Room,config: Readonly<R
   const banks = [room.storage,room.terminal].filter((bank): bank is StructureStorage | StructureTerminal => !!bank?.my && bank.isActive());
   const cargo = room.find(FIND_MY_CREEPS).filter(creep => holders.has(creep.name));
   const objects: StockObject[] = [...banks.map(bank => ({ id: bank.id,store: bank.store,bank: true })),...cargo.map(item => ({ id: item.id,store: item.store,bank: false }))];
-  const total = bankStock(objects,foreign,config);
-  const budget: MutableBoostBudget = { minerals: total,energy: total[RESOURCE_ENERGY] ?? 0,local: localKits(room,foreign,preferredLab) };
+  const total = bankStock(objects,foreign,config), access = nativeBoostRoleAccess(state,room.name,config.labBoostRoles);
+  const ids = room.find(FIND_MY_STRUCTURES).filter(item => item.structureType === STRUCTURE_LAB && item.isActive() && (preferredLab === undefined || item.id === preferredLab)).map(item => item.id);
+  const resources = access.resources(ids);
+  const budget: MutableBoostBudget = { minerals: total,energy: total[RESOURCE_ENERGY] ?? 0,local: localKits(room,foreign,preferredLab,access.allows),...(resources ? { resources } : {}) };
   for (const steps of promisedNativeBoosts(state,room.name)) spendBoostBudget(budget,steps,{ mineral: LAB_BOOST_MINERAL,energy: LAB_BOOST_ENERGY });
   return budget;
 }

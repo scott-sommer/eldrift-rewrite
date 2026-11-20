@@ -4,6 +4,7 @@ import { reactionReagents } from '../capabilities/industry/labs/model';
 export function createNativeLabOperator(state: StatePort) {
   return createLabOperator(state,{
     clock: () => Game.time,owns: home => Game.rooms[home]?.controller?.my === true,
+    boostSupported: resource => Object.values(BOOSTS).some(part => Object.hasOwn(part,resource)),
     productSupported: product => reactionReagents(REACTIONS,product) !== null,
     labs(home) {
       const room = Game.rooms[home]; if (!room) return [];

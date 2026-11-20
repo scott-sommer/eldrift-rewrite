@@ -40,3 +40,8 @@ test('pending spawn contracts consume future kits and observed birth does not do
   Game.creeps.future = { id: 'native',name: 'future',memory: { industryBoostBirth: { id: 'birth',owner: 'work',home: 'W0N1',steps: [{ part: 'work',resource: 'GH2O',count: 2 }],required: true,expiresAt: 90 } } } as unknown as Creep;
   expect(nativeBoostBudget(f.state,f.room,f.config).local.GH2O!.mineral).toBe(60);
 });
+
+test('compound roles filter lab-local stock and allowed future kits while leaving unbound labs reusable',() => {
+  const f = fixture(); const config = { ...f.config,labBoostRoles: [{ lab: 'lab',resource: 'XGH2O',mineral: 60,energy: 40 }] };
+  const budget = nativeBoostBudget(f.state,f.room,config); expect(budget.local).toEqual({}); expect(budget.resources).toEqual(['XGH2O']);
+});

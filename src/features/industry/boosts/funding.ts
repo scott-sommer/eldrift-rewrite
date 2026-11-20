@@ -1,12 +1,13 @@
 import type { BoostStep } from '../../../capabilities/industry/boosts/model';
 export interface LocalBoostKit { mineral: number; energy: number }
-export interface BoostBudget { minerals: Readonly<Record<string,number>>; energy: number; local?: Readonly<Record<string,LocalBoostKit>> }
-export interface MutableBoostBudget { minerals: Record<string,number>; energy: number; local: Record<string,LocalBoostKit> }
+export interface BoostBudget { minerals: Readonly<Record<string,number>>; energy: number; local?: Readonly<Record<string,LocalBoostKit>>; resources?: readonly string[] }
+export interface MutableBoostBudget { minerals: Record<string,number>; energy: number; local: Record<string,LocalBoostKit>; resources?: readonly string[] }
 export interface BoostPrice { mineral: number; energy: number }
 export function copyBoostBudget(budget: BoostBudget): MutableBoostBudget {
-  return { minerals: { ...budget.minerals },energy: budget.energy,local: Object.fromEntries(Object.entries(budget.local ?? {}).map(([resource,kit]) => [resource,{ ...kit }])) };
+  return { ...(budget.resources ? { resources: [...budget.resources] } : {}),minerals: { ...budget.minerals },energy: budget.energy,local: Object.fromEntries(Object.entries(budget.local ?? {}).map(([resource,kit]) => [resource,{ ...kit }])) };
 }
 export function canFundBoost(budget: BoostBudget,resource: string,count: number,price: BoostPrice): boolean {
+  if (budget.resources && !budget.resources.includes(resource)) return false;
   const local = budget.local?.[resource];
   return count*price.mineral <= (budget.minerals[resource] ?? 0)+(local?.mineral ?? 0)
     && count*price.energy <= budget.energy+(local?.energy ?? 0);

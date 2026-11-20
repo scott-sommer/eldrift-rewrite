@@ -1,3 +1,4 @@
+import { snapshotLabBoostValue } from './lab-boost-roles';
 import { workerBoostValidators } from './worker-boosts';
 import { snapshotLabProductionValue } from './lab-production';
 import { labValidators } from './labs';
@@ -121,7 +122,7 @@ export function validatePatch(input: unknown, layer: string): Partial<RuntimeCon
     validateIntelScope(key, layer);
     validateObserverScope(key, layer);
     if (!validators[key as ConfigKey](value)) throw new Error(`${layer}.${key}: invalid value`);
-    const snapshot = snapshotLabProductionValue(key,value);
+    const snapshot = snapshotLabBoostValue(key,snapshotLabProductionValue(key,value));
     patch[key] = Array.isArray(snapshot) ? Object.freeze([...snapshot]) : snapshot;
   }
   return patch;

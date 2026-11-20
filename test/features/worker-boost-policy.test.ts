@@ -36,3 +36,8 @@ test('lazy birth selection debits only actual new requests, does not replace que
   expect(queue.list()).toHaveLength(1); expect(queue.list()[0]!.boost!.required).toBe(true);
   const before = queue.list(); reconcileWorkerPopulation(state,plan,[],2); expect(queue.list()).toEqual(before);
 });
+
+test('all lab roles bound to another compound prevent selection even when transferable stock could fund a forbidden tier',() => {
+  const choose = createWorkerBoostPolicy(required,{ minerals: { GH2O: 60 },energy: 40,resources: ['ZO'] },price);
+  expect(choose('upgrader',body)).toBe('wait');
+});
