@@ -1,3 +1,4 @@
+import { canStandAt } from '../../src/adapters/screeps/service-position';
 import { loop as botLoop } from '../../src/main';
 import { haulingOwner } from '../../src/app/native-logistics';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
@@ -5,7 +6,7 @@ import { createLogisticsRequests } from '../../src/features/logistics/request-st
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 import type { LogisticsRequest } from '../../src/capabilities/logistics/request';
-interface FixedHaulingMemory extends Memory { fixedHauling?: { tick: number; position: { x: number; y: number }; stores: number[]; pending: number; claims: number; tasks: number }[]; fixedCalls?: { kind: string; tick: number; x: number; y: number; code: number; target: string }[] }
+interface FixedHaulingMemory extends Memory { fixedHauling?: { tick: number; position: { x: number; y: number }; stores: number[]; pending: number; claims: number; tasks: number; walkable: boolean; terrain: number; look: string[] }[]; fixedCalls?: { kind: string; tick: number; x: number; y: number; code: number; target: string }[] }
 const state = createMemoryPort(() => Memory);
 export function loop() {
   const memory = Memory as FixedHaulingMemory, creep = Game.creeps.hauler!;
@@ -22,7 +23,7 @@ export function loop() {
   Creep.prototype.transfer = function(target,resource,amount) { const code = transfer.call(this,target,resource,amount); record(this,'deliver',target.id,code); return code; };
   try { botLoop(); } finally { Creep.prototype.withdraw = withdraw; Creep.prototype.transfer = transfer; }
   const tasks = state.read('tasks/hauler') as { data: { queue: unknown[] } }, quantities = state.read('quantity-reservations/empire') as { data: { claims: unknown[] } };
-  (memory.fixedHauling ??= []).push({ tick: Game.time,position: { x: creep.pos.x,y: creep.pos.y },stores: [source.store.energy,creep.store.energy,sink.store.energy],pending: queue.pending(Game.time).find(item => item.id === 'fixed')?.quantity ?? 0,claims: quantities.data.claims.length,tasks: tasks.data.queue.length });
+  (memory.fixedHauling ??= []).push({ tick: Game.time,position: { x: creep.pos.x,y: creep.pos.y },walkable: canStandAt(creep.room,request.service!.collection),terrain: creep.room.getTerrain().get(18,20),look: creep.room.lookAt(18,20).map(item => item.type),stores: [source.store.energy,creep.store.energy,sink.store.energy],pending: queue.pending(Game.time).find(item => item.id === 'fixed')?.quantity ?? 0,claims: quantities.data.claims.length,tasks: tasks.data.queue.length });
 }
 function record(creep: Creep, kind: string, target: string, code: number): void {
   if (creep.name !== 'hauler') return;
