@@ -1707,10 +1707,11 @@
     "file": "labV2.js",
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
-    "reviewStatus": "runLabs/topology reviewed; boost/operator paths remain under ED36/ED39",
-    "implementationStatus": "partial: configured reaction execution and safe topology; supply/chains/boost orchestration pending",
+    "reviewStatus": "lab setup and input/output transport reviewed; later boost/specialist/operator obligations retained",
+    "implementationStatus": "partial: direct reactions, persistent assignments and shared reagent/product hauling qualified; boosts/chains/specialist/operator paths remain open",
     "evidence": [
-      "docs/industry-lab-reactions.md"
+      "docs/industry-lab-reactions.md",
+      "docs/industry-lab-transport.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1776,16 +1777,20 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
-      "required": "Full reaction-chain, transport, boost reservation and operator scenarios remain required",
+      "commit": "87e38d70066e4d7b7c7520399b194b7c8b499839",
+      "required": "Automatic reaction chains, boost reservation/confirmation, specialist structures and operator paths remain required",
       "tests": [
         "test/capabilities/lab-reactions.test.ts",
         "test/features/lab-reaction-claims.test.ts",
         "test/config/labs.test.ts",
         "test/adapters/structure-actions.test.ts",
-        "test/engine/lab-reactions-bot.ts"
+        "test/engine/lab-reactions-bot.ts",
+        "test/capabilities/lab-transport.test.ts",
+        "test/features/lab-assignment.test.ts",
+        "test/app/native-lab-transport.test.ts",
+        "test/engine/lab-supply-cycle.ts"
       ],
-      "status": "partial; native direct-product reactions qualified; not full module parity"
+      "status": "partial; native refill/drain/reset/product-switch/cancel/depleted paths qualified; not full module parity"
     }
   },
   {
@@ -3636,11 +3641,12 @@
     "file": "role.mineralCourierV2.js",
     "sha256": "B0B32452B8C5245975F5B9B09BB9BE01A4E25757D3C4D777871DC266E48BB287",
     "physicalLines": 331,
-    "reviewStatus": "ED-21 behavior review mapped in docs/logistics-acceptance.md; later feature obligations retained",
-    "implementationStatus": "selective logistics/mining capabilities ported; module-wide parity remains open",
+    "reviewStatus": "lab setup and input/output transport reviewed; later boost/specialist/operator obligations retained",
+    "implementationStatus": "partial: direct reactions, persistent assignments and shared reagent/product hauling qualified; boosts/chains/specialist/operator paths remain open",
     "evidence": [
       "docs/logistics-acceptance.md",
-      "docs/logistics.md"
+      "docs/logistics.md",
+      "docs/industry-lab-transport.md"
     ],
     "plannedIssues": [
       "ED-21",
@@ -3698,10 +3704,15 @@
     "proposedOwner": "features/logistics",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "87e38d70066e4d7b7c7520399b194b7c8b499839",
+      "required": "Automatic reaction chains, boost reservation/confirmation, specialist structures and operator paths remain required",
+      "tests": [
+        "test/capabilities/lab-transport.test.ts",
+        "test/features/lab-assignment.test.ts",
+        "test/app/native-lab-transport.test.ts",
+        "test/engine/lab-supply-cycle.ts"
+      ],
+      "status": "partial; native refill/drain/reset/product-switch/cancel/depleted paths qualified; not full module parity"
     }
   },
   {

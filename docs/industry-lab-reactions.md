@@ -1,6 +1,6 @@
 # Configured lab reactions
 
-ED-36 now has an ordinary-bot reaction path. This is the first industry increment; ED-36 and its parent ED-7 remain In Progress. Reaction chains, automatic reagent supply/product draining, boost reservations/mission gating and the legacy lab console operations remain required before full parity. ED-29 remains open separately.
+ED-36 has an ordinary-bot reaction path. This documents the foundational63964c7 increment. The subsequent [persistent assignment and hauling integration](industry-lab-transport.md) adds automatic refill/drain and controlled product changes. ED-36 and parent ED-7 remain In Progress: automatic chain selection, boost reservation/confirmation and legacy operator controls are still required.
 
 ## Porting and boundaries
 
@@ -24,7 +24,7 @@ The existing layered configuration accepts these keys, including per-room overri
 | labReagentReserve | 0 | Additional floor retained in each selected input after other quantity claims |
 | labReservedIds | empty array | Up to ten lab IDs excluded entirely, e.g. dedicated boost labs |
 
-For example, enable OH with target15, reagent reserve5 and the dedicated boost lab's ID excluded. Supply H/O to a valid input pair. Production can run from that real stock; this increment does not yet publish supply/drain work for couriers. A target smaller than a complete batch waits rather than overshooting. Switching products with incompatible residual minerals also waits until future drain integration or an operator clears them. Disabled production issues no new intents.
+For example, enable OH with target15, reagent reserve5 and the dedicated boost lab's ID excluded. Supply H/O to a valid input pair. Production can run from that real stock; the original63964c7 increment did not publish supply/drain work; the [transport integration](industry-lab-transport.md) now does. A target smaller than a complete batch waits rather than overshooting. The later transport integration clears incompatible residual minerals during controlled product changes. Disabled production issues no new intents.
 
 Rollback to a version predating these configuration keys requires removing the five lab keys from operator configuration layers after disabling production. Preserve shared task/request/journal/receipt state; existing quantity claims expire naturally. Existing structure admission and quantity schemas are unchanged. Full rollback rehearsal remains ED-44 work.
 
@@ -39,7 +39,7 @@ See the [evidence manifest](evidence/lab-reactions.json), including full product
 ## Remaining ED-36 work
 
 1. Port explicit ordered production targets/reserves and dependency scheduling from resourceManager; derive every recipe from game constants. Account for unavailable/claimed reagents and bound recursive planning.
-2. Persist coherent lab assignments for changing products; publish refill/drain requests through shared hauling, preserve existing reservations, and demonstrate multi-stage chains, depleted supply and canceled work in the engine.
+2. Persistent assignments, shared refill/drain, depleted supply and cancellation are now qualified in the [transport increment](industry-lab-transport.md). Automatic multi-stage chain scheduling remains required.
 3. Add per-creep boost resource/energy reservations, shared movement and body-action admission, cancellation/expiry handling and next-tick body confirmation before mission release. Protect boost labs through feature-owned assignments rather than only manual exclusion.
 4. Preserve setBoosts/setAllRoomBoosts/setupLabs and relevant operator entrypoints through application operations. Complete mineral courier/extraction and visibility-loss scenarios, then audit each ED-36 acceptance criterion before closing it.
 
