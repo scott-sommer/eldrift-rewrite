@@ -59,3 +59,6 @@ Hosted [CI44752108536](https://github.com/scott-sommer/eldrift-rewrite/actions/r
 The subsequent [automatic local chain planner](industry-lab-production.md) now qualifies bounded priority/dependency selection and real multistage production. Earlier references above to automatic chains as future work describe the prior increment; empire allocation and boost/operator obligations remain open.
 
 The subsequent [explicit boost orchestration](industry-boosts.md) now qualifies counted requests, actor/body/lab reservations, shared supply, observed readiness and cancellation/reset/coexistence. Earlier boost references describe the prior increment; legacy aliases, producers/operators, empire allocation and release obligations remain open.
+
+
+Subsequent increment: [operator lab policy and inspection](operator-labs.md) adds validated per-room configuration/clear operations, temporary lifetime controls and detached state/config provenance. It preserves admitted work and does not close general legacy console/flag compatibility.

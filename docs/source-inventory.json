@@ -1727,13 +1727,14 @@
     "file": "labV2.js",
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
-    "reviewStatus": "boost orchestration and boost-lab supply reviewed; legacy alias/tier, producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: explicit counted boost requests, shared supply and observed actor gating qualified; full alias/producer/operator/specialist parity remains open",
+    "reviewStatus": "reaction, transport, local chain, boost ownership and per-room operator policy reviewed; bulk/legacy lab role aliases and empire allocation retained as open obligations",
+    "implementationStatus": "partial: ordinary reactions/topology, shared transport/local chains, boost orchestration and validated lab operator policy/inspection qualified; legacy role/console/empire parity remains open",
     "evidence": [
       "docs/industry-lab-reactions.md",
       "docs/industry-lab-transport.md",
       "docs/industry-lab-production.md",
-      "docs/industry-boosts.md"
+      "docs/industry-boosts.md",
+      "docs/operator-labs.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1799,8 +1800,8 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "be9cc8a9890977a1bc98f2a2c5ba1827382a7b6a",
-      "required": "Legacy alias/tier and remote-upgrader policy, automatic request producers, operator bridges, specialist paths and wider recovery/release evidence remain required",
+      "commit": "61c75717f42ebd5546b45813c49919312522470c",
+      "required": "Legacy bulk/per-lab boost role operations and console compatibility, specialists, empire allocation and wider visibility/depletion/release evidence remain required",
       "tests": [
         "test/capabilities/lab-reactions.test.ts",
         "test/features/lab-reaction-claims.test.ts",
@@ -1820,9 +1821,12 @@
         "test/features/boost-requests.test.ts",
         "test/features/boost-resources.test.ts",
         "test/app/native-boost-gates.test.ts",
-        "test/engine/boost-cycle.ts"
+        "test/engine/boost-cycle.ts",
+        "test/features/operator-labs.test.ts",
+        "test/app/native-lab-operator.test.ts",
+        "test/engine/lab-supply-operator-bot.ts"
       ],
-      "status": "partial; native counted boost/supply/cancel/expiry/loss/contention/reset/coexistence qualified; not full module parity"
+      "status": "partial; native operator pause/expiry/product switch with actual admitted settlement qualified alongside prior reaction/chain/boost evidence; not full module parity"
     }
   },
   {

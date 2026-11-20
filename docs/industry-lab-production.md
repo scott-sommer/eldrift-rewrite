@@ -62,3 +62,6 @@ See [manifest and traces](evidence/lab-chain.json) for exact source hashes, raw 
 Remaining ED-36 obligations include empire-wide stock/production allocation from resourceManager, boost mineral/energy reservations and cancellation, shared movement/body admission, next-tick body confirmation before mission release, relevant console operations and wider destruction/visibility/depletion-recovery/migration scenarios. Full parity and release remain unproven.
 
 The subsequent [explicit boost orchestration](industry-boosts.md) now qualifies counted requests, actor/body/lab reservations, shared supply, observed readiness and cancellation/reset/coexistence. Earlier boost references describe the prior increment; legacy aliases, producers/operators, empire allocation and release obligations remain open.
+
+
+Subsequent increment: [operator lab policy and inspection](operator-labs.md) adds validated per-room configuration/clear operations, temporary lifetime controls and detached state/config provenance. It preserves admitted work and does not close general legacy console/flag compatibility.

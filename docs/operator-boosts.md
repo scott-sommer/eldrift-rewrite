@@ -54,3 +54,6 @@ Eleven clean native cases pass in 57.532 s: operator commands, ordinary boost, d
 The [manifest](evidence/operator-boosts.json) preserves actual rows, reset witnesses, source/raw hashes and CI step results. These cases do not prove every console error branch natively or qualify general operator/lab/flag parity. Registry 264 was not fully rerun; CPU/memory/soak and cross-version rollback remain open.
 
 No schema/configuration migration is introduced here. The API can be recreated after reset because its state port reads current Memory lazily. Rolling back to a pre-export build removes these console methods while existing boost state still belongs to its normal owners; update operator scripts and preserve required-failure decisions, tasks, supplies and journals. The earlier spawn-schema/birth-intake rollback obligations still apply.
+
+
+Subsequent increment: [operator lab policy and inspection](operator-labs.md) adds validated per-room configuration/clear operations, temporary lifetime controls and detached state/config provenance. It preserves admitted work and does not close general legacy console/flag compatibility.

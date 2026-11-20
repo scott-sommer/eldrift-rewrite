@@ -117,3 +117,8 @@ scoutFallbackFlag='' disables the optional scout flag goal. A nonblank selector 
 ### Automatic worker boosts
 
 `workerBoostPolicy` defaults to `off`. With ordinary workers and spawning enabled, `optional` selects affordable legacy upgrader/builder boosts or deliberately creates an unboosted worker; `required` waits for a complete kit before creating that request. `workerBoostTimeout` defaults to 200 and accepts 1–1500 ticks after ordinary body spawn duration. Policies apply to new requests; queued contracts and required failures retain their original ownership. See [worker boost policy](worker-boost-policy.md) for resource floors, stock promises, readiness and rollback details.
+
+
+### Lab console operations
+
+`require('main').industry.labs` exposes `inspect`, `configure`, `clearOverride`, `temporary` and `clearTemporary` over existing lab settings. Mutations require current room ownership and preserve unrelated layers/temporary deadlines; gameplay adopts changes at its next configuration snapshot. See [operator lab policy](operator-labs.md) for usage, cancellation/expiry behavior and qualified limits.
