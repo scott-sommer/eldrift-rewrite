@@ -17,9 +17,9 @@ interface StartupMemory extends PipelineMemory {
   startupConstruction?: number; startupSites?: Record<string,{ progress: number; total: number; complete: boolean }>;
   startupCalls?: { tick: number; name: string; family: string; code: number }[]; startupStaleAt?: number;
 }
-type StartupMode = 'staged' | 'refusal' | 'admission';
+type StartupMode = 'staged' | 'refusal' | 'admission' | 'selected';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
-export function runStartup(mode: StartupMode): void {
+export function runStartup(mode: StartupMode, run = runtimeLoop): void {
   const memory = Memory as StartupMemory;
   if (Game.time === 1) setup(mode);
   if (mode === 'refusal') refusalStage(memory);
@@ -32,7 +32,7 @@ export function runStartup(mode: StartupMode): void {
     const code = original.call(this,body,name,options), family = pipelineFamily(options?.memory?.population?.owner ?? '');
     (memory.startupCalls ??= []).push({ tick: Game.time,name,family: family ?? 'other',code }); return code;
   };
-  try { runtimeLoop(); } finally { StructureSpawn.prototype.spawnCreep = original; restoreCollections(); }
+  try { run(); } finally { StructureSpawn.prototype.spawnCreep = original; restoreCollections(); }
   measureConstruction(memory);
   memory.pipelineRows = [];
   const sites = Object.values(memory.startupSites ?? {});

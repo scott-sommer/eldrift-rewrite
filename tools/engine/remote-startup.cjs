@@ -13,7 +13,7 @@ function createStartupChanges(mode) {
     const memory = JSON.parse((await bot.memory) || '{}'), row = memory.pipelineRows?.at(-1);
     if (row && rows.at(-1)?.tick !== row.tick) rows.push(row);
     if (row && index%500 === 0) console.log('STARTUP_PROGRESS '+JSON.stringify({ tick: row.tick,income: row.income,birthCost: row.birthCost,construction: row.probe.construction,pending: row.remotePending,home: row.homeEnergy }));
-    return reloadStampDraft(server,bot,modules,index,mode === 'refusal' ? [20,49,80] : mode === 'admission' ? [20,80,149] : [20,700,1250,1490,2100,3500,4500]);
+    return reloadStampDraft(server,bot,modules,index,mode === 'refusal' ? [20,49,80] : ['admission','selected'].includes(mode) ? [20,80,149] : [20,700,1250,1490,2100,3500,4500]);
   } };
 }
 function verifyRemoteStartup(memory,evidence,mode,streamed) {
@@ -27,6 +27,20 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null);
   for (const row of rows) { assert.deepEqual(row.unrelated,rows[0].unrelated); assert.deepEqual(row.sentinel,rows[0].sentinel); }
   if (mode === 'admission') return verifyStartupAdmission(memory,rows);
+  if (mode === 'selected') {
+    evidence.remoteStartup.selection = memory.selectedStartup;
+    evidence.remoteStartup.firstReady = memory.selectedReady;
+    evidence.remoteStartup.attempts = memory.selectedAttempts;
+    const selection = memory.selectedStartup; assert.ok(selection);
+    assert.deepEqual(memory.selectedAttempts.map(item => item.legs),[2,4,5]);
+    const miners = Object.values(births).filter(birth => birth.family === 'miner');
+    assert.equal(miners.length,1); assert.ok(miners[0].seenAt >= selection.tick);
+    assert.ok(miners[0].activeAt); assert.ok(last.probe.construction > 0);
+    const { tick,...position } = memory.selectedReady;
+    assert.equal(tick,miners[0].activeAt); assert.deepEqual(position,selection.plan.spawn.exit);
+    assert.equal(last.income,0); assert.deepEqual(memory.stampReloads,[21,81,150]);
+    return;
+  }
   if (mode === 'refusal') {
     assert.ok(Object.values(births).every(birth => ['scout','distributor'].includes(birth.family)));
     assert.equal(last.income,0); assert.equal(last.probe.construction,0); assert.equal(last.probe.staleAt,50);

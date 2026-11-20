@@ -1,4 +1,6 @@
-import type { RemoteBirthPermit } from '../startup/model';
+import { admitRemoteFleetSpawn } from './admission';
+import type { SpawnRequest } from '../../../capabilities/spawning/request';
+import type { RemoteBirthPermit, RemoteFleetBirthPolicy } from '../startup/model';
 import type { StatePort } from '../../../persistence/versioned-state';
 import type { RuntimeConfig } from '../../../config/model';
 import type { TaskDefinition } from '../../../persistence/tasks/schema';
@@ -13,9 +15,10 @@ import { createNativeRemoteActors } from './actors';
 import type { createNativeDispatch } from '../../native-dispatch';
 export const remoteFleetDefinitions = { 'remote-mine': { phases: ['work'],validPayload: validRemoteTaskPayload } };
 export function createNativeRemoteWorkers(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, config: (home: string) => Readonly<RuntimeConfig>,
-  otherDefinitions: Readonly<Record<string,TaskDefinition>>, permit: RemoteBirthPermit = () => true) {
+  otherDefinitions: Readonly<Record<string,TaskDefinition>>, permit: RemoteBirthPermit = () => true,births?: RemoteFleetBirthPolicy) {
   const definitions = { ...otherDefinitions,...remoteFleetDefinitions };
-  return { definitions: remoteFleetDefinitions,recruitment: createNativeRemoteRecruitment(state,dispatch,permit),actors: createNativeRemoteActors(state,dispatch,config,definitions),
+  return { definitions: remoteFleetDefinitions,recruitment: createNativeRemoteRecruitment(state,dispatch,permit,births),actors: createNativeRemoteActors(state,dispatch,config,definitions),
+    admit: (request: SpawnRequest) => admitRemoteFleetSpawn(state,request,config,births),
     publish(request: RemoteManagementRequest, result: { assignments: RemoteAssignment[]; portfolio: RemotePortfolio }): void {
       const policy = config(request.home);
       if (!policy.remoteWorkersEnabled) return;

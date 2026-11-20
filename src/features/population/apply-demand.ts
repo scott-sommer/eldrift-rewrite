@@ -1,3 +1,5 @@
+import type { SpawnPlacement } from '../../capabilities/spawning/request';
+import { copySpawnRequest } from '../../capabilities/spawning/placement';
 import { validateRequest } from '../../capabilities/spawning/allocate';
 import type { StatePort } from '../../persistence/versioned-state';
 import type { PopulationDemand, PopulationUnit } from '../../capabilities/spawning/demand';
@@ -9,12 +11,12 @@ export interface DemandPlan extends PopulationDemand {
   body: readonly BodyPart[];
   priority: number;
   requestLifetime: number;
+  placement?: SpawnPlacement;
 }
 export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: readonly PopulationUnit[], tick: number) {
   if (plan.body.length !== plan.replacementParts) throw new Error('Replacement body differs from demand timing');
   if (!Number.isSafeInteger(plan.requestLifetime) || plan.requestLifetime < 1 || !Number.isSafeInteger(tick + plan.requestLifetime)) throw new Error('Invalid demand lifetime');
-  validateRequest({ id: 'validation', name: 'validation', owner: plan.owner, room: plan.room, priority: plan.priority,
-    readyAt: tick, expiresAt: tick + plan.requestLifetime, body: plan.body });
+  validateRequest(demandRequest(plan,'validation',tick));
   const queue = createSpawnQueue(port, plan.room);
   const pending = queue.list();
   const decision = reconcileDemand(plan, units, pending, tick);
@@ -23,10 +25,13 @@ export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: 
   const created: string[] = [];
   for (let index = 0; index < decision.missing; index++) {
     const id = reserveSpawnIdentity(port, plan.room);
-    queue.submit({ id, name: id, owner: plan.owner, room: plan.room, priority: plan.priority,
-      readyAt: tick, expiresAt: tick + plan.requestLifetime, body: [...plan.body] });
+    queue.submit(demandRequest(plan,id,tick));
     created.push(id);
   }
   return { ...decision, created };
 }
 
+
+function demandRequest(plan: DemandPlan, id: string, tick: number) {
+  return copySpawnRequest({ id,name: id,owner: plan.owner,room: plan.room,priority: plan.priority,readyAt: tick,expiresAt: tick+plan.requestLifetime,body: plan.body,...(plan.placement !== undefined ? { placement: plan.placement } : {}) });
+}

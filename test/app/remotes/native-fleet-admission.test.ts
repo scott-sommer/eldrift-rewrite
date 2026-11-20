@@ -29,3 +29,20 @@ test('final dispatch rejects disabled policy, wrong bodies, expired generations 
   f.assignments.reconcile({ home: 'W0N1',tick: 20,lifetime: 50,expectedRevision: f.assignments.read().revision,plans: [] });
   expect(admitRemoteFleetSpawn(f.state,request,() => config)).toBe(false);
 });
+
+test('final dispatch consults only the current selection and blocks stale unbound or different placements',() => {
+  const f = managementFixture(); f.manager().advance(f.request,{ rooms: 1,sources: 2 },() => true);
+  const portfolio = selectRemotePortfolio(f.manager().read().offers,{ ...f.request.policy.portfolio,home: 'W0N1',tick: 20 });
+  publishRemoteFleet(f.state,'W0N1',20,f.assignments.read().assignments,portfolio,f.manager().read().offers,100);
+  const profile = createRemoteFleetStore(f.state,'W0N1').read().actors[0]!;
+  const request = { id: 'request',name: 'name',owner: profile.owner,room: 'W0N1',body: profile.body,priority: 0,readyAt: 20,expiresAt: 100 };
+  vi.stubGlobal('Game',{ time: 20,rooms: { W0N1: { controller: { my: true,level: 4,owner: { username: 'bot' } },energyCapacityAvailable: 1300 } } });
+  createIntelStore(f.state).observeSummary(f.summary);
+  const config = resolveConfig({ empire: { remoteManagementEnabled: true,remoteWorkersEnabled: true,remoteSpawningEnabled: true } },20).values;
+  const placement = { spawn: 'chosen',exit: { room: 'W0N1',x: 24,y: 25 } }, prepare = vi.fn();
+  expect(admitRemoteFleetSpawn(f.state,request,() => config,{ current: () => placement,prepare })).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => config,{ current: () => placement,prepare })).toBe(true);
+  expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => config,{ current: () => null,prepare })).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,{ ...request,placement: { ...placement,spawn: 'other' } },() => config,{ current: () => placement,prepare })).toBe(false);
+  expect(prepare).not.toHaveBeenCalled();
+});

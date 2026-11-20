@@ -14,6 +14,7 @@ export function copySpawnRequest(request: SpawnRequest): SpawnRequest {
   return { ...request,body: [...request.body],...(request.placement ? { placement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
 }
 
-export function sameSpawnPlacement(a: SpawnPlacement, b: SpawnPlacement): boolean {
+export function sameSpawnPlacement(a: SpawnPlacement | undefined, b: SpawnPlacement | undefined): boolean {
+  if (!a || !b) return a === b;
   return a.spawn === b.spawn && a.exit.room === b.exit.room && a.exit.x === b.exit.x && a.exit.y === b.exit.y;
 }
