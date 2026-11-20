@@ -34,3 +34,7 @@ export function createLabAllocationOperator(ports: LabAllocationPorts) {
     return propose(room,ports.settings(home),requests,options);
   };
 }
+
+export type LabAllocationPreview = ReturnType<ReturnType<typeof createLabAllocationOperator>>;
+export type LabAllocationOperation = ReturnType<typeof createLabAllocationOperator>;
+export function validateBoostAllocationInput(requests: readonly BoostAllocationRequest[],options: AllocationOptions): void { validateRequests(requests); validateOptions(options); }

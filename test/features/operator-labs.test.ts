@@ -75,3 +75,15 @@ test('operator role bindings validate owned labs and actual boost compounds befo
   expect(f.raw()).toBe('{}');
   expect(f.commands().configure('W0N1',{ labBoostRoles: [{ lab: 'lab',resource: 'GH2O',mineral: 30,energy: 20 }] }).values.labBoostRoles).toEqual([{ lab: 'lab',resource: 'GH2O',mineral: 30,energy: 20 }]);
 });
+
+
+test('bulk lab configuration validates every patch before committing and replay survives reset',() => {
+  const f = fixture(), commands = f.commands(), before = f.raw();
+  expect(() => commands.configureMany([{ home: 'W0N1',input: { labReactionTarget: 20 } },{ home: 'W1N1',input: { labBoostRoles: [{ lab: 'foreign',resource: 'XGH2O',mineral: 60,energy: 40 }] } }])).toThrow('owned lab');
+  expect(f.raw()).toBe(before);
+  const changes = [{ home: 'W1N1',input: { labReactionTarget: 30 } },{ home: 'W0N1',input: { labReactionTarget: 20 } }];
+  expect(commands.configureMany(changes)).toEqual({ changed: true,homes: ['W0N1','W1N1'] });
+  f.reset(); expect(f.commands().configureMany(changes).changed).toBe(false);
+  expect(f.commands().inspect('W0N1').values.labReactionTarget).toBe(20);
+  expect(f.commands().inspect('W1N1').values.labReactionTarget).toBe(30);
+});
