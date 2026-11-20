@@ -10,8 +10,12 @@ export function observeStartupWorkers(home: string, room: string, guard: () => b
     const owner = creep.memory.population?.owner ?? '', identity = remotePopulationIdentity(owner);
     if (identity?.home !== home || identity.room !== room) continue;
     if (workers.length === 128) return undefined;
-    workers.push({ name: creep.name,owner,position: movementPosition(creep.pos),spawning: creep.spawning,ticksToLive: creep.ticksToLive ?? null,energy: creep.store.energy,fatigue: creep.fatigue ?? 0,
+    workers.push({ name: creep.name,owner,position: movementPosition(creep.pos),spawning: creep.spawning,ticksToLive: creep.ticksToLive ?? null,energy: creep.store.energy,fatigue: creep.fatigue ?? 0,usedCapacity: creep.store.getUsedCapacity?.() ?? fallbackUsedCapacity(creep.store),
       body: creep.body.map(part => ({ type: part.type,hits: part.hits,boost: part.boost === undefined ? null : String(part.boost) })) });
   }
   return workers.sort((a,b) => a.name.localeCompare(b.name));
+}
+
+function fallbackUsedCapacity(store: Creep['store']): number {
+  return Object.values(store).filter((value): value is number => typeof value === 'number').reduce((sum,value) => sum+value,0);
 }

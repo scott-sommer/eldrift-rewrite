@@ -50,7 +50,7 @@ test('a represented queued birth is charged once and requires matching selected 
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'queue-collision' });
 });
 test('current workers and claimed/stored station energy are not discarded or imported as free labor/income',() => {
-  const f = startupProjectionFixture(); f.quote.facts.workers.push({ name: 'paid',owner: f.miner.owner,position: { room: 'E0N1',x: 5,y: 24 },spawning: true,ticksToLive: null,energy: 0,fatigue: 0,body: [] });
+  const f = startupProjectionFixture(); f.quote.facts.workers.push({ name: 'paid',owner: f.miner.owner,position: { room: 'E0N1',x: 5,y: 24 },spawning: true,ticksToLive: null,energy: 0,fatigue: 0,usedCapacity: 0,body: [] });
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' }); f.quote.facts.workers = [];
   f.structures.push({ id: 'container',structureType: 'container',pos: startupPosition(5,24),hits: 12345,hitsMax: 250000,ticksToDecay: 52,store: { energy: 50,getCapacity: () => 2000 } });
   const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts'); f.quote.facts = observed.facts;
@@ -106,4 +106,14 @@ test('healthy endpoint couriers retain actual phase/cargo and require an explici
   const result = f.convert(f.quote,f.options); if (result.status !== 'ready') throw new Error(result.reason);
   expect(result.input.initial?.couriers[0]).toMatchObject({ phase: 'deliver',energy: 50,availableAt: 0 });
   expect(forecastStartupProject(result.input).cash.birthEnergy).toBe(0);
+});
+
+test('mixed non-energy cargo cannot be treated as empty carrying capacity',() => {
+  const f = startupProjectionFixture(), worker = f.activeMiner();
+  Object.assign(worker,{ name: 'mixed-courier',body: f.courier.body.map(type => ({ type,hits: 100 })),memory: { population: { home: f.request.home,owner: f.courier.owner } },pos: startupPosition(4,24),ticksToLive: 100 });
+  Object.assign(worker.store,{ getUsedCapacity: () => 50 }); f.game.creeps.courier = worker;
+  const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected facts');
+  f.quote.facts = observed.facts; f.options.births = []; f.options.incumbentMinimumBatch = 25;
+  expect(f.quote.facts.workers[0]).toMatchObject({ energy: 0,usedCapacity: 50 });
+  expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' });
 });

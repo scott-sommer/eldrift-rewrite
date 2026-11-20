@@ -38,7 +38,7 @@ function adoptWorker(initial: StartupInitialState, couriers: StartupInitialCouri
 }
 
 function supportedWorker(worker: StartupWorkerFacts, body: NativeStartupQuote['plan']['miner']): boolean {
-  return !worker.spawning && Number.isSafeInteger(worker.ticksToLive) && Number(worker.ticksToLive) > 0
+  return !worker.spawning && worker.usedCapacity === worker.energy && Number.isSafeInteger(worker.ticksToLive) && Number(worker.ticksToLive) > 0
     && worker.body.every(part => part.hits === 100 && part.boost === null) && JSON.stringify(worker.body.map(part => part.type)) === JSON.stringify(body);
 }
 function incumbentCourier(quote: NativeStartupQuote, worker: StartupWorkerFacts, base: { id: string; body: StartupInitialCourier['body']; expiresAt: number; availableAt: number; remainingSpawnTicks: number; retireTicks: number; energy: number }, minimumBatch: number | undefined): StartupInitialCourier | undefined {

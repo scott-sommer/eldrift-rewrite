@@ -55,7 +55,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       assert.ok(incumbent.observedAt >= 70 && incumbent.observedAt <= 80); assert.equal(incumbent.resumedAt,81); assert.equal(incumbent.checkpointFormat,2);
       assert.equal(incumbent.checkpointTick,10); assert.equal(incumbent.recoveredThrough,10); assert.equal(incumbent.readOnly,true);
       assert.equal(incumbent.initial.miner.expiresAt,incumbent.worker.ticksToLive); assert.equal(incumbent.initial.miner.energy,incumbent.worker.energy);
-      assert.ok(incumbent.worker.energy > 0); assert.deepEqual(incumbent.openingBefore,incumbent.openingAfter);
+      assert.ok(incumbent.worker.energy > 0); assert.equal(incumbent.worker.usedCapacity,incumbent.worker.energy); assert.deepEqual(incumbent.openingBefore,incumbent.openingAfter);
       assert.deepEqual(incumbent.result,incumbent.uninterrupted); assert.deepEqual(incumbent.result.spawning.births,[]);
       assert.equal(incumbent.result.cash.birthEnergy,0); assert.equal(incumbent.result.openingAssets.energy,incumbent.worker.energy);
       assert.equal(projection.input.project.source.energy,projection.facts.source.energy);
