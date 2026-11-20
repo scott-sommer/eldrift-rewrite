@@ -7,7 +7,8 @@ async function boostRoleWorld(server,bot) {
 }
 function verifyBoostRoles(memory,mode,evidence) {
   const rows = memory.boostRoleRows, last = rows.at(-1), records = memory.eldrift.records, state = records['industry-boost-labs/W0N1'];
-  evidence.boostRoles = { mode,rows,state };
+  evidence.boostRoles = { mode,rows,state,reloads: memory.stampReloads };
+  assert.deepEqual(memory.stampReloads,[8,12,31,181]);
   assert.equal(rows.length,320); assert.equal(state.owner,'industry'); assert.equal(state.version,1);
   const roleLab = state.data.roles[0]?.lab ?? memory.eldrift.records['operator/config'].data.rooms.W0N1.override.labBoostRoles[0]?.lab;
   if (roleLab) assert.ok(rows.every(row => !row.reactionLabs.includes(roleLab)),'Configured role lab cannot react');
