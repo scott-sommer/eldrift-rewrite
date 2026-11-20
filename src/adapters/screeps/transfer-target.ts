@@ -1,3 +1,4 @@
+import { withinRange } from '../../capabilities/movement/path-model';
 import type { TransferAttempt } from '../../capabilities/logistics/confirmation';
 import type { Position } from '../../capabilities/movement/step';
 import type { RoutePolicy } from '../../capabilities/movement/room-route';
@@ -8,6 +9,8 @@ export interface NativeTransferCommand {
   requestKey?: string;
   target: string;
   position: Position;
+  service?: Position;
+  avoid?: readonly Position[];
   resource: ResourceConstant;
   kind: TransferAttempt['kind'];
   maximum: number;
@@ -37,7 +40,11 @@ export function nativeTransferView(creep: Creep, target: TransferObject | null, 
   amounts: ReturnType<typeof transferAmounts>): import('../../capabilities/resources/step').TransferView {
   return { tick: Game.time, complete: false,
     target: target ? 'visible' : Game.rooms[command.position.room] ? 'missing' : 'unseen',
-    inRange: !!target && creep.pos.inRangeTo(target, 1), available: amounts?.available ?? 0,
+    inRange: !!target && creep.pos.inRangeTo(target, 1) && atService(creep,command.service), available: amounts?.available ?? 0,
     capacity: amounts?.capacity ?? 0, remaining: command.maximum };
 }
 
+
+function atService(creep: Creep, service: Position | undefined): boolean {
+  return !service || withinRange({ room: creep.pos.roomName,x: creep.pos.x,y: creep.pos.y },service,0);
+}

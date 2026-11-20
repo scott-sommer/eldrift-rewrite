@@ -1,3 +1,4 @@
+import { sameLogisticsService } from '../../capabilities/logistics/service';
 import { openState, saveState } from '../../persistence/versioned-state';
 import type { StatePort } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
@@ -70,7 +71,8 @@ function matches(record: LogisticsRecord, owner: string, id: string): boolean {
   return record.request.owner === owner && record.request.id === id;
 }
 function sameRequest(a: LogisticsRequest, b: LogisticsRequest): boolean {
-  return (Object.keys(a) as (keyof LogisticsRequest)[]).every(key => a[key] === b[key]);
+  const keys = new Set([...Object.keys(a),...Object.keys(b)] as (keyof LogisticsRequest)[]);
+  return [...keys].every(key => key === 'service' ? sameLogisticsService(a.service,b.service) : a[key] === b[key]);
 }
 function validTick(tick: number): void {
   if (!Number.isSafeInteger(tick) || tick < 0) throw new Error('Invalid logistics tick');

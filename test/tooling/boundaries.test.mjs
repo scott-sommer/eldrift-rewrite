@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
+// Each case runs one checker process with its own 10-second limit.
+const toolingTimeout = 15000;
 const checker = path.resolve('tools/check-boundaries.mjs');
 const artifacts = path.resolve('artifacts');
 fs.mkdirSync(artifacts, { recursive: true });
@@ -28,22 +30,22 @@ test('allows core helpers and feature-to-capability imports', () => {
     'features/economy.ts': "import { work } from '../capabilities/work'; export const run = work;",
   });
   expect(result.status).toBe(0);
-});
+}, toolingTimeout);
 
 test('rejects a pure-core dependency on feature policy', () => {
   const result = inspect({ 'core/bad.ts': "export { policy } from '../features/policy';" });
   expect(result.status).toBe(1);
   expect(result.stderr).toContain('cannot import');
-});
+}, toolingTimeout);
 
 test('rejects live game state in the pure core', () => {
   const result = inspect({ 'core/bad.ts': 'export const now = () => Game.time;' });
   expect(result.status).toBe(1);
   expect(result.stderr).toContain('game global Game');
-});
+}, toolingTimeout);
 
 test('rejects computed module loading that would bypass static boundaries', () => {
   const result = inspect({ 'app/bad.ts': 'export const load = (name: string) => import(name);' });
   expect(result.status).toBe(1);
   expect(result.stderr).toContain('computed module loading');
-});
+}, toolingTimeout);

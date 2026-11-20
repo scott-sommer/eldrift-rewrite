@@ -1,3 +1,5 @@
+import { validateLogisticsService } from './service';
+import type { LogisticsService } from './service';
 export interface LogisticsRequest {
   id: string;
   owner: string;
@@ -7,8 +9,11 @@ export interface LogisticsRequest {
   quantity: number;
   priority: number;
   expiresAt: number;
+  /** Optional exact service tiles; authoritative pending requests govern every transfer. */
+  service?: LogisticsService;
 }
 export function validateLogisticsRequest(request: LogisticsRequest): void {
+  validateLogisticsService(request.service);
   if (![request.id, request.owner, request.source, request.sink, request.resource]
     .every(value => typeof value === 'string' && value.length > 0)) throw new Error('Invalid logistics identity');
   if (request.source === request.sink) throw new Error('Logistics endpoints must differ');

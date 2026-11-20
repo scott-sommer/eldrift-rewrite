@@ -1,3 +1,4 @@
+import { inspectTransferService, transferApproach } from './transfer-service';
 import type { createActionArbiter } from '../../core/execution/action-arbiter';
 import type { IntentResult } from '../../core/execution/action-arbiter';
 import type { Outcome } from '../../core/execution/model';
@@ -12,13 +13,15 @@ export function createNativeTransfer(arbiter: ReturnType<typeof createActionArbi
   return (creep: Creep, command: NativeTransferCommand): Outcome => {
     if (!Number.isSafeInteger(command.maximum) || command.maximum < 1) throw new Error('Invalid transfer reservation amount');
     const target = Game.getObjectById(command.target as Id<TransferObject>);
+    const service = inspectTransferService(command,target);
+    if (service) return service;
     const amounts = target ? transferAmounts(creep, target, command) : undefined;
     if (target && !amounts) return { status: 'failed', reason: 'incompatible-transfer-target' };
     if (pickupExceedsReservation(command, amounts)) {
       return { status: 'blocked', reason: 'pickup-exceeds-reservation', retryAt: Game.time + 1 };
     }
     return transferStep(nativeTransferView(creep, target, command, amounts), {
-      approach: () => movement.move(creep, { owner: command.owner, destination: target ? { room: target.pos.roomName, x: target.pos.x, y: target.pos.y } : command.position, range: 1, policy: command.policy }),
+      approach: () => movement.move(creep,transferApproach(command,target)),
       transfer: amount => issue(creep, target!, command, amount, arbiter, begin),
       rejected: code => ({ status: 'blocked', reason: 'transfer-intent:' + code, retryAt: Game.time + 1 }),
     });

@@ -25,8 +25,14 @@ export function createNativeHaulingTask(state: StatePort,
         const kind = phase === 'deliver' ? 'transfer' : 'resourceType' in target ? 'pickup' : 'withdraw';
         return transfer(creep, { owner: binding.scope, target: target.id,
           position: { room: target.pos.roomName, x: target.pos.x, y: target.pos.y },
-          resource: request.resource as ResourceConstant, kind, maximum: amount, attemptId, requestKey, policy: admitted });
+          resource: request.resource as ResourceConstant, kind, maximum: amount, attemptId, requestKey, policy: admitted,
+          ...haulingService(request,phase) });
       } };
     },
   });
+}
+
+function haulingService(request: LogisticsRequest, phase: 'collect' | 'deliver') {
+  if (!request.service) return {};
+  return { service: phase === 'collect' ? request.service.collection : request.service.deposit,...(request.service.avoid ? { avoid: request.service.avoid } : {}) };
 }

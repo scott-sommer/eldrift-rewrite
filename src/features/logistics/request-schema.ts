@@ -21,10 +21,16 @@ function validReceipts(value: unknown): value is DeliveryReceipt[] {
     && new Set(value.map(item => item.id)).size === value.length;
 }
 export const logisticsQueueSchema: StateSchema<LogisticsQueue> = {
-  owner: 'logistics', version: 1, initial: () => ({ records: [] }), migrations: {},
+  owner: 'logistics', version: 2, initial: () => ({ records: [] }), migrations: { 1: migrateLegacy },
   valid(value: unknown): value is LogisticsQueue {
     if (!value || typeof value !== 'object' || !('records' in value)) return false;
     return Array.isArray(value.records) && value.records.length <= 200 && value.records.every(validRecord)
       && new Set(value.records.map(record => JSON.stringify([record.request.owner, record.request.id]))).size === value.records.length;
   },
 };
+
+function migrateLegacy(value: unknown): LogisticsQueue {
+  if (!value || typeof value !== 'object' || !('records' in value) || !Array.isArray(value.records)) throw new Error('Invalid legacy logistics queue');
+  if (!value.records.every(validRecord) || value.records.some(record => record.request.service !== undefined)) throw new Error('Invalid legacy logistics service');
+  return { ...value,records: value.records };
+}
