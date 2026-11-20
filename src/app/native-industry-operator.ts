@@ -1,3 +1,4 @@
+import { createNativeLabOperator } from './native-lab-operator';
 import { createMemoryPort } from '../adapters/screeps/memory';
 import { createBoostOperator } from '../features/operator/boosts';
 import { nativeBoostBudget } from './native-boost-budget';
@@ -30,5 +31,5 @@ export function createNativeIndustryOperator() {
     supported,
     get price() { return { mineral: LAB_BOOST_MINERAL,energy: LAB_BOOST_ENERGY }; },
   });
-  return { boosts };
+  return { boosts,labs: createNativeLabOperator(state) };
 }

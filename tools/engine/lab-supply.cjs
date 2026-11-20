@@ -31,8 +31,15 @@ function verifyLabSupply(memory,mode,evidence) {
   }
   assert.equal(last.bankX,30,'Every incompatible mineral is banked before new input stock');
   assert.equal(last.labOH+last.labUH,0,'Manufactured product is drained to the warehouse');
-  assert.equal(last.bankOH,mode === 'depleted' ? 0 : 15); assert.equal(last.bankUH,mode === 'switch' ? 15 : 0);
-  assert.equal(last.assignment,mode === 'switch' ? 'UH' : 'OH');
+  assert.equal(last.bankOH,mode === 'depleted' ? 0 : 15); assert.equal(last.bankUH,['switch','operator'].includes(mode) ? 15 : 0);
+  assert.equal(last.assignment,['switch','operator'].includes(mode) ? 'UH' : 'OH');
+  if (mode === 'operator') {
+    assert.ok(rows.filter(row => row.tick >= 8 && row.tick < 20).every(row => !row.enabled && row.source === 'temporary' && row.temporaryActive));
+    assert.ok(rows.filter(row => row.tick >= 20).every(row => row.enabled && row.source === 'roomOverride' && !row.temporaryActive));
+    assert.equal(rows.find(row => row.tick === 139).product,'OH'); assert.equal(rows.find(row => row.tick === 140).product,'UH');
+    assert.ok(rows.some(row => row.tick >= 8 && row.tick < 20 && row.cargo > 0),'Admitted supply must survive the operator pause');
+    assert.ok(receipts.some(record => record.cancelled && record.receipts.some(receipt => receipt.amount > 0)),'Cancellation must retain credited admitted cargo');
+  }
   assert.ok(rows.every(row => row.bankOH+row.labOH <= 15 && row.bankUH+row.labUH <= 15));
 }
 module.exports = { labSupplyWorld,verifyLabSupply };
