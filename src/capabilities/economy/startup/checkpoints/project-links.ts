@@ -1,0 +1,39 @@
+import { requireCheckpoint } from './validation';
+import { receiptId } from './project-delivery';
+import type { StartupDeliveryInput } from '../delivery-model';
+import type { StartupProjectCheckpoint } from './project-model';
+export function validateProjectLinks(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
+  const tick = saved.tick, house = saved.houseAccounting, source = saved.sourceAccounting, timeline = saved.timeline;
+  requireCheckpoint([house.tick,source.tick,timeline.tick,saved.sink.through+1].every(value => value === tick));
+  requireCheckpoint(sameHouseLedger(house.state,timeline.accounting.state));
+  requireCheckpoint(timeline.funding.bank === timeline.accounting.state.endingEnergy);
+  requireCheckpoint(timeline.accounting.state.birthEnergy === timeline.births.reduce((sum,birth) => sum+birth.cost,0));
+  requireCheckpoint(saved.sink.acceptedEnergy === saved.delivery.deliveredEnergy);
+  requireCheckpoint(source.state.deliveredEnergy === saved.settled.reduce((sum,receipt) => sum+receipt.energy,0));
+  validateReceiptIdentities(input,saved);
+  validateEnergy(input,saved);
+  const complete = saved.construction.completeAt;
+  const previous = complete === null || tick <= complete ? null : tick-1;
+  requireCheckpoint(saved.container.previousFrame === previous);
+  if (saved.container.hits === 0) requireCheckpoint(saved.delivery.containerEnergy === 0);
+}
+function sameHouseLedger(a: StartupProjectCheckpoint['houseAccounting']['state'], b: typeof a): boolean {
+  return Object.keys(a).filter(key => key !== 'firstRecoveryAt').every(key => a[key as keyof typeof a] === b[key as keyof typeof b]);
+}
+function validateReceiptIdentities(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
+  requireCheckpoint(saved.timeline.receiptCount === saved.settled.length);
+  const spawning = input.project.spawning;
+  const expected = new Set([...spawning.cash.flows.map(flow => flow.id),...spawning.requests.map(request => 'birth:'+request.id),...saved.settled.map(receiptId)]);
+  requireCheckpoint(expected.size === saved.timeline.receiptIds.length && saved.timeline.receiptIds.every(id => expected.has(id)));
+}
+
+function validateEnergy(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
+  const c = saved.construction, d = saved.delivery, maintenance = saved.container;
+  const harvested = c.harvestedEnergy+d.harvestedEnergy;
+  const held = d.containerEnergy+d.minerCargoEnergy+saved.couriers.reduce((sum,worker) => sum+worker.cargo,0);
+  const lost = d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy+maintenance.unrecoveredEnergy;
+  requireCheckpoint(harvested === c.constructionEnergy+d.deliveredEnergy+held+lost+maintenance.repairEnergy);
+  requireCheckpoint(input.project.source.energy+c.regeneratedEnergy+d.regeneratedEnergy-harvested === d.source.energy);
+  requireCheckpoint(input.project.remainingProgress-c.constructionEnergy === c.remainingProgress);
+  requireCheckpoint(maintenance.hits === Math.max(0,input.container.hits+maintenance.repairedHits-maintenance.decayEvents*input.container.decayAmount));
+}

@@ -1,3 +1,6 @@
+import { readStartupProjectCheckpoint, boundedProjectCheckpoint } from './checkpoints/project';
+import { startupProjectIdentity } from './checkpoints/project-identity';
+import type { StartupProjectCheckpoint, StartupProjectReceipt } from './checkpoints/project-model';
 import type { StartupScheduledBirth } from './spawn-model';
 import { createStartupSpawnTimeline } from './spawn-timeline';
 import { initialStartupConstruction } from './construction';
@@ -13,13 +16,13 @@ import { createStartupCashLedger } from './cash-ledger';
 import { snapshotStartupProject } from './snapshot';
 import type { StartupDeliveryInput, StartupCourierState, StartupDeliveryForecast } from './delivery-model';
 import type { StartupBuildWave } from './construction-model';
-import type { StartupCashReceipt } from './cash-model';
+
 /** Single forward timeline; caller-supplied refills can redistribute earnings only after they settle. */
 export function forecastStartupProject(input: StartupDeliveryInput) {
   const project = createStartupProject(input); project.advance(input.project.spawning.cash.horizon+1); return project.result();
 }
 export function createStartupProject(input: StartupDeliveryInput) { return new StartupProject(input); }
-interface ProjectReceipt extends StartupCashReceipt { request: string }
+export function restoreStartupProject(input: StartupDeliveryInput, checkpoint: unknown) { return new StartupProject(input,checkpoint); }
 class StartupProject {
   private readonly input;
   private readonly timeline;
@@ -29,21 +32,40 @@ class StartupProject {
   private readonly delivery;
   private readonly births: StartupScheduledBirth[] = [];
   private readonly couriers: StartupCourierState[] = [];
-  private readonly due = new Map<number,ProjectReceipt[]>();
+  private readonly due = new Map<number,StartupProjectReceipt[]>();
   private readonly settled: StartupDeliveryForecast['receipts'] = [];
   private readonly houseAccounting;
   private readonly sourceAccounting;
   private waves: StartupBuildWave[] = [];
   private previousMiner: string | undefined;
   private tick = 0;
-  constructor(input: StartupDeliveryInput) {
+  constructor(input: StartupDeliveryInput, checkpoint?: unknown) {
     if (!Number.isSafeInteger(input.containerCapacity) || input.containerCapacity < 1 || input.containerCapacity > 1000000) throw new Error('Invalid startup container capacity');
     this.input = snapshotStartupProject(input);
-    this.houseAccounting = createStartupCashLedger(this.input.project.spawning.cash); this.sourceAccounting = createStartupCashLedger(this.input.project.spawning.cash);
-    this.timeline = createStartupSpawnTimeline(this.input.project.spawning);
-    this.container = createStartupContainer(this.input.container); this.sink = createStartupSink(this.input.homeSink,this.input.project.spawning.cash);
-    this.construction = initialStartupConstruction(this.input.project); this.delivery = initialStartupDelivery(this.construction);
+    const saved = checkpoint === undefined ? undefined : readStartupProjectCheckpoint(this.input,checkpoint);
+    this.houseAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.houseAccounting); this.sourceAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.sourceAccounting);
+    this.timeline = createStartupSpawnTimeline(this.input.project.spawning,saved?.timeline);
+    this.container = createStartupContainer(this.input.container,saved?.container); this.sink = createStartupSink(this.input.homeSink,this.input.project.spawning.cash,saved?.sink);
+    this.construction = saved?.construction ?? initialStartupConstruction(this.input.project); this.delivery = saved?.delivery ?? initialStartupDelivery(this.construction);
     startupConstructionWaves(this.input.project,[]); startupDeliveryCouriers(this.input,[]);
+    if (saved) this.resume(saved);
+  }
+  checkpoint(): StartupProjectCheckpoint {
+    return boundedProjectCheckpoint({ format: 1,binding: startupProjectIdentity(this.input),tick: this.tick,
+      timeline: this.timeline.checkpoint(),container: this.container.checkpoint(),sink: this.sink.checkpoint(),
+      construction: this.construction,delivery: this.delivery,
+      couriers: this.couriers.map(worker => ({ ...worker,nextAt: worker.nextAt === Infinity ? null : worker.nextAt })),
+      due: [...this.due.values()].flat(),settled: this.settled,houseAccounting: this.houseAccounting.checkpoint(),sourceAccounting: this.sourceAccounting.checkpoint() });
+  }
+  private resume(saved: StartupProjectCheckpoint): void {
+    this.tick = saved.tick; this.births.push(...saved.timeline.births);
+    this.waves = startupConstructionWaves(this.input.project,this.births);
+    this.previousMiner = this.waves.find(wave => wave.startAt <= this.tick-1 && this.tick-1 < wave.endAt)?.request;
+    this.couriers.push(...saved.couriers.map(worker => ({ ...worker,nextAt: worker.nextAt ?? Infinity })));
+    this.settled.push(...saved.settled);
+    for (const receipt of saved.due) {
+      const records = this.due.get(receipt.tick) ?? []; records.push(receipt); this.due.set(receipt.tick,records);
+    }
   }
   advance(maximumFrames: number, guard: () => boolean = () => true) {
     if (!Number.isSafeInteger(maximumFrames) || maximumFrames < 0 || maximumFrames > 10001) throw new Error('Invalid startup project frame budget');
@@ -53,10 +75,8 @@ class StartupProject {
   }
   result() {
     const spawning = this.timeline.result();
-    const construction = { ...this.construction,unusedCargoEnergy: this.construction.unusedCargoEnergy+(this.construction.completeAt === null ? this.delivery.minerCargoEnergy : 0) };
-    this.delivery.projectedThrough = this.tick;
-    this.delivery.courierCargoEnergy = this.couriers.reduce((sum,worker) => sum+worker.cargo,0);
-    const delivery = { ...this.delivery,receipts: this.settled };
+    const construction = { ...this.construction,source: { ...this.construction.source },waves: this.construction.waves.map(wave => ({ ...wave,work: { ...wave.work } })),unusedCargoEnergy: this.construction.unusedCargoEnergy+(this.construction.completeAt === null ? this.delivery.minerCargoEnergy : 0) };
+    const delivery = { ...this.delivery,source: { ...this.delivery.source },projectedThrough: this.tick,courierCargoEnergy: this.couriers.reduce((sum,worker) => sum+worker.cargo,0),receipts: this.settled.map(receipt => ({ ...receipt })) };
     return { spawning,construction,delivery,homeSink: this.sink.result(),maintenance: this.container.result(),
       cash: this.houseAccounting.result(),projectCash: this.sourceAccounting.result() };
   }

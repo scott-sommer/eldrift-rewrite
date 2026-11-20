@@ -31,6 +31,13 @@ function verifyStartupAdmission(memory,rows) {
   assert.ok(facts.authority.generation > 0 && facts.authority.expiresAt > facts.observedAt);
   assert.ok(facts.spawns.length === 1 && facts.spawns[0].remainingTime === 0);
   require('./startup-travel-check.cjs').verifyStartupTravel(memory.startupTravel);
+  const proof = memory.startupProjectProof; assert.ok(proof);
+  assert.equal(proof.savedAt,149); assert.equal(proof.resumedAt,150);
+  assert.equal(proof.initialThrough,43); assert.equal(proof.pendingBefore,1);
+  assert.equal(proof.recoveredThrough,43); assert.equal(proof.nextThrough,44);
+  assert.equal(proof.frames,1); assert.equal(proof.accountedThrough,44);
+  assert.ok(proof.checkpointCharacters > 0 && proof.checkpointCharacters < 1048576);
+  assert.deepEqual(proof.result,proof.uninterrupted);
 
 }
 module.exports = { verifyStartupAdmission };

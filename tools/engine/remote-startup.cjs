@@ -22,6 +22,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   evidence.remoteStartup = { mode,rows,births,construction: memory.startupConstruction ?? 0,calls: memory.startupCalls ?? [],reloads: memory.stampReloads,attrition: memory.startupAttrition,remoteReceipts: memory.pipelineRemote,localReceipts: memory.pipelineLocal };
   if (memory.startupFacts) evidence.remoteStartup.nativeFacts = memory.startupFacts;
   if (memory.startupTravel) evidence.remoteStartup.nativeTravel = memory.startupTravel;
+  if (memory.startupProjectProof) evidence.remoteStartup.projectCheckpoint = memory.startupProjectProof;
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.equal(rows.length,mode === 'staged' ? 5000 : 150); rows.forEach((row,index) => assert.equal(row.tick,index+1));
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null);

@@ -1,9 +1,12 @@
+import { restoreFundingCheckpoint } from './checkpoints/funding';
 import { startupFlowDue } from './flow';
 import type { StartupSpawnFunding } from './spawn-model';
 /** Ephemeral forecast quantities, not a persistent claim owner. Refills move existing bank energy only. */
-export function createStartupSpawnFunding(input: StartupSpawnFunding, homeEnergy: number) {
+export function createStartupSpawnFunding(input: StartupSpawnFunding, homeEnergy: number, checkpoint?: unknown) {
   let bank = homeEnergy, accessible = input.initialEnergy, refilledEnergy = 0, unfilledEnergy = 0;
+  if (checkpoint !== undefined) { ({ bank,accessible,refilledEnergy,unfilledEnergy } = restoreFundingCheckpoint(input.capacity,checkpoint)); }
   return {
+    checkpoint() { return { bank,accessible,refilledEnergy,unfilledEnergy }; },
     available(reserve: number): number { return Math.max(0,Math.min(accessible,bank-reserve)); },
     spend(energy: number): void {
       bank -= energy;

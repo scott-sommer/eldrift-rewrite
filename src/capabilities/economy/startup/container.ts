@@ -1,3 +1,4 @@
+import { restoreContainerCheckpoint } from './checkpoints/container';
 import { shouldRepairMining } from '../../mining/repair-policy';
 import { energyRepairEffect } from '../../mining/repair-effect';
 import type { MiningRepairPolicy } from '../../mining/repair-policy';
@@ -6,13 +7,15 @@ export interface StartupContainerInput {
   hits: number; hitsMax: number; decayAmount: number; decayInterval: number; decayIn: number;
   repairPolicy: Readonly<MiningRepairPolicy> | null;
 }
-export function createStartupContainer(input: StartupContainerInput) {
+export function createStartupContainer(input: StartupContainerInput, checkpoint?: unknown) {
   validateContainer(input);
   const facts = { ...input }, policy = input.repairPolicy && { ...input.repairPolicy };
   let previousFrame: number | null = null;
   let hits = input.hits, decayIn = input.decayIn, destroyedAt: number | null = null;
   let repairedHits = 0, repairEnergy = 0, decayEvents = 0, unrecoveredEnergy = 0;
+  if (checkpoint !== undefined) { ({ previousFrame,hits,decayIn,destroyedAt,repairedHits,repairEnergy,decayEvents,unrecoveredEnergy } = restoreContainerCheckpoint(input,checkpoint)); }
   return {
+    checkpoint() { return { previousFrame,hits,decayIn,destroyedAt,repairedHits,repairEnergy,decayEvents,unrecoveredEnergy }; },
     alive: () => hits > 0,
     needsRepair: (energy: number, depleted: boolean) => hits > 0 && !!policy && shouldRepairMining(hits,facts.hitsMax,energy,depleted,policy),
     repair(energy: number, workParts: number): number {

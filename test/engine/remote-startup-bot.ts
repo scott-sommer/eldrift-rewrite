@@ -1,3 +1,4 @@
+import { snapshotStartupProjectCheckpoint } from './startup-project-checkpoint';
 import { snapshotStartupNativeTravel } from './startup-native-travel';
 import { snapshotStartupNativeFacts } from './startup-native-facts';
 import type { StartupFactsResult } from '../../src/app/remotes/startup/facts-model';
@@ -25,6 +26,7 @@ export function runStartup(mode: StartupMode, run = runtimeLoop): void {
   if (mode === 'refusal') refusalStage(memory);
   if (mode === 'staged') considerWithdrawal(memory);
   if (mode === 'admission' && [149,150].includes(Game.time)) (memory.startupTravel ??= []).push(snapshotStartupNativeTravel(state,home));
+  if (mode === 'admission' && [149,150].includes(Game.time)) snapshotStartupProjectCheckpoint(state);
   if (mode === 'admission' && Game.time === 150) memory.startupFacts = snapshotStartupNativeFacts(state,home);
   const attrition = memory.startupAttrition = observeStartupAttrition(memory.startupAttrition), restoreCollections = instrumentStartupCollections(attrition);
   const original = StructureSpawn.prototype.spawnCreep;

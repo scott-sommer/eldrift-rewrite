@@ -10,7 +10,7 @@ export function startupDeliveryCouriers(input: StartupDeliveryInput, births: rea
     const { collectionTicks,deliveryTicks,initialOutboundTicks } = courierTiming(worker,capacity);
     const birth = births.find(birth => birth.request === worker.request);
     if (!birth) continue;
-    result.push({ ...worker,collectionTicks,deliveryTicks,capacity,expiresAt: birth.activeAt+lifetime,stopAt: birth.activeAt+lifetime-worker.retireTicks,
+    result.push({ ...worker,collectionTicks,deliveryTicks,initialOutboundTicks,capacity,expiresAt: birth.activeAt+lifetime,stopAt: birth.activeAt+lifetime-worker.retireTicks,
       nextAt: birth.activeAt+initialOutboundTicks,phase: 'collect',cargo: 0 });
   }
   return result.sort((a,b) => a.request.localeCompare(b.request));

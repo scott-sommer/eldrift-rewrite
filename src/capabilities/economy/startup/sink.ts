@@ -1,3 +1,5 @@
+import { restoreSinkCheckpoint } from './checkpoints/sink';
+import type { StartupSinkCheckpoint } from './checkpoints/sink';
 import { startupFlowDue } from './flow';
 import { validateStartupCash } from './cash-validation';
 import type { StartupCashFlow, StartupCashInput } from './cash-model';
@@ -7,14 +9,16 @@ export interface StartupSinkInput {
   changes: readonly (Omit<StartupCashFlow,'kind'> & { kind: 'occupy' | 'release' })[];
 }
 export interface StartupSink {
+  checkpoint(): StartupSinkCheckpoint;
   prepare(tick: number): void; take(energy: number): number; finish(): void;
   result(): { remainingCapacity: number; acceptedEnergy: number; projectedThrough: number };
 }
 /** Physical sink capacity only: internal releases neither create cash nor charge it again. */
-export function createStartupSink(input: StartupSinkInput, cash: StartupCashInput): StartupSink {
+export function createStartupSink(input: StartupSinkInput, cash: StartupCashInput, checkpoint?: unknown): StartupSink {
   validateSink(input,cash);
   const capacity = input.capacity, horizon = cash.horizon, changes = input.changes.map(flow => ({ ...flow }));
   let free = input.freeCapacity, acceptedEnergy = 0, through = -1, finished = true;
+  if (checkpoint !== undefined) { ({ free,acceptedEnergy,through } = restoreSinkCheckpoint(capacity,horizon,checkpoint)); }
   function apply(tick: number, kind: 'occupy' | 'release'): void {
     const amount = changes.filter(flow => flow.kind === kind && startupFlowDue({ ...flow,kind: 'delivery' },tick)).reduce((sum,flow) => sum+flow.energy,0);
     const next = free+(kind === 'release' ? amount : -amount);
@@ -22,6 +26,7 @@ export function createStartupSink(input: StartupSinkInput, cash: StartupCashInpu
     free = next;
   }
   return {
+    checkpoint() { if (!finished) throw new Error('Cannot checkpoint an open startup sink frame'); return { free,acceptedEnergy,through }; },
     prepare(tick) {
       if (!Number.isSafeInteger(tick) || tick < 0 || tick > horizon) throw new Error('Invalid startup sink frame');
       if (!finished || tick <= through) throw new Error('Startup sink frame order');

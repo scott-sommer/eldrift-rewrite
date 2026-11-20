@@ -1,15 +1,17 @@
+import { restoreCashCheckpoint } from './checkpoints/cash';
 import { validateStartupCash } from './cash-validation';
 import type { StartupCashInput, StartupCashForecast, StartupCashFlow } from './cash-model';
 /** Statistical accounting only; physical funding/claims remain owned by the caller. */
-export function createStartupCashLedger(input: Omit<StartupCashInput,'flows'>) { return new StartupCashLedger(input); }
+export function createStartupCashLedger(input: Omit<StartupCashInput,'flows'>, checkpoint?: unknown) { return new StartupCashLedger(input,checkpoint); }
 class StartupCashLedger {
   private readonly input;
   private state: StartupCashForecast;
   private tick = 0;
-  constructor(input: Omit<StartupCashInput,'flows'>) {
+  constructor(input: Omit<StartupCashInput,'flows'>, checkpoint?: unknown) {
     validateStartupCash({ ...input,flows: [] }); this.input = { ...input };
     this.state = { endingEnergy: input.homeEnergy,minimumEnergy: input.homeEnergy,minimumAt: 0,requiredHomeEnergy: 0,homeShortfall: 0,
       birthEnergy: 0,homeConstructionEnergy: 0,upkeepEnergy: 0,deliveredEnergy: 0,homeCashSurplus: 0,constructionRecoveryMargin: -input.selfHarvestedConstruction,firstDeliveryAt: null,firstRecoveryAt: null };
+    if (checkpoint !== undefined) { const saved = restoreCashCheckpoint(input,checkpoint); this.state = saved.state; this.tick = saved.tick; }
   }
   frame(tick: number, flows: readonly StartupCashFlow[], credit = 0, ready = true): void {
     if (tick !== this.tick || tick > this.input.horizon) throw new Error('Startup cash frame order');
@@ -22,6 +24,7 @@ class StartupCashLedger {
     if (!Object.values(next).every(value => value === null || Number.isSafeInteger(value))) throw new Error('Startup cash arithmetic overflow');
     this.state = next; this.tick++;
   }
+  checkpoint() { return { tick: this.tick,state: { ...this.state } }; }
   through(): number { return this.tick; }
   result(): StartupCashForecast {
     if (this.tick !== this.input.horizon+1) throw new Error('Startup cash accounting incomplete');

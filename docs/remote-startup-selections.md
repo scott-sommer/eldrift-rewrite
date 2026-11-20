@@ -17,3 +17,5 @@ Quality passes with799 production/648 test files and zero Lizard violations. Twe
 Next work remains the forward simulator checkpoint, fresh native context/schedule conversion, economic candidate selection and ordinary fixed-service adoption. A durable geometry record is not a forecast or profitability decision.
 
 Hosted [CI44697209480](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44697209480) passes Windows2022 and Ubuntu24.04 on source ceeab2e with all six required quality, unit, processor, report and bundle steps. ED-29 remains In Progress. ED-44 records the new namespace and scoped rollback obligation.
+
+The subsequent [portable project checkpoint](remote-startup-checkpoints.md) now supports direct restoration of the finite forward model. Feature-owned planning jobs, current native input conversion and operational economic selection remain open.
