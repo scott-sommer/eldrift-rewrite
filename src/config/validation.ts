@@ -1,3 +1,4 @@
+import { snapshotLabProductionValue } from './lab-production';
 import { labValidators } from './labs';
 import { remoteValidators } from './remotes';
 import { observerValidators, validateObserverScope } from './observers';
@@ -119,7 +120,8 @@ export function validatePatch(input: unknown, layer: string): Partial<RuntimeCon
     validateIntelScope(key, layer);
     validateObserverScope(key, layer);
     if (!validators[key as ConfigKey](value)) throw new Error(`${layer}.${key}: invalid value`);
-    patch[key] = Array.isArray(value) ? Object.freeze([...value]) : value;
+    const snapshot = snapshotLabProductionValue(key,value);
+    patch[key] = Array.isArray(snapshot) ? Object.freeze([...snapshot]) : snapshot;
   }
   return patch;
 }
