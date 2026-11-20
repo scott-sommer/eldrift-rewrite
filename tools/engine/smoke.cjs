@@ -1,4 +1,4 @@
-const boostMode = ['supply','multi','cancel','expiry','destroy','contention','coexist'].find(mode => process.argv.includes('--boost-'+mode)) ?? (process.argv.includes('--boost') ? 'normal' : undefined);
+const boostMode = ['alias','supply','multi','cancel','expiry','destroy','contention','coexist'].find(mode => process.argv.includes('--boost-'+mode)) ?? (process.argv.includes('--boost') ? 'normal' : undefined);
 const { boostWorld,createBoostChanges,verifyBoosts } = require('./boosts.cjs');
 const changeBoosts = createBoostChanges();
 const labChainMode = process.argv.includes('--lab-chain-prestock') ? 'prestock' : process.argv.includes('--lab-chain-reserves') ? 'reserves' : process.argv.includes('--lab-chain-priority') ? 'priority' : process.argv.includes('--lab-chain-depleted') ? 'depleted' : process.argv.includes('--lab-chain') ? 'normal' : undefined;

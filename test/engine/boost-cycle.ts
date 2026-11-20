@@ -1,3 +1,4 @@
+import { selectLegacyBoostPlan } from '../../src/features/industry/boosts/legacy-preferences';
 import type { LabState } from '../../src/features/industry/lab-state';
 import { loop as botLoop } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
@@ -7,8 +8,8 @@ import { createBoostRequests } from '../../src/features/industry/boosts/store';
 import type { BoostJob, BoostStep } from '../../src/capabilities/industry/boosts/model';
 import { workOwner } from '../../src/features/work/identity';
 import { haulingOwner } from '../../src/features/logistics/identity';
-export type BoostMode = 'normal' | 'supply' | 'multi' | 'cancel' | 'expiry' | 'destroy' | 'contention' | 'coexist';
-interface UnitRow { name: string; status: string; ready: boolean; acknowledged: boolean; work: number; move: number; energy: number; x: number; y: number; lab: string | null; attempt: BoostJob['attempt'] }
+export type BoostMode = 'normal' | 'alias' | 'supply' | 'multi' | 'cancel' | 'expiry' | 'destroy' | 'contention' | 'coexist';
+interface UnitRow { name: string; status: string; ready: boolean; acknowledged: boolean; work: number; workCompound: string | null; move: number; energy: number; x: number; y: number; lab: string | null; attempt: BoostJob['attempt'] }
 interface Row { tick: number; progress: number; units: UnitRow[]; labMineral: number; labEnergy: number; bankK: number; bankOH: number; reactionLabs: string[] }
 declare global { interface Memory { boostRows?: Row[]; boostCancelled?: boolean; boostDestroyed?: boolean } }
 const state = createMemoryPort(() => Memory), requests = createBoostRequests(state);
@@ -26,14 +27,14 @@ export function runBoosts(mode: BoostMode): void {
   const lab = room.find(FIND_MY_STRUCTURES).find((item): item is StructureLab => item.structureType === STRUCTURE_LAB && item.pos.x === 17 && item.pos.y === 20);
   const plan = (state.read('industry-labs/W0N1') as { data: LabState } | undefined)?.data.assignment;
   (Memory.boostRows ??= []).push({ tick: Game.time,progress: room.controller!.progress,
-    units: targets.map(creep => unitRow(creep,requests.get(owner,creep.name)!)),labMineral: lab?.mineralAmount ?? 0,labEnergy: lab?.store.energy ?? 0,bankK: room.storage!.store.getUsedCapacity(RESOURCE_KEANIUM),bankOH: room.storage!.store.getUsedCapacity(RESOURCE_HYDROXIDE),
+    units: targets.map(creep => unitRow(creep,requests.get(owner,creep.name)!,mode)),labMineral: lab?.mineralAmount ?? 0,labEnergy: lab?.store.energy ?? 0,bankK: room.storage!.store.getUsedCapacity(RESOURCE_KEANIUM),bankOH: room.storage!.store.getUsedCapacity(RESOURCE_HYDROXIDE),
     reactionLabs: plan ? [...plan.inputs,...plan.outputs] : [] });
 }
 function seed(mode: BoostMode,room: Room,units: readonly Creep[]): void {
   if (Memory.boostRows) return;
   const lab = room.find(FIND_MY_STRUCTURES).find((item): item is StructureLab => item.structureType === STRUCTURE_LAB && item.pos.x === 17 && item.pos.y === 20)!;
   for (const creep of units) {
-    const steps: BoostStep[] = [{ part: WORK,resource: RESOURCE_CATALYZED_GHODIUM_ACID,count: 2 }];
+    const steps: BoostStep[] = mode === 'alias' ? aliasSteps(creep,lab) : [{ part: WORK,resource: RESOURCE_CATALYZED_GHODIUM_ACID,count: 2 }];
     if (mode === 'multi') steps.push({ part: MOVE,resource: RESOURCE_ZYNTHIUM_OXIDE,count: 1 });
     requests.submit({ id: creep.name,owner,unit: creep.id,name: creep.name,home: room.name,steps,required: true,preferredLab: lab.id,expiresAt: mode === 'expiry' ? 12 : 80 },Game.time);
   }
@@ -54,9 +55,19 @@ function release(mode: BoostMode): void {
   const job = requests.get(owner,'boost-target')!;
   if (!job.acknowledged) requests.acknowledge(owner,'boost-target');
 }
-function unitRow(creep: Creep,job: BoostJob): UnitRow {
+function unitRow(creep: Creep,job: BoostJob,mode: BoostMode): UnitRow {
   return { name: creep.name,status: job.status,ready: requests.readiness(owner,creep.name) === 'ready',acknowledged: job.acknowledged,
-    work: creep.body.filter(part => part.type === WORK && part.boost === RESOURCE_CATALYZED_GHODIUM_ACID).length,
+    work: creep.body.filter(part => part.type === WORK && part.boost === (mode === 'alias' ? RESOURCE_GHODIUM_ACID : RESOURCE_CATALYZED_GHODIUM_ACID)).length,
+    workCompound: creep.body.find(part => part.type === WORK)?.boost ?? null,
     move: creep.body.filter(part => part.type === MOVE && part.boost === RESOURCE_ZYNTHIUM_OXIDE).length,
     energy: creep.store.energy,x: creep.pos.x,y: creep.pos.y,lab: job.lab,attempt: job.attempt };
+}
+
+function aliasSteps(creep: Creep,lab: StructureLab): BoostStep[] {
+  const minerals = Object.fromEntries(Object.entries(lab.store).filter(([resource]) => resource !== RESOURCE_ENERGY));
+  const selection = selectLegacyBoostPlan(['upgrade'],{ role: 'upgrader',remoteUpgrader: false,
+    body: creep.body.map(part => ({ type: part.type,hits: part.hits,boost: typeof part.boost === 'undefined' ? null : String(part.boost) })) },
+  { minerals,energy: lab.store.energy },{ mineral: LAB_BOOST_MINERAL,energy: LAB_BOOST_ENERGY });
+  if (selection.status !== 'selected') throw new Error('Expected affordable alias fallback');
+  return [...selection.steps];
 }

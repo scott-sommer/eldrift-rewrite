@@ -7,7 +7,7 @@ async function boostWorld(server,bot,mode) {
   await db['rooms.objects'].update({ room: 'W0N1',type: 'controller' },{ $set: { level: mode === 'coexist' ? 7 : 6,progress: 0,x: 20,y: 23,downgradeTime: 20000 } });
   const stock = mode === 'contention' ? 120 : 60, energy = mode === 'multi' ? 60 : stock/30*20;
   await server.world.addRoomObject('W0N1','storage',20,18,{ user: bot.id,store: { energy: 100000,XGH2O: mode === 'supply' ? 60 : 0,ZO: 30 },storeCapacity: 1000000,hits: 10000,hitsMax: 10000 });
-  const mineral = mode === 'supply' ? { K: 10 } : mode === 'expiry' ? {} : { XGH2O: stock };
+  const mineral = mode === 'supply' ? { K: 10 } : mode === 'expiry' ? {} : mode === 'alias' ? { GH2O: stock } : { XGH2O: stock };
   await server.world.addRoomObject('W0N1','lab',17,20,{ user: bot.id,store: { ...mineral,energy: ['supply','expiry'].includes(mode) ? 0 : energy },
     storeCapacityResource: { ...Object.fromEntries(Object.keys(mineral).map(resource => [resource,3000])),energy: 2000 },storeCapacity: Object.keys(mineral).length ? null : 5000,hits: 500,hitsMax: 500,cooldownTime: 0 });
   if (mode === 'coexist') for (const [x,y,resource] of [[16,21,'H'],[18,21,'O'],[17,22,null]]) {
@@ -54,6 +54,11 @@ function verifyBoosts(memory,mode,evidence) {
   if (mode === 'coexist') {
     assert.equal(last.bankOH,10,'Ordinary reactions continue alongside the reserved boost');
     for (const row of rows) for (const unit of row.units) if (unit.lab && ['pending','issued'].includes(unit.status)) assert.ok(!row.reactionLabs.includes(unit.lab),'Boost-reserved lab cannot belong to reaction topology');
+  }
+  if (mode === 'alias') {
+    assert.deepEqual(evidence.boosts.queue.data.jobs[0].request.steps,[{ part: 'work',resource: 'GH2O',count: 2 }]);
+    assert.equal(last.units[0].workCompound,'GH2O','Actual fallback compound must be observed on body');
+    assert.ok(evidence.boosts.resets.every(reset => reset.attempt.resource === 'GH2O'));
   }
   if (mode === 'supply') assert.equal(last.bankK,10);
   if (mode === 'multi') assert.ok(rows.some(row => row.units[0].work === 2 && !row.units[0].ready));
