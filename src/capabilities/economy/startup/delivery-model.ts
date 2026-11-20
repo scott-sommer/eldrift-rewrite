@@ -5,6 +5,8 @@ import type { SelfBuildInput } from './build-model';
 export interface StartupCourier {
   request: string; outboundTicks: number; returnTicks: number; retireTicks: number; minimumBatch: number;
   collectionTicks?: number; deliveryTicks?: number;
+  /** First journey starts at the selected spawn exit; later journeys start at the deposit service tile. */
+  initialOutboundTicks?: number;
 }
 export interface StartupDeliveryInput { project: StartupConstructionInput; couriers: readonly StartupCourier[]; containerCapacity: number; homeSink: StartupSinkInput; container: StartupContainerInput }
 export interface StartupDeliveryForecast {

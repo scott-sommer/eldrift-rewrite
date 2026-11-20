@@ -15,7 +15,7 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(last.miningClaims,1); assert.equal(last.income,0); assert.equal(last.probe.localExpiryEnergy,0);
   const homeCapital = row => row.homeEnergy+row.units.filter(unit => unit.room === 'W0N1').reduce((sum,unit) => sum+unit.cargo,0)+row.birthCost;
   assert.equal(homeCapital(last),homeCapital(rows[0]));
-  assert.deepEqual(memory.stampReloads,[21,81]);
+  assert.deepEqual(memory.stampReloads,[21,81,150]);
   const observed = memory.startupFacts;
   assert.equal(observed.status,'observed');
   const facts = observed.facts;
@@ -30,6 +30,7 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(facts.workers[0].name,Object.entries(memory.pipelineBirths).find(([,birth]) => birth.family === 'miner')[0]);
   assert.ok(facts.authority.generation > 0 && facts.authority.expiresAt > facts.observedAt);
   assert.ok(facts.spawns.length === 1 && facts.spawns[0].remainingTime === 0);
+  require('./startup-travel-check.cjs').verifyStartupTravel(memory.startupTravel);
 
 }
 module.exports = { verifyStartupAdmission };

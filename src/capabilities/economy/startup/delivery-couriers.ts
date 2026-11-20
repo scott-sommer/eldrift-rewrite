@@ -7,11 +7,11 @@ export function startupDeliveryCouriers(input: StartupDeliveryInput, births: rea
   const result: StartupCourierState[] = [];
   for (const worker of input.couriers) {
     const { capacity,lifetime } = courierBody(input,worker.request);
-    const { collectionTicks,deliveryTicks } = courierTiming(worker,capacity);
+    const { collectionTicks,deliveryTicks,initialOutboundTicks } = courierTiming(worker,capacity);
     const birth = births.find(birth => birth.request === worker.request);
     if (!birth) continue;
     result.push({ ...worker,collectionTicks,deliveryTicks,capacity,expiresAt: birth.activeAt+lifetime,stopAt: birth.activeAt+lifetime-worker.retireTicks,
-      nextAt: birth.activeAt+worker.outboundTicks,phase: 'collect',cargo: 0 });
+      nextAt: birth.activeAt+initialOutboundTicks,phase: 'collect',cargo: 0 });
   }
   return result.sort((a,b) => a.request.localeCompare(b.request));
 }
@@ -48,9 +48,13 @@ function deliver(worker: StartupCourierState, result: StartupDeliveryForecast, t
 }
 
 function courierTiming(worker: StartupCourier, capacity: number) {
+  const service = courierServiceTiming(worker), initialOutboundTicks = worker.initialOutboundTicks ?? worker.outboundTicks;
+  if (![initialOutboundTicks,worker.outboundTicks,worker.returnTicks,worker.retireTicks].every(value => Number.isSafeInteger(value) && value >= 0 && value <= 1500)) throw new Error('Invalid courier timing');
+  if (!Number.isSafeInteger(worker.minimumBatch) || worker.minimumBatch < 1 || worker.minimumBatch > capacity) throw new Error('Invalid courier batch');
+  return { ...service,initialOutboundTicks };
+}
+function courierServiceTiming(worker: StartupCourier) {
   const collectionTicks = worker.collectionTicks ?? 1, deliveryTicks = worker.deliveryTicks ?? 1;
   if (![collectionTicks,deliveryTicks].every(value => Number.isSafeInteger(value) && value >= 1 && value <= 1500)) throw new Error('Invalid courier service delay');
-  if (![worker.outboundTicks,worker.returnTicks,worker.retireTicks].every(value => Number.isSafeInteger(value) && value >= 0 && value <= 1500)) throw new Error('Invalid courier timing');
-  if (!Number.isSafeInteger(worker.minimumBatch) || worker.minimumBatch < 1 || worker.minimumBatch > capacity) throw new Error('Invalid courier batch');
   return { collectionTicks,deliveryTicks };
 }

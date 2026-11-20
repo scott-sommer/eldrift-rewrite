@@ -13,7 +13,7 @@ function createStartupChanges(mode) {
     const memory = JSON.parse((await bot.memory) || '{}'), row = memory.pipelineRows?.at(-1);
     if (row && rows.at(-1)?.tick !== row.tick) rows.push(row);
     if (row && index%500 === 0) console.log('STARTUP_PROGRESS '+JSON.stringify({ tick: row.tick,income: row.income,birthCost: row.birthCost,construction: row.probe.construction,pending: row.remotePending,home: row.homeEnergy }));
-    return reloadStampDraft(server,bot,modules,index,mode === 'refusal' ? [20,49,80] : mode === 'admission' ? [20,80] : [20,700,1250,1490,2100,3500,4500]);
+    return reloadStampDraft(server,bot,modules,index,mode === 'refusal' ? [20,49,80] : mode === 'admission' ? [20,80,149] : [20,700,1250,1490,2100,3500,4500]);
   } };
 }
 function verifyRemoteStartup(memory,evidence,mode,streamed) {
@@ -21,6 +21,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   delete evidence.startupDiagnosticRows;
   evidence.remoteStartup = { mode,rows,births,construction: memory.startupConstruction ?? 0,calls: memory.startupCalls ?? [],reloads: memory.stampReloads,attrition: memory.startupAttrition,remoteReceipts: memory.pipelineRemote,localReceipts: memory.pipelineLocal };
   if (memory.startupFacts) evidence.remoteStartup.nativeFacts = memory.startupFacts;
+  if (memory.startupTravel) evidence.remoteStartup.nativeTravel = memory.startupTravel;
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.equal(rows.length,mode === 'staged' ? 5000 : 150); rows.forEach((row,index) => assert.equal(row.tick,index+1));
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null);
