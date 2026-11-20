@@ -1,1 +1,1 @@
-export { copyPlain, parsePlain } from '../core/plain-data';
+export { copyPlain, parsePlain, PlainDataCapacityError } from '../core/plain-data';

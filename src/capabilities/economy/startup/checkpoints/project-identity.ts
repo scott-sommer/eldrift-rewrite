@@ -1,3 +1,4 @@
+import { StartupCheckpointCapacityError } from './capacity';
 import { copyPlain } from '../../../../core/plain-data';
 import type { StartupDeliveryInput } from '../delivery-model';
 import { record } from './validation';
@@ -8,7 +9,7 @@ export function startupProjectIdentity(input: StartupDeliveryInput): string {
   const requests = spawning.requests.map(request => ({ ...request,home: request.home ?? null,placement: request.placement ?? null }));
   const wire = copyPlain({ ...input,couriers,project: { ...input.project,spawning: { ...spawning,requests,liveNames: [...spawning.liveNames].sort() } } });
   const identity = JSON.stringify(wire,(_key,value: unknown) => record(value) ? ordered(value) : value);
-  if (identity.length > 262144) throw new Error('Startup checkpoint input capacity');
+  if (identity.length > 262144) throw new StartupCheckpointCapacityError('Startup checkpoint input capacity');
   return identity;
 }
 function ordered(value: Record<string,unknown>): Record<string,unknown> {

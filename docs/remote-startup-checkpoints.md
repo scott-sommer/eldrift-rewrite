@@ -19,3 +19,5 @@ A synthetic portable-model checkpoint probe is included alongside the ordinary n
 Next: a feature-owned, bounded persistent planning job with current-input invalidation and revision control, fresh native schedule/geometry conversion, native calibration and economic candidate policy. Default ordinary selection still does not invoke the forward project model. Parity, aggregate pressure/soak and full migration/rollback gates remain open.
 
 Hosted [CI44702688888](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44702688888) passes Windows2022 and Ubuntu24.04 on the native-qualified source9cf9a12, including all six required checks. ED-29 remains In Progress.
+
+The subsequent [persistent planning-job owner](remote-startup-planning-jobs.md) now stores normalized input and checkpoints with revision, context and expiry fences. Its native fixture still uses synthetic model inputs; current native conversion and economic selection remain open.

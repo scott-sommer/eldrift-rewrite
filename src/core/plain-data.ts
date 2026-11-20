@@ -1,9 +1,10 @@
+export class PlainDataCapacityError extends Error {}
 interface WalkBudget { nodes: number; ancestors: Set<object> }
 export function copyPlain<T>(value: T): T {
   return clone(value, 0, { nodes: 100000, ancestors: new Set() }) as T;
 }
 function clone(value: unknown, depth: number, budget: WalkBudget): unknown {
-  if (--budget.nodes < 0 || depth > 100) throw new Error('State exceeds validation budget');
+  if (--budget.nodes < 0 || depth > 100) throw new PlainDataCapacityError('State exceeds validation budget');
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
   if (typeof value === 'number' && Number.isFinite(value)) return value === 0 ? 0 : value;
   if (typeof value !== 'object') throw new Error('State contains a non-JSON value');
@@ -52,7 +53,7 @@ export function parsePlain(source: string): unknown {
   return validateParsed(JSON.parse(source), 0, { nodes: 100000 });
 }
 function validateParsed(value: unknown, depth: number, budget: { nodes: number }): unknown {
-  if (--budget.nodes < 0 || depth > 100) throw new Error('State exceeds validation budget');
+  if (--budget.nodes < 0 || depth > 100) throw new PlainDataCapacityError('State exceeds validation budget');
   if (typeof value === 'number') {
     if (!Number.isFinite(value)) throw new Error('State contains a non-JSON value');
     return value === 0 ? 0 : value;

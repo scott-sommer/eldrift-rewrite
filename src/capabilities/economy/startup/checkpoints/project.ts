@@ -1,3 +1,4 @@
+import { StartupCheckpointCapacityError } from './capacity';
 import { copyPlain } from '../../../../core/plain-data';
 import { startupProjectIdentity } from './project-identity';
 import { restoreTimelineCheckpoint } from './timeline';
@@ -26,7 +27,7 @@ export function readStartupProjectCheckpoint(input: StartupDeliveryInput, value:
 }
 export function boundedProjectCheckpoint<T>(value: T): T {
   const saved = copyPlain(value);
-  if (JSON.stringify(saved).length > 1048576) throw new Error('Startup checkpoint capacity');
+  if (JSON.stringify(saved).length > 1048576) throw new StartupCheckpointCapacityError('Startup checkpoint capacity');
   return saved;
 }
 function validateComponents(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
