@@ -1,3 +1,5 @@
+import { labDefaults } from './labs';
+import type { LabConfig } from './labs';
 import { remoteDefaults } from './remotes';
 import type { RemoteConfig } from './remotes';
 import { observerDefaults } from './observers';
@@ -10,7 +12,7 @@ import { constructionDefaults } from './construction';
 import type { ConstructionConfig } from './construction';
 import { planningDefaults } from './planning';
 import type { PlanningConfig } from './planning';
-export interface RuntimeConfig extends RemoteConfig, PlanningConfig, ConstructionConfig, IntelConfig, ScoutConfig, ObserverConfig {
+export interface RuntimeConfig extends LabConfig, RemoteConfig, PlanningConfig, ConstructionConfig, IntelConfig, ScoutConfig, ObserverConfig {
   recoverySupportEnabled: boolean;
   recoverySupportReserve: number;
   recoverySupportBodyBudget: number;
@@ -112,7 +114,7 @@ export interface RuntimeConfig extends RemoteConfig, PlanningConfig, Constructio
   allies: readonly string[];
 }
 export const defaults: Readonly<RuntimeConfig> = Object.freeze({
-  ...remoteDefaults, ...planningDefaults, ...constructionDefaults, ...intelDefaults, ...scoutDefaults, ...observerDefaults,
+  ...labDefaults, ...remoteDefaults, ...planningDefaults, ...constructionDefaults, ...intelDefaults, ...scoutDefaults, ...observerDefaults,
   recoverySupportEnabled: true,
   recoverySupportReserve: 0,
   recoverySupportBodyBudget: 2600,

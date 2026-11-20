@@ -46,6 +46,12 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
       if (!admission.admit(owner, [structureKey(observer.id)])) return ERR_BUSY;
       return observer.observeRoom(room);
     },
+    react(lab: StructureLab,first: StructureLab,second: StructureLab,owner: string): number {
+      if (!lab.my || !first.my || !second.my) return ERR_NOT_OWNER;
+      if (new Set([lab.id,first.id,second.id]).size !== 3 || lab.room.name !== first.room.name || lab.room.name !== second.room.name) return ERR_INVALID_TARGET;
+      if (!admission.admit(owner,[structureKey(lab.id)])) return ERR_BUSY;
+      return lab.runReaction(first,second);
+    },
     boost(lab: StructureLab, creep: Creep, owner: string): number {
       if (!lab.my || !creep.my) return ERR_NOT_OWNER;
       if (lab.room.name !== creep.room.name) return ERR_INVALID_TARGET;

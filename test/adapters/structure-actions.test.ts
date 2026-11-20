@@ -7,7 +7,7 @@ function fixture() {
   const state = { read: (key: string) => records.get(key), write: (key: string, value: Envelope) => { records.set(key, structuredClone(value)); } };
   const room = { name: 'W0N1', energyAvailable: 100 };
   const spawn = { id: 'spawn', my: true, room, renewCreep: vi.fn(() => 0), spawnCreep: vi.fn(() => 0) } as unknown as StructureSpawn;
-  const lab = { id: 'lab', my: true, room, boostCreep: vi.fn(() => 0) } as unknown as StructureLab;
+  const lab = { id: 'lab', my: true, room, boostCreep: vi.fn(() => 0),runReaction: vi.fn(() => 0) } as unknown as StructureLab;
   const creep = { id: 'unit', my: true, room, body: [{ type: 'work', hits: 100 }, { type: 'move', hits: 100 }] } as Creep;
   vi.stubGlobal('Game', { time: 1, getObjectById: () => spawn });
   for (const [name, value] of Object.entries({ ERR_BUSY: -4, ERR_INVALID_TARGET: -7, ERR_NOT_OWNER: -1,
@@ -90,4 +90,20 @@ test('rejected or interrupted spawn cancellation retains admission until a fresh
   Game.time++; f.cancel.mockImplementation(() => { throw new Error('interrupted cancellation'); });
   expect(() => f.make().cancelSpawning(f.spawn,'new','remote')).toThrow('interrupted');
   expect(f.make().cancelSpawning(f.spawn,'new','remote')).toBe(-4);
+});
+
+test('reactions share output admission with boosting and survive adapter reconstruction',() => {
+  const f = fixture(), first = { ...f.lab,id: 'first' as Id<StructureLab> }, second = { ...f.lab,id: 'second' as Id<StructureLab> };
+  expect(f.make().react(f.lab,first,second,'industry')).toBe(0);
+  expect(f.make().react(f.lab,first,second,'industry')).toBe(-4);
+  expect(f.make().boost(f.lab,f.creep,'mission')).toBe(-4);
+  expect(f.lab.runReaction).toHaveBeenCalledTimes(1);
+  Game.time++; expect(f.make().react(f.lab,first,second,'industry')).toBe(0);
+});
+test('reaction admission refuses foreign labs, reused endpoints and other rooms',() => {
+  const f = fixture(), first = { ...f.lab,id: 'first' as Id<StructureLab> }, second = { ...f.lab,id: 'second' as Id<StructureLab> };
+  expect(f.make().react(f.lab,{ ...first,my: false },second,'industry')).toBe(-1);
+  expect(f.make().react(f.lab,f.lab,second,'industry')).toBe(-7);
+  expect(f.make().react(f.lab,first,{ ...second,room: { ...f.room,name: 'elsewhere' } } as StructureLab,'industry')).toBe(-7);
+  expect(f.lab.runReaction).not.toHaveBeenCalled();
 });
