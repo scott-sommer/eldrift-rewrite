@@ -22,7 +22,7 @@ export function runBoosts(mode: BoostMode): void {
   for (const creep of targets) creep.memory.population = { owner,home: room.name };
   Game.creeps['boost-courier']!.memory.population = { owner: haulingOwner(room.name),home: room.name };
   const settings = openState(state,'operator/config',operatorSchema);
-  settings.empire = { logisticsEnabled: true,workersEnabled: true,workerMode: 'upgrader',workerUpgradeReserve: 0,workerUpgraderTarget: 0,labReactionsEnabled: mode === 'coexist',labReactionProduct: 'OH',labReactionTarget: 10 };
+  settings.empire = { logisticsEnabled: true,workersEnabled: true,workerMode: 'upgrader',workerUpgradeReserve: 0,workerUpgraderTarget: mode === 'birth' ? 1 : 0,workerSpawningEnabled: mode === 'birth',workerBodyBudget: 300,labReactionsEnabled: mode === 'coexist',labReactionProduct: 'OH',labReactionTarget: 10 };
   saveState(state,'operator/config',operatorSchema,settings);
   seed(mode,room,targets); cancel(mode); destroy(mode,room); release(mode);
   botLoop();
