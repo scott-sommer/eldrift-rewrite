@@ -1,6 +1,6 @@
 const workerBoostMode = process.argv.includes('--worker-boost-shortage') ? 'shortage' : process.argv.includes('--worker-boost-optional') ? 'optional' : process.argv.includes('--worker-boost') ? 'normal' : undefined;
 const { workerBoostWorld,verifyWorkerBoosts } = require('./worker-boosts.cjs');
-const boostMode = ['birth','alias','supply','multi','cancel','expiry','destroy','contention','coexist'].find(mode => process.argv.includes('--boost-'+mode)) ?? (process.argv.includes('--boost') ? 'normal' : undefined);
+const boostMode = ['operator','birth','alias','supply','multi','cancel','expiry','destroy','contention','coexist'].find(mode => process.argv.includes('--boost-'+mode)) ?? (process.argv.includes('--boost') ? 'normal' : undefined);
 const { boostWorld,createBoostChanges,verifyBoosts } = require('./boosts.cjs');
 const changeBoosts = createBoostChanges();
 const labChainMode = process.argv.includes('--lab-chain-prestock') ? 'prestock' : process.argv.includes('--lab-chain-reserves') ? 'reserves' : process.argv.includes('--lab-chain-priority') ? 'priority' : process.argv.includes('--lab-chain-depleted') ? 'depleted' : process.argv.includes('--lab-chain') ? 'normal' : undefined;

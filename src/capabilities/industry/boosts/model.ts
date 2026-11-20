@@ -18,3 +18,8 @@ export function holdsBoostUnit(job: BoostJob): boolean {
 export function boostIdentity(request: Pick<BoostRequest,'owner' | 'id'>): string { return JSON.stringify([request.owner,request.id]); }
 export function boostScope(request: Pick<BoostRequest,'owner' | 'id'>): string { return 'boost:'+boostIdentity(request); }
 export function boostServiceOwner(request: Pick<BoostRequest,'owner' | 'id'>): string { return 'industry-boost:'+boostIdentity(request); }
+
+export function boostReadiness(job: BoostJob | null | undefined): 'absent' | 'waiting' | 'ready' | 'failed' {
+  if (!job) return 'absent';
+  return terminalBoost(job) ? (job.status === 'confirmed' ? 'ready' : 'failed') : 'waiting';
+}

@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { nativeWorkerBoostBudget } from '../../src/app/native-worker-boost-budget';
+import { nativeBoostBudget } from '../../src/app/native-boost-budget';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { defaults } from '../../src/config/model';
 import { createBoostRequests } from '../../src/features/industry/boosts/store';
@@ -19,24 +19,24 @@ function fixture(labAmount = 120) {
 }
 afterEach(() => vi.unstubAllGlobals());
 test('native projection separates transferable bank stock from the one matching lab and preserves warehouse floors',() => {
-  const f = fixture(); expect(nativeWorkerBoostBudget(f.state,f.room,f.config)).toEqual({ minerals: { energy: 50,GH2O: 30 },energy: 50,local: { GH2O: { mineral: 120,energy: 80 } } });
+  const f = fixture(); expect(nativeBoostBudget(f.state,f.room,f.config)).toEqual({ minerals: { energy: 50,GH2O: 30 },energy: 50,local: { GH2O: { mineral: 120,energy: 80 } } });
 });
 test('active boost promises remove remaining kits without deducting their own physical reservations twice',() => {
   const f = fixture(), request = { ...boostRequest(),steps: [{ part: 'work',resource: 'GH2O',count: 2 }] };
   createBoostRequests(f.state).submit(request,1);
   const pool = logisticsPool('stock','lab','GH2O'), owner = 'boost:'+JSON.stringify([request.owner,request.id]);
   createQuantityReservations(f.state).reserve({ id: 'held',owner,holder: request.name,scope: owner,expiresAt: 20,allocations: [{ pool,amount: 60 }] },{ [pool]: 120 },1);
-  expect(nativeWorkerBoostBudget(f.state,f.room,f.config).local.GH2O).toEqual({ mineral: 60,energy: 40 });
+  expect(nativeBoostBudget(f.state,f.room,f.config).local.GH2O).toEqual({ mineral: 60,energy: 40 });
 });
 test('foreign stock claims are removed before choosing new kits',() => {
   const f = fixture(), pool = logisticsPool('stock','lab','GH2O');
   createQuantityReservations(f.state).reserve({ id: 'foreign',owner: 'logistics',holder: 'courier',scope: 'task',expiresAt: 20,allocations: [{ pool,amount: 60 }] },{ [pool]: 120 },1);
-  expect(nativeWorkerBoostBudget(f.state,f.room,f.config).local.GH2O).toBeUndefined();
+  expect(nativeBoostBudget(f.state,f.room,f.config).local.GH2O).toBeUndefined();
 });
 test('pending spawn contracts consume future kits and observed birth does not double count queue plus live intake',() => {
   const f = fixture(); createSpawnQueue(f.state,'W0N1').submit({ id: 'future',name: 'future',owner: 'work',room: 'W0N1',priority: 1,readyAt: 1,expiresAt: 20,body: ['work','work','move'],
     boost: { steps: [{ part: 'work',resource: 'GH2O',count: 2 }],required: true,timeout: 80 } });
-  expect(nativeWorkerBoostBudget(f.state,f.room,f.config).local.GH2O!.mineral).toBe(60);
+  expect(nativeBoostBudget(f.state,f.room,f.config).local.GH2O!.mineral).toBe(60);
   Game.creeps.future = { id: 'native',name: 'future',memory: { industryBoostBirth: { id: 'birth',owner: 'work',home: 'W0N1',steps: [{ part: 'work',resource: 'GH2O',count: 2 }],required: true,expiresAt: 90 } } } as unknown as Creep;
-  expect(nativeWorkerBoostBudget(f.state,f.room,f.config).local.GH2O!.mineral).toBe(60);
+  expect(nativeBoostBudget(f.state,f.room,f.config).local.GH2O!.mineral).toBe(60);
 });

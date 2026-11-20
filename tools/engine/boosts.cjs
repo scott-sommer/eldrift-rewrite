@@ -47,10 +47,10 @@ function verifyBoosts(memory,mode,evidence) {
     if (unit.status === 'issued') assert.equal(unit.ready,false,'Accepted API call is not body confirmation');
     if (unit.ready) { assert.equal(unit.work,2); if (mode === 'multi') assert.equal(unit.move,1); }
   }
-  const failure = ['cancel','expiry','destroy'].includes(mode);
+  const failure = ['cancel','operator','expiry','destroy'].includes(mode);
   assert.ok(last.progress > 0,'Ordinary worker resumes after confirmation or deliberate failure acknowledgement');
   if (failure) {
-    const expected = { cancel: 'cancelled',expiry: 'expired',destroy: 'failed' }[mode];
+    const expected = { cancel: 'cancelled',operator: 'cancelled',expiry: 'expired',destroy: 'failed' }[mode];
     assert.equal(last.units[0].status,expected); assert.equal(last.units[0].ready,false); assert.equal(last.units[0].acknowledged,true);
     assert.ok(rows.filter(row => row.tick < 40).every(row => row.progress === 0));
   } else assert.ok(last.units.every(unit => unit.ready && unit.status === 'confirmed'));

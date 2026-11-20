@@ -2,7 +2,7 @@ import type { StatePort } from '../../../persistence/versioned-state';
 import { openState, peekState, saveState } from '../../../persistence/versioned-state';
 import { boostSchema, validBoostRequest } from './schema';
 import type { BoostJob, BoostRequest } from '../../../capabilities/industry/boosts/model';
-import { boostIdentity, holdsBoostUnit, terminalBoost } from '../../../capabilities/industry/boosts/model';
+import { boostIdentity, boostReadiness, holdsBoostUnit, terminalBoost } from '../../../capabilities/industry/boosts/model';
 const key = 'industry-boosts/empire';
 export function createBoostRequests(state: StatePort) {
   const read = () => peekState(state,key,boostSchema);
@@ -26,8 +26,7 @@ export function createBoostRequests(state: StatePort) {
     get: (owner: string,id: string) => read()?.jobs.find(job => job.request.owner === owner && job.request.id === id) ?? null,
     readiness(owner: string,id: string): 'absent' | 'waiting' | 'ready' | 'failed' {
       const job = read()?.jobs.find(job => job.request.owner === owner && job.request.id === id);
-      if (!job) return 'absent';
-      return terminalBoost(job) ? (job.status === 'confirmed' ? 'ready' : 'failed') : 'waiting';
+      return boostReadiness(job);
     },
     submit: (request: BoostRequest,tick: number) => submit(request,tick,false),
     adoptBirth: (request: BoostRequest,tick: number) => submit(request,tick,true),

@@ -9,6 +9,8 @@ const game = { time: 1, rooms: {}, creeps: {}, cpu: { tickLimit: 20, bucket: 100
 const context = vm.createContext({ module, exports: module.exports, Game: game, Memory: {}, console: { log: message => messages.push(message) } });
 vm.runInContext(source, context, { filename: 'main.js', timeout: 1000 });
 assert.equal(typeof module.exports.loop, 'function');
+assert.deepEqual(Object.keys(module.exports.industry.boosts).sort(), ['acknowledge','aliases','cancel','get','list','request']);
+assert.equal(vm.runInContext('module.exports.industry.boosts.list().length', context), 0);
 vm.runInContext('module.exports.loop(); module.exports.loop();', context, { timeout: 1000 });
 assert.deepEqual(messages, []);
 const map = JSON.parse(await readFile('dist/main.js.map', 'utf8'));

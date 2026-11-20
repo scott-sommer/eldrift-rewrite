@@ -20,9 +20,9 @@ function bankStock(objects: readonly StockObject[],claims: readonly QuantityAllo
   return total;
 }
 /** Match the executor's largest matching-lab preference; never pool inaccessible energy from other labs. */
-function localKits(room: Room,claims: readonly QuantityAllocation[]): Record<string,LocalBoostKit> {
+function localKits(room: Room,claims: readonly QuantityAllocation[],preferredLab?: string): Record<string,LocalBoostKit> {
   const kits: Record<string,LocalBoostKit> = {};
-  const labs = room.find(FIND_MY_STRUCTURES).filter((item): item is StructureLab => item.structureType === STRUCTURE_LAB && item.isActive());
+  const labs = room.find(FIND_MY_STRUCTURES).filter((item): item is StructureLab => item.structureType === STRUCTURE_LAB && item.isActive() && (preferredLab === undefined || item.id === preferredLab));
   labs.sort((a,b) => b.mineralAmount-a.mineralAmount || a.id.localeCompare(b.id));
   for (const lab of labs) {
     if (!lab.mineralType || kits[lab.mineralType]) continue;
@@ -32,7 +32,7 @@ function localKits(room: Room,claims: readonly QuantityAllocation[]): Record<str
   }
   return kits;
 }
-export function nativeWorkerBoostBudget(state: StatePort,room: Room,config: Readonly<RuntimeConfig>): MutableBoostBudget {
+export function nativeBoostBudget(state: StatePort,room: Room,config: Readonly<RuntimeConfig>,preferredLab?: string): MutableBoostBudget {
   const claims = createQuantityReservations(state).list(Game.time);
   const foreign = claims.filter(claim => !boostClaim(claim.owner)).flatMap(claim => claim.allocations);
   const holders = new Set(claims.filter(claim => claim.owner.startsWith('industry-boost:')).map(claim => claim.holder));
@@ -40,7 +40,7 @@ export function nativeWorkerBoostBudget(state: StatePort,room: Room,config: Read
   const cargo = room.find(FIND_MY_CREEPS).filter(creep => holders.has(creep.name));
   const objects: StockObject[] = [...banks.map(bank => ({ id: bank.id,store: bank.store,bank: true })),...cargo.map(item => ({ id: item.id,store: item.store,bank: false }))];
   const total = bankStock(objects,foreign,config);
-  const budget: MutableBoostBudget = { minerals: total,energy: total[RESOURCE_ENERGY] ?? 0,local: localKits(room,foreign) };
+  const budget: MutableBoostBudget = { minerals: total,energy: total[RESOURCE_ENERGY] ?? 0,local: localKits(room,foreign,preferredLab) };
   for (const steps of promisedNativeBoosts(state,room.name)) spendBoostBudget(budget,steps,{ mineral: LAB_BOOST_MINERAL,energy: LAB_BOOST_ENERGY });
   return budget;
 }

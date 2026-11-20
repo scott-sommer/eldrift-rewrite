@@ -2,7 +2,7 @@ import { spawnBoostIdentity } from '../../src/capabilities/spawning/boost';
 import { createSpawnQueue } from '../../src/features/population/spawn-queue';
 import { selectLegacyBoostPlan } from '../../src/features/industry/boosts/legacy-preferences';
 import type { LabState } from '../../src/features/industry/lab-state';
-import { loop as botLoop } from '../../src/main';
+import { industry, loop as botLoop } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
@@ -10,7 +10,7 @@ import { createBoostRequests } from '../../src/features/industry/boosts/store';
 import type { BoostJob, BoostStep } from '../../src/capabilities/industry/boosts/model';
 import { workOwner } from '../../src/features/work/identity';
 import { haulingOwner } from '../../src/features/logistics/identity';
-export type BoostMode = 'normal' | 'birth' | 'alias' | 'supply' | 'multi' | 'cancel' | 'expiry' | 'destroy' | 'contention' | 'coexist';
+export type BoostMode = 'normal' | 'operator' | 'birth' | 'alias' | 'supply' | 'multi' | 'cancel' | 'expiry' | 'destroy' | 'contention' | 'coexist';
 interface UnitRow { name: string; status: string; ready: boolean; acknowledged: boolean; work: number; workCompound: string | null; move: number; energy: number; x: number; y: number; lab: string | null; attempt: BoostJob['attempt'] }
 interface Row { tick: number; progress: number; units: UnitRow[]; labMineral: number; labEnergy: number; bankK: number; bankOH: number; reactionLabs: string[] }
 declare global { interface Memory { boostRows?: Row[]; boostCancelled?: boolean; boostDestroyed?: boolean } }
@@ -44,6 +44,11 @@ function seed(mode: BoostMode,room: Room,units: readonly Creep[]): void {
       boost: { steps: selection.steps,required: true,timeout: 80 } });
     return;
   }
+  if (mode === 'operator') {
+    const result = industry.boosts.aliases(units[0]!.name,['upgrade'],{ id: units[0]!.name,expiresAt: 80,required: true,preferredLab: lab.id });
+    if (!result.accepted || industry.boosts.get(owner,units[0]!.name)?.readiness !== 'waiting') throw new Error('Operator admission is not observed readiness');
+    return;
+  }
   for (const creep of units) {
     const steps: BoostStep[] = mode === 'alias' ? aliasSteps(creep,lab) : [{ part: WORK,resource: RESOURCE_CATALYZED_GHODIUM_ACID,count: 2 }];
     if (mode === 'multi') steps.push({ part: MOVE,resource: RESOURCE_ZYNTHIUM_OXIDE,count: 1 });
@@ -51,9 +56,10 @@ function seed(mode: BoostMode,room: Room,units: readonly Creep[]): void {
   }
 }
 function cancel(mode: BoostMode): void {
-  if (mode !== 'cancel' || Memory.boostCancelled) return;
+  if (!['cancel','operator'].includes(mode) || Memory.boostCancelled) return;
   if (requests.get(owner,'boost-target')?.status !== 'issued') return;
-  requests.cancel(owner,'boost-target'); Memory.boostCancelled = true;
+  if (mode === 'operator') industry.boosts.cancel(owner,'boost-target'); else requests.cancel(owner,'boost-target');
+  Memory.boostCancelled = true;
 }
 function destroy(mode: BoostMode,room: Room): void {
   if (mode !== 'destroy' || Game.time !== 4) return;
@@ -62,9 +68,11 @@ function destroy(mode: BoostMode,room: Room): void {
   Memory.boostDestroyed = true;
 }
 function release(mode: BoostMode): void {
-  if (!['cancel','expiry','destroy'].includes(mode) || Game.time < 40) return;
+  if (!['cancel','operator','expiry','destroy'].includes(mode) || Game.time < 40) return;
   const job = requests.get(owner,'boost-target')!;
-  if (!job.acknowledged) requests.acknowledge(owner,'boost-target');
+  if (!job.acknowledged) {
+    if (mode === 'operator') industry.boosts.acknowledge(owner,'boost-target'); else requests.acknowledge(owner,'boost-target');
+  }
 }
 function unitRow(creep: Creep,job: BoostJob,mode: BoostMode): UnitRow {
   return { name: creep.name,status: job.status,ready: requests.readiness(owner,job.request.id) === 'ready',acknowledged: job.acknowledged,

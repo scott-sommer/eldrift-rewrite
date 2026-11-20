@@ -4,7 +4,7 @@ import { createWorkerBoostPolicy } from '../features/industry/boosts/worker-poli
 import { createBoostRequests } from '../features/industry/boosts/store';
 import { terminalBoost } from '../capabilities/industry/boosts/model';
 import { isWorkOwner } from '../features/work/identity';
-import { nativeWorkerBoostBudget } from './native-worker-boost-budget';
+import { nativeBoostBudget } from './native-boost-budget';
 export function nativeWorkerBirthBoosts(state: StatePort,room: Room,config: Readonly<RuntimeConfig>) {
   const store = createBoostRequests(state);
   for (const job of store.read()) {
@@ -13,6 +13,6 @@ export function nativeWorkerBirthBoosts(state: StatePort,room: Room,config: Read
   }
   if (config.workerBoostPolicy === 'off') return undefined;
   const labs = room.find(FIND_MY_STRUCTURES).some(item => item.structureType === STRUCTURE_LAB && item.isActive());
-  const available = labs ? nativeWorkerBoostBudget(state,room,config) : { minerals: {},energy: 0 };
+  const available = labs ? nativeBoostBudget(state,room,config) : { minerals: {},energy: 0 };
   return createWorkerBoostPolicy(config,available,{ mineral: LAB_BOOST_MINERAL,energy: LAB_BOOST_ENERGY });
 }
