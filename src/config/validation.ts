@@ -1,3 +1,4 @@
+import { workerBoostValidators } from './worker-boosts';
 import { snapshotLabProductionValue } from './lab-production';
 import { labValidators } from './labs';
 import { remoteValidators } from './remotes';
@@ -11,7 +12,7 @@ function bounded(value: unknown, maximum: number): boolean {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= maximum;
 }
 const validators: { [K in ConfigKey]: (value: unknown) => boolean } = {
-  ...labValidators, ...remoteValidators, ...planningValidators, ...constructionValidators, ...intelValidators, ...scoutValidators, ...observerValidators,
+  ...workerBoostValidators, ...labValidators, ...remoteValidators, ...planningValidators, ...constructionValidators, ...intelValidators, ...scoutValidators, ...observerValidators,
   recoverySupportEnabled: value => typeof value === 'boolean',
   recoverySupportReserve: value => bounded(value, 1300000) && Number.isInteger(value),
   recoverySupportBodyBudget: value => bounded(value, 2600) && Number.isInteger(value) && Number(value) >= 100,

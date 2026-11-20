@@ -1,9 +1,10 @@
+import { copyBoostBudget, canFundBoost, spendBoostBudget } from './funding';
+import type { BoostBudget, BoostPrice } from './funding';
+export type { BoostBudget, BoostPrice } from './funding';
 import type { BoostBodyPart, BoostStep } from '../../../capabilities/industry/boosts/model';
 
 export interface BoostPreference { part: string; compounds: readonly string[] }
 export type BoostPreferences = Readonly<Record<string, BoostPreference>>;
-export interface BoostBudget { minerals: Readonly<Record<string, number>>; energy: number }
-export interface BoostPrice { mineral: number; energy: number }
 export type BoostSelection =
   | { status: 'selected'; steps: readonly BoostStep[] }
   | { status: 'unavailable'; alias: string; reason: 'body' | 'stock' };
@@ -13,7 +14,7 @@ function stock(value: number): boolean { return Number.isSafeInteger(value) && v
 function validate(aliases: readonly string[],body: readonly BoostBodyPart[],budget: BoostBudget,price: BoostPrice): void {
   if (aliases.length < 1 || aliases.length > 8 || body.length > 50) throw new Error('Invalid boost selection bounds');
   if (!positive(price.mineral) || !positive(price.energy)) throw new Error('Invalid boost price');
-  if (!stock(budget.energy) || !Object.values(budget.minerals).every(stock)) throw new Error('Invalid boost budget');
+  validateBudget(budget);
   if (!body.every(part => stock(part.hits) && part.hits <= 100)) throw new Error('Invalid boost body');
 }
 function preferencesFor(aliases: readonly string[],preferences: BoostPreferences): BoostPreference[] {
@@ -32,7 +33,7 @@ function candidate(preference: BoostPreference,body: readonly BoostBodyPart[],bu
   for (const resource of preference.compounds) {
     if (parts.some(part => part.boost !== null && part.boost !== resource)) continue;
     const missing = parts.filter(part => part.boost === null).length;
-    if (missing*price.mineral > (budget.minerals[resource] ?? 0) || missing*price.energy > budget.energy) continue;
+    if (!canFundBoost(budget,resource,missing,price)) continue;
     return { part: preference.part,resource,count: parts.length };
   }
   return null;
@@ -40,15 +41,18 @@ function candidate(preference: BoostPreference,body: readonly BoostBodyPart[],bu
 /** Caller supplies unreserved stock after policy floors; selection itself does not reserve or promise readiness. */
 export function selectBoostPlan(aliases: readonly string[],body: readonly BoostBodyPart[],budget: BoostBudget,price: BoostPrice,preferences: BoostPreferences): BoostSelection {
   validate(aliases,body,budget,price);
-  const chosen = preferencesFor(aliases,preferences), minerals = { ...budget.minerals }, steps: BoostStep[] = [];
-  let energy = budget.energy;
+  const chosen = preferencesFor(aliases,preferences), remaining = copyBoostBudget(budget), steps: BoostStep[] = [];
   for (const [index,preference] of chosen.entries()) {
-    const step = candidate(preference,body,{ minerals,energy },price);
+    const step = candidate(preference,body,remaining,price);
     if (!step) return { status: 'unavailable',alias: aliases[index]!,reason: body.some(part => part.type === preference.part) ? 'stock' : 'body' };
     const missing = body.filter(part => part.type === step.part && part.boost === null).length;
-    minerals[step.resource] = (minerals[step.resource] ?? 0)-missing*price.mineral;
-    energy -= missing*price.energy;
+    spendBoostBudget(remaining,[{ ...step,count: missing }],price);
     steps.push(step);
   }
   return { status: 'selected',steps };
+}
+
+function validateBudget(budget: BoostBudget): void {
+  if (!stock(budget.energy) || !Object.values(budget.minerals).every(stock)) throw new Error('Invalid boost budget');
+  if (!Object.values(budget.local ?? {}).every(kit => stock(kit.mineral) && stock(kit.energy))) throw new Error('Invalid local boost budget');
 }
