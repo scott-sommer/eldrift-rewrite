@@ -15,3 +15,5 @@ ED-36 has [configured lab reaction evidence](industry-lab-reactions.md). labV2.j
 ED-36 now also has [persistent lab assignment and shared hauling evidence](industry-lab-transport.md): refill/drain, explicit product change, cancellation while work is admitted, depleted supply, reset and warehouse floors. Automatic chains and boost/specialist/operator paths remain explicit partial-module obligations.
 
 ED-36 now qualifies [automatic local reaction chains](industry-lab-production.md), including shared-raw feasibility, configured priorities, reserve funding and reset continuity. resourceManager.js remains partial until empire allocation and boost/operator policy are ported.
+
+ED-36 now qualifies [explicit boost orchestration](industry-boosts.md). booster.js and boost-lab transport remain partial until legacy aliases/tier choices, producer/operator bridges and specialist paths are completed; observed actor readiness does not establish concrete combat-mission parity.

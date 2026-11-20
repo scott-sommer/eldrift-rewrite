@@ -48,3 +48,5 @@ API reference: [Screeps StructureLab.runReaction](https://docs.screeps.com/api/#
 Hosted [CI44746517189](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44746517189) passes Windows2022 and Ubuntu24.04 on63964c7, with all six required checks verified in both jobs.
 
 The subsequent [automatic local chain planner](industry-lab-production.md) now qualifies bounded priority/dependency selection and real multistage production. Earlier references above to automatic chains as future work describe the prior increment; empire allocation and boost/operator obligations remain open.
+
+The subsequent [explicit boost orchestration](industry-boosts.md) now qualifies counted requests, actor/body/lab reservations, shared supply, observed readiness and cancellation/reset/coexistence. Earlier boost references describe the prior increment; legacy aliases, producers/operators, empire allocation and release obligations remain open.

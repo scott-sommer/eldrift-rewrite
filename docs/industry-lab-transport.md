@@ -57,3 +57,5 @@ Remaining ED-36 work: ordered priority targets and bounded reaction-chain depend
 Hosted [CI44752108536](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44752108536) passes Windows2022 and Ubuntu24.04 on87e38d7. All six required checks pass in both jobs, including final-source processor and bundle checks.
 
 The subsequent [automatic local chain planner](industry-lab-production.md) now qualifies bounded priority/dependency selection and real multistage production. Earlier references above to automatic chains as future work describe the prior increment; empire allocation and boost/operator obligations remain open.
+
+The subsequent [explicit boost orchestration](industry-boosts.md) now qualifies counted requests, actor/body/lab reservations, shared supply, observed readiness and cancellation/reset/coexistence. Earlier boost references describe the prior increment; legacy aliases, producers/operators, empire allocation and release obligations remain open.
