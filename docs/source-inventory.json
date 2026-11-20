@@ -1707,9 +1707,11 @@
     "file": "labV2.js",
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
-    "evidence": [],
+    "reviewStatus": "runLabs/topology reviewed; boost/operator paths remain under ED36/ED39",
+    "implementationStatus": "partial: configured reaction execution and safe topology; supply/chains/boost orchestration pending",
+    "evidence": [
+      "docs/industry-lab-reactions.md"
+    ],
     "plannedIssues": [
       "ED-36"
     ],
@@ -1774,10 +1776,16 @@
     "proposedOwner": "features/industry",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": null,
-      "required": "behavior fixture plus relevant contract/engine scenario",
-      "tests": [],
-      "status": "not implemented"
+      "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+      "required": "Full reaction-chain, transport, boost reservation and operator scenarios remain required",
+      "tests": [
+        "test/capabilities/lab-reactions.test.ts",
+        "test/features/lab-reaction-claims.test.ts",
+        "test/config/labs.test.ts",
+        "test/adapters/structure-actions.test.ts",
+        "test/engine/lab-reactions-bot.ts"
+      ],
+      "status": "partial; native direct-product reactions qualified; not full module parity"
     }
   },
   {

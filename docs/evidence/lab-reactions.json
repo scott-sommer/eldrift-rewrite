@@ -1,0 +1,1588 @@
+{
+  "sourceCommit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+  "scope": "Configured direct-product reactions, bounded topology, reagent and output-capacity claims, native cooldown/reserves/target and reserved-lab exclusion. ED36 remains incomplete: chain scheduling, supply/drain and observed boost reservations still required.",
+  "checks": {
+    "quality": "passed;Lizard1.22.2;837production/667testfiles;0violations;types/lint/boundariespassed",
+    "unit": {
+      "cases": 1809,
+      "files": 448,
+      "seconds": 12.61
+    },
+    "focusedAndSmoke": {
+      "cases": 21,
+      "files": 5,
+      "seconds": 0.247
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.204
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1311894
+    },
+    "bundle": "passed"
+  },
+  "nativeMilliseconds": 9326,
+  "native": [
+    {
+      "scenario": "--lab-reactions",
+      "milliseconds": 1833,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-W6DAX6\\evidence.json",
+      "status": "passed",
+      "rawSha256": "6a3836f08abf76339d09a0a97c083c9902905c256e94c4167f763eeaddd6f2fa",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "d9696a14672e9311060c853b0b3e991a293315326dbf1d7947b73cfc156be077",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "d11995b68e7f861ebbfecc849406b8d06c9118b9b258a5d0807fab0450f5d655",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-lab-reactions-rows.jsonl",
+      "rows": 25,
+      "rowsSha256": "1bc65f070bd3a293fd53f555cc37e02966d89b32b5d01ca4571e563e879a599b",
+      "observations": {
+        "mode": "normal",
+        "rows": [
+          {
+            "tick": 1,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 2,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              19,
+              19
+            ]
+          },
+          {
+            "tick": 3,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              18,
+              18
+            ]
+          },
+          {
+            "tick": 4,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              17,
+              17
+            ]
+          },
+          {
+            "tick": 5,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              16,
+              16
+            ]
+          },
+          {
+            "tick": 6,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              15,
+              15
+            ]
+          },
+          {
+            "tick": 7,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              14,
+              14
+            ]
+          },
+          {
+            "tick": 8,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              13,
+              13
+            ]
+          },
+          {
+            "tick": 9,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              12,
+              12
+            ]
+          },
+          {
+            "tick": 10,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              11,
+              11
+            ]
+          },
+          {
+            "tick": 11,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              10,
+              10
+            ]
+          },
+          {
+            "tick": 12,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              9,
+              9
+            ]
+          },
+          {
+            "tick": 13,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              8,
+              8
+            ]
+          },
+          {
+            "tick": 14,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              7,
+              7
+            ]
+          },
+          {
+            "tick": 15,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              6,
+              6
+            ]
+          },
+          {
+            "tick": 16,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              5,
+              5
+            ]
+          },
+          {
+            "tick": 17,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              4,
+              4
+            ]
+          },
+          {
+            "tick": 18,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              3,
+              3
+            ]
+          },
+          {
+            "tick": 19,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              2,
+              2
+            ]
+          },
+          {
+            "tick": 20,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "tick": 21,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 22,
+            "hydrogen": 5,
+            "oxygen": 5,
+            "product": 15,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              19
+            ]
+          },
+          {
+            "tick": 23,
+            "hydrogen": 5,
+            "oxygen": 5,
+            "product": 15,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              18
+            ]
+          },
+          {
+            "tick": 24,
+            "hydrogen": 5,
+            "oxygen": 5,
+            "product": 15,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              17
+            ]
+          },
+          {
+            "tick": 25,
+            "hydrogen": 5,
+            "oxygen": 5,
+            "product": 15,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              16
+            ]
+          }
+        ],
+        "reloads": [
+          6
+        ]
+      }
+    },
+    {
+      "scenario": "--lab-reactions-invalid",
+      "milliseconds": 1601,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FjmOWO\\evidence.json",
+      "status": "passed",
+      "rawSha256": "18ddfd375b4fdb78ce7758bff3b8a4fcd189c32fb2478bb5f4737419a56a997f",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "d9696a14672e9311060c853b0b3e991a293315326dbf1d7947b73cfc156be077",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "d11995b68e7f861ebbfecc849406b8d06c9118b9b258a5d0807fab0450f5d655",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-lab-reactions-invalid-rows.jsonl",
+      "rows": 25,
+      "rowsSha256": "9e8d9e494fb95ae64c487e93359dac5410ff9bd37226d05bf8f2c245c45d2a10",
+      "observations": {
+        "mode": "invalid",
+        "rows": [
+          {
+            "tick": 1,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 2,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 3,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 5,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 6,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 7,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 8,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 9,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 10,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 11,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 12,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 13,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 14,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 15,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 16,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 17,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 18,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 19,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 20,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 21,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 22,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 23,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 24,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 25,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "reloads": [
+          6
+        ]
+      }
+    },
+    {
+      "scenario": "--lab-reactions-destroy",
+      "milliseconds": 1580,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-7SEq9e\\evidence.json",
+      "status": "passed",
+      "rawSha256": "89ee5ae1827e56a3d3d5c2aaaeadd54709958708cab903760917f61e1a09c231",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "d9696a14672e9311060c853b0b3e991a293315326dbf1d7947b73cfc156be077",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "d11995b68e7f861ebbfecc849406b8d06c9118b9b258a5d0807fab0450f5d655",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-lab-reactions-destroy-rows.jsonl",
+      "rows": 25,
+      "rowsSha256": "0a921540f6a6d8530d4ee3037444b79b14da2972e71cad1231bc65b41a86bb51",
+      "observations": {
+        "mode": "destroy",
+        "rows": [
+          {
+            "tick": 1,
+            "hydrogen": 20,
+            "oxygen": 20,
+            "product": 0,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 2,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              19,
+              19
+            ]
+          },
+          {
+            "tick": 3,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              18,
+              18
+            ]
+          },
+          {
+            "tick": 4,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              17,
+              17
+            ]
+          },
+          {
+            "tick": 5,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              16,
+              16
+            ]
+          },
+          {
+            "tick": 6,
+            "hydrogen": 10,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              15,
+              15
+            ]
+          },
+          {
+            "tick": 7,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              14,
+              14
+            ]
+          },
+          {
+            "tick": 8,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              13,
+              13
+            ]
+          },
+          {
+            "tick": 9,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              12,
+              12
+            ]
+          },
+          {
+            "tick": 10,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              11,
+              11
+            ]
+          },
+          {
+            "tick": 11,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              10,
+              10
+            ]
+          },
+          {
+            "tick": 12,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              9,
+              9
+            ]
+          },
+          {
+            "tick": 13,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              8,
+              8
+            ]
+          },
+          {
+            "tick": 14,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              7,
+              7
+            ]
+          },
+          {
+            "tick": 15,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              6,
+              6
+            ]
+          },
+          {
+            "tick": 16,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              5,
+              5
+            ]
+          },
+          {
+            "tick": 17,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              4,
+              4
+            ]
+          },
+          {
+            "tick": 18,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              3,
+              3
+            ]
+          },
+          {
+            "tick": 19,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              2,
+              2
+            ]
+          },
+          {
+            "tick": 20,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              1,
+              1
+            ]
+          },
+          {
+            "tick": 21,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 22,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 23,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 24,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 25,
+            "hydrogen": 0,
+            "oxygen": 10,
+            "product": 10,
+            "reserved": 0,
+            "cooldowns": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "reloads": [
+          6
+        ]
+      }
+    },
+    {
+      "scenario": "--structure-actions",
+      "milliseconds": 1090,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-6Kaan8\\evidence.json",
+      "status": "passed",
+      "rawSha256": "3893bb4cdde9789b3ffe97155f577d4d90221e130b2f4daf16ed18eb45e944ce",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "31151599ce9a7dd873d46b3f36e93f5ea2914fdaf5877856c032ef79e7193fa0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-structure-actions-rows.jsonl",
+      "rows": 3,
+      "rowsSha256": "841079038e875a6d887013f5fa4e7161a354594a092c8d9a4d784342d9983221"
+    },
+    {
+      "scenario": "--mineral-transport",
+      "milliseconds": 1195,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-othgib\\evidence.json",
+      "status": "passed",
+      "rawSha256": "a9ef0ff1962c1d0c3e795ba672b1246cb6ef5f341d7411f363df06f9d998cacd",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "76d52a2de56fa657e03ecf279014e7a3b3ed3ecc391cb8b0d1a6a740c4bc0659",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-mineral-transport-rows.jsonl",
+      "rows": 9,
+      "rowsSha256": "d8c9ef723b8619f518cc62d6991e709308c80a3a6c12f5a0f33d38f8b1c69e92"
+    },
+    {
+      "scenario": "--final-delivery",
+      "milliseconds": 1104,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-vurauk\\evidence.json",
+      "status": "passed",
+      "rawSha256": "9e186ae43c6856bd6f4eaa85cc9131f747b28c9610d9389206e28e6e98ff3eab",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "c4bc22f5611a5a76ac638d2357b0a20e16e3ef9ba6121e0eed2c07bcf7399260",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-final-delivery-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "ded1b458fb4d287749215c115467e053a6288084332b4a44c8f4cf48b653fa11"
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 919,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-UOTpGS\\evidence.json",
+      "status": "passed",
+      "rawSha256": "2c4eb4c7d5e82eefcb9728a381a83011b444ea3e27b0a077fd70bf1331d583dc",
+      "provenance": {
+        "commit": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+        "dirty": false,
+        "bundleSha256": "aea5150c791ca72a080e9f35ea2da1f3409d7a67b7180a0c6177fabba71c6fc2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "labs-packaged-smoke-rows.jsonl",
+      "rows": 3,
+      "rowsSha256": "544678f93c71e53880ed345bb909f09ef1980a1abce71ff8719d77da063265a4"
+    }
+  ],
+  "registry": {
+    "cases": 241,
+    "fullRerun": false
+  },
+  "sourceSha256": {
+    "src/config/labs.ts": "8fcfe8a8225afff3d4555dab657273d4d1428067f1a622189944a25a0c562a9d",
+    "src/capabilities/industry/labs/model.ts": "8f3c4308fc2c537a53a3720b6ef61e065bef129ff90079e85f43d3568818bb6b",
+    "src/capabilities/industry/labs/topology.ts": "658d43c9a5440d165a4dcd765d741ddb6fd802020c2d0aeac26571719fc3810a",
+    "src/capabilities/industry/labs/plan.ts": "37d271b993890b427137930b4576291f25b1d689d4edb8011c3e13881c4672a0",
+    "src/features/industry/reaction-claims.ts": "35975e27bab5a0008a630d25a40d50e9c08c31a85d8a724126f3c72ccea54904",
+    "src/app/native-lab-facts.ts": "08c2779f286ce5da035cd6d80217047dc187c682927ea7f1c59a08c5a0fe09d9",
+    "src/app/native-labs.ts": "612dd3f5a51b1160e3cb5320d4851f8dd312957a04ecf6f5ef106e6c1cb16b8c",
+    "src/adapters/screeps/structure-actions.ts": "97ee279406859933d36ce36d6d46a1425f94a7935d731270d21edaf98042e9e4",
+    "test/engine/lab-reactions-bot.ts": "83ff61388836270c743a445f056f845d5b24f4d2d039dfc7267c09e0da9cab15",
+    "tools/engine/lab-reactions.cjs": "12163316aaee0e9e81ae25ba469d616eef78a1a30fb6fd581e4ab6d9bb274223"
+  },
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "63964c7441a5b4eac165a2e1d96a2b4318606c78",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T13:42:35Z",
+        "conclusion": "success",
+        "databaseId": 136323125804,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T13:41:30Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T13:41:32Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T13:41:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:34Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T13:41:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:39Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T13:41:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:47Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T13:41:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:48Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T13:41:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:49Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T13:41:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:50Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T13:41:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:52Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T13:41:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:05Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T13:41:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:30Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T13:42:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:31Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T13:42:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:31Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T13:42:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:31Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T13:42:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:32Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T13:42:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T13:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T13:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T13:42:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:32Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T13:42:32Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44746517189/job/136323125804"
+      },
+      {
+        "completedAt": "2026-11-20T13:44:43Z",
+        "conclusion": "success",
+        "databaseId": 136323126378,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T13:41:31Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T13:41:33Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T13:41:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:40Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T13:41:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:41:52Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T13:41:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:42:54Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T13:41:52Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:43:08Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T13:42:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:43:13Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T13:43:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:43:17Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T13:43:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:43:21Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T13:43:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:43:47Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T13:43:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:33Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T13:43:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:35Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T13:44:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:37Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T13:44:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:37Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T13:44:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:38Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T13:44:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:39Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T13:44:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:39Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T13:44:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:41Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T13:44:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:44:41Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T13:44:41Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44746517189/job/136323126378"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44746517189"
+  }
+}

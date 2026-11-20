@@ -9,3 +9,5 @@ Known partial paths: controller.processBuildFlags returns immediately at line 48
 Capability ownership preserves dedicated Upgrade Rooms (features/economy/work), labs and boosting (features/industry), power harvesting and keeper operations (features/missions/expeditions), terminal/market flows (features/trade), and operator controls (adapters/operator). Shared extraction, tasks and movement must not depend on those policies.
 
 Before closing ED-10, complete command-to-operation ownership and flag-handler verification. During each port, refine capability granularity, record exact source symbol/lines and intentional deviations, and replace empty evidence with tests and implementation commits. A module-level map alone never proves parity.
+
+ED-36 has [configured lab reaction evidence](industry-lab-reactions.md). labV2.js is explicitly partial: direct production/topology/resource claims are qualified, while chains, supply/drain, boosts and operator setup remain open.
