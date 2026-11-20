@@ -16,6 +16,8 @@ test('five exact legs distinguish spawn approach, steady empty travel and loaded
   expect(result.operations).toBe(150);
   expect(result.legs.map(leg => leg.kind)).toEqual(['miner-approach','miner-return','courier-approach','courier-empty','courier-loaded']);
   expect(f.measure.mock.calls.map(([leg]) => [leg.kind,leg.load,leg.range])).toEqual([['miner-approach',0,0],['miner-return',50,0],['courier-approach',0,0],['courier-empty',0,0],['courier-loaded',100,0]]);
+  expect(f.measure.mock.calls.slice(0,2).every(([leg]) => leg.blocked === undefined)).toBe(true);
+  expect(f.measure.mock.calls.slice(2).every(([leg]) => JSON.stringify(leg.blocked) === JSON.stringify([f.plan.station]))).toBe(true);
   expect(f.measure.mock.calls[0]![0].origin).toEqual(f.plan.spawn.exit);
   expect(f.measure.mock.calls[3]![0].origin).toEqual(f.plan.endpoint.deposit);
   expect(f.measure.mock.calls[4]![0].origin).toEqual(f.plan.collection);

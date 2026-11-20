@@ -7,9 +7,9 @@ export function startupTravelLegs(plan: StartupTravelPlan): StartupTravelLegRequ
   return [
     { kind: 'miner-approach',origin: plan.spawn.exit,destination: plan.station,range: 0,body: plan.miner,load: 0 },
     { kind: 'miner-return',origin: plan.station,destination: plan.endpoint.deposit,range: 0,body: plan.miner,load: minerLoad },
-    { kind: 'courier-approach',origin: plan.spawn.exit,destination: plan.collection,range: 0,body: plan.courier,load: 0 },
-    { kind: 'courier-empty',origin: plan.endpoint.deposit,destination: plan.collection,range: 0,body: plan.courier,load: 0 },
-    { kind: 'courier-loaded',origin: plan.collection,destination: plan.endpoint.deposit,range: 0,body: plan.courier,load: courierLoad },
+    { kind: 'courier-approach',origin: plan.spawn.exit,destination: plan.collection,range: 0,body: plan.courier,load: 0,blocked: [plan.station] },
+    { kind: 'courier-empty',origin: plan.endpoint.deposit,destination: plan.collection,range: 0,body: plan.courier,load: 0,blocked: [plan.station] },
+    { kind: 'courier-loaded',origin: plan.collection,destination: plan.endpoint.deposit,range: 0,body: plan.courier,load: courierLoad,blocked: [plan.station] },
   ];
 }
 function validatePlan(plan: StartupTravelPlan): void {
