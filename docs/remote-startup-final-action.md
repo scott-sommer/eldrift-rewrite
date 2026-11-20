@@ -1,0 +1,23 @@
+# Final-action delivery and retirement settlement
+
+ED-29 corrects a measured boundary in both ordinary hauling and the forward startup forecast. A native courier with one tick left can transfer before natural aging removes it. The recipient has the energy on the following tick, and the room event log can confirm that transfer even though the actor is absent. Previously, lifecycle maintenance cleared its task and archived a pending journal before normal live-unit settlement could run: physical delivery succeeded but the request received no credit.
+
+The generic maintenance boundary now accepts an injected before-retirement callback. Native composition uses the existing hauling settlement service with the previous native identity before releasing tasks or reservations and before feature retirement archives/deletes its journal. Receipt ownership, exact request binding, issued-at expiry checks and duplicate suppression remain in their existing services. This callback emits no creep actions. Missing or stale evidence follows the existing uncertainty/cancellation path; current cargo or death alone never creates credit. No memory schema changes are required.
+
+The portable courier model permits service completion exactly at expiresAt while continuing to reject any action/arrival at or after the worker's death and any completion after expiry. This applies to loaded incumbents and the full collection/return/delivery admission calculation. Pending credit survives the worker's death and JSON checkpoints; liquidation of its opening cargo adds actual home cash without inventing new profit. Longer explicit service delays retain their declared completion constraint; the native one-tick action is the calibrated case.
+
+## Engine regression and correction
+
+The new --final-delivery fixture starts a two-part CARRY/MOVE worker with ageTime3, empty cargo and adjacent source/sink containers. All subsequent cargo changes and aging are natural engine processing. The ordinary bot withdraws30 at tick1, transfers30 at tick2 with TTL1, then confirms and retires the absent worker at tick3. Verified observations [tick,TTL,source,cargo,sink] are [1,2,30,0,0], [2,1,0,30,0], [3,0,0,-1,30], [4,0,0,-1,30]; -1 denotes no actor. The request has one30 receipt, its retired journal is acknowledged/observed30, and tasks and claims are empty. A corrected pre-fix verifier demonstrates the missing receipt at source088fc2d. An earlier initial verifier lookup error is retained separately and is not treated as regression proof.
+
+The existing --cargo-death scenario deliberately skips the confirmation tick after withdrawal. Its old expectation of a raw pending archived journal fails after the correction. Its revised assertions require an explicit unknown incident, a cleared acknowledged journal, null cargo observation, no original delivery receipt and exactly50+19 corpse-energy recovery. It does not reinterpret stale events as confirmation. That failed expectation run is also retained separately.
+
+## Validation
+
+Runtime source a67d0f0 passes1,795 units across445 files in17.64s; focused retirement10/4files.279s and forecast+smoke5/2files.828s. Type checking, lint, dependency boundaries and pinned Lizard1.22.2 pass, with830 production/663 testfiles and zero violations. Four pinned processor comparisons pass.350s, the suite-report check passes.1487525s and the packaged CommonJS bundle check passes.
+
+Final source25bc9ef changes only the cargo-death native verifier. Twelve clean native scenarios pass63.030s: final delivery, transfer confirmation, request-expiry delivery, courier death, cargo death, selected startup, startup admission, selection expiry, refusal, spawn, remote transport and packaged smoke. The [manifest](evidence/remote-startup-final-action.json) records exact commits, durations, raw evidence hashes, source hashes and archived measurement rows, including all three failed attempts as failed. The registry now contains238 cases; the full registry was not rerun. Measurement-row integrity is distinct from scenario pass counts.
+
+This is a last-action transfer and retirement correction, not complete same-strategy lifecycle/economic calibration. Native on-route/incubating/boosted import, reservation transitions, achievable replacement and household schedules, ordinary economic policy adoption, multi-room pressure, specialist parity, full rollback rehearsal and release qualification remain open.
+
+Hosted [CI44742987297](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44742987297) passes Windows2022 and Ubuntu24.04 on25bc9ef, including all six required quality, unit, processor-install, processor-test, report and bundle steps.

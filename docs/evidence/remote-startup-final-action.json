@@ -1,0 +1,723 @@
+{
+  "sourceCommit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+  "runtimeCommit": "a67d0f0224defcc1db9b8d95777578a186b8154c",
+  "scope": "Final alive-tick native store transfer, retirement settlement, portable expiry-boundary correction. Not complete economic schedule/native lifecycle calibration or release qualification.",
+  "checks": {
+    "quality": "passed: TypeScript, ESLint, boundaries, Lizard1.22.2;830 production/663 testfiles;0 violations",
+    "unit": {
+      "cases": 1795,
+      "files": 445,
+      "seconds": 17.64
+    },
+    "focusedRetirement": {
+      "cases": 10,
+      "files": 4,
+      "seconds": 0.279
+    },
+    "focusedForecastAndSmoke": {
+      "cases": 5,
+      "files": 2,
+      "seconds": 0.828
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.35
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1487525
+    },
+    "bundle": "passed",
+    "localCheckRevision": "Precommit content identical to a67d0f0;final25bc9ef changes only the native cargo-death verifier."
+  },
+  "nativeMilliseconds": 63030,
+  "native": [
+    {
+      "scenario": "--final-delivery",
+      "milliseconds": 1398,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kb2nwF\\evidence.json",
+      "status": "passed",
+      "rawSha256": "eadc27f609a9a388e1777bd77a1d275c99a34a17c5af1f0176e0f738b1423f07",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "e5ca0eb0f283f88d0275bbad24c89b343b923c88b15f63065cff54028ccc4064",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-final-delivery-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "688cc916c954bd49f9ee98bfca2a46b8b976f2b809c0c2d7346a42ac89fdc9ba"
+    },
+    {
+      "scenario": "--transfer-confirmation",
+      "milliseconds": 1094,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-wRSQJt\\evidence.json",
+      "status": "passed",
+      "rawSha256": "f953f949273e1a294419418a2622afb463465633ca5b7af7393ba7f12410c955",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "1dc9be3dc566c716d7560eaafd7b0e762f02d729925e16043742f7113cf60ee2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-transfer-confirmation-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "2afb3aa143a3a3abfb9490750f6321fb78ebae3b04ad6228c06dc15615b11819"
+    },
+    {
+      "scenario": "--expiry-delivery",
+      "milliseconds": 1089,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-JBgnW4\\evidence.json",
+      "status": "passed",
+      "rawSha256": "3e42ab8543195989876d7d84e45d6e729f0c46f585918fb3966128766d87dfcc",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "1d73080b1425c08a8556fc1e434e231cf0fbd919617c187ea5ff6faf17e35982",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-expiry-delivery-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "d981a9834b4520c956f2cc1a4de8000f59f96403700b618a50411edd7309910d"
+    },
+    {
+      "scenario": "--courier-death",
+      "milliseconds": 1084,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-EiV5fz\\evidence.json",
+      "status": "passed",
+      "rawSha256": "56fff0c7378cea4500bed184ce51df3c3932d195bf788b04daa7cb58312b1d44",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "3339329009eafca23c030d1861b7f84ec8f3dec1ed31a8cd63dea644aa586a06",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-courier-death-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "13f1ee72cc20b81262a35cf7306fb64bab2eed0d6a54e8154105493312f51e3f"
+    },
+    {
+      "scenario": "--cargo-death",
+      "milliseconds": 1204,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-Oyz6WF\\evidence.json",
+      "status": "passed",
+      "rawSha256": "94c8db6dd2b99951d52b96a2d9a07ebcd26bcbef60c78eeba7089bae7f285a18",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "120927f557f78b9a5bccd136185083caab2e7b33d03b1feb80117b88d171f839",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-cargo-death-rows.jsonl",
+      "rows": 9,
+      "rowsSha256": "ce9d22af7bd42d343944f5c196ac5ab2abe3df70bca42e1234925c412e5509c3"
+    },
+    {
+      "scenario": "--remote-startup-selected",
+      "milliseconds": 10993,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ViI4ju\\evidence.json",
+      "status": "passed",
+      "rawSha256": "3fb7df2a5d4d53dac1a1ac4564f49a0bd2a24bf55350d99bd53dc58aa4200630",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "05bd56513e1d8e4232184c0023ecb496eba97b2aa107ae59cb7c2bd8eabb164f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "34cbace6c4195da26fb58cfb93df74b85b55447cb0b8a5d9a4f7370d6721b4be",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-remote-startup-selected-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "ea35c39222b7203ead6498f315c0af87fd25a53712a1e2bed5087f613570f116"
+    },
+    {
+      "scenario": "--remote-startup-admission",
+      "milliseconds": 10835,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-PICLQ1\\evidence.json",
+      "status": "passed",
+      "rawSha256": "248bca6ead25cb6c0e94749ba092227c28da61dd868eafacd5e195e1b8e5ec38",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "e7ac5dc4936f20b53d3814a89d7596ae9e6226f8ed05045702b68113e6c745fa",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "8bfb0000cc75a3e2b92bd60d2ef540b6b707d61da2959be368bdbd8d2d0166b6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-remote-startup-admission-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "b00d7b02d34c2ce8cf9d75659d43bf5446d9f1d39fedbf793ab3f3bdefc14cbc"
+    },
+    {
+      "scenario": "--remote-startup-selection-expiry",
+      "milliseconds": 10109,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GEluQZ\\evidence.json",
+      "status": "passed",
+      "rawSha256": "71ac4334c14e1b9525a3b6a5f1e3fc5d44c2ce53ab81012bdc50dba2ac046054",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "cd028d53c976e4f28cc6df24272413770acb556e6d8581a0594d4075699f5747",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "aff936990846ba2d8176019cc8ab0e3eefc1d87cc866733921b7cf2526ecb4f3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-remote-startup-selection-expiry-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "8d5021869a201d71c4234fd449267cb7cab5d2889d4239303f70d93561fd0c9e"
+    },
+    {
+      "scenario": "--remote-startup-refusal",
+      "milliseconds": 8619,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-5l5g28\\evidence.json",
+      "status": "passed",
+      "rawSha256": "2bb3064a2ebab7654062584507a5ce3a5486580b783d6bd04d0d589326cc128a",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "36e5f430b37dd79138b6b17bc995264247c2136c8ecbfd9d57ca05c790c3abbc",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "dbd3d670119ee40ba7ff4eaaca653ecc8af6c8b3b610dc6329ebd6766dd71ea3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-remote-startup-refusal-rows.jsonl",
+      "rows": 150,
+      "rowsSha256": "a7d073caa4e00cb273fa2383c3446f623474d8b26259da58918dc7da291619c3"
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1671,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-rcB803\\evidence.json",
+      "status": "passed",
+      "rawSha256": "d5a32068e769de156095af035fd9cc074c2d47775c5f2134aaa9e51b86dbe5c1",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "c76fcd370b708dc15343af6df0d45a15db4f0f09f88811429a8ae340fde9a677",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-spawn-rows.jsonl",
+      "rows": 12,
+      "rowsSha256": "601480b0ab75e72c105ff6f77be3f7cab56e9c2fab524e858590f84c1fee1888"
+    },
+    {
+      "scenario": "--remote-transport",
+      "milliseconds": 14001,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-d4ExM4\\evidence.json",
+      "status": "passed",
+      "rawSha256": "3bfcb2ef26631f83562b53472d9cd1b273e2fa43ac3f6c89a20417cac43c2b08",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "c640a2b81f920d18a87a2b33425ab935905ada9f263bbca2482de03d425de0fb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reloadProvenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "dc086d18849b1a72cdb3762f758929b1d95fc03fe1613368dff6106069d83928",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-remote-transport-rows.jsonl",
+      "rows": 240,
+      "rowsSha256": "bab39f201106d643dd8b3a77ade1e07c3a7aceed6c6a64935566b7f1fac08591"
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 926,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aFO6Zs\\evidence.json",
+      "status": "passed",
+      "rawSha256": "17723488a7f6e2ee75e08764cdd09fbfff291930964357b7af182e1d57b55144",
+      "provenance": {
+        "commit": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+        "dirty": false,
+        "bundleSha256": "aff129bf451d2db8bbaff4377d9238e32c28966d568e2c5ef00fad623b631de5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-qualified-packaged-smoke-rows.jsonl",
+      "rows": 3,
+      "rowsSha256": "495d61e2b1a1854de2f644d4856647be26aa214b9ec8315a70af77f4d7c737e7"
+    }
+  ],
+  "preservedFailures": [
+    {
+      "scenario": "request-lookup",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-OfgrGA\\evidence.json",
+      "status": "failed",
+      "rawSha256": "f590f1cbf19d0c929643fef49452b4853f224dfef3e519c41e8ee6698c083ac4",
+      "provenance": {
+        "commit": "5b411e591aad68b293a05992b8482253b0dcdb00",
+        "dirty": false,
+        "bundleSha256": "8163b69ae6930b4ddb940b9a5a983000c154ed23caa0a2a528718ec5fee559ee",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-failed-request-lookup-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "f9c5593e774b9ff34e83bdda60f6c78c3b4d75e29d08160e113efab021b0d5be",
+      "failure": "TypeError: Cannot read properties of undefined (reading 'receipts')\n    at verifyFinalDelivery (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\final-delivery.cjs:12:28)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:1074:50\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "interpretation": "Initial verifier used a top-level request id; fixture lookup failure, not production regression proof."
+    },
+    {
+      "scenario": "missing-final-receipt",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-63miOm\\evidence.json",
+      "status": "failed",
+      "rawSha256": "a46b60a048cb7704ba1361ecdec641428c0498c5880388aa7fc01c00a9db9a0c",
+      "provenance": {
+        "commit": "088fc2de4dd64619efa296e9c70a5c840da4a6c1",
+        "dirty": false,
+        "bundleSha256": "8163b69ae6930b4ddb940b9a5a983000c154ed23caa0a2a528718ec5fee559ee",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-failed-missing-final-receipt-rows.jsonl",
+      "rows": 4,
+      "rowsSha256": "d649df67a0448218d58204dcbf0c1f3aba15628d3021fbb303229753f61b9c4d",
+      "failure": "AssertionError [ERR_ASSERTION]: Final alive-tick delivery must settle after natural death\n+ actual - expected\n\n+ []\n- [\n-   30\n- ]\n\n    at verifyFinalDelivery (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\final-delivery.cjs:12:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:1074:50\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "interpretation": "Corrected fixture proves sink receives30 but receipt remains empty before production correction."
+    },
+    {
+      "scenario": "stale-archive-expectation",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BMqNcU\\evidence.json",
+      "status": "failed",
+      "rawSha256": "61d770346f648b2bd1e5416eb280b63f042a18cede19243fa75816b6bd13e5f3",
+      "provenance": {
+        "commit": "a67d0f0224defcc1db9b8d95777578a186b8154c",
+        "dirty": false,
+        "bundleSha256": "120927f557f78b9a5bccd136185083caab2e7b33d03b1feb80117b88d171f839",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "rowsFile": "final-action-failed-stale-archive-expectation-rows.jsonl",
+      "rows": 9,
+      "rowsSha256": "3899bf038ac69bc8b9104b0fe04af3d1355621ccaac81be2adef35c4f1062efc",
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at verifyCargoDeath (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\cargo-death.cjs:23:10)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:1082:47\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+      "interpretation": "New retirement settlement archives uncertainty after the skipped confirmation frame; previous verifier expected an unresolved journal."
+    }
+  ],
+  "registry": {
+    "cases": 238,
+    "fullRerun": false
+  },
+  "sourceSha256": {
+    "src/app/creep-maintenance.ts": "2e6fe7584fcc313f37397656384eb7d1476490a5811b182534d71d9ec0ff02d0",
+    "src/app/native-bot.ts": "277c2ec488088a5fe11a0c7a94e4a8dc8429df8764b036ba87a1d90d884d4114",
+    "src/capabilities/economy/startup/delivery-couriers.ts": "fd2b903d8eb2855af843d527c24ecd39bf6926730c1356454215ec3fe25d8492",
+    "test/app/retired-hauling-settlement.test.ts": "3d368ca55803f4d9ec662dc2f6b49d35f0bdd853991eee58890b835122cabb4a",
+    "test/capabilities/remote-startup-final-delivery.test.ts": "a7e68837e07eb7c27fc1435ae23741e44e6a69a3b728847eb422922b56774c2c",
+    "test/engine/final-delivery-bot.ts": "1c614253fc64c4a8eee11ac51e30ed82020d29d3a792c3d3807adff1234c5df6",
+    "tools/engine/final-delivery.cjs": "59a92bc558127ac072bb897337672ba3a1cce364ab1ff322edde012b472d2b77",
+    "tools/engine/cargo-death.cjs": "9aeebf2705d96a5f091485722103811c6afe9bf7e66baf71d0200c30f3b67f54"
+  },
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "25bc9ef905d057f2d900b7b39e8cd5a0e4a79dfa",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T13:18:29Z",
+        "conclusion": "success",
+        "databaseId": 136311047391,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T13:17:19Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T13:17:21Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T13:17:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:28Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T13:17:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:32Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T13:17:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:40Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T13:17:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:41Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T13:17:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:42Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T13:17:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:44Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T13:17:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:46Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T13:17:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:00Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T13:17:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:25Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T13:18:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:26Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T13:18:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:26Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T13:18:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:26Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T13:18:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:27Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T13:18:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:27Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T13:18:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:27Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T13:18:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:27Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T13:18:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:18:27Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T13:18:27Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44742987297/job/136311047391"
+      },
+      {
+        "completedAt": "2026-11-20T13:20:54Z",
+        "conclusion": "success",
+        "databaseId": 136311048033,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T13:17:19Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T13:17:21Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T13:17:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:32Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T13:17:21Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:17:46Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T13:17:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:19:08Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T13:17:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:19:22Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T13:19:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:19:26Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T13:19:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:19:30Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T13:19:26Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:19:34Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T13:19:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:00Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T13:19:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:44Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T13:20:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:47Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T13:20:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:48Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T13:20:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:49Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T13:20:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:50Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T13:20:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T13:20:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T13:20:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:52Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T13:20:50Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T13:20:52Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T13:20:52Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44742987297/job/136311048033"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44742987297"
+  }
+}
