@@ -23,3 +23,22 @@ test('cash projection reconciles actual bootstrap births and confirmed receipts 
   const result = forecastStartupCash({ homeEnergy: rows[0].homeTotal,protectedEnergy: 0,horizon: rows.at(-1).tick,readyAt: 1285,selfHarvestedConstruction: 5000,flows });
   expect(result).toMatchObject({ endingEnergy: rows.at(-1).homeTotal,minimumEnergy: 350,requiredHomeEnergy: 950,birthEnergy: 950,deliveredEnergy: 288,homeConstructionEnergy: 0,firstDeliveryAt: 1303,firstRecoveryAt: null,constructionRecoveryMargin: -5662 });
 });
+
+test('streamed accounting reconciles the archived full startup capital and recovery crossing',() => {
+  const base = new URL('../../docs/evidence/',import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL('remote-startup-runtime-native.json',base),'utf8'));
+  const native = manifest.runs.find(run => run.scenario === '--remote-startup-staged').remoteStartup;
+  const observed = readFileSync(new URL(native.rowsFile,base),'utf8').trim().split('\n').map(line => JSON.parse(line));
+  const flows = [], receipts = []; let births = 0, income = 0;
+  for (const row of observed) {
+    if (row.birthCost > births) flows.push({ id: 'birth-'+row.tick,kind: 'birth',energy: row.birthCost-births,firstTick: row.tick,interval: null,occurrences: 1 });
+    if (row.income > income) receipts.push({ id: 'source-credit-'+row.tick,tick: row.tick,energy: row.income-income });
+    births = row.birthCost; income = row.income;
+  }
+  expect(native.attrition.localExpiryEnergy).toBe(0); expect(native.attrition.recoveredAttempts).toBe(0);
+  const result = forecastStartupCash({ homeEnergy: observed[0].homeEnergy,protectedEnergy: 350,horizon: observed.at(-1).tick,
+    readyAt: native.summary.containerReadyAt,selfHarvestedConstruction: native.construction,flows },receipts);
+  expect(result).toMatchObject({ endingEnergy: 16830,birthEnergy: 11050,deliveredEnergy: 17580,homeCashSurplus: 6530,
+    constructionRecoveryMargin: 1530,firstDeliveryAt: 1322,firstRecoveryAt: native.summary.firstRecoveryCrossingAt,homeShortfall: 0 });
+  expect(result.firstRecoveryAt).toBe(3401); expect(result.endingEnergy).toBe(observed.at(-1).homeEnergy);
+});

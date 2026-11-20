@@ -30,3 +30,9 @@ Native project binding, persistent planning/reset recovery, alternate service/ha
 ## First-run report setup
 
 The full-suite report writer now creates its parent directory before replacing stale success, so a fresh checkout does not depend on an already existing ignored artifacts directory. Its Node contract exercises nested first-run output creation and retains the existing partial-failure/stale-success assertions. This lightweight check is also part of both hosted Quality jobs. README now documents current unit/processor/native loops and the short positive/refusal commands. No full-suite run is inferred from this report-writer check.
+
+## Archived full-startup reconciliation
+
+A unit regression replays observed births and confirmed receipts from the existing 5,000-tick native archive through the shared cash accounting. It reproduces ending home capital16,830, birth costs11,050, source income17,580, construction recovery margin1,530 and recovery crossing3401. This uses archived observations, not a new native execution or a prediction of operational courier timing.
+
+Latest validation:1,651 tests/423 files13.62s; controlled processors4 tests204ms; suite-report contract1 test141.904ms; typecheck, lint, boundaries, bundle and Lizard pass (773 production/626 test files, zero violations). A parallel full run exposed the Lizard subprocess test exceeding the default five-second timeout (5.786s). Its four cases now allow25s for up to two separately bounded10s Python processes, preserving all acceptance/rejection assertions. The earlier failure is not counted as a pass.

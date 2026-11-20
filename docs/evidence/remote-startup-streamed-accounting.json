@@ -530,5 +530,36 @@
         "scope": "Ordinary runtime plus scenario probes; not portable forecast CPU qualification"
       }
     }
-  ]
+  ],
+  "latestChecks": {
+    "unitTests": 1651,
+    "unitFiles": 423,
+    "unitSeconds": 13.62,
+    "processorTests": 4,
+    "processorFiles": 1,
+    "processorSeconds": 0.204,
+    "suiteReportContractTests": 1,
+    "suiteReportContractMilliseconds": 141.9036,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 773,
+      "testFiles": 626,
+      "violations": 0
+    }
+  },
+  "archivalCashReplay": {
+    "nativeEvidence": "remote-startup-runtime-native.json",
+    "ticks": 5000,
+    "newNativeExecution": false,
+    "endingEnergy": 16830,
+    "birthEnergy": 11050,
+    "deliveredEnergy": 17580,
+    "constructionRecoveryMargin": 1530,
+    "firstRecoveryAt": 3401,
+    "scope": "Observed births and receipts replayed through shared accounting; not forward native timing prediction."
+  },
+  "toolingTimeoutCorrection": "Lizard subprocess cases allow 25 seconds for up to two individually bounded 10-second Python checks. Observed default 5-second timeout at 5.786 seconds under parallel load; all assertions retained."
 }
