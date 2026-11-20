@@ -1,6 +1,8 @@
 const fs = require('node:fs');
+const path = require('node:path');
 /** Replace stale success immediately; retain current progress even if a child or assertion fails. */
 function createSuiteReport(file, now = () => performance.now()) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
   const began = now();
   const report = { status: 'running', startedAt: new Date().toISOString(), milliseconds: 0,
     activeScenario: null, results: [] };

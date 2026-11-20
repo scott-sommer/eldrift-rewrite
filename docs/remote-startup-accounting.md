@@ -25,3 +25,8 @@ The new registered `--remote-startup-admission` case runs150 ordinary main-loop 
 The existing150-tick protected refusal case remains the independent negative gate. Both short cases now have a120-second child timeout; the measured5,000-tick staged milestone keeps its separate25-minute allowance. The registry contains234 cases; the full234-case suite has not been rerun. Clean sourcefb5c297 passes all three serial guards in24.917s. Positive admission takes14.438s; at150 ticks it records376 construction energy,750 paid birth energy,9550 home stock,zero source income and one active mining claim. Protected refusal and packaged smoke also pass. The two150-row traces, clean reload provenance and exact results are indexed in [accounting evidence](evidence/remote-startup-streamed-accounting.json). These short checks support routine shared-cash changes without repeatedly invoking the costly full startup milestone.
 
 Native project binding, persistent planning/reset recovery, alternate service/handoff strategies, whole-project candidate policy and wider parity/pressure gates remain open. Ordinary selection still does not call the portable forward project simulator.
+
+
+## First-run report setup
+
+The full-suite report writer now creates its parent directory before replacing stale success, so a fresh checkout does not depend on an already existing ignored artifacts directory. Its Node contract exercises nested first-run output creation and retains the existing partial-failure/stale-success assertions. This lightweight check is also part of both hosted Quality jobs. README now documents current unit/processor/native loops and the short positive/refusal commands. No full-suite run is inferred from this report-writer check.

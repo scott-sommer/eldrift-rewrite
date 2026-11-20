@@ -8,6 +8,10 @@ test('current run replaces old success and retains partial evidence on assertion
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'eldrift-suite-report-'));
   const file = path.join(folder, 'report.json');
   try {
+    const freshFile = path.join(folder, 'fresh', 'nested', 'report.json');
+    const fresh = createSuiteReport(freshFile);
+    assert.equal(JSON.parse(fs.readFileSync(freshFile, 'utf8')).status, 'running');
+    fresh.finish();
     fs.writeFileSync(file, JSON.stringify({ status: 'passed', results: ['stale'] }));
     let clock = 10;
     const report = createSuiteReport(file, () => clock);
@@ -32,6 +36,7 @@ test('current run replaces old success and retains partial evidence on assertion
     assert.equal(read().status, 'passed');
     assert.equal(read().activeScenario, null);
   } finally {
+    assert.equal(path.dirname(path.resolve(folder)), path.resolve(os.tmpdir()));
     fs.rmSync(folder, { recursive: true, force: true });
   }
 });
