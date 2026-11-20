@@ -52,3 +52,8 @@ Custom operator/specialist population metadata remains ED-39/ED-35 work. Whole-p
 ## Staged startup qualification
 
 Source `1bb16a7` qualifies opt-in staged birth readiness and protected complete-current-crew funding. Six focused clean native checks pass, including ordinary no-container startup for 5,000 ticks: container 1,305, first credit 1,322, recovery crossing 3,401, loaded withdrawal 4,000. Income 17,580 covers all births 11,050 and actual construction 5,000 with surplus 1,530; final home capital reconciles exactly with measured expiry loss zero. See [runtime evidence and limits](remote-startup-runtime.md) and [native manifest](evidence/remote-startup-runtime-native.json). Earlier pending statements refer to their original milestones. Whole-project candidate horizon selection, future achievable replacement schedules, dynamic multi-room/alternate-home behavior and broader cleanup remain open. Registry 233 has not been fully rerun; the historical full baseline remains 223.
+
+
+## Streaming accounting completion
+
+The forward model now accumulates household/source-only accounting within guarded frames and orders receipts as they settle. Final results no longer replay the horizon or sort all history. Shared runtime cash code is qualified by a new150-tick ordinary positive-admission warmup, the existing protected-refusal case and packaged smoke on clean committed source; see [accounting contract/evidence](remote-startup-accounting.md). Current registry234 has not received a full rerun. Native quote/authority binding, durable planning/reset handling, native CPU qualification and operational candidate policy remain open; ordinary selection still does not call the portable project simulator.

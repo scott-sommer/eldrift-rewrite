@@ -1,0 +1,534 @@
+{
+  "scope": "Streaming project accounting within guarded simulation frames; positive ordinary native startup admission/warmup, protected refusal and packaged smoke. Not full forward-forecast native calibration or project-selection/pressure qualification.",
+  "sourceCommit": "fb5c2970231e455f79e9ccd23d67b1710f13fa74",
+  "hashBasis": "Git blob bytes at sourceCommit",
+  "modelSha256": {
+    "src/capabilities/economy/startup/cash-ledger.ts": "5eb17b9d39b6316bbd949ba321403a22c0e9edb3169889789f00883ba8ac5a46",
+    "src/capabilities/economy/startup/cash.ts": "0880e980cc14938c487544498b625b6a8e5b3205800752069e5ac8452edecbbf",
+    "src/capabilities/economy/startup/spawn-timeline.ts": "bf04642ddc39d81f3657da27535d57fea87eb341a2bef46045ec72616ca8fc27",
+    "src/capabilities/economy/startup/project.ts": "43c367dfc7a6269ffd00db02a97b615163ef1a1a6102c7cca90d9a35fbae3c2d"
+  },
+  "status": "passed",
+  "milliseconds": 24917,
+  "registeredCases": 234,
+  "fullRegistryRerun": false,
+  "fullNativeBaseline": "remote-pipeline-engine-suite.json",
+  "checks": {
+    "unitTests": 1650,
+    "unitFiles": 423,
+    "unitSeconds": 13.86,
+    "processorTests": 4,
+    "processorFiles": 1,
+    "processorSeconds": 0.359,
+    "suiteReportContractTests": 1,
+    "suiteReportContractMilliseconds": 148.7249,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 773,
+      "testFiles": 626,
+      "violations": 0
+    }
+  },
+  "accountingWithinGuardedFrames": true,
+  "finalHorizonReplay": false,
+  "finalReceiptHistorySort": false,
+  "nativeForecastCPUQualified": false,
+  "nativePlanningIntegration": false,
+  "runs": [
+    {
+      "scenario": "--remote-startup-admission",
+      "milliseconds": 14438,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-GMJFXm\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "b942db198b3daba552ffdc17f56b057e75933bc0885b26c8ed242bb83db793a0",
+      "provenance": {
+        "commit": "fb5c2970231e455f79e9ccd23d67b1710f13fa74",
+        "dirty": false,
+        "bundleSha256": "123b224c0971217c6b9cedda937774197f32f43fa1b6906a2e29f0faa43b4ea2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "fb5c2970231e455f79e9ccd23d67b1710f13fa74",
+        "dirty": false,
+        "bundleSha256": "cd1c81faeaf63caea176d810dd90115bf522698a69572b020b0a2134f5942baa",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedRuntimeSamples": {
+        "count": 150,
+        "meanCpuMilliseconds": 22.226666666666667,
+        "maximumCpuMilliseconds": 98,
+        "maximumMemoryBytes": 53391,
+        "scope": "Ordinary runtime plus scenario probes; not portable forecast CPU qualification"
+      },
+      "remoteStartup": {
+        "mode": "admission",
+        "births": {
+          "ed-W0N1-1": {
+            "cost": 150,
+            "family": "distributor",
+            "seenAt": 1,
+            "owner": "logistics:\"W0N1\":distributor",
+            "id": "d15e69cfebcbc75",
+            "activeAt": 10
+          },
+          "ed-W0N1-2": {
+            "cost": 50,
+            "family": "scout",
+            "seenAt": 10,
+            "owner": "scout:W0N1",
+            "id": "aea769d034d1136",
+            "activeAt": 13
+          },
+          "ed-W0N1-3": {
+            "cost": 550,
+            "family": "miner",
+            "seenAt": 22,
+            "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"9e5369cfd1696f7\",\"miner\"]",
+            "target": "E0N1",
+            "id": "ef5069d059b28cf",
+            "activeAt": 43
+          }
+        },
+        "construction": 376,
+        "calls": [
+          {
+            "tick": 1,
+            "name": "ed-W0N1-1",
+            "family": "distributor",
+            "code": 0
+          },
+          {
+            "tick": 10,
+            "name": "ed-W0N1-2",
+            "family": "scout",
+            "code": 0
+          },
+          {
+            "tick": 22,
+            "name": "ed-W0N1-3",
+            "family": "miner",
+            "code": 0
+          }
+        ],
+        "reloads": [
+          21,
+          81
+        ],
+        "attrition": {
+          "previous": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "ttl": 1359,
+              "spawning": false,
+              "cargo": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W0N0",
+              "ttl": 1362,
+              "spawning": false,
+              "cargo": 0
+            },
+            {
+              "name": "ed-W0N1-3",
+              "family": "miner",
+              "room": "E0N1",
+              "ttl": 1392,
+              "spawning": false,
+              "cargo": 8
+            }
+          ],
+          "expiries": [],
+          "knownAssets": [],
+          "recoveredAttempts": 0,
+          "inactiveEnergy": 0,
+          "localExpiryEnergy": 0
+        },
+        "remoteReceipts": {
+          "amounts": {},
+          "bindings": {}
+        },
+        "localReceipts": {
+          "amounts": {
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"12\"]": 100,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"14\"]": 50,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]": 50,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"25\"]": 100,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"27\"]": 100,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"29\\\\\\\"]\\\"]\",\"30\"]": 100,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"005969cfd197f93\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"32\\\\\\\"]\\\"]\",\"40\"]": 50,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"422969cfd1abcee\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"42\\\\\\\"]\\\"]\",\"57\"]": 50,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"95f869cfd19dc30\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"59\\\\\\\"]\\\"]\",\"74\"]": 50,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"d15b69cfd1a13f5\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"76\\\\\\\"]\\\"]\",\"91\"]": 50,
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"e0ba69cfd1a9225\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"93\\\\\\\"]\\\"]\",\"108\"]": 50
+          },
+          "bindings": {
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"12\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"8b8369cfc669b1a\\\",\\\"2\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"14\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"8b8369cfc669b1a\\\",\\\"2\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"8b8369cfc669b1a\\\",\\\"15\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"25\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"8b8369cfc669b1a\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"27\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"8b8369cfc669b1a\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"8b8369cfc669b1a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"29\\\\\\\"]\\\"]\",\"30\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"8b8369cfc669b1a\\\",\\\"28\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"005969cfd197f93\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"32\\\\\\\"]\\\"]\",\"40\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"005969cfd197f93\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"422969cfd1abcee\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"42\\\\\\\"]\\\"]\",\"57\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"422969cfd1abcee\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"95f869cfd19dc30\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"59\\\\\\\"]\\\"]\",\"74\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"95f869cfd19dc30\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"d15b69cfd1a13f5\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"76\\\\\\\"]\\\"]\",\"91\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"d15b69cfd1a13f5\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"d15e69cfebcbc75\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"d15e69cfebcbc75\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"e0ba69cfd1a9225\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"93\\\\\\\"]\\\"]\",\"108\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"e0ba69cfd1a9225\\\",\\\"23\\\"]\"]"
+          }
+        },
+        "rows": 150,
+        "rowsFile": "streamed-accounting-admission-rows.jsonl",
+        "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+        "last": {
+          "probe": {
+            "construction": 376,
+            "sites": [
+              {
+                "progress": 376,
+                "total": 5000,
+                "complete": false
+              }
+            ],
+            "staleAt": null,
+            "localExpiryEnergy": 0,
+            "inactiveEnergy": 0,
+            "recoveredAttempts": 0
+          },
+          "tick": 150,
+          "stopped": null,
+          "visible": true,
+          "discovered": [
+            "E0N1"
+          ],
+          "lease": {
+            "generation": 21,
+            "sources": 1,
+            "reserve": true
+          },
+          "source": {
+            "energy": 1116,
+            "capacity": 1500
+          },
+          "reservation": null,
+          "offers": [
+            {
+              "room": "E0N1",
+              "reservationCost": 2.425373134328358,
+              "sources": [
+                {
+                  "capacity": 1500,
+                  "netRate": 4.275416760208473
+                }
+              ]
+            }
+          ],
+          "income": 0,
+          "localTransfers": 750,
+          "birthCost": 750,
+          "homeEnergy": 9550,
+          "remotePending": 0,
+          "unrelated": {
+            "id": "unrelated-pipeline",
+            "name": "unrelated-pipeline",
+            "owner": "unrelated",
+            "room": "W0N1",
+            "body": [
+              "move"
+            ],
+            "priority": 100,
+            "readyAt": 10000,
+            "expiresAt": 20000
+          },
+          "sentinel": {
+            "owner": "fixture",
+            "version": 1,
+            "data": {
+              "preserved": true
+            }
+          },
+          "quantityClaims": 0,
+          "miningClaims": 1,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 1359,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W0N0",
+              "spawning": false,
+              "ttl": 1362,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-3",
+              "family": "miner",
+              "room": "E0N1",
+              "spawning": false,
+              "ttl": 1392,
+              "cargo": 8,
+              "tasks": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-startup-refusal",
+      "milliseconds": 9560,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-seaYLs\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "0a20a59ff2c4c1fffa454bca4ee45d9fa4179c00a457d4215a1e5e0b4a406bb5",
+      "provenance": {
+        "commit": "fb5c2970231e455f79e9ccd23d67b1710f13fa74",
+        "dirty": false,
+        "bundleSha256": "cee90b1d4746d0e7ab247bb68d0533d4f75c01829b5e42034e2ed2c1aea64958",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "fb5c2970231e455f79e9ccd23d67b1710f13fa74",
+        "dirty": false,
+        "bundleSha256": "d7608d02b59c852e637387da4830ac9befb5d457aed1e8ca31eec0cceb551818",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedRuntimeSamples": {
+        "count": 150,
+        "meanCpuMilliseconds": 15.853333333333333,
+        "maximumCpuMilliseconds": 78,
+        "maximumMemoryBytes": 38556,
+        "scope": "Ordinary runtime plus scenario probes; not portable forecast CPU qualification"
+      },
+      "remoteStartup": {
+        "mode": "refusal",
+        "births": {
+          "ed-W0N1-1": {
+            "cost": 150,
+            "family": "distributor",
+            "seenAt": 1,
+            "owner": "logistics:\"W0N1\":distributor",
+            "id": "0d4f69d297f5902",
+            "activeAt": 10
+          },
+          "ed-W0N1-2": {
+            "cost": 50,
+            "family": "scout",
+            "seenAt": 10,
+            "owner": "scout:W0N1",
+            "id": "2fae69d2ae14343",
+            "activeAt": 13
+          }
+        },
+        "construction": 0,
+        "calls": [
+          {
+            "tick": 1,
+            "name": "ed-W0N1-1",
+            "family": "distributor",
+            "code": 0
+          },
+          {
+            "tick": 10,
+            "name": "ed-W0N1-2",
+            "family": "scout",
+            "code": 0
+          }
+        ],
+        "reloads": [
+          21,
+          50,
+          81
+        ],
+        "attrition": {
+          "previous": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "ttl": 1359,
+              "spawning": false,
+              "cargo": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W0N0",
+              "ttl": 1362,
+              "spawning": false,
+              "cargo": 0
+            }
+          ],
+          "expiries": [],
+          "knownAssets": [],
+          "recoveredAttempts": 0,
+          "inactiveEnergy": 0,
+          "localExpiryEnergy": 0
+        },
+        "remoteReceipts": {
+          "amounts": {},
+          "bindings": {}
+        },
+        "localReceipts": {
+          "amounts": {
+            "logistics:[\"attempt\",\"0d4f69d297f5902\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"0d4f69d297f5902\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"868969d27bb7572\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"12\"]": 100,
+            "logistics:[\"attempt\",\"0d4f69d297f5902\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"0d4f69d297f5902\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"868969d27bb7572\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"14\"]": 50,
+            "logistics:[\"attempt\",\"0d4f69d297f5902\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"0d4f69d297f5902\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"868969d27bb7572\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]": 50
+          },
+          "bindings": {
+            "logistics:[\"attempt\",\"0d4f69d297f5902\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"0d4f69d297f5902\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"868969d27bb7572\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"12\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"868969d27bb7572\\\",\\\"2\\\"]\"]",
+            "logistics:[\"attempt\",\"0d4f69d297f5902\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"0d4f69d297f5902\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"868969d27bb7572\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"14\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"868969d27bb7572\\\",\\\"2\\\"]\"]",
+            "logistics:[\"attempt\",\"0d4f69d297f5902\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"0d4f69d297f5902\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"868969d27bb7572\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"868969d27bb7572\\\",\\\"15\\\"]\"]"
+          }
+        },
+        "rows": 150,
+        "rowsFile": "streamed-accounting-refusal-rows.jsonl",
+        "rowsSha256": "4dfeecdbbc3b24d39601adaf176258210acbda2a4b2221b766495e8e741f5e72",
+        "last": {
+          "probe": {
+            "construction": 0,
+            "sites": [
+              {
+                "progress": 0,
+                "total": 5000,
+                "complete": false
+              }
+            ],
+            "staleAt": 50,
+            "localExpiryEnergy": 0,
+            "inactiveEnergy": 0,
+            "recoveredAttempts": 0
+          },
+          "tick": 150,
+          "stopped": null,
+          "visible": false,
+          "discovered": [
+            "E0N1"
+          ],
+          "lease": {
+            "generation": 21,
+            "sources": 1,
+            "reserve": true
+          },
+          "source": null,
+          "reservation": null,
+          "offers": [
+            {
+              "room": "E0N1",
+              "reservationCost": 2.425373134328358,
+              "sources": [
+                {
+                  "capacity": 1500,
+                  "netRate": 4.275416760208473
+                }
+              ]
+            }
+          ],
+          "income": 0,
+          "localTransfers": 200,
+          "birthCost": 200,
+          "homeEnergy": 10100,
+          "remotePending": 0,
+          "unrelated": {
+            "id": "unrelated-pipeline",
+            "name": "unrelated-pipeline",
+            "owner": "unrelated",
+            "room": "W0N1",
+            "body": [
+              "move"
+            ],
+            "priority": 100,
+            "readyAt": 10000,
+            "expiresAt": 20000
+          },
+          "sentinel": {
+            "owner": "fixture",
+            "version": 1,
+            "data": {
+              "preserved": true
+            }
+          },
+          "quantityClaims": 0,
+          "miningClaims": 0,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 1359,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W0N0",
+              "spawning": false,
+              "ttl": 1362,
+              "cargo": 0,
+              "tasks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 917,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oKfHgh\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "c193deb04040d03f2191f13727d0cc8b63809bb54bde79c4dbb0f80d5861f13f",
+      "provenance": {
+        "commit": "fb5c2970231e455f79e9ccd23d67b1710f13fa74",
+        "dirty": false,
+        "bundleSha256": "8213b39b2423b9c3fdeaff4cfb2f50e3e1efa92c9fb80ac076c153656198a60b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedRuntimeSamples": {
+        "count": 3,
+        "meanCpuMilliseconds": 14.666666666666666,
+        "maximumCpuMilliseconds": 41,
+        "maximumMemoryBytes": 236,
+        "scope": "Ordinary runtime plus scenario probes; not portable forecast CPU qualification"
+      }
+    }
+  ]
+}
