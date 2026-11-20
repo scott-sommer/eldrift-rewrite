@@ -38,7 +38,8 @@ function verifyLabSupply(memory,mode,evidence) {
     assert.ok(rows.filter(row => row.tick >= 20).every(row => row.enabled && row.source === 'roomOverride' && !row.temporaryActive));
     assert.equal(rows.find(row => row.tick === 139).product,'OH'); assert.equal(rows.find(row => row.tick === 140).product,'UH');
     assert.ok(rows.some(row => row.tick >= 8 && row.tick < 20 && row.cargo > 0),'Admitted supply must survive the operator pause');
-    assert.ok(receipts.some(record => record.cancelled && record.receipts.some(receipt => receipt.amount > 0)),'Cancellation must retain credited admitted cargo');
+    const paused = rows.filter(row => row.tick >= 8 && row.tick < 20), carrying = paused.find(row => row.cargo > 0);
+    assert.ok(paused.some(row => row.tick > carrying.tick && row.cargo === 0 && row.receipts >= carrying.receipts+carrying.cargo && row.assignment === null),'Admitted cargo must settle with matching credit before assignment release');
   }
   assert.ok(rows.every(row => row.bankOH+row.labOH <= 15 && row.bankUH+row.labUH <= 15));
 }
