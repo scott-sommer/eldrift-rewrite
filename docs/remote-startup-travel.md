@@ -33,3 +33,7 @@ Hosted [Quality run44669472049](https://github.com/scott-sommer/eldrift-rewrite/
 ## Birth enforcement follow-up
 
 The later [spawn placement contract](remote-startup-birth.md) now enforces selected spawn/exit constraints for bound requests and preserves them through queue serialization and forecast snapshots. Publishing selected remote plans and enforcing collection/deposit geometry remain open.
+
+## Transfer service follow-up
+
+The later [exact hauling service contract](remote-startup-service.md) enforces collection/deposit positions and permanent station exclusions for constrained requests through the common hauling cycle. Ordinary selected remote-plan publication and full strategy/economic integration remain open.

@@ -19,3 +19,13 @@ Tasks retain their generic schema2 envelope. Their request payload is a snapshot
 ## Scope
 
 This is request-level execution enforcement. It does not yet publish selected remote forward plans, enforce a miner's own complete service strategy, generate future body/refill/reservation schedules, import live crews into the forward model, persist full forecast simulation or qualify aggregate pressure, alternate endpoints and economic candidate policy. Exact positions alone do not establish quoted throughput or eliminate traffic delays.
+
+## Qualification
+
+Clean source `0f9783c` passes seven serial native checks in31.769s: exact-service1.475s, existing partial hauling1.146s, transfer confirmation1.084s, selected spawn1.253s, remote transport16.125s, startup admission9.768s and packaged smoke0.914s. In the new16-tick known-flat fixture, a courier starts at(20,20), already adjacent to both containers. It still collects only at(18,20) on tick3 and deposits only at(22,20) on tick8, avoiding an occupied station(19,20). One30-energy delivery is confirmed; source/cargo/sink totals conserve30 throughout, the fixed request has no outstanding energy and the courier has no tasks or quantity claims and global reload5 passes. An unrelated schema1 request and historical receipt survive migration to schema2.
+
+An earlier positive setup selected a terrain wall: the courier remained at its start with stock untouched and no native transfer calls, so the expected-completion check failed. Diagnostics retain that failed observation separately. The fixture terrain was then made explicitly walkable; production preflight was not relaxed and the failed run is not counted as a pass.
+
+Local full ordinary units1,709/435 files12.25s; controlled processors4/197ms; suite-report contract1/128.818ms. These checks ran at `caa33d3`; all production blobs match final source `0f9783c` exactly. Latest quality passes with794 production/643 test files and zero Lizard violations. A dependency-tooling test took5.141s against the default5s timeout; its allowance is now15s around the existing10s child limit, with all assertions retained. Fourteen new behavioral cases cover service/migration/equality, geometry binding, native transfer gating and authoritative-current request execution. Registry235 includes the new scenario once; the full235-case suite was not rerun. [Evidence](evidence/remote-startup-service.json) records exact source hashes, clean native/reload provenance, traces and scoped limitations.
+
+Hosted [Quality run44685533097](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44685533097) passes Windows2022 and Ubuntu24.04 on the same native-qualified source `0f9783c`, including fresh full units and all six quality/unit/processor/report/bundle steps.

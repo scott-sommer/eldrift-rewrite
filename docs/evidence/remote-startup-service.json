@@ -1,0 +1,1517 @@
+{
+  "scope": "Authoritative request-level exact collection/deposit execution and station exclusions through common hauling/transfer owners. Not ordinary selected remote-plan publication or full forward economic timing/pressure.",
+  "sourceCommit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+  "hashBasis": "Git blob bytes at sourceCommit",
+  "sourceSha256": {
+    "src/capabilities/logistics/request.ts": "7da42a062499c61be67c00793c9508e16f44bfb5e440fb270af3133498f53bbf",
+    "src/capabilities/logistics/service.ts": "c91effa9e1650b2b62adb94b115909e1d5a740c7fbdcd12864d69af57a2d330c",
+    "src/features/logistics/request-schema.ts": "d9a6f123ac2f0ddce40642cad194d4f729703337cc452406f863b03907eefcb5",
+    "src/features/logistics/request-store.ts": "f30c269772c78b8d9ae2e6fee70090a9f8b66d7c785520abfaf60f650e43fd96",
+    "src/features/remotes/startup/hauling.ts": "1d5409c450b1b91520af5fb65e370ef014749e74df6fa80c088dec46de9f8ad4",
+    "src/adapters/screeps/service-position.ts": "7b706cf6889f63870d352aaa8cfca2e198cc3a1bd1344ab860b0d4cc4539a3d2",
+    "src/adapters/screeps/spawn-placement.ts": "6d412c7c924464465bcb9c262d3e6736b24478463630aa193a7686428cd600f8",
+    "src/adapters/screeps/transfer-service.ts": "6b8f301db78efd212432fbfb93e2c7f5820c35cd9549853e5b2716a08822ec3b",
+    "src/adapters/screeps/transfer-target.ts": "0b7eb3518206a35ae05263129b9d3e390385065b4ca065453467eb45af8773cf",
+    "src/adapters/screeps/transfer.ts": "80d739064de4d5c643b13c220ac5028e4f72de24cc0e27e9b8f1d3913a5d373e",
+    "src/app/native-hauling-task.ts": "2da86c0c2550ee8d6b6b7e27addb7081f07b939bb7ac4d2ec991e6232f4f189c"
+  },
+  "status": "passed",
+  "milliseconds": 31769,
+  "registeredCases": 235,
+  "fullRegistryRerun": false,
+  "logisticsQueueSchema": 2,
+  "taskSchema": 2,
+  "completeRollbackRehearsed": false,
+  "ordinaryRemotePlanPublication": false,
+  "checks": {
+    "unitSourceCommit": "caa33d3fb7a6df9910d70455424d7a13f7443bec",
+    "unitProductionSourcesUnchangedSinceChecks": true,
+    "unitTests": 1709,
+    "unitFiles": 435,
+    "unitSeconds": 12.25,
+    "processorTests": 4,
+    "processorSeconds": 0.197,
+    "suiteReportTests": 1,
+    "suiteReportMilliseconds": 128.8181,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 794,
+      "testFiles": 643,
+      "violations": 0
+    }
+  },
+  "toolingTimeoutCorrection": "One boundaries tooling case exceeded its default 5 seconds at 5.141 seconds. Cases now allow15 seconds around the unchanged10-second checker process limit. All assertions retained; failed run not counted as a pass.",
+  "runs": [
+    {
+      "scenario": "--fixed-hauling",
+      "milliseconds": 1475,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FOEXCE\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "864b6bfe1c33571e6ab11e4d76da1936b14a077893209f23f6b790e07d1df592",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "1d529ac8b4f171be1d68065b313d6c707848ec8eadbe6d32641721825b723ae6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "b56545dd268a41306e18cf03e123ea6ad151fe5ac385dbfd9a9497d18d67d1e8",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedRuntimeSamples": {
+        "count": 16,
+        "meanCpuMilliseconds": 9.25,
+        "maximumCpuMilliseconds": 52,
+        "maximumMemoryBytes": 4685,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      },
+      "fixedHauling": {
+        "calls": [
+          {
+            "kind": "collect",
+            "tick": 3,
+            "x": 18,
+            "y": 20,
+            "code": 0,
+            "target": "741d78a1082aca2"
+          },
+          {
+            "kind": "deliver",
+            "tick": 8,
+            "x": 22,
+            "y": 20,
+            "code": 0,
+            "target": "ac4178a10830019"
+          }
+        ],
+        "reloads": [
+          5
+        ],
+        "records": [
+          {
+            "request": {
+              "id": "legacy",
+              "owner": "unrelated",
+              "source": "legacy-source",
+              "sink": "legacy-sink",
+              "resource": "H",
+              "quantity": 5,
+              "priority": 100,
+              "expiresAt": 100
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "prior",
+                "amount": 1
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "fixed",
+              "owner": "test-fixed",
+              "source": "741d78a1082aca2",
+              "sink": "ac4178a10830019",
+              "resource": "energy",
+              "quantity": 30,
+              "priority": 0,
+              "expiresAt": 100,
+              "service": {
+                "collection": {
+                  "room": "W0N1",
+                  "x": 18,
+                  "y": 20
+                },
+                "deposit": {
+                  "room": "W0N1",
+                  "x": 22,
+                  "y": 20
+                },
+                "avoid": [
+                  {
+                    "room": "W0N1",
+                    "x": 19,
+                    "y": 20
+                  }
+                ]
+              }
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"273f78a1083ce92\",\"task:[\\\"hauler\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"273f78a1083ce92\\\\\\\",\\\\\\\"test-fixed\\\\\\\",\\\\\\\"fixed\\\\\\\",\\\\\\\"1\\\\\\\"]\\\"]\",\"8\"]",
+                "amount": 30
+              }
+            ]
+          }
+        ],
+        "rows": 16,
+        "rowsFile": "fixed-service-fixed-hauling-rows.jsonl",
+        "rowsSha256": "1da850ac4d1ce18d725e88071fe85c1a45b30ae1ecd5f9a976c944f84eb5b1db",
+        "last": {
+          "tick": 16,
+          "position": {
+            "x": 22,
+            "y": 20
+          },
+          "walkable": true,
+          "terrain": 0,
+          "look": [
+            "terrain"
+          ],
+          "stores": [
+            0,
+            0,
+            30
+          ],
+          "pending": 0,
+          "claims": 0,
+          "tasks": 0
+        }
+      }
+    },
+    {
+      "scenario": "--hauling-cycle",
+      "milliseconds": 1146,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-cdq1aE\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "000252ef3231511c1aeb94284228dbc103ecf881fe0bef60c3398cc66a484162",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "3280f8effb09879691ab18fc824c4440345dd43b50f33db66db0ee1ca6249bec",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedRuntimeSamples": {
+        "count": 6,
+        "meanCpuMilliseconds": 11.0,
+        "maximumCpuMilliseconds": 49,
+        "maximumMemoryBytes": 2923,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      }
+    },
+    {
+      "scenario": "--transfer-confirmation",
+      "milliseconds": 1084,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DUgqRd\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "d740723f256efe9831d9a7f0b67a61bbb4e97c0efbef169da1469835655823f0",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "e589eefced56a9b1810316954cbaba0318eee348268ddc1799c09077916045d6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedRuntimeSamples": {
+        "count": 4,
+        "meanCpuMilliseconds": 12.5,
+        "maximumCpuMilliseconds": 43,
+        "maximumMemoryBytes": 1070,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      }
+    },
+    {
+      "scenario": "--spawn",
+      "milliseconds": 1253,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-06LuPA\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "c11b850fdcf2c0227636f07181197f98d1656eba8902b9fc2ab5f841f9a30cf6",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "185cc0108f2b690ef7506fab5dee179c26e23c2b6380bd227d4531e4e82b9338",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedRuntimeSamples": {
+        "count": 12,
+        "meanCpuMilliseconds": 5.833333333333333,
+        "maximumCpuMilliseconds": 44,
+        "maximumMemoryBytes": 1041,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      },
+      "spawnPlacement": {
+        "accepted": 1,
+        "observed": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "spawning": [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "rejected": [
+          -7
+        ],
+        "selected": "a89978a1f146f35",
+        "exit": {
+          "room": "W0N1",
+          "x": 14,
+          "y": 15
+        },
+        "queueVersion": 2,
+        "legacy": {
+          "id": "legacy",
+          "name": "legacy",
+          "owner": "unrelated",
+          "room": "W0N1",
+          "body": [
+            "move"
+          ],
+          "priority": 10,
+          "readyAt": 100,
+          "expiresAt": 200
+        },
+        "directions": [
+          7
+        ],
+        "actualExit": {
+          "room": "W0N1",
+          "x": 14,
+          "y": 15
+        },
+        "activeAt": 11
+      }
+    },
+    {
+      "scenario": "--remote-transport",
+      "milliseconds": 16125,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-AGfQet\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "cc76cd105947fc8ba9c18cc0bf740ed76b32da9dab464e3b9c1cce1ec4029707",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "673d9803bf390252c0c9d91a1a722deba0f58ac23fe53bec8eb10f729bbce8ad",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "67207f3be71ce1a86ed6f0239106b55442e9c02f4771e052a4f2e88456af0217",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedRuntimeSamples": {
+        "count": 240,
+        "meanCpuMilliseconds": 6.795833333333333,
+        "maximumCpuMilliseconds": 31,
+        "maximumMemoryBytes": 326403,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      },
+      "remoteTransport": {
+        "metadata": {
+          "mode": "normal",
+          "threatAt": null,
+          "clearedAt": null,
+          "confirmationResets": [
+            38,
+            46,
+            55,
+            63,
+            72,
+            80,
+            89,
+            97,
+            106,
+            114,
+            123,
+            131,
+            140,
+            148
+          ]
+        },
+        "receipts": {
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"37\\\\\\\"]\\\"]\",\"45\"]": 52,
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"51\\\\\\\"]\\\"]\",\"62\"]": 52,
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"65\\\\\\\"]\\\"]\",\"79\"]": 52,
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"81\\\\\\\"]\\\"]\",\"96\"]": 52,
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"98\\\\\\\"]\\\"]\",\"113\"]": 52,
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"115\\\\\\\"]\\\"]\",\"130\"]": 52,
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"147\"]": 52,
+          "logistics:[\"attempt\",\"c70a78a251c0c05\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"c70a78a251c0c05\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"150\\\\\\\"]\\\"]\",\"155\"]": 20
+        },
+        "bindings": {
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"37\\\\\\\"]\\\"]\",\"45\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"transport-courier\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"9c4e78a2b132c53\\\",\\\"e34c78a244bf591\\\",\\\"37\\\"]\"]",
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"51\\\\\\\"]\\\"]\",\"62\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"transport-courier\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"9c4e78a2b132c53\\\",\\\"e34c78a244bf591\\\",\\\"51\\\"]\"]",
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"65\\\\\\\"]\\\"]\",\"79\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"transport-courier\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"9c4e78a2b132c53\\\",\\\"e34c78a244bf591\\\",\\\"65\\\"]\"]",
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"81\\\\\\\"]\\\"]\",\"96\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"transport-courier\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"9c4e78a2b132c53\\\",\\\"e34c78a244bf591\\\",\\\"81\\\"]\"]",
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"98\\\\\\\"]\\\"]\",\"113\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"transport-courier\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"9c4e78a2b132c53\\\",\\\"e34c78a244bf591\\\",\\\"98\\\"]\"]",
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"115\\\\\\\"]\\\"]\",\"130\"]": "[\"logistics:[\\\"remote-transport\\\",\\\"W0N1\\\",\\\"transport-courier\\\",\\\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\\\",\\\"remote-assignment:4:W0N14:E0N1\\\",\\\"1\\\"]\",\"logistics:[\\\"remote-trip\\\",\\\"9c4e78a2b132c53\\\",\\\"e34c78a244bf591\\\",\\\"115\\\"]\"]",
+          "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"147\"]": "[\"logistics:[\\\"cargo-recovery\\\",\\\"W0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"9c4e78a2b132c53\\\",\\\"energy\\\",\\\"e34c78a244bf591\\\",\\\"145\\\"]\"]",
+          "logistics:[\"attempt\",\"c70a78a251c0c05\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"c70a78a251c0c05\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"150\\\\\\\"]\\\"]\",\"155\"]": "[\"logistics:[\\\"cargo-recovery\\\",\\\"W0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"c70a78a251c0c05\\\",\\\"energy\\\",\\\"e34c78a244bf591\\\",\\\"150\\\"]\"]"
+        },
+        "records": [
+          {
+            "request": {
+              "id": "logistics:[\"remote-trip\",\"9c4e78a2b132c53\",\"e34c78a244bf591\",\"51\"]",
+              "owner": "logistics:[\"remote-transport\",\"W0N1\",\"transport-courier\",\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\",\"remote-assignment:4:W0N14:E0N1\",\"1\"]",
+              "source": "ab5278a244b4425",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": 0,
+              "expiresAt": 151
+            },
+            "cancelled": true,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"51\\\\\\\"]\\\"]\",\"62\"]",
+                "amount": 52
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "logistics:[\"remote-trip\",\"9c4e78a2b132c53\",\"e34c78a244bf591\",\"65\"]",
+              "owner": "logistics:[\"remote-transport\",\"W0N1\",\"transport-courier\",\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\",\"remote-assignment:4:W0N14:E0N1\",\"1\"]",
+              "source": "ab5278a244b4425",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": 0,
+              "expiresAt": 165
+            },
+            "cancelled": true,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"65\\\\\\\"]\\\"]\",\"79\"]",
+                "amount": 52
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "logistics:[\"remote-trip\",\"9c4e78a2b132c53\",\"e34c78a244bf591\",\"81\"]",
+              "owner": "logistics:[\"remote-transport\",\"W0N1\",\"transport-courier\",\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\",\"remote-assignment:4:W0N14:E0N1\",\"1\"]",
+              "source": "ab5278a244b4425",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": 0,
+              "expiresAt": 181
+            },
+            "cancelled": true,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"81\\\\\\\"]\\\"]\",\"96\"]",
+                "amount": 52
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "logistics:[\"remote-trip\",\"9c4e78a2b132c53\",\"e34c78a244bf591\",\"98\"]",
+              "owner": "logistics:[\"remote-transport\",\"W0N1\",\"transport-courier\",\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\",\"remote-assignment:4:W0N14:E0N1\",\"1\"]",
+              "source": "ab5278a244b4425",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": 0,
+              "expiresAt": 198
+            },
+            "cancelled": true,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"98\\\\\\\"]\\\"]\",\"113\"]",
+                "amount": 52
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "logistics:[\"remote-trip\",\"9c4e78a2b132c53\",\"e34c78a244bf591\",\"115\"]",
+              "owner": "logistics:[\"remote-transport\",\"W0N1\",\"transport-courier\",\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\",\"remote-assignment:4:W0N14:E0N1\",\"1\"]",
+              "source": "ab5278a244b4425",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": 0,
+              "expiresAt": 215
+            },
+            "cancelled": true,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"remote-trip\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"115\\\\\\\"]\\\"]\",\"130\"]",
+                "amount": 52
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "logistics:[\"remote-trip\",\"9c4e78a2b132c53\",\"e34c78a244bf591\",\"132\"]",
+              "owner": "logistics:[\"remote-transport\",\"W0N1\",\"transport-courier\",\"remote-demand:4:W0N14:E0N14:mine15:7a9178a244bdb4a\",\"remote-assignment:4:W0N14:E0N1\",\"1\"]",
+              "source": "ab5278a244b4425",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": 0,
+              "expiresAt": 232
+            },
+            "cancelled": true,
+            "receipts": []
+          },
+          {
+            "request": {
+              "id": "logistics:[\"cargo-recovery\",\"9c4e78a2b132c53\",\"energy\",\"e34c78a244bf591\",\"145\"]",
+              "owner": "logistics:[\"cargo-recovery\",\"W0N1\"]",
+              "source": "9c4e78a2b132c53",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 52,
+              "priority": -1,
+              "expiresAt": 245
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"147\"]",
+                "amount": 52
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "logistics:[\"cargo-recovery\",\"c70a78a251c0c05\",\"energy\",\"e34c78a244bf591\",\"150\"]",
+              "owner": "logistics:[\"cargo-recovery\",\"W0N1\"]",
+              "source": "c70a78a251c0c05",
+              "sink": "e34c78a244bf591",
+              "resource": "energy",
+              "quantity": 20,
+              "priority": -1,
+              "expiresAt": 250
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"c70a78a251c0c05\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"c70a78a251c0c05\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"150\\\\\\\"]\\\"]\",\"155\"]",
+                "amount": 20
+              }
+            ]
+          }
+        ],
+        "reloads": [
+          20,
+          38,
+          46,
+          55,
+          63,
+          72,
+          80,
+          89,
+          97,
+          106,
+          114,
+          123,
+          131,
+          140,
+          148
+        ],
+        "finalWorld": {
+          "sourceEnergy": 1064,
+          "containerEnergy": 52
+        },
+        "rows": 240,
+        "rowsFile": "fixed-service-remote-transport-rows.jsonl",
+        "rowsSha256": "d703193d38951f0c69d3ef414482f0d99398dac6548db4b554b8ffa46606052c",
+        "last": {
+          "tick": 240,
+          "authority": false,
+          "revokedAt": 140,
+          "visible": false,
+          "sourceEnergy": null,
+          "containerEnergy": null,
+          "homeTotal": 1134,
+          "credited": 384,
+          "stockReserved": 0,
+          "claims": 0,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "owner": "transport-miner",
+              "room": "W0N1",
+              "x": 46,
+              "y": 25,
+              "cargo": 0,
+              "spawning": false,
+              "tasks": [],
+              "journal": {
+                "id": "logistics:[\"attempt\",\"c70a78a251c0c05\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"c70a78a251c0c05\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"150\\\\\\\"]\\\"]\",\"155\"]",
+                "requestKey": "logistics:[\"request-binding\",\"W0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"W0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"c70a78a251c0c05\\\",\\\"energy\\\",\\\"e34c78a244bf591\\\",\\\"150\\\"]\"]",
+                "unit": "c70a78a251c0c05",
+                "target": "e34c78a244bf591",
+                "room": "W0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 155,
+                "amount": 20,
+                "cargoBefore": 20,
+                "acknowledged": true,
+                "result": {
+                  "status": "observed",
+                  "amount": 20
+                }
+              }
+            },
+            {
+              "name": "ed-W0N1-2",
+              "owner": "transport-courier",
+              "room": "W0N1",
+              "x": 46,
+              "y": 24,
+              "cargo": 0,
+              "spawning": false,
+              "tasks": [],
+              "journal": {
+                "id": "logistics:[\"attempt\",\"9c4e78a2b132c53\",\"task:[\\\"ed-W0N1-2\\\",\\\"logistics:[\\\\\\\"cargo-recovery\\\\\\\",\\\\\\\"9c4e78a2b132c53\\\\\\\",\\\\\\\"energy\\\\\\\",\\\\\\\"e34c78a244bf591\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"147\"]",
+                "requestKey": "logistics:[\"request-binding\",\"W0N1\",\"logistics:[\\\"cargo-recovery\\\",\\\"W0N1\\\"]\",\"logistics:[\\\"cargo-recovery\\\",\\\"9c4e78a2b132c53\\\",\\\"energy\\\",\\\"e34c78a244bf591\\\",\\\"145\\\"]\"]",
+                "unit": "9c4e78a2b132c53",
+                "target": "e34c78a244bf591",
+                "room": "W0N1",
+                "resource": "energy",
+                "kind": "transfer",
+                "tick": 147,
+                "amount": 52,
+                "cargoBefore": 52,
+                "acknowledged": true,
+                "result": {
+                  "status": "observed",
+                  "amount": 52
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--remote-startup-admission",
+      "milliseconds": 9768,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-WImmmX\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "5ec0d482ea0cb185175c125443feec89bd0028672be32d047602361dd3c92012",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "8793dee74d5f0c8ac05f7cf72a00892445f4ba5606eddc28840332d461f3c8aa",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "reloadProvenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "8c5ecf1ad97dde51ad7ca158b6cd1c7ad27a174ef72281380bf7fbb3e0183042",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "instrumentedRuntimeSamples": {
+        "count": 150,
+        "meanCpuMilliseconds": 23.726666666666667,
+        "maximumCpuMilliseconds": 102,
+        "maximumMemoryBytes": 61085,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      },
+      "remoteStartup": {
+        "mode": "admission",
+        "births": {
+          "ed-W0N1-1": {
+            "cost": 150,
+            "family": "distributor",
+            "seenAt": 1,
+            "owner": "logistics:\"W0N1\":distributor",
+            "id": "551078a64d3a6cf",
+            "activeAt": 10
+          },
+          "ed-W0N1-2": {
+            "cost": 50,
+            "family": "scout",
+            "seenAt": 10,
+            "owner": "scout:W0N1",
+            "id": "8cb578a6655ca0a",
+            "activeAt": 13
+          },
+          "ed-W0N1-3": {
+            "cost": 550,
+            "family": "miner",
+            "seenAt": 22,
+            "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"137078a63b2b0af\",\"miner\"]",
+            "target": "E0N1",
+            "id": "d65378a68a3b812",
+            "activeAt": 43
+          }
+        },
+        "construction": 376,
+        "calls": [
+          {
+            "tick": 1,
+            "name": "ed-W0N1-1",
+            "family": "distributor",
+            "code": 0
+          },
+          {
+            "tick": 10,
+            "name": "ed-W0N1-2",
+            "family": "scout",
+            "code": 0
+          },
+          {
+            "tick": 22,
+            "name": "ed-W0N1-3",
+            "family": "miner",
+            "code": 0
+          }
+        ],
+        "reloads": [
+          21,
+          81,
+          150
+        ],
+        "attrition": {
+          "previous": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "ttl": 1359,
+              "spawning": false,
+              "cargo": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W0N0",
+              "ttl": 1362,
+              "spawning": false,
+              "cargo": 0
+            },
+            {
+              "name": "ed-W0N1-3",
+              "family": "miner",
+              "room": "E0N1",
+              "ttl": 1392,
+              "spawning": false,
+              "cargo": 8
+            }
+          ],
+          "expiries": [],
+          "knownAssets": [],
+          "recoveredAttempts": 0,
+          "inactiveEnergy": 0,
+          "localExpiryEnergy": 0
+        },
+        "remoteReceipts": {
+          "amounts": {},
+          "bindings": {}
+        },
+        "localReceipts": {
+          "amounts": {
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"12\"]": 100,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"14\"]": 50,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]": 50,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"25\"]": 100,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"27\"]": 100,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"29\\\\\\\"]\\\"]\",\"30\"]": 100,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"566278a63b8d2a2\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"32\\\\\\\"]\\\"]\",\"40\"]": 50,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"82c278a63b811e3\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"42\\\\\\\"]\\\"]\",\"57\"]": 50,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"aa4678a63b71a88\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"59\\\\\\\"]\\\"]\",\"74\"]": 50,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"c74e78a63b77bce\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"76\\\\\\\"]\\\"]\",\"91\"]": 50,
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f58478a63b7db3a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"93\\\\\\\"]\\\"]\",\"108\"]": 50
+          },
+          "bindings": {
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"12\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f44878a62f55df6\\\",\\\"2\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"2\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"10\\\\\\\"]\\\"]\",\"14\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f44878a62f55df6\\\",\\\"2\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"15\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f44878a62f55df6\\\",\\\"15\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"25\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f44878a62f55df6\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"27\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f44878a62f55df6\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f44878a62f55df6\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"29\\\\\\\"]\\\"]\",\"30\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f44878a62f55df6\\\",\\\"28\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"566278a63b8d2a2\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"32\\\\\\\"]\\\"]\",\"40\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"566278a63b8d2a2\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"82c278a63b811e3\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"42\\\\\\\"]\\\"]\",\"57\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"82c278a63b811e3\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"aa4678a63b71a88\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"59\\\\\\\"]\\\"]\",\"74\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"aa4678a63b71a88\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"c74e78a63b77bce\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"76\\\\\\\"]\\\"]\",\"91\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"c74e78a63b77bce\\\",\\\"23\\\"]\"]",
+            "logistics:[\"attempt\",\"551078a64d3a6cf\",\"task:[\\\"ed-W0N1-1\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"551078a64d3a6cf\\\\\\\",\\\\\\\"logistics:\\\\\\\\\\\\\\\"W0N1\\\\\\\\\\\\\\\"\\\\\\\",\\\\\\\"logistics:[\\\\\\\\\\\\\\\"energy\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f58478a63b7db3a\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"23\\\\\\\\\\\\\\\"]\\\\\\\",\\\\\\\"93\\\\\\\"]\\\"]\",\"108\"]": "[\"logistics:\\\"W0N1\\\"\",\"logistics:[\\\"energy\\\",\\\"f58478a63b7db3a\\\",\\\"23\\\"]\"]"
+          }
+        },
+        "nativeFacts": {
+          "status": "observed",
+          "facts": {
+            "observedAt": 150,
+            "home": "W0N1",
+            "room": "E0N1",
+            "source": {
+              "id": "137078a63b2b0af",
+              "position": {
+                "room": "E0N1",
+                "x": 6,
+                "y": 25
+              },
+              "energy": 1116,
+              "capacity": 1500,
+              "regenerationIn": 205
+            },
+            "station": {
+              "room": "E0N1",
+              "x": 5,
+              "y": 24,
+              "facts": {
+                "status": "building",
+                "id": "67ca78a68a96bcd",
+                "remainingProgress": 4624,
+                "progress": 376,
+                "total": 5000
+              }
+            },
+            "endpoint": {
+              "id": "02aa78a63b34eb8",
+              "position": {
+                "room": "W0N1",
+                "x": 45,
+                "y": 25
+              },
+              "type": "storage",
+              "energy": 7250,
+              "capacity": 1000000,
+              "freeCapacity": 992750,
+              "claimedCapacity": 0,
+              "availableCapacity": 992750
+            },
+            "stock": {
+              "totalEnergy": 9550,
+              "claimedEnergy": 0,
+              "availableEnergy": 9550,
+              "spawnEnergy": 2300,
+              "spawnCapacity": 2300
+            },
+            "workers": [
+              {
+                "name": "ed-W0N1-3",
+                "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"137078a63b2b0af\",\"miner\"]",
+                "position": {
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 24
+                },
+                "spawning": false,
+                "ticksToLive": 1392,
+                "energy": 8,
+                "body": [
+                  {
+                    "type": "work",
+                    "hits": 100,
+                    "boost": null
+                  },
+                  {
+                    "type": "work",
+                    "hits": 100,
+                    "boost": null
+                  },
+                  {
+                    "type": "work",
+                    "hits": 100,
+                    "boost": null
+                  },
+                  {
+                    "type": "work",
+                    "hits": 100,
+                    "boost": null
+                  },
+                  {
+                    "type": "carry",
+                    "hits": 100,
+                    "boost": null
+                  },
+                  {
+                    "type": "move",
+                    "hits": 100,
+                    "boost": null
+                  },
+                  {
+                    "type": "move",
+                    "hits": 100,
+                    "boost": null
+                  }
+                ]
+              }
+            ],
+            "spawns": [
+              {
+                "id": "f44878a62f55df6",
+                "position": {
+                  "room": "W0N1",
+                  "x": 47,
+                  "y": 25
+                },
+                "remainingTime": 0
+              }
+            ],
+            "authority": {
+              "assignment": "remote-assignment:4:W0N14:E0N1",
+              "generation": 21,
+              "expiresAt": 349
+            },
+            "reservation": null
+          }
+        },
+        "nativeTravel": [
+          {
+            "tick": 149,
+            "beforeLegs": 0,
+            "afterLegs": 2,
+            "beforeRevision": 0,
+            "afterRevision": 2,
+            "result": {
+              "status": "deferred",
+              "reason": "leg-budget",
+              "completedLegs": 2
+            }
+          },
+          {
+            "tick": 150,
+            "beforeLegs": 2,
+            "afterLegs": 5,
+            "beforeRevision": 2,
+            "afterRevision": 5,
+            "result": {
+              "status": "complete",
+              "identity": "[{\"home\":\"W0N1\",\"room\":\"E0N1\",\"source\":\"137078a63b2b0af\",\"spawn\":{\"id\":\"f44878a62f55df6\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"station\":{\"room\":\"E0N1\",\"x\":5,\"y\":24},\"collection\":{\"room\":\"E0N1\",\"x\":4,\"y\":24},\"endpoint\":{\"id\":\"02aa78a63b34eb8\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"miner\":[\"work\",\"work\",\"work\",\"work\",\"carry\",\"move\",\"move\"],\"courier\":[\"carry\",\"carry\",\"move\",\"move\"]},\"[\\\"startup-fixed-service-v1\\\",\\\"[[\\\\\\\"E0N1\\\\\\\",\\\\\\\"E0N1:[[3,25,255],[6,25,255]]\\\\\\\"],[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\",\\\"[\\\\\\\"remote\\\\\\\",false,[\\\\\\\"W0N1\\\\\\\",\\\\\\\"E0N1\\\\\\\"],{\\\\\\\"W0N2\\\\\\\":1,\\\\\\\"E0N1\\\\\\\":1,\\\\\\\"W0N0\\\\\\\":1,\\\\\\\"W1N1\\\\\\\":1}]\\\",{\\\"mode\\\":\\\"known-safe\\\",\\\"username\\\":\\\"eldrift-smoke\\\",\\\"allies\\\":[],\\\"blockedRooms\\\":[],\\\"avoidUntil\\\":{},\\\"allowKeeper\\\":false,\\\"maximumAge\\\":200,\\\"maximumRooms\\\":128,\\\"unknownCost\\\":8,\\\"staleCost\\\":4,\\\"keeperCost\\\":25},10000,[\\\"remote-assignment:4:W0N14:E0N1\\\",21]]\"]",
+              "plan": {
+                "home": "W0N1",
+                "room": "E0N1",
+                "source": "137078a63b2b0af",
+                "spawn": {
+                  "id": "f44878a62f55df6",
+                  "position": {
+                    "room": "W0N1",
+                    "x": 47,
+                    "y": 25
+                  },
+                  "exit": {
+                    "room": "W0N1",
+                    "x": 46,
+                    "y": 25
+                  }
+                },
+                "station": {
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 24
+                },
+                "collection": {
+                  "room": "E0N1",
+                  "x": 4,
+                  "y": 24
+                },
+                "endpoint": {
+                  "id": "02aa78a63b34eb8",
+                  "position": {
+                    "room": "W0N1",
+                    "x": 45,
+                    "y": 25
+                  },
+                  "deposit": {
+                    "room": "W0N1",
+                    "x": 44,
+                    "y": 25
+                  }
+                },
+                "miner": [
+                  "work",
+                  "work",
+                  "work",
+                  "work",
+                  "carry",
+                  "move",
+                  "move"
+                ],
+                "courier": [
+                  "carry",
+                  "carry",
+                  "move",
+                  "move"
+                ]
+              },
+              "legs": [
+                {
+                  "ticks": 18,
+                  "operations": 56,
+                  "arrival": {
+                    "room": "E0N1",
+                    "x": 5,
+                    "y": 24
+                  },
+                  "kind": "miner-approach"
+                },
+                {
+                  "ticks": 33,
+                  "operations": 93,
+                  "arrival": {
+                    "room": "W0N1",
+                    "x": 44,
+                    "y": 25
+                  },
+                  "kind": "miner-return"
+                },
+                {
+                  "ticks": 8,
+                  "operations": 8,
+                  "arrival": {
+                    "room": "E0N1",
+                    "x": 4,
+                    "y": 24
+                  },
+                  "kind": "courier-approach"
+                },
+                {
+                  "ticks": 10,
+                  "operations": 12,
+                  "arrival": {
+                    "room": "E0N1",
+                    "x": 4,
+                    "y": 24
+                  },
+                  "kind": "courier-empty"
+                },
+                {
+                  "ticks": 10,
+                  "operations": 9,
+                  "arrival": {
+                    "room": "W0N1",
+                    "x": 44,
+                    "y": 25
+                  },
+                  "kind": "courier-loaded"
+                }
+              ],
+              "operations": 178,
+              "observedAt": 150,
+              "facts": {
+                "observedAt": 150,
+                "home": "W0N1",
+                "room": "E0N1",
+                "source": {
+                  "id": "137078a63b2b0af",
+                  "position": {
+                    "room": "E0N1",
+                    "x": 6,
+                    "y": 25
+                  },
+                  "energy": 1116,
+                  "capacity": 1500,
+                  "regenerationIn": 205
+                },
+                "station": {
+                  "room": "E0N1",
+                  "x": 5,
+                  "y": 24,
+                  "facts": {
+                    "status": "building",
+                    "id": "67ca78a68a96bcd",
+                    "remainingProgress": 4624,
+                    "progress": 376,
+                    "total": 5000
+                  }
+                },
+                "endpoint": {
+                  "id": "02aa78a63b34eb8",
+                  "position": {
+                    "room": "W0N1",
+                    "x": 45,
+                    "y": 25
+                  },
+                  "type": "storage",
+                  "energy": 7250,
+                  "capacity": 1000000,
+                  "freeCapacity": 992750,
+                  "claimedCapacity": 0,
+                  "availableCapacity": 992750
+                },
+                "stock": {
+                  "totalEnergy": 9550,
+                  "claimedEnergy": 0,
+                  "availableEnergy": 9550,
+                  "spawnEnergy": 2300,
+                  "spawnCapacity": 2300
+                },
+                "workers": [
+                  {
+                    "name": "ed-W0N1-3",
+                    "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"137078a63b2b0af\",\"miner\"]",
+                    "position": {
+                      "room": "E0N1",
+                      "x": 5,
+                      "y": 24
+                    },
+                    "spawning": false,
+                    "ticksToLive": 1392,
+                    "energy": 8,
+                    "body": [
+                      {
+                        "type": "work",
+                        "hits": 100,
+                        "boost": null
+                      },
+                      {
+                        "type": "work",
+                        "hits": 100,
+                        "boost": null
+                      },
+                      {
+                        "type": "work",
+                        "hits": 100,
+                        "boost": null
+                      },
+                      {
+                        "type": "work",
+                        "hits": 100,
+                        "boost": null
+                      },
+                      {
+                        "type": "carry",
+                        "hits": 100,
+                        "boost": null
+                      },
+                      {
+                        "type": "move",
+                        "hits": 100,
+                        "boost": null
+                      },
+                      {
+                        "type": "move",
+                        "hits": 100,
+                        "boost": null
+                      }
+                    ]
+                  }
+                ],
+                "spawns": [
+                  {
+                    "id": "f44878a62f55df6",
+                    "position": {
+                      "room": "W0N1",
+                      "x": 47,
+                      "y": 25
+                    },
+                    "remainingTime": 0
+                  }
+                ],
+                "authority": {
+                  "assignment": "remote-assignment:4:W0N14:E0N1",
+                  "generation": 21,
+                  "expiresAt": 349
+                },
+                "reservation": null
+              },
+              "rooms": [
+                "W0N1",
+                "E0N1"
+              ]
+            }
+          }
+        ],
+        "rows": 150,
+        "rowsFile": "fixed-service-remote-startup-admission-rows.jsonl",
+        "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+        "last": {
+          "probe": {
+            "construction": 376,
+            "sites": [
+              {
+                "progress": 376,
+                "total": 5000,
+                "complete": false
+              }
+            ],
+            "staleAt": null,
+            "localExpiryEnergy": 0,
+            "inactiveEnergy": 0,
+            "recoveredAttempts": 0
+          },
+          "tick": 150,
+          "stopped": null,
+          "visible": true,
+          "discovered": [
+            "E0N1"
+          ],
+          "lease": {
+            "generation": 21,
+            "sources": 1,
+            "reserve": true
+          },
+          "source": {
+            "energy": 1116,
+            "capacity": 1500
+          },
+          "reservation": null,
+          "offers": [
+            {
+              "room": "E0N1",
+              "reservationCost": 2.425373134328358,
+              "sources": [
+                {
+                  "capacity": 1500,
+                  "netRate": 4.275416760208473
+                }
+              ]
+            }
+          ],
+          "income": 0,
+          "localTransfers": 750,
+          "birthCost": 750,
+          "homeEnergy": 9550,
+          "remotePending": 0,
+          "unrelated": {
+            "id": "unrelated-pipeline",
+            "name": "unrelated-pipeline",
+            "owner": "unrelated",
+            "room": "W0N1",
+            "body": [
+              "move"
+            ],
+            "priority": 100,
+            "readyAt": 10000,
+            "expiresAt": 20000
+          },
+          "sentinel": {
+            "owner": "fixture",
+            "version": 1,
+            "data": {
+              "preserved": true
+            }
+          },
+          "quantityClaims": 0,
+          "miningClaims": 1,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "family": "distributor",
+              "room": "W0N1",
+              "spawning": false,
+              "ttl": 1359,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-2",
+              "family": "scout",
+              "room": "W0N0",
+              "spawning": false,
+              "ttl": 1362,
+              "cargo": 0,
+              "tasks": 0
+            },
+            {
+              "name": "ed-W0N1-3",
+              "family": "miner",
+              "room": "E0N1",
+              "spawning": false,
+              "ttl": 1392,
+              "cargo": 8,
+              "tasks": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "milliseconds": 914,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3VFR3s\\evidence.json",
+      "status": "passed",
+      "evidenceSha256": "e2f94e029d0b620353c78e25b037a32b37f6a602402d4a50b52bf6115307caaf",
+      "provenance": {
+        "commit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+        "dirty": false,
+        "bundleSha256": "289d08f590545e5aa7dacb854136927da214b773bfc1dd834962c922cd1aa5ae",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "reportedErrors": 0,
+      "reportedMessages": 0,
+      "instrumentedRuntimeSamples": {
+        "count": 3,
+        "meanCpuMilliseconds": 14.666666666666666,
+        "maximumCpuMilliseconds": 40,
+        "maximumMemoryBytes": 236,
+        "scope": "Runtime plus probes; not isolated native planning CPU or pressure qualification."
+      }
+    }
+  ],
+  "failedSetupObservation": {
+    "status": "failed",
+    "sourceCommit": "1939a4ba9b5b29b4a0588279692e684d6e78eddb",
+    "evidenceSha256": "46aba4eb3862ef522970d9a4e7560fe9737c89b04cca2ef17e2a726d3f82f2f5",
+    "reason": "Positive fixture selected a real terrain wall. Native preflight correctly refused action; setup was corrected to explicit flat terrain for the final positive run. This failed run is not retroclassified as a passing scenario.",
+    "observation": {
+      "calls": [],
+      "reloads": [
+        5
+      ],
+      "records": {
+        "owner": "logistics",
+        "version": 2,
+        "data": {
+          "records": [
+            {
+              "request": {
+                "id": "legacy",
+                "owner": "unrelated",
+                "source": "legacy-source",
+                "sink": "legacy-sink",
+                "resource": "H",
+                "quantity": 5,
+                "priority": 100,
+                "expiresAt": 100
+              },
+              "cancelled": false,
+              "receipts": [
+                {
+                  "id": "prior",
+                  "amount": 1
+                }
+              ]
+            },
+            {
+              "request": {
+                "id": "fixed",
+                "owner": "test-fixed",
+                "source": "21c0783b360db21",
+                "sink": "a388783b3604ca9",
+                "resource": "energy",
+                "quantity": 30,
+                "priority": 0,
+                "expiresAt": 100,
+                "service": {
+                  "collection": {
+                    "room": "W0N1",
+                    "x": 18,
+                    "y": 20
+                  },
+                  "deposit": {
+                    "room": "W0N1",
+                    "x": 22,
+                    "y": 20
+                  },
+                  "avoid": [
+                    {
+                      "room": "W0N1",
+                      "x": 19,
+                      "y": 20
+                    }
+                  ]
+                }
+              },
+              "cancelled": false,
+              "receipts": []
+            }
+          ]
+        }
+      },
+      "task": {
+        "owner": "tasks",
+        "version": 2,
+        "data": {
+          "unit": "hauler",
+          "queue": [
+            {
+              "id": "logistics:[\"task\",\"ea79783b3600578\",\"test-fixed\",\"fixed\",\"1\"]",
+              "kind": "haul",
+              "phase": "work",
+              "payload": {
+                "home": "W0N1",
+                "unitId": "ea79783b3600578",
+                "request": {
+                  "id": "fixed",
+                  "owner": "test-fixed",
+                  "source": "21c0783b360db21",
+                  "sink": "a388783b3604ca9",
+                  "resource": "energy",
+                  "quantity": 30,
+                  "priority": 0,
+                  "expiresAt": 100,
+                  "service": {
+                    "collection": {
+                      "room": "W0N1",
+                      "x": 18,
+                      "y": 20
+                    },
+                    "deposit": {
+                      "room": "W0N1",
+                      "x": 22,
+                      "y": 20
+                    },
+                    "avoid": [
+                      {
+                        "room": "W0N1",
+                        "x": 19,
+                        "y": 20
+                      }
+                    ]
+                  }
+                },
+                "sinkRoom": "W0N1"
+              },
+              "wakeAt": 1,
+              "retries": 0,
+              "expiresAt": 100
+            }
+          ]
+        }
+      },
+      "quantities": {
+        "owner": "quantity-reservations",
+        "version": 1,
+        "data": {
+          "claims": [
+            {
+              "id": "logistics:[\"booking\",\"test-fixed\",\"fixed\",\"task:[\\\"hauler\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"ea79783b3600578\\\\\\\",\\\\\\\"test-fixed\\\\\\\",\\\\\\\"fixed\\\\\\\",\\\\\\\"1\\\\\\\"]\\\"]\"]",
+              "owner": "test-fixed",
+              "holder": "hauler",
+              "scope": "task:[\"hauler\",\"logistics:[\\\"task\\\",\\\"ea79783b3600578\\\",\\\"test-fixed\\\",\\\"fixed\\\",\\\"1\\\"]\"]",
+              "expiresAt": 18,
+              "allocations": [
+                {
+                  "pool": "logistics:[\"request\",\"test-fixed\",\"fixed\"]",
+                  "amount": 30
+                },
+                {
+                  "pool": "logistics:[\"capacity\",\"a388783b3604ca9\"]",
+                  "amount": 30
+                },
+                {
+                  "pool": "logistics:[\"stock\",\"21c0783b360db21\",\"energy\"]",
+                  "amount": 30
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "rows": 16,
+      "rowsFile": "fixed-service-wall-setup-rows.jsonl",
+      "rowsSha256": "6e50dfda18c22b0958a85dec164ba2ccee8b411468a0de15f533402cc20ba655",
+      "last": {
+        "tick": 16,
+        "position": {
+          "x": 20,
+          "y": 20
+        },
+        "walkable": false,
+        "terrain": 1,
+        "look": [
+          "terrain"
+        ],
+        "stores": [
+          30,
+          0,
+          0
+        ],
+        "pending": 30,
+        "claims": 1,
+        "tasks": 1
+      }
+    }
+  },
+  "fixtureCounterScope": {
+    "fixedHauling.rows.pending": "Outstanding energy for the fixed request only. The unrelated legacy request deliberately remains pending.",
+    "fixedHauling.rows.tasks": "Courier task queue length.",
+    "fixedHauling.rows.claims": "Shared quantity claim count."
+  },
+  "hostedCI": {
+    "sourceCommit": "0f9783c68c2b862e658cbe52ccf2986069161e71",
+    "runId": 44685533097,
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44685533097",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 136118841115,
+        "name": "verify (windows-2022)",
+        "conclusion": "success"
+      },
+      {
+        "id": 136118841710,
+        "name": "verify (ubuntu-24.04)",
+        "conclusion": "success"
+      }
+    ],
+    "requiredSteps": [
+      "Run npm run quality",
+      "Run npm test",
+      "Install pinned processor sources without native install scripts",
+      "Run npm run test:processors",
+      "Run node --test tools/engine/suite-report-check.cjs",
+      "Run npm run check:bundle"
+    ]
+  }
+}

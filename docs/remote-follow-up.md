@@ -69,3 +69,7 @@ Source `d1b31f7` adds a fixed-service prospective travel strategy with five exac
 ## Selected spawn and exit enforcement
 
 Source `9e1bbec` adds optional placement constraints carried through schema2 spawn queues, allocation, forecasting and native dispatch, with a geometry/body binding helper for startup travel plans. Actual native birth direction/position and schema1 migration are qualified; see remote-startup-birth.md and evidence/remote-startup-birth.json. Ordinary remote plan publication, service geometry, whole forward scheduling/persistence, candidate policy and wider gates remain open. ED-44 must include schema2 queues and their rollback refusal in the complete rehearsal.
+
+## Exact hauling service enforcement
+
+Source `0f9783c` carries optional collection/deposit geometry and station exclusions through schema2 logistics requests to common native transfer/movement, with a remote startup geometry-binding helper. One16-tick native scenario proves actual exact-position collection/delivery, confirmation, cleanup and global reload; seven clean focused checks pass. See remote-startup-service.md and evidence/remote-startup-service.json. Current registry235 includes the new case; full235 not rerun. Ordinary remote plan publication, miner strategy, complete forward conversion/persistence, candidate economics and wider gates remain open. ED-44 must cover logistics queue2 and live task/journal/claim rollback.
