@@ -12,7 +12,7 @@ async function boostBulkWorld(server,bot,mode) {
   const objects = await db['rooms.objects'].find({ room: 'W0N1' });
   for (const original of objects.filter(item => ['spawn','storage','lab','creep'].includes(item.type))) {
     if (mode === 'refused' && original.type === 'lab' && original.x === 17 && original.y === 20) continue;
-    const copy = { ...original }; delete copy._id; delete copy.room; delete copy.type; delete copy.x; delete copy.y;
+    const copy = JSON.parse(JSON.stringify(original)); delete copy.$loki; delete copy.meta; delete copy._id; delete copy.room; delete copy.type; delete copy.x; delete copy.y;
     if (copy.name) copy.name += '-second';
     await server.world.addRoomObject('W1N1',original.type,original.x,original.y,copy);
   }
