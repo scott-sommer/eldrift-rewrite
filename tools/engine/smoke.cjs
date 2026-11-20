@@ -9,7 +9,7 @@ const { boostWorld,createBoostChanges,verifyBoosts } = require('./boosts.cjs');
 const changeBoosts = createBoostChanges();
 const labChainMode = process.argv.includes('--lab-chain-prestock') ? 'prestock' : process.argv.includes('--lab-chain-reserves') ? 'reserves' : process.argv.includes('--lab-chain-priority') ? 'priority' : process.argv.includes('--lab-chain-depleted') ? 'depleted' : process.argv.includes('--lab-chain') ? 'normal' : undefined;
 const { labChainWorld,verifyLabChain } = require('./lab-chain.cjs');
-const labSupplyMode = process.argv.includes('--lab-operator') ? 'operator' : process.argv.includes('--lab-supply-depleted') ? 'depleted' : process.argv.includes('--lab-supply-switch') ? 'switch' : process.argv.includes('--lab-supply-cancel') ? 'cancel' : process.argv.includes('--lab-supply') ? 'normal' : undefined;
+const labSupplyMode = process.argv.includes('--lab-replan') ? 'replan' : process.argv.includes('--lab-operator') ? 'operator' : process.argv.includes('--lab-supply-depleted') ? 'depleted' : process.argv.includes('--lab-supply-switch') ? 'switch' : process.argv.includes('--lab-supply-cancel') ? 'cancel' : process.argv.includes('--lab-supply') ? 'normal' : undefined;
 const { labSupplyWorld,verifyLabSupply } = require('./lab-supply.cjs');
 const labReactionMode = process.argv.includes('--lab-reactions-invalid') ? 'invalid' : process.argv.includes('--lab-reactions-destroy') ? 'destroy' : process.argv.includes('--lab-reactions') ? 'normal' : undefined;
 const { labReactionsWorld,changeLabReactions,verifyLabReactions } = require('./lab-reactions.cjs');
@@ -676,7 +676,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labSupplyMode) {
-      const reloaded = await reloadStampDraft(server,bot,modules,tick,[30,180]);
+      const reloaded = await reloadStampDraft(server,bot,modules,tick,labSupplyMode === 'replan' ? [8,30,180] : [30,180]);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labReactionMode) {

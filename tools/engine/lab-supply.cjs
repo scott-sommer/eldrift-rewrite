@@ -12,7 +12,7 @@ async function labSupplyWorld(server,bot,mode) {
 }
 function verifyLabSupply(memory,mode,evidence) {
   const rows = memory.labSupply; evidence.labSupply = { mode,rows,reloads: memory.stampReloads };
-  assert.equal(rows.length,320); assert.deepEqual(memory.stampReloads,[31,181]);
+  assert.equal(rows.length,320); assert.deepEqual(memory.stampReloads,mode === 'replan' ? [9,31,181] : [31,181]);
   const last = rows.at(-1), records = memory.eldrift.records;
   evidence.labSupply.assignment = records['industry-labs/W0N1'];
   assert.equal(evidence.labSupply.assignment.owner,'industry');
@@ -40,6 +40,18 @@ function verifyLabSupply(memory,mode,evidence) {
     assert.ok(rows.some(row => row.tick >= 8 && row.tick < 20 && row.cargo > 0),'Admitted supply must survive the operator pause');
     const paused = rows.filter(row => row.tick >= 8 && row.tick < 20), carrying = paused.find(row => row.cargo > 0);
     assert.ok(paused.some(row => row.tick > carrying.tick && row.cargo === 0 && row.receipts >= carrying.receipts+carrying.cargo && row.assignment === null),'Admitted cargo must settle with matching credit before assignment release');
+  }
+  if (mode === 'replan') {
+    const request = memory.labReplanRequest, replans = memory.labReplanRows;
+    evidence.labReplan = { rows: replans,request };
+    assert.equal(request.unchanged,true); assert.ok(request.cargo > 0,'Request must occur during actual admitted cargo');
+    const pending = replans.filter(row => row.pending); assert.ok(pending.some(row => row.tick === 9),'Reload must occur while request is pending');
+    assert.ok(pending.every(row => JSON.stringify(row.assignment) === JSON.stringify(request.assignment)),'Pending replan retains assignment identity');
+    const retired = replans.find(row => row.tick >= request.tick && !row.pending && row.assignment.data.assignment === null);
+    assert.ok(retired,'Replan retires the assignment after admitted work settles');
+    assert.equal(retired.cargo,0); assert.ok(rows.find(row => row.tick === retired.tick).receipts >= rows.find(row => row.tick === request.tick).receipts+request.cargo,'Admitted cargo receives credit before retirement');
+    assert.ok(replans.some(row => row.tick > retired.tick && row.assignment.data.assignment?.product === 'OH'),'Unchanged policy rebuilds after drain tick');
+    assert.deepEqual(records['industry-lab-maintenance/empire'],{ owner: 'industry',version: 1,data: { pending: [] } });
   }
   assert.ok(rows.every(row => row.bankOH+row.labOH <= 15 && row.bankUH+row.labUH <= 15));
 }
