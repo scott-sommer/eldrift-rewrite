@@ -1,4 +1,4 @@
-const startupMode = ['staged','refusal','admission','selected'].find(mode => process.argv.includes('--remote-startup-'+mode));
+const startupMode = ['staged','refusal','admission','selected','selection-expiry'].find(mode => process.argv.includes('--remote-startup-'+mode));
 const { remoteStartupWorld,createStartupChanges,verifyRemoteStartup } = require('./remote-startup.cjs');
 const startupChanges = createStartupChanges(startupMode);
 const reachabilityMode = ['blocked','arrival','withdraw'].find(mode => process.argv.includes('--remote-reachability-'+mode));

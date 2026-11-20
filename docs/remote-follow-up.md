@@ -73,3 +73,7 @@ Source `9e1bbec` adds optional placement constraints carried through schema2 spa
 ## Exact hauling service enforcement
 
 Source `0f9783c` carries optional collection/deposit geometry and station exclusions through schema2 logistics requests to common native transfer/movement, with a remote startup geometry-binding helper. One16-tick native scenario proves actual exact-position collection/delivery, confirmation, cleanup and global reload; seven clean focused checks pass. See remote-startup-service.md and evidence/remote-startup-service.json. Current registry235 includes the new case; full235 not rerun. Ordinary remote plan publication, miner strategy, complete forward conversion/persistence, candidate economics and wider gates remain open. ED-44 must cover logistics queue2 and live task/journal/claim rollback.
+
+## Selected geometry lifecycle follow-up
+
+The birth-policy integration at35939a6 carries fixture-selected geometry through ordinary recruitment and final dispatch; six clean native cases and both CI platforms pass. The subsequent [durable geometry lifecycle](remote-startup-selections.md) introduces a bounded per-home store, explicit invalidation context, generation/body fences and expiry. Production native context refresh and economic selection remain open; neither milestone invokes the forward project model in ordinary candidate selection.

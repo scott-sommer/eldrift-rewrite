@@ -13,7 +13,7 @@ function createStartupChanges(mode) {
     const memory = JSON.parse((await bot.memory) || '{}'), row = memory.pipelineRows?.at(-1);
     if (row && rows.at(-1)?.tick !== row.tick) rows.push(row);
     if (row && index%500 === 0) console.log('STARTUP_PROGRESS '+JSON.stringify({ tick: row.tick,income: row.income,birthCost: row.birthCost,construction: row.probe.construction,pending: row.remotePending,home: row.homeEnergy }));
-    return reloadStampDraft(server,bot,modules,index,mode === 'refusal' ? [20,49,80] : ['admission','selected'].includes(mode) ? [20,80,149] : [20,700,1250,1490,2100,3500,4500]);
+    return reloadStampDraft(server,bot,modules,index,mode === 'refusal' ? [20,49,80] : ['admission','selected','selection-expiry'].includes(mode) ? [20,80,149] : [20,700,1250,1490,2100,3500,4500]);
   } };
 }
 function verifyRemoteStartup(memory,evidence,mode,streamed) {
@@ -27,10 +27,13 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null);
   for (const row of rows) { assert.deepEqual(row.unrelated,rows[0].unrelated); assert.deepEqual(row.sentinel,rows[0].sentinel); }
   if (mode === 'admission') return verifyStartupAdmission(memory,rows);
-  if (mode === 'selected') {
+  if (['selected','selection-expiry'].includes(mode)) {
     evidence.remoteStartup.selection = memory.selectedStartup;
     evidence.remoteStartup.firstReady = memory.selectedReady;
     evidence.remoteStartup.attempts = memory.selectedAttempts;
+    evidence.remoteStartup.selectionChecks = memory.selectedChecks;
+    assert.deepEqual(memory.selectedChecks.map(row => row.tick),[30,46,81,150]);
+    assert.ok(memory.selectedChecks.every(row => row.available === (mode === 'selected') && row.revision === 1 && row.count === 1 && row.readOnly));
     const selection = memory.selectedStartup; assert.ok(selection);
     assert.deepEqual(memory.selectedAttempts.map(item => item.legs),[2,4,5]);
     const miners = Object.values(births).filter(birth => birth.family === 'miner');

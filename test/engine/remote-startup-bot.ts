@@ -17,7 +17,7 @@ interface StartupMemory extends PipelineMemory {
   startupConstruction?: number; startupSites?: Record<string,{ progress: number; total: number; complete: boolean }>;
   startupCalls?: { tick: number; name: string; family: string; code: number }[]; startupStaleAt?: number;
 }
-type StartupMode = 'staged' | 'refusal' | 'admission' | 'selected';
+type StartupMode = 'staged' | 'refusal' | 'admission' | 'selected' | 'selection-expiry';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
 export function runStartup(mode: StartupMode, run = runtimeLoop): void {
   const memory = Memory as StartupMemory;
