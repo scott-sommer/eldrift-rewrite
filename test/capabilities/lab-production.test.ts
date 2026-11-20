@@ -51,3 +51,9 @@ test('cycles, unknown targets, duplicate targets and bounded work are refused be
   expect(() => planProduction([target(),target()],inventory({}),recipe,options)).toThrow('targets');
   expect(() => planProduction([target()],inventory({ H: 100,O: 100,U: 100 }),recipe,{ ...options,maximumNodes: 1 })).toThrow('budget');
 });
+
+test('existing lab intermediates fund future warehouse floors before a final step is selected',() => {
+  const stock = inventory({ H: 100,O: 100,U: 100,OH: 15,UH: 20 });
+  stock.available = { H: 95,O: 95,U: 95,OH: 15,UH: 15 }; stock.reserveGap = { OH: 5 };
+  expect(planProduction([target()],stock,recipe,{ ...options,inputReserve: 5 })).toMatchObject({ product: 'OH',target: 20 });
+});

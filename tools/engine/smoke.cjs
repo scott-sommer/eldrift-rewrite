@@ -1,4 +1,4 @@
-const labChainMode = process.argv.includes('--lab-chain-reserves') ? 'reserves' : process.argv.includes('--lab-chain-priority') ? 'priority' : process.argv.includes('--lab-chain-depleted') ? 'depleted' : process.argv.includes('--lab-chain') ? 'normal' : undefined;
+const labChainMode = process.argv.includes('--lab-chain-prestock') ? 'prestock' : process.argv.includes('--lab-chain-reserves') ? 'reserves' : process.argv.includes('--lab-chain-priority') ? 'priority' : process.argv.includes('--lab-chain-depleted') ? 'depleted' : process.argv.includes('--lab-chain') ? 'normal' : undefined;
 const { labChainWorld,verifyLabChain } = require('./lab-chain.cjs');
 const labSupplyMode = process.argv.includes('--lab-supply-depleted') ? 'depleted' : process.argv.includes('--lab-supply-switch') ? 'switch' : process.argv.includes('--lab-supply-cancel') ? 'cancel' : process.argv.includes('--lab-supply') ? 'normal' : undefined;
 const { labSupplyWorld,verifyLabSupply } = require('./lab-supply.cjs');

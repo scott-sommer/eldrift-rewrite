@@ -5,6 +5,10 @@ async function labChainWorld(server,bot,mode) {
   const { db } = await server.world.load();
   await db['rooms.objects'].update({ room: 'W0N1',type: 'lab' },{ $set: { store: { K: 10 },storeCapacityResource: { K: 3000,energy: 2000 } } });
   await db['rooms.objects'].update({ room: 'W0N1',type: 'storage' },{ $set: { store: { H: mode === 'depleted' ? 0 : 100,O: 100,U: 100,Z: 100 } } });
+  if (mode === 'prestock') {
+    await db['rooms.objects'].update({ room: 'W0N1',type: 'storage' },{ $set: { store: { H: 100,O: 100,U: 100,Z: 100,UH: 20 } } });
+    await db['rooms.objects'].update({ room: 'W0N1',type: 'lab',x: 21,y: 21 },{ $set: { store: { OH: 15 },storeCapacityResource: { OH: 3000,energy: 2000 } } });
+  }
 }
 function verifyLabChain(memory,mode,evidence) {
   const rows = memory.labChain, last = rows.at(-1), records = memory.eldrift.records;
@@ -20,14 +24,16 @@ function verifyLabChain(memory,mode,evidence) {
   }
   const steps = rows.filter(row => row.step).map(row => row.step);
   const distinct = [...new Set(steps)];
-  assert.ok(distinct.includes('OH') && distinct.includes('UH') && distinct.includes('UH2O'));
-  assert.ok(steps.indexOf('OH') < steps.indexOf('UH2O') && steps.indexOf('UH') < steps.indexOf('UH2O'));
+  const intermediates = mode === 'prestock' ? ['OH'] : ['OH','UH'];
+  assert.ok([...intermediates,'UH2O'].every(product => distinct.includes(product)));
+  assert.ok(intermediates.every(product => steps.indexOf(product) < steps.indexOf('UH2O')));
   assert.equal(last.bank.UH2O,10,'Automatic intermediates must reach the final product and bank it');
-  assert.equal(last.bank.K,30,'Dirty lab minerals must be recovered through hauling');
+  assert.equal(last.bank.K,mode === 'prestock' ? 20 : 30,'Dirty lab minerals must be recovered through hauling');
   assert.equal(last.pool.XUH2O,0,'Infeasible catalyzed target cannot fabricate catalyst');
-  if (mode === 'reserves') {
+  if (['reserves','prestock'].includes(mode)) {
     assert.ok(last.pool.OH >= 10 && last.pool.UH >= 10,'Warehouse and input reserve floors must both remain funded');
   }
+  if (mode === 'prestock') assert.equal(rows.find(row => row.step)?.goal,20,'Pre-stocked OH must first fund its future bank reserve');
   if (mode === 'priority') { assert.equal(steps[0],'ZH'); assert.equal(last.bank.ZH,5); }
 }
 module.exports = { labChainWorld,verifyLabChain };

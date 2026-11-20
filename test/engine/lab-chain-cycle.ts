@@ -5,7 +5,7 @@ import { operatorSchema } from '../../src/features/operator/state';
 import { haulingOwner } from '../../src/features/logistics/identity';
 import type { ProductionState } from '../../src/features/industry/production-state';
 import type { LabState } from '../../src/features/industry/lab-state';
-export type ChainMode = 'normal' | 'reserves' | 'priority' | 'depleted';
+export type ChainMode = 'normal' | 'reserves' | 'priority' | 'depleted' | 'prestock';
 interface Row { tick: number; step: string | null; root: string | null; goal: number | null; bank: Record<string,number>; pool: Record<string,number>; cargo: number; assignment: string | null }
 declare global { interface Memory { labChain?: Row[] } }
 const resources: readonly ResourceConstant[] = ['OH','UH','UH2O','ZH','XUH2O','X','K','H','O','U'];
@@ -15,8 +15,9 @@ export function runLabChain(mode: ChainMode): void {
   const state = createMemoryPort(() => Memory), settings = openState(state,'operator/config',operatorSchema);
   const targets = [{ product: 'UH2O',amount: 10,priority: 2 }];
   if (mode === 'priority') targets.push({ product: 'XUH2O',amount: 10,priority: 0 },{ product: 'ZH',amount: 5,priority: 1 });
+  const reserve = ['reserves','prestock'].includes(mode) ? 5 : 0;
   settings.empire = { logisticsEnabled: true,labReactionsEnabled: true,labProductionTargets: targets,labProductionBatch: 10,
-    labReagentReserve: mode === 'reserves' ? 5 : 0,labSupplyReserve: mode === 'reserves' ? 5 : 0,labTransportBatch: 30 };
+    labReagentReserve: reserve,labSupplyReserve: reserve,labTransportBatch: 30 };
   saveState(state,'operator/config',operatorSchema,settings);
   botLoop();
   const production = state.read('industry-production/W0N1') as { data: ProductionState };

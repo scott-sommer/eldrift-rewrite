@@ -26,13 +26,14 @@ export class ProductionDependencies {
     return true;
   }
   private available(resource: string): number {
-    if (!this.stock.has(resource)) this.stock.set(resource,Math.max(0,(this.inventory.available[resource] ?? 0)-this.reserve));
+    if (!this.stock.has(resource)) this.stock.set(resource,Math.max(0,(this.inventory.available[resource] ?? 0)-this.floor(resource)));
     return this.stock.get(resource)!;
   }
   private reserveDebt(resource: string): number {
-    if (!this.debt.has(resource)) this.debt.set(resource,Math.max(0,this.reserve-(this.inventory.available[resource] ?? 0))+(this.inventory.reserveGap[resource] ?? 0));
+    if (!this.debt.has(resource)) this.debt.set(resource,Math.max(0,this.floor(resource)-(this.inventory.available[resource] ?? 0)));
     return this.debt.get(resource)!;
   }
+  private floor(resource: string): number { return this.reserve+(this.inventory.reserveGap[resource] ?? 0); }
   private visit(product: string,path: readonly string[]): void {
     if (path.includes(product)) throw new Error('Cyclic reaction dependency');
     if (path.length >= 16 || this.budget.remaining-- <= 0) throw new Error('Lab production planning budget exhausted');
