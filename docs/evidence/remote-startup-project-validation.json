@@ -1,0 +1,123 @@
+{
+  "scope": "Portable chronological startup finance with earned-income admission and source-only return attribution; hosted quality checks plus archived native birth/lifetime calibration. Not full native project execution or operational candidate-selection qualification.",
+  "sourceCommit": "891170a1298fa4267db613d400b436fa3cc2d677",
+  "hashBasis": "Git blob bytes at sourceCommit",
+  "modelSha256": {
+    "src/capabilities/spawning/lifetime.ts": "2a39a3f4dee4719a936babd33fa294f3325ae89d5dba69ee0cc6a6179f407397",
+    "src/capabilities/economy/startup/spawn-timeline.ts": "06797ae743aa5a580dc768e7e8f96af9dfacf8438f7b51e5105201aa337a9933",
+    "src/capabilities/economy/startup/snapshot.ts": "ac15880e93b329f3043d1b9fef4de8edc20df0ded06b006e4e873dafb184d1c2",
+    "src/capabilities/economy/startup/project-building.ts": "69e3e2b0509a599f70abce324b1bb3b562ce1f000f9261491cfd6c3a39f33957",
+    "src/capabilities/economy/startup/project.ts": "8518fb5c0afa3664ee70b2881bbf9a9ebd58bcf21d5ecb7fd79f47da8bce6562",
+    "src/capabilities/economy/startup/delivery-cash.ts": "d19970871b51f8ffe63dd4ba7e23c6d96ff6ef857ac2ea32374237b1c51f1894",
+    "src/capabilities/economy/startup/construction-workers.ts": "c8590deec9fe33ba6eb1535ecb5f0f2738041a07fbaed1bce40490356289e2e3",
+    "src/capabilities/economy/startup/delivery-couriers.ts": "3cafd6ff54277c7d3aa3f9de0149e6bf3e614870d1b38e9478010495aad1f406"
+  },
+  "checks": {
+    "unitTests": 1645,
+    "unitFiles": 422,
+    "unitSeconds": 12.55,
+    "processorTests": 4,
+    "processorFiles": 1,
+    "processorSeconds": 0.212,
+    "typecheck": true,
+    "lint": true,
+    "boundaries": true,
+    "bundle": true,
+    "lizard": {
+      "productionFiles": 772,
+      "testFiles": 624,
+      "violations": 0
+    }
+  },
+  "hostedCI": {
+    "runId": 44648134507,
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44648134507",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "databaseId": 135995890864,
+        "name": "verify (windows-2022)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-20T00:43:40Z",
+        "completedAt": "2026-11-20T00:46:48Z",
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44648134507/job/135995890864"
+      },
+      {
+        "databaseId": 135995891328,
+        "name": "verify (ubuntu-24.04)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-20T00:43:40Z",
+        "completedAt": "2026-11-20T00:45:12Z",
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44648134507/job/135995891328"
+      }
+    ],
+    "verifiedRequiredSteps": [
+      "Run npm run quality",
+      "Run npm test",
+      "Install pinned processor sources without native install scripts",
+      "Run npm run test:processors",
+      "Run npm run check:bundle"
+    ]
+  },
+  "nativeLifetimeCalibration": {
+    "sourceCommit": "1bb16a769c2c06b2ebfed75c2f18cb3f8cadfc21",
+    "provenance": {
+      "commit": "1bb16a769c2c06b2ebfed75c2f18cb3f8cadfc21",
+      "dirty": false,
+      "bundleSha256": "eab2fb1b33712d3b139a618e9d0f9d1591c0e0e87414e50b018536be0a86c517",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "rowsFile": "startup-runtime-staged-rows.jsonl",
+    "rowsSha256": "20c364991e9cd248e5735c320e3a247fcb389e843c4d333dfa85eb6696090bc4",
+    "rows": 5000,
+    "cases": [
+      {
+        "family": "miner",
+        "name": "ed-W0N1-3",
+        "admittedAt": 22,
+        "firstReadyAt": 43,
+        "firstTTL": 1499,
+        "lastAliveAt": 1541,
+        "absentAt": 1542,
+        "continuousObservedFrames": 1499
+      },
+      {
+        "family": "courier",
+        "name": "ed-W0N1-4",
+        "admittedAt": 1283,
+        "firstReadyAt": 1295,
+        "firstTTL": 1499,
+        "lastAliveAt": 2793,
+        "absentAt": 2794,
+        "continuousObservedFrames": 1499
+      },
+      {
+        "family": "reserver",
+        "name": "ed-W0N1-7",
+        "admittedAt": 1307,
+        "firstReadyAt": 1319,
+        "firstTTL": 599,
+        "lastAliveAt": 1917,
+        "absentAt": 1918,
+        "continuousObservedFrames": 599
+      }
+    ]
+  },
+  "runtimeArtifact": {
+    "bundleSha256": "2f84cee435e77f1801a46ca86357bf85e228064838661104cd5ee1e836c59cd1",
+    "identicalToCleanNativeSource": "08afcf27c3db5eac5f0ebba547c1ab6251c9afc0",
+    "evidenceManifest": "remote-harvest-overflow-calibration.json"
+  },
+  "registeredNativeCases": 233,
+  "fullRegistryRerun": false,
+  "budgetedSimulationFrames": true,
+  "budgetedFinalCashReplay": false,
+  "nativePlanningIntegration": false
+}
