@@ -1,0 +1,131 @@
+{
+  "sourceCommit": "e0a3ebf50f458c5e3d06f9c931cf9420c9ff0122",
+  "scope": "Portable shared-deficit allocation foundation; existing native local-production regression checks only. Empire allocation is not wired to runtime.",
+  "checks": {
+    "quality": "passed; types/lint/boundaries/Lizard1.22.2;890production/738testfiles;0violations",
+    "unit": {
+      "cases": 1952,
+      "files": 480,
+      "seconds": 12.81
+    },
+    "bundle": "passed"
+  },
+  "native": [
+    {
+      "scenario": "--lab-chain",
+      "seconds": 17.847,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-AxRTj5\\evidence.json",
+      "status": "passed",
+      "rawSha256": "f33c3ae7855415c639f2327007d9868456634d7c639241a5a53efcf6e338a362",
+      "provenance": {
+        "commit": "e0a3ebf50f458c5e3d06f9c931cf9420c9ff0122",
+        "dirty": false,
+        "bundleSha256": "1abe3f98b23e368c4394b620adb0fcaf001f8adfb4f7809cd9e55cf6923b9e32",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-foundation-lab-chain-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "5816db9685443814eb65bf84dadf0df5c3f922077067cf3702c3017c4e3ae2fa"
+      },
+      "labChain": {
+        "rowsFile": "empire-foundation-lab-chain-labChain.jsonl",
+        "rows": 640,
+        "rowsSha256": "5e8f78d7b1abe6c1902bc2a73407e55fb6d393ec7c71d5697544eea517d63a2f"
+      },
+      "reloadProvenance": {
+        "commit": "e0a3ebf50f458c5e3d06f9c931cf9420c9ff0122",
+        "dirty": false,
+        "bundleSha256": "7838b6b19b9896779667e8b4f4dda32d307cc8c8b7cb9d9425fb1b0d91ed76a4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--lab-chain-prestock",
+      "seconds": 19.037,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-FdsiIp\\evidence.json",
+      "status": "passed",
+      "rawSha256": "b10d6273e4272c83b36b1890cf6dd17d98778174da75f5f99408a91d449c202e",
+      "provenance": {
+        "commit": "e0a3ebf50f458c5e3d06f9c931cf9420c9ff0122",
+        "dirty": false,
+        "bundleSha256": "95f455d50265771bfb756aeae667dcb1ef29da5ea3b63ed7d8fe6cced83c7eaf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-foundation-lab-chain-prestock-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "4ded19e1ed75f86282755550f918a067acfdfdc976b778595b5b45b5107265fa"
+      },
+      "labChain": {
+        "rowsFile": "empire-foundation-lab-chain-prestock-labChain.jsonl",
+        "rows": 640,
+        "rowsSha256": "6774200f978ee833fcaeeb695654c0fdda2dda77a181508b7a63d8c8e2bbd159"
+      },
+      "reloadProvenance": {
+        "commit": "e0a3ebf50f458c5e3d06f9c931cf9420c9ff0122",
+        "dirty": false,
+        "bundleSha256": "51f35e7e8befc5168bb21ecb5d46826ad1e4931dc20a51cafdbb31152e369680",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "seconds": 0.867,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iOyyhf\\evidence.json",
+      "status": "passed",
+      "rawSha256": "84b242ae02f3f7a6718dde30ec29db90e7c382c40f6b67e029a324fc2b318334",
+      "provenance": {
+        "commit": "e0a3ebf50f458c5e3d06f9c931cf9420c9ff0122",
+        "dirty": false,
+        "bundleSha256": "b08e0e4f89b9011d3b0ed8fc224cb13188d514ba9052ef2383553db6489855d2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-foundation-packaged-smoke-measurements.jsonl",
+        "rows": 3,
+        "rowsSha256": "6fe9b0538233c39f82eb3881e7291f19cf1884d971c8535b09028196bee8c7da"
+      }
+    }
+  ],
+  "hostedCI": {
+    "id": 44836609557,
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44836609557",
+    "statusAtCapture": "in_progress",
+    "conclusionClaimed": false
+  },
+  "sourceSha256": {
+    "docs/empire-lab-production.md": "21d5144eba86c21c1c4610f8ce034a068128fa7999b52e9656d7a55380460f09",
+    "src/capabilities/industry/production/empire.ts": "b699dc3f1960f22b5b2b4b0f21b8b57bd6246edf6ae0bf4f76c0bee3f13989b1",
+    "src/capabilities/industry/production/plan.ts": "5090e3e02ae4e845322fff39fdfb2a7ae782888526031b62a51731622cd6bb79",
+    "test/capabilities/empire-production.test.ts": "0f3fb6db25fe6fd2e314dc6f0bab50b0d4e7e226ec9301a6549c8517e52f810e"
+  },
+  "limitations": [
+    "No native empire orchestration/commitment execution yet.",
+    "Registry273not fully rerun.",
+    "Hosted exact-source result must be refreshed before claiming hosted qualification."
+  ]
+}
