@@ -57,3 +57,7 @@ Source `1bb16a7` qualifies opt-in staged birth readiness and protected complete-
 ## Streaming accounting completion
 
 The forward model now accumulates household/source-only accounting within guarded frames and orders receipts as they settle. Final results no longer replay the horizon or sort all history. Shared runtime cash code is qualified by a new150-tick ordinary positive-admission warmup, the existing protected-refusal case and packaged smoke on clean committed source; see [accounting contract/evidence](remote-startup-accounting.md). Current registry234 has not received a full rerun. Native quote/authority binding, durable planning/reset handling, native CPU qualification and operational candidate policy remain open; ordinary selection still does not call the portable project simulator.
+
+## Native startup observation boundary
+
+Source14483a5 adds current read-only source/station/endpoint/stock/claims/workforce/spawn observations, qualified in the fast ordinary native admission guard. See remote-startup-native-facts.md and evidence/remote-startup-native-facts.json. Exact native route/schedule conversion, persistent planning, candidate policy and pressure/parity gates remain open; source-range travel estimates cannot be silently reused for an arbitrary station/deposit pair.
