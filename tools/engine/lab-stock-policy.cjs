@@ -17,13 +17,13 @@ function verifyStockPolicy(memory,evidence,mode) {
   } else {
     assert.equal(total(last,'UH2O'),mode === 'local' ? 30 : 15);
     if (mode === 'shared') {
-      assert.deepEqual(rows[0].windows.map(window => [window.home,window.product,window.amount]),[['W0N1','OH',10],['W1N1','OH',5]],'Two terminals produce one shared intermediate target15');
+      assert.deepEqual(rows[0].windows.map(window => [window.home,window.product,window.amount]),[['W0N1','UH',10],['W1N1','UH',5]],'Two terminals produce one shared intermediate target15');
       for (const product of ['OH','UH','UH2O']) assert.ok(rows.some(row => row.windows.some(window => window.product === product)));
       const active = rows.filter(row => total(row,'UH2O') < 15).flatMap(row => row.windows.filter(window => !window.retiring).map(window => window.context));
       assert.equal(new Set(active).size,1,'Intermediate deficits must not churn durable root policy context');
     } else {
       assert.ok(rows.every(row => row.windows.length === 0));
-      assert.ok(rows[0].rooms.every(room => room.step?.root === 'OH' && room.step.target === 10),'Local policy scales against one local terminal');
+      assert.ok(rows[0].rooms.every(room => room.step?.root === 'UH' && room.step.target === 10),'Local policy scales against one local terminal');
       assert.ok(last.rooms.every(room => room.bankRoot === 15));
     }
     assert.equal(last.rooms.reduce((sum,room) => sum+room.bankRoot,0),mode === 'local' ? 30 : 15);

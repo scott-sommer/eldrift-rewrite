@@ -11,7 +11,7 @@ function intermediateTarget(options: StockThresholdOptions): number {
 function validateVisit(product: string,path: readonly string[],visits: number): void {
   if (visits > 64 || path.includes(product)) throw new Error('Cyclic or excessive reaction dependencies');
 }
-/** Preserve the legacy expand-right-first/reverse discovery ordering with explicit cycle and work bounds. */
+/** Reverse discovery on injected reagent ordering with explicit cycle and work bounds. */
 function compoundOrder(root: string,recipe: RecipeLookup): string[] {
   const stack = [{ product: root,path: [] as string[] }], seen = new Set<string>(), order = [root];
   let visits = 0;
