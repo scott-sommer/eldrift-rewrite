@@ -1,0 +1,2104 @@
+{
+  "sourceCommit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+  "scope": "Ordinary native intel capture and retained ownership/source/structure records across actual ownership loss, disappearance from Game.rooms, blind module reset and native vision reacquisition, alongside retained industry assignments/windows and replacement production.",
+  "checks": {
+    "quality": "passed; types/lint/boundaries/pinnedLizard1.22.2;899production/750testfiles;0violations",
+    "unit": {
+      "cases": 1971,
+      "files": 483,
+      "seconds": 14.77,
+      "note": "Concurrent native batch; not a performance baseline."
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.329
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1374734
+    },
+    "bundle": "passed"
+  },
+  "native": [
+    {
+      "scenario": "--lab-empire-intel",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-q4jOZS\\evidence.json",
+      "status": "passed",
+      "rawSha256": "f552c9abc818f228bb616047668f65b938dc742a0db38d95f46ed6c0ffc88167",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "adf2a35bf328ec38aaac39db4c5d95f73b8f9b6819a5cd662261dc820230f4d3",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-lab-empire-intel-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "18cf1ad2ce16b31d9221810e0c6b6075ee8693c692da31e2f419716318b2617e"
+      },
+      "reloadProvenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "1b82bee5534ed4a3aa398436d2452da735a24aeb6d49d72e51e8484960e907f7",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "empireOwnershipLoss": {
+        "mode": "intel",
+        "transition": {
+          "tick": 35,
+          "trigger": {
+            "tick": 34,
+            "cargo": 10,
+            "unit": "7d2dbb26826ee75",
+            "window": {
+              "home": "W0N1",
+              "product": "UH2O",
+              "amount": 10,
+              "context": "[\"empire-production/1\",[{\"product\":\"UH2O\",\"amount\":15,\"priority\":0}],[[\"W0N1\",10,0,0],[\"W1N1\",10,0,0]]]",
+              "rootTarget": 10,
+              "remaining": 10,
+              "observedRoot": 0,
+              "initialStep": {
+                "root": "UH2O",
+                "product": "OH",
+                "reagents": [
+                  "H",
+                  "O"
+                ],
+                "target": 10
+              },
+              "step": {
+                "root": "UH2O",
+                "product": "UH",
+                "reagents": [
+                  "H",
+                  "U"
+                ],
+                "target": 10
+              },
+              "retiring": false
+            },
+            "receipts": 0
+          }
+        },
+        "death": {
+          "tick": 41,
+          "unit": "7d2dbb26826ee75"
+        },
+        "reload": {
+          "tick": 36,
+          "pending": true
+        },
+        "hidden": {
+          "tick": 41
+        },
+        "restored": {
+          "tick": 61
+        },
+        "visionReload": {
+          "tick": 42,
+          "pending": true
+        },
+        "trigger": {
+          "tick": 34,
+          "cargo": 10,
+          "unit": "7d2dbb26826ee75",
+          "window": {
+            "home": "W0N1",
+            "product": "UH2O",
+            "amount": 10,
+            "context": "[\"empire-production/1\",[{\"product\":\"UH2O\",\"amount\":15,\"priority\":0}],[[\"W0N1\",10,0,0],[\"W1N1\",10,0,0]]]",
+            "rootTarget": 10,
+            "remaining": 10,
+            "observedRoot": 0,
+            "initialStep": {
+              "root": "UH2O",
+              "product": "OH",
+              "reagents": [
+                "H",
+                "O"
+              ],
+              "target": 10
+            },
+            "step": {
+              "root": "UH2O",
+              "product": "UH",
+              "reagents": [
+                "H",
+                "U"
+              ],
+              "target": 10
+            },
+            "retiring": false
+          },
+          "receipts": 0
+        },
+        "last": {
+          "intel": {
+            "owner": "intel",
+            "version": 2,
+            "data": {
+              "lastSeen": 640,
+              "owned": false,
+              "sourceIds": [
+                "2e8abb26742fa36",
+                "073ebb26742747e"
+              ],
+              "structureIds": [
+                "8f2bbb2681e86d1",
+                "4782bb2682512eb",
+                "90d7bb268250bbd",
+                "c865bb26825f250",
+                "0919bb268257aca",
+                "fdc5bb268250f25"
+              ],
+              "hostileIds": [
+                "8f2bbb2681e86d1",
+                "4782bb2682512eb",
+                "90d7bb268250bbd",
+                "c865bb26825f250",
+                "0919bb268257aca",
+                "fdc5bb268250f25"
+              ],
+              "summary": {
+                "room": "W0N1",
+                "observedAt": 640,
+                "status": "normal",
+                "statusTimestamp": null,
+                "highway": true,
+                "keeper": false,
+                "center": false,
+                "controller": {
+                  "id": "b4acbb267429ea3",
+                  "x": 20,
+                  "y": 23,
+                  "level": 7,
+                  "owned": false,
+                  "owner": "Invader",
+                  "reservation": null
+                },
+                "sources": [
+                  {
+                    "id": "2e8abb26742fa36",
+                    "x": 14,
+                    "y": 18,
+                    "capacity": 3000
+                  },
+                  {
+                    "id": "073ebb26742747e",
+                    "x": 39,
+                    "y": 14,
+                    "capacity": 3000
+                  }
+                ],
+                "mineral": {
+                  "id": "b323bb267424380",
+                  "x": 11,
+                  "y": 37,
+                  "type": "H"
+                },
+                "structures": [
+                  {
+                    "id": "8f2bbb2681e86d1",
+                    "x": 15,
+                    "y": 15,
+                    "type": "spawn",
+                    "owned": false,
+                    "owner": "Invader",
+                    "hostile": true
+                  },
+                  {
+                    "id": "4782bb2682512eb",
+                    "x": 20,
+                    "y": 18,
+                    "type": "storage",
+                    "owned": false,
+                    "owner": "Invader",
+                    "hostile": true
+                  },
+                  {
+                    "id": "90d7bb268250bbd",
+                    "x": 17,
+                    "y": 20,
+                    "type": "lab",
+                    "owned": false,
+                    "owner": "Invader",
+                    "hostile": true
+                  },
+                  {
+                    "id": "c865bb26825f250",
+                    "x": 16,
+                    "y": 21,
+                    "type": "lab",
+                    "owned": false,
+                    "owner": "Invader",
+                    "hostile": true
+                  },
+                  {
+                    "id": "0919bb268257aca",
+                    "x": 18,
+                    "y": 21,
+                    "type": "lab",
+                    "owned": false,
+                    "owner": "Invader",
+                    "hostile": true
+                  },
+                  {
+                    "id": "fdc5bb268250f25",
+                    "x": 17,
+                    "y": 22,
+                    "type": "lab",
+                    "owned": false,
+                    "owner": "Invader",
+                    "hostile": true
+                  }
+                ],
+                "units": [
+                  {
+                    "id": "3d96bb274ea5a11",
+                    "x": 24,
+                    "y": 25,
+                    "owner": "eldrift-smoke",
+                    "owned": true,
+                    "power": false
+                  }
+                ],
+                "exits": [
+                  {
+                    "direction": 1,
+                    "room": "W0N2"
+                  },
+                  {
+                    "direction": 3,
+                    "room": "E0N1"
+                  },
+                  {
+                    "direction": 5,
+                    "room": "W0N0"
+                  },
+                  {
+                    "direction": 7,
+                    "room": "W1N1"
+                  }
+                ]
+              },
+              "lastVisit": null,
+              "lastFailure": null
+            }
+          },
+          "tick": 640,
+          "visible": true,
+          "owned": false,
+          "alive": false,
+          "cargo": 0,
+          "window": null,
+          "assignment": {
+            "owner": "industry",
+            "version": 1,
+            "data": {
+              "assignment": {
+                "product": "UH",
+                "reagents": [
+                  "H",
+                  "U"
+                ],
+                "inputs": [
+                  "0919bb268257aca",
+                  "c865bb26825f250"
+                ],
+                "outputs": [
+                  "fdc5bb268250f25"
+                ],
+                "roster": [
+                  "0919bb268257aca",
+                  "c865bb26825f250",
+                  "fdc5bb268250f25"
+                ]
+              }
+            }
+          },
+          "receipts": 0
+        },
+        "rowsFile": "empire-intel-lab-empire-intel-empireOwnershipLoss-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "d579b57190bbf3275d3f6776b9435a42f7795e96be1843ce6671b26441916479"
+      },
+      "empireProduction": {
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "windows": []
+          }
+        },
+        "rowsFile": "empire-intel-lab-empire-intel-empireProduction-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "93d6326319340b1342ca97e91342b5a96fa9637b0d62d52c2a10d109d6b4a0fe",
+        "last": {
+          "tick": 640,
+          "total": 15,
+          "windows": [],
+          "rooms": [
+            {
+              "home": "W0N1",
+              "bankUH": 0,
+              "carriedUH": 0,
+              "receipts": 0,
+              "bank": 0,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier",
+              "reactionLabs": [
+                "0919bb268257aca",
+                "c865bb26825f250",
+                "fdc5bb268250f25"
+              ],
+              "buffer": {
+                "id": "90d7bb268250bbd",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            },
+            {
+              "home": "W1N1",
+              "bankUH": 0,
+              "carriedUH": 0,
+              "receipts": 85,
+              "bank": 15,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier-second",
+              "reactionLabs": [],
+              "buffer": {
+                "id": "c670bb2682b3202",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            }
+          ]
+        }
+      },
+      "intelRetention": {
+        "firstOwned": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 1,
+            "owned": true,
+            "sourceIds": [
+              "2e8abb26742fa36",
+              "073ebb26742747e"
+            ],
+            "structureIds": [
+              "8f2bbb2681e86d1",
+              "4782bb2682512eb",
+              "90d7bb268250bbd",
+              "c865bb26825f250",
+              "0919bb268257aca",
+              "fdc5bb268250f25"
+            ],
+            "hostileIds": [],
+            "summary": {
+              "room": "W0N1",
+              "observedAt": 1,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "b4acbb267429ea3",
+                "x": 20,
+                "y": 23,
+                "level": 7,
+                "owned": true,
+                "owner": "eldrift-smoke",
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "2e8abb26742fa36",
+                  "x": 14,
+                  "y": 18,
+                  "capacity": 1000
+                },
+                {
+                  "id": "073ebb26742747e",
+                  "x": 39,
+                  "y": 14,
+                  "capacity": 1000
+                }
+              ],
+              "mineral": {
+                "id": "b323bb267424380",
+                "x": 11,
+                "y": 37,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "8f2bbb2681e86d1",
+                  "x": 15,
+                  "y": 15,
+                  "type": "spawn",
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "hostile": false
+                },
+                {
+                  "id": "4782bb2682512eb",
+                  "x": 20,
+                  "y": 18,
+                  "type": "storage",
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "hostile": false
+                },
+                {
+                  "id": "90d7bb268250bbd",
+                  "x": 17,
+                  "y": 20,
+                  "type": "lab",
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "hostile": false
+                },
+                {
+                  "id": "c865bb26825f250",
+                  "x": 16,
+                  "y": 21,
+                  "type": "lab",
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "hostile": false
+                },
+                {
+                  "id": "0919bb268257aca",
+                  "x": 18,
+                  "y": 21,
+                  "type": "lab",
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "hostile": false
+                },
+                {
+                  "id": "fdc5bb268250f25",
+                  "x": 17,
+                  "y": 22,
+                  "type": "lab",
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "hostile": false
+                }
+              ],
+              "units": [
+                {
+                  "id": "7d2dbb26826ee75",
+                  "x": 20,
+                  "y": 19,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                },
+                {
+                  "id": "11e2bb2682d374b",
+                  "x": 24,
+                  "y": 25,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "W0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E0N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "W0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W1N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        },
+        "lastBeforeBlind": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 40,
+            "owned": false,
+            "sourceIds": [
+              "2e8abb26742fa36",
+              "073ebb26742747e"
+            ],
+            "structureIds": [
+              "8f2bbb2681e86d1",
+              "4782bb2682512eb",
+              "90d7bb268250bbd",
+              "c865bb26825f250",
+              "0919bb268257aca",
+              "fdc5bb268250f25"
+            ],
+            "hostileIds": [
+              "8f2bbb2681e86d1",
+              "4782bb2682512eb",
+              "90d7bb268250bbd",
+              "c865bb26825f250",
+              "0919bb268257aca",
+              "fdc5bb268250f25"
+            ],
+            "summary": {
+              "room": "W0N1",
+              "observedAt": 40,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "b4acbb267429ea3",
+                "x": 20,
+                "y": 23,
+                "level": 7,
+                "owned": false,
+                "owner": "Invader",
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "2e8abb26742fa36",
+                  "x": 14,
+                  "y": 18,
+                  "capacity": 3000
+                },
+                {
+                  "id": "073ebb26742747e",
+                  "x": 39,
+                  "y": 14,
+                  "capacity": 3000
+                }
+              ],
+              "mineral": {
+                "id": "b323bb267424380",
+                "x": 11,
+                "y": 37,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "8f2bbb2681e86d1",
+                  "x": 15,
+                  "y": 15,
+                  "type": "spawn",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "4782bb2682512eb",
+                  "x": 20,
+                  "y": 18,
+                  "type": "storage",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "90d7bb268250bbd",
+                  "x": 17,
+                  "y": 20,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "c865bb26825f250",
+                  "x": 16,
+                  "y": 21,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "0919bb268257aca",
+                  "x": 18,
+                  "y": 21,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "fdc5bb268250f25",
+                  "x": 17,
+                  "y": 22,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                }
+              ],
+              "units": [
+                {
+                  "id": "7d2dbb26826ee75",
+                  "x": 18,
+                  "y": 20,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                },
+                {
+                  "id": "11e2bb2682d374b",
+                  "x": 24,
+                  "y": 25,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "W0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E0N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "W0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W1N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        },
+        "firstAfterRegain": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 61,
+            "owned": false,
+            "sourceIds": [
+              "2e8abb26742fa36",
+              "073ebb26742747e"
+            ],
+            "structureIds": [
+              "8f2bbb2681e86d1",
+              "4782bb2682512eb",
+              "90d7bb268250bbd",
+              "c865bb26825f250",
+              "0919bb268257aca",
+              "fdc5bb268250f25"
+            ],
+            "hostileIds": [
+              "8f2bbb2681e86d1",
+              "4782bb2682512eb",
+              "90d7bb268250bbd",
+              "c865bb26825f250",
+              "0919bb268257aca",
+              "fdc5bb268250f25"
+            ],
+            "summary": {
+              "room": "W0N1",
+              "observedAt": 61,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "b4acbb267429ea3",
+                "x": 20,
+                "y": 23,
+                "level": 7,
+                "owned": false,
+                "owner": "Invader",
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "2e8abb26742fa36",
+                  "x": 14,
+                  "y": 18,
+                  "capacity": 3000
+                },
+                {
+                  "id": "073ebb26742747e",
+                  "x": 39,
+                  "y": 14,
+                  "capacity": 3000
+                }
+              ],
+              "mineral": {
+                "id": "b323bb267424380",
+                "x": 11,
+                "y": 37,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "8f2bbb2681e86d1",
+                  "x": 15,
+                  "y": 15,
+                  "type": "spawn",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "4782bb2682512eb",
+                  "x": 20,
+                  "y": 18,
+                  "type": "storage",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "90d7bb268250bbd",
+                  "x": 17,
+                  "y": 20,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "c865bb26825f250",
+                  "x": 16,
+                  "y": 21,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "0919bb268257aca",
+                  "x": 18,
+                  "y": 21,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                },
+                {
+                  "id": "fdc5bb268250f25",
+                  "x": 17,
+                  "y": 22,
+                  "type": "lab",
+                  "owned": false,
+                  "owner": "Invader",
+                  "hostile": true
+                }
+              ],
+              "units": [
+                {
+                  "id": "3d96bb274ea5a11",
+                  "x": 24,
+                  "y": 25,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "W0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E0N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "W0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W1N1"
+                }
+              ]
+            },
+            "lastVisit": null,
+            "lastFailure": null
+          }
+        },
+        "hidden": 41,
+        "restored": 61,
+        "blindRows": 20,
+        "reload": {
+          "tick": 42,
+          "pending": true
+        }
+      }
+    },
+    {
+      "scenario": "--intel-capture",
+      "seconds": 1.434,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-gkRZnp\\evidence.json",
+      "status": "passed",
+      "rawSha256": "d13c43e6428dfac972d10a35b1344016971f3a75b02bde6de674ed982454d30c",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "2de7ab20deba00189aecf228093b6b96960a2e36c1c07bd35ba2be36b653a616",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-intel-capture-measurements.jsonl",
+        "rows": 18,
+        "rowsSha256": "7000cfa14a30079275dd6130b27fe67cdd429a6ae03bd8d5d47592a58ae78a38"
+      },
+      "reloadProvenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "ad6a3497295b46f718d98e7b8b085c65348c44ac8384df9e2cfe6f7a582f4c9d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "intelCapture": {
+        "reloads": [
+          7
+        ],
+        "sentinel": {
+          "initializedAt": 1
+        },
+        "records": {
+          "intel/E0N1": {
+            "owner": "intel",
+            "version": 2,
+            "data": {
+              "lastSeen": 18,
+              "owned": true,
+              "sourceIds": [
+                "82d1bb526242348",
+                "295cbb52624c5a0"
+              ],
+              "structureIds": [
+                "c4b7bb52625031c"
+              ],
+              "hostileIds": [],
+              "summary": {
+                "room": "E0N1",
+                "observedAt": 18,
+                "status": "normal",
+                "statusTimestamp": null,
+                "highway": true,
+                "keeper": false,
+                "center": false,
+                "controller": {
+                  "id": "4e8abb526246ef9",
+                  "x": 20,
+                  "y": 20,
+                  "level": 1,
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "reservation": null
+                },
+                "sources": [
+                  {
+                    "id": "82d1bb526242348",
+                    "x": 10,
+                    "y": 10,
+                    "capacity": 3000
+                  },
+                  {
+                    "id": "295cbb52624c5a0",
+                    "x": 35,
+                    "y": 35,
+                    "capacity": 3000
+                  }
+                ],
+                "mineral": {
+                  "id": "8e8bbb52624ac61",
+                  "x": 30,
+                  "y": 10,
+                  "type": "H"
+                },
+                "structures": [
+                  {
+                    "id": "c4b7bb52625031c",
+                    "x": 21,
+                    "y": 21,
+                    "type": "road",
+                    "owned": false,
+                    "owner": null,
+                    "hostile": false
+                  }
+                ],
+                "units": [
+                  {
+                    "id": "29e7bb52838c930",
+                    "x": 25,
+                    "y": 25,
+                    "owner": "eldrift-smoke",
+                    "owned": true,
+                    "power": false
+                  }
+                ],
+                "exits": [
+                  {
+                    "direction": 1,
+                    "room": "E0N2"
+                  },
+                  {
+                    "direction": 3,
+                    "room": "E1N1"
+                  },
+                  {
+                    "direction": 5,
+                    "room": "E0N0"
+                  },
+                  {
+                    "direction": 7,
+                    "room": "W0N1"
+                  }
+                ]
+              },
+              "lastVisit": null,
+              "lastFailure": null
+            }
+          },
+          "intel/W0N1": {
+            "owner": "intel",
+            "version": 2,
+            "data": {
+              "lastSeen": 16,
+              "owned": true,
+              "sourceIds": [
+                "b4bfbb525452965",
+                "564dbb525451f32"
+              ],
+              "structureIds": [
+                "a66cbb5261c6a2f"
+              ],
+              "hostileIds": [],
+              "summary": {
+                "room": "W0N1",
+                "observedAt": 16,
+                "status": "normal",
+                "statusTimestamp": null,
+                "highway": true,
+                "keeper": false,
+                "center": false,
+                "controller": {
+                  "id": "16c5bb525454689",
+                  "x": 8,
+                  "y": 43,
+                  "level": 1,
+                  "owned": true,
+                  "owner": "eldrift-smoke",
+                  "reservation": null
+                },
+                "sources": [
+                  {
+                    "id": "b4bfbb525452965",
+                    "x": 14,
+                    "y": 18,
+                    "capacity": 1000
+                  },
+                  {
+                    "id": "564dbb525451f32",
+                    "x": 39,
+                    "y": 14,
+                    "capacity": 1000
+                  }
+                ],
+                "mineral": {
+                  "id": "22d5bb525456910",
+                  "x": 11,
+                  "y": 37,
+                  "type": "H"
+                },
+                "structures": [
+                  {
+                    "id": "a66cbb5261c6a2f",
+                    "x": 15,
+                    "y": 15,
+                    "type": "spawn",
+                    "owned": true,
+                    "owner": "eldrift-smoke",
+                    "hostile": false
+                  }
+                ],
+                "units": [],
+                "exits": [
+                  {
+                    "direction": 1,
+                    "room": "W0N2"
+                  },
+                  {
+                    "direction": 7,
+                    "room": "W1N1"
+                  }
+                ]
+              },
+              "lastVisit": null,
+              "lastFailure": null
+            }
+          },
+          "intel/W1N1": {
+            "owner": "intel",
+            "version": 2,
+            "data": {
+              "lastSeen": 17,
+              "owned": false,
+              "sourceIds": [
+                "be03bb52544f21c"
+              ],
+              "structureIds": [],
+              "hostileIds": [],
+              "summary": {
+                "room": "W1N1",
+                "observedAt": 17,
+                "status": "normal",
+                "statusTimestamp": null,
+                "highway": false,
+                "keeper": false,
+                "center": false,
+                "controller": {
+                  "id": "0410bb52544fe1a",
+                  "x": 39,
+                  "y": 11,
+                  "level": 0,
+                  "owned": false,
+                  "owner": null,
+                  "reservation": null
+                },
+                "sources": [
+                  {
+                    "id": "be03bb52544f21c",
+                    "x": 4,
+                    "y": 15,
+                    "capacity": 1000
+                  }
+                ],
+                "mineral": {
+                  "id": "d8c7bb525441b19",
+                  "x": 7,
+                  "y": 36,
+                  "type": "O"
+                },
+                "structures": [],
+                "units": [
+                  {
+                    "id": "da76bb526293ea1",
+                    "x": 25,
+                    "y": 25,
+                    "owner": "eldrift-smoke",
+                    "owned": true,
+                    "power": false
+                  }
+                ],
+                "exits": [
+                  {
+                    "direction": 1,
+                    "room": "W1N2"
+                  },
+                  {
+                    "direction": 3,
+                    "room": "W0N1"
+                  },
+                  {
+                    "direction": 5,
+                    "room": "W1N0"
+                  },
+                  {
+                    "direction": 7,
+                    "room": "W2N1"
+                  }
+                ]
+              },
+              "lastVisit": null,
+              "lastFailure": null
+            }
+          }
+        },
+        "progress": {
+          "owner": "intel-capture",
+          "version": 1,
+          "data": {
+            "revision": 17,
+            "cursor": "E0N1"
+          }
+        },
+        "rowsFile": "empire-intel-intel-capture-intelCapture-observations.jsonl",
+        "rows": 18,
+        "rowsSha256": "e7737a8e8ba7d829215278001819282edd03bb2f05c700198b5950a358cc511a",
+        "last": {
+          "tick": 18,
+          "before": [
+            15,
+            16,
+            17
+          ],
+          "beforeCursor": {
+            "revision": 16,
+            "cursor": "W1N1"
+          },
+          "rooms": [
+            {
+              "room": "E0N1",
+              "visible": true,
+              "lastSeen": 18,
+              "lastVisit": null,
+              "freshness": "fresh",
+              "owner": "eldrift-smoke",
+              "sources": 2
+            },
+            {
+              "room": "W0N1",
+              "visible": true,
+              "lastSeen": 16,
+              "lastVisit": null,
+              "freshness": "stale",
+              "owner": "eldrift-smoke",
+              "sources": 2
+            },
+            {
+              "room": "W1N1",
+              "visible": true,
+              "lastSeen": 17,
+              "lastVisit": null,
+              "freshness": "stale",
+              "owner": null,
+              "sources": 1
+            }
+          ],
+          "cursor": {
+            "revision": 17,
+            "cursor": "E0N1"
+          },
+          "cpuBudget": 3,
+          "updated": [
+            "E0N1"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--intel-observation",
+      "seconds": 1.323,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-SoRXt5\\evidence.json",
+      "status": "passed",
+      "rawSha256": "8345d2d9a3a24009ab56267a27f326c6d3fe64e258c4d87430d68f9a9105f44f",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "89fa69ba58fb5684ca41ea575c6b97fd160402b75505728caeaa7bdfb8a6e455",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-intel-observation-measurements.jsonl",
+        "rows": 12,
+        "rowsSha256": "b839709bc9266f61ea841cf380d7ce151da240d52c5b721c8bb9a4144421b624"
+      },
+      "reloadProvenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "07ce89e7d4abcdc4a17688e386a375b8079cfe3fb33a78fd7c310778a5d8a02b",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "intelObservation": {
+        "reloads": [
+          7
+        ],
+        "record": {
+          "owner": "intel",
+          "version": 2,
+          "data": {
+            "lastSeen": 12,
+            "owned": true,
+            "sourceIds": [
+              "0c64bb52bc9677f",
+              "4e7fbb52bc928ce"
+            ],
+            "structureIds": [
+              "9eccbb52bcaa6c1"
+            ],
+            "hostileIds": [],
+            "summary": {
+              "room": "E0N1",
+              "observedAt": 12,
+              "status": "normal",
+              "statusTimestamp": null,
+              "highway": true,
+              "keeper": false,
+              "center": false,
+              "controller": {
+                "id": "59dbbb52bc95eec",
+                "x": 20,
+                "y": 20,
+                "level": 1,
+                "owned": true,
+                "owner": "eldrift-smoke",
+                "reservation": null
+              },
+              "sources": [
+                {
+                  "id": "0c64bb52bc9677f",
+                  "x": 10,
+                  "y": 10,
+                  "capacity": 3000
+                },
+                {
+                  "id": "4e7fbb52bc928ce",
+                  "x": 35,
+                  "y": 35,
+                  "capacity": 3000
+                }
+              ],
+              "mineral": {
+                "id": "9decbb52bc9c1db",
+                "x": 30,
+                "y": 10,
+                "type": "H"
+              },
+              "structures": [
+                {
+                  "id": "9eccbb52bcaa6c1",
+                  "x": 21,
+                  "y": 21,
+                  "type": "road",
+                  "owned": false,
+                  "owner": null,
+                  "hostile": false
+                }
+              ],
+              "units": [
+                {
+                  "id": "8b72bb52de1e402",
+                  "x": 25,
+                  "y": 25,
+                  "owner": "eldrift-smoke",
+                  "owned": true,
+                  "power": false
+                }
+              ],
+              "exits": [
+                {
+                  "direction": 1,
+                  "room": "E0N2"
+                },
+                {
+                  "direction": 3,
+                  "room": "E1N1"
+                },
+                {
+                  "direction": 5,
+                  "room": "E0N0"
+                },
+                {
+                  "direction": 7,
+                  "room": "W0N1"
+                }
+              ]
+            },
+            "lastVisit": 12,
+            "lastFailure": null
+          }
+        },
+        "unrelated": {
+          "initializedAt": 1,
+          "planning": "{\"owner\":\"planning\",\"version\":3,\"data\":{\"room\":\"E0N1\",\"revision\":17,\"strategy\":null,\"entries\":[]}}"
+        },
+        "planning": {
+          "owner": "planning",
+          "version": 3,
+          "data": {
+            "room": "E0N1",
+            "revision": 17,
+            "strategy": null,
+            "entries": []
+          }
+        },
+        "rowsFile": "empire-intel-intel-observation-intelObservation-observations.jsonl",
+        "rows": 12,
+        "rowsSha256": "aa4b64aac100f6dd62b831b896ad0591ecd7456db058ea225da7de1cc4226a2f",
+        "last": {
+          "tick": 12,
+          "liveVisible": true,
+          "lastSeen": 12,
+          "lastVisit": 12,
+          "freshness": "fresh",
+          "owned": true,
+          "level": 1,
+          "owner": "eldrift-smoke",
+          "reservation": null,
+          "sources": 2,
+          "mineral": "H",
+          "highway": true,
+          "keeper": false,
+          "homeSeen": 12,
+          "homeOwned": true
+        }
+      }
+    },
+    {
+      "scenario": "--lab-empire-vision",
+      "seconds": 45.208,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-mymM5p\\evidence.json",
+      "status": "passed",
+      "rawSha256": "7d4f77b7f9706a79d9041a250566fadb20f121ded2f73d33ea2d9bdd12dbe7f6",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "40ebe6a9b86a40c1f7b30cd9247bfa70cc5aadaa679fb2949f7244f4eb547250",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-lab-empire-vision-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "51167a7d9598c24626f843a8590d151ab49b382cc3ad372a121aa0c322d21672"
+      },
+      "reloadProvenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "9bd41fbf9a8d1be0c029e80b672f22de359774c0cf76a372aa03a57bd8c19d80",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "empireOwnershipLoss": {
+        "mode": "vision",
+        "transition": {
+          "tick": 35,
+          "trigger": {
+            "tick": 34,
+            "cargo": 10,
+            "unit": "e340bb53100b519",
+            "window": {
+              "home": "W0N1",
+              "product": "UH2O",
+              "amount": 10,
+              "context": "[\"empire-production/1\",[{\"product\":\"UH2O\",\"amount\":15,\"priority\":0}],[[\"W0N1\",10,0,0],[\"W1N1\",10,0,0]]]",
+              "rootTarget": 10,
+              "remaining": 10,
+              "observedRoot": 0,
+              "initialStep": {
+                "root": "UH2O",
+                "product": "OH",
+                "reagents": [
+                  "H",
+                  "O"
+                ],
+                "target": 10
+              },
+              "step": {
+                "root": "UH2O",
+                "product": "UH",
+                "reagents": [
+                  "H",
+                  "U"
+                ],
+                "target": 10
+              },
+              "retiring": false
+            },
+            "receipts": 0
+          }
+        },
+        "death": {
+          "tick": 41,
+          "unit": "e340bb53100b519"
+        },
+        "reload": {
+          "tick": 36,
+          "pending": true
+        },
+        "hidden": {
+          "tick": 41
+        },
+        "restored": {
+          "tick": 61
+        },
+        "visionReload": {
+          "tick": 42,
+          "pending": true
+        },
+        "trigger": {
+          "tick": 34,
+          "cargo": 10,
+          "unit": "e340bb53100b519",
+          "window": {
+            "home": "W0N1",
+            "product": "UH2O",
+            "amount": 10,
+            "context": "[\"empire-production/1\",[{\"product\":\"UH2O\",\"amount\":15,\"priority\":0}],[[\"W0N1\",10,0,0],[\"W1N1\",10,0,0]]]",
+            "rootTarget": 10,
+            "remaining": 10,
+            "observedRoot": 0,
+            "initialStep": {
+              "root": "UH2O",
+              "product": "OH",
+              "reagents": [
+                "H",
+                "O"
+              ],
+              "target": 10
+            },
+            "step": {
+              "root": "UH2O",
+              "product": "UH",
+              "reagents": [
+                "H",
+                "U"
+              ],
+              "target": 10
+            },
+            "retiring": false
+          },
+          "receipts": 0
+        },
+        "last": {
+          "intel": null,
+          "tick": 640,
+          "visible": true,
+          "owned": false,
+          "alive": false,
+          "cargo": 0,
+          "window": null,
+          "assignment": {
+            "owner": "industry",
+            "version": 1,
+            "data": {
+              "assignment": {
+                "product": "UH",
+                "reagents": [
+                  "H",
+                  "U"
+                ],
+                "inputs": [
+                  "1738bb530ff7ff3",
+                  "25d2bb53100426f"
+                ],
+                "outputs": [
+                  "e496bb53100cd4a"
+                ],
+                "roster": [
+                  "1738bb530ff7ff3",
+                  "25d2bb53100426f",
+                  "e496bb53100cd4a"
+                ]
+              }
+            }
+          },
+          "receipts": 0
+        },
+        "rowsFile": "empire-intel-lab-empire-vision-empireOwnershipLoss-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "323d039002f5e9de47396e93aac75cdadd93daae7b8d95dd3cefb042cb3e4ad8"
+      },
+      "empireProduction": {
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "windows": []
+          }
+        },
+        "rowsFile": "empire-intel-lab-empire-vision-empireProduction-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "a05208ed15da64fd678769fa7bf3a51b78108337442779f398c115cfa12ec157",
+        "last": {
+          "tick": 640,
+          "total": 15,
+          "windows": [],
+          "rooms": [
+            {
+              "home": "W0N1",
+              "bankUH": 0,
+              "carriedUH": 0,
+              "receipts": 0,
+              "bank": 0,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier",
+              "reactionLabs": [
+                "1738bb530ff7ff3",
+                "25d2bb53100426f",
+                "e496bb53100cd4a"
+              ],
+              "buffer": {
+                "id": "745bbb530ffc672",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            },
+            {
+              "home": "W1N1",
+              "bankUH": 0,
+              "carriedUH": 0,
+              "receipts": 85,
+              "bank": 15,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier-second",
+              "reactionLabs": [],
+              "buffer": {
+                "id": "6229bb531069268",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--lab-empire",
+      "seconds": 31.094,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-We2qFU\\evidence.json",
+      "status": "passed",
+      "rawSha256": "457d1e6a0d973afcb31e2239a772aa6cdfd3c84a97b9b76df86ed5e939e822c6",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "4dc97f592b7a18e2d2c925bbc98242c30a2b6fa1894627f6c9b1315a2fdca624",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-lab-empire-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "6c089fc4e319d1eb1ad4ae7d64a3392806849db75b563e52e04429dc71b074f1"
+      },
+      "reloadProvenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "2969bfdb6c9b3040320acfe62cb099ecab1506f2d35cbe5ac926058171c76af6",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "empireProduction": {
+        "mode": "normal",
+        "reloads": [
+          31,
+          181,
+          401
+        ],
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "windows": []
+          }
+        },
+        "rowsFile": "empire-intel-lab-empire-empireProduction-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "ba8b8a425054a6ea8fa60efafaf86020ed15a350d2952d6946c4d2cdf9899f7e",
+        "last": {
+          "tick": 640,
+          "total": 15,
+          "windows": [],
+          "rooms": [
+            {
+              "home": "W0N1",
+              "bankUH": 0,
+              "carriedUH": 0,
+              "receipts": 70,
+              "bank": 10,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier",
+              "reactionLabs": [],
+              "buffer": {
+                "id": "d3cabb5e189bb3a",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            },
+            {
+              "home": "W1N1",
+              "bankUH": 0,
+              "carriedUH": 0,
+              "receipts": 35,
+              "bank": 5,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier-second",
+              "reactionLabs": [],
+              "buffer": {
+                "id": "6813bb5e19019fa",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--colony-mineral",
+      "seconds": 1.547,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-VreY2S\\evidence.json",
+      "status": "passed",
+      "rawSha256": "3ce2c6bbb0dea9ad8f684cbd21a1cd529a4d8aef3a65180dc53b2f22c2d914c5",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "3060c6771a52fc9f6653017bd9502879b41f8c197e0b0bd310aae3e78b6dab1f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-colony-mineral-measurements.jsonl",
+        "rows": 25,
+        "rowsSha256": "fdbfd322953c6e59c9513d0b0e9771159bd004b05696ca3a69e778570c9bf3fb"
+      }
+    },
+    {
+      "scenario": "--mineral-transport",
+      "seconds": 1.194,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-xrcoGO\\evidence.json",
+      "status": "passed",
+      "rawSha256": "8c5cd71d024c65ce3e3ade594a752434ea9fa090388fb6cd6707273d7535ff52",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "8e9fd6218ccd5264deb7e774984b9d13e097afaef1bb12429e1109b4dd90b5f2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-mineral-transport-measurements.jsonl",
+        "rows": 9,
+        "rowsSha256": "f90d9cdde090c4c2adbfce0eada35f9bef05f5adad99b915297b043e19816646"
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "seconds": 0.907,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-BDuBff\\evidence.json",
+      "status": "passed",
+      "rawSha256": "e52af91f319483c7c1a99ab8cc39c572c38da7203cd05b439b4531a2c8be4aec",
+      "provenance": {
+        "commit": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+        "dirty": false,
+        "bundleSha256": "83878b6568419544f2bd1efeb462ecbf86162642308ec38ec8642e7e09c1cce0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-intel-packaged-smoke-measurements.jsonl",
+        "rows": 3,
+        "rowsSha256": "401de9c0a6294a1be44c98df2ada9535d59a75d4357cc3e79f03c33a818c3f92"
+      }
+    }
+  ],
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "071bd4b0a8b9bc40fae9b9de759d2665711e3499",
+    "jobs": [
+      {
+        "completedAt": "2026-11-21T01:23:36Z",
+        "conclusion": "success",
+        "databaseId": 136678115360,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-21T01:22:19Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-21T01:22:22Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-21T01:22:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:29Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-21T01:22:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:33Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-21T01:22:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:42Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-21T01:22:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:43Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-21T01:22:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:44Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-21T01:22:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:46Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-21T01:22:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:49Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-21T01:22:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:05Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-21T01:22:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:32Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-21T01:23:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:33Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-21T01:23:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:33Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-21T01:23:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:33Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-21T01:23:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:34Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-21T01:23:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-21T01:23:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-21T01:23:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-21T01:23:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:34Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-21T01:23:34Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44849775936/job/136678115360"
+      },
+      {
+        "completedAt": "2026-11-21T01:25:36Z",
+        "conclusion": "success",
+        "databaseId": 136678115499,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-21T01:22:19Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-21T01:22:20Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-21T01:22:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:28Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-21T01:22:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:22:38Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-21T01:22:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:37Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-21T01:22:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:23:55Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-21T01:23:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:24:01Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-21T01:23:55Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:24:05Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-21T01:24:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:24:08Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-21T01:24:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:24:36Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-21T01:24:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:27Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-21T01:24:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:29Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-21T01:25:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:30Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-21T01:25:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:31Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-21T01:25:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:32Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-21T01:25:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-21T01:25:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:32Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-21T01:25:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:34Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-21T01:25:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T01:25:35Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-21T01:25:34Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44849775936/job/136678115499"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44849775936"
+  },
+  "registry": {
+    "cases": 279,
+    "fullRerun": false
+  },
+  "sourceSha256": {
+    "test/engine/lab-empire-cycle.ts": "0d1390b4e2b3c4144ff79de325bdcc25bd5f5ef19c374d3e8448324ec83973f6",
+    "test/engine/lab-empire-intel-bot.ts": "786e26f838ad38e861059b1de0712fa758749bfcb9c506a86e6dea0f805cd3d5",
+    "test/engine/lab-empire-loss.ts": "c6c334de59edc7de9493b11a9f961d609a0065b7509afde23a96ee626f02e677",
+    "tools/engine/lab-empire-loss.cjs": "ae3b42e9192c6f587c6e7bd8d8da2be4f6d72e7d515bdd68b7644516f9bdde1e",
+    "tools/engine/lab-empire.cjs": "21502c37ef5fd9b6d20bc90d40592796aea3b592c59b17ef20681a95a7ca2af2",
+    "tools/engine/smoke.cjs": "890613ee75cb6b19d1d2008f1b71b75c666f3c1f0a868c0bc6f3b2d9770b9115",
+    "tools/engine/suite.cjs": "60bbd411039da47e95e68d21bf7a691506f6aae518d86ee83ef8ce5f76e1c7f0"
+  },
+  "limitations": [
+    "Intel is an explicitly enabled fixture policy; default intel activation is unchanged.",
+    "Captured ownership is observed, not restored; controller recapture and surviving-home evacuation remain open.",
+    "Courier death is deterministic native object removal, not combat or recovered cargo.",
+    "These bounded640tick cases do not establish CPU/memory/soak, terminal accounting, general mission death, cross-version rollback or release readiness."
+  ]
+}
