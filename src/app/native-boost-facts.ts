@@ -15,9 +15,13 @@ export function nativeBoostLab(lab: StructureLab): BoostLab {
     free: lab.mineralType ? lab.store.getFreeCapacity(lab.mineralType) : LAB_MINERAL_CAPACITY,energy: lab.store.getUsedCapacity(RESOURCE_ENERGY),energyFree: lab.store.getFreeCapacity(RESOURCE_ENERGY) };
 }
 export function boostLabBusy(state: StatePort,job: BoostJob,lab: StructureLab): boolean {
+  return labStockBusy(state,lab,[boostScope(job.request),boostServiceOwner(job.request)]);
+}
+/** All stock/capacity owners participate, including admitted supply that may already carry cargo. */
+export function labStockBusy(state: StatePort,lab: StructureLab,allowedOwners: readonly string[] = []): boolean {
   const pools = [logisticsPool('capacity',lab.id,'mineral'),logisticsPool('capacity',lab.id,'energy'),logisticsPool('stock',lab.id,'energy')];
   if (lab.mineralType) pools.push(logisticsPool('stock',lab.id,lab.mineralType));
-  return createQuantityReservations(state).list(Game.time).filter(claim => claim.owner !== boostScope(job.request) && claim.owner !== boostServiceOwner(job.request))
+  return createQuantityReservations(state).list(Game.time).filter(claim => !allowedOwners.includes(claim.owner))
     .some(claim => claim.allocations.some(item => pools.includes(item.pool)));
 }
 
