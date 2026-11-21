@@ -24,7 +24,7 @@ async function boostWorld(server,bot,mode) {
 function createBoostChanges() {
   const seen = new Set();
   return async (server,bot,modules,index) => {
-    const memory = JSON.parse((await bot.memory) || '{}'), units = memory.workerBoostRows?.at(-1)?.units ?? memory.boostRows?.at(-1)?.units ?? [];
+    const memory = JSON.parse((await bot.memory) || '{}'), units = memory.boostedBuilderRows?.at(-1)?.units ?? memory.workerBoostRows?.at(-1)?.units ?? memory.boostRows?.at(-1)?.units ?? [];
     const birth = Object.entries(memory.creeps ?? {}).find(([,creep]) => creep.industryBoostBirth);
     if (index === 1 && birth) {
       const main = modules.main+'\n(Memory.boostBirthResets ??= []).push({tick:Game.time,contract:Memory.creeps['+JSON.stringify(birth[0])+'].industryBoostBirth});';
