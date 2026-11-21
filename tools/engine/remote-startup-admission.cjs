@@ -48,7 +48,7 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(planning.initialThrough,43); assert.equal(planning.initialRevision,1); assert.equal(planning.pendingBefore,1);
   assert.equal(planning.recoveredThrough,43); assert.equal(planning.nextThrough,44); assert.equal(planning.nextRevision,2);
   assert.equal(planning.completeThrough,101); assert.equal(planning.completeRevision,3);
-  assert.equal(planning.readOnly,true); assert.equal(planning.owner,'remotes'); assert.equal(planning.version,3);
+  assert.equal(planning.readOnly,true); assert.equal(planning.owner,'remotes'); assert.equal(planning.version,4);
   assert.deepEqual(planning.result,planning.uninterrupted);
 
 }

@@ -27,7 +27,7 @@ test('schema1 job migration is read-only until a successful write preserves revi
   const f = fixture(), before = JSON.stringify(f.root); expect(f.owner.read().job?.checkpoint.format).toBe(2); expect(JSON.stringify(f.root)).toBe(before);
   const result = f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },58); expect(result.status).toBe('complete');
   expect(f.owner.read()).toMatchObject({ revision: 2,clock: 2,job: { checkpoint: { format: 2,tick: 101 } } });
-  expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 3 }); expect(f.state.read('fixture/unrelated')).toMatchObject({ data: { keep: 42 } });
+  expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 4 }); expect(f.state.read('fixture/unrelated')).toMatchObject({ data: { keep: 42 } });
   expect(f.owner.result({ ...f.query,tick: 2 })).toEqual(forecastStartupProject(f.query.input));
 });
 test('schema1 readers refuse new jobs and legacy records containing formerly unsupported metadata are rejected',() => {
@@ -58,11 +58,11 @@ test('new incumbent inventory and construction credit survive the feature-owned 
   expect(resumed.result({ ...query,tick: 2 })).toEqual(forecastStartupProject(input));
 });
 
-test('schema2 old-input jobs migrate read-only with pending receipts and write schema3 on progress',() => {
+test('schema2 old-input jobs migrate read-only with pending receipts and write schema4 on progress',() => {
   const f = fixture(); const record = f.owner.read(); f.state.write('remoteStartupPlanning/W0N1',{ owner: 'remotes',version: 2,data: record });
   const before = JSON.stringify(f.root); expect(f.owner.read().job?.checkpoint.due).toHaveLength(1); expect(JSON.stringify(f.root)).toBe(before);
   f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1);
-  expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 3 });
+  expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 4 });
 });
 test('household format3 jobs survive reset; schema2 labels and old readers cannot consume them',() => {
   const root = {}, state = createMemoryPort(() => root), input = startupHouseholdProject(), home = 'W0N1';

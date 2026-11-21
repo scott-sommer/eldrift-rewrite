@@ -1,3 +1,4 @@
+import { startupProjectFormat } from './checkpoints/project-format';
 import { createStartupOpeningStock } from './opening-stock';
 import { startupProjectWaves, startupProjectCouriers, startupOpeningEnergy } from './initial';
 import { readStartupProjectCheckpoint, boundedProjectCheckpoint } from './checkpoints/project';
@@ -58,7 +59,7 @@ class StartupProject {
     this.couriers.push(...startupProjectCouriers(this.input,[]));
   }
   checkpoint(): StartupProjectCheckpoint {
-    return boundedProjectCheckpoint({ format: this.input.household ? 3 : 2,binding: startupProjectIdentity(this.input),tick: this.tick,
+    return boundedProjectCheckpoint({ format: startupProjectFormat(this.input),binding: startupProjectIdentity(this.input),tick: this.tick,
       ...this.timeline.checkpoint(),container: this.container.checkpoint(),sink: this.sink.checkpoint(),
       construction: this.construction,delivery: this.delivery,opening: this.opening.checkpoint(),
       couriers: this.couriers.map(worker => ({ ...worker,nextAt: worker.nextAt === Infinity ? null : worker.nextAt })),

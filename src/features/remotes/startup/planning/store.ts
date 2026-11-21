@@ -30,7 +30,7 @@ export function createStartupPlanningStore(state: StatePort, home: string) {
   };
 }
 function planningSchema(home: string): StateSchema<StartupPlanningRecord> {
-  return { owner: 'remotes',version: 3,migrations: { 1: value => upgradePlanning(value,home),2: value => upgradeSecondPlanning(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
+  return { owner: 'remotes',version: 4,migrations: { 1: value => upgradePlanning(value,home),2: value => upgradeSecondPlanning(value,home),3: value => upgradeThirdPlanning(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
     valid(value: unknown): value is StartupPlanningRecord {
       if (!object(value) || Object.keys(value).length !== 4 || value.home !== home || !natural(value.revision) || !natural(value.clock)) return false;
       if (JSON.stringify(value).length > 262144) return false;
@@ -59,5 +59,17 @@ function upgradeSecondPlanning(value: unknown, home: string): StartupPlanningRec
     next.job.checkpoint = readStartupProjectCheckpoint(input,next.job.checkpoint);
   }
   if (!planningSchema(home).valid(next)) throw new Error('Invalid schema2 startup planning record');
+  return next;
+}
+
+function upgradeThirdPlanning(value: unknown, home: string): StartupPlanningRecord {
+  if (!object(value)) throw new Error('Invalid schema3 startup planning record');
+  const next = value as unknown as StartupPlanningRecord;
+  if (next.job) {
+    const input = decodeStartupPlanningInput(next.job.input);
+    if (input.project.spawning.funding.energyLayout !== undefined || ![2,3].includes(next.job.checkpoint.format)) throw new Error('Unsupported schema3 physical startup metadata');
+    next.job.checkpoint = readStartupProjectCheckpoint(input,next.job.checkpoint);
+  }
+  if (!planningSchema(home).valid(next)) throw new Error('Invalid schema3 startup planning record');
   return next;
 }

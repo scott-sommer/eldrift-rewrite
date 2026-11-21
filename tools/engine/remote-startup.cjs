@@ -72,7 +72,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       household.seed.household.redistribution.trips.forEach((trip,index) => {
         assert.equal(trip.pickupAt,homeBirth.activeAt+approach+index*(1+loaded+1+returning)); assert.equal(trip.loadedTicks,loaded); assert.equal(trip.returnTicks,returning);
       });
-      const planningEnvelope = household.root.eldrift.records['remoteStartupPlanning/W0N1']; assert.equal(planningEnvelope.version,3); assert.equal(planningEnvelope.data.job.checkpoint.format,3);
+      const planningEnvelope = household.root.eldrift.records['remoteStartupPlanning/W0N1']; assert.equal(planningEnvelope.version,4); assert.equal(planningEnvelope.data.job.checkpoint.format,3);
       assert.equal(schedule.namespace.owner,'remotes'); assert.equal(schedule.namespace.version,1); assert.equal(schedule.namespace.complete,true);
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
       const proposal = projection.cohortProposal; assert.equal(proposal.id,'finite-cohort');
