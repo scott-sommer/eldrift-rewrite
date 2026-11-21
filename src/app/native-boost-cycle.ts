@@ -8,7 +8,7 @@ import { boostScope, boostServiceOwner, terminalBoost } from '../capabilities/in
 import { observeBoostJob, boostStep, missingBoostParts, finish, boostedParts } from '../capabilities/industry/boosts/observe';
 import { planBoostSupply } from '../capabilities/industry/boosts/supply';
 import { nativeBoostLab, nativeBoostUnit } from './native-boost-facts';
-import { selectNativeBoostLab, fenceReactionService } from './native-boost-labs';
+import { selectNativeBoostLab, nativeBoostLabCandidates, fenceReactionService } from './native-boost-labs';
 import { nativeLabWarehouses } from './native-lab-transport';
 import { reconcileServiceRequest } from '../features/logistics/service-request';
 type Dispatch = Pick<ReturnType<typeof createNativeDispatch>,'structures' | 'movement' | 'activate'>;
@@ -39,11 +39,21 @@ export class NativeBoostCycle {
     if (job.lab) {
       const lab = Game.getObjectById(job.lab as Id<StructureLab>);
       if (!lab?.my || lab.structureType !== STRUCTURE_LAB || !lab.isActive()) { this.fail(job,'lab-lost'); return null; }
-      return lab;
+      return this.retarget(job,step,lab);
     }
     const lab = selectNativeBoostLab(this.state,job,step,this.dispatch.structures,this.config(job.request.home).labBoostRoles);
     if (!lab) return null;
     job.lab = lab.id; this.save(job); return lab;
+  }
+  /** Keep an admitted same-compound pin; otherwise prefer a stocked next-effect lab after supply settles. */
+  private retarget(job: BoostJob,step: BoostStep,current: StructureLab): StructureLab | null {
+    if (current.mineralType === step.resource) return current;
+    const candidates = nativeBoostLabCandidates(this.state,job,step,this.config(job.request.home).labBoostRoles);
+    const compatible = candidates.some(lab => lab.id === current.id);
+    const next = candidates.find(lab => lab.id !== current.id && lab.mineralType === step.resource) ?? (!compatible ? candidates[0] : undefined);
+    if (!next) return compatible ? current : null;
+    if (stopBoostService(this.state,job,Game.time) || !this.dispatch.structures.holdLab(next,boostScope(job.request))) return null;
+    releaseBoostStock(this.state,job); job.lab = next.id; this.save(job); return next;
   }
   private prepare(job: BoostJob,unit: BoostUnit,step: BoostStep,missing: number,lab: StructureLab): void {
     fenceReactionService(this.state,job,lab);

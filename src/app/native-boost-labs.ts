@@ -10,14 +10,17 @@ import { labServiceOwner } from '../features/industry/lab-services';
 import type { createNativeStructureActions } from '../adapters/screeps/structure-actions';
 type Actions = Pick<ReturnType<typeof createNativeStructureActions>,'holdLab'>;
 export function selectNativeBoostLab(state: StatePort,job: BoostJob,step: BoostStep,actions: Actions,roles: readonly LabBoostRole[] = []): StructureLab | null {
+  return nativeBoostLabCandidates(state,job,step,roles).find(lab => actions.holdLab(lab,boostScope(job.request))) ?? null;
+}
+export function nativeBoostLabCandidates(state: StatePort,job: BoostJob,step: BoostStep,roles: readonly LabBoostRole[] = []): StructureLab[] {
   const room = Game.rooms[job.request.home];
-  if (!room) return null;
+  if (!room) return [];
   const current = boostLabRoles(state,room.name);
   const occupied = new Set(createBoostRequests(state).read().filter(other => other.request.owner !== job.request.owner || other.request.id !== job.request.id).flatMap(other => other.lab ? [other.lab] : []));
   const labs = room.find(FIND_MY_STRUCTURES).filter((item): item is StructureLab => item.structureType === STRUCTURE_LAB)
     .filter(lab => boostRoleAllows(current,roles,lab.id,step.resource) && lab.isActive() && !occupied.has(lab.id) && (job.request.preferredLab === undefined || job.request.preferredLab === lab.id));
   labs.sort((a,b) => rank(b,step.resource)-rank(a,step.resource) || a.id.localeCompare(b.id));
-  return labs.find(lab => !boostLabBusy(state,job,lab) && actions.holdLab(lab,boostScope(job.request))) ?? null;
+  return labs.filter(lab => !boostLabBusy(state,job,lab));
 }
 function rank(lab: StructureLab,resource: string): number {
   if (lab.mineralType === resource) return 10000+lab.mineralAmount;
