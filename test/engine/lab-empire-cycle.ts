@@ -17,7 +17,7 @@ export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 
     settings.empire = { logisticsEnabled: true,workersEnabled: false };
     if (mode === 'intel') settings.empire = { ...settings.empire as object,intelEnabled: true,intelCaptureInterval: 1,intelCaptureCpuBudget: 100,intelCaptureRooms: 4,intelCaptureScans: 32 };
     saveState(state,'operator/config',operatorSchema,settings);
-    const policy = { labReactionsEnabled: true,labProductionScope: 'empire' as const,labProductionTargets: [{ product: 'UH2O',amount: 15,priority: 0 }],labProductionBatch: 10,labTransportBatch: 20 };
+    const policy = { labReactionsEnabled: true,labProductionScope: 'empire' as const,labProductionTargets: industry.labs.legacyTargets({ upgradeProduct: 'UH2O',amounts: { XZHO2: 0,XLHO2: 0,XZH2O: 0,XLH2O: 0,XUH2O: 0,XKHO2: 0,XGHO2: 0,BOOST: 15 } }),labProductionBatch: 10,labTransportBatch: 20 };
     if (!industry.labs.previewEmpire(policy).ok || !industry.labs.configureEmpire(policy).changed || industry.labs.configureEmpire(policy).changed) throw new Error('Shared lab operator admission/replay failed');
     verifyEmpireOperatorBoundaries();
     industry.labs.configureMany(['W0N1','W1N1'].map(home => ({ home,input: { labBoostRoles: [{ lab: bufferLab(home).id,resource: 'XGH2O',mineral: 60,energy: 40 }] } })));

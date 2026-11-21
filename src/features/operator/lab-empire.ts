@@ -1,3 +1,5 @@
+import { legacyProductionTargets } from '../industry/legacy-production-targets';
+import type { LegacyProductionOptions } from '../industry/legacy-production-targets';
 import type { StatePort } from '../../persistence/versioned-state';
 import { peekState } from '../../persistence/versioned-state';
 import type { ConfigurationStore } from '../../config/provider';
@@ -25,6 +27,9 @@ export function createEmpireLabOperator(state: StatePort,ports: EmpireLabPorts) 
     return { changed,...proposed! };
   }
   return {
+    legacyTargets(options?: LegacyProductionOptions) {
+      const targets = legacyProductionTargets(options); empireLabPatch({ labProductionTargets: targets },ports.productSupported); return targets;
+    },
     inspectEmpire() { return { ...view(read()),windows: createEmpireProductionStore(state,() => false).list() }; },
     previewEmpire(input: EmpireLabPatch) { return view(patchCandidate(read(),input)); },
     configureEmpire(input: EmpireLabPatch) { return commit(saved => patchCandidate(saved,input)); },
