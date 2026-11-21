@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
-async function upgradeRoomWorld(server, bot, shortage,coexist = false) {
+async function upgradeRoomWorld(server, bot, shortage,coexist = false,toggle = false) {
   await server.world.setTerrain('W0N1', new TerrainMatrix());
   const { db } = await server.world.load();
   await db['rooms.objects'].update({ room: 'W0N1', type: 'controller' }, { $set: { x: 20, y: 20, level: 7, progress: 0, downgradeTime: 20000 } });
@@ -15,12 +15,16 @@ async function upgradeRoomWorld(server, bot, shortage,coexist = false) {
   for (let index = 0; index < 7; index++) await server.world.addRoomObject('W0N1', 'creep', ...positions[index], {
     user: bot.id, name: 'u' + index, body: [...Array(5).fill('move'), ...Array(42).fill('work'), ...Array(3).fill('carry')].map(type => ({ type, hits: 100 })),
     store: { energy: 150 }, storeCapacity: 150, hits: 5000, hitsMax: 5000, fatigue: 0, spawning: false, ageTime: ttls[index] });
+  if (toggle) {
+    await db['rooms.objects'].update({ room: 'W0N1',type: 'lab' },{ $set: { store: { XGH2O: 1320,energy: 880 } } });
+    await server.world.addRoomObject('W0N1','creep',28,20,{ user: bot.id,name: 'standing-generic',body: ['work','work','move'].map(type => ({ type,hits: 100 })),store: {},storeCapacity: 0,hits: 300,hitsMax: 300,fatigue: 0,spawning: false,ageTime: 1500 });
+  }
   if (coexist) await prepareUpgradeCoexist(server,bot);
   if (shortage) await bot.console("new RoomPosition(1,1,'W0N1').createFlag('shortage')");
 }
-function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist = false) {
+function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist = false,toggle = false) {
   const rows = memory.upgradeRoomEvidence;
-  if (evidence) evidence.upgradeRoom = { shortage,contention,coexist,rows,reloads: memory.upgradeReload };
+  if (evidence) evidence.upgradeRoom = { shortage,contention,coexist,toggle,rows,reloads: memory.upgradeReload };
   const first = rows[0], last = rows.at(-1);
   console.log('UPGRADE_ROOM_SUMMARY ' + JSON.stringify({ first, last }));
   assert.equal(rows.length, 24);
@@ -44,6 +48,14 @@ function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist 
     assert.ok(rows.filter(row => row.blocked).every(row => row.units[6].boost === 0));
     assert.ok(rows.some(row => row.tick >= 18 && row.units[6].boost === 42),'Owner release permits later confirmed boost');
     assert.ok(!memory.eldrift.records['quantity-reservations/empire'].data.claims.some(claim => claim.scope === 'fixture-upgrade-contention'));
+  } else if (toggle) {
+    assert.ok(rows.some(row => !row.enabled && row.generic.lab === row.boostLab),'Generic job pins before specialist mode');
+    assert.ok(rows.some(row => row.enabled && row.generic.lab === row.boostLab && row.generic.status === 'pending'),'Enabled specialist does not revoke pending pin');
+    assert.ok(rows.some(row => row.tick >= 7 && row.generic.lab === row.boostLab),'Pin survives native reset');
+    assert.equal(last.generic.status,'confirmed'); assert.equal(last.generic.boosted,2); assert.equal(last.generic.lab,null);
+    assert.ok(rows.filter(row => row.generic.lab).every(row => row.units[6].boost === 0),'Specialist waits for old pin release');
+    assert.equal(last.labs.find(lab => lab.id === last.boostLab).amount,0);
+    assert.equal(last.labs.find(lab => lab.id === last.boostLab).energy,0);
   } else assert.ok(memory.upgradeReload[1].attempt, 'reload preserves an issued boost before settlement');
   assert.ok(rows.some(row => row.boosting.includes(first.slots[6].unit)), 'renewal completion schedules boost');
   assert.equal(last.units[6].boost, 42, 'native boost changes work body parts');
