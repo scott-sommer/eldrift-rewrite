@@ -20,7 +20,7 @@ export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 
   }
   for (const creep of Object.values(Game.creeps).filter(item => item.name.startsWith('boost-courier'))) creep.memory.population = { owner: haulingOwner(creep.room.name),home: creep.room.name };
   if (mode === 'loss') prepareEmpireLoss(); else changeEmpirePolicy(mode);
-  botLoop(); const rooms = ['W0N1','W1N1'].map(roomRow);
+  botLoop(); const rooms = ['W0N1','W1N1'].filter(home => !!Game.rooms[home]).map(roomRow);
   (Memory.empireProductionRows ??= []).push({ tick: Game.time,total: rooms.reduce((sum,room) => sum+room.bank+room.rootInLabs,0),windows: createEmpireProductionStore(state,() => false).list(),rooms });
   if (mode === 'loss') recordEmpireLoss();
 }
