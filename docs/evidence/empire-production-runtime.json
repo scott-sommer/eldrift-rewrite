@@ -1,0 +1,1692 @@
+{
+  "sourceCommit": "52b3c21052a0b3c8226565aea20920b999335722",
+  "scope": "Selectable ordinary-bot empire production, durable shared windows, local dependency chains and existing hauling, boost-role exclusion and reset qualification. Not full empire logistics or complete legacy industry parity.",
+  "checks": {
+    "quality": "passed; types/lint/boundaries/pinnedLizard1.22.2;898production/741testfiles;0violations",
+    "unit": {
+      "cases": 1966,
+      "files": 482,
+      "seconds": 12.77
+    },
+    "focusedAndSmoke": {
+      "cases": 26,
+      "files": 5,
+      "seconds": 0.284,
+      "note": "Before native-fixture-only addition; final full units and hosted CI cover exact source."
+    },
+    "processors": {
+      "cases": 4,
+      "seconds": 0.208
+    },
+    "suiteReport": {
+      "cases": 1,
+      "seconds": 0.1359731
+    },
+    "bundle": "passed"
+  },
+  "native": [
+    {
+      "scenario": "--lab-empire",
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-jPrBL7\\evidence.json",
+      "status": "passed",
+      "rawSha256": "51a6afbdb4796e1e3a6266e89a62f5ce546a963c8cd4dc76dc3dd49457c5f879",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "bd8b4f78bfcd775d1427b63f2b5bea058e734f60da32ea45dba4ea59259c7951",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-lab-empire-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "14fac05b2a63e667620a36aa85e18853ec096714c3c1e3f5e242aeb678a00e3a"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "8cd1703c551aaf21a29044ed6cb499ed0ef857c7801f64110bed40993f08810d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "empireProduction": {
+        "reloads": [
+          31,
+          181,
+          401
+        ],
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "windows": []
+          }
+        },
+        "rowsFile": "empire-runtime-lab-empire-empireProduction-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "770a7786440478c27ae90bf0110231907731609c6034952af335289e99ecd6d6",
+        "last": {
+          "tick": 640,
+          "total": 15,
+          "windows": [],
+          "rooms": [
+            {
+              "home": "W0N1",
+              "bank": 10,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier",
+              "reactionLabs": [],
+              "buffer": {
+                "id": "af58b6286f7854e",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            },
+            {
+              "home": "W1N1",
+              "bank": 5,
+              "rootInLabs": 0,
+              "cargo": 0,
+              "courier": "boost-courier-second",
+              "reactionLabs": [],
+              "buffer": {
+                "id": "0cccb6286fdef89",
+                "mineral": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--lab-chain",
+      "seconds": 19.944,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DxqqaD\\evidence.json",
+      "status": "passed",
+      "rawSha256": "8a29220ff32b75e04a4550cdc6095a474a49ade5ca0f2469885cabcdbfd62923",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "2e974d2148d83d743cbc2ae0002d2695111bd4506b8bacb1de8128a6b8344df5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-lab-chain-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "f3b6f74850f8677831745ad6617020eb2f7fd51437d8374202e4c6b50f4b899e"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "80f0d33e5d4877afcf7c797b182d48a83b4b6e64415acb4423cbb562d5352620",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "normal",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,0,0,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "7b04b65981cfd4d",
+                "c0a2b65981b00d2"
+              ],
+              "outputs": [
+                "ff3eb65981b3649"
+              ],
+              "roster": [
+                "7b04b65981cfd4d",
+                "c0a2b65981b00d2",
+                "ff3eb65981b3649"
+              ]
+            }
+          }
+        },
+        "rowsFile": "empire-runtime-lab-chain-labChain-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "a04eb4e4dafb6ab4d114596511615ec053baabbdee6e45453066bd470995adf3",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 80,
+            "O": 90,
+            "U": 90
+          },
+          "pool": {
+            "OH": 0,
+            "UH": 0,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 30,
+            "H": 80,
+            "O": 90,
+            "U": 90
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        }
+      }
+    },
+    {
+      "scenario": "--lab-chain-prestock",
+      "seconds": 19.419,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-kewlPw\\evidence.json",
+      "status": "passed",
+      "rawSha256": "805de2684775f4a5ccbf1546697b3a533897758da8562392f40234e19bcf4522",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "67047daec14bb0c0ae6c7d153bc359a772c0548266be9cf82c3870e0c1b9bafd",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-lab-chain-prestock-measurements.jsonl",
+        "rows": 640,
+        "rowsSha256": "117bad6f52c1fe7cc1854b2a2224629e3ead9b08987548a252458ed8a28e4ac0"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "d0b1cc473d319edea100f008a5e30124b7c1db25028da447b8f01c10a0883930",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labChain": {
+        "mode": "prestock",
+        "reloads": [
+          31,
+          121,
+          241
+        ],
+        "production": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "context": "[\"production/2\",[{\"product\":\"UH2O\",\"amount\":10,\"priority\":2}],10,5,5,[]]",
+            "step": null
+          }
+        },
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH2O",
+              "reagents": [
+                "OH",
+                "UH"
+              ],
+              "inputs": [
+                "182cb65e60ae634",
+                "29c2b65e60a1b65"
+              ],
+              "outputs": [
+                "3d52b65e60a0c2c"
+              ],
+              "roster": [
+                "182cb65e60ae634",
+                "29c2b65e60a1b65",
+                "3d52b65e60a0c2c"
+              ]
+            }
+          }
+        },
+        "rowsFile": "empire-runtime-lab-chain-prestock-labChain-observations.jsonl",
+        "rows": 640,
+        "rowsSha256": "dc7d78a4ad5d376bcd0d18d3087e4f2b3d6899698b4987b49e21f9e60306599a",
+        "last": {
+          "tick": 640,
+          "step": null,
+          "root": null,
+          "goal": null,
+          "bank": {
+            "OH": 5,
+            "UH": 5,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 20,
+            "H": 95,
+            "O": 95,
+            "U": 100
+          },
+          "pool": {
+            "OH": 10,
+            "UH": 10,
+            "UH2O": 10,
+            "ZH": 0,
+            "XUH2O": 0,
+            "X": 0,
+            "K": 20,
+            "H": 95,
+            "O": 95,
+            "U": 100
+          },
+          "cargo": 0,
+          "assignment": "UH2O"
+        }
+      }
+    },
+    {
+      "scenario": "--lab-operator",
+      "seconds": 10.745,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-tYPsH3\\evidence.json",
+      "status": "passed",
+      "rawSha256": "09eb8b6c3a0135b74e1975eb004a9fe2b088b8557492e3a15caffdf8a5eeb885",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "7e8066217640f58484934a6f761d1e0869ce884c25df995e9d8ffac30ed210f2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-lab-operator-measurements.jsonl",
+        "rows": 320,
+        "rowsSha256": "0c899462bf4ab2366250690ff06ab7f284441e672e8519fde447c8c0bb49e78e"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "2752c2fec75e210c31faaa0e088bd7af6f2635395a081b0156617a72a5934798",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labSupply": {
+        "mode": "operator",
+        "reloads": [
+          31,
+          181
+        ],
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "UH",
+              "reagents": [
+                "H",
+                "U"
+              ],
+              "inputs": [
+                "64fbb6631fded43",
+                "d44bb6631fdee50"
+              ],
+              "outputs": [
+                "dec7b6631fd224e"
+              ],
+              "roster": [
+                "64fbb6631fded43",
+                "d44bb6631fdee50",
+                "dec7b6631fd224e"
+              ]
+            }
+          }
+        },
+        "retainedReceipts": [
+          {
+            "request": {
+              "id": "[\"drain\",\"d44bb6631fdee50\",\"9035b6631fdff82\",\"O\",140]",
+              "owner": "industry-labs:W0N1:d44bb6631fdee50",
+              "source": "d44bb6631fdee50",
+              "sink": "9035b6631fdff82",
+              "resource": "O",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 240
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"1051b6631fd62c3\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"1051b6631fd62c3\\\\\\\",\\\\\\\"industry-labs:W0N1:d44bb6631fdee50\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"d44bb6631fdee50\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"9035b6631fdff82\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"O\\\\\\\\\\\\\\\",140]\\\\\\\",\\\\\\\"145\\\\\\\"]\\\"]\",\"147\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"9035b6631fdff82\",\"64fbb6631fded43\",\"H\",140]",
+              "owner": "industry-labs:W0N1:64fbb6631fded43",
+              "source": "9035b6631fdff82",
+              "sink": "64fbb6631fded43",
+              "resource": "H",
+              "quantity": 15,
+              "priority": 8,
+              "expiresAt": 240
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"1051b6631fd62c3\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"1051b6631fd62c3\\\\\\\",\\\\\\\"industry-labs:W0N1:64fbb6631fded43\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"9035b6631fdff82\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"64fbb6631fded43\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"H\\\\\\\\\\\\\\\",140]\\\\\\\",\\\\\\\"141\\\\\\\"]\\\"]\",\"143\"]",
+                "amount": 15
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"9035b6631fdff82\",\"d44bb6631fdee50\",\"U\",148]",
+              "owner": "industry-labs:W0N1:d44bb6631fdee50",
+              "source": "9035b6631fdff82",
+              "sink": "d44bb6631fdee50",
+              "resource": "U",
+              "quantity": 20,
+              "priority": 8,
+              "expiresAt": 248
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"1051b6631fd62c3\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"1051b6631fd62c3\\\\\\\",\\\\\\\"industry-labs:W0N1:d44bb6631fdee50\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"9035b6631fdff82\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"d44bb6631fdee50\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"U\\\\\\\\\\\\\\\",148]\\\\\\\",\\\\\\\"149\\\\\\\"]\\\"]\",\"150\"]",
+                "amount": 20
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"dec7b6631fd224e\",\"9035b6631fdff82\",\"UH\",152]",
+              "owner": "industry-labs:W0N1:dec7b6631fd224e",
+              "source": "dec7b6631fd224e",
+              "sink": "9035b6631fdff82",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 252
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"1051b6631fd62c3\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"1051b6631fd62c3\\\\\\\",\\\\\\\"industry-labs:W0N1:dec7b6631fd224e\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"dec7b6631fd224e\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"9035b6631fdff82\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",152]\\\\\\\",\\\\\\\"153\\\\\\\"]\\\"]\",\"156\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"dec7b6631fd224e\",\"9035b6631fdff82\",\"UH\",162]",
+              "owner": "industry-labs:W0N1:dec7b6631fd224e",
+              "source": "dec7b6631fd224e",
+              "sink": "9035b6631fdff82",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 262
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"1051b6631fd62c3\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"1051b6631fd62c3\\\\\\\",\\\\\\\"industry-labs:W0N1:dec7b6631fd224e\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"dec7b6631fd224e\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"9035b6631fdff82\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",162]\\\\\\\",\\\\\\\"163\\\\\\\"]\\\"]\",\"166\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"dec7b6631fd224e\",\"9035b6631fdff82\",\"UH\",172]",
+              "owner": "industry-labs:W0N1:dec7b6631fd224e",
+              "source": "dec7b6631fd224e",
+              "sink": "9035b6631fdff82",
+              "resource": "UH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 272
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"1051b6631fd62c3\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"1051b6631fd62c3\\\\\\\",\\\\\\\"industry-labs:W0N1:dec7b6631fd224e\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"dec7b6631fd224e\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"9035b6631fdff82\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"UH\\\\\\\\\\\\\\\",172]\\\\\\\",\\\\\\\"173\\\\\\\"]\\\"]\",\"176\"]",
+                "amount": 5
+              }
+            ]
+          }
+        ],
+        "rowsFile": "empire-runtime-lab-operator-labSupply-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "c095167a3ba1f98fe9c81ea5f3bde1e6c3b1d75299be1a6bdc764dbb6957f480",
+        "last": {
+          "tick": 320,
+          "product": "UH",
+          "enabled": true,
+          "source": "roomOverride",
+          "temporaryActive": false,
+          "labOH": 0,
+          "labUH": 0,
+          "bankOH": 15,
+          "bankUH": 15,
+          "bankX": 30,
+          "cargo": 0,
+          "assignment": "UH",
+          "receipts": 55
+        }
+      }
+    },
+    {
+      "scenario": "--lab-replan",
+      "seconds": 11.027,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-oNPFz4\\evidence.json",
+      "status": "passed",
+      "rawSha256": "d3b2c513a7f6f19ddc9faf5a2d5b87409e7f4971566e4357d2a56bdacf477b53",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "4a5f4762f0c68fe81276b10a6d5bfd8d1fada1ef2af5f75f9e0261a27c8f84a0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-lab-replan-measurements.jsonl",
+        "rows": 320,
+        "rowsSha256": "e6625fdce9bdbeab791359ac9fccc8de6acff8afdf0800e596f968e87ff5dd9c"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "166f1092f53354ef6a5288380569f0c0b29dfdd9769fecbe113462d6b68dcf95",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "labSupply": {
+        "mode": "replan",
+        "reloads": [
+          5,
+          31,
+          181
+        ],
+        "assignment": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "assignment": {
+              "product": "OH",
+              "reagents": [
+                "H",
+                "O"
+              ],
+              "inputs": [
+                "193eb665bdf35dc",
+                "41e9b665bdf352b"
+              ],
+              "outputs": [
+                "f55ab665bdfd5ca"
+              ],
+              "roster": [
+                "193eb665bdf35dc",
+                "41e9b665bdf352b",
+                "f55ab665bdfd5ca"
+              ]
+            }
+          }
+        },
+        "retainedReceipts": [
+          {
+            "request": {
+              "id": "[\"drain\",\"41e9b665bdf352b\",\"28e2b665bdf3bbc\",\"X\",1]",
+              "owner": "industry-labs:W0N1:41e9b665bdf352b",
+              "source": "41e9b665bdf352b",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 101
+            },
+            "cancelled": true,
+            "receipts": []
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f55ab665bdfd5ca\",\"28e2b665bdf3bbc\",\"X\",1]",
+              "owner": "industry-labs:W0N1:f55ab665bdfd5ca",
+              "source": "f55ab665bdfd5ca",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 101
+            },
+            "cancelled": true,
+            "receipts": []
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"193eb665bdf35dc\",\"28e2b665bdf3bbc\",\"X\",1]",
+              "owner": "industry-labs:W0N1:193eb665bdf35dc",
+              "source": "193eb665bdf35dc",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 101
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:193eb665bdf35dc\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"193eb665bdf35dc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"X\\\\\\\\\\\\\\\",1]\\\\\\\",\\\\\\\"2\\\\\\\"]\\\"]\",\"5\"]",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"41e9b665bdf352b\",\"28e2b665bdf3bbc\",\"X\",7]",
+              "owner": "industry-labs:W0N1:41e9b665bdf352b",
+              "source": "41e9b665bdf352b",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 107
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:41e9b665bdf352b\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"41e9b665bdf352b\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"X\\\\\\\\\\\\\\\",7]\\\\\\\",\\\\\\\"12\\\\\\\"]\\\"]\",\"14\"]",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f55ab665bdfd5ca\",\"28e2b665bdf3bbc\",\"X\",7]",
+              "owner": "industry-labs:W0N1:f55ab665bdfd5ca",
+              "source": "f55ab665bdfd5ca",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "X",
+              "quantity": 10,
+              "priority": 8,
+              "expiresAt": 107
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:f55ab665bdfd5ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f55ab665bdfd5ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"X\\\\\\\\\\\\\\\",7]\\\\\\\",\\\\\\\"19\\\\\\\"]\\\"]\",\"22\"]",
+                "amount": 10
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"28e2b665bdf3bbc\",\"193eb665bdf35dc\",\"H\",7]",
+              "owner": "industry-labs:W0N1:193eb665bdf35dc",
+              "source": "28e2b665bdf3bbc",
+              "sink": "193eb665bdf35dc",
+              "resource": "H",
+              "quantity": 20,
+              "priority": 8,
+              "expiresAt": 107
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:193eb665bdf35dc\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"193eb665bdf35dc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"H\\\\\\\\\\\\\\\",7]\\\\\\\",\\\\\\\"8\\\\\\\"]\\\"]\",\"10\"]",
+                "amount": 20
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"refill\",\"28e2b665bdf3bbc\",\"41e9b665bdf352b\",\"O\",15]",
+              "owner": "industry-labs:W0N1:41e9b665bdf352b",
+              "source": "28e2b665bdf3bbc",
+              "sink": "41e9b665bdf352b",
+              "resource": "O",
+              "quantity": 20,
+              "priority": 8,
+              "expiresAt": 115
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:41e9b665bdf352b\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"refill\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"41e9b665bdf352b\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"O\\\\\\\\\\\\\\\",15]\\\\\\\",\\\\\\\"16\\\\\\\"]\\\"]\",\"17\"]",
+                "amount": 20
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f55ab665bdfd5ca\",\"28e2b665bdf3bbc\",\"OH\",23]",
+              "owner": "industry-labs:W0N1:f55ab665bdfd5ca",
+              "source": "f55ab665bdfd5ca",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "OH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 123
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:f55ab665bdfd5ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f55ab665bdfd5ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"OH\\\\\\\\\\\\\\\",23]\\\\\\\",\\\\\\\"24\\\\\\\"]\\\"]\",\"27\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f55ab665bdfd5ca\",\"28e2b665bdf3bbc\",\"OH\",42]",
+              "owner": "industry-labs:W0N1:f55ab665bdfd5ca",
+              "source": "f55ab665bdfd5ca",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "OH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 142
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:f55ab665bdfd5ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f55ab665bdfd5ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"OH\\\\\\\\\\\\\\\",42]\\\\\\\",\\\\\\\"43\\\\\\\"]\\\"]\",\"46\"]",
+                "amount": 5
+              }
+            ]
+          },
+          {
+            "request": {
+              "id": "[\"drain\",\"f55ab665bdfd5ca\",\"28e2b665bdf3bbc\",\"OH\",62]",
+              "owner": "industry-labs:W0N1:f55ab665bdfd5ca",
+              "source": "f55ab665bdfd5ca",
+              "sink": "28e2b665bdf3bbc",
+              "resource": "OH",
+              "quantity": 5,
+              "priority": 8,
+              "expiresAt": 162
+            },
+            "cancelled": false,
+            "receipts": [
+              {
+                "id": "logistics:[\"attempt\",\"bac8b665bdf1de1\",\"task:[\\\"lab-courier\\\",\\\"logistics:[\\\\\\\"task\\\\\\\",\\\\\\\"bac8b665bdf1de1\\\\\\\",\\\\\\\"industry-labs:W0N1:f55ab665bdfd5ca\\\\\\\",\\\\\\\"[\\\\\\\\\\\\\\\"drain\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"f55ab665bdfd5ca\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"28e2b665bdf3bbc\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\"OH\\\\\\\\\\\\\\\",62]\\\\\\\",\\\\\\\"63\\\\\\\"]\\\"]\",\"66\"]",
+                "amount": 5
+              }
+            ]
+          }
+        ],
+        "rowsFile": "empire-runtime-lab-replan-labSupply-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "7ccd05b6ea5681131dba4076a5e98ee99e7ddc2404976d866554f8d877ecf314",
+        "last": {
+          "tick": 320,
+          "product": "OH",
+          "enabled": true,
+          "source": "empire",
+          "temporaryActive": false,
+          "labOH": 0,
+          "labUH": 0,
+          "bankOH": 15,
+          "bankUH": 0,
+          "bankX": 30,
+          "cargo": 0,
+          "assignment": "OH",
+          "receipts": 85
+        }
+      },
+      "labReplan": {
+        "request": {
+          "tick": 4,
+          "cargo": 10,
+          "assignment": {
+            "owner": "industry",
+            "version": 1,
+            "data": {
+              "assignment": {
+                "product": "OH",
+                "reagents": [
+                  "H",
+                  "O"
+                ],
+                "inputs": [
+                  "193eb665bdf35dc",
+                  "41e9b665bdf352b"
+                ],
+                "outputs": [
+                  "f55ab665bdfd5ca"
+                ],
+                "roster": [
+                  "193eb665bdf35dc",
+                  "41e9b665bdf352b",
+                  "f55ab665bdfd5ca"
+                ]
+              }
+            }
+          },
+          "unchanged": true
+        },
+        "rowsFile": "empire-runtime-lab-replan-labReplan-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "bbdd5f5ae157ac1ba278fbc0ee27e551cc9bfc247594d4364a3c6597372431cf",
+        "last": {
+          "tick": 320,
+          "pending": false,
+          "assignment": {
+            "owner": "industry",
+            "version": 1,
+            "data": {
+              "assignment": {
+                "product": "OH",
+                "reagents": [
+                  "H",
+                  "O"
+                ],
+                "inputs": [
+                  "193eb665bdf35dc",
+                  "41e9b665bdf352b"
+                ],
+                "outputs": [
+                  "f55ab665bdfd5ca"
+                ],
+                "roster": [
+                  "193eb665bdf35dc",
+                  "41e9b665bdf352b",
+                  "f55ab665bdfd5ca"
+                ]
+              }
+            }
+          },
+          "cargo": 0
+        }
+      }
+    },
+    {
+      "scenario": "--boost-bulk",
+      "seconds": 13.211,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aHFYCb\\evidence.json",
+      "status": "passed",
+      "rawSha256": "27d8570a72ca8ded6c2ade6285b07da8974575429bae41216389b1beeea53feb",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "023f0637e9e986a3c75723ef5777c01b72568d06187d2bc11784437c3ed2a67c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-boost-bulk-measurements.jsonl",
+        "rows": 320,
+        "rowsSha256": "b206c04cbb8b83a7c43595304350ed1d2d13280d3d54c536951d9ec1d0537245"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "7cd4583385712aabf8b7ff022f4af6a3125d1648f1e7c55383a4219e899b2b78",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boostBulk": {
+        "mode": "normal",
+        "result": {
+          "ok": true,
+          "rooms": [
+            {
+              "home": "W0N1",
+              "result": {
+                "ok": true,
+                "plan": {
+                  "roles": [
+                    {
+                      "resource": "XGH2O",
+                      "mineral": 60,
+                      "energy": 40,
+                      "lab": "74b7b6686f3eeec"
+                    }
+                  ],
+                  "inputs": [
+                    "50b6b6686f3e26f",
+                    "62c9b6686f36d70"
+                  ],
+                  "outputs": [
+                    "a71cb6686f3aa4a"
+                  ],
+                  "distance": 5
+                },
+                "preserveReactions": true
+              }
+            },
+            {
+              "home": "W1N1",
+              "result": {
+                "ok": true,
+                "plan": {
+                  "roles": [
+                    {
+                      "resource": "XGH2O",
+                      "mineral": 60,
+                      "energy": 40,
+                      "lab": "a121b6686f9ccf9"
+                    }
+                  ],
+                  "inputs": [
+                    "1ed4b6686fa807b",
+                    "8131b6686facff5"
+                  ],
+                  "outputs": [
+                    "bb3eb6686f96642"
+                  ],
+                  "distance": 5
+                },
+                "preserveReactions": true
+              }
+            }
+          ],
+          "dryRunUnchanged": true,
+          "reapplyUnchanged": true,
+          "refusalUnchanged": false
+        },
+        "reloads": [
+          8,
+          12,
+          31,
+          181
+        ],
+        "rowsFile": "empire-runtime-boost-bulk-boostBulk-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "6bfdbeb58c9d31159a5e253c1e0de408d9a709848467c3e00b2dce8268b58a41",
+        "last": {
+          "tick": 320,
+          "rooms": [
+            {
+              "home": "W0N1",
+              "courier": "boost-courier",
+              "roles": [
+                {
+                  "lab": "74b7b6686f3eeec"
+                }
+              ],
+              "reactionLabs": [
+                "50b6b6686f3e26f",
+                "62c9b6686f36d70",
+                "a71cb6686f3aa4a"
+              ],
+              "buffer": {
+                "resource": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              },
+              "bankX": 60,
+              "bankK": 10,
+              "bankOH": 10,
+              "cargo": 0
+            },
+            {
+              "home": "W1N1",
+              "courier": "boost-courier-second",
+              "roles": [
+                {
+                  "lab": "a121b6686f9ccf9"
+                }
+              ],
+              "reactionLabs": [
+                "bb3eb6686f96642",
+                "8131b6686facff5",
+                "1ed4b6686fa807b"
+              ],
+              "buffer": {
+                "resource": "XGH2O",
+                "amount": 60,
+                "energy": 40
+              },
+              "bankX": 60,
+              "bankK": 10,
+              "bankOH": 10,
+              "cargo": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--boost-role-switch",
+      "seconds": 9.557,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-epRR7W\\evidence.json",
+      "status": "passed",
+      "rawSha256": "9790eb10001585039ecf3e8190651aa2fdd54eb3a7843aef8deaa7d477e3d3b2",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "a81f2e3f2707f0d9383d562ddc3e46a48155eecfea75f5aae111c1893be861f5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-boost-role-switch-measurements.jsonl",
+        "rows": 320,
+        "rowsSha256": "147eb657215d9aa1770531a313449dd54527b8c924f510b401124aa4fdba0aae"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "04079ffa7ff4b81af62a4d277c5f49c39440c77c0831c6875f431aa5fb82032c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boostRoles": {
+        "mode": "switch",
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "roles": [
+              {
+                "lab": "0ceeb66ba92b622",
+                "resource": "ZO",
+                "mineral": 30,
+                "energy": 20
+              }
+            ]
+          }
+        },
+        "reloads": [
+          8,
+          12,
+          31,
+          181
+        ],
+        "rowsFile": "empire-runtime-boost-role-switch-boostRoles-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "b766b37f5f08626745941e4af6fe0fcc7701f25f72398b3b00fdb4993faa20e6",
+        "last": {
+          "tick": 320,
+          "lab": "0ceeb66ba92b622",
+          "desired": "ZO",
+          "bound": "ZO",
+          "mineral": "ZO",
+          "amount": 30,
+          "energy": 20,
+          "cargo": 0,
+          "cargoX": 0,
+          "bankX": 120,
+          "bankK": 10,
+          "bankZO": 0,
+          "bankOH": 10,
+          "work": 0,
+          "ready": false,
+          "reactionLabs": [
+            "5cd0b66ba92ac16",
+            "0ce4b66ba92b607",
+            "6f3ab66ba92eeb3"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--boost-role-remove",
+      "seconds": 9.368,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-iOdnxp\\evidence.json",
+      "status": "passed",
+      "rawSha256": "bca0ba9e35be61781ce727ab15e3b175db2eb95686e7d2a251306f4b5388f128",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "c22489a643943d62802e13d47519de9178f9fc645e9f9e8ee8274bb08661063c",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-boost-role-remove-measurements.jsonl",
+        "rows": 320,
+        "rowsSha256": "28b8d91d45af67f429e0171ab33139132e86668f4f00c19f35661a4e2377178a"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "5bb71cdb1da801fe1a6ab4e4047ee41834c2da130ac3811cd1cd558a29a538f4",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "boostRoles": {
+        "mode": "remove",
+        "state": {
+          "owner": "industry",
+          "version": 1,
+          "data": {
+            "roles": []
+          }
+        },
+        "reloads": [
+          8,
+          12,
+          31,
+          181
+        ],
+        "rowsFile": "empire-runtime-boost-role-remove-boostRoles-observations.jsonl",
+        "rows": 320,
+        "rowsSha256": "6f27d3695248fc2de025061a08d0357059bf64818a5581e5adb96d40b533132d",
+        "last": {
+          "tick": 320,
+          "lab": "19dcb66dfe11055",
+          "desired": null,
+          "bound": null,
+          "mineral": null,
+          "amount": 0,
+          "energy": 0,
+          "cargo": 0,
+          "cargoX": 0,
+          "bankX": 120,
+          "bankK": 10,
+          "bankZO": 30,
+          "bankOH": 10,
+          "work": 0,
+          "ready": false,
+          "reactionLabs": [
+            "8066b66dfe1a4af",
+            "85e5b66dfe1bd73",
+            "19dcb66dfe11055",
+            "5e0db66dfe2fbcf"
+          ]
+        }
+      }
+    },
+    {
+      "scenario": "--worker-boost",
+      "seconds": 3.591,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-aTKmE2\\evidence.json",
+      "status": "passed",
+      "rawSha256": "7173720dfc406b0e240a15e0c45c413a5bc9f074fe5722dfffda268275959fce",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "667dd16d33905dc6f386bd42e71682088f53ce5f03db878ebd960b810f653d7d",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-worker-boost-measurements.jsonl",
+        "rows": 100,
+        "rowsSha256": "c75eaddbb611ac7605ed72585c5c8a777e01f49c800ce51624b6ab8872f56e4e"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "ef156308a1c140bf31298f2151f72a75612225a51c3d06260c55f99d5e2905b2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "workerBoosts": {
+        "mode": "normal",
+        "jobs": [
+          {
+            "request": {
+              "id": "birth:[\"W0N1\",\"ed-W0N1-1\"]",
+              "owner": "work:W0N1:upgrader",
+              "home": "W0N1",
+              "steps": [
+                {
+                  "part": "work",
+                  "resource": "XGH2O",
+                  "count": 1
+                }
+              ],
+              "required": true,
+              "expiresAt": 93,
+              "unit": "a6a2b67056c41f6",
+              "name": "ed-W0N1-1"
+            },
+            "status": "confirmed",
+            "lab": null,
+            "attempt": null,
+            "observed": [
+              1
+            ],
+            "cancelRequested": false,
+            "acknowledged": true,
+            "reason": null
+          }
+        ],
+        "resets": [
+          {
+            "tick": 19,
+            "name": "ed-W0N1-1",
+            "attempt": {
+              "tick": 18,
+              "before": 0,
+              "count": 1,
+              "resource": "XGH2O",
+              "part": "work",
+              "code": 0
+            }
+          }
+        ],
+        "birthResets": [
+          {
+            "tick": 2,
+            "contract": {
+              "id": "birth:[\"W0N1\",\"ed-W0N1-1\"]",
+              "owner": "work:W0N1:upgrader",
+              "home": "W0N1",
+              "steps": [
+                {
+                  "part": "work",
+                  "resource": "XGH2O",
+                  "count": 1
+                }
+              ],
+              "required": true,
+              "expiresAt": 93
+            }
+          }
+        ],
+        "rowsFile": "empire-runtime-worker-boost-workerBoosts-observations.jsonl",
+        "rows": 100,
+        "rowsSha256": "15313a6d07d405adbaf87ba2b6602caf474db614a412aeb8423d7d3fdaaabcd0",
+        "last": {
+          "tick": 100,
+          "progress": 144,
+          "units": [
+            {
+              "name": "ed-W0N1-1",
+              "ready": true,
+              "status": "confirmed",
+              "acknowledged": true,
+              "work": 1,
+              "energy": 28,
+              "attempt": null
+            }
+          ],
+          "pending": 0,
+          "contracts": 0,
+          "labMineral": 0,
+          "labEnergy": 0
+        }
+      }
+    },
+    {
+      "scenario": "--upgrade-room",
+      "seconds": 1.947,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-nLLvGb\\evidence.json",
+      "status": "passed",
+      "rawSha256": "916ec6302d2247377b39d34baacfb8e8df9e3574955b2ae4b857d00f2eb7be93",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "6e0bfb9789568276f6b80b09bf0e6cad4a05649a1a66e49681b26a2419ed94a2",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-upgrade-room-measurements.jsonl",
+        "rows": 24,
+        "rowsSha256": "4550fc2c0d344b58f39017939333738bb7d92142d0f65ce22f6dc90120a6c42d"
+      },
+      "reloadProvenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "f9cd6ab82fdaf8b52f629ee73ca8411e9ce9cb6b0f1f349e08f4784ad47072c5",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "packaged-smoke",
+      "seconds": 0.884,
+      "exitCode": 0,
+      "evidence": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-DXVotq\\evidence.json",
+      "status": "passed",
+      "rawSha256": "fc7c845b261cde196f3ed36da691eddbd2b594bf8836504483413d71cec8f98c",
+      "provenance": {
+        "commit": "52b3c21052a0b3c8226565aea20920b999335722",
+        "dirty": false,
+        "bundleSha256": "2762124109ffd1e5d8204dab02a040984723c7b660ce370091438ac8bedf7e63",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "measurements": {
+        "rowsFile": "empire-runtime-packaged-smoke-measurements.jsonl",
+        "rows": 3,
+        "rowsSha256": "c8b09f53b4b08699c0ba5cf1da93d401b6d2e56f55f0dfe3412302370f6f542c"
+      }
+    }
+  ],
+  "hostedCI": {
+    "conclusion": "success",
+    "headSha": "52b3c21052a0b3c8226565aea20920b999335722",
+    "jobs": [
+      {
+        "completedAt": "2026-11-20T23:56:23Z",
+        "conclusion": "success",
+        "databaseId": 136646468446,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-20T23:55:05Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T23:55:08Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T23:55:06Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:14Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T23:55:08Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:20Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T23:55:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:28Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T23:55:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:29Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T23:55:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:30Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T23:55:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:32Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T23:55:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:34Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T23:55:32Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:48Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T23:55:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:16Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T23:55:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:17Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T23:56:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:17Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T23:56:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:17Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T23:56:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:18Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T23:56:17Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:18Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T23:56:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:18Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T23:56:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:18Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T23:56:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:18Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T23:56:18Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44840224114/job/136646468446"
+      },
+      {
+        "completedAt": "2026-11-20T23:58:19Z",
+        "conclusion": "success",
+        "databaseId": 136646468811,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-20T23:55:05Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-20T23:55:09Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-20T23:55:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:16Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-20T23:55:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:55:27Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-20T23:55:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:25Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-20T23:55:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:40Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-20T23:56:25Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:45Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-20T23:56:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:49Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-20T23:56:45Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:56:53Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-20T23:56:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:57:18Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-20T23:56:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:09Z",
+            "conclusion": "success",
+            "name": "Run npm test",
+            "number": 10,
+            "startedAt": "2026-11-20T23:57:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:11Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 11,
+            "startedAt": "2026-11-20T23:58:09Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:13Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 12,
+            "startedAt": "2026-11-20T23:58:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:13Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 13,
+            "startedAt": "2026-11-20T23:58:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:14Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 14,
+            "startedAt": "2026-11-20T23:58:13Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:15Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 26,
+            "startedAt": "2026-11-20T23:58:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:15Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 27,
+            "startedAt": "2026-11-20T23:58:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:17Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 28,
+            "startedAt": "2026-11-20T23:58:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-20T23:58:17Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 29,
+            "startedAt": "2026-11-20T23:58:17Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44840224114/job/136646468811"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44840224114"
+  },
+  "registry": {
+    "cases": 274,
+    "fullRerun": false
+  },
+  "sourceSha256": {
+    "docs/empire-lab-production.md": "884b85efbe54a4c759d0f60cb4d52e32cec0bff76f3ce3e3ca4a40bfe2eb5358",
+    "src/app/native-bot.ts": "c1404d79fbbdf0725d879bb83bb529050094a4b14e659acf65bf0611c13e6080",
+    "src/app/native-empire-lab-facts.ts": "aa02c8cfbffca919eb4f104bdaea1044dd2493e5c05bef2005dee95d02424090",
+    "src/app/native-empire-production.ts": "84159e01275073a42093db9eb2081df48e4a2a773933e89b96a8cafa2b853266",
+    "src/app/native-lab-settings.ts": "dc9b1a54ea572f177252013518bcaf7bc32399afc8ba57ef50aa51681ecbbb6f",
+    "src/app/native-labs.ts": "c2d145399eb651c436ece581e0fc09ef01286c050a10306b03d80b462bbe1d6b",
+    "src/capabilities/industry/production/empire.ts": "121bd9db8ed15b1037f69c3c3ecf11dd902fa13584bdb688b1180ddbb3e72b91",
+    "src/config/lab-production.ts": "e803c9c515fcadab4ddf33d0e643d0c129cde1d63c2c4efd5ec002453ad8c632",
+    "src/features/industry/empire-production/coordinator.ts": "5b2a7709936f0f39919eb309adf3f55320b842275f8cfdaa2fa1d8c200be247d",
+    "test/config/lab-production.test.ts": "e45952941eb9570a82a39bbeaffc8c184346d2eeaa29c142794f0c857316e49c",
+    "test/engine/lab-empire-bot.ts": "5c02e00b71ef629aabf3874976712e530b5ed44d6315e426fc36fd1f9cc91c54",
+    "test/features/empire-production-coordinator.test.ts": "7be9488d2ef487775b4efb31c4aa9b9aa231e57a67fa77bfce1f34a40f4f0002",
+    "tools/engine/lab-empire.cjs": "f45fd741bc6bae662316e0865542694583a37d293c6cd32f388b525cba6498b2",
+    "tools/engine/smoke.cjs": "39eede15e4e40150098c66a797b1eb857c70c9c27e46f1e3b085655b572c1873",
+    "tools/engine/suite.cjs": "308959f5cb79f73e2829cc690ef8e10d20dc35df2f5d522080bdedda63714618"
+  },
+  "limitations": [
+    "No native participant/policy-switch/lost-visibility/destruction extension in this slice; unit coordinator behavior is separate evidence.",
+    "Missing owned-room windows conservatively freeze new admissions and may trigger context retirement elsewhere. Confirmed ownership-loss resolution remains open.",
+    "Cross-room stock transfers, market and terminal commitments are not implemented here; local stock only funds local effects.",
+    "Instrumented640tick test is not production CPU/memory/soak or release readiness.",
+    "New labProductionScope key must be removed before old-validator rollback; settle empire windows first."
+  ]
+}
