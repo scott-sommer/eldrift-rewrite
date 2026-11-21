@@ -1,0 +1,79 @@
+{
+  "issue": "ED-29",
+  "source": "67dca8a4b12efef1d303f6a35576ff5b8fbac58e",
+  "scope": "Paid household transfer/funding composition and legacy shared-timeline regression; not full-project/native household adoption",
+  "checks": {
+    "targeted": {
+      "cases": 69,
+      "files": 8,
+      "seconds": 0.842
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.522
+    },
+    "quality": {
+      "productionFiles": 930,
+      "testFiles": 789,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "nativeRegression": {
+    "scenario": "--remote-startup-selected",
+    "scope": "Shared spawn/funding timeline regression only; new household wrapper not used by this scenario",
+    "expectedStatus": "passed",
+    "nativeSource": "67dca8a4b12efef1d303f6a35576ff5b8fbac58e",
+    "rawFile": "docs/evidence/household-funding/legacy-startup-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "ee2847739acbd1c8a65cf9a4899847097d8f3c9204d1be02a319d414b7b67ae2",
+    "uncompressedSha256": "827b20cceb32e40a3f35e88062e4769da904264aba90cbf8b1681f8cb811de72",
+    "actualTicks": 150,
+    "existingScheduleEvaluationFrames": 20005,
+    "provenance": {
+      "commit": "67dca8a4b12efef1d303f6a35576ff5b8fbac58e",
+      "dirty": false,
+      "bundleSha256": "685f7b646eb1f0c621d50582c21da21501de6ac416f2a9d80fbfc8d23caf01fd",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/household-funding/samples.jsonl",
+        "rowsSha256": "bd207a9fbf6aafac78ef74fabfb8b94eb3bbd50fe80beee73af2529c82d32b1b",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/household-funding/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/household-funding/schedule.jsonl",
+        "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+        "rows": 5
+      }
+    ]
+  },
+  "checkpoint": {
+    "householdStandaloneFormat": 1,
+    "existingProjectAndPlanningFormatsChanged": false,
+    "newPersistentNamespace": false
+  },
+  "remaining": [
+    "Full-project timeline injection and accepting-sink capacity linkage",
+    "Project/planning checkpoint versioning and safe migration",
+    "Native quoted household trip generation and paid-incumbent support",
+    "Actual native household lifecycle/cashflow qualification, default configuration/adoption",
+    "Concurrent multi-room capital, aggregate pressure and migration/rollback/RC gates"
+  ]
+}
