@@ -1,0 +1,541 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-3524wl",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 256.4932,
+      "cpuMilliseconds": 48,
+      "memoryBytes": 1954
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 23.84789999999998,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1288
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 31.919899999999984,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 1377
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 19.69780000000003,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 1466
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 23.383000000000038,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 1555
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 71.88890000000015,
+      "cpuMilliseconds": 37,
+      "memoryBytes": 1663
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 21.103300000000218,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 1752
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 16.93859999999995,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 1841
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 29.81919999999991,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 1930
+    },
+    {
+      "tick": 11,
+      "wallMilliseconds": 17.568499999999858,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2020
+    },
+    {
+      "tick": 12,
+      "wallMilliseconds": 22.843199999999797,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2110
+    },
+    {
+      "tick": 13,
+      "wallMilliseconds": 16.914099999999962,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2198
+    },
+    {
+      "tick": 14,
+      "wallMilliseconds": 16.691299999999956,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2286
+    },
+    {
+      "tick": 15,
+      "wallMilliseconds": 38.659599999999955,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 2374
+    },
+    {
+      "tick": 16,
+      "wallMilliseconds": 16.58540000000039,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2462
+    },
+    {
+      "tick": 17,
+      "wallMilliseconds": 25.370699999999943,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2550
+    },
+    {
+      "tick": 18,
+      "wallMilliseconds": 17.11680000000024,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2638
+    },
+    {
+      "tick": 19,
+      "wallMilliseconds": 20.931499999999687,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2726
+    },
+    {
+      "tick": 20,
+      "wallMilliseconds": 16.708399999999983,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2814
+    },
+    {
+      "tick": 21,
+      "wallMilliseconds": 21.495499999999993,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 2902
+    },
+    {
+      "tick": 22,
+      "wallMilliseconds": 19.407600000000002,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 3300
+    },
+    {
+      "tick": 23,
+      "wallMilliseconds": 17.101400000000012,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 3007
+    },
+    {
+      "tick": 24,
+      "wallMilliseconds": 16.10530000000017,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 3094
+    },
+    {
+      "tick": 25,
+      "wallMilliseconds": 15.814400000000205,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 3181
+    },
+    {
+      "tick": 26,
+      "wallMilliseconds": 15.617400000000089,
+      "cpuMilliseconds": 2,
+      "memoryBytes": 3268
+    }
+  ],
+  "provenance": {
+    "commit": "0f1cb05a680e0da41e0b78bb20c6cbd364c689d6",
+    "dirty": false,
+    "bundleSha256": "a7e8f274f7ec5e4318b4140a512f6af0ff8a5966e3f1b3b824e5158e290a877f",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "0f1cb05a680e0da41e0b78bb20c6cbd364c689d6",
+    "dirty": false,
+    "bundleSha256": "b2a6c3e5b228d50887008992a55267ef66b2f3790df6f7789bd6571c571641ec",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "labReactions": {
+    "mode": "normal",
+    "rows": [
+      {
+        "tick": 1,
+        "hydrogen": 20,
+        "oxygen": 20,
+        "product": 0,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "tick": 2,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          19,
+          19
+        ]
+      },
+      {
+        "tick": 3,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          18,
+          18
+        ]
+      },
+      {
+        "tick": 4,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          17,
+          17
+        ]
+      },
+      {
+        "tick": 5,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          16,
+          16
+        ]
+      },
+      {
+        "tick": 6,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          15,
+          15
+        ]
+      },
+      {
+        "tick": 7,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          14,
+          14
+        ]
+      },
+      {
+        "tick": 8,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          13,
+          13
+        ]
+      },
+      {
+        "tick": 9,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          12,
+          12
+        ]
+      },
+      {
+        "tick": 10,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          11,
+          11
+        ]
+      },
+      {
+        "tick": 11,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          10,
+          10
+        ]
+      },
+      {
+        "tick": 12,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          9,
+          9
+        ]
+      },
+      {
+        "tick": 13,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          8,
+          8
+        ]
+      },
+      {
+        "tick": 14,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          7,
+          7
+        ]
+      },
+      {
+        "tick": 15,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          6,
+          6
+        ]
+      },
+      {
+        "tick": 16,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          5,
+          5
+        ]
+      },
+      {
+        "tick": 17,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          4,
+          4
+        ]
+      },
+      {
+        "tick": 18,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          3,
+          3
+        ]
+      },
+      {
+        "tick": 19,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          2,
+          2
+        ]
+      },
+      {
+        "tick": 20,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      {
+        "tick": 21,
+        "hydrogen": 10,
+        "oxygen": 10,
+        "product": 10,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "tick": 22,
+        "hydrogen": 5,
+        "oxygen": 5,
+        "product": 15,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          19,
+          0
+        ]
+      },
+      {
+        "tick": 23,
+        "hydrogen": 5,
+        "oxygen": 5,
+        "product": 15,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          18,
+          0
+        ]
+      },
+      {
+        "tick": 24,
+        "hydrogen": 5,
+        "oxygen": 5,
+        "product": 15,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          17,
+          0
+        ]
+      },
+      {
+        "tick": 25,
+        "hydrogen": 5,
+        "oxygen": 5,
+        "product": 15,
+        "reserved": 0,
+        "cooldowns": [
+          0,
+          0,
+          0,
+          16,
+          0
+        ]
+      }
+    ],
+    "reloads": [
+      6
+    ]
+  },
+  "childPids": [
+    66464,
+    76792,
+    67940
+  ]
+}

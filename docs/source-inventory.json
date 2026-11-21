@@ -2977,14 +2977,15 @@
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
     "reviewStatus": "Default target ordering and symbolic BOOST explicitly ported through a pure opt-in preset; absolute disable and migration/policy differences remain",
-    "implementationStatus": "partial: local/shared chains, shared operator policy and resolved legacy target preset qualified; legacy-memory import, dynamic upgradeBoost tracking, intermediate terminal-count floors, absolute disable under room overrides, specialist/terminal/release gates remain",
+    "implementationStatus": "partial: local/shared chains, shared operator policy, resolved legacy target preset and absolute global reaction pause qualified; legacy-memory import/dynamic upgradeBoost tracking, intermediate terminal-count floors, specialist/terminal/release gates remain",
     "evidence": [
       "docs/industry-lab-production.md",
       "docs/boost-lab-allocation.md",
       "docs/bulk-lab-allocation.md",
       "docs/empire-lab-production.md",
       "docs/boosted-builder-recipe.md",
-      "docs/evidence/empire-operator-native.json"
+      "docs/evidence/empire-operator-native.json",
+      "docs/evidence/reaction-pause-native.json"
     ],
     "plannedIssues": [
       "ED-13",
@@ -3044,7 +3045,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
-      "required": "Preserve explicit disposition for legacy-memory import, dynamic upgradeBoost tracking, duplicate target priority limitations, terminal-count intermediate floors, absolute labsDisabled under room overrides, specialist producers, terminal/evacuation/recapture, pressure and migration/release gates",
+      "required": "Preserve explicit disposition for legacy-memory import, dynamic upgradeBoost tracking, duplicate target priority limitations, terminal-count intermediate floors, specialist producers, terminal/evacuation/recapture, pressure and migration/release gates; pause namespace downgrade fence must be rehearsed",
       "tests": [
         "test/capabilities/lab-production.test.ts",
         "test/features/lab-production.test.ts",
@@ -3054,7 +3055,11 @@
         "test/features/operator-lab-empire.test.ts",
         "test/engine/lab-empire-operator.ts",
         "test/engine/lab-empire-cycle.ts",
-        "test/features/legacy-production-targets.test.ts"
+        "test/features/legacy-production-targets.test.ts",
+        "test/features/reaction-control.test.ts",
+        "test/engine/lab-empire-pause-bot.ts",
+        "test/engine/lab-empire-pause-local-bot.ts",
+        "test/engine/boost-paused-bot.ts"
       ],
       "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
       "sharedOperatorSources": [
