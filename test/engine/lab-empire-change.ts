@@ -11,13 +11,15 @@ export function labReceiptTotal(home: string): number {
   const queue = peekState(state,'logistics-requests/'+home,logisticsQueueSchema);
   return (queue?.records ?? []).filter(record => record.request.owner.startsWith(labServiceOwner(home,''))).reduce((sum,record) => sum+record.receipts.reduce((sum,receipt) => sum+receipt.amount,0),0);
 }
-export function changeEmpirePolicy(mode: 'normal' | 'policy' | 'participant'): void {
+export function changeEmpirePolicy(mode: 'normal' | 'policy' | 'participant' | 'pause'): void {
+  if (mode === 'pause' && Memory.empirePolicyChange && Game.time === Memory.empirePolicyChange.tick+30) industry.labs.setReactionsPaused(false);
   if (mode === 'normal' || Memory.empirePolicyChange) return;
   const courier = Game.creeps['boost-courier']!, cargo = courier.store.getUsedCapacity(RESOURCE_HYDROGEN)+courier.store.getUsedCapacity(RESOURCE_UTRIUM);
   const oldWindow = createEmpireProductionStore(state,() => false).list().find(window => window.home === 'W0N1');
   if (!cargo || !oldWindow || oldWindow.retiring) return;
   const oldHomeRoot = rootStock('W0N1'), oldRoot = oldHomeRoot+rootStock('W1N1');
   Memory.empirePolicyChange = { tick: Game.time,mode,cargo,receipts: labReceiptTotal('W0N1'),oldWindow,oldRoot,oldHomeRoot };
+  if (mode === 'pause') { industry.labs.setReactionsPaused(true); return; }
   if (mode === 'participant') industry.labs.configure('W0N1',{ labProductionScope: 'room',labReactionsEnabled: false });
   else {
     const policy = { labProductionTargets: [{ product: 'UH',amount: 15,priority: 0 }] };

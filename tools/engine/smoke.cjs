@@ -1,7 +1,7 @@
 const boostedBuilderMode = ['shortage','lower'].find(mode => process.argv.includes('--boosted-builder-'+mode)) ?? (process.argv.includes('--boosted-builder') ? 'normal' : undefined);
 const { boostedBuilderWorld,verifyBoostedBuilder } = require('./boosted-builder.cjs');
 const { changeEmpireOwnership } = require('./lab-empire-loss.cjs');
-const labEmpireMode = ['policy','participant','loss','vision','intel'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
+const labEmpireMode = ['policy','participant','loss','vision','intel','pause'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
 const labEmpire = !!labEmpireMode;
 const { labEmpireWorld,verifyLabEmpire } = require('./lab-empire.cjs');
 const boostBulkMode = process.argv.includes('--boost-bulk-refused') ? 'refused' : process.argv.includes('--boost-bulk') ? 'normal' : undefined;

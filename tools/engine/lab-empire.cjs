@@ -24,7 +24,8 @@ function verifyLabEmpire(memory,evidence,mode = 'normal') {
     assert.ok(rows.some(row => row.windows.some(item => item.home === home && item.step?.product === 'UH')));
     if (mode === 'normal') assert.ok(rows.some(row => row.windows.some(item => item.home === home && item.step?.product === 'UH2O')));
   }
-  if (mode !== 'normal') verifyPolicyChange(memory,evidence,mode);
+  if (mode === 'pause') verifyPause(memory,evidence);
+  else if (mode !== 'normal') verifyPolicyChange(memory,evidence,mode);
   assert.equal(records['quantity-reservations/empire'].data.claims.filter(claim => claim.expiresAt > 640).length,0);
 }
 function verifyPolicyChange(memory,evidence,mode) {
@@ -46,3 +47,19 @@ function verifyPolicyChange(memory,evidence,mode) {
   }
 }
 module.exports = { labEmpireWorld,verifyLabEmpire };
+
+function verifyPause(memory,evidence) {
+  const rows = memory.empireProductionRows, change = memory.empirePolicyChange;
+  const paused = rows.filter(row => row.paused), resumed = rows.filter(row => row.tick >= change.tick+30);
+  assert.ok(change.cargo > 0); assert.equal(evidence.empirePolicyReload.pending,true);
+  assert.equal(paused.length,30); assert.equal(paused[0].tick,change.tick);
+  assert.ok(paused.every(row => JSON.stringify(row.products) === JSON.stringify(paused[0].products)),'No reaction products may increase under global pause');
+  assert.ok(paused.every(row => row.windows.every(window => window.retiring)),'Pause may not admit new shared windows');
+  const settled = paused.find(row => !row.windows.length); assert.ok(settled,'Old shared windows settle while paused');
+  assert.ok(settled.rooms.find(room => room.home === 'W0N1').receipts >= change.receipts+change.cargo,'Admitted cargo receives credit before pause settlement');
+  assert.ok(resumed.every(row => !row.paused)); assert.ok(resumed.some(row => row.windows.some(window => !window.retiring)),'Resume readmits shared production');
+  assert.equal(rows.at(-1).total,15);
+  assert.equal(memory.eldrift.records['operator/config'].data.rooms.W0N1.override.labReactionsEnabled,true);
+  assert.equal(memory.eldrift.records['operator/config'].data.rooms.W1N1.override.labReactionsEnabled,true);
+  assert.deepEqual(memory.eldrift.records['industry-reaction-control/empire'].data,{ paused: false });
+}
