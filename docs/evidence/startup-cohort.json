@@ -1,0 +1,119 @@
+{
+  "issue": "ED-29",
+  "source": "bc0ba2aad4be7d9940da377788ed04aa46c87dff",
+  "scope": "Quote-derived finite initial-cohort generation and native pipeline; no autonomous adoption or ticket closure",
+  "native": {
+    "scenario": "--remote-startup-selected",
+    "expectedStatus": "passed",
+    "nativeSource": "bc0ba2aad4be7d9940da377788ed04aa46c87dff",
+    "rawFile": "docs/evidence/startup-cohort/selected-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "a44bc4c0e03e434bab503732e3c1c2cac131b045dad9f11f3cfc736bded62bb7",
+    "uncompressedSha256": "ad44de36131a1570cb6e0610cad9dd1647190d5bf26edaf4494d39c9ca80eea9",
+    "ticks": 150,
+    "proposal": {
+      "id": "finite-cohort",
+      "expiresAt": 224,
+      "authorityExpiresAt": 224,
+      "births": [
+        {
+          "id": "startup-proposal:[\"finite-cohort\",\"W0N1\",\"E0N1\",\"5ba8da64834e00b\",21,\"miner\"]",
+          "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"5ba8da64834e00b\",\"miner\"]",
+          "body": [
+            "work",
+            "work",
+            "work",
+            "work",
+            "carry",
+            "move",
+            "move"
+          ],
+          "readyAt": 0
+        },
+        {
+          "id": "startup-proposal:[\"finite-cohort\",\"W0N1\",\"E0N1\",\"5ba8da64834e00b\",21,\"courier\"]",
+          "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"5ba8da64834e00b\",\"courier\"]",
+          "body": [
+            "carry",
+            "carry",
+            "move",
+            "move"
+          ],
+          "readyAt": 0
+        }
+      ]
+    },
+    "declaredPolicy": {
+      "finiteBirths": 2,
+      "assignmentRenewal": "assumed",
+      "reservation": "none",
+      "refills": "none",
+      "householdFlows": "none"
+    },
+    "assessment": {
+      "accepted": false,
+      "rejected": [
+        "recovery-deadline",
+        "final-return"
+      ],
+      "horizon": 1500,
+      "requiredHouseholdCapital": 1100,
+      "householdShortfall": 0,
+      "deliveredEnergy": 856,
+      "recoveryAt": null,
+      "recoveryMargin": -4894
+    },
+    "readOnly": true,
+    "provenance": {
+      "commit": "bc0ba2aad4be7d9940da377788ed04aa46c87dff",
+      "dirty": false,
+      "bundleSha256": "ef5a347fb58a18988bf561eb93c42f01e992bc8d2e6d60272517d1e9141a15dd",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/startup-cohort/samples.jsonl",
+        "rowsSha256": "f26e3ac0582cbf1f4173686f9f02aa76e77e49b8a3266c8f7488d1ed11cfa457",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/startup-cohort/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      }
+    ]
+  },
+  "checks": {
+    "targeted": {
+      "cases": 32,
+      "files": 3,
+      "seconds": 0.587
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.457
+    },
+    "quality": {
+      "productionFiles": 917,
+      "testFiles": 784,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Replacement and household schedules, native broader economic/lifecycle calibration",
+    "Default runtime configuration/adoption and comparable geometry/body alternatives",
+    "Concurrent multi-room capital stability",
+    "Aggregate CPU/Memory, migration/rollback and RC gates"
+  ]
+}
