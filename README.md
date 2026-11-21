@@ -13,7 +13,7 @@ Use Node 24.22.1 and npm 11.19.1 in E:\dev\personal\screeps\eldrift-rewrite.
 - npm run test:full: full unit suite, reserved for major milestones and before closing an implementation ticket.
 - npm run quality: type, lint, dependency-boundary and pinned Lizard gates.
 - npm run test:processors: controlled pinned engine-processor comparisons, installed separately as described below.
-- npm run test:watch: interactive affected-test development.
+- npm run test:watch: watch the selected smoke suite; use npx vitest <test paths> for targeted watch mode.
 - npm run build: CommonJS dist/main.js plus external source map.
 - npm run check:bundle: build and load the output in an isolated Node VM without Node globals; verifies loop export and source-map contents. This is not the Screeps engine.
 

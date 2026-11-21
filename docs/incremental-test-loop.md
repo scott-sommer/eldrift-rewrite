@@ -41,3 +41,7 @@ Keep existing unit tests available; this changes when they are selected, not the
 ## Initial measurement
 
 On this Windows checkout, the selected suite passes 76 cases across 15 files in 1.17 seconds. The current boosted-builder targeted group passes 13 cases across 3 files in 0.217 seconds. These are observed development runs, not a cross-platform performance guarantee. No full-unit run was needed to introduce the selection; previous full-suite results remain historical evidence for their recorded sources.
+
+`npm run test:watch` also watches the selected smoke suite. For targeted watch mode, use `npx vitest test/path.test.ts`. Neither default development command starts the full suite.
+
+Routine CI has been verified on both Windows and Linux: the smoke step succeeds and the full-unit milestone step is skipped. [Recorded workflow evidence](evidence/incremental-test-loop.json) distinguishes that from an unexecuted manual full-unit dispatch.

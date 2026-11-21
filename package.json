@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "build": "node tools/build.mjs",
     "test": "npm run test:smoke",
-    "test:watch": "vitest",
+    "test:watch": "vitest --config tools/vitest.smoke.config.mjs",
     "test:smoke": "vitest run --config tools/vitest.smoke.config.mjs",
     "check:bundle": "npm run build && node tools/check-bundle.mjs",
     "check:boundaries": "node tools/check-boundaries.mjs",

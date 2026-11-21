@@ -61,7 +61,7 @@
     "sha256": "F0A8EB8822CD221227FD3C511546C732B43FED145B035835AD31511C76A32D2C",
     "physicalLines": 163,
     "reviewStatus": "boost orchestration, nine alias/tier mappings and remote-upgrader exception reviewed; producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: exact body confirmation, nine aliases, required/optional gating, birth adoption and worker producers qualified; optimized builder recruitment now composed but native50part qualification and specialists remain open",
+    "implementationStatus": "partial: exact body confirmation, aliases/gating, contracted births and worker producers qualified, including optimized builder multi-lab handoff; remaining specialist/mission and full legacy operator parity remain open",
     "evidence": [
       "docs/industry-boosts.md",
       "docs/industry-boost-births.md",
@@ -5950,14 +5950,16 @@
       },
       "boostedBuilder": {
         "owner": "capabilities/spawning worker recipes + features/work population + industry boost policy",
-        "status": "Ordinary producer now selects explicit3500energy/50part recipe with required top-tier whole-kit contract. Unit/quality checks pass; native50part optimized-builder execution pending.",
-        "evidence": "docs/boosted-builder-recipe.md",
+        "status": "Explicit3500energy/50part required-top-tier recipe qualified through ordinary native birth, three observed effects, reset/action gates, construction and shortage/lower-tier refusal. Full module parity remains open.",
+        "evidence": "docs/evidence/boosted-builder-native.json",
         "tests": [
           "test/features/boosted-builder-policy.test.ts",
           "test/config/worker-boosts.test.ts",
-          "test/capabilities/worker-recipes.test.ts"
+          "test/capabilities/worker-recipes.test.ts",
+          "test/app/native-boost-handoff.test.ts",
+          "test/engine/boosted-builder-cycle.ts"
         ],
-        "validationCommit": "aaf56c462d1520913c022d052da1eaa90ffc95bb"
+        "validationCommit": "ecc2854f2b7229be06aa774c9c1bbb6ce8cc50e1"
       }
     }
   },
