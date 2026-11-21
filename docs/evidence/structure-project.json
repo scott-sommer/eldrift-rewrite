@@ -1,0 +1,120 @@
+{
+  "issue": "ED-29",
+  "source": "b2d01c2d2ead5cb5166abfd9eb9f10bef74419d7",
+  "scope": "Project format4 and planning schema4 integration; native aggregate compatibility and schema1 migration regression, not actual physical household lifecycle or RC",
+  "native": [
+    {
+      "scenario": "--remote-startup-admission",
+      "nativeSource": "b2d01c2d2ead5cb5166abfd9eb9f10bef74419d7",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/structure-project/admission-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b01316c71574dd567ea94999b8aeff67c57ac10f2f426bea85d79a419b620e5a",
+      "uncompressedSha256": "f8c6607ee9180aa878455fe19fdc8af0b1246fb14fa4f00f4dce56dec183c3f8",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "b2d01c2d2ead5cb5166abfd9eb9f10bef74419d7",
+        "dirty": false,
+        "bundleSha256": "61f64065dd172f0fdad0002393ab22dc2e52c9a1af10ae4d96e4e2017064aa73",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/structure-project/admission-samples.jsonl",
+          "rowsSha256": "e66a8af996141afe56937dc418d80ad1a100a772f0335209bcf8d03d4494ec68",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/structure-project/admission-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/structure-project/admission-migration.jsonl",
+          "rowsSha256": "854229072690ea51347652a44609c483ccaebf6a8075a3d7e4ee35ec035fa401",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "--remote-startup-selected",
+      "nativeSource": "b2d01c2d2ead5cb5166abfd9eb9f10bef74419d7",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/structure-project/selected-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1eecd41a779d86c67e07c8959eed7957b6c1e41eecb7e4e40ffa1d4ad676fc97",
+      "uncompressedSha256": "0a0ac9b194f5c0614a7c9939c4ea810182de7f65b2a0e09eb8a035c4700ac52e",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "b2d01c2d2ead5cb5166abfd9eb9f10bef74419d7",
+        "dirty": false,
+        "bundleSha256": "ef69d97dc59a397c2bb4c81d916fa9baf00cf1a6824980c31c6f4b080786d565",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/structure-project/selected-samples.jsonl",
+          "rowsSha256": "d8377fece589bd31c939d80858a3b5718970ab872f60010ff9c6fbccea5076db",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/structure-project/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/structure-project/selected-household-schedule.jsonl",
+          "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": {
+      "cases": 50,
+      "files": 6,
+      "seconds": 0.944
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.447
+    },
+    "quality": {
+      "productionFiles": 942,
+      "testFiles": 802,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "compatibility": {
+    "ordinaryAggregateFormat": 2,
+    "householdAggregateFormat": 3,
+    "physicalProjectFormat": 4,
+    "physicalHouseholdFormat": 2,
+    "planningNamespace": 4,
+    "schema1": "native read-only migration qualified",
+    "schema2": "targeted migration contracts",
+    "schema3": "targeted read-only cargo migration and old-reader refusal",
+    "rollbackRehearsal": "still outstanding"
+  },
+  "remaining": [
+    "Native physical input/order production and same-strategy actor/cashflow calibration",
+    "Full home workforce, incumbent household templates and multi-room capital",
+    "Default economic adoption and broader parity/pressure/release gates"
+  ]
+}
