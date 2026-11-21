@@ -17,8 +17,9 @@ async function upgradeRoomWorld(server, bot, shortage) {
     store: { energy: 150 }, storeCapacity: 150, hits: 5000, hitsMax: 5000, fatigue: 0, spawning: false, ageTime: ttls[index] });
   if (shortage) await bot.console("new RoomPosition(1,1,'W0N1').createFlag('shortage')");
 }
-function verifyUpgradeRoom(memory, shortage) {
+function verifyUpgradeRoom(memory, shortage,evidence,contention = false) {
   const rows = memory.upgradeRoomEvidence;
+  if (evidence) evidence.upgradeRoom = { shortage,contention,rows,reloads: memory.upgradeReload };
   const first = rows[0], last = rows.at(-1);
   console.log('UPGRADE_ROOM_SUMMARY ' + JSON.stringify({ first, last }));
   assert.equal(rows.length, 24);
@@ -36,7 +37,13 @@ function verifyUpgradeRoom(memory, shortage) {
   console.log('UPGRADE_RELOAD ' + JSON.stringify(memory.upgradeReload));
   assert.equal(memory.upgradeReload.length, 2);
   assert.ok(memory.upgradeReload[0].renewing, 'reload during renewal');
-  assert.ok(memory.upgradeReload[1].attempt, 'reload preserves an issued boost before settlement');
+  if (contention) {
+    assert.equal(memory.upgradeReload[1].attempt,null,'Foreign claim prevents native admission through reset');
+    assert.ok(rows.some(row => row.blocked && row.boosting.length),'Specialist waits while rotation requests boost');
+    assert.ok(rows.filter(row => row.blocked).every(row => row.units[6].boost === 0));
+    assert.ok(rows.some(row => row.tick >= 18 && row.units[6].boost === 42),'Owner release permits later confirmed boost');
+    assert.ok(!memory.eldrift.records['quantity-reservations/empire'].data.claims.some(claim => claim.scope === 'fixture-upgrade-contention'));
+  } else assert.ok(memory.upgradeReload[1].attempt, 'reload preserves an issued boost before settlement');
   assert.ok(rows.some(row => row.boosting.includes(first.slots[6].unit)), 'renewal completion schedules boost');
   assert.equal(last.units[6].boost, 42, 'native boost changes work body parts');
   assert.deepEqual(last.boosting, [], 'observed boost settles pending rotation state');
