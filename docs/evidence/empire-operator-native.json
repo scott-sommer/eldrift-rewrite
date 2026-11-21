@@ -86,6 +86,26 @@
         "repeat clear makes no write",
         "ordinary production and reset regression remains green"
       ]
+    },
+    {
+      "scenario": "--lab-empire (resolved legacy target preset)",
+      "source": "ac2164af09e7b800f65a3167497a9443c17a6404",
+      "rawFile": "docs/evidence/traces/empire-operator/legacy-preset.json",
+      "rawSha256": "34cf6989ba203f70ba5e4aee78e6767e512c9fb7b3dc9679fba929a0d5a3e191",
+      "rowsFile": "docs/evidence/traces/empire-operator/legacy-preset.jsonl",
+      "rowsSha256": "1a392267861db7f2c7ccff733c2b512ebb189a6ad5e00d4ee6ee1b8281b0da99",
+      "rows": 640,
+      "provenance": {
+        "commit": "ac2164af09e7b800f65a3167497a9443c17a6404",
+        "dirty": false,
+        "bundleSha256": "6876730d4ec22621becf263c5a83ce5d5817a5809500f7114c5a24da354e8caf",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "scope": "Fixed preset targets explicitly zero; symbolic BOOST resolved to UH2O15; ordinary two-room allocation/production, resets, operator conflict/clear checks and final settlement pass"
     }
   ]
 }

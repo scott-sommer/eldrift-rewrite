@@ -2976,8 +2976,8 @@
     "file": "resourceManager.js",
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
-    "reviewStatus": "Shared target/operator boundaries source-reviewed; symbolic BOOST/default target template and absolute global disable semantics remain explicit obligations",
-    "implementationStatus": "partial: local chains/shared production and public shared-policy controls qualified, including atomic conflict refusal and inherited clears; legacy default targets/symbolic upgrade target, absolute disable under overrides, terminal/market and release gates remain open",
+    "reviewStatus": "Default target ordering and symbolic BOOST explicitly ported through a pure opt-in preset; absolute disable and migration/policy differences remain",
+    "implementationStatus": "partial: local/shared chains, shared operator policy and resolved legacy target preset qualified; legacy-memory import, dynamic upgradeBoost tracking, intermediate terminal-count floors, absolute disable under room overrides, specialist/terminal/release gates remain",
     "evidence": [
       "docs/industry-lab-production.md",
       "docs/boost-lab-allocation.md",
@@ -3044,7 +3044,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
-      "required": "Retain explicit disposition for legacy default compound targets and symbolic BOOST/upgradeBoost mapping, absolute labsDisabled under room overrides, specialist producers, terminal coordination, evacuation/recapture, pressure and migration/release gates",
+      "required": "Preserve explicit disposition for legacy-memory import, dynamic upgradeBoost tracking, duplicate target priority limitations, terminal-count intermediate floors, absolute labsDisabled under room overrides, specialist producers, terminal/evacuation/recapture, pressure and migration/release gates",
       "tests": [
         "test/capabilities/lab-production.test.ts",
         "test/features/lab-production.test.ts",
@@ -3053,7 +3053,8 @@
         "test/engine/lab-chain-cycle.ts",
         "test/features/operator-lab-empire.test.ts",
         "test/engine/lab-empire-operator.ts",
-        "test/engine/lab-empire-cycle.ts"
+        "test/engine/lab-empire-cycle.ts",
+        "test/features/legacy-production-targets.test.ts"
       ],
       "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
       "sharedOperatorSources": [
