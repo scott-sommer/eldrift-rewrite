@@ -8,9 +8,14 @@ export type StartupProjectOrder = 'final-return' | 'payback';
 export function chooseStartupProject(alternatives: readonly StartupProjectAlternative[], horizon: number, policy: StartupReturnPolicy, order: StartupProjectOrder) {
   validateChoice(alternatives,horizon,policy,order);
   const assessments = alternatives.map(item => ({ id: item.id,...assessStartupProject(item.result,horizon,policy,item.requiredBirths) }));
+  return chooseAssessedStartupProjects(assessments,order);
+}
+/** Callers retain responsibility for policy, horizon and evidence freshness. */
+export function chooseAssessedStartupProjects(assessments: readonly Assessment[], order: StartupProjectOrder) {
+  if (!['final-return','payback'].includes(order)) throw new Error('Invalid startup choice order');
   const eligible = assessments.filter(item => item.accepted);
   eligible.sort((a,b) => compare(a,b,order));
-  return { selected: eligible[0]?.id ?? null,assessments };
+  return { selected: eligible[0]?.id ?? null,assessments: assessments.map(item => ({ ...item,rejected: [...item.rejected] })) };
 }
 function validateChoice(alternatives: readonly StartupProjectAlternative[], horizon: number, policy: StartupReturnPolicy, order: StartupProjectOrder): void {
   validateStartupReturnPolicy(policy);

@@ -1,3 +1,4 @@
+import { createStartupCandidateCatalog } from '../../src/features/remotes/startup/candidates/catalog';
 import { createNativeStartupProjection } from '../../src/app/remotes/startup/projection/native';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
 import { decodeStartupPlanningInput } from '../../src/features/remotes/startup/planning/input';
@@ -31,12 +32,21 @@ export function resumeNativeProjection(state: StatePort): void {
   const query = { ...job,tick: Game.time,input: decodeStartupPlanningInput(job.input) }, before = JSON.stringify(Memory.eldrift);
   if (job.checkpoint.tick === query.input.project.spawning.cash.horizon+1) {
     proof.assessment = owner.assess(query,returnPolicy());
+    const catalog = createStartupCandidateCatalog(state,'W0N1');
+    proof.candidateChoice = catalog.choose([{ id: 'finite-cohort',query }],returnPolicy(),'final-return');
+    proof.candidateRevision = catalog.read().revision;
+    proof.expiredCandidateAbsent = catalog.lookup('finite-cohort',{ ...query,tick: query.expiresAt+1 },returnPolicy()) === undefined;
     proof.expiredAssessmentAbsent = owner.assess({ ...query,tick: query.expiresAt+1 },returnPolicy()) === undefined;
     proof.readOnly = !!owner.result(query) && before === JSON.stringify(Memory.eldrift); return;
   }
   const result = owner.advance({ ...query,expectedRevision: record.revision },500), after = owner.read();
   (proof.steps as unknown[]).push({ tick: Game.time,through: after.job!.checkpoint.tick,revision: after.revision,status: result.status });
-  if (result.status === 'complete') proof.result = result.result;
+  if (result.status === 'complete') {
+    proof.result = result.result;
+    const captured = createStartupCandidateCatalog(state,'W0N1').capture('finite-cohort',query,returnPolicy(),0);
+    if (captured !== 'saved') throw new Error('Expected completed native candidate capture');
+    proof.candidateCapturedAt = Game.time;
+  }
 }
 
 function returnPolicy() { return { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: 1500,maximumHouseholdCapital: 100000 }; }
