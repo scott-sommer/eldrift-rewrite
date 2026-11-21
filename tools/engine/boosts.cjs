@@ -4,13 +4,13 @@ const { reloadStampDraft } = require('./stamp-draft.cjs');
 async function boostWorld(server,bot,mode) {
   await server.world.setTerrain('W0N1',new TerrainMatrix());
   const { db } = await server.world.load();
-  await db['rooms.objects'].update({ room: 'W0N1',type: 'controller' },{ $set: { level: mode === 'coexist' ? 7 : 6,progress: 0,x: 20,y: 23,downgradeTime: 20000 } });
+  await db['rooms.objects'].update({ room: 'W0N1',type: 'controller' },{ $set: { level: ['coexist','paused'].includes(mode) ? 7 : 6,progress: 0,x: 20,y: 23,downgradeTime: 20000 } });
   const stock = mode === 'contention' ? 120 : 60, energy = mode === 'multi' ? 60 : stock/30*20;
   await server.world.addRoomObject('W0N1','storage',20,18,{ user: bot.id,store: { energy: 100000,XGH2O: mode === 'supply' ? 60 : 0,ZO: 30 },storeCapacity: 1000000,hits: 10000,hitsMax: 10000 });
   const mineral = mode === 'supply' ? { K: 10 } : mode === 'expiry' ? {} : mode === 'alias' ? { GH2O: stock } : { XGH2O: stock };
   await server.world.addRoomObject('W0N1','lab',17,20,{ user: bot.id,store: { ...mineral,energy: ['supply','expiry'].includes(mode) ? 0 : energy },
     storeCapacityResource: { ...Object.fromEntries(Object.keys(mineral).map(resource => [resource,3000])),energy: 2000 },storeCapacity: Object.keys(mineral).length ? null : 5000,hits: 500,hitsMax: 500,cooldownTime: 0 });
-  if (mode === 'coexist') for (const [x,y,resource] of [[16,21,'H'],[18,21,'O'],[17,22,null]]) {
+  if (['coexist','paused'].includes(mode)) for (const [x,y,resource] of [[16,21,'H'],[18,21,'O'],[17,22,null]]) {
     const store = resource ? { [resource]: 10 } : {};
     await server.world.addRoomObject('W0N1','lab',x,y,{ user: bot.id,store,storeCapacityResource: { energy: 2000,...(resource ? { [resource]: 3000 } : {}) },
       storeCapacity: resource ? null : 5000,hits: 500,hitsMax: 500,cooldownTime: 0 });
@@ -56,6 +56,11 @@ function verifyBoosts(memory,mode,evidence) {
   } else assert.ok(last.units.every(unit => unit.ready && unit.status === 'confirmed'));
   assert.ok(evidence.boosts.queue.data.jobs.every(job => job.lab === null && job.attempt === null));
   assert.equal(records['quantity-reservations/empire']?.data.claims.filter(claim => claim.scope.startsWith('boost:')).length ?? 0,0);
+  if (mode === 'paused') {
+    assert.equal(last.bankOH,0); assert.ok(rows.every(row => !row.reactionLabs.length));
+    assert.deepEqual(records['industry-reaction-control/empire'].data,{ paused: true });
+    assert.equal(records['operator/config'].data.empire.labReactionsEnabled,true);
+  }
   if (mode === 'coexist') {
     assert.equal(last.bankOH,10,'Ordinary reactions continue alongside the reserved boost');
     for (const row of rows) for (const unit of row.units) if (unit.lab && ['pending','issued'].includes(unit.status)) assert.ok(!row.reactionLabs.includes(unit.lab),'Boost-reserved lab cannot belong to reaction topology');
