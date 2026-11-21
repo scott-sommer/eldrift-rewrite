@@ -1,6 +1,6 @@
 # Configurable boosted builder recipe (ED-36)
 
-Legacy spawner.js824–833 at baseline f2bbf7e8 selects20WORK/20CARRY/10MOVE when configured labs list XZHO2/XLH2O/XKH2O. The portable builderBody(budget,true) recipe already existed in the rewrite, but ordinary worker recruitment never selected it. This checkpoint wires that capability through the ordinary worker population owner and existing birth-boost contract pipeline.
+Legacy spawner.js824â€“833 at baseline f2bbf7e8 selects20WORK/20CARRY/10MOVE when configured labs list XZHO2/XLH2O/XKH2O. The portable builderBody(budget,true) recipe already existed in the rewrite, but ordinary worker recruitment never selected it. This checkpoint wires that capability through the ordinary worker population owner and existing birth-boost contract pipeline.
 
 Set workerBuilderRecipe:'boosted', workerBoostPolicy:'required' and workerBodyBudget at least3500. The recipe costs3500energy, has50parts and a150tick spawn duration. Default workerBuilderRecipe:'standard' preserves current standard builder behavior. Config resolution refuses the optimized recipe with off/optional boost policy or an unknown recipe. Budget below3500 produces no large-builder demand; it does not silently fall back to an unboosted body.
 
@@ -19,3 +19,7 @@ Next native qualification must provide enough owned active spawn/extension energ
 ## Rollback
 
 No memory schema changes. The new workerBuilderRecipe key must be removed from every persisted layer before loading older validators. Keep current code to settle or deliberately cancel queued/incubating boost-contracted births and adopted jobs under existing acknowledgement/claim/journal rules. Preserve actual50part actors and their admitted work; no body can be resized by configuration rollback. Older spawning schema3/birth metadata/boost-role and industry rollback obligations still apply. Cross-version rehearsal remains required.
+
+Source checkpoint `aaf56c462d1520913c022d052da1eaa90ffc95bb` passes full 1,977 unit tests / 484 files in 12.84 seconds. Type/lint/boundary checks and pinned Lizard 1.22.2 pass with 899 production / 751 test files and zero violations; bundle passes. Focused+smoke 17 / 5 files pass in 0.288 seconds before an unused test-fixture port was removed; full final checks cover that cleanup. Processor comparisons pass 4 in 0.199 seconds and report validation 1 in 0.1268482 seconds. Exact-source [CI 44853401725](https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44853401725) passes Windows/Linux with all six required steps.
+
+Five clean existing native regressions pass: required worker boost, required shortage, optional fallback, standard builder profile and packaged smoke. The [manifest](evidence/boosted-builder-recipe.json) retains source/raw/row hashes and full hosted results. These regressions do not qualify the optimized 50-part native path. Registry 279 was not fully rerun. Historical integrity verifies 454 trace archives including failures; this is not 454 scenario passes. Source inventory now records the composed builder responsibility separately and keeps spawner/booster/lab/resource-manager module parity partial.
