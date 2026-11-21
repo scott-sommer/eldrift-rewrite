@@ -24,5 +24,10 @@ function validateTarget(target: ProductionTarget,recipe: RecipeLookup): void {
 
 export function validateProductionTargets(targets: readonly ProductionTarget[],recipe: RecipeLookup): void {
   if (targets.length > 16 || new Set(targets.map(target => target.product)).size !== targets.length) throw new Error('Invalid production targets');
+  validateProductionThresholds(targets,recipe);
+}
+
+export function validateProductionThresholds(targets: readonly ProductionTarget[],recipe: RecipeLookup): void {
+  if (targets.length > 16) throw new Error('Invalid production thresholds');
   targets.forEach(target => validateTarget(target,recipe));
 }

@@ -21,3 +21,11 @@ test('operator preset uses injected native catalog without writing policy or sta
   expect(api.configureEmpire({ labProductionTargets: targets }).changed).toBe(true);
   expect(api.inspectEmpire().values.labReactionsEnabled).toBe(false);
 });
+
+test('legacy policy explicitly preserves colliding upgrade threshold priority while leaving ordinary targets unique',() => {
+  const memory = {}, state = createMemoryPort(() => memory), api = createEmpireLabOperator(state,{ clock: () => 1,homes: () => [],productSupported: () => true });
+  const policy = api.legacyPolicy({ upgradeProduct: 'XZHO2' });
+  expect(policy.labProductionThresholds.filter(target => target.product === 'XZHO2').map(target => [target.amount,target.priority])).toEqual([[50000,0],[200000,7]]);
+  expect(policy).toMatchObject({ labProductionPolicy: 'thresholds',labIntermediateBase: 1000,labIntermediatePerTerminal: 1000 }); expect(memory).toEqual({});
+  expect(api.configureEmpire(policy).changed).toBe(true); expect(() => api.legacyTargets({ upgradeProduct: 'XZHO2' })).toThrow('legacyPolicy');
+});

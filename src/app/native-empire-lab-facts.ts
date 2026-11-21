@@ -1,3 +1,4 @@
+import { configuredProductionTargets } from '../features/industry/production-policy';
 import { lostEmpireRoomSettled } from './native-empire-loss';
 import type { LabConfig } from '../config/labs';
 import type { StatePort } from '../persistence/versioned-state';
@@ -22,7 +23,7 @@ export function idleEmpireProduction(state: StatePort,home: string) {
 }
 export function empireLabSnapshot(state: StatePort,room: Room,settings: Readonly<LabConfig>) {
   const config = nativeLabSettings(state,room.name,settings), inventory = nativeProductionInventory(state,room,config);
-  const product = config.labProductionTargets[0]?.product ?? '', reagents = reactionReagents(REACTIONS,product);
+  const product = configuredProductionTargets(config)[0]?.product ?? '', reagents = reactionReagents(REACTIONS,product);
   const topology = reagents ? assignReactionLabs(nativeReactionLabs(state,room,config.labReservedIds).physical,product,reagents) : null;
   return { home: room.name,inventory,ready: !!topology && empireRoomSettled(state,room.name),
     options: { batch: config.labProductionBatch,reactionAmount: LAB_REACTION_AMOUNT,inputReserve: config.labReagentReserve,maximumNodes: 1024 } };

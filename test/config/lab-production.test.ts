@@ -22,3 +22,11 @@ test('room production remains default and empire participation can be overridden
   expect(resolveConfig({},1).values.labProductionScope).toBe('room');
   expect(resolveConfig({ empire: { labProductionScope: 'empire' },roomOverride: { labProductionScope: 'room' } },1).values.labProductionScope).toBe('room');
 });
+
+test('threshold policy permits separate duplicate thresholds and snapshots them without weakening ordinary targets',() => {
+  const thresholds = [{ product: 'OH',amount: 10,priority: 0 },{ product: 'OH',amount: 20,priority: 2 }];
+  const config = resolveConfig({ empire: { labProductionPolicy: 'thresholds',labProductionThresholds: thresholds,labIntermediateBase: 10,labIntermediatePerTerminal: 5 } },1);
+  thresholds[0]!.amount = 100; expect(config.values.labProductionThresholds[0]!.amount).toBe(10); expect(Object.isFrozen(config.values.labProductionThresholds[0])).toBe(true);
+  expect(() => resolveConfig({ empire: { labProductionTargets: config.values.labProductionThresholds } },1)).toThrow('invalid');
+  for (const patch of [{ labProductionPolicy: 'unknown' },{ labIntermediateBase: -1 },{ labIntermediatePerTerminal: 0.5 }]) expect(() => resolveConfig({ empire: patch },1)).toThrow('invalid');
+});

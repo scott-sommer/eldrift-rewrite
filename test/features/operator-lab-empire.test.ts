@@ -41,3 +41,9 @@ test('future operator state refuses unchanged; caller edits of inspected targets
   f.port.write('operator/config',{ owner: 'operator',version: 2,data: {} }); const before = f.raw();
   expect(() => f.api.configureEmpire(policy)).toThrow('future'); expect(f.raw()).toBe(before);
 });
+
+test('shared threshold policy rejects participating room intermediate-policy conflicts before a write',() => {
+  const f = fixture(); f.port.write('operator/config',{ owner: 'operator',version: 1,data: { empire: { labReactionsEnabled: true,labProductionScope: 'empire',labProductionPolicy: 'thresholds',labProductionThresholds: [{ product: 'OH',amount: 15,priority: 0 }] },rooms: { W0N1: { override: { labIntermediateBase: 5 } } } } });
+  const before = f.raw(); expect(f.api.previewEmpire({ labProductionBatch: 50 })).toMatchObject({ ok: false,conflicts: ['W0N1'] });
+  expect(() => f.api.configureEmpire({ labProductionBatch: 50 })).toThrow('W0N1'); expect(f.raw()).toBe(before);
+});

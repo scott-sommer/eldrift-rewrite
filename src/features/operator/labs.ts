@@ -19,7 +19,7 @@ export function createLabOperator(state: StatePort,ports: LabOperatorPorts) {
 
   function patch(home: string,input: unknown): Partial<LabConfig> {
     const value = labPatch(input);
-    const products = [value.labReactionProduct,...(value.labProductionTargets ?? []).map(target => target.product)].filter((product): product is string => !!product);
+    const products = [value.labReactionProduct,...[...(value.labProductionTargets ?? []),...(value.labProductionThresholds ?? [])].map(target => target.product)].filter((product): product is string => !!product);
     if (products.some(product => !ports.productSupported(product))) throw new Error('Unsupported reaction product');
     if (value.labBoostRoles && !value.labBoostRoles.every(role => ports.boostSupported(role.resource) && ports.labs(home).some(lab => lab.id === role.lab))) throw new Error('Boost role requires an owned lab and compound');
     if (value.labBoostRoles?.some(role => ports.roleAllowed?.(home,role) === false)) throw new Error('Boost role conflicts with specialist lab ownership');

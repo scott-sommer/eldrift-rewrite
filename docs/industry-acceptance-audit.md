@@ -28,3 +28,7 @@ These are responsibilities within the existing backlog, not replacement or reduc
 Before closing ED-36, resolve its remaining production-policy obligations, consolidate the original criteria against exact current sources, run the relevant native industry/mineral/integration cases, and run `npm run test:full`. Dispatch Quality with `full_unit_suite=true` on that exact milestone source and inspect both OS full-unit steps. Routine CI smoke is not full-suite evidence. Keep the broad goal active through remaining backlog, parity, layout and release gates.
 
 For the current evidence-gap increment, smoke 76/15 files in0.477s, quality906 production/774 test files with zero Lizard violations and suite-report1/.1248974s pass. The corrected pipeline source also passes native colony-mineral and mineral-transport regressions plus routine Windows/Linux CI44879311033, whose full-unit steps are skipped. Full units were not run for this incomplete milestone; no closure prerequisite is claimed satisfied.
+
+## Production-policy implementation follow-up
+
+The [threshold policy](industry-stock-policy.md) now implements the identified separation of intermediate stock demands and final thresholds, including configurable terminal scaling and duplicate-product priority boundaries. Native shared/local/priority validation is pending at this implementation checkpoint. Do not mark the preceding original-scope gates complete from portable tests alone; consolidated milestone/full-suite and downstream obligations remain required.
