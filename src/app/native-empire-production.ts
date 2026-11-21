@@ -1,3 +1,4 @@
+import { maintainLostEmpireSupply } from './native-empire-loss';
 import type { StatePort } from '../persistence/versioned-state';
 import type { LabConfig } from '../config/labs';
 import { createEmpireProductionStore } from '../features/industry/empire-production/store';
@@ -15,11 +16,12 @@ export function createNativeEmpireProduction(state: StatePort,configuration: (ho
     const participants = entries.filter(item => item.config.labProductionScope === 'empire' && item.config.labReactionsEnabled);
     if (!participants.length && !store.list().length) { tick = Game.time; windows = []; return; }
     if (participants.some(item => JSON.stringify(item.config.labProductionTargets) !== JSON.stringify(policy.labProductionTargets))) throw new Error('Empire production targets must match shared empire policy');
+    maintainLostEmpireSupply(state,store.list().map(window => window.home));
     const snapshots = entries.map(item => ({ ...empireLabSnapshot(state,item.room,item.config),participating: participants.includes(item) }));
     const stock: Record<string,number> = {};
     for (const snapshot of snapshots) for (const [resource,amount] of Object.entries(snapshot.inventory.total)) stock[resource] = (stock[resource] ?? 0)+amount;
     windows = coordinateEmpireProduction(store,{ context: JSON.stringify(['empire-production/1',policy.labProductionTargets,participants.map(item => [item.room.name,item.config.labProductionBatch,item.config.labReagentReserve,item.config.labSupplyReserve]).sort()]),
-      targets: policy.labProductionTargets,stock,rooms: snapshots.filter(item => item.participating),visible: new Set(owned.map(room => room.name)),maximumNodes: 10000 },product => reactionReagents(REACTIONS,product));
+      targets: policy.labProductionTargets,stock,rooms: snapshots.filter(item => item.participating),visible: new Set(Object.keys(Game.rooms)),maximumNodes: 10000 },product => reactionReagents(REACTIONS,product));
     tick = Game.time;
   }
   return (home: string) => {

@@ -29,3 +29,10 @@ test('unseen commitments are preserved and freeze new admissions even if policy 
   const f = fixture(); f.run(); f.input.visible.delete('W1N1'); f.input.rooms = f.input.rooms.filter(room => room.home !== 'W1N1'); f.input.context = 'new'; f.settled.add('W0N1');
   const remaining = f.run(); expect(remaining).toHaveLength(1); expect(remaining[0]).toMatchObject({ home: 'W1N1',context: 'policy',retiring: true,remaining: 5 });
 });
+
+test('a visible nonparticipant with confirmed settlement retires/releases rather than freezing admission as unseen',() => {
+  const f = fixture(); f.run(); f.input.rooms = f.input.rooms.filter(room => room.home !== 'W1N1'); f.settled.add('W1N1');
+  expect(f.run().map(window => window.home)).toEqual(['W0N1']);
+  f.input.rooms[0]!.inventory.total.OH = 10; f.input.stock.OH = 10; f.settled.add('W0N1');
+  const next = f.run(); expect(next).toHaveLength(1); expect(next[0]).toMatchObject({ home: 'W0N1',amount: 5,remaining: 5,retiring: false });
+});
