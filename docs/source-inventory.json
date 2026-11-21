@@ -61,13 +61,17 @@
     "sha256": "F0A8EB8822CD221227FD3C511546C732B43FED145B035835AD31511C76A32D2C",
     "physicalLines": 163,
     "reviewStatus": "boost orchestration, nine alias/tier mappings and remote-upgrader exception reviewed; producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: ordinary reaction/boost paths, configured compound roles with preload/refill and safe retirement qualified; automatic/bulk legacy allocation, specialist/empire parity remain open",
+    "implementationStatus": "partial: ordinary reaction chains, boost/birth gating, configured/automatic/bulk role allocation and shared empire production with ownership/vision/intel lifecycle evidence; specialists, optimized producers, legacy control dispositions and release gates remain open",
     "evidence": [
       "docs/industry-boosts.md",
       "docs/industry-boost-births.md",
       "docs/worker-boost-policy.md",
       "docs/operator-boosts.md",
-      "docs/industry-boost-lab-roles.md"
+      "docs/industry-boost-lab-roles.md",
+      "docs/boost-lab-allocation.md",
+      "docs/bulk-lab-allocation.md",
+      "docs/empire-lab-production.md",
+      "docs/boosted-builder-recipe.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -102,7 +106,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "312792f703afa219a2b465cb8b3a5525e55d23d2",
-      "required": "Bulk owned-room allocation and legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
+      "required": "Audit remaining legacy control and specialist producers; native optimized-builder body/boost execution and broader evacuation/recapture/terminal/pressure/migration/release evidence remain required",
       "tests": [
         "test/capabilities/boost-observation.test.ts",
         "test/features/boost-requests.test.ts",
@@ -122,7 +126,7 @@
         "test/config/lab-boost-roles.test.ts",
         "test/engine/boost-role-cycle.ts"
       ],
-      "status": "partial; native configured-role preload/refill, in-flight switch/removal, reaction exclusion and reload qualified; not full module parity"
+      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity"
     }
   },
   {
@@ -1732,7 +1736,7 @@
     "sha256": "B85E0033C2036A428674E548CA312BF14AC5FE53A28510701904891037195989",
     "physicalLines": 224,
     "reviewStatus": "reaction, transport, local chain, boost ownership and per-room operator policy reviewed; bulk/legacy lab role aliases and empire allocation retained as open obligations",
-    "implementationStatus": "partial: reaction/boost ownership, role preload/retirement and per-room topology-preserving nearest-spawn automatic allocation qualified; bulk/legacy console/empire parity remains open",
+    "implementationStatus": "partial: ordinary reaction chains, boost/birth gating, configured/automatic/bulk role allocation and shared empire production with ownership/vision/intel lifecycle evidence; specialists, optimized producers, legacy control dispositions and release gates remain open",
     "evidence": [
       "docs/industry-lab-reactions.md",
       "docs/industry-lab-transport.md",
@@ -1740,7 +1744,10 @@
       "docs/industry-boosts.md",
       "docs/operator-labs.md",
       "docs/industry-boost-lab-roles.md",
-      "docs/boost-lab-allocation.md"
+      "docs/boost-lab-allocation.md",
+      "docs/bulk-lab-allocation.md",
+      "docs/empire-lab-production.md",
+      "docs/boosted-builder-recipe.md"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1807,7 +1814,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "3262367684b01f2953a3ef53ff0394ce85d3450d",
-      "required": "Bulk owned-room allocation and legacy console compatibility, specialists, optimized boosted bodies, empire allocation and wider lifecycle/release evidence remain required",
+      "required": "Audit remaining legacy control and specialist producers; native optimized-builder body/boost execution and broader evacuation/recapture/terminal/pressure/migration/release evidence remain required",
       "tests": [
         "test/capabilities/lab-reactions.test.ts",
         "test/features/lab-reaction-claims.test.ts",
@@ -1839,7 +1846,7 @@
         "test/engine/boost-role-automatic-bot.ts",
         "test/engine/boost-role-refused-bot.ts"
       ],
-      "status": "partial; native automatic allocation/preload/boost/refill and infeasible no-write refusal qualified alongside prior role/reaction evidence; not full module parity"
+      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity"
     }
   },
   {
@@ -2970,9 +2977,13 @@
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
     "reviewStatus": "local target/dependency/reaction and stock policies reviewed; empire/boost/operator obligations retained",
-    "implementationStatus": "partial: local prioritized chain planning and native production qualified; empire allocation and boost/operator parity remain open",
+    "implementationStatus": "partial: ordinary reaction chains, boost/birth gating, configured/automatic/bulk role allocation and shared empire production with ownership/vision/intel lifecycle evidence; specialists, optimized producers, legacy control dispositions and release gates remain open",
     "evidence": [
-      "docs/industry-lab-production.md"
+      "docs/industry-lab-production.md",
+      "docs/boost-lab-allocation.md",
+      "docs/bulk-lab-allocation.md",
+      "docs/empire-lab-production.md",
+      "docs/boosted-builder-recipe.md"
     ],
     "plannedIssues": [
       "ED-13",
@@ -3032,7 +3043,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
-      "required": "Empire-wide target allocation, boost resource/confirmation, operator controls and wider recovery/release evidence remain required",
+      "required": "Audit remaining legacy control and specialist producers; native optimized-builder body/boost execution and broader evacuation/recapture/terminal/pressure/migration/release evidence remain required",
       "tests": [
         "test/capabilities/lab-production.test.ts",
         "test/features/lab-production.test.ts",
@@ -3040,7 +3051,7 @@
         "test/config/lab-production.test.ts",
         "test/engine/lab-chain-cycle.ts"
       ],
-      "status": "partial; local native multistage chains/priority/reserves/reset qualified; not full module parity"
+      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity"
     }
   },
   {
@@ -5661,8 +5672,8 @@
     "file": "spawner.js",
     "sha256": "E4904EA6AB199A064B71BEDF81F60E0DBD5E1A821A9B01AEF0924A05DADFF5B8",
     "physicalLines": 2766,
-    "reviewStatus": "static inventory complete; individual behavior review pending",
-    "implementationStatus": "not ported",
+    "reviewStatus": "static inventory complete; builder recipe824\u2013833 and existing shared spawning responsibilities reviewed; remaining individual role/mission paths still require review",
+    "implementationStatus": "partial: shared spawn/recruitment and selected recipes implemented; boosted builder now composed with required whole-kit policy; specialist and full module parity remain open",
     "evidence": [
       "docs/remotes.md",
       "docs/evidence/remote-reservation-engine-suite.json",
@@ -5920,7 +5931,7 @@
       "commit": null,
       "required": "behavior fixture plus relevant contract/engine scenario",
       "tests": [],
-      "status": "not implemented"
+      "status": "partial; selected recipes/recruitment have evidence, not full spawner module parity"
     },
     "responsibilityEvidence": {
       "ordinaryRemoteWorkforce": {
@@ -5936,6 +5947,16 @@
         "evidence": "docs/evidence/remote-fleet-native.json",
         "fullNativeSuite": "docs/evidence/remote-fleet-engine-suite.json",
         "reference": "docs/remote-fleet.md"
+      },
+      "boostedBuilder": {
+        "owner": "capabilities/spawning worker recipes + features/work population + industry boost policy",
+        "status": "Ordinary producer now selects explicit3500energy/50part recipe with required top-tier whole-kit contract. Unit/quality checks pass; native50part optimized-builder execution pending.",
+        "evidence": "docs/boosted-builder-recipe.md",
+        "tests": [
+          "test/features/boosted-builder-policy.test.ts",
+          "test/config/worker-boosts.test.ts",
+          "test/capabilities/worker-recipes.test.ts"
+        ]
       }
     }
   },

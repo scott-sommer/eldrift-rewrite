@@ -9,7 +9,7 @@ export function maintainNativeWorkers(state: StatePort, room: Room, config: Read
   const existing = units.some(unit => unit.room === room.name && isWorkOwner(unit.owner, room.name));
   const budget = Math.min(config.workerBodyBudget, existing ? room.energyCapacityAvailable : room.energyAvailable);
   const selectBirthBoost = nativeWorkerBirthBoosts(state,room,config);
-  reconcileWorkerPopulation(state, { room: room.name, level: room.controller!.level, budget,
+  reconcileWorkerPopulation(state, { room: room.name,builderRecipe: config.workerBuilderRecipe, level: room.controller!.level, budget,
     enabled: config.workersEnabled && config.workerSpawningEnabled, fallback: config.workerMode,...(selectBirthBoost ? { selectBirthBoost } : {}),
     targets: { builder: config.workerBuilderTarget, fortifier: config.workerFortifierTarget, upgrader: recoveryActive ? 0 : config.workerUpgraderTarget } }, units, Game.time);
 }

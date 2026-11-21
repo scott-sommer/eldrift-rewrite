@@ -1,3 +1,4 @@
+import { validateWorkerBoostConfig } from './worker-boosts';
 import { defaults } from './model';
 import type { ConfigInput, ConfigKey, ConfigLayer, EffectiveConfig } from './model';
 import { validatePatch } from './validation';
@@ -27,5 +28,6 @@ export function resolveConfig(input: ConfigInput, tick: number): EffectiveConfig
   if (values.upgradeFleetStopEnergy >= values.upgradeFleetStartEnergy) throw new Error('Upgrade fleet stop must be below start energy');
   if (values.recoveryEnterEnergy >= values.recoveryExitEnergy) throw new Error('Recovery entry must be below exit energy');
   if (values.terminalEnergyLow >= values.terminalEnergyHigh) throw new Error('terminalEnergyLow must be below terminalEnergyHigh');
+  validateWorkerBoostConfig(values);
   return { values: Object.freeze(values), sources: Object.freeze(sources) };
 }
