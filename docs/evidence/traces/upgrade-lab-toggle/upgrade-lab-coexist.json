@@ -1,0 +1,3346 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-QVaDXy",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 301.1576,
+      "cpuMilliseconds": 55,
+      "memoryBytes": 3097
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 34.81599999999992,
+      "cpuMilliseconds": 14,
+      "memoryBytes": 9992
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 27.667699999999968,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 11020
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 27.903599999999983,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 12229
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 27.093600000000038,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 13439
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 23.686300000000074,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 14649
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 93.27369999999996,
+      "cpuMilliseconds": 50,
+      "memoryBytes": 15932
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 26.626199999999926,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 17142
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 24.83529999999996,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 18359
+    },
+    {
+      "tick": 11,
+      "wallMilliseconds": 26.01839999999993,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 19601
+    },
+    {
+      "tick": 12,
+      "wallMilliseconds": 29.071899999999914,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 20812
+    },
+    {
+      "tick": 13,
+      "wallMilliseconds": 27.001899999999978,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 22023
+    },
+    {
+      "tick": 14,
+      "wallMilliseconds": 30.605000000000018,
+      "cpuMilliseconds": 14,
+      "memoryBytes": 23241
+    },
+    {
+      "tick": 15,
+      "wallMilliseconds": 29.16009999999983,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 24495
+    },
+    {
+      "tick": 16,
+      "wallMilliseconds": 88.26740000000018,
+      "cpuMilliseconds": 50,
+      "memoryBytes": 25711
+    },
+    {
+      "tick": 17,
+      "wallMilliseconds": 27.24739999999997,
+      "cpuMilliseconds": 11,
+      "memoryBytes": 26901
+    },
+    {
+      "tick": 18,
+      "wallMilliseconds": 27.480399999999918,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 28091
+    },
+    {
+      "tick": 19,
+      "wallMilliseconds": 25.831500000000005,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 29281
+    },
+    {
+      "tick": 20,
+      "wallMilliseconds": 27.88480000000004,
+      "cpuMilliseconds": 11,
+      "memoryBytes": 30471
+    },
+    {
+      "tick": 21,
+      "wallMilliseconds": 27.916300000000092,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 31661
+    },
+    {
+      "tick": 22,
+      "wallMilliseconds": 24.44600000000014,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 32851
+    },
+    {
+      "tick": 23,
+      "wallMilliseconds": 27.591700000000174,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 34390
+    },
+    {
+      "tick": 24,
+      "wallMilliseconds": 26.656000000000176,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 35203
+    },
+    {
+      "tick": 25,
+      "wallMilliseconds": 27.59349999999995,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 36397
+    }
+  ],
+  "provenance": {
+    "commit": "473595d47d106edb860e8cae927c3e6143b1847b",
+    "dirty": false,
+    "bundleSha256": "32dac495ebe087d264ccb1005a80ff27ad908c6d380874fd0e8cb5f9bebdce2f",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "473595d47d106edb860e8cae927c3e6143b1847b",
+    "dirty": false,
+    "bundleSha256": "8cfa8167f98b16c58fbf628860acb2cb929bc7961e3bd5ebac0927f57ab372e0",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "upgradeRoom": {
+    "shortage": false,
+    "contention": false,
+    "coexist": true,
+    "toggle": false,
+    "rows": [
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 10,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 10,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 1,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 0,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1449,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1199,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 999,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 799,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 599,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 399,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1379,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 10,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 10,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 2,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 294,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1448,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1198,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 998,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 798,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 598,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 398,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1390,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 19
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 3,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 588,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1447,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1197,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 997,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 797,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 597,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 397,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1401,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 18
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 4,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 882,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1446,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1196,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 996,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 796,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 596,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 396,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1412,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 17
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 5,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 1176,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1445,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1195,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 995,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 795,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 595,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 395,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1423,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 16
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 6,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 1470,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1444,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1194,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 994,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 794,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 594,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 394,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1434,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 15
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 7,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 1764,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1443,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1193,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 993,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 793,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 593,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 393,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1445,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 14
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 8,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2058,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1442,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1192,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 992,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 792,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 592,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 392,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1456,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 13
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 9,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2352,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1441,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1191,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 991,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 791,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 591,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 391,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1467,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 12
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 10,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2646,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1440,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1190,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 990,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 790,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 590,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 390,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1478,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 11
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 11,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2940,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1439,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1189,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 989,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 789,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 589,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 389,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1489,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 10
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 12,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 0
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 1
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 2
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 3
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 4
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 5
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 6
+          }
+        ],
+        "renewing": "0659c998afcb08f",
+        "boosting": [],
+        "retiring": [],
+        "progress": 3234,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1438,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1188,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 988,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 788,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 588,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 388,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1488,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 9
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 13,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [
+          "0659c998afcb08f"
+        ],
+        "retiring": [],
+        "progress": 3528,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1437,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1187,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 987,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 787,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 587,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 387,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1499,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 8
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": "XGH2O",
+            "amount": 1260,
+            "energy": 840,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 14,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [
+          "0659c998afcb08f"
+        ],
+        "retiring": [],
+        "progress": 3822,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1436,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1186,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 986,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 786,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 586,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 386,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1498,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 7
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 15,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 4116,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1435,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1185,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 985,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 785,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 585,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 385,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1497,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 6
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 16,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 4452,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1434,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1184,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 984,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 784,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 584,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 384,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1496,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 5
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 17,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 4788,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1433,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1183,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 983,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 783,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 583,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 383,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1495,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 4
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 18,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 5124,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1432,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1182,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 982,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 782,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 582,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 382,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1494,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 3
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 19,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 5460,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1431,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1181,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 981,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 781,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 581,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 381,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1493,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 2
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 20,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 5796,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1430,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1180,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 980,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 780,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 580,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 380,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1492,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 1
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 21,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 6132,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1429,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1179,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 979,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 779,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 579,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 379,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1491,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": "H",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": "O",
+            "amount": 5,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 22,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 6468,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1428,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1178,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 978,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 778,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 578,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 378,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1490,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 10,
+            "energy": 0,
+            "cooldown": 19
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 23,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 6804,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1427,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1177,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 977,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 777,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 577,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 377,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1489,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "enabled": true,
+        "boostLab": "3d03c998afca364",
+        "reactionLabs": [
+          "7dbcc998afc6e72",
+          "d25dc998afde817",
+          "ed04c998afa8ba0"
+        ],
+        "labs": [
+          {
+            "id": "ed04c998afa8ba0",
+            "active": true,
+            "mineral": "OH",
+            "amount": 10,
+            "energy": 0,
+            "cooldown": 18
+          },
+          {
+            "id": "7dbcc998afc6e72",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "3d03c998afca364",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          },
+          {
+            "id": "d25dc998afde817",
+            "active": true,
+            "mineral": null,
+            "amount": 0,
+            "energy": 0,
+            "cooldown": 0
+          }
+        ],
+        "blocked": false,
+        "tick": 24,
+        "slots": [
+          {
+            "unit": "7637c998afaab93",
+            "slot": 1
+          },
+          {
+            "unit": "bd1cc998afa711e",
+            "slot": 2
+          },
+          {
+            "unit": "7044c998afbdf5c",
+            "slot": 3
+          },
+          {
+            "unit": "40e1c998afb3e4b",
+            "slot": 4
+          },
+          {
+            "unit": "7c7ec998afbec59",
+            "slot": 5
+          },
+          {
+            "unit": "2460c998afb965d",
+            "slot": 6
+          },
+          {
+            "unit": "0659c998afcb08f",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 7140,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1426,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1176,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 976,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 776,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 576,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 376,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1488,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      }
+    ],
+    "reloads": [
+      {
+        "tick": 7,
+        "renewing": "0659c998afcb08f",
+        "attempt": null
+      },
+      {
+        "tick": 15,
+        "renewing": null,
+        "attempt": {
+          "unit": "0659c998afcb08f",
+          "tick": 14,
+          "before": 0,
+          "unavailable": false
+        }
+      }
+    ]
+  },
+  "childPids": [
+    77772,
+    83488,
+    78424
+  ]
+}
