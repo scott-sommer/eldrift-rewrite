@@ -19,3 +19,5 @@ Clean selected-startup native150ticks passes/errors/messages empty. Real pre-bir
 The game itself ran150ticks and actual remote income is0. Modeled12356 is not realized income, and the planning-only root is not default runtime adoption. Household/refill/other workforce schedules and realized same-strategy lifetime calibration remain open; do not treat the positive counterfactual as full startup qualification. No full-unit/full-native-registry run was performed for this incremental checkpoint.
 
 [Archived evidence](evidence/startup-schedules.json) retains exact raw native bytes,150 measurement rows,150 pipeline rows and five schedule progress rows. Verify with `python -X utf8 tools/evidence/verify_archives.py docs/evidence/startup-schedules.json --published`. ED-29 remains In Progress and ED-44's full rollback/release gate is unexecuted.
+
+The next [pickup-bound redistribution component and integration plan](remote-startup-redistribution.md) now specifies/tests physical household cargo and worker occupancy. It is not yet wired into project funding; existing declared refills still do not represent pickup/in-flight state.
