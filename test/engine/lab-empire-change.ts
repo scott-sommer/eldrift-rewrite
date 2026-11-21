@@ -1,7 +1,6 @@
 import { industry } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
-import { openState, saveState, peekState } from '../../src/persistence/versioned-state';
-import { operatorSchema } from '../../src/features/operator/state';
+import { peekState } from '../../src/persistence/versioned-state';
 import { logisticsQueueSchema } from '../../src/features/logistics/request-schema';
 import { labServiceOwner } from '../../src/features/industry/lab-services';
 import { createEmpireProductionStore } from '../../src/features/industry/empire-production/store';
@@ -21,9 +20,9 @@ export function changeEmpirePolicy(mode: 'normal' | 'policy' | 'participant'): v
   Memory.empirePolicyChange = { tick: Game.time,mode,cargo,receipts: labReceiptTotal('W0N1'),oldWindow,oldRoot,oldHomeRoot };
   if (mode === 'participant') industry.labs.configure('W0N1',{ labProductionScope: 'room',labReactionsEnabled: false });
   else {
-    const settings = openState(state,'operator/config',operatorSchema);
-    settings.empire = { ...settings.empire as object,labProductionTargets: [{ product: 'UH',amount: 15,priority: 0 }] };
-    saveState(state,'operator/config',operatorSchema,settings);
+    const policy = { labProductionTargets: [{ product: 'UH',amount: 15,priority: 0 }] };
+    if (!industry.labs.previewEmpire(policy).ok || !industry.labs.configureEmpire(policy).changed) throw new Error('Shared lab operator policy change failed');
+    if (JSON.stringify(industry.labs.inspectEmpire().values.labProductionTargets) !== JSON.stringify(policy.labProductionTargets)) throw new Error('Shared lab operator inspection failed');
   }
 }
 function rootStock(home: string): number {

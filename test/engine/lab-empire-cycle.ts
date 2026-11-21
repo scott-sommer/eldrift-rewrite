@@ -13,10 +13,11 @@ const state = createMemoryPort(() => Memory);
 export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 'loss' | 'intel'): void {
   if (!Memory.empireProductionRows) {
     const settings = openState(state,'operator/config',operatorSchema);
-    settings.empire = { logisticsEnabled: true,workersEnabled: false,labReactionsEnabled: true,labProductionScope: 'empire',
-      labProductionTargets: [{ product: 'UH2O',amount: 15,priority: 0 }],labProductionBatch: 10,labTransportBatch: 20 };
+    settings.empire = { logisticsEnabled: true,workersEnabled: false };
     if (mode === 'intel') settings.empire = { ...settings.empire as object,intelEnabled: true,intelCaptureInterval: 1,intelCaptureCpuBudget: 100,intelCaptureRooms: 4,intelCaptureScans: 32 };
     saveState(state,'operator/config',operatorSchema,settings);
+    const policy = { labReactionsEnabled: true,labProductionScope: 'empire' as const,labProductionTargets: [{ product: 'UH2O',amount: 15,priority: 0 }],labProductionBatch: 10,labTransportBatch: 20 };
+    if (!industry.labs.previewEmpire(policy).ok || !industry.labs.configureEmpire(policy).changed || industry.labs.configureEmpire(policy).changed) throw new Error('Shared lab operator admission/replay failed');
     industry.labs.configureMany(['W0N1','W1N1'].map(home => ({ home,input: { labBoostRoles: [{ lab: bufferLab(home).id,resource: 'XGH2O',mineral: 60,energy: 40 }] } })));
   }
   for (const creep of Object.values(Game.creeps).filter(item => item.name.startsWith('boost-courier'))) creep.memory.population = { owner: haulingOwner(creep.room.name),home: creep.room.name };
