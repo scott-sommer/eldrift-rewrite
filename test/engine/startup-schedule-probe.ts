@@ -1,3 +1,4 @@
+import { observeHouseholdTravelProbe } from './household-travel-probe';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createNativeStartupCohort } from '../../src/app/remotes/startup/proposals/cohort';
 import type { NativeStartupQuote } from '../../src/app/remotes/startup/projection/model';
@@ -14,6 +15,7 @@ interface ScheduleProbe {
 interface ProbeMemory extends Memory { startupScheduleProbe?: ScheduleProbe; householdScheduleProbe?: ScheduleProbe }
 /** Isolated planning-only root avoids competing with the existing independent projection proof. */
 export function beginStartupScheduleProbe(state: StatePort, quote: NativeStartupQuote): void {
+  observeHouseholdTravelProbe(state,quote);
   const proposal = createNativeStartupCohort(state)('whole-horizon',quote,{ horizon: 4000,validityTicks: 200,protectedEnergy: 350,retirementMargin: 4,
     minimumBatch: 25,minerPriority: 20,courierPriority: 30,courierReadyAt: 0,assumeAssignmentRenewal: true,repairPolicy: { criticalFraction: 0.2,energyReserve: 20 } });
   if (proposal.status !== 'ready') throw new Error('Expected whole-horizon native proposal');
