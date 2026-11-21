@@ -2976,14 +2976,15 @@
     "file": "resourceManager.js",
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
-    "reviewStatus": "local target/dependency/reaction and stock policies reviewed; empire/boost/operator obligations retained",
-    "implementationStatus": "partial: prioritized reserved local chains and shared empire production with durable windows, ownership/vision/intel lifecycle qualified; terminal/market movement, remaining legacy target controls and release gates remain open",
+    "reviewStatus": "Shared target/operator boundaries source-reviewed; symbolic BOOST/default target template and absolute global disable semantics remain explicit obligations",
+    "implementationStatus": "partial: local chains/shared production and public shared-policy controls qualified, including atomic conflict refusal and inherited clears; legacy default targets/symbolic upgrade target, absolute disable under overrides, terminal/market and release gates remain open",
     "evidence": [
       "docs/industry-lab-production.md",
       "docs/boost-lab-allocation.md",
       "docs/bulk-lab-allocation.md",
       "docs/empire-lab-production.md",
-      "docs/boosted-builder-recipe.md"
+      "docs/boosted-builder-recipe.md",
+      "docs/evidence/empire-operator-native.json"
     ],
     "plannedIssues": [
       "ED-13",
@@ -3043,15 +3044,23 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
-      "required": "Audit remaining legacy control and specialist producers; native optimized-builder body/boost execution and broader evacuation/recapture/terminal/pressure/migration/release evidence remain required",
+      "required": "Retain explicit disposition for legacy default compound targets and symbolic BOOST/upgradeBoost mapping, absolute labsDisabled under room overrides, specialist producers, terminal coordination, evacuation/recapture, pressure and migration/release gates",
       "tests": [
         "test/capabilities/lab-production.test.ts",
         "test/features/lab-production.test.ts",
         "test/app/native-production-inventory.test.ts",
         "test/config/lab-production.test.ts",
-        "test/engine/lab-chain-cycle.ts"
+        "test/engine/lab-chain-cycle.ts",
+        "test/features/operator-lab-empire.test.ts",
+        "test/engine/lab-empire-operator.ts",
+        "test/engine/lab-empire-cycle.ts"
       ],
-      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity"
+      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
+      "sharedOperatorSources": [
+        "1292402602fdb0b29799c789fdc1228bcaa00848",
+        "8a475ae5eacce12c9c95a6a04df8c95ac87fd683",
+        "001e6352347b0f920ca835ae5680d55ddb937b70"
+      ]
     }
   },
   {

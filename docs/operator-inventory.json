@@ -64,75 +64,145 @@
     "handler": "removeLabs",
     "source": "consoleCommands.js",
     "line": 698,
-    "status": "registered operator entrypoint; effect characterization pending",
+    "status": "source-characterized; modern replacement behaviors qualified; compatibility differences remain",
     "targetIssue": "ED-39",
     "proposedOwner": "features/industry",
-    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "disposition": "Preserve implemented intent through owned typed operations; do not equate safe asynchronous settlement with raw legacy cache mutation.",
     "requiredTests": [
       "valid operation and observable effect",
       "invalid or missing targets",
       "repeated invocation and ownership constraints"
-    ]
+    ],
+    "characterization": {
+      "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+      "source": "consoleCommands.js:178-180",
+      "effect": "Clears roomCache[room].labsV2 immediately; does not remove structures or disable policy.",
+      "replacement": "require(main).industry.labs.requestReplan(home)",
+      "remaining": "Replacement defers assignment removal until admitted hauling settles, then ordinary policy rebuilds; raw cache deletion and literal Game alias are not preserved.",
+      "evidence": [
+        "docs/operator-labs.md",
+        "docs/bulk-lab-allocation.md",
+        "docs/empire-lab-production.md",
+        "docs/evidence/empire-operator-native.json"
+      ],
+      "completion": "partial; modern API evidence is not literal command alias or full ED-39 parity"
+    }
   },
   {
     "command": "removeAllLabs",
     "handler": "removeAllLabs",
     "source": "consoleCommands.js",
     "line": 699,
-    "status": "registered operator entrypoint; effect characterization pending",
+    "status": "source-characterized; modern replacement behaviors qualified; compatibility differences remain",
     "targetIssue": "ED-39",
     "proposedOwner": "features/industry",
-    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "disposition": "Preserve implemented intent through owned typed operations; do not equate safe asynchronous settlement with raw legacy cache mutation.",
     "requiredTests": [
       "valid operation and observable effect",
       "invalid or missing targets",
       "repeated invocation and ownership constraints"
-    ]
+    ],
+    "characterization": {
+      "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+      "source": "consoleCommands.js:182-186",
+      "effect": "Clears labsV2 for every cached room, including unseen cache entries.",
+      "replacement": "require(main).industry.labs.requestReplans(homes)",
+      "remaining": "Replacement validates visible owned homes atomically; unseen cached-room reset and literal Game alias remain explicit compatibility differences.",
+      "evidence": [
+        "docs/operator-labs.md",
+        "docs/bulk-lab-allocation.md",
+        "docs/empire-lab-production.md",
+        "docs/evidence/empire-operator-native.json"
+      ],
+      "completion": "partial; modern API evidence is not literal command alias or full ED-39 parity"
+    }
   },
   {
     "command": "setupLabs",
     "handler": "labV2.setupLabs",
     "source": "consoleCommands.js",
     "line": 700,
-    "status": "registered operator entrypoint; effect characterization pending",
+    "status": "source-characterized; modern replacement behaviors qualified; compatibility differences remain",
     "targetIssue": "ED-39",
     "proposedOwner": "features/industry",
-    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "disposition": "Preserve implemented intent through owned typed operations; do not equate safe asynchronous settlement with raw legacy cache mutation.",
     "requiredTests": [
       "valid operation and observable effect",
       "invalid or missing targets",
       "repeated invocation and ownership constraints"
-    ]
+    ],
+    "characterization": {
+      "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+      "source": "labV2.js:103 onward",
+      "effect": "Clears cached assignment then chooses reaction/boost labs from manufactureCompound and boosts.",
+      "replacement": "require(main).industry.labs.configure(home,patch), assignBoostRoles(home,request)",
+      "remaining": "Typed settings and role allocation replace direct cache mutation; admission/drain ownership is preserved. Legacy objective argument shape and literal Game alias not implemented.",
+      "evidence": [
+        "docs/operator-labs.md",
+        "docs/bulk-lab-allocation.md",
+        "docs/empire-lab-production.md",
+        "docs/evidence/empire-operator-native.json"
+      ],
+      "completion": "partial; modern API evidence is not literal command alias or full ED-39 parity"
+    }
   },
   {
     "command": "setBoosts",
     "handler": "labV2.setBoosts",
     "source": "consoleCommands.js",
     "line": 701,
-    "status": "registered operator entrypoint; effect characterization pending",
+    "status": "source-characterized; modern replacement behaviors qualified; compatibility differences remain",
     "targetIssue": "ED-39",
     "proposedOwner": "features/industry",
-    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "disposition": "Preserve implemented intent through owned typed operations; do not equate safe asynchronous settlement with raw legacy cache mutation.",
     "requiredTests": [
       "valid operation and observable effect",
       "invalid or missing targets",
       "repeated invocation and ownership constraints"
-    ]
+    ],
+    "characterization": {
+      "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+      "source": "labV2.js:77-85",
+      "effect": "Preserves current manufactureCompound while replacing requested compound list.",
+      "replacement": "require(main).industry.labs.assignBoostRoles(home,request)",
+      "remaining": "Automatic allocation preserves reaction policy and can preserve reaction geometry; legacy argument mapping and exact current-compound cache semantics remain to be resolved.",
+      "evidence": [
+        "docs/operator-labs.md",
+        "docs/bulk-lab-allocation.md",
+        "docs/empire-lab-production.md",
+        "docs/evidence/empire-operator-native.json"
+      ],
+      "completion": "partial; modern API evidence is not literal command alias or full ED-39 parity"
+    }
   },
   {
     "command": "setAllRoomBoosts",
     "handler": "labV2.setAllRoomBoosts",
     "source": "consoleCommands.js",
     "line": 702,
-    "status": "registered operator entrypoint; effect characterization pending",
+    "status": "source-characterized; modern replacement behaviors qualified; compatibility differences remain",
     "targetIssue": "ED-39",
     "proposedOwner": "features/industry",
-    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "disposition": "Preserve implemented intent through owned typed operations; do not equate safe asynchronous settlement with raw legacy cache mutation.",
     "requiredTests": [
       "valid operation and observable effect",
       "invalid or missing targets",
       "repeated invocation and ownership constraints"
-    ]
+    ],
+    "characterization": {
+      "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+      "source": "labV2.js:87-95",
+      "effect": "Applies setBoosts to visible RCL6+ rooms owned by hard-coded username Mordox.",
+      "replacement": "require(main).industry.labs.assignAllBoostRoles(request)",
+      "remaining": "Replacement selects actual owned RCL6+ rooms without hard-coded identity and commits one atomic configuration. Literal alias and argument conversion remain open.",
+      "evidence": [
+        "docs/operator-labs.md",
+        "docs/bulk-lab-allocation.md",
+        "docs/empire-lab-production.md",
+        "docs/evidence/empire-operator-native.json"
+      ],
+      "completion": "partial; modern API evidence is not literal command alias or full ED-39 parity"
+    }
   },
   {
     "command": "getUpgradeProgress",
@@ -514,15 +584,29 @@
     "handler": "setAllBoosts",
     "source": "consoleCommands.js",
     "line": 728,
-    "status": "registered operator entrypoint; effect characterization pending",
+    "status": "source-characterized; modern replacement behaviors qualified; compatibility differences remain",
     "targetIssue": "ED-39",
     "proposedOwner": "features/industry",
-    "disposition": "preserve operation through typed adapter; characterize handler before port",
+    "disposition": "Preserve implemented intent through owned typed operations; do not equate safe asynchronous settlement with raw legacy cache mutation.",
     "requiredTests": [
       "valid operation and observable effect",
       "invalid or missing targets",
       "repeated invocation and ownership constraints"
-    ]
+    ],
+    "characterization": {
+      "baseline": "f2bbf7e8c44addc7c426abb5458e393c9502ff5f",
+      "source": "consoleCommands.js:308-317",
+      "effect": "Applies one compound to all cached rooms, preserving each cached manufacture compound; no visible/owned guard.",
+      "replacement": "require(main).industry.labs.assignAllBoostRoles(request)",
+      "remaining": "Visible actual-owned selection deliberately replaces unsafe cached-room iteration. Literal alias, single-compound argument mapping and unseen cache behavior are not claimed equivalent.",
+      "evidence": [
+        "docs/operator-labs.md",
+        "docs/bulk-lab-allocation.md",
+        "docs/empire-lab-production.md",
+        "docs/evidence/empire-operator-native.json"
+      ],
+      "completion": "partial; modern API evidence is not literal command alias or full ED-39 parity"
+    }
   },
   {
     "command": "getRoomSpawnTasks",
