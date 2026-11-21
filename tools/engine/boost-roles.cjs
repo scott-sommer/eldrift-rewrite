@@ -1,19 +1,22 @@
+const { specialistRoleWorld,verifySpecialistRole } = require('./boost-role-specialist.cjs');
 const assert = require('node:assert/strict');
 const { boostWorld } = require('./boosts.cjs');
-async function boostRoleWorld(server,bot) {
+async function boostRoleWorld(server,bot,mode) {
   await boostWorld(server,bot,'coexist'); const { db } = await server.world.load();
   await db['rooms.objects'].update({ room: 'W0N1',type: 'storage' },{ $set: { store: { energy: 100000,XGH2O: 120,ZO: 30 } } });
   await db['rooms.objects'].update({ room: 'W0N1',type: 'lab',x: 17,y: 20 },{ $set: { store: { K: 10 },storeCapacityResource: { K: 3000,energy: 2000 } } });
+  if (mode === 'specialist') await specialistRoleWorld(server,bot);
 }
 function verifyBoostRoles(memory,mode,evidence) {
   const rows = memory.boostRoleRows, last = rows.at(-1), records = memory.eldrift.records, state = records['industry-boost-labs/W0N1'] ?? null;
   evidence.boostRoles = { mode,rows,state,allocation: memory.boostRoleAllocation,reloads: memory.stampReloads };
-  assert.deepEqual(memory.stampReloads,[8,12,31,181]);
+  assert.deepEqual(memory.stampReloads,mode === 'specialist' ? [...new Set([8,12,31,181,evidence.specialistRoleReload.tick])].sort((a,b) => a-b) : [8,12,31,181]);
   assert.equal(rows.length,320);
   const roleLab = rows[0].lab;
   assert.ok(rows.filter(row => row.bound || row.desired).every(row => !row.reactionLabs.includes(roleLab)),'Active or retiring role lab cannot react');
   assert.equal(last.bankOH,10); assert.equal(last.bankK,10); assert.equal(last.cargo,0);
   assert.equal(records['tasks/boost-courier'].data.queue.length,0); assert.equal(records['quantity-reservations/empire'].data.claims.filter(claim => claim.expiresAt > 320).length,0);
+  if (mode === 'specialist') { verifySpecialistRole(memory,evidence); return; }
   if (mode === 'refused') {
     assert.equal(state,null); assert.ok(rows.every(row => row.bound === null && row.desired === null && !row.ready && row.work === 0));
     assert.deepEqual(memory.boostRoleAllocation,{ ok: false,reason: 'insufficient-compatible-labs',dryRunUnchanged: true,reapplyUnchanged: true }); return;
