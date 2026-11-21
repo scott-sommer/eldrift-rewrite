@@ -46,7 +46,7 @@ class Redistribution {
       return { delivered: 0,lost };
     }
     if (tick < state.arrivalAt!) return { delivered: 0,lost: 0 };
-    const amount = accepted(this.ports.deposit(state.cargo),state.cargo); state.cargo -= amount; state.delivered += amount;
+    const amount = accepted(this.ports.deposit(state.cargo,{ ...this.input.trips[index]! }),state.cargo); state.cargo -= amount; state.delivered += amount;
     if (state.cargo === 0) {
       state.phase = 'complete'; state.doneAt = tick;
       const trip = this.input.trips[index]!, until = tick+1+trip.returnTicks;

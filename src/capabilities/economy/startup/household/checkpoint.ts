@@ -1,13 +1,14 @@
+import { validateHouseholdStructureLinks } from './structures';
 import { StartupCheckpointCapacityError } from '../checkpoints/capacity';
 import { spawnedActiveTicks } from '../../../spawning/lifetime';
 import { copyPlain } from '../../../../core/plain-data';
-import { householdIdentity } from './validation';
+import { householdIdentity, householdCheckpointFormat } from './validation';
 import { startupFlowDue } from '../flow';
 import type { StartupHouseholdInput, StartupHouseholdCheckpoint } from './model';
 import type { StartupCashFlow } from '../cash-model';
 export function readHouseholdCheckpoint(input: StartupHouseholdInput, value: StartupHouseholdCheckpoint): StartupHouseholdCheckpoint {
   const saved = copyPlain(value);
-  if (saved.format !== 1 || saved.binding !== householdIdentity(input)) throw new Error('Invalid household checkpoint binding');
+  if (saved.format !== householdCheckpointFormat(input) || saved.binding !== householdIdentity(input)) throw new Error('Invalid household checkpoint binding');
   if (!Number.isSafeInteger(saved.through) || saved.through < -1 || saved.through > input.spawning.cash.horizon) throw new Error('Invalid household checkpoint clock');
   if (![saved.endpointEnergy,saved.endpointSpentEnergy,saved.endpointReceivedEnergy].every(natural)) throw new Error('Invalid household checkpoint stock');
   if (saved.spawning.tick !== saved.through+1 || saved.redistribution.through !== saved.through) throw new Error('Household checkpoint frame mismatch');
@@ -21,7 +22,7 @@ export function validateHouseholdLinks(input: StartupHouseholdInput, saved: Star
   if (cash.upkeepEnergy !== scheduled(input,'upkeep',saved.through)+physical.lost) throw new Error('Household loss accounting');
   if (cash.deliveredEnergy !== scheduled(input,'delivery',saved.through)+saved.endpointReceivedEnergy) throw new Error('Household receipt accounting');
   if (saved.losses.reduce((sum,flow) => sum+flow.energy,0) !== physical.lost) throw new Error('Household loss conservation');
-  validateWorkers(input,saved); validateLossBindings(saved);
+  validateWorkers(input,saved); validateLossBindings(saved); validateHouseholdStructureLinks(input,saved);
 }
 function validateLosses(input: StartupHouseholdInput, saved: StartupHouseholdCheckpoint): void {
   if (!Array.isArray(saved.losses) || saved.losses.length > input.redistribution.trips.length) throw new Error('Household loss event capacity');

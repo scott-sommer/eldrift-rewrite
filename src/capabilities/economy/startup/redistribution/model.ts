@@ -1,4 +1,5 @@
 export interface StartupRedistributionTrip {
+  destination?: string;
   id: string; request: string; pickupAt: number; loadedTicks: number; returnTicks: number; energy: number;
 }
 export interface StartupRedistributionInput { horizon: number; trips: readonly StartupRedistributionTrip[] }
@@ -7,7 +8,7 @@ export interface StartupRedistributionWorker { activeAt: number; expiresAt: numb
 export interface StartupRedistributionPorts {
   worker(request: string): StartupRedistributionWorker | undefined;
   withdraw(maximum: number): number;
-  deposit(maximum: number): number;
+  deposit(maximum: number, trip: Readonly<StartupRedistributionTrip>): number;
   lose(energy: number): void;
 }
 export interface StartupRedistributionState {

@@ -7,12 +7,11 @@ import { createStartupRedistribution } from '../redistribution/transfer';
 import { startupFlowDue } from '../flow';
 import type { StartupCashFlow, StartupCashReceipt } from '../cash-model';
 import type { StartupScheduledBirth } from '../spawn-model';
-import { validateHousehold, householdIdentity } from './validation';
+import { validateHousehold, householdIdentity, householdCheckpointFormat } from './validation';
 import { readHouseholdCheckpoint, validateHouseholdLinks } from './checkpoint';
 import type { StartupHouseholdInput, StartupHouseholdCheckpoint } from './model';
 /** Paid births and physical transfers share actual frame phases; no project/native owner is replaced. */
 export function createStartupHousehold(input: StartupHouseholdInput, checkpoint?: StartupHouseholdCheckpoint) {
-  if (input.spawning.funding.energyLayout) throw new Error('Addressed household transfer integration pending');
   validateHousehold(input);
   return new Household({ ...input,spawning: snapshotStartupSpawns(input.spawning),redistribution: copyPlain(input.redistribution) },checkpoint);
 }
@@ -35,7 +34,7 @@ class Household {
     this.timeline = createStartupSpawnTimeline(input.spawning,saved.spawning);
     for (const birth of saved.spawning?.births ?? []) this.births.set(birth.request,birth);
     this.transfers = createStartupRedistribution(input.redistribution,{ worker: request => this.worker(request),withdraw: energy => this.withdraw(energy),
-      deposit: energy => this.timeline.transferHousehold(energy),lose: energy => this.lose(energy) },saved.redistribution);
+      deposit: (energy,trip) => this.timeline.transferHousehold(energy,trip.destination,trip.id),lose: energy => this.lose(energy) },saved.redistribution);
     if (checkpoint !== undefined) validateHouseholdLinks(input,checkpoint,this.transfers.result());
   }
   begin(tick: number): StartupScheduledBirth[] {
@@ -59,7 +58,7 @@ class Household {
   }
   checkpoint(): StartupHouseholdCheckpoint {
     if (this.open) throw new Error('Cannot checkpoint open household frame');
-    const saved: StartupHouseholdCheckpoint = copyPlain({ format: 1,binding: this.binding,through: this.tick-1,endpointEnergy: this.endpoint,endpointSpentEnergy: this.spent,endpointReceivedEnergy: this.received,
+    const saved: StartupHouseholdCheckpoint = copyPlain({ format: householdCheckpointFormat(this.input),binding: this.binding,through: this.tick-1,endpointEnergy: this.endpoint,endpointSpentEnergy: this.spent,endpointReceivedEnergy: this.received,
       spawning: this.timeline.checkpoint(),redistribution: this.transfers.checkpoint(),losses: this.losses });
     if (JSON.stringify(saved).length > 1048576) throw new StartupCheckpointCapacityError('Household checkpoint capacity');
     return saved;
