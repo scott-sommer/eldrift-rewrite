@@ -1,0 +1,3498 @@
+{
+  "issue": "ED-36",
+  "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+  "scope": "Functional acceptance of original production/lab/boost/mineral ownership criteria; not whole-module legacy input compatibility, downstream combat/trade integration or release parity.",
+  "native": {
+    "status": "passed",
+    "cases": 63,
+    "seconds": 761.527,
+    "groups": {
+      "composition-minerals": [
+        "",
+        "--structure-actions",
+        "--mineral-industry",
+        "--colony-mineral",
+        "--mineral-transport",
+        "--mineral-reload"
+      ],
+      "direct-and-local": [
+        "--lab-reactions",
+        "--lab-reactions-invalid",
+        "--lab-reactions-destroy",
+        "--lab-supply",
+        "--lab-supply-depleted",
+        "--lab-supply-switch",
+        "--lab-supply-cancel",
+        "--lab-operator",
+        "--lab-replan",
+        "--lab-chain",
+        "--lab-chain-prestock",
+        "--lab-chain-reserves",
+        "--lab-chain-priority",
+        "--lab-chain-depleted"
+      ],
+      "shared-and-policy": [
+        "--lab-empire",
+        "--lab-empire-policy",
+        "--lab-empire-participant",
+        "--lab-empire-loss",
+        "--lab-empire-vision",
+        "--lab-empire-intel",
+        "--lab-empire-pause",
+        "--lab-empire-pause-local",
+        "--lab-stock-shared",
+        "--lab-stock-local",
+        "--lab-stock-priority"
+      ],
+      "actor-boosts": [
+        "--boost",
+        "--boost-operator",
+        "--boost-birth",
+        "--boost-alias",
+        "--boost-supply",
+        "--boost-multi",
+        "--boost-cancel",
+        "--boost-expiry",
+        "--boost-destroy",
+        "--boost-contention",
+        "--boost-coexist",
+        "--boost-paused"
+      ],
+      "role-and-bulk": [
+        "--boost-role",
+        "--boost-role-automatic",
+        "--boost-role-refused",
+        "--boost-role-switch",
+        "--boost-role-remove",
+        "--boost-role-specialist",
+        "--boost-bulk",
+        "--boost-bulk-refused"
+      ],
+      "work-producers": [
+        "--worker-boost",
+        "--worker-boost-shortage",
+        "--worker-boost-optional",
+        "--boosted-builder",
+        "--boosted-builder-shortage",
+        "--boosted-builder-lower"
+      ],
+      "specialists": [
+        "--upgrade-room",
+        "--upgrade-room-shortage",
+        "--upgrade-lab-coexist",
+        "--upgrade-lab-toggle",
+        "--upgrade-lab-loss",
+        "--upgrade-boost-contention"
+      ]
+    },
+    "results": [
+      {
+        "scenario": "packaged-smoke",
+        "group": "composition-minerals",
+        "seconds": 0.868,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/packaged-smoke-raw.json.gz",
+        "rawSha256": "79c3024898158bda5633cc66986cad3c6efb25d1cf078d290087fc73967e6257",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "e63862740ba9e80b6f8e9cb10a75cf665e089c59c597001713e4ca4c6ddb54d7",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "5f8622292fe5d1e68b22b686d15f9836d9e8628a8ee882ac90bfef5b692ad60a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/packaged-smoke-measurements.jsonl",
+          "rowsSha256": "2bcd375eaa59f019f0985f9327ad966c74cb66ec97e6feb9c1f1fccec85eaa54",
+          "rows": 3
+        },
+        "domains": {}
+      },
+      {
+        "scenario": "structure-actions",
+        "group": "composition-minerals",
+        "seconds": 1.085,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/structure-actions-raw.json.gz",
+        "rawSha256": "c536ecc201f7e702e05b1c3c70dc347c9e3972fc43d4c72acaddb0c9169ca6d8",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "ee43911c2d7544a207c35ae291130c34e5c92498d6eb3e84b84b0bdbb097bfb5",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "2cb07056e8690c1cba7f17e35a6bfdf8af4da2b65c85cdf34c0e1c55f9ecabc1",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/structure-actions-measurements.jsonl",
+          "rowsSha256": "bc75506173e3ae55a7e757965b0465b603ebff0a55c63115c2312e4b792b2de5",
+          "rows": 3
+        },
+        "domains": {}
+      },
+      {
+        "scenario": "mineral-industry",
+        "group": "composition-minerals",
+        "seconds": 18.647,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/mineral-industry-raw.json.gz",
+        "rawSha256": "fae7cc80e84a02e49df1342898e53b86642271463cdecc4294899cf4ed29672b",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "bede9553793d9ef44bb443ac204ef97de6a86c372d3b721b4c779dd3a7b596b7",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "f4cbc58d42077022e7d2421c165c38e104214c4c66505107e54362ff27a5849f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/mineral-industry-measurements.jsonl",
+          "rowsSha256": "84d731d11071e26d4c8ea3a6439189a265d23611a30b4d37b8a16a3431dc3930",
+          "rows": 640
+        },
+        "domains": {
+          "mineralIndustry": {
+            "rowsFile": "docs/evidence/ed36-milestone/mineral-industry-mineralIndustry.jsonl",
+            "rowsSha256": "8cc1fd4177d6b1c4d9aeaf747c20c00e59337e6271eb0cf526bb4d63b1a3efb3",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "colony-mineral",
+        "group": "composition-minerals",
+        "seconds": 1.555,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/colony-mineral-raw.json.gz",
+        "rawSha256": "b21c1b0ae78bfb3463c4eecfbbdab42b7f61b183bf1432b22cf8e150cd2b550c",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "f18b49665841a5c39c0338c880bc6ed5d3c7cc59b930e689ec87d3f8c4ce6166",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "2e9cfc1b9059f418cd5a6bdfd709ef9d996eae0b6658f3c1f12a5780bb3885ab",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/colony-mineral-measurements.jsonl",
+          "rowsSha256": "ba24d4d7a93ae6fc0a5dc7734e447e8ceb095c52724be737f6ebc00ada126b34",
+          "rows": 25
+        },
+        "domains": {}
+      },
+      {
+        "scenario": "mineral-transport",
+        "group": "composition-minerals",
+        "seconds": 1.21,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/mineral-transport-raw.json.gz",
+        "rawSha256": "14e79544f9cd69fd0012fc1a7e791c5321e1cdde0c3ddf5fb5a6609cde53ee20",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "09056fba7fe81f60aecb0baa4ffccc09535fa5691574af91f269bd17194b58f4",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "4efb803a6c3f7192af31c8d2af2572e3a6fb06a2d273439380a040f738c1e614",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/mineral-transport-measurements.jsonl",
+          "rowsSha256": "e9ff5509bf9ab51e7c446f2ef99228b1415833208a14c2b6f26e2b632ceea1b0",
+          "rows": 9
+        },
+        "domains": {}
+      },
+      {
+        "scenario": "mineral-reload",
+        "group": "composition-minerals",
+        "seconds": 1.337,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/mineral-reload-raw.json.gz",
+        "rawSha256": "a43d2272eba9fc5907329f138f47a0ce3285b46fd05b41c74068e301cb817001",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "9c2e280ec96afed34f1bd833f683c7f7b38a1455b7b5d97adf68f056ebf640f4",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "4efb803a6c3f7192af31c8d2af2572e3a6fb06a2d273439380a040f738c1e614",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/mineral-reload-measurements.jsonl",
+          "rowsSha256": "4fd5177c037e0408b6901625473d1cccc5e8a528155fc36431dfff879fd4c040",
+          "rows": 9
+        },
+        "domains": {}
+      },
+      {
+        "scenario": "lab-reactions",
+        "group": "direct-and-local",
+        "seconds": 1.543,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-reactions-raw.json.gz",
+        "rawSha256": "46cbcd380e15516c914f22428ba232b5720578e3e60ff0216dd7fdb51dce1a20",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "baabb81d6687bcefa84b1eeeb2bc2cdc34f73dee10def858bf33e17ca4a01bc1",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "39b257ad0d00d21e48b1add40fa42c0cac70f05c643a2bdad431d7d533a27d0f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-reactions-measurements.jsonl",
+          "rowsSha256": "45c82be4995bf1da3fa0739eaa7f49a280d1346aadfde71f5cae6048b314c493",
+          "rows": 25
+        },
+        "domains": {
+          "labReactions": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-reactions-labReactions.jsonl",
+            "rowsSha256": "d52332e583fdb24d8065a6036584c23b3f5945e929cc17c8302ddb849ee5d19e",
+            "rows": 25
+          }
+        }
+      },
+      {
+        "scenario": "lab-reactions-invalid",
+        "group": "direct-and-local",
+        "seconds": 1.496,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-reactions-invalid-raw.json.gz",
+        "rawSha256": "15dbd0201b6fc9aa7da237b0412154f3edcb2a9e375c0d64aa94458ce6e678e7",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "03bede3c0bda99983cf2f0eeb09d90e4a1ccf248209364e12db7b51a8d2ddd55",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "39b257ad0d00d21e48b1add40fa42c0cac70f05c643a2bdad431d7d533a27d0f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-reactions-invalid-measurements.jsonl",
+          "rowsSha256": "eec9beb55ff9994512195375ec0e9db08c34ba8e61841335bea591bd753d77f6",
+          "rows": 25
+        },
+        "domains": {
+          "labReactions": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-reactions-invalid-labReactions.jsonl",
+            "rowsSha256": "e1842795d502c4aa71c177c1858492b8ab05526ac4c73d027f7cb203a367bdfc",
+            "rows": 25
+          }
+        }
+      },
+      {
+        "scenario": "lab-reactions-destroy",
+        "group": "direct-and-local",
+        "seconds": 1.593,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-reactions-destroy-raw.json.gz",
+        "rawSha256": "a32bbd180ce00d01c9d4b0f443072eccb31c0d4296b7735fc5bd157497a3ac43",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "464ac6b9e92f22fa0d09dea2e63798d7d752153ac7cf342b0babbe1c4934c4c8",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "39b257ad0d00d21e48b1add40fa42c0cac70f05c643a2bdad431d7d533a27d0f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-reactions-destroy-measurements.jsonl",
+          "rowsSha256": "5c73fa3e88c776508a2eca5371b5e75507451b9bcbecd24ca43975246d847e42",
+          "rows": 25
+        },
+        "domains": {
+          "labReactions": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-reactions-destroy-labReactions.jsonl",
+            "rowsSha256": "5d3ddb248c7c23f24777a5b8f578dabea9a6a5f9efd6bc832d6c47852677d534",
+            "rows": 25
+          }
+        }
+      },
+      {
+        "scenario": "lab-supply",
+        "group": "direct-and-local",
+        "seconds": 10.502,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-supply-raw.json.gz",
+        "rawSha256": "f452814f4f84d90abdf03149d7cdb0d6f31e15519e19984535a475e2d1574021",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "afb0b40e8b323f6920d0121779955e4f780f6617dce47ff7025b5dc82b2a7976",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "469d41216529adfee277b4bf6d1f7f0a7ca83ab8703ce1bc26768dd9b1111ad6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-supply-measurements.jsonl",
+          "rowsSha256": "2a75e6d715c16084ec4ff52929ca8ed478b70a7936436729e450b5b35e266f48",
+          "rows": 320
+        },
+        "domains": {
+          "labSupply": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-supply-labSupply.jsonl",
+            "rowsSha256": "67db2696959c78bbadecc5991e5dfa4dacc89dde6718bb92cabc82e74516bd90",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "lab-supply-depleted",
+        "group": "direct-and-local",
+        "seconds": 9.83,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-supply-depleted-raw.json.gz",
+        "rawSha256": "0b360281ceb0bdae6912d1af45204665e312e0b74e07b0ec4252a915d0b1ad65",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8b5e24807e4082a1d55612e4bf0020e37e9ed29c784df48e6a313a5092b3776c",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "ae82d8d1b31045a7d16d0d4774d22fb151dd7e403834fb6be1a8600e8f7f6a45",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-supply-depleted-measurements.jsonl",
+          "rowsSha256": "cf84e5612e47cde8fa573b2cb169d6edd5562b8c7e0a18028bc742e1346fa585",
+          "rows": 320
+        },
+        "domains": {
+          "labSupply": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-supply-depleted-labSupply.jsonl",
+            "rowsSha256": "2df3e8cc97674edb2d5588c58fd7bf1ebe02c15e220205d25b50e2c9b4e0d1c8",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "lab-supply-switch",
+        "group": "direct-and-local",
+        "seconds": 10.278,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-supply-switch-raw.json.gz",
+        "rawSha256": "e4f04ecce5dddbe28289ee8d980c82eeeea5e726ff74e1a296513a7b163803ef",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "b9982aa54d8cf38992d2d5390e8fe6a56466d90575f84a2356f55180d54c4826",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "7e5dce7a9806eb70dc224f255699c0f9a24c83adc74d868580a75ebf942a652c",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-supply-switch-measurements.jsonl",
+          "rowsSha256": "2d7f6fa35266a49e9fda04cacc24241a58383f73b50be3e76eac492831934f49",
+          "rows": 320
+        },
+        "domains": {
+          "labSupply": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-supply-switch-labSupply.jsonl",
+            "rowsSha256": "628d9af7a0e59003a72d385eb6a800fadc4d50853da3ce1767e932b929fcc431",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "lab-supply-cancel",
+        "group": "direct-and-local",
+        "seconds": 10.319,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-supply-cancel-raw.json.gz",
+        "rawSha256": "5c271452931a85f7d4db5cbb9bee91cba788f1c2b0baf4c30d3360f309fd69e3",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "e1061f82c618dcf50f135d85e53aeb338a5c5e0dd02c16de5f24c7592cc6a89f",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "b0e74757cdf2a93a3947de9d341c0fb358ff6ecac7bd2c545976dc0db911a713",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-supply-cancel-measurements.jsonl",
+          "rowsSha256": "e02c1824c7ff380c0b3cbaedb27f3a61900a48441e5658b25be06b75c86ec38f",
+          "rows": 320
+        },
+        "domains": {
+          "labSupply": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-supply-cancel-labSupply.jsonl",
+            "rowsSha256": "16587d199177ff3a7ac5ebe5ded8b7a1ef050d89ad8c51d32c7f500bc44530d7",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "lab-operator",
+        "group": "direct-and-local",
+        "seconds": 9.479,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-operator-raw.json.gz",
+        "rawSha256": "4fda4d8d460dfe3461fe9057560e684a433fae7c7835b933a564aa20ced74841",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "7beb55047a77214be3a696ea3cc9b55783c6215aeee99263809044a7be148be8",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3c467f1e4cad60f7d3a0054fee25b801cfd1169eaafa2defe169b7cf1bb16996",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-operator-measurements.jsonl",
+          "rowsSha256": "706dc907c0a14991e206baf5e3cecc2fdf1b59a578bdcefe82fd36de306e4031",
+          "rows": 320
+        },
+        "domains": {
+          "labSupply": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-operator-labSupply.jsonl",
+            "rowsSha256": "c095167a3ba1f98fe9c81ea5f3bde1e6c3b1d75299be1a6bdc764dbb6957f480",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "lab-replan",
+        "group": "direct-and-local",
+        "seconds": 9.84,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-replan-raw.json.gz",
+        "rawSha256": "0b2dd7be483677af05ff693587cc23142b741df1d9cdaed10da008956f5b60b6",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "eb8c75530f3d6e10c8641e4e150847f45825c9c77656c92da5eedb8014a2d87f",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "bf7c41f3011705d55bd35a953a6e0ed0c3719398f6e7bbb8585b3b78b99c3f4a",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-replan-measurements.jsonl",
+          "rowsSha256": "f042cb60d1938cec8a57a6151cd93faa71c2d264ee809fda3be01f4ba7c79179",
+          "rows": 320
+        },
+        "domains": {
+          "labSupply": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-replan-labSupply.jsonl",
+            "rowsSha256": "fadce612c46052a0f290bae84b91f0bafbcb3066576c25b7d0b8d763f15f2471",
+            "rows": 320
+          },
+          "labReplan": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-replan-labReplan.jsonl",
+            "rowsSha256": "9330e5a3f3ab19533659a20ff93111bc6eb740f2aa0dd70f2bd97559e7da4198",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "lab-chain",
+        "group": "direct-and-local",
+        "seconds": 19.209,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-chain-raw.json.gz",
+        "rawSha256": "5186762e70c032e02fc0f670aa06e15456776f2aea6ae28c9b176447b35b5703",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "b00a88448ee09311a304e21b759d40f53a19a77cc87176ee197e1a5c68b9dcbf",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "1238fe6a13092bfef80ff9920274a3fa84a9a77d52fc4feb38047b317917e005",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-chain-measurements.jsonl",
+          "rowsSha256": "94ab806ca9fef7ab57d574d19a77fe4f1127d466101154f5d88529d214cb4f6c",
+          "rows": 640
+        },
+        "domains": {
+          "labChain": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-chain-labChain.jsonl",
+            "rowsSha256": "e33b4cee46f2dc2d11932073bb394a69589316336f4ae828749934a1a8fc2457",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-chain-prestock",
+        "group": "direct-and-local",
+        "seconds": 18.868,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-chain-prestock-raw.json.gz",
+        "rawSha256": "1028113cbc6db603fe752cab70a35296f56a7878631122b17d5bffa591ecc170",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "00b63eae378e988b572dae8eddd042caa69cac8eb3b87d02556d50778c2785ca",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "cf816f37044780afecdf4e8f8192556bb1f703392964c03d597f79fd857daadf",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-chain-prestock-measurements.jsonl",
+          "rowsSha256": "4cc355e392835b9cd98fac128a0e15ccabe22dc268a0b340075aff15941bf8a3",
+          "rows": 640
+        },
+        "domains": {
+          "labChain": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-chain-prestock-labChain.jsonl",
+            "rowsSha256": "66a1b176c548fa2b9a449e3d125d41bf2bc72b61e854c807bc857fd0f8d90a7d",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-chain-reserves",
+        "group": "direct-and-local",
+        "seconds": 19.938,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-chain-reserves-raw.json.gz",
+        "rawSha256": "808dfef99b8226306948d8446eee14be8b20342e6bc1570a13b30ef6c8fd1ff4",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "904bf2d2092101994c69055e69255484739a5639cbb5aa50718d2f16cf8daa79",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "b4aa5d585e8b8881cb7a9a9cc39b63bf27e0a13c7eb96f393bb313ae656d113f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-chain-reserves-measurements.jsonl",
+          "rowsSha256": "9cb04a094cdc02e975284f363bf29dad920d535fde1912c5e25707e14262fb14",
+          "rows": 640
+        },
+        "domains": {
+          "labChain": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-chain-reserves-labChain.jsonl",
+            "rowsSha256": "7dfd27e3d45a1134ca8031274a0d94b1d4bc8a8c5ad6785f5bb89bdc1767b430",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-chain-priority",
+        "group": "direct-and-local",
+        "seconds": 18.605,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-chain-priority-raw.json.gz",
+        "rawSha256": "12ccf4cbd056fab84a18280bd1df0690877365dc4de7abbe156983c45dced14d",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "7496412ca287407367b80bc77b0a16579e40b730cb541f505347432b3b833427",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "1116d2d8be1e4087378fe965a4dc40e55ace8076dd42582b9e4700a8ba6604fc",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-chain-priority-measurements.jsonl",
+          "rowsSha256": "afdd48aad0bc65fab62de78bdde070f1f4544a18f90958c3c3513c16ccf60db5",
+          "rows": 640
+        },
+        "domains": {
+          "labChain": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-chain-priority-labChain.jsonl",
+            "rowsSha256": "dda84ecec5a4594df80ed7be6fc36186820b41446237bd0d721cce58f55a0571",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-chain-depleted",
+        "group": "direct-and-local",
+        "seconds": 13.617,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-chain-depleted-raw.json.gz",
+        "rawSha256": "00f3e24a72b2a14a068ad38af19ed614ac468112f6266f732b1e051e65277176",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "c1cd17cd518c909addf5d932b78935799b304f03878a45da0777b0f9ada57c7d",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "438f8239b66d4d01ab79132c03129cd4cbb0b34e01f0ad316192c8a204f79c99",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-chain-depleted-measurements.jsonl",
+          "rowsSha256": "16e261aec714cc39495f00dd633a7ca5c44e92a0eac9ddec473ba6127a0e8f93",
+          "rows": 640
+        },
+        "domains": {
+          "labChain": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-chain-depleted-labChain.jsonl",
+            "rowsSha256": "c8d2574b5435737c3404c2ae32922f7a7888a76bb61819c3f6bb8d6068769375",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire",
+        "group": "shared-and-policy",
+        "seconds": 31.706,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-raw.json.gz",
+        "rawSha256": "c354ecb6c87d468f8cc492014371adbe8e206ee05a775d379e4459c1ea4aeafd",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "9a5916b599181d818667f292113d659665fef3b4a8493dce58cc6f03bcc6b05a",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "956bcfa08881677a400aee05247a140d4c7488c674576af68a784e375cc73316",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-measurements.jsonl",
+          "rowsSha256": "93880b137d39e3af7bc1d1141ed33322fc02d033fdc38fab5862f231758a01f6",
+          "rows": 640
+        },
+        "domains": {
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-empireProduction.jsonl",
+            "rowsSha256": "9bf9d02cc261f887d020f770c0153571c07bf0e252a705a088d20f4398194c5c",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-policy",
+        "group": "shared-and-policy",
+        "seconds": 31.274,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-policy-raw.json.gz",
+        "rawSha256": "486477b49675ebc0927754545f083ffbbaa4d8c31de89d95bbc71adb6ac70de6",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "f9f622bd7ac45d3fb580ba0420eb72db31a756db0786e5d7fd0cc0d0ea451cf3",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "cedab4cb32c71e46ecfcfd7d8082d559e932af99e1bfec035bc851ffbf234a3b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-policy-measurements.jsonl",
+          "rowsSha256": "47cb8d1625ff69f74044397ff3be9bf5e0f6cc6b93160b1f523078e07fb3d2d1",
+          "rows": 640
+        },
+        "domains": {
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-policy-empireProduction.jsonl",
+            "rowsSha256": "7ca4111c51a065580056b90dd5a7b62d6bbc237d15fe62c8ed38dda4aa8a76e5",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-participant",
+        "group": "shared-and-policy",
+        "seconds": 32.753,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-participant-raw.json.gz",
+        "rawSha256": "49acfeaabb526c20bbf7775785d43268a51b2e3633d147c2501e789be3008e3c",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "35604945543dd81a8fdb4cfe5cc8c4af4be1cd619cefd9c4b46a69fc71a2af40",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "33ddaf985e810bb2080add02a4fe6dc4d6897ce967ee50158628902e8a945164",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-participant-measurements.jsonl",
+          "rowsSha256": "714fe601edf37da0b26f72c884bdbb3d6c030d5701aadc516187e752772a2b33",
+          "rows": 640
+        },
+        "domains": {
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-participant-empireProduction.jsonl",
+            "rowsSha256": "51e8c47a6240030658c25ae7f773f95570650b64a7a5dcee98af37607a6d3f94",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-loss",
+        "group": "shared-and-policy",
+        "seconds": 44.171,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-loss-raw.json.gz",
+        "rawSha256": "f350539b986786dfce311defd9a7c25d5ea8485887fc3c9e22eb2b495b722d41",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "a1e03cb1f528ca574cdb84076f7e1607503cad6190e503231c1dff18e275432a",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "34ce73c715b8234dddec5feea8048404bbaed3c1ece4aaf23586fd8a0619dde8",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-loss-measurements.jsonl",
+          "rowsSha256": "5b49ebe3be9f526df24e1e43a97b2425675a53de7d661698b48efc9f60ece775",
+          "rows": 640
+        },
+        "domains": {
+          "empireOwnershipLoss": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-loss-empireOwnershipLoss.jsonl",
+            "rowsSha256": "c04561616252ee441a8ef16cc6f8312e7ef6441187c6bff287ebbf3182e83ade",
+            "rows": 640
+          },
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-loss-empireProduction.jsonl",
+            "rowsSha256": "a1c2cc271906313fcfdd29762c99aa9effdb30fefee54ce04443ed74a5ca1dad",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-vision",
+        "group": "shared-and-policy",
+        "seconds": 45.155,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-vision-raw.json.gz",
+        "rawSha256": "6c2f0a89e600f04ede2aeeb174a7cf407b1589e801ade034ec6b0efd55a4ee34",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "e8a9ed1564a5cd1968039938dcd1fdf6df46524b0b18c5fad00368becc0a21c5",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "42cb0dacdb7b53916970f6b302ff26d7b8ce1fb6c7613e62412358524c541b1d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-vision-measurements.jsonl",
+          "rowsSha256": "5d510ea88fa3b0e71f6d7644bf93fdfb991715494c4d9746406b721d702e1ecc",
+          "rows": 640
+        },
+        "domains": {
+          "empireOwnershipLoss": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-vision-empireOwnershipLoss.jsonl",
+            "rowsSha256": "f883fed087f78e3d6620f4b8f2f1f082d61ed273eba6b0f9847aa9af110bd1bd",
+            "rows": 640
+          },
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-vision-empireProduction.jsonl",
+            "rowsSha256": "1c5a30c3eab3bf6bca320b3a7e34fb568dfbeaf3d0722098e57cd73d63d5ca98",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-intel",
+        "group": "shared-and-policy",
+        "seconds": 65.103,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-intel-raw.json.gz",
+        "rawSha256": "106ae82c7fccfc2f26d5f9ccbca803415e5c0816bda0579e652a6c5f46c04ca4",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "db7387375bf431c36251cc17c0f4f43e2c514a1584b45c61de4837fe30a601b3",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "7c011ed029436a2071f6f25923a64166fdd1f52549897f3d56dede1696b766ac",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-intel-measurements.jsonl",
+          "rowsSha256": "2569578144d7e0ef3a4d4cc879847f1c3c3ded395c38c17a64ca42733cb2f6f9",
+          "rows": 640
+        },
+        "domains": {
+          "empireOwnershipLoss": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-intel-empireOwnershipLoss.jsonl",
+            "rowsSha256": "60f945cd664688c3d41f0170d9ec11c5dd6edf4f4fb6fd9454a3c9a6b5396a46",
+            "rows": 640
+          },
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-intel-empireProduction.jsonl",
+            "rowsSha256": "3cbf95d6c178de4e920a7dd08b6abcde07be7b077aa4219eed7f0d547e6f7894",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-pause",
+        "group": "shared-and-policy",
+        "seconds": 34.094,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-pause-raw.json.gz",
+        "rawSha256": "9da9e416a7b11a457f4b5e289c5a5e89655d40fac209c4d2237863bb04a6ddb6",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "359ef0885d96e17fd75b5d1cada7ea9f8841115777a86f22061617bea7016cbd",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "f2ad61cebca70d940fa47ac69b49f94ad92abda5c74be3f96ad7d69c9a7829ce",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-pause-measurements.jsonl",
+          "rowsSha256": "75b7487944575e821e81a00992c1c2d888d65a52354ddff1b78ab1f62a88b7d8",
+          "rows": 640
+        },
+        "domains": {
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-pause-empireProduction.jsonl",
+            "rowsSha256": "ce3418db8f45409d8b7472c542cc89bc0bf96aa5ab7b6fb2cfa65758b5f3dc18",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-empire-pause-local",
+        "group": "shared-and-policy",
+        "seconds": 31.163,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-empire-pause-local-raw.json.gz",
+        "rawSha256": "ce2b6fe664300766c25886ba01370d0cf65a1864bbf95c5169f709d811de1ace",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "791fc2ccdce9b2bd93122f6eb0b6426a082c565d16b1c1a8122d52e102261e38",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "dd91232b87f81ddd9981626af5e2331b5ab5fd70881136b6dcb7511ea7f8b0bf",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-empire-pause-local-measurements.jsonl",
+          "rowsSha256": "4fdcef071cc048f02e32182b5e8eb46728ebc4d309cd3330bc1b5ab150ecbd6e",
+          "rows": 640
+        },
+        "domains": {
+          "empireProduction": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-empire-pause-local-empireProduction.jsonl",
+            "rowsSha256": "ee1f2047cc59d5e4a6f10f0863e2826aceca73156cd215850a971e23cb3218fd",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-stock-shared",
+        "group": "shared-and-policy",
+        "seconds": 32.672,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-stock-shared-raw.json.gz",
+        "rawSha256": "27e584e96d5d0b5919b5d9d55a7f1aaed2d4ca39e55d1495f85abbae38960977",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "15bb57351b7d2708ae140f16fcf53e8a5cd0400b52676063e4747ca014bd00e7",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "6276b66207d8991a68db47b3827c6fdb9979dffccd5efaa02f42c773bc111591",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-stock-shared-measurements.jsonl",
+          "rowsSha256": "a48072dab04cfcea3e6f5a272960ba7debe8ea5be396140f1103e329048be859",
+          "rows": 640
+        },
+        "domains": {
+          "stockPolicy": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-stock-shared-stockPolicy.jsonl",
+            "rowsSha256": "b5f5d934b00f0c088d2bb41c8135b0ebfbfdeeaa2cb3caf5fc93fc8dab10ab6f",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-stock-local",
+        "group": "shared-and-policy",
+        "seconds": 30.665,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-stock-local-raw.json.gz",
+        "rawSha256": "386a2c2fa0a57ead7f791fce5d9381d69bacaf9a5c154841bf75f9b7ea385e03",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "887d38c0c4b58c3d07e21c34a2755d9bebf1abc5a77f1d128c1153cb68acc52c",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "89f5d978d6f4bdcf2b5a9b6cd7af8a9b8c058f6fbe3ae1fb149649d0a0d525de",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-stock-local-measurements.jsonl",
+          "rowsSha256": "6c62a767af888d799b195aa3a4fe2fe821aabd0279dfd639f307ae29f72c6037",
+          "rows": 640
+        },
+        "domains": {
+          "stockPolicy": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-stock-local-stockPolicy.jsonl",
+            "rowsSha256": "6770f317ec9a2eb908fe9522a7507b9c5b016c7d33c17376d085a60964bccd27",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "lab-stock-priority",
+        "group": "shared-and-policy",
+        "seconds": 29.654,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/lab-stock-priority-raw.json.gz",
+        "rawSha256": "2827e8391f7577e7521a007328466b83510dc1a041074fcabdd27b7139a9bfbb",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "4e3eef247c9f953694193735c20e43649fe276d5280f6bc6c351a4716c7b1f9a",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "94ebf2a9a4043175695446ef60928987c074ca19f3590fc54870e288cbb8e159",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/lab-stock-priority-measurements.jsonl",
+          "rowsSha256": "e293e50116e30587c3feaa621c226766f47c69260523780a906cef2ef831cc52",
+          "rows": 640
+        },
+        "domains": {
+          "stockPolicy": {
+            "rowsFile": "docs/evidence/ed36-milestone/lab-stock-priority-stockPolicy.jsonl",
+            "rowsSha256": "1df4a44c82483a9b4d6ffed1b8ca994b8e422f9683033f19f1ffaabfadceefa5",
+            "rows": 640
+          }
+        }
+      },
+      {
+        "scenario": "boost",
+        "group": "actor-boosts",
+        "seconds": 3.494,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-raw.json.gz",
+        "rawSha256": "856239b89a9480dd431a00684177e158bf9737b355075c83a4d77e48387a447a",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "77fcbe551da03f5c312126b958c1e0de1bc721f9889f9e3cbcc4e372f5f93cb0",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "2472fc2036496bdd69a70c90d605c3e703c10715026fd82b4bfce8c8981763d6",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-measurements.jsonl",
+          "rowsSha256": "90dd5baec599b132d6d91bd07dbab596b461bac0491d2bb645dd02a7c94e9397",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-boosts.jsonl",
+            "rowsSha256": "ad816af0f2b2eccb6f6e21b6fd58c44834bce393dbefd036279dd7c4635bf71b",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-operator",
+        "group": "actor-boosts",
+        "seconds": 3.452,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-operator-raw.json.gz",
+        "rawSha256": "d69dfbe8c918751f67f68619b927109bc0ce53ec26a9ad2aaa8f11dbb8f4cb9a",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "3206ae210391ed633be9d0b304224d4b836a80f0642abb61a93ebc12a9482194",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "7693a730b3d30e41a23bdf581974800da503feacfb56be944ce0583e3d593879",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-operator-measurements.jsonl",
+          "rowsSha256": "b99ad885a97946852aba7ddd00d801bec08b37416de5146c199b51468b1e4c33",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-operator-boosts.jsonl",
+            "rowsSha256": "ad7191dbcc9c6228dec0abb8e2b2807f3d488cb30df84389e427a15cc722b618",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-birth",
+        "group": "actor-boosts",
+        "seconds": 4.692,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-birth-raw.json.gz",
+        "rawSha256": "dbc137c37c75bfa07f3adc047b4a6e4b1dfb92724a408a51cfaba96195efada4",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "77d5c879b9b3a357bf2c114b5df508afa53424da77e8e3f572227831b16b97e4",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "c3d0e63a944d4b16f3e7141fa6bdc880539b7f6e5a4d1f3cb646dcf013fed8ea",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-birth-measurements.jsonl",
+          "rowsSha256": "6f6854aa3d08707ef4afc0dc1bdd6802edc64b17a3145a85c777edccbae0a527",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-birth-boosts.jsonl",
+            "rowsSha256": "a0e805ab195b541834cb17019a6bdecbb9cae99af0208923b30ee16508789d73",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-alias",
+        "group": "actor-boosts",
+        "seconds": 3.474,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-alias-raw.json.gz",
+        "rawSha256": "8a2a411376bec47257daa970d9184f1a833cdc246a09ddd2ddb564a8b225b9ba",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "d9792de4c52794b5baf4ad38ee5fc6769539f068a3dd81b5f0ea0c55953d2692",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "f6d3374c07386402a88b1c46afcbe73c0a822bbb3a83c4e02bd734363d30335e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-alias-measurements.jsonl",
+          "rowsSha256": "69bd2188349594bbe0fafee3fe17ab96beb1bbbe53832853beeeed4856809868",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-alias-boosts.jsonl",
+            "rowsSha256": "17d8ef6443581b932e5b5e6d23f69f50a0ea4f8e197bea5f4d049cf7ed25a827",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-supply",
+        "group": "actor-boosts",
+        "seconds": 3.552,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-supply-raw.json.gz",
+        "rawSha256": "12ef41a7dc898aef03101b1c581ab41d18a8d8d52a94aba230163d17c026e999",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "c8636dbef40423fbfc6a3d11d85d07cf464eb47bf5f08dd18e475f0420070125",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "b0f09ff0100ee94b19ec21b650a4783e664ae4f5fe030463a1451c39d0edf123",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-supply-measurements.jsonl",
+          "rowsSha256": "600aa0d6066498cde2137d72ac8fced62128fa93085fe3e8ea2da93c3a8e668d",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-supply-boosts.jsonl",
+            "rowsSha256": "6d7547aefc9775a9b0a7a78bab2a9554d68cc656b64d1990bec3b8adbde5d5ad",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-multi",
+        "group": "actor-boosts",
+        "seconds": 4.01,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-multi-raw.json.gz",
+        "rawSha256": "829658323c616b8402b62c04025b0e62a1d61d867b1711e3e2282bfc80309252",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8882532238d53f612c937208429c7e5a53525121f2c7138d51e24680cdf588c8",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "6fcf341647bb33ea65bd2d71e8e8cd348192b81e3bc2a6d0fc18e42c5a2f0f96",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-multi-measurements.jsonl",
+          "rowsSha256": "7723be73f6b90c9750fbe09f38f50f420df96a1a9b27c38539cc7dfb6af24374",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-multi-boosts.jsonl",
+            "rowsSha256": "6f8adee73763c4ee0a2b50692ddb81173860563c29748d25e91708d22b571b67",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-cancel",
+        "group": "actor-boosts",
+        "seconds": 3.591,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-cancel-raw.json.gz",
+        "rawSha256": "fae206fe9956a5db44e2904f151cabe995a0e61dd31042f6308edb23f304da73",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "83d342392bedf81cd449c13d054305bd17f3b575bad7bab7ad14ef022a7b78c9",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "182e99c4068b9bfb3d55a694b3bde179f6e4a6ce5d59611ab2b75035bc651f83",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-cancel-measurements.jsonl",
+          "rowsSha256": "b68d2413e79e9145e6dcb4066435eb4b10054daeea9a731d3bc25041820eb0b0",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-cancel-boosts.jsonl",
+            "rowsSha256": "5540e649f86abcb11b51b6751046ec3b855249dfe2f7e056f7ebdc2178ca844c",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-expiry",
+        "group": "actor-boosts",
+        "seconds": 3.245,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-expiry-raw.json.gz",
+        "rawSha256": "ce27a0ecde666ca026576d78f7aa82addd8e6beabd276e513c7da315f144dd1d",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "2f0a77c21313bc99a74b5a6c99524068d15f9fc492d39807c8258334dc352075",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "26cc15ec0a0d4714f59dc3ff8f237d1f819ac3c428d59856f9fa4afa331d2bff",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-expiry-measurements.jsonl",
+          "rowsSha256": "7a85111d919d626e6fe5d5abc350b68f7ef7414ba6c2ac5bbdd65d44ca7354a0",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-expiry-boosts.jsonl",
+            "rowsSha256": "6079eaf887e8cf19dc8a3785fb476bb420f2038694207eb4f0cdab941c578a94",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-destroy",
+        "group": "actor-boosts",
+        "seconds": 3.517,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-destroy-raw.json.gz",
+        "rawSha256": "bb9ec30b6fdc78b46a2abe0d6e597f2b43353de1c1aba177e4694cff0e2390e1",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "633ea79f357f7778aaa459105681e20dd6b6d77577af5156c7eceb3cb0bb566d",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "4aac68bdf2261b956ead38391fbb105510a2ba61b73e356b61b5ecf657b29eb2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-destroy-measurements.jsonl",
+          "rowsSha256": "282b6e4bdb74e3299198e11ebac1e4b55c6f9ab5c8264146f5d576eca75c6177",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-destroy-boosts.jsonl",
+            "rowsSha256": "5a8d381d25ed3829b0717d1980166d21750004b4b9d61df702bdcec40e62658d",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-contention",
+        "group": "actor-boosts",
+        "seconds": 3.795,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-contention-raw.json.gz",
+        "rawSha256": "adcb7f068fb8417255130b588e86e3d770c05bdaded8f919340aee5e0464fad1",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8672ffb740d3bfe23fe1442215a49e6f895158b9b89f9eabd3a6d8fc63141931",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "e9660403e379ede722496ce0625fbecb8cffdf878243073c3e2b2cd04d257a02",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-contention-measurements.jsonl",
+          "rowsSha256": "0733c65d90f61ce83986d150670c2cb8c3a6e7025474880608c5d51c7677afc5",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-contention-boosts.jsonl",
+            "rowsSha256": "54b7626ee36227d1a9d9fc6e80d74a6c70f2b8d95e4eda519ebcb2ce02293b60",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-coexist",
+        "group": "actor-boosts",
+        "seconds": 3.61,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-coexist-raw.json.gz",
+        "rawSha256": "4395dda0ef06a2b76d7e081e0429c3bd1e25ab0c5871b3242bf1910182747cdd",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "873b3c0e536c8e927789fe193cfe188d035acb508e8887c3e17ddaef5e730e2e",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3675f3adde825a346657a46c1c73c5d42ef8894d5eb17a391c046e61e0e517aa",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-coexist-measurements.jsonl",
+          "rowsSha256": "e5a4d286dae6252dffea7d1e33ddc7df2435db868c01ff1dcfc078e5ccc823df",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-coexist-boosts.jsonl",
+            "rowsSha256": "0faaf42b5c76e9016ed6cb98694aebe4567973ae3ddb87a078e98009c9045d82",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-paused",
+        "group": "actor-boosts",
+        "seconds": 3.516,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-paused-raw.json.gz",
+        "rawSha256": "054de35f296d53f525ce65e3fff6ace8fc5c18993784756a4e0e24baeb294506",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "7200a5fd4c5ca6d9d21228176e0b8a166f466414a5a5cd0c6b0e75ca82ccbc35",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "b5463a2b19f1d76d1249af61cd046dcfa21eb05d489b46748d079df0f1286079",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-paused-measurements.jsonl",
+          "rowsSha256": "36aa1384bca8ac9253f7485140e8bb6402d22fc9775f627522ea0c6d6144603e",
+          "rows": 100
+        },
+        "domains": {
+          "boosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-paused-boosts.jsonl",
+            "rowsSha256": "e6ec3eccdfbd82bcf8be119a3b55b4f728caec536b9eec4df56eafc73f1889da",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boost-role",
+        "group": "role-and-bulk",
+        "seconds": 9.677,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-role-raw.json.gz",
+        "rawSha256": "dffa4cfd900e9f00e04f888268071675c6bbde5a1633c735e7b9ba79bf39c0af",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "d8fb41d3c4c1e5e185b0f8874315799eb354d69bd6b27332693643c20f844c92",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "8111937c153d28dcdac9f4eb6a57ac0a4cd454c81d21b6cb39b509290f7fb94e",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-role-measurements.jsonl",
+          "rowsSha256": "febbbd6393fa337b73869100559af3b5c9c403ff8a3d20db5cddaf120a07b035",
+          "rows": 320
+        },
+        "domains": {
+          "boostRoles": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-role-boostRoles.jsonl",
+            "rowsSha256": "2cb2d6f5562fa4d0903c7cfe8bd378b7ae19a4152e3a1c84cd11434b9fd2390e",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-role-automatic",
+        "group": "role-and-bulk",
+        "seconds": 9.809,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-role-automatic-raw.json.gz",
+        "rawSha256": "c7090576080d03e134ab684fbb76fa6b3cf85c4b501d233ccf8a4d1a907bee92",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "323906f1136ea512970670dd15ccdc4f72a031dcab0884e087e34a4091ad8751",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "d7ab1b9a8d2bab59ecd4b8dac45873462b2fbe8ec5e10e4f5488077664c93a06",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-role-automatic-measurements.jsonl",
+          "rowsSha256": "8328c0fe469fd36a78dbff5f9095e9c4e8504c3bc6b221604de03792501bea2f",
+          "rows": 320
+        },
+        "domains": {
+          "boostRoles": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-role-automatic-boostRoles.jsonl",
+            "rowsSha256": "9bc1a0858da11ca5dd2f9500cb9df9029d532fb276b4e4c3faf358eb87fe2e0e",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-role-refused",
+        "group": "role-and-bulk",
+        "seconds": 10.006,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-role-refused-raw.json.gz",
+        "rawSha256": "471d5a52ef455a03e628446854526f49df7bb858d86b808dc3c6851e3aa150a4",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "0c1b0bbb177aac75acee7534bcf006fabafb11eeea95fc8c2f921f830cb39ea3",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "99a626ebb7f5d0836fa7d831ff4810e4a63893b9db4ef3ff2bb6de54e80a8006",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-role-refused-measurements.jsonl",
+          "rowsSha256": "da0e1d90f3943ae69d35d681efc09175f314beee4e433db216ba9e5b1fa0d35b",
+          "rows": 320
+        },
+        "domains": {
+          "boostRoles": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-role-refused-boostRoles.jsonl",
+            "rowsSha256": "8e2366c32e8992ef97b4e77a47b11cea122be27da5582d7a92d5bc192ff04268",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-role-switch",
+        "group": "role-and-bulk",
+        "seconds": 9.767,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-role-switch-raw.json.gz",
+        "rawSha256": "ab2f68ce9ffe6faf85fbfe6e7029b80c7c50a2067c0ffe6c6f2c1a9924a541ca",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "9b023928ca7ae1b047a344a29fd0bc034b5f36f26bbcc9644cb2ae09dda904eb",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "20b51846ba33b68accd6e46f48f570a709bcc8233cb9835f8bf3f06539e7ce92",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-role-switch-measurements.jsonl",
+          "rowsSha256": "32407d847e837e29bff21219e8ddceaf10d428b58786d91b589b85a5e1346f1a",
+          "rows": 320
+        },
+        "domains": {
+          "boostRoles": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-role-switch-boostRoles.jsonl",
+            "rowsSha256": "baaecbb044a8a64a1c024471e20d6095628fa62fb6473211dee8f67b0fdfc84b",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-role-remove",
+        "group": "role-and-bulk",
+        "seconds": 11.031,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-role-remove-raw.json.gz",
+        "rawSha256": "7806cedf1be926878b25dc3d95ed540875b79a2011f7e3b81a1b887d991c9155",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "dba508e764f1b85c731d7238c448a3f1f5c65b3ecc8e8481477a5f887aeee227",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "4044f302b53e80bf2b3faa55047b170fb270e9983436cab9bbb8e2db8d798972",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-role-remove-measurements.jsonl",
+          "rowsSha256": "5c50a4542a47d872e9143a21ad0e812562b42d75a6fa4d7ca2a6da6d6f978bee",
+          "rows": 320
+        },
+        "domains": {
+          "boostRoles": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-role-remove-boostRoles.jsonl",
+            "rowsSha256": "251b486303e1ea6cb62b6b87e5943345a92101f21f8e7ee51bedf3e92cab540c",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-role-specialist",
+        "group": "role-and-bulk",
+        "seconds": 10.038,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-role-specialist-raw.json.gz",
+        "rawSha256": "216790dcce3974d8792a1c1f6b3031745e05dd40c380e153c3ff2162bb2a5819",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "835955510454e7a6d588980704f5d87872f7693188af60fd98c1a828c9717982",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3504ae7018d199ba67575e2450b1c9939124c5f30a4ea39338af7aca53cd85e8",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-role-specialist-measurements.jsonl",
+          "rowsSha256": "de253c74d967ccb61964c669980a2a07bcaf96ead6125a4cfbd8602d15a7c523",
+          "rows": 320
+        },
+        "domains": {
+          "boostRoles": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-role-specialist-boostRoles.jsonl",
+            "rowsSha256": "ad7f598bac21bda9d1e336c093b03a048e06443b3a47712c3efe1ce3e6711a15",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-bulk",
+        "group": "role-and-bulk",
+        "seconds": 13.286,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-bulk-raw.json.gz",
+        "rawSha256": "fa69c36cd8d34b8ef52ba2254f26cdcf67b7677e62574580c1b218c1555d9872",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8e8be0cadd83bf3aed67036ecf7242670930d5ed277d8c903f37193f6a5f8929",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "6af15046b48523a52bc80fdb0791f9d5472483d95e529f358343cf16562196de",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-bulk-measurements.jsonl",
+          "rowsSha256": "38292e2767c6874b695c7341bbd69d3e4a44f20878bc10fb3ac5de4e34a20a17",
+          "rows": 320
+        },
+        "domains": {
+          "boostBulk": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-bulk-boostBulk.jsonl",
+            "rowsSha256": "03cd5d6a95fca73272e2db61deff39f1449c94a0723a506b2ffbaa6ea0a54276",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "boost-bulk-refused",
+        "group": "role-and-bulk",
+        "seconds": 12.414,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boost-bulk-refused-raw.json.gz",
+        "rawSha256": "14dd3496f1a7515b7ce57b56751d038b45ef49ee7add1c6aeee63ea442647484",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "78743ba8906c4c610706759b0c0a3f85a53f031430f9c6ecdf949439c2e96dcc",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "e02578d627e804420edc56ebe4ec1df2c8c0416d4c0861b15dc60e8054ad0a6b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boost-bulk-refused-measurements.jsonl",
+          "rowsSha256": "abcb3711ac98472db39f6e4cdd9b3a8c2697ff1acea3d075706ceb0599938dc0",
+          "rows": 320
+        },
+        "domains": {
+          "boostBulk": {
+            "rowsFile": "docs/evidence/ed36-milestone/boost-bulk-refused-boostBulk.jsonl",
+            "rowsSha256": "3958f3fd0b65774df082e51c18dc97c8df74f62886f6aeb326634592969ce207",
+            "rows": 320
+          }
+        }
+      },
+      {
+        "scenario": "worker-boost",
+        "group": "work-producers",
+        "seconds": 3.788,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/worker-boost-raw.json.gz",
+        "rawSha256": "ada6727e86a2ba13380f4f8cdf726801453794b6daae0854fbc7c7d56da85fde",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "eb40a3be623583ee3a6891ba4f163f0b7427ba05b18ffb3f88a7097f87915a07",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "c3e3828314b19f8b7f3516c82fac59a88205f7aaf728c84f79df303835fd3049",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/worker-boost-measurements.jsonl",
+          "rowsSha256": "7ba2f35740f075281a053749ff4c94016e9d116c68f5f91b89b7dd43b23315b9",
+          "rows": 100
+        },
+        "domains": {
+          "workerBoosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/worker-boost-workerBoosts.jsonl",
+            "rowsSha256": "15313a6d07d405adbaf87ba2b6602caf474db614a412aeb8423d7d3fdaaabcd0",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "worker-boost-shortage",
+        "group": "work-producers",
+        "seconds": 2.607,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/worker-boost-shortage-raw.json.gz",
+        "rawSha256": "0878a26bf14d37c328dc07a4baf765fc302d9ccea7e71069cef085ddbc2bf0eb",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "0fc2b599df1f5c4204738a6bd1173252c9d258642278e1602affc41fe4e432a1",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "2d72bf94cc62055c5f5c3921dcdb4eec8d4e6df792a34c03b32b274971f95d7f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/worker-boost-shortage-measurements.jsonl",
+          "rowsSha256": "39205c423f41ca083b8b1504f07c2f6821664a50990a224f29d3a1c75bd42a96",
+          "rows": 100
+        },
+        "domains": {
+          "workerBoosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/worker-boost-shortage-workerBoosts.jsonl",
+            "rowsSha256": "f4c3ef1e8d860c25e7bdb9be7d92395d5ab9e335b2ada57b3230d4da75a5cef1",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "worker-boost-optional",
+        "group": "work-producers",
+        "seconds": 3.307,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/worker-boost-optional-raw.json.gz",
+        "rawSha256": "1a7dacc75416393b3def6907a689624d9cad2f877822ca702b2c584d3d85c73a",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "ea311c0f4a5c7215c548a9719f72d34b807898d91fb5750dcbd76f639716bdf4",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "b537285a756af06b2c53ca3fdd75112701498329c7a74a78707cd6833b66b82d",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/worker-boost-optional-measurements.jsonl",
+          "rowsSha256": "71e0799f50ff9477f9548d6c327a4d44274c0a4d74d3bf93f117200e8a509d33",
+          "rows": 100
+        },
+        "domains": {
+          "workerBoosts": {
+            "rowsFile": "docs/evidence/ed36-milestone/worker-boost-optional-workerBoosts.jsonl",
+            "rowsSha256": "3eb34f785fe51493387e8bd7afd9b60470bdd8dacf852ddee21d71dee7b5bce7",
+            "rows": 100
+          }
+        }
+      },
+      {
+        "scenario": "boosted-builder",
+        "group": "work-producers",
+        "seconds": 14.211,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boosted-builder-raw.json.gz",
+        "rawSha256": "6fb2f0b7270aa86c5728fb35e5d0f73de6cf60921114111fea5fd3612303595f",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "704db10ab2d51d4dd810d09ce5290b709cb3ee275d305f825e0ebf05733a84fd",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "94817e16493a08113c4a46157bc27504051e6e0c82ad4b1ed0aa7ef45a70768b",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boosted-builder-measurements.jsonl",
+          "rowsSha256": "9563d9b06dc9b62c925c2599352a30f504244dc4d59c6cbdcc92516bd0443666",
+          "rows": 450
+        },
+        "domains": {
+          "boostedBuilder": {
+            "rowsFile": "docs/evidence/ed36-milestone/boosted-builder-boostedBuilder.jsonl",
+            "rowsSha256": "69897a61e757fd26f8e291c9d9cd78de78fa817ad7054ef330a90414b5f732bd",
+            "rows": 450
+          }
+        }
+      },
+      {
+        "scenario": "boosted-builder-shortage",
+        "group": "work-producers",
+        "seconds": 1.511,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boosted-builder-shortage-raw.json.gz",
+        "rawSha256": "3c155a34bdd52435928a13e69c1cdd4e9202ca3c0ccb665cb1022a7d6cdcf4a9",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "b7be6bc5c6d96a35bec43e32209d621d2c2addb6cf7c59ebb056f1e24c006cf3",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "00116b1b4a826309e8e44c7bcc38f1d0fa02c8530f3934f756a46e09105b6cca",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boosted-builder-shortage-measurements.jsonl",
+          "rowsSha256": "e73c5ba58e201805ec95197d9f8e74dab4895d33ff3fed3d3e1e0199fcbc3cfe",
+          "rows": 30
+        },
+        "domains": {
+          "boostedBuilder": {
+            "rowsFile": "docs/evidence/ed36-milestone/boosted-builder-shortage-boostedBuilder.jsonl",
+            "rowsSha256": "3872702b50f6a2ead873e9f0114d1720d16b9d2b779dad282c28c412c0d75fb3",
+            "rows": 30
+          }
+        }
+      },
+      {
+        "scenario": "boosted-builder-lower",
+        "group": "work-producers",
+        "seconds": 1.503,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/boosted-builder-lower-raw.json.gz",
+        "rawSha256": "a427a79225463decb6c25a3ddea4a4e1ae157b6ea939be4b731340288d52d49d",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "24fc53b1685ba01709c372744651929feb5ec3b276d7a7d27b7610792164a6c2",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "f3b021157e4d5661192540b0f65a7e8505095aad37a15a9c499d3479abdaf82f",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/boosted-builder-lower-measurements.jsonl",
+          "rowsSha256": "c401ef78f4f3f8769a62eb555b460fc3941e4b1525a49983485166f6cbcb5d3b",
+          "rows": 30
+        },
+        "domains": {
+          "boostedBuilder": {
+            "rowsFile": "docs/evidence/ed36-milestone/boosted-builder-lower-boostedBuilder.jsonl",
+            "rowsSha256": "4a74d90a92a682c56a8e5c23d8e6dcc46b32026a8347ff3d9f9d2e1fef0e1396",
+            "rows": 30
+          }
+        }
+      },
+      {
+        "scenario": "upgrade-room",
+        "group": "specialists",
+        "seconds": 1.974,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/upgrade-room-raw.json.gz",
+        "rawSha256": "ed6b8b4d6b7479a9c64f6d8299650cc10de0b9ee78b876aea054529297616737",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8be814ac70342b0fcdbfc3c3e86456cb8a90555bfa54ffb9224bb0a251d184a5",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3db156757bf26f81c4bbaa1ddfeb18bb6c3e0db14e874a1c55dcfb4244f8c134",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/upgrade-room-measurements.jsonl",
+          "rowsSha256": "fa9d56fd7ab8f2684f5c0e129a22f13936e353a205dfa695f78fe850001ce043",
+          "rows": 24
+        },
+        "domains": {
+          "upgradeRoom": {
+            "rowsFile": "docs/evidence/ed36-milestone/upgrade-room-upgradeRoom.jsonl",
+            "rowsSha256": "bdaf55fa644aab1779c1ed21e0df59ac2cd05b89e79ddb8efa253fe2bada95bc",
+            "rows": 24
+          }
+        }
+      },
+      {
+        "scenario": "upgrade-room-shortage",
+        "group": "specialists",
+        "seconds": 1.645,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/upgrade-room-shortage-raw.json.gz",
+        "rawSha256": "adb14a7802a012fad063ae6622ff900e05375d3a73b08a43590f72a63d69c6e9",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "eb6cc3cdc7d919c98ed2dbc65cb69753c7b516777dbf05cade1f6f9d609da4ed",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3db156757bf26f81c4bbaa1ddfeb18bb6c3e0db14e874a1c55dcfb4244f8c134",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/upgrade-room-shortage-measurements.jsonl",
+          "rowsSha256": "a8478953def0fc30ac5159e64c2852476d2fc4975fe9bd582df4c85c8af3f94e",
+          "rows": 24
+        },
+        "domains": {
+          "upgradeRoom": {
+            "rowsFile": "docs/evidence/ed36-milestone/upgrade-room-shortage-upgradeRoom.jsonl",
+            "rowsSha256": "ce7d3f4158c7d01b86b77a9065718b96eab124ee88040542260409d548b77ac5",
+            "rows": 24
+          }
+        }
+      },
+      {
+        "scenario": "upgrade-lab-coexist",
+        "group": "specialists",
+        "seconds": 2.005,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/upgrade-lab-coexist-raw.json.gz",
+        "rawSha256": "ca5ed5c57b400e2d6e662dc298a525af25efad1e6e1323db12d7a830261874e5",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8891ca10568e619e1ecacb9e1da54d8696543bb461324f97e93db62a1107030c",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3db156757bf26f81c4bbaa1ddfeb18bb6c3e0db14e874a1c55dcfb4244f8c134",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/upgrade-lab-coexist-measurements.jsonl",
+          "rowsSha256": "8e71b57519386e02f8436c1483ee85ddf92b9da98230018684c6cd03bb9d3402",
+          "rows": 24
+        },
+        "domains": {
+          "upgradeRoom": {
+            "rowsFile": "docs/evidence/ed36-milestone/upgrade-lab-coexist-upgradeRoom.jsonl",
+            "rowsSha256": "918a42a1792dac2e9ed2e1b43eb63a22c800031c236f873fc20134aa31a3e94f",
+            "rows": 24
+          }
+        }
+      },
+      {
+        "scenario": "upgrade-lab-toggle",
+        "group": "specialists",
+        "seconds": 1.99,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/upgrade-lab-toggle-raw.json.gz",
+        "rawSha256": "0c44cffd7631048dbde13bbcb9119f50fdd1b71d3ad53955031f50ab79ca0ad5",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "c5c408718773fcc2d6eade5228f49447e24c5b41d7960907693f75003fae6c2c",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "c389f7a51ad3ff98fbb99bd5afb136a6631b65efbcb0ebf682849d16efa3d600",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/upgrade-lab-toggle-measurements.jsonl",
+          "rowsSha256": "e0525bcbb3405cc64cff2d0ff5f150a72a2f45eacbfeaf36c9adff461ae72011",
+          "rows": 24
+        },
+        "domains": {
+          "upgradeRoom": {
+            "rowsFile": "docs/evidence/ed36-milestone/upgrade-lab-toggle-upgradeRoom.jsonl",
+            "rowsSha256": "3a128385b864cc456c0f8e5693832588a9745524b019eb9f7563e48423701858",
+            "rows": 24
+          }
+        }
+      },
+      {
+        "scenario": "upgrade-lab-loss",
+        "group": "specialists",
+        "seconds": 1.929,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/upgrade-lab-loss-raw.json.gz",
+        "rawSha256": "c737c8ff5eb1bb5472070cdaab6dc4f722ab86cb56ecae20b95c03bcb8ab0601",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "80785873514a0921309153275dfdaf0c8acfcecd3a8e85a4015e59f1c40dcbc5",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "fef8a6abbc457c923dfe6df4663dce61b9ef27e9a23aa9f4cdce085d4a29a1c2",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/upgrade-lab-loss-measurements.jsonl",
+          "rowsSha256": "62c2be000df43d5d7fdb864b372fa73e5b0bb1d31141ec701cdf68d8328f7f97",
+          "rows": 24
+        },
+        "domains": {
+          "upgradeRoom": {
+            "rowsFile": "docs/evidence/ed36-milestone/upgrade-lab-loss-upgradeRoom.jsonl",
+            "rowsSha256": "c8ce3968a244fd02cf044c8a030a1224af664a65ef6524ec8c1fe69d121123df",
+            "rows": 24
+          }
+        }
+      },
+      {
+        "scenario": "upgrade-boost-contention",
+        "group": "specialists",
+        "seconds": 1.986,
+        "exitCode": 0,
+        "rawFile": "docs/evidence/ed36-milestone/upgrade-boost-contention-raw.json.gz",
+        "rawSha256": "2aabbb12162ce22ff7135caeedd60f8e3a577ab0d4561f82c79c388f6d6dfda1",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "297b193b8849d99646c3f592aa1cdd3e42f14708898b599cd3d2db5de96a2635",
+        "nativeSource": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "expectedStatus": "passed",
+        "provenance": {
+          "commit": "d2bd05bb20f2378261cf49986e2423391db73874",
+          "dirty": false,
+          "bundleSha256": "3db156757bf26f81c4bbaa1ddfeb18bb6c3e0db14e874a1c55dcfb4244f8c134",
+          "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+          "node": "v24.22.1",
+          "platform": "win32",
+          "engine": "4.3.2",
+          "driver": "5.3.0"
+        },
+        "errors": [],
+        "measurements": {
+          "rowsFile": "docs/evidence/ed36-milestone/upgrade-boost-contention-measurements.jsonl",
+          "rowsSha256": "6e35f27bcde3a5abd5bd37581f485c1d5f330837d5e07456daadd417ad33d14a",
+          "rows": 24
+        },
+        "domains": {
+          "upgradeRoom": {
+            "rowsFile": "docs/evidence/ed36-milestone/upgrade-boost-contention-upgradeRoom.jsonl",
+            "rowsSha256": "4ab5711c4f6054278c004b9f27d6e6d834574b63de8d5e47949510cb89530dbf",
+            "rows": 24
+          }
+        }
+      }
+    ]
+  },
+  "failedCampaigns": [
+    {
+      "source": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+      "status": "failed",
+      "passedBeforeFailure": 25,
+      "reason": "Intel-history fixture advanced through601samples/tick602 without engine errors but reached its60second harness deadline; intel-only allowance raised to120seconds; all assertions and640ticks retained. This campaign is not milestone success.",
+      "report": {
+        "rawFile": "docs/evidence/ed36-milestone/first-failed-campaign.json.gz",
+        "rawSha256": "8928f6189e4e966a6a5e7ac51421fb1c766cccac517a0bfd2a973c90300a5414",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "1f4700c06161c9ee55b4a92059e2fe4b8326416735a634718ef6611a024aedca"
+      },
+      "results": [
+        {
+          "scenario": "packaged-smoke",
+          "group": "composition-minerals",
+          "seconds": 1.187,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-packaged-smoke-raw.json.gz",
+          "rawSha256": "f3c9703e2e6ceedcae8387d0f96a6a858a3ef33f868528b2b2ec27725ebdbb63",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "5967496aa7c8ef9fcbe796b593c63c83312643210bf5048ea7795984b1d3396d",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "5f8622292fe5d1e68b22b686d15f9836d9e8628a8ee882ac90bfef5b692ad60a",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-packaged-smoke-measurements.jsonl",
+            "rowsSha256": "33b17781b0ffa5c3e9a2e84cd30ecb0a56e9cf07b508c3c071d03f4bd5d0b5fe",
+            "rows": 3
+          }
+        },
+        {
+          "scenario": "structure-actions",
+          "group": "composition-minerals",
+          "seconds": 1.036,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-structure-actions-raw.json.gz",
+          "rawSha256": "c4ae0c60defbb4936fbacd02dcab801510a6972ba6b170732fe9b04b93197847",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "a607d736b015291ef7e17e9749bcd3f9353e54c5eda4e785dba4d1289162e39b",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "2cb07056e8690c1cba7f17e35a6bfdf8af4da2b65c85cdf34c0e1c55f9ecabc1",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-structure-actions-measurements.jsonl",
+            "rowsSha256": "55022645ffc05c0363302749603c03c67462b722722f83d1cd211fa512115687",
+            "rows": 3
+          }
+        },
+        {
+          "scenario": "mineral-industry",
+          "group": "composition-minerals",
+          "seconds": 21.117,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-mineral-industry-raw.json.gz",
+          "rawSha256": "6c9887c7ec095daa8ffe39406c04ee6474182d7a31f2c8476f3cb5c62a21ab96",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "6a128b7d5a61620226475e4fac0ae39fc0996685537b8ca20ca7c6a6f7a7220a",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "f4cbc58d42077022e7d2421c165c38e104214c4c66505107e54362ff27a5849f",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-mineral-industry-measurements.jsonl",
+            "rowsSha256": "d27b62bfabf2a2c39133f2959a47b77029ddf4dde69de98a0390d6db7929c03c",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "colony-mineral",
+          "group": "composition-minerals",
+          "seconds": 1.697,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-colony-mineral-raw.json.gz",
+          "rawSha256": "859dce548ce58169a26903c1c176d4a65e574881c1b9b379dac2178482942937",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "96e0d7999c5c03ae310de14b682115b9bddef8574c33edfab9181bac79227fce",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "2e9cfc1b9059f418cd5a6bdfd709ef9d996eae0b6658f3c1f12a5780bb3885ab",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-colony-mineral-measurements.jsonl",
+            "rowsSha256": "f1cba80567deaae10b1f491a2072befe4f9fb7cabc12c100cb2af866d8689d82",
+            "rows": 25
+          }
+        },
+        {
+          "scenario": "mineral-transport",
+          "group": "composition-minerals",
+          "seconds": 1.34,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-mineral-transport-raw.json.gz",
+          "rawSha256": "a7027a40aa7de8a8d237b67873ac5054a7869837d41950298aa1bc13438798cf",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "dc266dba6d7eb46939090b6888efbedab01e5e31567a202f1ca9b229b6bbe6c4",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "4efb803a6c3f7192af31c8d2af2572e3a6fb06a2d273439380a040f738c1e614",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-mineral-transport-measurements.jsonl",
+            "rowsSha256": "843a07477ecd9bba7a6a40eb28676605226dd620b905107ee04e6b8a6ee9e19e",
+            "rows": 9
+          }
+        },
+        {
+          "scenario": "mineral-reload",
+          "group": "composition-minerals",
+          "seconds": 1.488,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-mineral-reload-raw.json.gz",
+          "rawSha256": "e5fb5c066b3e6526d7c2094dfa80da611f0c47b9339b2fe3b801081f270a6060",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "5442ce72d9b789666a10ea3f153be2b7b5062853352d64657b12f39d4321d404",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "4efb803a6c3f7192af31c8d2af2572e3a6fb06a2d273439380a040f738c1e614",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-mineral-reload-measurements.jsonl",
+            "rowsSha256": "e9d04b07a91728a82383aa91711fcc55bb2b57c8850a5113706e911c4a16600b",
+            "rows": 9
+          }
+        },
+        {
+          "scenario": "lab-reactions",
+          "group": "direct-and-local",
+          "seconds": 1.73,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-reactions-raw.json.gz",
+          "rawSha256": "1e6171075e787d66c7c77adcd2f64229cc4581dc6db78d4c745626bbf1e45ab9",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "f7bc25c93694da34051fe82892f259ceac3de98e7607d9e5313a9e549e638082",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "39b257ad0d00d21e48b1add40fa42c0cac70f05c643a2bdad431d7d533a27d0f",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-reactions-measurements.jsonl",
+            "rowsSha256": "9083851515181c3f8fad1d58a2febbc808c62e8b72a73870faf193f63d77b07b",
+            "rows": 25
+          }
+        },
+        {
+          "scenario": "lab-reactions-invalid",
+          "group": "direct-and-local",
+          "seconds": 1.624,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-reactions-invalid-raw.json.gz",
+          "rawSha256": "33953827b78726e8b642d385728b4398ec71a599a28b1c16b63ce8d22e908484",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "038f779a38d2178313a581d4307bc3eb057ea7524bf43a2bfa2095512aa0de4b",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "39b257ad0d00d21e48b1add40fa42c0cac70f05c643a2bdad431d7d533a27d0f",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-reactions-invalid-measurements.jsonl",
+            "rowsSha256": "8352b425f55327835d48682e3e763a7ba9c0362ea8cb00bd532b5cab3bc0e67d",
+            "rows": 25
+          }
+        },
+        {
+          "scenario": "lab-reactions-destroy",
+          "group": "direct-and-local",
+          "seconds": 1.723,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-reactions-destroy-raw.json.gz",
+          "rawSha256": "fc47d1bf8a855ae78842c3ffd84219753e1dcd1a0cbdeccd3e1aa2dc1ce9fc26",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "47ad74d0b6d3e81e31f6e8b2895bd68736fcebef71747c77308ff0dd244c0fc9",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "39b257ad0d00d21e48b1add40fa42c0cac70f05c643a2bdad431d7d533a27d0f",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-reactions-destroy-measurements.jsonl",
+            "rowsSha256": "fc8391a19db00e7a12523e710e7a2c42149e850a1cf3febbc1e88a68919f1436",
+            "rows": 25
+          }
+        },
+        {
+          "scenario": "lab-supply",
+          "group": "direct-and-local",
+          "seconds": 9.693,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-supply-raw.json.gz",
+          "rawSha256": "43fa0c75682b33c0bad2d6e78fdca03fade262c7e6aeba47b88a454e43f86166",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "b6c505641c4be465c5545ebb0c412d2b93c1628df11deed7bfebfc824b0aafd8",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "469d41216529adfee277b4bf6d1f7f0a7ca83ab8703ce1bc26768dd9b1111ad6",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-supply-measurements.jsonl",
+            "rowsSha256": "44ce91c7b9cf32f760e987d188941dfc5f91d93691e77ac4741907c345c57f5f",
+            "rows": 320
+          }
+        },
+        {
+          "scenario": "lab-supply-depleted",
+          "group": "direct-and-local",
+          "seconds": 8.874,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-supply-depleted-raw.json.gz",
+          "rawSha256": "81968db45eb51df2779db2e3a98dd5c0eaf3d1eea5569d71bceabc48b77ac236",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "2912576f9908401c74fc5c6f7f607f132a278b057cafee7f7f281ca04f2bbce0",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "ae82d8d1b31045a7d16d0d4774d22fb151dd7e403834fb6be1a8600e8f7f6a45",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-supply-depleted-measurements.jsonl",
+            "rowsSha256": "0a525b2d689411a7ca04032715b5c9f57f66f48acf3b05fef52da46516bfe501",
+            "rows": 320
+          }
+        },
+        {
+          "scenario": "lab-supply-switch",
+          "group": "direct-and-local",
+          "seconds": 9.141,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-supply-switch-raw.json.gz",
+          "rawSha256": "b6e92e949b470229db67e509ca53bf3f8051a179281375513d2800869fa35801",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "3dd2f698faf0f1fa9baea312e410ed19a5df290fd99fe3a037a323f93a5ae4d7",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "7e5dce7a9806eb70dc224f255699c0f9a24c83adc74d868580a75ebf942a652c",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-supply-switch-measurements.jsonl",
+            "rowsSha256": "d677705ae9407c8d7e353ada6f039cd1e5a68bbf418f9cf60b00f2ab0cbaeb2c",
+            "rows": 320
+          }
+        },
+        {
+          "scenario": "lab-supply-cancel",
+          "group": "direct-and-local",
+          "seconds": 10.114,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-supply-cancel-raw.json.gz",
+          "rawSha256": "9bf32f3601b688e600dea64b649683476c35a7fd074e96bd9c3b00b9ff90a8eb",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "2e6fb38b206741d3e03d8825aa4c11b2d97389967223e230fe592e19dd21a1f9",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "b0e74757cdf2a93a3947de9d341c0fb358ff6ecac7bd2c545976dc0db911a713",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-supply-cancel-measurements.jsonl",
+            "rowsSha256": "8183f28ade69fbdb164d302c3dff1ead529ac7a8df0ccf2440bce9f5331ba7e3",
+            "rows": 320
+          }
+        },
+        {
+          "scenario": "lab-operator",
+          "group": "direct-and-local",
+          "seconds": 9.601,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-operator-raw.json.gz",
+          "rawSha256": "00ea263516ece712e1bb0d3a59af2c5ef6eef07d2e1230c20a7b82e581b8fbdd",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "2a428f44236ea9cd0a2707a1cdef9077eebad0d7792604661acb30c7f296c971",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "3c467f1e4cad60f7d3a0054fee25b801cfd1169eaafa2defe169b7cf1bb16996",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-operator-measurements.jsonl",
+            "rowsSha256": "2c7d96090813efe138c72d82dd3b0bfd2f9ffb5fc7c12f07c71071ea34ea8c42",
+            "rows": 320
+          }
+        },
+        {
+          "scenario": "lab-replan",
+          "group": "direct-and-local",
+          "seconds": 9.619,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-replan-raw.json.gz",
+          "rawSha256": "1b6f966c473a06d3c0342574ef00ad97bd1f8eecb1d8c66a84f98d6aa499c89c",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "28cd45666715384b1413f43e34d2cbf47d0370f79a8f83066c54d9dab90fd4b1",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "bf7c41f3011705d55bd35a953a6e0ed0c3719398f6e7bbb8585b3b78b99c3f4a",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-replan-measurements.jsonl",
+            "rowsSha256": "2ac50e4e1607a15ae7fa48dd02b95da02d8e942c6a57560236e5033110717276",
+            "rows": 320
+          }
+        },
+        {
+          "scenario": "lab-chain",
+          "group": "direct-and-local",
+          "seconds": 19.784,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-chain-raw.json.gz",
+          "rawSha256": "14eb353e24f1f7635675d8243092a1350c4f269e2e78d81d8b730f4c3e29831d",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "1de0e7bbd93d3f685889b72cdcb53b6011b23169142de754a23712f9b958c49d",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "1238fe6a13092bfef80ff9920274a3fa84a9a77d52fc4feb38047b317917e005",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-chain-measurements.jsonl",
+            "rowsSha256": "01a9c2f7f4a4496545c288fd838d8c7286f8a724f905303427fc08a09a49d958",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-chain-prestock",
+          "group": "direct-and-local",
+          "seconds": 19.238,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-chain-prestock-raw.json.gz",
+          "rawSha256": "372b6098a2b54d71b379aa013552dd5e44e3b10c498a9e5da7e31d6336af217e",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "ac2bbfba613e2d27c0dff25c337f9a08cf9bbe3f5b92a129a6b1b2856e497696",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "cf816f37044780afecdf4e8f8192556bb1f703392964c03d597f79fd857daadf",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-chain-prestock-measurements.jsonl",
+            "rowsSha256": "5724570882cf42327c28142428ccf451fa4f3cbd90cb6de08767fb42946024b1",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-chain-reserves",
+          "group": "direct-and-local",
+          "seconds": 19.539,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-chain-reserves-raw.json.gz",
+          "rawSha256": "41114028c905a3b63ec81c418f497af8b48b7eee0d40784ff913ae37c1d7ceb0",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "59169ff77093391ca8bcc9e5200ebe8fc54a7e26fd6690b8b960aa2a03651b0f",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "b4aa5d585e8b8881cb7a9a9cc39b63bf27e0a13c7eb96f393bb313ae656d113f",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-chain-reserves-measurements.jsonl",
+            "rowsSha256": "faf1893134cd531e96434264ab0bdda32752058826fdb7e44df33b36e4b73c90",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-chain-priority",
+          "group": "direct-and-local",
+          "seconds": 19.167,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-chain-priority-raw.json.gz",
+          "rawSha256": "d1393948269e9e8fee4cc4cf694e3c0d579d801fd7115e2fca7870c562a4033f",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "589993baf09c6e0c4d702e34d027602df86633b8d5bb0b55e8fbf3064c82686b",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "1116d2d8be1e4087378fe965a4dc40e55ace8076dd42582b9e4700a8ba6604fc",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-chain-priority-measurements.jsonl",
+            "rowsSha256": "a23eb850866520dbe350f1266ba73a5dbe3ef3256ab3188b7c61d22389b64c7f",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-chain-depleted",
+          "group": "direct-and-local",
+          "seconds": 15.468,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-chain-depleted-raw.json.gz",
+          "rawSha256": "610080426a9a92302b52886e26829f3b6120eedbce28e1f9cd18675103ad2ea9",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "37d2973d7004b6f694c8a050f144668ab06face8ad8aa16844c49554a974c147",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "438f8239b66d4d01ab79132c03129cd4cbb0b34e01f0ad316192c8a204f79c99",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-chain-depleted-measurements.jsonl",
+            "rowsSha256": "def39ee2175910ac91fa0e6a7719a08ec63980bebe3095dbee9d1fac8e3a60b0",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-empire",
+          "group": "shared-and-policy",
+          "seconds": 35.224,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-empire-raw.json.gz",
+          "rawSha256": "242b16c4fd4856a1dc907c161e80b3c28c551836955bff5821467572d9d78298",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "dd68d33d054996a26f83a9e10a66096b75c90c8fc17d48545d5f63ab5262c6f3",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "956bcfa08881677a400aee05247a140d4c7488c674576af68a784e375cc73316",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-empire-measurements.jsonl",
+            "rowsSha256": "721b002c53200cb1c98e60b73af5c96c32cda15530eafebdb7a92be171980039",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-empire-policy",
+          "group": "shared-and-policy",
+          "seconds": 34.265,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-empire-policy-raw.json.gz",
+          "rawSha256": "fd310b61427a7ebfc4946b2d3fe12e7bfccc25427365e03aea0696ecf97db298",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "2933866e4d891599af4c81fecefbb97386b2bb40bb571e3ff80ad73a466051d8",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "cedab4cb32c71e46ecfcfd7d8082d559e932af99e1bfec035bc851ffbf234a3b",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-empire-policy-measurements.jsonl",
+            "rowsSha256": "9c2c4ce705a1b270b6ff547db58de61f85400d94edac4cb55774690e39712ed7",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-empire-participant",
+          "group": "shared-and-policy",
+          "seconds": 33.676,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-empire-participant-raw.json.gz",
+          "rawSha256": "836bc49f3ff2a0bbd0d25a5e9e86b1413486a0c2b68f0f1e81a62ca509cd62cd",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "f3ad5cfb84cded337ff0d1628a3b496234f146bdb85bb682202579632843a118",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "33ddaf985e810bb2080add02a4fe6dc4d6897ce967ee50158628902e8a945164",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-empire-participant-measurements.jsonl",
+            "rowsSha256": "68ae804fcb7f5df4860b7e07267953da7cd6b29bbe95c5750a9e3b58f7013bc1",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-empire-loss",
+          "group": "shared-and-policy",
+          "seconds": 42.978,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-empire-loss-raw.json.gz",
+          "rawSha256": "b23f980379a09de6a41539eb48ef3f5629e5e0639d6ed94ceb693d10bcb143a0",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "1d47163d06461a94dcd5db4aeab81c75680885d4829e06c85ad5fcddbc723013",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "34ce73c715b8234dddec5feea8048404bbaed3c1ece4aaf23586fd8a0619dde8",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-empire-loss-measurements.jsonl",
+            "rowsSha256": "e7dc6cbee850c13da02b74c77f7f2ee32d07ae7601182fffd51108c06f33eb9e",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-empire-vision",
+          "group": "shared-and-policy",
+          "seconds": 47.025,
+          "exitCode": 0,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-empire-vision-raw.json.gz",
+          "rawSha256": "9b2c4faa86c0afa969c33137235168348def1052aa1c0cd9fddc4d8f6257139f",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "aec119ee5bd69bafbc3bcad703cba7f7958ca7a6e4e83ee8040ea20eff6fd4ae",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "passed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "42cb0dacdb7b53916970f6b302ff26d7b8ce1fb6c7613e62412358524c541b1d",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-empire-vision-measurements.jsonl",
+            "rowsSha256": "e4a53fc9b6b77fbf62163f95029752fe50551674509e31faa91fc72f2d46de7f",
+            "rows": 640
+          }
+        },
+        {
+          "scenario": "lab-empire-intel",
+          "group": "shared-and-policy",
+          "seconds": 60.309,
+          "exitCode": 1,
+          "rawFile": "docs/evidence/ed36-milestone/prior-lab-empire-intel-raw.json.gz",
+          "rawSha256": "fb2d7ca2e3054facae287e84c0e07c162b00440d6b2b1df4510013eb0490a5d2",
+          "rawEncoding": "gzip",
+          "uncompressedSha256": "abe01fe4da240356bfa19887ede0720f83ab9f34a0b8d23a6bf21dd9aa3a4e98",
+          "nativeSource": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+          "expectedStatus": "failed",
+          "provenance": {
+            "commit": "e03f08c22ce1cbd985d251877722321f4a70f09d",
+            "dirty": false,
+            "bundleSha256": "7c011ed029436a2071f6f25923a64166fdd1f52549897f3d56dede1696b766ac",
+            "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+            "node": "v24.22.1",
+            "platform": "win32",
+            "engine": "4.3.2",
+            "driver": "5.3.0"
+          },
+          "errors": [],
+          "measurements": {
+            "rowsFile": "docs/evidence/ed36-milestone/prior-lab-empire-intel-measurements.jsonl",
+            "rowsSha256": "3b65d2c847222676737bea787357a617816c123d64738b39b2dc82b9124ce06c",
+            "rows": 601
+          }
+        }
+      ]
+    }
+  ],
+  "milestoneCI": {
+    "run": 44886186379,
+    "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44886186379",
+    "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+    "event": "workflow_dispatch",
+    "requiredSteps": [
+      "Run npm run quality",
+      "Run smoke unit suite",
+      "Run full unit suite for milestone",
+      "Install pinned processor sources without native install scripts",
+      "Run npm run test:processors",
+      "Run node --test tools/engine/suite-report-check.cjs",
+      "Run npm run check:bundle"
+    ],
+    "jobs": [
+      {
+        "completedAt": "2026-11-21T08:46:44Z",
+        "conclusion": "success",
+        "databaseId": 136791870867,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-21T08:43:18Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-21T08:43:20Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-21T08:43:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:27Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-21T08:43:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:39Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-21T08:43:27Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:41Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-21T08:43:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:45:01Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-21T08:44:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:45:07Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-21T08:45:01Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:45:11Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-21T08:45:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:45:14Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-21T08:45:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:45:41Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-21T08:45:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:45:44Z",
+            "conclusion": "success",
+            "name": "Run smoke unit suite",
+            "number": 10,
+            "startedAt": "2026-11-21T08:45:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:34Z",
+            "conclusion": "success",
+            "name": "Run full unit suite for milestone",
+            "number": 11,
+            "startedAt": "2026-11-21T08:45:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:37Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 12,
+            "startedAt": "2026-11-21T08:46:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:38Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 13,
+            "startedAt": "2026-11-21T08:46:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:39Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 14,
+            "startedAt": "2026-11-21T08:46:38Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:40Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 15,
+            "startedAt": "2026-11-21T08:46:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:40Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 28,
+            "startedAt": "2026-11-21T08:46:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:40Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 29,
+            "startedAt": "2026-11-21T08:46:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:42Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 30,
+            "startedAt": "2026-11-21T08:46:40Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:46:42Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 31,
+            "startedAt": "2026-11-21T08:46:42Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44886186379/job/136791870867"
+      },
+      {
+        "completedAt": "2026-11-21T08:44:52Z",
+        "conclusion": "success",
+        "databaseId": 136791870971,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-21T08:43:18Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-21T08:43:20Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-21T08:43:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:22Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-21T08:43:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:28Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-21T08:43:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:37Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-21T08:43:28Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:39Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-21T08:43:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:41Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-21T08:43:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:43Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-21T08:43:41Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:43:44Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-21T08:43:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:05Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-21T08:43:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:07Z",
+            "conclusion": "success",
+            "name": "Run smoke unit suite",
+            "number": 10,
+            "startedAt": "2026-11-21T08:44:05Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:46Z",
+            "conclusion": "success",
+            "name": "Run full unit suite for milestone",
+            "number": 11,
+            "startedAt": "2026-11-21T08:44:07Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:47Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 12,
+            "startedAt": "2026-11-21T08:44:46Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:47Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 13,
+            "startedAt": "2026-11-21T08:44:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:47Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 14,
+            "startedAt": "2026-11-21T08:44:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:48Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 15,
+            "startedAt": "2026-11-21T08:44:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:48Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 28,
+            "startedAt": "2026-11-21T08:44:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:48Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 29,
+            "startedAt": "2026-11-21T08:44:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:48Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 30,
+            "startedAt": "2026-11-21T08:44:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T08:44:48Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 31,
+            "startedAt": "2026-11-21T08:44:48Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44886186379/job/136791870971"
+      }
+    ]
+  },
+  "local": {
+    "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+    "fullUnits": {
+      "tests": 2009,
+      "files": 491,
+      "seconds": 13.48
+    },
+    "quality": {
+      "productionFiles": 908,
+      "testFiles": 779,
+      "lizardViolations": 0
+    },
+    "processors": {
+      "tests": 4,
+      "files": 1,
+      "seconds": 0.194
+    },
+    "bundle": "passed;23labmethods",
+    "logs": [
+      {
+        "commandScope": "full-unit",
+        "rawFile": "docs/evidence/ed36-milestone/local-full-unit.log.gz",
+        "rawSha256": "a8d24b46059a531619b6169c09848858d2f7ad970f1dd2e2e91fbda0c77d6be2",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "8a012a9b3742090975d0e63c2f33b6926c790b9fd6d1c07f9468795df6b868bc"
+      },
+      {
+        "commandScope": "quality",
+        "rawFile": "docs/evidence/ed36-milestone/local-quality.log.gz",
+        "rawSha256": "6319646a03a35fe2c992bac925baaabbd8bd6830acc281a89635b47b122f3a3a",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "9752d332350b3b0b3bac0a61e5e1c1de12bc3435efd6df08251656e3c40a21b3"
+      },
+      {
+        "commandScope": "processors",
+        "rawFile": "docs/evidence/ed36-milestone/local-processors.log.gz",
+        "rawSha256": "9d389972397b144b017389d6bf14460a3203cbf706426c44cb7b4b4818d7a98b",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "e9a4b2fff7d233f4555de3194db1e8b4ceef0d2478dd019f2f0a1f5bb9705245"
+      },
+      {
+        "commandScope": "bundle",
+        "rawFile": "docs/evidence/ed36-milestone/local-bundle.log.gz",
+        "rawSha256": "de92a47550eef3e97a714860da17a3311656c58c4c8f85afcb602199aeff777f",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "ffc1d0173259f955d3abd0d12f8ec9968a9299c4355a53e491c46f100727a500"
+      },
+      {
+        "commandScope": "report-check",
+        "rawFile": "docs/evidence/ed36-milestone/local-report-check.log.gz",
+        "rawSha256": "974fdd23e3256373a8900a318f4271b5a1c681ec6e9adf7f6bd86767c503e510",
+        "rawEncoding": "gzip",
+        "uncompressedSha256": "e4b9d9a6cbb235b5827f69a33ac9dc62bf681b57fc2eaad0ca73feedfd6d11b2"
+      }
+    ],
+    "reportCheck": {
+      "tests": 1,
+      "seconds": 0.1213976
+    }
+  },
+  "pinnedChemistryContract": {
+    "scope": "Pure policy contract against pinned chemistry; not native effect or large-stock throughput evidence",
+    "products": 34,
+    "maximumTargetRecords": 7,
+    "rows": {
+      "rowsFile": "docs/evidence/ed36-milestone/pinned-chemistry-products.jsonl",
+      "rowsSha256": "9605b9c7878e926459f6b6a2a5eed629ac00049e29b9f62dbfaa212d16f6c6ce",
+      "rows": 34
+    },
+    "constantsSha256": "bbe53873f88cadac7832c2cf1c317eef545f39b4a338fabf634d4c28ec82deaf"
+  },
+  "criterionCaseGroups": {
+    "1": [
+      "direct-and-local",
+      "shared-and-policy"
+    ],
+    "2": [
+      "actor-boosts",
+      "role-and-bulk",
+      "work-producers",
+      "specialists"
+    ],
+    "3": [
+      "mineral-industry",
+      "colony-mineral",
+      "mineral-transport",
+      "mineral-reload",
+      "lab-empire-loss",
+      "lab-empire-vision",
+      "lab-empire-intel"
+    ],
+    "4": [
+      "lab-reactions-invalid",
+      "lab-reactions-destroy",
+      "lab-chain-reserves",
+      "lab-chain-depleted",
+      "boost-cancel",
+      "boost-expiry",
+      "boost-destroy",
+      "upgrade-lab-loss"
+    ]
+  },
+  "remainingScope": {
+    "releaseCandidateComplete": false,
+    "fullRegistryRerun": false,
+    "registryCases": 294,
+    "downstreamIssues": [
+      "ED-31",
+      "ED-33",
+      "ED-35",
+      "ED-37",
+      "ED-38",
+      "ED-39",
+      "ED-42",
+      "ED-43",
+      "ED-44"
+    ],
+    "notes": "Retain controls/input compatibility, concrete mission/specialist/trade producers, pressure/CPU/memory/soak and migration/rollback/release obligations. Archived memory/timing includes fixture histories; no production soak claim."
+  },
+  "functionalAcceptance": {
+    "issue": "ED-36",
+    "originalCriteriaSatisfied": true,
+    "releaseCandidateComplete": false,
+    "report": "docs/industry-acceptance-audit.md"
+  }
+}

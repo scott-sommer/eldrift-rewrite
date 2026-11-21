@@ -71,7 +71,8 @@
       "docs/boost-lab-allocation.md",
       "docs/bulk-lab-allocation.md",
       "docs/empire-lab-production.md",
-      "docs/boosted-builder-recipe.md"
+      "docs/boosted-builder-recipe.md",
+      "docs/evidence/ed36-milestone.json"
     ],
     "plannedIssues": [
       "ED-36"
@@ -126,7 +127,16 @@
         "test/config/lab-boost-roles.test.ts",
         "test/engine/boost-role-cycle.ts"
       ],
-      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity"
+      "status": "ED-36 functional scope accepted on exact source; later integrations and whole-module release parity remain explicitly partial",
+      "functionalAcceptance": {
+        "issue": "ED-36",
+        "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "evidence": "docs/evidence/ed36-milestone.json",
+        "fullUnits": 2009,
+        "nativeCases": 63,
+        "fullCI": 44886186379,
+        "scope": "Original industry functionality; later module/control/trade/mission/migration/release obligations remain"
+      }
     }
   },
   {
@@ -1752,7 +1762,8 @@
       "docs/evidence/upgrade-lab-toggle-native.json",
       "docs/evidence/upgrade-lab-loss-native.json",
       "docs/evidence/specialist-lab-operator-native.json",
-      "docs/evidence/specialist-preload-native.json"
+      "docs/evidence/specialist-preload-native.json",
+      "docs/evidence/ed36-milestone.json"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1851,12 +1862,21 @@
         "test/engine/boost-role-automatic-bot.ts",
         "test/engine/boost-role-refused-bot.ts"
       ],
-      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
+      "status": "ED-36 functional scope accepted on exact source; later integrations and whole-module release parity remain explicitly partial",
       "specialistLabAllocationSource": "6fd9d5faa24321c7ec93c4d4754f1d1474f2404d",
       "specialistExistingPinNativeSource": "473595d47d106edb860e8cae927c3e6143b1847b",
       "specialistControlledLabLossSource": "40a81f75384f489325743c6c4e7076f52d948c5b",
       "specialistAwareOperatorSource": "866af68c185b43ee9a5201035e42c86fd2dc1bfa",
-      "specialistAdmittedPreloadSource": "b24a3871c61be932f5ac893c76b219a51f876a8b"
+      "specialistAdmittedPreloadSource": "b24a3871c61be932f5ac893c76b219a51f876a8b",
+      "functionalAcceptance": {
+        "issue": "ED-36",
+        "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "evidence": "docs/evidence/ed36-milestone.json",
+        "fullUnits": 2009,
+        "nativeCases": 63,
+        "fullCI": 44886186379,
+        "scope": "Original industry functionality; later module/control/trade/mission/migration/release obligations remain"
+      }
     }
   },
   {
@@ -2987,7 +3007,7 @@
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
     "reviewStatus": "Final threshold ordering/defaults, symbolic upgrade mapping, terminal-scaled intermediate demands and global disable are separately ported; canonical independent reagent ties explicitly differ from the old hard-coded table",
-    "implementationStatus": "partial module: bounded local/shared production, terminal-scaled global intermediate demands, duplicate-priority thresholds, operator policy and absolute pause qualified; consolidated ED-36 milestone and later legacy inputs/terminal/mission/migration/release requirements remain",
+    "implementationStatus": "ED-36 functional scope accepted: local/shared production, terminal-scaled intermediate demands, duplicate-priority thresholds, owned operator policy and global pause. Whole-module legacy inputs/downstream trade/mission/migration/release parity remain partial.",
     "evidence": [
       "docs/industry-lab-production.md",
       "docs/boost-lab-allocation.md",
@@ -2997,7 +3017,8 @@
       "docs/evidence/empire-operator-native.json",
       "docs/evidence/reaction-pause-native.json",
       "docs/industry-stock-policy.md",
-      "docs/evidence/stock-policy-native.json"
+      "docs/evidence/stock-policy-native.json",
+      "docs/evidence/ed36-milestone.json"
     ],
     "plannedIssues": [
       "ED-13",
@@ -3057,7 +3078,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
-      "required": "Consolidated current-source original-criteria/full-unit milestone gate; legacy Memory/console input adapters, downstream terminal and concrete mission/specialist producers, pressure/soak and migration/rollback/release evidence remain",
+      "required": "Retain legacy Memory/console input adapters, downstream terminal and concrete mission/specialist producers, pressure/soak and migration/rollback/release evidence; ED-36 consolidated functional gate is now passed",
       "tests": [
         "test/capabilities/lab-production.test.ts",
         "test/features/lab-production.test.ts",
@@ -3075,13 +3096,22 @@
         "test/capabilities/stock-thresholds.test.ts",
         "test/engine/lab-stock-policy.ts"
       ],
-      "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
+      "status": "ED-36 functional scope accepted on exact source; later integrations and whole-module release parity remain explicitly partial",
       "sharedOperatorSources": [
         "1292402602fdb0b29799c789fdc1228bcaa00848",
         "8a475ae5eacce12c9c95a6a04df8c95ac87fd683",
         "001e6352347b0f920ca835ae5680d55ddb937b70"
       ],
-      "stockPolicySource": "5dbbc87ced8cbd9626ecb3e09173a0653356d5b3"
+      "stockPolicySource": "5dbbc87ced8cbd9626ecb3e09173a0653356d5b3",
+      "functionalAcceptance": {
+        "issue": "ED-36",
+        "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "evidence": "docs/evidence/ed36-milestone.json",
+        "fullUnits": 2009,
+        "nativeCases": 63,
+        "fullCI": 44886186379,
+        "scope": "Original industry functionality; later module/control/trade/mission/migration/release obligations remain"
+      }
     }
   },
   {
@@ -3746,7 +3776,8 @@
       "docs/logistics.md",
       "docs/industry-lab-transport.md",
       "docs/industry-boosts.md",
-      "docs/evidence/mineral-industry-native.json"
+      "docs/evidence/mineral-industry-native.json",
+      "docs/evidence/ed36-milestone.json"
     ],
     "plannedIssues": [
       "ED-21",
@@ -3808,7 +3839,7 @@
     "proposedOwner": "features/logistics",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "status": "partial; domain responsibilities have separate owners and evidence, not complete role parity",
+      "status": "ED-36 functional scope accepted on exact source; later integrations and whole-module release parity remain explicitly partial",
       "mineralIndustrySource": "9df5a39672c7cb6f54463ee187cdba5c59bf9ed8",
       "tests": [
         "test/engine/mineral-industry-bot.ts",
@@ -3816,7 +3847,16 @@
         "test/engine/boost-role-cycle.ts",
         "test/engine/lab-supply-cycle.ts"
       ],
-      "required": "Retain nuker/power-spawn supply and storage-balancing obligations (ED-38/37), finite sleep/suicide correction and renewal/retirement/control compatibility (ED-39/44); no wholesale role parity claim"
+      "required": "Retain nuker/power-spawn supply and storage-balancing obligations (ED-38/37), finite sleep/suicide correction and renewal/retirement/control compatibility (ED-39/44); no wholesale role parity claim",
+      "functionalAcceptance": {
+        "issue": "ED-36",
+        "source": "d2bd05bb20f2378261cf49986e2423391db73874",
+        "evidence": "docs/evidence/ed36-milestone.json",
+        "fullUnits": 2009,
+        "nativeCases": 63,
+        "fullCI": 44886186379,
+        "scope": "Original industry functionality; later module/control/trade/mission/migration/release obligations remain"
+      }
     }
   },
   {

@@ -10,7 +10,7 @@ Capability ownership preserves dedicated Upgrade Rooms (features/economy/work), 
 
 Before closing ED-10, complete command-to-operation ownership and flag-handler verification. During each port, refine capability granularity, record exact source symbol/lines and intentional deviations, and replace empty evidence with tests and implementation commits. A module-level map alone never proves parity.
 
-Current industry scope and remaining acceptance gates are consolidated in [the ED-36 audit](industry-acceptance-audit.md). The following entries are an evidence chronology at their original sources; later increments do not silently erase outstanding parity or release obligations.
+Current industry functional acceptance and remaining downstream obligations are consolidated in [the ED-36 audit](industry-acceptance-audit.md). The following entries are an evidence chronology at their original sources; later increments do not silently erase outstanding parity or release obligations.
 
 ## Industry evidence chronology
 
@@ -21,3 +21,5 @@ ED-36 now also has [persistent lab assignment and shared hauling evidence](indus
 ED-36 now qualifies [automatic local reaction chains](industry-lab-production.md), including shared-raw feasibility, configured priorities, reserve funding and reset continuity. resourceManager.js remains partial until empire allocation and boost/operator policy are ported.
 
 ED-36 now qualifies [explicit boost orchestration](industry-boosts.md). booster.js and boost-lab transport remain partial until legacy aliases/tier choices, producer/operator bridges and specialist paths are completed; observed actor readiness does not establish concrete combat-mission parity.
+
+ED-36 consolidated functional acceptance is now evidenced atd2bd05b:2,009fullunits, both-OS manual full-unit CI and63clean native scenarios. See [acceptance and scope](industry-acceptance-audit.md); this does not close downstream module/control/trade/mission or release parity.
