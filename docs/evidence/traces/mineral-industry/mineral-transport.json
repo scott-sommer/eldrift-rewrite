@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-ZDNDoA",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 267.80949999999996,
+      "cpuMilliseconds": 52,
+      "memoryBytes": 1185
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 90.73480000000006,
+      "cpuMilliseconds": 7,
+      "memoryBytes": 4349
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 23.60379999999998,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 4301
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 21.07400000000007,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 3016
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 22.26019999999994,
+      "cpuMilliseconds": 4,
+      "memoryBytes": 4915
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 31.37909999999988,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 4867
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 20.44439999999986,
+      "cpuMilliseconds": 5,
+      "memoryBytes": 3582
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 25.08159999999998,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 3604
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 19.841699999999946,
+      "cpuMilliseconds": 3,
+      "memoryBytes": 3626
+    }
+  ],
+  "provenance": {
+    "commit": "9df5a39672c7cb6f54463ee187cdba5c59bf9ed8",
+    "dirty": false,
+    "bundleSha256": "d2e05d69713cd493d4d234fd80b2c402e2d38aec5738dba1e980b5afcdec2caf",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "childPids": [
+    83672,
+    63460,
+    84292
+  ]
+}

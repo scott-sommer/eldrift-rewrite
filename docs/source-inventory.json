@@ -3734,18 +3734,23 @@
     "file": "role.mineralCourierV2.js",
     "sha256": "B0B32452B8C5245975F5B9B09BB9BE01A4E25757D3C4D777871DC266E48BB287",
     "physicalLines": 331,
-    "reviewStatus": "boost orchestration and boost-lab supply reviewed; legacy alias/tier, producer/operator and specialist obligations retained",
-    "implementationStatus": "partial: explicit counted boost requests, shared supply and observed actor gating qualified; full alias/producer/operator/specialist parity remains open",
+    "reviewStatus": "Active mineral-container collection, lab input/output/boost supply, bank selection, renewal/retirement and sleep side effects source-reviewed; responsibilities separated rather than attributed wholesale to boost orchestration",
+    "implementationStatus": "partial: shared mineral container/bank transport and industry hauling qualified, including fresh mineral extraction through banked OH; nuker/power-spawn supply, full legacy storage balancing and role lifecycle/control compatibility remain",
     "evidence": [
       "docs/logistics-acceptance.md",
       "docs/logistics.md",
       "docs/industry-lab-transport.md",
-      "docs/industry-boosts.md"
+      "docs/industry-boosts.md",
+      "docs/evidence/mineral-industry-native.json"
     ],
     "plannedIssues": [
       "ED-21",
       "ED-36",
-      "ED-42"
+      "ED-42",
+      "ED-37",
+      "ED-38",
+      "ED-39",
+      "ED-44"
     ],
     "capabilityWork": [
       "Port hauling, distribution, scavenging, and link logistics",
@@ -3798,20 +3803,15 @@
     "proposedOwner": "features/logistics",
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
-      "commit": "be9cc8a9890977a1bc98f2a2c5ba1827382a7b6a",
-      "required": "Legacy alias/tier and remote-upgrader policy, automatic request producers, operator bridges, specialist paths and wider recovery/release evidence remain required",
+      "status": "partial; domain responsibilities have separate owners and evidence, not complete role parity",
+      "mineralIndustrySource": "9df5a39672c7cb6f54463ee187cdba5c59bf9ed8",
       "tests": [
-        "test/capabilities/lab-transport.test.ts",
-        "test/features/lab-assignment.test.ts",
-        "test/app/native-lab-transport.test.ts",
-        "test/engine/lab-supply-cycle.ts",
-        "test/capabilities/boost-observation.test.ts",
-        "test/features/boost-requests.test.ts",
-        "test/features/boost-resources.test.ts",
-        "test/app/native-boost-gates.test.ts",
-        "test/engine/boost-cycle.ts"
+        "test/engine/mineral-industry-bot.ts",
+        "test/engine/mineral-transport-bot.ts",
+        "test/engine/boost-role-cycle.ts",
+        "test/engine/lab-supply-cycle.ts"
       ],
-      "status": "partial; native counted boost/supply/cancel/expiry/loss/contention/reset/coexistence qualified; not full module parity"
+      "required": "Retain nuker/power-spawn supply and storage-balancing obligations (ED-38/37), finite sleep/suicide correction and renewal/retirement/control compatibility (ED-39/44); no wholesale role parity claim"
     }
   },
   {

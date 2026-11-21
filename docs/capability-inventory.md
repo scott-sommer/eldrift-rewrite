@@ -10,6 +10,10 @@ Capability ownership preserves dedicated Upgrade Rooms (features/economy/work), 
 
 Before closing ED-10, complete command-to-operation ownership and flag-handler verification. During each port, refine capability granularity, record exact source symbol/lines and intentional deviations, and replace empty evidence with tests and implementation commits. A module-level map alone never proves parity.
 
+Current industry scope and remaining acceptance gates are consolidated in [the ED-36 audit](industry-acceptance-audit.md). The following entries are an evidence chronology at their original sources; later increments do not silently erase outstanding parity or release obligations.
+
+## Industry evidence chronology
+
 ED-36 has [configured lab reaction evidence](industry-lab-reactions.md). labV2.js is explicitly partial: direct production/topology/resource claims are qualified, while chains, supply/drain, boosts and operator setup remain open.
 
 ED-36 now also has [persistent lab assignment and shared hauling evidence](industry-lab-transport.md): refill/drain, explicit product change, cancellation while work is admitted, depleted supply, reset and warehouse floors. Automatic chains and boost/specialist/operator paths remain explicit partial-module obligations.
