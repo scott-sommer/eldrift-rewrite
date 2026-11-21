@@ -1,4 +1,5 @@
-const labEmpire = process.argv.includes('--lab-empire');
+const labEmpireMode = ['policy','participant'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
+const labEmpire = !!labEmpireMode;
 const { labEmpireWorld,verifyLabEmpire } = require('./lab-empire.cjs');
 const boostBulkMode = process.argv.includes('--boost-bulk-refused') ? 'refused' : process.argv.includes('--boost-bulk') ? 'normal' : undefined;
 const { boostBulkWorld,verifyBoostBulk } = require('./boost-bulk.cjs');
@@ -440,7 +441,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (boostRoleMode) modules.main = await actionBundle(root,boostRoleMode === 'normal' ? 'boost-role-bot' : 'boost-role-'+boostRoleMode+'-bot');
   if (boostMode) modules.main = await actionBundle(root,boostMode === 'normal' ? 'boost-bot' : 'boost-'+boostMode+'-bot');
   if (labChainMode) modules.main = await actionBundle(root,labChainMode === 'normal' ? 'lab-chain-bot' : 'lab-chain-'+labChainMode+'-bot');
-  if (labEmpire) modules.main = await actionBundle(root,'lab-empire-bot');
+  if (labEmpire) modules.main = await actionBundle(root,labEmpireMode === 'normal' ? 'lab-empire-bot' : 'lab-empire-'+labEmpireMode+'-bot');
   if (labSupplyMode) modules.main = await actionBundle(root,labSupplyMode === 'normal' ? 'lab-supply-bot' : 'lab-supply-'+labSupplyMode+'-bot');
   if (labReactionMode) modules.main = await actionBundle(root,'lab-reactions-bot');
   if (process.argv.includes('--final-delivery')) modules.main = await actionBundle(root, 'final-delivery-bot');
@@ -680,7 +681,12 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labEmpire) {
-      const reloaded = await reloadStampDraft(server,bot,modules,tick,[30,180,400]);
+      let reloads = [30,180,400];
+      if (labEmpireMode !== 'normal' && !evidence.empirePolicyReload) {
+        const current = JSON.parse((await bot.memory) || '{}');
+        if (current.empirePolicyChange && current.empireProductionRows?.at(-1)?.windows.some(window => window.home === 'W0N1' && window.retiring)) { reloads = [tick]; evidence.empirePolicyReload = { tick: tick+1,pending: true }; }
+      }
+      const reloaded = await reloadStampDraft(server,bot,modules,tick,reloads);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labSupplyMode) {
@@ -1139,7 +1145,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (boostRoleMode) verifyBoostRoles(memory,boostRoleMode,evidence);
   if (boostMode) verifyBoosts(memory,boostMode,evidence);
   if (labChainMode) verifyLabChain(memory,labChainMode,evidence);
-  if (labEmpire) verifyLabEmpire(memory,evidence);
+  if (labEmpire) verifyLabEmpire(memory,evidence,labEmpireMode);
   if (labSupplyMode) verifyLabSupply(memory,labSupplyMode,evidence);
   if (labReactionMode) verifyLabReactions(memory,labReactionMode,evidence);
   if (process.argv.includes('--final-delivery')) verifyFinalDelivery(memory);

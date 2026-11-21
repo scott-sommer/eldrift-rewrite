@@ -4,23 +4,42 @@ async function labEmpireWorld(server,bot) {
   await boostBulkWorld(server,bot,'normal'); const { db } = await server.world.load();
   for (const room of ['W0N1','W1N1']) await db['rooms.objects'].update({ room,type: 'storage' },{ $set: { store: { energy: 100000,H: 200,O: 200,U: 200,XGH2O: 120 } } });
 }
-function verifyLabEmpire(memory,evidence) {
+function verifyLabEmpire(memory,evidence,mode = 'normal') {
   const rows = memory.empireProductionRows, records = memory.eldrift.records, last = rows.at(-1);
-  evidence.empireProduction = { rows,reloads: memory.stampReloads,state: records['industry-empire-production/empire'] };
-  assert.equal(rows.length,640); assert.deepEqual(memory.stampReloads,[31,181,401]);
+  evidence.empireProduction = { mode,rows,reloads: memory.stampReloads,change: memory.empirePolicyChange,policyReload: evidence.empirePolicyReload,state: records['industry-empire-production/empire'] };
+  assert.equal(rows.length,640); assert.deepEqual(memory.stampReloads,mode === 'normal' ? [31,181,401] : [...new Set([evidence.empirePolicyReload.tick,31,181,401])].sort((a,b) => a-b));
   assert.ok(rows.every(row => row.total <= 15),'Shared target cannot be independently produced in each room');
-  assert.equal(last.total,15); assert.deepEqual(last.windows,[]);
+  assert.equal(last.total,mode === 'policy' ? memory.empirePolicyChange.oldRoot : 15); assert.deepEqual(last.windows,[]);
   assert.deepEqual(rows[0].windows.map(item => [item.home,item.amount]),[['W0N1',10],['W1N1',5]]);
   for (const home of ['W0N1','W1N1']) {
     const room = last.rooms.find(item => item.home === home);
-    assert.equal(room.bank,home === 'W0N1' ? 10 : 5); assert.equal(room.rootInLabs,0); assert.equal(room.cargo,0);
+    if (mode === 'normal') assert.equal(room.bank,home === 'W0N1' ? 10 : 5); assert.equal(room.rootInLabs,0); assert.equal(room.cargo,0);
     assert.equal(room.buffer.mineral,'XGH2O'); assert.equal(room.buffer.amount,60); assert.equal(room.buffer.energy,40);
     assert.ok(rows.every(row => !row.rooms.find(item => item.home === home).reactionLabs.includes(room.buffer.id)));
     assert.deepEqual(records['tasks/'+room.courier].data.queue,[]);
     assert.ok(rows.some(row => row.windows.some(item => item.home === home && item.step?.product === 'OH')));
     assert.ok(rows.some(row => row.windows.some(item => item.home === home && item.step?.product === 'UH')));
-    assert.ok(rows.some(row => row.windows.some(item => item.home === home && item.step?.product === 'UH2O')));
+    if (mode === 'normal') assert.ok(rows.some(row => row.windows.some(item => item.home === home && item.step?.product === 'UH2O')));
   }
+  if (mode !== 'normal') verifyPolicyChange(memory,evidence,mode);
   assert.equal(records['quantity-reservations/empire'].data.claims.filter(claim => claim.expiresAt > 640).length,0);
+}
+function verifyPolicyChange(memory,evidence,mode) {
+  const rows = memory.empireProductionRows, change = memory.empirePolicyChange, last = rows.at(-1);
+  assert.ok(change.cargo > 0); assert.equal(evidence.empirePolicyReload.pending,true);
+  const pending = rows.filter(row => row.tick >= change.tick && row.windows.some(window => window.home === 'W0N1' && window.context === change.oldWindow.context));
+  assert.ok(pending.some(row => row.windows.some(window => window.home === 'W0N1' && window.retiring)));
+  assert.ok(pending.every(row => row.windows.find(window => window.home === 'W0N1').rootTarget === change.oldWindow.rootTarget));
+  const released = rows.find(row => row.tick > change.tick && !row.windows.some(window => window.home === 'W0N1' && window.context === change.oldWindow.context));
+  assert.ok(released); const settled = released.rooms.find(room => room.home === 'W0N1');
+  assert.ok(settled.receipts >= change.receipts+change.cargo,'Old admitted cargo must receive credit before old window release');
+  if (mode === 'policy') {
+    assert.ok(rows.filter(row => row.tick >= change.tick).every(row => row.total === change.oldRoot),'Obsolete root must stop producing');
+    assert.equal(last.rooms.reduce((sum,room) => sum+room.bankUH+room.carriedUH,0),15);
+    assert.ok(rows.filter(row => row.tick >= change.tick).every(row => row.rooms.reduce((sum,room) => sum+room.bankUH+room.carriedUH,0) <= 15));
+  } else {
+    assert.ok(rows.filter(row => row.tick >= change.tick).every(row => { const room = row.rooms.find(item => item.home === 'W0N1'); return room.bank+room.rootInLabs === change.oldHomeRoot; }));
+    assert.equal(last.rooms.find(room => room.home === 'W1N1').bank,15-change.oldHomeRoot);
+  }
 }
 module.exports = { labEmpireWorld,verifyLabEmpire };
