@@ -1,3 +1,4 @@
+import { nativeUpgradeLab } from './native-specialist-labs';
 import { planUpgradeStations } from '../features/work/upgrade-stations';
 import { observeCostMatrix } from '../adapters/screeps/cost-matrix';
 import { movementPosition } from '../adapters/screeps/movement-traffic';
@@ -7,7 +8,7 @@ export function observeUpgradeLayout(room: Room) {
   if (!storage?.my || !storage.isActive() || !controller?.my) return undefined;
   const structures = room.find(FIND_MY_STRUCTURES).filter(item => item.isActive()).sort((a, b) => a.id.localeCompare(b.id));
   const spawn = structures.find((item): item is StructureSpawn => item.structureType === STRUCTURE_SPAWN);
-  const lab = structures.find((item): item is StructureLab => item.structureType === STRUCTURE_LAB);
+  const lab = nativeUpgradeLab(room);
   if (!spawn || !lab) return undefined;
   const matrix = observeCostMatrix(room.name, { roadCost: 1, avoidUnits: false }).matrix!;
   const terrain = room.getTerrain();

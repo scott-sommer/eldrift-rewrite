@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
-async function upgradeRoomWorld(server, bot, shortage) {
+async function upgradeRoomWorld(server, bot, shortage,coexist = false) {
   await server.world.setTerrain('W0N1', new TerrainMatrix());
   const { db } = await server.world.load();
   await db['rooms.objects'].update({ room: 'W0N1', type: 'controller' }, { $set: { x: 20, y: 20, level: 7, progress: 0, downgradeTime: 20000 } });
@@ -15,11 +15,12 @@ async function upgradeRoomWorld(server, bot, shortage) {
   for (let index = 0; index < 7; index++) await server.world.addRoomObject('W0N1', 'creep', ...positions[index], {
     user: bot.id, name: 'u' + index, body: [...Array(5).fill('move'), ...Array(42).fill('work'), ...Array(3).fill('carry')].map(type => ({ type, hits: 100 })),
     store: { energy: 150 }, storeCapacity: 150, hits: 5000, hitsMax: 5000, fatigue: 0, spawning: false, ageTime: ttls[index] });
+  if (coexist) await prepareUpgradeCoexist(server,bot);
   if (shortage) await bot.console("new RoomPosition(1,1,'W0N1').createFlag('shortage')");
 }
-function verifyUpgradeRoom(memory, shortage,evidence,contention = false) {
+function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist = false) {
   const rows = memory.upgradeRoomEvidence;
-  if (evidence) evidence.upgradeRoom = { shortage,contention,rows,reloads: memory.upgradeReload };
+  if (evidence) evidence.upgradeRoom = { shortage,contention,coexist,rows,reloads: memory.upgradeReload };
   const first = rows[0], last = rows.at(-1);
   console.log('UPGRADE_ROOM_SUMMARY ' + JSON.stringify({ first, last }));
   assert.equal(rows.length, 24);
@@ -51,6 +52,12 @@ function verifyUpgradeRoom(memory, shortage,evidence,contention = false) {
   const positions = [[21,21],[20,21],[20,22],[20,23],[21,23],[22,23],[22,22]];
   for (let index = 0; index < 7; index++) assert.deepEqual([last.units[index].x, last.units[index].y], positions[(index + 1) % 7]);
   assert.ok(last.units[6].ttl > first.units[6].ttl, 'native renewal extended life');
+  if (coexist) {
+    assert.ok(rows.every(row => !row.reactionLabs.includes(row.boostLab)));
+    assert.equal(last.labs.filter(lab => lab.mineral === 'OH').reduce((sum,lab) => sum+lab.amount,0),10);
+    assert.equal(last.labs.find(lab => lab.id === last.boostLab).amount,0);
+    assert.equal(last.labs.find(lab => lab.id === last.boostLab).energy,0);
+  }
 }
 async function reloadUpgradeRoom(server, bot, modules, index) {
   if (index !== 6 && index !== 14) return;
@@ -61,3 +68,14 @@ async function reloadUpgradeRoom(server, bot, modules, index) {
   return main;
 }
 module.exports = { upgradeRoomWorld, verifyUpgradeRoom, reloadUpgradeRoom };
+
+async function prepareUpgradeCoexist(server,bot) {
+  for (const [x,y] of [[18,18],[20,18],[19,19]]) await server.world.addRoomObject('W0N1','lab',x,y,{ user: bot.id,store: {},storeCapacityResource: { energy: 2000 },storeCapacity: 5000,hits: 500,hitsMax: 500,cooldown: 0 });
+  const { db } = await server.world.load(), labs = (await db['rooms.objects'].find({ room: 'W0N1',type: 'lab' })).sort((a,b) => a._id.localeCompare(b._id));
+  const settings = [[22,20,'XGH2O',1260,840],[18,18,'H',10,0],[20,18,'O',10,0],[19,19,null,0,0]];
+  for (const [index,lab] of labs.entries()) {
+    const [x,y,resource,amount,energy] = settings[index], store = { energy,...(resource ? { [resource]: amount } : {}) };
+    await db['rooms.objects'].update({ _id: lab._id },{ $set: { x,y,store,storeCapacityResource: { energy: 2000,...(resource ? { [resource]: 3000 } : {}) },storeCapacity: resource ? null : 5000 } });
+  }
+  await bot.console("new RoomPosition(1,1,'W0N1').createFlag('upgradeCoexist')");
+}

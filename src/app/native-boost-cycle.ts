@@ -1,3 +1,4 @@
+import { specialistBoostLabIds } from './native-specialist-labs';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
 import type { createNativeDispatch } from './native-dispatch';
@@ -41,14 +42,14 @@ export class NativeBoostCycle {
       if (!lab?.my || lab.structureType !== STRUCTURE_LAB || !lab.isActive()) { this.fail(job,'lab-lost'); return null; }
       return this.retarget(job,step,lab);
     }
-    const lab = selectNativeBoostLab(this.state,job,step,this.dispatch.structures,this.config(job.request.home).labBoostRoles);
+    const lab = selectNativeBoostLab(this.state,job,step,this.dispatch.structures,this.config(job.request.home).labBoostRoles,specialistBoostLabIds(job.request.home,this.config(job.request.home)));
     if (!lab) return null;
     job.lab = lab.id; this.save(job); return lab;
   }
   /** Keep an admitted same-compound pin; otherwise prefer a stocked next-effect lab after supply settles. */
   private retarget(job: BoostJob,step: BoostStep,current: StructureLab): StructureLab | null {
     if (current.mineralType === step.resource) return current;
-    const candidates = nativeBoostLabCandidates(this.state,job,step,this.config(job.request.home).labBoostRoles);
+    const candidates = nativeBoostLabCandidates(this.state,job,step,this.config(job.request.home).labBoostRoles,specialistBoostLabIds(job.request.home,this.config(job.request.home)));
     const compatible = candidates.some(lab => lab.id === current.id);
     const next = candidates.find(lab => lab.id !== current.id && lab.mineralType === step.resource) ?? (!compatible ? candidates[0] : undefined);
     if (!next) return compatible ? current : null;

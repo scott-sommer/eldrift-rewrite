@@ -1,3 +1,4 @@
+import { specialistBoostLabIds } from './native-specialist-labs';
 import { nativeBoostRoleAccess } from './native-boost-role-access';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RuntimeConfig } from '../config/model';
@@ -42,8 +43,8 @@ export function nativeBoostBudget(state: StatePort,room: Room,config: Readonly<R
   const objects: StockObject[] = [...banks.map(bank => ({ id: bank.id,store: bank.store,bank: true })),...cargo.map(item => ({ id: item.id,store: item.store,bank: false }))];
   const total = bankStock(objects,foreign,config), access = nativeBoostRoleAccess(state,room.name,config.labBoostRoles);
   const ids = room.find(FIND_MY_STRUCTURES).filter(item => item.structureType === STRUCTURE_LAB && item.isActive() && (preferredLab === undefined || item.id === preferredLab)).map(item => item.id);
-  const resources = access.resources(ids);
-  const budget: MutableBoostBudget = { minerals: total,energy: total[RESOURCE_ENERGY] ?? 0,local: localKits(room,foreign,preferredLab,access.allows),...(resources ? { resources } : {}) };
+  const excluded = specialistBoostLabIds(room.name,config), resources = access.resources(ids.filter(id => !excluded.includes(id)));
+  const budget: MutableBoostBudget = { minerals: total,energy: total[RESOURCE_ENERGY] ?? 0,local: localKits(room,foreign,preferredLab,(id,resource) => !excluded.includes(id) && access.allows(id,resource)),...(resources ? { resources } : {}) };
   for (const steps of promisedNativeBoosts(state,room.name)) spendBoostBudget(budget,steps,{ mineral: LAB_BOOST_MINERAL,energy: LAB_BOOST_ENERGY });
   return budget;
 }
