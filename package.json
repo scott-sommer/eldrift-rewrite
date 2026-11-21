@@ -10,9 +10,9 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "node tools/build.mjs",
-    "test": "vitest run",
+    "test": "npm run test:smoke",
     "test:watch": "vitest",
-    "test:smoke": "vitest run test/smoke",
+    "test:smoke": "vitest run --config tools/vitest.smoke.config.mjs",
     "check:bundle": "npm run build && node tools/check-bundle.mjs",
     "check:boundaries": "node tools/check-boundaries.mjs",
     "trace": "node tools/trace.mjs",
@@ -22,7 +22,8 @@
     "lint": "eslint src test --max-warnings 0",
     "test:engine": "npm run build && node tools/engine/smoke.cjs",
     "test:engine:suite": "node --test tools/engine/suite-report-check.cjs && npm run build && node tools/engine/suite.cjs",
-    "test:processors": "vitest run --config tools/processors/vitest.config.mjs"
+    "test:processors": "vitest run --config tools/processors/vitest.config.mjs",
+    "test:full": "vitest run"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

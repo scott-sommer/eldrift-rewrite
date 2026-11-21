@@ -11,7 +11,7 @@ Extract cohesive classes/modules when responsibility or size warrants it; extrac
 
 ## Quality and evidence
 Pin Lizard 1.22.2 initially, standard CCN. Production limits: function CCN <=10 (target <=8), function NLOC <=50, file NLOC <=300 (target <=250). Narrow exceptions require versioned rationale; formatting compression is not remediation.
-Run relevant tests plus a fast broad smoke suite on iterations; run the full suite for milestones. Record durations. Type checks, dependency checks and real-engine scenarios complement unit tests. Distinguish source inspection, mocked contracts and actual engine evidence.
+For incremental work run npm run test:smoke (also npm test) plus only the relevant existing test files with npx vitest run <paths>. Do not run the full unit suite for each edit, feature checkpoint or routine push. Reserve npm run test:full for major milestones, as a prerequisite for closing a Jira implementation ticket, and release-candidate gates. Routine CI uses the selected smoke suite; request the manual Quality workflow full_unit_suite=true on the exact milestone source before closure. A green routine CI run is not evidence that full units passed. Keep the smoke selection in tools/vitest.smoke.config.mjs small and representative; add feature-specific cases to targeted runs rather than growing smoke with every feature. Record actual commands, scope and durations. Type checks, dependency checks and real-engine scenarios complement unit tests. Distinguish source inspection, mocked contracts and actual engine evidence.
 Record provenance and deliberate corrections for ported code. Preserve unrelated changes. Never mark missing or unexecuted evidence complete.
 
 ## Delivery

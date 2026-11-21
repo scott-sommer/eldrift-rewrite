@@ -8,8 +8,9 @@ Use Node 24.22.1 and npm 11.19.1 in E:\dev\personal\screeps\eldrift-rewrite.
 
 - npm ci: install the locked dependencies.
 - npm run typecheck: strict TypeScript checks.
-- npm run test:smoke: fast broad smoke subset.
-- npm test: full current unit behavior suite.
+- npm test or npm run test:smoke: selected fast smoke suite for incremental work.
+- npx vitest run test/path.test.ts: relevant targeted tests alongside smoke.
+- npm run test:full: full unit suite, reserved for major milestones and before closing an implementation ticket.
 - npm run quality: type, lint, dependency-boundary and pinned Lizard gates.
 - npm run test:processors: controlled pinned engine-processor comparisons, installed separately as described below.
 - npm run test:watch: interactive affected-test development.
@@ -32,7 +33,7 @@ Build/test commands do not upload. Upload is a separate explicit command with na
 
 ## Structure and records
 
-src/app owns composition; src/main.ts exports loop. Modules follow the dependency boundaries in AGENTS.md and docs/architecture-decisions.md. tools contains local build/verification code; test/smoke contains the short development subset.
+src/app owns composition; src/main.ts exports loop. Modules follow the dependency boundaries in AGENTS.md and docs/architecture-decisions.md. tools contains local build/verification code; tools/vitest.smoke.config.mjs selects existing representative tests across the layers, including test/smoke. See [the incremental test loop](docs/incremental-test-loop.md).
 
 Read docs/goal-objective.md and docs/planning-acceptance.md. Jira ED owns current progress; docs/backlog-baseline.json is the original planning snapshot. Source, console and flag inventories carry provenance and required evidence. Legacy source is read-only.
 
@@ -42,7 +43,7 @@ TypeScript 6.0.3, esbuild 0.28.2, Vitest 5.1.0 and @types/screeps 3.4.0 are pinn
 
 ## Architecture verification
 
-npm run check:boundaries parses every production TypeScript file and rejects layer violations, external/aliased imports, computed module loading and game-global references in core. test/tooling is exercised by npm test; use npm test -- test/tooling/boundaries.test.mjs for targeted checks. Generated engine artifacts and reports stay under ignored artifacts/; source fixtures live under test/fixtures.
+npm run check:boundaries parses every production TypeScript file and rejects layer violations, external/aliased imports, computed module loading and game-global references in core. test/tooling is exercised by npm run test:full at milestones; use npx vitest run test/tooling/boundaries.test.mjs for targeted checks. Generated engine artifacts and reports stay under ignored artifacts/; source fixtures live under test/fixtures.
 
 The compiler and AST checker use TypeScript 6.0.3, within typescript-eslint 8.72.2 supported peer range. The initial TypeScript 7 choice was replaced after compatibility validation; the redundant parser alias was removed.
 

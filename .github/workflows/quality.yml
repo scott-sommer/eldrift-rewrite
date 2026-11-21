@@ -1,5 +1,13 @@
 name: Quality
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_unit_suite:
+        description: 'Run full units for a major milestone or ticket closure'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -32,7 +40,11 @@ jobs:
             .venv/bin/python -m pip install -r tools/quality/requirements.txt
           fi
       - run: npm run quality
-      - run: npm test
+      - name: Run smoke unit suite
+        run: npm run test:smoke
+      - name: Run full unit suite for milestone
+        if: github.event_name == 'workflow_dispatch' && inputs.full_unit_suite
+        run: npm run test:full
       - name: Install pinned processor sources without native install scripts
         run: npm ci --prefix tools/processors --ignore-scripts
       - run: npm run test:processors
