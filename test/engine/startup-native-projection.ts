@@ -1,6 +1,6 @@
 import { createStartupCandidateCycle } from '../../src/features/remotes/startup/candidates/cycle';
 import { createStartupCandidateCatalog } from '../../src/features/remotes/startup/candidates/catalog';
-import { createNativeStartupProjection } from '../../src/app/remotes/startup/projection/native';
+import { createNativeStartupCohort } from '../../src/app/remotes/startup/proposals/cohort';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
 import { decodeStartupPlanningInput } from '../../src/features/remotes/startup/planning/input';
 import type { NativeStartupQuote, NativeStartupProjectionOptions } from '../../src/app/remotes/startup/projection/model';
@@ -15,16 +15,16 @@ export function nativeProjectionOptions(quote: NativeStartupQuote): NativeStartu
   ] };
 }
 export function beginNativeProjection(state: StatePort, quote: NativeStartupQuote): void {
-  const projection = createNativeStartupProjection(state)(quote,nativeProjectionOptions(quote));
-  if (projection.status !== 'ready' || !quote.facts.authority) throw new Error('Expected ordinary pre-birth native project conversion');
+  const proposal = createNativeStartupCohort(state)('finite-cohort',quote,{ horizon: 1500,validityTicks: 200,protectedEnergy: 350,retirementMargin: 4,
+    minimumBatch: 25,minerPriority: 20,courierPriority: 30,courierReadyAt: 0,assumeAssignmentRenewal: true,repairPolicy: { criticalFraction: 0.2,energyReserve: 20 } });
+  if (proposal.status !== 'ready' || !quote.facts.authority) throw new Error('Expected ordinary pre-birth native cohort proposal');
   const owner = createStartupPlanningJob(state,quote.plan.home);
-  const request = { room: quote.plan.room,source: quote.plan.source,generation: quote.facts.authority.generation,binding: 'native-prospective:'+quote.identity,
-    observedAt: Game.time,expiresAt: Game.time+200,tick: Game.time,expectedRevision: 0,input: projection.input };
+  const request = { ...proposal.candidate.query,expectedRevision: 0 };
   const result = owner.advance(request,64);
   if (owner.assess(request,returnPolicy()) !== undefined) throw new Error('Incomplete native forecast must not be assessed');
   if (result.status !== 'deferred' || result.frames !== 64) throw new Error('Expected saved native projection progress');
-  (Memory as ProjectionMemory).nativeProjection = { observedAt: Game.time,costScope: projection.costScope,quoteIdentity: quote.identity,facts: quote.facts,input: owner.read().job!.input,
-    declaredPolicy: { finiteBirths: 2,reservation: 'none',refills: 'none',householdFlows: 'none' },steps: [{ tick: Game.time,through: 64,revision: 1,status: result.status }] };
+  (Memory as ProjectionMemory).nativeProjection = { observedAt: Game.time,costScope: 'prospective',cohortProposal: { id: proposal.candidate.id,expiresAt: request.expiresAt,authorityExpiresAt: quote.facts.authority.expiresAt,births: request.input.project.spawning.requests.map(birth => ({ id: birth.id,owner: birth.owner,body: birth.body,readyAt: birth.readyAt })) },quoteIdentity: quote.identity,facts: quote.facts,input: owner.read().job!.input,
+    declaredPolicy: { finiteBirths: 2,assignmentRenewal: 'assumed',reservation: 'none',refills: 'none',householdFlows: 'none' },steps: [{ tick: Game.time,through: 64,revision: 1,status: result.status }] };
 }
 /** Continues the original observation scenario only; never treats its result as current birth authority. */
 export function resumeNativeProjection(state: StatePort): void {

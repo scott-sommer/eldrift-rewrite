@@ -49,6 +49,9 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
     if (mode === 'selected') {
       const projection = memory.nativeProjection; assert.ok(projection);
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
+      const proposal = projection.cohortProposal; assert.equal(proposal.id,'finite-cohort');
+      assert.equal(proposal.expiresAt,Math.min(225,proposal.authorityExpiresAt)); assert.equal(proposal.births.length,2);
+      assert.ok(proposal.births.every(birth => birth.owner.startsWith('remote-fleet:') && birth.readyAt === 0));
       assert.deepEqual(projection.steps.map(step => [step.tick,step.through,step.revision]),[[25,64,1],[30,564,2],[46,1064,3],[81,1501,4]]);
       assert.ok(projection.result); assert.equal(projection.readOnly,true);
       const assessment = projection.assessment; assert.ok(assessment); assert.equal(assessment.accepted,false);
