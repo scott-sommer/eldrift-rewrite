@@ -1,0 +1,147 @@
+{
+  "issue": "ED-29",
+  "source": "6f1d1ecb6c78f96a3ef54f4666b4e8a4395d4149",
+  "scope": "Cooperative whole-horizon replacement scheduling and native VM reset/persistence; not native realized cashflow or ticket closure",
+  "native": {
+    "scenario": "--remote-startup-selected",
+    "expectedStatus": "passed",
+    "nativeSource": "6f1d1ecb6c78f96a3ef54f4666b4e8a4395d4149",
+    "rawFile": "docs/evidence/startup-schedules/selected-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "ed048dbaad5a839e8620458f050c43fc699b7a6cd0ab2c21025c3d1b4f6908ee",
+    "uncompressedSha256": "f2e364b18f4d9dc61a76222888b7c07837048e9c9b203a4c1b6ecfd9256520f8",
+    "actualTicks": 150,
+    "modeledHorizon": 4000,
+    "totalEvaluationFrames": 20005,
+    "planningRoot": "isolated test-only Memory root using real native observation",
+    "namespace": {
+      "owner": "remotes",
+      "version": 1,
+      "revision": 14,
+      "complete": true
+    },
+    "cash": {
+      "endingEnergy": 20206,
+      "minimumEnergy": 9350,
+      "minimumAt": 21,
+      "requiredHomeEnergy": 1100,
+      "homeShortfall": 0,
+      "birthEnergy": 2250,
+      "homeConstructionEnergy": 0,
+      "upkeepEnergy": 0,
+      "deliveredEnergy": 12356,
+      "homeCashSurplus": 10106,
+      "constructionRecoveryMargin": 5106,
+      "firstDeliveryAt": 1309,
+      "firstRecoveryAt": 2739
+    },
+    "births": [
+      {
+        "request": "startup-proposal:[\"whole-horizon\",\"W0N1\",\"E0N1\",\"db20dd1aeb3e372\",21,\"miner\"]",
+        "spawn": "1b7cdd1ae03a253",
+        "startAt": 0,
+        "activeAt": 21,
+        "cost": 550
+      },
+      {
+        "request": "startup-proposal:[\"whole-horizon\",\"W0N1\",\"E0N1\",\"db20dd1aeb3e372\",21,\"courier\"]",
+        "spawn": "1b7cdd1ae03a253",
+        "startAt": 21,
+        "activeAt": 33,
+        "cost": 200
+      },
+      {
+        "request": "startup-proposal:[\"whole-horizon\",\"W0N1\",\"E0N1\",\"db20dd1aeb3e372\",21,\"miner\"]:next",
+        "spawn": "1b7cdd1ae03a253",
+        "startAt": 1443,
+        "activeAt": 1464,
+        "cost": 550
+      },
+      {
+        "request": "startup-proposal:[\"whole-horizon\",\"W0N1\",\"E0N1\",\"db20dd1aeb3e372\",21,\"courier\"]:next",
+        "spawn": "1b7cdd1ae03a253",
+        "startAt": 1497,
+        "activeAt": 1509,
+        "cost": 200
+      },
+      {
+        "request": "startup-proposal:[\"whole-horizon\",\"W0N1\",\"E0N1\",\"db20dd1aeb3e372\",21,\"miner\"]:next:next",
+        "spawn": "1b7cdd1ae03a253",
+        "startAt": 2886,
+        "activeAt": 2907,
+        "cost": 550
+      },
+      {
+        "request": "startup-proposal:[\"whole-horizon\",\"W0N1\",\"E0N1\",\"db20dd1aeb3e372\",21,\"courier\"]:next:next",
+        "spawn": "1b7cdd1ae03a253",
+        "startAt": 2973,
+        "activeAt": 2985,
+        "cost": 200
+      }
+    ],
+    "readOnly": true,
+    "provenance": {
+      "commit": "6f1d1ecb6c78f96a3ef54f4666b4e8a4395d4149",
+      "dirty": false,
+      "bundleSha256": "9c1cc224a17a32ac2ae62a35e44c1172d81ed0a19f935dfe417e6602c305e9a7",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/startup-schedules/samples.jsonl",
+        "rowsSha256": "f6546b5878fb6390cea5630e6315cc07c916f640a91fde44b64808b7cad404b8",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/startup-schedules/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/startup-schedules/schedule.jsonl",
+        "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+        "rows": 5
+      }
+    ]
+  },
+  "checks": {
+    "targeted": {
+      "cases": 33,
+      "files": 3,
+      "seconds": 0.657
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.481
+    },
+    "quality": {
+      "productionFiles": 921,
+      "testFiles": 787,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "namespace": {
+    "name": "remoteStartupSchedules/<home>",
+    "version": 1,
+    "owner": "remotes",
+    "maximumSeedIdentityCharacters": 262144,
+    "maximumRecordCharacters": 524288
+  },
+  "remaining": [
+    "Household redistribution/workforce schedules and explicit paid-incumbent templates",
+    "Native same-strategy realized replacement/lifecycle/economic calibration",
+    "Default configuration/adoption, comparable alternatives and concurrent multi-room capital",
+    "Aggregate CPU/Memory, migration/rollback rehearsal and RC gates"
+  ]
+}
