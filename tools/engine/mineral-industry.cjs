@@ -13,7 +13,7 @@ function verifyMineralIndustry(memory,evidence) {
   const rows = memory.mineralIndustryRows, first = rows[0], last = rows.at(-1), records = memory.eldrift.records;
   evidence.mineralIndustry = { rows,reloads: memory.stampReloads,pendingReload: evidence.mineralIndustryReload };
   assert.equal(rows.length,640); assert.deepEqual(memory.stampReloads,[...new Set([31,121,401,evidence.mineralIndustryReload.tick])].sort((a,b) => a-b));
-  assert.equal(first.miners.length,0); assert.equal(first.bankH+first.labH+first.containerH+first.cargoH+first.bankOH+first.labOH,0);
+  assert.equal(first.minersBefore,0); assert.ok(first.miners.every(miner => miner.spawning),'Initial dispatch may expose only a spawning miner, never a seeded ready worker'); assert.equal(first.bankH+first.labH+first.containerH+first.cargoH+first.bankOH+first.labOH,0);
   assert.ok(rows.some(row => row.miners.some(miner => !miner.spawning)),'Ordinary mining demand must produce a real miner');
   assert.ok(rows.every(row => row.mineral+row.containerH+row.bankH+row.labH+row.cargoH+row.bankOH+row.labOH+row.cargoOH === 15),'Newly mined H must be conserved through actual stock and compound');
   const mined = rows.find(row => row.mineral < 15), banked = rows.find(row => row.mineralReceipts > 0), supplied = rows.find(row => row.labHReceipts > 0), reacted = rows.find(row => row.bankOH+row.labOH > 0);
