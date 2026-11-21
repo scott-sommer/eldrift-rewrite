@@ -8,7 +8,7 @@ import type { LabConfig } from '../../config/labs';
 import { inspectLabSettings, inspectLabRuntime } from './lab-inspection';
 import { labPatch, labKeys, withoutLabKeys, validateLabKeys } from './lab-patch';
 export interface OperatorLabFact { id: string; active: boolean; mineral: string | null; amount: number; energy: number; cooldown: number }
-export interface LabOperatorPorts { clock(): number; owns(home: string): boolean; labs(home: string): readonly OperatorLabFact[]; productSupported(product: string): boolean; boostSupported(resource: string): boolean }
+export interface LabOperatorPorts { roleAllowed?(home: string,role: NonNullable<LabConfig['labBoostRoles']>[number]): boolean; clock(): number; owns(home: string): boolean; labs(home: string): readonly OperatorLabFact[]; productSupported(product: string): boolean; boostSupported(resource: string): boolean }
 /** Configuration intents never erase assignments, claims, tasks or native receipts. */
 export function createLabOperator(state: StatePort,ports: LabOperatorPorts) {
   const read = () => peekState(state,'operator/config',operatorSchema) ?? {};
@@ -22,6 +22,7 @@ export function createLabOperator(state: StatePort,ports: LabOperatorPorts) {
     const products = [value.labReactionProduct,...(value.labProductionTargets ?? []).map(target => target.product)].filter((product): product is string => !!product);
     if (products.some(product => !ports.productSupported(product))) throw new Error('Unsupported reaction product');
     if (value.labBoostRoles && !value.labBoostRoles.every(role => ports.boostSupported(role.resource) && ports.labs(home).some(lab => lab.id === role.lab))) throw new Error('Boost role requires an owned lab and compound');
+    if (value.labBoostRoles?.some(role => ports.roleAllowed?.(home,role) === false)) throw new Error('Boost role conflicts with specialist lab ownership');
     if (value.labReservedIds && !value.labReservedIds.every(id => ports.labs(home).some(lab => lab.id === id))) throw new Error('Reserved lab must be owned in this room');
     return value;
   }

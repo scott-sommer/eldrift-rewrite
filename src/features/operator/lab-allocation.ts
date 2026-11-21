@@ -2,7 +2,7 @@ import type { BoostAllocationRequest, AllocationLab, AllocationPoint } from '../
 import { allocateBoostLabs } from '../../capabilities/industry/labs/boost-allocation';
 import type { LabConfig } from '../../config/labs';
 import { validBoostRoles } from '../../config/lab-boost-roles';
-export interface LabAllocationRoom { labs: readonly AllocationLab[]; anchor: AllocationPoint | null }
+export interface LabAllocationRoom { excluded?: readonly string[]; labs: readonly AllocationLab[]; anchor: AllocationPoint | null }
 export interface LabAllocationPorts {
   room(home: string): LabAllocationRoom | null;
   settings(home: string): Partial<LabConfig>;
@@ -22,7 +22,7 @@ function validateOptions(options: AllocationOptions): void {
 function reactionPolicy(settings: Partial<LabConfig>,options: AllocationOptions): boolean { return options.preserveReactions ?? settings.labReactionsEnabled ?? false; }
 function propose(room: LabAllocationRoom,settings: Partial<LabConfig>,requests: readonly BoostAllocationRequest[],options: AllocationOptions) {
   if (requests.length && !room.anchor) return { ok: false as const,reason: 'spawn-unavailable' as const };
-  const excluded = new Set(settings.labReservedIds ?? []), preserveReactions = reactionPolicy(settings,options);
+  const excluded = new Set([...(settings.labReservedIds ?? []),...(room.excluded ?? [])]), preserveReactions = reactionPolicy(settings,options);
   const plan = allocateBoostLabs(room.labs.filter(lab => !excluded.has(lab.id)),requests,room.anchor ?? { x: 25,y: 25 },preserveReactions);
   return plan ? { ok: true as const,plan,preserveReactions } : { ok: false as const,reason: 'insufficient-compatible-labs' as const };
 }

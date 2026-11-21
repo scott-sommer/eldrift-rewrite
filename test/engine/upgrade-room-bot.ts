@@ -1,3 +1,4 @@
+import { verifySpecialistOperator } from './upgrade-lab-operator';
 import { prepareUpgradeLabToggle, observeUpgradeLabToggle } from './upgrade-lab-toggle';
 import { nativeUpgradeLab } from '../../src/app/native-specialist-labs';
 import { upgradeBoostContention } from './upgrade-boost-contention';
@@ -30,6 +31,7 @@ export function runUpgradeRoom(toggle = false,loss = false) {
     rotation.renewing = units[6]!.id;
     saveState(state, 'upgrade-room/W0N1', schema, rotation);
   }
+  if (Game.flags.upgradeCoexist) verifySpecialistOperator();
   if (toggle) prepareUpgradeLabToggle(state,loss);
   const blocked = upgradeBoostContention(state);
   botLoop();

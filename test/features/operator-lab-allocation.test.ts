@@ -23,3 +23,9 @@ test('invalid effects, buffer bounds and unsupported options refuse',() => {
   expect(() => preview('W0N1',[request],[] as never)).toThrow('option');
   expect(() => preview('W0N1',[{ ...request,lab: 'ignored' }] as never)).toThrow('Invalid requested');
 });
+
+test('injected feature-owned lab exclusions cannot be bypassed by opting out of reaction preservation',() => {
+  const preview = createLabAllocationOperator({ room: () => ({ ...room,excluded: ['near'] }),settings: () => ({ labReservedIds: ['a'] }),supported: () => true });
+  expect(preview('W0N1',[request],{ preserveReactions: false })).toMatchObject({ ok: true,plan: { roles: [{ lab: 'b' }] } });
+  expect(preview('W0N1',[request],{ preserveReactions: true })).toMatchObject({ ok: false });
+});

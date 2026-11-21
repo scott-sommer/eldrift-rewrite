@@ -68,6 +68,7 @@ function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist 
   for (let index = 0; index < 7; index++) assert.deepEqual([last.units[index].x, last.units[index].y], positions[(index + 1) % 7]);
   assert.ok(last.units[6].ttl > first.units[6].ttl, 'native renewal extended life');
   if (coexist) {
+    assert.equal(memory.specialistOperatorChecked,true,'Native operator reservation/refusal checks ran');
     assert.ok(rows.every(row => !row.reactionLabs.includes(row.boostLab)));
     assert.equal(last.labs.filter(lab => lab.mineral === 'OH').reduce((sum,lab) => sum+lab.amount,0),10);
     assert.equal(last.labs.find(lab => lab.id === last.boostLab).amount,0);

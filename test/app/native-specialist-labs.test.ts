@@ -1,3 +1,6 @@
+import { createNativeBoostLabRoles } from '../../src/app/native-boost-lab-roles';
+import { reconcileBoostLabRoles, boostLabRoles } from '../../src/features/industry/boost-labs/store';
+import { createLogisticsRequests } from '../../src/features/logistics/request-store';
 import { afterEach, expect, test, vi } from 'vitest';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { defaults } from '../../src/config/model';
@@ -11,7 +14,7 @@ function fixture() {
   const memory = {}, state = createMemoryPort(() => memory);
   for (const [key,value] of Object.entries({ FIND_MY_STRUCTURES: 1,FIND_MY_CREEPS: 2,STRUCTURE_LAB: 'lab',RESOURCE_ENERGY: 'energy',RESOURCES_ALL: ['energy','GH2O'],LAB_BOOST_MINERAL: 30,LAB_BOOST_ENERGY: 20 })) vi.stubGlobal(key,value);
   const lab = (id: string,amount: number) => ({ id,structureType: 'lab',isActive: () => true,mineralType: 'GH2O',mineralAmount: amount,store: { energy: 80,getUsedCapacity: (resource: string) => resource === 'energy' ? 80 : amount } });
-  const labs = [lab('b',60),lab('a',120)], room = { name: 'W0N1',find: (kind: number) => kind === 1 ? labs : [] } as unknown as Room;
+  const labs = [lab('b',60),lab('a',120)], room = { name: 'W0N1',controller: { my: true },find: (kind: number) => kind === 1 ? labs : [] } as unknown as Room;
   vi.stubGlobal('Game',{ time: 1,rooms: { W0N1: room },creeps: {} });
   return { state,room,labs,policy: { ...defaults,upgradeRoomEnabled: true } };
 }
@@ -31,4 +34,13 @@ test('new generic pins exclude specialist lab but an existing admitted pin remai
   const excluded = specialistBoostLabIds('W0N1',f.policy);
   expect(nativeBoostLabCandidates(f.state,job,step,[],excluded).map(lab => lab.id)).toEqual(['b']);
   job.lab = 'a'; expect(nativeBoostLabCandidates(f.state,job,step,[],excluded).map(lab => lab.id)).toEqual(['a','b']);
+});
+
+test('a pre-existing incompatible specialist role retires without generating fresh preload work',() => {
+  const f = fixture(), role = { lab: 'a',resource: 'ZO',mineral: 30,energy: 20 };
+  reconcileBoostLabRoles(f.state,'W0N1',[role],() => false);
+  const policy = { ...f.policy,labBoostRoles: [role] };
+  createNativeBoostLabRoles(f.state).run({ room: { name: 'W0N1' },config: { values: policy } } as never);
+  expect(boostLabRoles(f.state,'W0N1')).toEqual([]); expect(createLogisticsRequests(f.state,'W0N1').pending(1)).toEqual([]);
+  expect(policy.labBoostRoles).toEqual([role]);
 });

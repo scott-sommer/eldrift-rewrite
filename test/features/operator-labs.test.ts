@@ -87,3 +87,13 @@ test('bulk lab configuration validates every patch before committing and replay 
   expect(f.commands().inspect('W0N1').values.labReactionTarget).toBe(20);
   expect(f.commands().inspect('W1N1').values.labReactionTarget).toBe(30);
 });
+
+test('injected lab ownership rejects incompatible single, temporary and bulk roles without a partial write',() => {
+  const memory = {}, state = createMemoryPort(() => memory), role = { lab: 'protected',resource: 'ZO',mineral: 30,energy: 20 };
+  const api = createLabOperator(state,{ clock: () => 1,owns: () => true,labs: () => [{ id: 'protected',active: true,mineral: 'GH2O',amount: 60,energy: 40,cooldown: 0 }],productSupported: () => true,boostSupported: () => true,roleAllowed: (_home,role) => role.resource === 'GH2O' });
+  expect(() => api.configure('W0N1',{ labBoostRoles: [role] })).toThrow('specialist');
+  expect(() => api.temporary('W0N1',{ labBoostRoles: [role] },10)).toThrow('specialist');
+  expect(() => api.configureMany([{ home: 'W1N1',input: { labReactionTarget: 50 } },{ home: 'W0N1',input: { labBoostRoles: [role] } }])).toThrow('specialist');
+  expect(memory).toEqual({});
+  expect(api.configure('W0N1',{ labBoostRoles: [{ ...role,resource: 'GH2O' }] }).values.labBoostRoles).toHaveLength(1);
+});

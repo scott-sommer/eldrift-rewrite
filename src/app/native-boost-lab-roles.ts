@@ -1,3 +1,4 @@
+import { specialistBoostLabIds, specialistLabRoleAllowed } from './native-specialist-labs';
 import type { StatePort } from '../persistence/versioned-state';
 import type { RoomFeature } from './runtime-model';
 import type { LabBoostRole } from '../config/lab-boost-roles';
@@ -12,7 +13,8 @@ import { nativeBoostLab } from './native-boost-facts';
 import { nativeLabWarehouses } from './native-lab-transport';
 export function createNativeBoostLabRoles(state: StatePort): RoomFeature {
   return { id: 'boost-lab-roles',urgency: 'background',interval: 1,run({ room: view,config }) {
-    const desired = config.values.labBoostRoles;
+    const protectedLabs = specialistBoostLabIds(view.name,config.values);
+    const desired = config.values.labBoostRoles.filter(role => specialistLabRoleAllowed(protectedLabs,role));
     if (!desired.length && state.read('industry-boost-labs/'+view.name) === undefined) return;
     const room = Game.rooms[view.name]; if (!room?.controller?.my) return;
     const pinned = new Set(reservedBoostLabs(state,room.name));
@@ -21,12 +23,12 @@ export function createNativeBoostLabRoles(state: StatePort): RoomFeature {
       if (!next || next.resource !== old.resource) reconcileServiceRequest(state,room.name,Game.time,boostLabServiceOwner(room.name,old.lab),0,undefined);
     }
     const roles = reconcileBoostLabRoles(state,room.name,desired,lab => pinned.has(lab) || labTransferBusy(state,room.name,boostLabServiceOwner(room.name,lab),Game.time));
-    for (const role of roles) supplyRole(state,room,role,config.values,pinned);
+    for (const role of roles) supplyRole(state,room,role,config.values,pinned,protectedLabs);
   } };
 }
-function supplyRole(state: StatePort,room: Room,role: LabBoostRole,config: Readonly<RuntimeConfig>,pinned: ReadonlySet<string>): void {
+function supplyRole(state: StatePort,room: Room,role: LabBoostRole,config: Readonly<RuntimeConfig>,pinned: ReadonlySet<string>,protectedLabs: readonly string[]): void {
   const owner = boostLabServiceOwner(room.name,role.lab), lab = Game.getObjectById(role.lab as Id<StructureLab>);
-  const wanted = config.labBoostRoles.find(next => next.lab === role.lab && next.resource === role.resource);
+  const wanted = specialistLabRoleAllowed(protectedLabs,role) && config.labBoostRoles.find(next => next.lab === role.lab && next.resource === role.resource);
   reconcileServiceRequest(state,room.name,Game.time,labServiceOwner(room.name,role.lab),0,undefined);
   if (!wanted || pinned.has(role.lab) || !lab?.my || lab.room.name !== room.name || lab.structureType !== STRUCTURE_LAB || !lab.isActive()) {
     reconcileServiceRequest(state,room.name,Game.time,owner,0,undefined); return;
