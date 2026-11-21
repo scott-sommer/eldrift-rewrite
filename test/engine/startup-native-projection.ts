@@ -1,3 +1,4 @@
+import { createStartupCandidateCycle } from '../../src/features/remotes/startup/candidates/cycle';
 import { createStartupCandidateCatalog } from '../../src/features/remotes/startup/candidates/catalog';
 import { createNativeStartupProjection } from '../../src/app/remotes/startup/projection/native';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
@@ -35,6 +36,7 @@ export function resumeNativeProjection(state: StatePort): void {
     const catalog = createStartupCandidateCatalog(state,'W0N1');
     proof.candidateChoice = catalog.choose([{ id: 'finite-cohort',query }],returnPolicy(),'final-return');
     proof.candidateRevision = catalog.read().revision;
+    proof.candidateCycleRead = createStartupCandidateCycle(state,'W0N1').advance([{ id: 'finite-cohort',query }],returnPolicy(),'final-return',{ frames: 0,candidates: 0 });
     proof.expiredCandidateAbsent = catalog.lookup('finite-cohort',{ ...query,tick: query.expiresAt+1 },returnPolicy()) === undefined;
     proof.expiredAssessmentAbsent = owner.assess({ ...query,tick: query.expiresAt+1 },returnPolicy()) === undefined;
     proof.readOnly = !!owner.result(query) && before === JSON.stringify(Memory.eldrift); return;
@@ -43,8 +45,9 @@ export function resumeNativeProjection(state: StatePort): void {
   (proof.steps as unknown[]).push({ tick: Game.time,through: after.job!.checkpoint.tick,revision: after.revision,status: result.status });
   if (result.status === 'complete') {
     proof.result = result.result;
-    const captured = createStartupCandidateCatalog(state,'W0N1').capture('finite-cohort',query,returnPolicy(),0);
-    if (captured !== 'saved') throw new Error('Expected completed native candidate capture');
+    const captured = createStartupCandidateCycle(state,'W0N1').advance([{ id: 'finite-cohort',query }],returnPolicy(),'final-return',{ frames: 0,candidates: 1 });
+    if (captured.status !== 'complete' || captured.frames !== 0 || captured.processed !== 1) throw new Error('Expected completed native candidate cycle');
+    proof.candidateCycleCapture = captured;
     proof.candidateCapturedAt = Game.time;
   }
 }

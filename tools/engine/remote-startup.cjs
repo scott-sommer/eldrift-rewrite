@@ -61,6 +61,9 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       assert.equal(projection.candidateChoice.status,'complete'); assert.equal(projection.candidateChoice.selected,null);
       assert.deepEqual(projection.candidateChoice.assessments,[{ id: 'finite-cohort',...assessment }]);
       assert.equal(projection.expiredCandidateAbsent,true);
+      assert.equal(projection.candidateCycleCapture.status,'complete'); assert.equal(projection.candidateCycleCapture.frames,0); assert.equal(projection.candidateCycleCapture.processed,1);
+      assert.equal(projection.candidateCycleRead.status,'complete'); assert.equal(projection.candidateCycleRead.frames,0); assert.equal(projection.candidateCycleRead.processed,0);
+      assert.deepEqual(projection.candidateCycleRead.assessments,projection.candidateCycleCapture.assessments);
       const incumbent = memory.incumbentProjection; assert.ok(incumbent);
       assert.ok(incumbent.observedAt >= 70 && incumbent.observedAt <= 80); assert.equal(incumbent.resumedAt,81); assert.equal(incumbent.checkpointFormat,2);
       assert.equal(incumbent.checkpointTick,10); assert.equal(incumbent.recoveredThrough,10); assert.equal(incumbent.readOnly,true);
