@@ -1,3 +1,5 @@
+import { createStartupHousehold } from '../household/timeline';
+import { validateHouseholdProject } from '../project-timeline';
 import { upgradeStartupCheckpoint } from './upgrade';
 import { restoreOpeningStock } from '../opening-stock';
 import { StartupCheckpointCapacityError } from './capacity';
@@ -18,8 +20,8 @@ import type { StartupProjectCheckpoint } from './project-model';
 export function readStartupProjectCheckpoint(input: StartupDeliveryInput, value: unknown): StartupProjectCheckpoint {
   const saved = upgradeStartupCheckpoint(input,boundedProjectCheckpoint(value));
   requireCheckpoint(record(saved));
-  requireCheckpoint(keys(saved as unknown as Record<string,unknown>,['format','binding','tick','timeline','container','sink','construction','delivery','couriers','due','settled','houseAccounting','sourceAccounting','opening']));
-  requireCheckpoint(saved.format === 2 && saved.binding === startupProjectIdentity(input));
+  requireCheckpoint(keys(saved as unknown as Record<string,unknown>,['format','binding','tick','timeline','container','sink','construction','delivery','couriers','due','settled','houseAccounting','sourceAccounting','opening',...(input.household ? ['household'] : [])]));
+  requireCheckpoint(saved.format === (input.household ? 3 : 2) && saved.binding === startupProjectIdentity(input));
   requireCheckpoint(integer(saved.tick,0,input.project.spawning.cash.horizon+1));
   validateComponents(input,saved);
   validateProjectConstruction(input,saved.construction,saved.tick);
@@ -35,6 +37,8 @@ export function boundedProjectCheckpoint<T>(value: T): T {
 }
 function validateComponents(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
   const spawning = input.project.spawning;
+  validateHouseholdProject(input);
+  if (input.household) createStartupHousehold({ ...input.household,spawning },{ ...saved.household!,spawning: saved.timeline });
   restoreTimelineCheckpoint(spawning,saved.timeline);
   restoreFundingCheckpoint(spawning.funding.capacity,saved.timeline.funding);
   saved.timeline.accounting = restoreCashCheckpoint(spawning.cash,saved.timeline.accounting);

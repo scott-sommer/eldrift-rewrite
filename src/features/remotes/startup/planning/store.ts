@@ -30,7 +30,7 @@ export function createStartupPlanningStore(state: StatePort, home: string) {
   };
 }
 function planningSchema(home: string): StateSchema<StartupPlanningRecord> {
-  return { owner: 'remotes',version: 2,migrations: { 1: value => upgradePlanning(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
+  return { owner: 'remotes',version: 3,migrations: { 1: value => upgradePlanning(value,home),2: value => upgradeSecondPlanning(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
     valid(value: unknown): value is StartupPlanningRecord {
       if (!object(value) || Object.keys(value).length !== 4 || value.home !== home || !natural(value.revision) || !natural(value.clock)) return false;
       if (JSON.stringify(value).length > 262144) return false;
@@ -43,9 +43,21 @@ function upgradePlanning(value: unknown, home: string): StartupPlanningRecord {
   const next = value as unknown as StartupPlanningRecord;
   if (next.job) {
     const input = decodeStartupPlanningInput(next.job.input);
-    if (next.job.checkpoint.format !== (1 as number) || input.initial !== undefined || input.project.spawning.cash.openingAssets !== undefined) throw new Error('Unsupported legacy startup planning metadata');
+    if (next.job.checkpoint.format !== (1 as number) || input.household !== undefined || input.initial !== undefined || input.project.spawning.cash.openingAssets !== undefined) throw new Error('Unsupported legacy startup planning metadata');
     next.job.checkpoint = readStartupProjectCheckpoint(input,next.job.checkpoint);
   }
   if (!planningSchema(home).valid(next)) throw new Error('Invalid legacy startup planning record');
+  return next;
+}
+
+function upgradeSecondPlanning(value: unknown, home: string): StartupPlanningRecord {
+  if (!object(value)) throw new Error('Invalid schema2 startup planning record');
+  const next = value as unknown as StartupPlanningRecord;
+  if (next.job) {
+    const input = decodeStartupPlanningInput(next.job.input);
+    if (input.household !== undefined || ![1,2].includes(next.job.checkpoint.format)) throw new Error('Unsupported schema2 startup planning metadata');
+    next.job.checkpoint = readStartupProjectCheckpoint(input,next.job.checkpoint);
+  }
+  if (!planningSchema(home).valid(next)) throw new Error('Invalid schema2 startup planning record');
   return next;
 }

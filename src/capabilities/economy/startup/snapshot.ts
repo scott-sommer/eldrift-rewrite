@@ -1,3 +1,4 @@
+import { copyPlain } from '../../../core/plain-data';
 import { normalizeStartupOpening } from './initial';
 import { copySpawnRequest } from '../../spawning/placement';
 import type { StartupSpawnInput } from './spawn-model';
@@ -9,7 +10,7 @@ export function snapshotStartupSpawns(input: StartupSpawnInput): StartupSpawnInp
 export function snapshotStartupProject(input: StartupDeliveryInput): StartupDeliveryInput {
   input = normalizeStartupOpening(input);
   const initial = input.initial;
-  return { ...input,...(initial ? { initial: { ...initial,miner: initial.miner && { ...initial.miner,body: [...initial.miner.body] },couriers: initial.couriers.map(worker => ({ ...worker,body: [...worker.body] })) } } : {}),couriers: input.couriers.map(worker => ({ ...worker })),
+  return { ...input,...(input.household ? { household: copyPlain(input.household) } : {}),...(initial ? { initial: { ...initial,miner: initial.miner && { ...initial.miner,body: [...initial.miner.body] },couriers: initial.couriers.map(worker => ({ ...worker,body: [...worker.body] })) } } : {}),couriers: input.couriers.map(worker => ({ ...worker })),
     project: { ...input.project,source: { ...input.project.source },workers: input.project.workers.map(worker => ({ ...worker })),spawning: snapshotStartupSpawns(input.project.spawning) },
     homeSink: { ...input.homeSink,changes: input.homeSink.changes.map(flow => ({ ...flow })) },
     container: { ...input.container,repairPolicy: input.container.repairPolicy && { ...input.container.repairPolicy } } };

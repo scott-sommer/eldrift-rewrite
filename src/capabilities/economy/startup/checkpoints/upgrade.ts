@@ -5,6 +5,6 @@ import type { StartupProjectCheckpoint } from './project-model';
 export function upgradeStartupCheckpoint(input: StartupDeliveryInput, value: unknown): StartupProjectCheckpoint {
   requireCheckpoint(record(value)); const raw = value as Record<string,unknown>;
   if (raw.format !== 1) return value as StartupProjectCheckpoint;
-  requireCheckpoint(input.initial === undefined && input.project.spawning.cash.openingAssets === undefined && !Object.hasOwn(raw,'opening'));
+  requireCheckpoint(input.household === undefined && input.initial === undefined && input.project.spawning.cash.openingAssets === undefined && !Object.hasOwn(raw,'opening'));
   return { ...raw,format: 2,opening: { pendingMinerEnergy: 0,minerStarted: false,minerOpeningEnergy: 0,constructionEnergyFromOpening: 0 } } as StartupProjectCheckpoint;
 }

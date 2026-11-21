@@ -39,7 +39,7 @@ class Household {
   }
   begin(tick: number): StartupScheduledBirth[] {
     if (this.open || tick !== this.tick) throw new Error('Household frame order');
-    const before = this.timeline.checkpoint().funding;
+    const before = this.timeline.fundingState();
     const costs = this.input.spawning.cash.flows.filter(flow => flow.kind !== 'delivery' && startupFlowDue(flow,tick)).reduce((sum,flow) => sum+flow.energy,0);
     if (costs > before.bank-this.transfers.result().cargo) throw new Error('Household expenses require reserved cargo');
     const births = this.timeline.begin(tick);

@@ -68,6 +68,7 @@ class StartupSpawnTimeline {
     this.funding.receive(credited+this.external(this.tick).filter(flow => flow.kind === 'delivery').reduce((sum,flow) => sum+flow.energy,0));
     this.open = false; this.tick++; return this.frame.map(flow => ({ ...flow }));
   }
+  fundingState() { return this.funding.checkpoint(); }
   transferHousehold(energy: number): number {
     if (!this.open) throw new Error('Household transfer outside action frame');
     return this.funding.transfer(energy);

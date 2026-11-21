@@ -1,3 +1,4 @@
+import { validateProjectHouseholdLinks } from './household-links';
 import { startupOpeningEnergy, startupProjectWaves } from '../initial';
 import { requireCheckpoint } from './validation';
 import { receiptId } from './project-delivery';
@@ -11,6 +12,7 @@ export function validateProjectLinks(input: StartupDeliveryInput, saved: Startup
   requireCheckpoint(timeline.accounting.state.birthEnergy === timeline.births.reduce((sum,birth) => sum+birth.cost,0));
   requireCheckpoint(saved.sink.acceptedEnergy === saved.delivery.deliveredEnergy);
   requireCheckpoint(source.state.deliveredEnergy === saved.settled.reduce((sum,receipt) => sum+receipt.energy,0));
+  validateProjectHouseholdLinks(input,saved);
   validateReceiptIdentities(input,saved);
   validateEnergy(input,saved);
   validateOpeningLinks(input,saved);

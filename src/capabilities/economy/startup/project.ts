@@ -4,7 +4,7 @@ import { readStartupProjectCheckpoint, boundedProjectCheckpoint } from './checkp
 import { startupProjectIdentity } from './checkpoints/project-identity';
 import type { StartupProjectCheckpoint, StartupProjectReceipt } from './checkpoints/project-model';
 import type { StartupScheduledBirth } from './spawn-model';
-import { createStartupSpawnTimeline } from './spawn-timeline';
+import { createStartupProjectTimeline } from './project-timeline';
 import { initialStartupConstruction } from './construction';
 import { initialStartupDelivery } from './delivery';
 import { startupDeliveryCouriers, advanceStartupCouriers } from './delivery-couriers';
@@ -46,7 +46,7 @@ class StartupProject {
     this.input = snapshotStartupProject(input);
     const saved = checkpoint === undefined ? undefined : readStartupProjectCheckpoint(this.input,checkpoint);
     this.houseAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.houseAccounting); this.sourceAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.sourceAccounting);
-    this.timeline = createStartupSpawnTimeline(this.input.project.spawning,saved?.timeline);
+    this.timeline = createStartupProjectTimeline(this.input,saved);
     this.container = createStartupContainer(this.input.container,saved?.container); this.sink = createStartupSink(this.input.homeSink,this.input.project.spawning.cash,saved?.sink);
     this.construction = saved?.construction ?? initialStartupConstruction(this.input.project); this.delivery = saved?.delivery ?? initialStartupDelivery(this.construction);
     this.opening = createStartupOpeningStock(this.input,this.delivery,saved?.opening);
@@ -58,8 +58,8 @@ class StartupProject {
     this.couriers.push(...startupProjectCouriers(this.input,[]));
   }
   checkpoint(): StartupProjectCheckpoint {
-    return boundedProjectCheckpoint({ format: 2,binding: startupProjectIdentity(this.input),tick: this.tick,
-      timeline: this.timeline.checkpoint(),container: this.container.checkpoint(),sink: this.sink.checkpoint(),
+    return boundedProjectCheckpoint({ format: this.input.household ? 3 : 2,binding: startupProjectIdentity(this.input),tick: this.tick,
+      ...this.timeline.checkpoint(),container: this.container.checkpoint(),sink: this.sink.checkpoint(),
       construction: this.construction,delivery: this.delivery,opening: this.opening.checkpoint(),
       couriers: this.couriers.map(worker => ({ ...worker,nextAt: worker.nextAt === Infinity ? null : worker.nextAt })),
       due: [...this.due.values()].flat(),settled: this.settled,houseAccounting: this.houseAccounting.checkpoint(),sourceAccounting: this.sourceAccounting.checkpoint() });
@@ -139,10 +139,11 @@ class StartupProject {
   }
   private account(): void {
     const receipts = this.due.get(this.tick) ?? []; receipts.sort((a,b) => a.request.localeCompare(b.request));
-    const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0), flows = this.timeline.frameFlows();
+    const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0), settlement = this.timeline.finish(receipts), flows = settlement.flows;
+    this.sink.releaseAfterFrame(settlement.picked);
     const ready = this.construction.completeAt !== null && this.construction.completeAt <= this.tick;
     this.houseAccounting.frame(this.tick,flows,credit,ready,this.opening.constructionCredit()); this.sourceAccounting.frame(this.tick,flows.filter(flow => flow.kind !== 'delivery'),credit,ready,this.opening.constructionCredit());
-    this.timeline.finish(receipts); this.due.delete(this.tick);
+    this.due.delete(this.tick);
     this.settled.push(...receipts.map(({ tick,energy,request }) => ({ tick,energy,request })));
   }
 }
