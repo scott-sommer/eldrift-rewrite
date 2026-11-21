@@ -1,3 +1,4 @@
+const { changeUpgradeLabLoss } = require('./upgrade-lab-loss.cjs');
 const boostedBuilderMode = ['shortage','lower'].find(mode => process.argv.includes('--boosted-builder-'+mode)) ?? (process.argv.includes('--boosted-builder') ? 'normal' : undefined);
 const { boostedBuilderWorld,verifyBoostedBuilder } = require('./boosted-builder.cjs');
 const { changeEmpireOwnership } = require('./lab-empire-loss.cjs');
@@ -174,7 +175,7 @@ const { upgradeFleetWorld, verifyUpgradeFleet, changeUpgradeFleet } = require('.
 const upgradeFleetLoss = process.argv.includes('--upgrade-fleet-loss');
 const upgradeFleet = process.argv.includes('--upgrade-fleet') || upgradeFleetLoss;
 const { upgradeRoomWorld, verifyUpgradeRoom, reloadUpgradeRoom } = require('./upgrade-room.cjs');
-const upgradeRoom = process.argv.includes('--upgrade-room') || process.argv.includes('--upgrade-room-shortage') || process.argv.includes('--upgrade-boost-contention') || process.argv.includes('--upgrade-lab-coexist') || process.argv.includes('--upgrade-lab-toggle');
+const upgradeRoom = process.argv.includes('--upgrade-room') || process.argv.includes('--upgrade-room-shortage') || process.argv.includes('--upgrade-boost-contention') || process.argv.includes('--upgrade-lab-coexist') || process.argv.includes('--upgrade-lab-toggle') || process.argv.includes('--upgrade-lab-loss');
 const { structureActionsWorld, verifyStructureActions } = require('./structure-actions.cjs');
 const structureActions = process.argv.includes('--structure-actions');
 const { upgradeServiceWorld, verifyUpgradeService } = require('./upgrade-service.cjs');
@@ -323,7 +324,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (structureActions) modules.main = await actionBundle(root, 'structure-actions-bot');
   if (upgradeMaster) modules.main = await actionBundle(root, 'upgrade-master-bot');
   if (upgradeFleet) modules.main = await actionBundle(root, 'upgrade-fleet-bot');
-  if (upgradeRoom) modules.main = await actionBundle(root,process.argv.includes('--upgrade-lab-toggle') ? 'upgrade-lab-toggle-bot' : 'upgrade-room-bot');
+  if (upgradeRoom) modules.main = await actionBundle(root,process.argv.includes('--upgrade-lab-loss') ? 'upgrade-lab-loss-bot' : process.argv.includes('--upgrade-lab-toggle') ? 'upgrade-lab-toggle-bot' : 'upgrade-room-bot');
   if (upgradeService) modules.main = await actionBundle(root, 'upgrade-service-bot');
   if (workerCargoMode) modules.main = await actionBundle(root, 'worker-cargo-bot');
   if (upgradeClaim) modules.main = await actionBundle(root, 'upgrade-claim-bot');
@@ -497,7 +498,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (structureActions) await structureActionsWorld(server, bot);
   if (upgradeMaster) await upgradeMasterWorld(server, bot, masterContention);
   if (upgradeFleet) await upgradeFleetWorld(server, bot, upgradeFleetLoss);
-  if (upgradeRoom) await upgradeRoomWorld(server, bot, process.argv.includes('--upgrade-room-shortage'),process.argv.includes('--upgrade-lab-coexist'),process.argv.includes('--upgrade-lab-toggle'));
+  if (upgradeRoom) await upgradeRoomWorld(server, bot, process.argv.includes('--upgrade-room-shortage'),process.argv.includes('--upgrade-lab-coexist'),process.argv.includes('--upgrade-lab-toggle') || process.argv.includes('--upgrade-lab-loss'));
   if (process.argv.includes('--upgrade-boost-contention')) await bot.console("new RoomPosition(1,1,'W0N1').createFlag('boostContention')");
   if (upgradeService) await upgradeServiceWorld(server, bot);
   if (workerCargoMode) await workerCargoWorld(server, bot, workerCargoMode);
@@ -884,6 +885,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       const reloaded = await changeUpgradeFleet(server, bot, modules, tick, upgradeFleetLoss);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
     }
+    if (process.argv.includes('--upgrade-lab-loss')) await changeUpgradeLabLoss(server,bot,tick,evidence);
     if (upgradeRoom && !process.argv.includes('--upgrade-room-shortage')) {
       const reloaded = await reloadUpgradeRoom(server, bot, modules, tick);
       if (reloaded) evidence.reloadProvenance = provenance(root, reloaded);
@@ -1014,7 +1016,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   else if (masterLayoutLoss) verifyMasterLayoutLoss(memory);
   else if (upgradeMaster) verifyUpgradeMaster(memory, masterContention);
   if (upgradeFleet) verifyUpgradeFleet(memory, upgradeFleetLoss);
-  if (upgradeRoom) verifyUpgradeRoom(memory, process.argv.includes('--upgrade-room-shortage'),evidence,process.argv.includes('--upgrade-boost-contention'),process.argv.includes('--upgrade-lab-coexist'),process.argv.includes('--upgrade-lab-toggle'));
+  if (upgradeRoom) verifyUpgradeRoom(memory,process.argv.includes('--upgrade-room-shortage'),evidence,process.argv.includes('--upgrade-boost-contention'),process.argv.includes('--upgrade-lab-coexist'),process.argv.includes('--upgrade-lab-toggle'),process.argv.includes('--upgrade-lab-loss'));
   assert.equal(Number(await server.world.gameTime), initial + tickCount);
   assert.equal(memory.eldrift.format, 1);
   assert.equal(memory.eldrift.records['operator/config'].owner, 'operator');

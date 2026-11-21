@@ -9,10 +9,10 @@ import { upgradeRotationSchema } from '../../src/features/work/upgrade-rotation-
 import { upgradeOwner } from '../../src/features/work/upgrade-identity';
 const state = createMemoryPort(() => Memory);
 interface Unit { name: string; ttl: number; x: number; y: number; boost: number }
-interface Row { enabled: boolean; generic?: ReturnType<typeof observeUpgradeLabToggle>; boostLab: string; reactionLabs: string[]; labs: readonly { id: string; mineral: string | null; amount: number; energy: number }[]; blocked: boolean; tick: number; slots: { unit: string; slot: number }[]; renewing: string | null; boosting: string[]; retiring: string[]; units: Unit[]; progress: number; reserve: number }
+interface Row { enabled: boolean; generic?: ReturnType<typeof observeUpgradeLabToggle>; boostLab: string | null; reactionLabs: string[]; labs: readonly { id: string; mineral: string | null; amount: number; energy: number }[]; blocked: boolean; tick: number; slots: { unit: string; slot: number }[]; renewing: string | null; boosting: string[]; retiring: string[]; units: Unit[]; progress: number; reserve: number }
 declare global { interface Memory { upgradeRoomEvidence?: Row[] } }
 export function loop() { runUpgradeRoom(); }
-export function runUpgradeRoom(toggle = false) {
+export function runUpgradeRoom(toggle = false,loss = false) {
   const rows = Memory.upgradeRoomEvidence ??= [];
   const settings = openState(state, 'operator/config', operatorSchema);
   const reserve = Game.flags.shortage && Game.time < 8 ? 1000000000 : 0;
@@ -30,12 +30,12 @@ export function runUpgradeRoom(toggle = false) {
     rotation.renewing = units[6]!.id;
     saveState(state, 'upgrade-room/W0N1', schema, rotation);
   }
-  if (toggle) prepareUpgradeLabToggle(state);
+  if (toggle) prepareUpgradeLabToggle(state,loss);
   const blocked = upgradeBoostContention(state);
   botLoop();
   const rotation = openState(state, 'upgrade-room/W0N1', upgradeRotationSchema(room.name));
   const report = industry.labs.inspect(room.name);
-  rows.push({ enabled,...(toggle ? { generic: observeUpgradeLabToggle(state) } : {}),boostLab: nativeUpgradeLab(room)!.id,reactionLabs: report.assignment ? [...report.assignment.inputs,...report.assignment.outputs] : [],labs: report.labs,blocked,tick: Game.time, slots: rotation.slots, renewing: rotation.renewing, boosting: rotation.boosting,
+  rows.push({ enabled,...(toggle ? { generic: observeUpgradeLabToggle(state) } : {}),boostLab: nativeUpgradeLab(room)?.id ?? null,reactionLabs: report.assignment ? [...report.assignment.inputs,...report.assignment.outputs] : [],labs: report.labs,blocked,tick: Game.time, slots: rotation.slots, renewing: rotation.renewing, boosting: rotation.boosting,
     retiring: rotation.retiring, progress: room.controller!.progress, reserve,
     units: units.map(creep => ({ name: creep.name, ttl: creep.ticksToLive!, x: creep.pos.x, y: creep.pos.y,
       boost: creep.body.filter(part => !!part.boost).length })) });

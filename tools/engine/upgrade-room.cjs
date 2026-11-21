@@ -1,3 +1,4 @@
+const { verifyUpgradeLabLoss } = require('./upgrade-lab-loss.cjs');
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
 async function upgradeRoomWorld(server, bot, shortage,coexist = false,toggle = false) {
@@ -22,9 +23,9 @@ async function upgradeRoomWorld(server, bot, shortage,coexist = false,toggle = f
   if (coexist) await prepareUpgradeCoexist(server,bot);
   if (shortage) await bot.console("new RoomPosition(1,1,'W0N1').createFlag('shortage')");
 }
-function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist = false,toggle = false) {
+function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist = false,toggle = false,loss = false) {
   const rows = memory.upgradeRoomEvidence;
-  if (evidence) evidence.upgradeRoom = { shortage,contention,coexist,toggle,rows,reloads: memory.upgradeReload };
+  if (evidence) evidence.upgradeRoom = { shortage,contention,coexist,toggle,loss,rows,reloads: memory.upgradeReload };
   const first = rows[0], last = rows.at(-1);
   console.log('UPGRADE_ROOM_SUMMARY ' + JSON.stringify({ first, last }));
   assert.equal(rows.length, 24);
@@ -48,6 +49,8 @@ function verifyUpgradeRoom(memory, shortage,evidence,contention = false,coexist 
     assert.ok(rows.filter(row => row.blocked).every(row => row.units[6].boost === 0));
     assert.ok(rows.some(row => row.tick >= 18 && row.units[6].boost === 42),'Owner release permits later confirmed boost');
     assert.ok(!memory.eldrift.records['quantity-reservations/empire'].data.claims.some(claim => claim.scope === 'fixture-upgrade-contention'));
+  } else if (loss) {
+    verifyUpgradeLabLoss(rows,evidence.specialistLabLoss,memory.eldrift.records);
   } else if (toggle) {
     assert.ok(rows.some(row => !row.enabled && row.generic.lab === row.boostLab),'Generic job pins before specialist mode');
     assert.ok(rows.some(row => row.enabled && row.generic.lab === row.boostLab && row.generic.status === 'pending'),'Enabled specialist does not revoke pending pin');
