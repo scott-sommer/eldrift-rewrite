@@ -1,4 +1,5 @@
-const labEmpireMode = ['policy','participant'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
+const { changeEmpireOwnership } = require('./lab-empire-loss.cjs');
+const labEmpireMode = ['policy','participant','loss'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
 const labEmpire = !!labEmpireMode;
 const { labEmpireWorld,verifyLabEmpire } = require('./lab-empire.cjs');
 const boostBulkMode = process.argv.includes('--boost-bulk-refused') ? 'refused' : process.argv.includes('--boost-bulk') ? 'normal' : undefined;
@@ -616,7 +617,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (boostRoleMode) await boostRoleWorld(server,bot);
   if (boostMode) await boostWorld(server,bot,boostMode);
   if (labChainMode) await labChainWorld(server,bot,labChainMode);
-  if (labEmpire) await labEmpireWorld(server,bot);
+  if (labEmpire) await labEmpireWorld(server,bot,labEmpireMode);
   if (labSupplyMode) await labSupplyWorld(server,bot,labSupplyMode);
   if (labReactionMode) await labReactionsWorld(server,bot,labReactionMode);
   if (process.argv.includes('--final-delivery')) await finalDeliveryWorld(server, bot);
@@ -678,6 +679,10 @@ server.on('error', error => { console.error(error); finish(1, error); });
     }
     if (labChainMode) {
       const reloaded = await reloadStampDraft(server,bot,modules,tick,[30,120,240]);
+      if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
+    }
+    if (labEmpireMode === 'loss') {
+      const reloaded = await changeEmpireOwnership(server,bot,modules,tick,evidence);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
     if (labEmpire) {
