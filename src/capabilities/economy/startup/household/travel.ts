@@ -52,3 +52,5 @@ function copyPlan(plan: HouseholdTravelPlan): HouseholdTravelPlan {
 }
 
 function copyPoint(point: Position): Position { return { room: point.room,x: point.x,y: point.y }; }
+
+export type HouseholdTravelQuote = Extract<ReturnType<typeof quoteHouseholdTravel>,{ status: 'complete' }>;

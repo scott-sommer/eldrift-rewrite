@@ -67,6 +67,11 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       assert.deepEqual(household.result.spawning.redistribution,{ picked: 400,delivered: 400,cargo: 0,lost: 0,endpointEnergy: household.seed.household.endpointEnergy+household.result.delivery.deliveredEnergy-400 });
       assert.equal(household.result.homeSink.remainingCapacity,household.seed.homeSink.freeCapacity+400-household.result.delivery.deliveredEnergy);
       assert.equal(household.result.cash.deliveredEnergy,household.result.delivery.deliveredEnergy); assert.equal(household.readOnly,true);
+      const homeBirth = household.result.spawning.births.find(birth => birth.request === 'household-probe');
+      const approach = travel.legs.find(leg => leg.kind === 'approach').ticks, loaded = travel.legs.find(leg => leg.kind === 'loaded').ticks, returning = travel.legs.find(leg => leg.kind === 'return').ticks;
+      household.seed.household.redistribution.trips.forEach((trip,index) => {
+        assert.equal(trip.pickupAt,homeBirth.activeAt+approach+index*(1+loaded+1+returning)); assert.equal(trip.loadedTicks,loaded); assert.equal(trip.returnTicks,returning);
+      });
       const planningEnvelope = household.root.eldrift.records['remoteStartupPlanning/W0N1']; assert.equal(planningEnvelope.version,3); assert.equal(planningEnvelope.data.job.checkpoint.format,3);
       assert.equal(schedule.namespace.owner,'remotes'); assert.equal(schedule.namespace.version,1); assert.equal(schedule.namespace.complete,true);
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
