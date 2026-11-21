@@ -64,6 +64,14 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       assert.equal(projection.candidateChoice.status,'complete'); assert.equal(projection.candidateChoice.selected,null);
       assert.deepEqual(projection.candidateChoice.assessments,[{ id: 'finite-cohort',...assessment }]);
       assert.equal(projection.expiredCandidateAbsent,true);
+      const replacement = projection.replacementProposal; assert.equal(replacement.kind,'miner'); assert.equal(replacement.plannedBirths,3);
+      const parent = projection.input.project.spawning.requests.find(request => request.id === replacement.parent);
+      const born = projection.result.spawning.births.find(birth => birth.request === replacement.parent);
+      const worker = projection.input.project.workers.find(worker => worker.request === replacement.parent);
+      assert.equal(replacement.request.readyAt+replacement.request.body.length*3+worker.travelTicks,born.activeAt+1499-worker.retireTicks);
+      assert.deepEqual(replacement.request.body,parent.body); assert.equal(replacement.request.owner,parent.owner);
+      assert.deepEqual(replacement.request.placement,parent.placement); assert.deepEqual(replacement.unchangedFunding,projection.input.project.spawning.funding);
+      assert.deepEqual(replacement.unchangedFlows,projection.input.project.spawning.cash.flows);
       assert.equal(projection.candidateCycleCapture.status,'complete'); assert.equal(projection.candidateCycleCapture.frames,0); assert.equal(projection.candidateCycleCapture.processed,1);
       assert.equal(projection.candidateCycleRead.status,'complete'); assert.equal(projection.candidateCycleRead.frames,0); assert.equal(projection.candidateCycleRead.processed,0);
       assert.deepEqual(projection.candidateCycleRead.assessments,projection.candidateCycleCapture.assessments);

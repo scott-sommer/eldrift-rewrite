@@ -1,3 +1,4 @@
+import { extendStartupReplacements } from '../../src/capabilities/economy/startup/replacements';
 import { createStartupCandidateCycle } from '../../src/features/remotes/startup/candidates/cycle';
 import { createStartupCandidateCatalog } from '../../src/features/remotes/startup/candidates/catalog';
 import { createNativeStartupCohort } from '../../src/app/remotes/startup/proposals/cohort';
@@ -45,6 +46,12 @@ export function resumeNativeProjection(state: StatePort): void {
   (proof.steps as unknown[]).push({ tick: Game.time,through: after.job!.checkpoint.tick,revision: after.revision,status: result.status });
   if (result.status === 'complete') {
     proof.result = result.result;
+    const replacement = extendStartupReplacements(query.input,after.job!.checkpoint);
+    if (replacement.status !== 'extended') throw new Error('Expected native-derived finite replacement');
+    const birth = replacement.input.project.spawning.requests.find(request => request.id === replacement.request)!;
+    proof.replacementProposal = { parent: replacement.parent,kind: replacement.kind,request: birth,
+      plannedBirths: replacement.input.project.spawning.requests.length,unchangedFunding: replacement.input.project.spawning.funding,
+      unchangedFlows: replacement.input.project.spawning.cash.flows };
     const captured = createStartupCandidateCycle(state,'W0N1').advance([{ id: 'finite-cohort',query }],returnPolicy(),'final-return',{ frames: 0,candidates: 1 });
     if (captured.status !== 'complete' || captured.frames !== 0 || captured.processed !== 1) throw new Error('Expected completed native candidate cycle');
     proof.candidateCycleCapture = captured;
