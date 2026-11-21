@@ -1,0 +1,426 @@
+{
+  "source": "b24a3871c61be932f5ac893c76b219a51f876a8b",
+  "scope": "Actual admitted incompatible boost-role supply settles through specialist mode enablement/reset before binding release; no fresh incompatible refill, explicit compatible correction restores preload. Protective mode is enabled without a valid seven-actor specialist ring in this fixture; actual rotation coexistence is qualified separately.",
+  "checks": {
+    "smoke": {
+      "tests": 76,
+      "files": 15,
+      "seconds": 0.465
+    },
+    "quality": {
+      "productionFiles": 906,
+      "testFiles": 773,
+      "lizardViolations": 0
+    },
+    "report": {
+      "tests": 1,
+      "seconds": 0.1272789
+    },
+    "fullUnits": {
+      "run": false,
+      "reason": "Incremental native fixture checkpoint; full units reserved for milestone/ticket closure"
+    }
+  },
+  "cases": [
+    {
+      "scenario": "--boost-role-specialist",
+      "seconds": 10.316,
+      "rawFile": "docs/evidence/traces/specialist-preload/boost-role-specialist.json",
+      "rawSha256": "cb56789eec0aed5efe4c9c2a292a48d1f2ce9b7529af1a8aaf4d39f2977d66a1",
+      "rowsFile": "docs/evidence/traces/specialist-preload/boost-role-specialist.jsonl",
+      "rowsSha256": "7c807297bf0eb6fe2825afef210763281a216a9ed18bf42b79dd09f361c27b12",
+      "rows": 320,
+      "provenance": {
+        "commit": "b24a3871c61be932f5ac893c76b219a51f876a8b",
+        "dirty": false,
+        "bundleSha256": "4badc18b61ec4c7ae1242ce7af4e5e1a3f22a3d864089cc8ccbdb18bb2cb9068",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "change": {
+        "tick": 9,
+        "cargo": 20,
+        "receipts": 10,
+        "correctedAt": 39
+      },
+      "pendingReload": {
+        "tick": 10,
+        "pending": true
+      }
+    },
+    {
+      "scenario": "--boost-role-switch",
+      "seconds": 10.042,
+      "rawFile": "docs/evidence/traces/specialist-preload/boost-role-switch.json",
+      "rawSha256": "75070164014bffedb9957bae94608e7aa8802ebf4fa332104476df48cc832f5c",
+      "rowsFile": "docs/evidence/traces/specialist-preload/boost-role-switch.jsonl",
+      "rowsSha256": "cdb8576b8aa2e8d902bd7696ae9c19604dca6f7c2d95f4c8c848fbbe3b50e1cd",
+      "rows": 320,
+      "provenance": {
+        "commit": "b24a3871c61be932f5ac893c76b219a51f876a8b",
+        "dirty": false,
+        "bundleSha256": "e4e072afbd91f3b92be5da21327931cc297c416f545e7f83b140b534e5bd2a30",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    },
+    {
+      "scenario": "--upgrade-lab-coexist",
+      "seconds": 2.09,
+      "rawFile": "docs/evidence/traces/specialist-preload/upgrade-lab-coexist.json",
+      "rawSha256": "6743afd9aa894f786ef67da1ee195dec12a634c3231bfbdcaf36af05dcc6958e",
+      "rowsFile": "docs/evidence/traces/specialist-preload/upgrade-lab-coexist.jsonl",
+      "rowsSha256": "e315da86fb68160092baf0b4eb5e257c8cbeb7d2941d23efc622c1af1d929a58",
+      "rows": 24,
+      "provenance": {
+        "commit": "b24a3871c61be932f5ac893c76b219a51f876a8b",
+        "dirty": false,
+        "bundleSha256": "7679b67745f02b8decf3bc7b1cd04a8e5f56aa56a35e062de01bb1a6c3351725",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      }
+    }
+  ],
+  "routineCI": {
+    "run": 44877056970,
+    "source": "b24a3871c61be932f5ac893c76b219a51f876a8b",
+    "jobs": [
+      {
+        "completedAt": "2026-11-21T06:46:22Z",
+        "conclusion": "success",
+        "databaseId": 136763962033,
+        "name": "verify (ubuntu-24.04)",
+        "startedAt": "2026-11-21T06:45:30Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-21T06:45:31Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-21T06:45:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:33Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-21T06:45:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:39Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-21T06:45:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:48Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-21T06:45:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:49Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-21T06:45:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:51Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-21T06:45:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:53Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-21T06:45:51Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:56Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-21T06:45:53Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:16Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-21T06:45:56Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:18Z",
+            "conclusion": "success",
+            "name": "Run smoke unit suite",
+            "number": 10,
+            "startedAt": "2026-11-21T06:46:16Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:18Z",
+            "conclusion": "skipped",
+            "name": "Run full unit suite for milestone",
+            "number": 11,
+            "startedAt": "2026-11-21T06:46:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:19Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 12,
+            "startedAt": "2026-11-21T06:46:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:19Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 13,
+            "startedAt": "2026-11-21T06:46:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:19Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 14,
+            "startedAt": "2026-11-21T06:46:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:20Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 15,
+            "startedAt": "2026-11-21T06:46:19Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:20Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 28,
+            "startedAt": "2026-11-21T06:46:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:20Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 29,
+            "startedAt": "2026-11-21T06:46:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:20Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 30,
+            "startedAt": "2026-11-21T06:46:20Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:20Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 31,
+            "startedAt": "2026-11-21T06:46:20Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44877056970/job/136763962033"
+      },
+      {
+        "completedAt": "2026-11-21T06:47:08Z",
+        "conclusion": "success",
+        "databaseId": 136763962255,
+        "name": "verify (windows-2022)",
+        "startedAt": "2026-11-21T06:45:30Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-11-21T06:45:31Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-11-21T06:45:30Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:36Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v7.0.1",
+            "number": 2,
+            "startedAt": "2026-11-21T06:45:31Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:45:44Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v7.1.0",
+            "number": 3,
+            "startedAt": "2026-11-21T06:45:36Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:22Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v7.1.0",
+            "number": 4,
+            "startedAt": "2026-11-21T06:45:44Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:34Z",
+            "conclusion": "success",
+            "name": "Run npm install --global npm@11.19.1",
+            "number": 5,
+            "startedAt": "2026-11-21T06:46:22Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:37Z",
+            "conclusion": "success",
+            "name": "Run npm ci",
+            "number": 6,
+            "startedAt": "2026-11-21T06:46:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:39Z",
+            "conclusion": "success",
+            "name": "Run python -m venv .venv",
+            "number": 7,
+            "startedAt": "2026-11-21T06:46:37Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:42Z",
+            "conclusion": "success",
+            "name": "Install pinned Lizard",
+            "number": 8,
+            "startedAt": "2026-11-21T06:46:39Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:46:59Z",
+            "conclusion": "success",
+            "name": "Run npm run quality",
+            "number": 9,
+            "startedAt": "2026-11-21T06:46:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:00Z",
+            "conclusion": "success",
+            "name": "Run smoke unit suite",
+            "number": 10,
+            "startedAt": "2026-11-21T06:46:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:00Z",
+            "conclusion": "skipped",
+            "name": "Run full unit suite for milestone",
+            "number": 11,
+            "startedAt": "2026-11-21T06:47:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:02Z",
+            "conclusion": "success",
+            "name": "Install pinned processor sources without native install scripts",
+            "number": 12,
+            "startedAt": "2026-11-21T06:47:00Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:03Z",
+            "conclusion": "success",
+            "name": "Run npm run test:processors",
+            "number": 13,
+            "startedAt": "2026-11-21T06:47:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:03Z",
+            "conclusion": "success",
+            "name": "Run node --test tools/engine/suite-report-check.cjs",
+            "number": 14,
+            "startedAt": "2026-11-21T06:47:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:04Z",
+            "conclusion": "success",
+            "name": "Run npm run check:bundle",
+            "number": 15,
+            "startedAt": "2026-11-21T06:47:03Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:04Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v7.1.0",
+            "number": 28,
+            "startedAt": "2026-11-21T06:47:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:04Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v7.1.0",
+            "number": 29,
+            "startedAt": "2026-11-21T06:47:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:06Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v7.0.1",
+            "number": 30,
+            "startedAt": "2026-11-21T06:47:04Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-11-21T06:47:06Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 31,
+            "startedAt": "2026-11-21T06:47:06Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/scott-sommer/eldrift-rewrite/actions/runs/44877056970/job/136763962255"
+      }
+    ],
+    "fullUnits": "skipped; not milestone evidence"
+  }
+}
