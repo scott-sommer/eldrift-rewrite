@@ -2986,8 +2986,8 @@
     "file": "resourceManager.js",
     "sha256": "677A265A92246446A15A78A90EBE8983471B592E9E6BA7A5B8FBCB1879EF00B8",
     "physicalLines": 203,
-    "reviewStatus": "Default target ordering and symbolic BOOST explicitly ported through a pure opt-in preset; absolute disable and migration/policy differences remain",
-    "implementationStatus": "partial: local/shared chains, shared operator policy, resolved legacy target preset and absolute global reaction pause qualified; legacy-memory import/dynamic upgradeBoost tracking, intermediate terminal-count floors, specialist/terminal/release gates remain",
+    "reviewStatus": "Final threshold ordering/defaults, symbolic upgrade mapping, terminal-scaled intermediate demands and global disable are separately ported; canonical independent reagent ties explicitly differ from the old hard-coded table",
+    "implementationStatus": "partial module: bounded local/shared production, terminal-scaled global intermediate demands, duplicate-priority thresholds, operator policy and absolute pause qualified; consolidated ED-36 milestone and later legacy inputs/terminal/mission/migration/release requirements remain",
     "evidence": [
       "docs/industry-lab-production.md",
       "docs/boost-lab-allocation.md",
@@ -2995,7 +2995,9 @@
       "docs/empire-lab-production.md",
       "docs/boosted-builder-recipe.md",
       "docs/evidence/empire-operator-native.json",
-      "docs/evidence/reaction-pause-native.json"
+      "docs/evidence/reaction-pause-native.json",
+      "docs/industry-stock-policy.md",
+      "docs/evidence/stock-policy-native.json"
     ],
     "plannedIssues": [
       "ED-13",
@@ -3055,7 +3057,7 @@
     "baselineClassification": "implemented in statically reachable module; individual paths may be partial",
     "parityEvidence": {
       "commit": "da20713949f49768d03cf8086b1eb4dfa30d1a06",
-      "required": "Preserve explicit disposition for legacy-memory import, dynamic upgradeBoost tracking, duplicate target priority limitations, terminal-count intermediate floors, specialist producers, terminal/evacuation/recapture, pressure and migration/release gates; pause namespace downgrade fence must be rehearsed",
+      "required": "Consolidated current-source original-criteria/full-unit milestone gate; legacy Memory/console input adapters, downstream terminal and concrete mission/specialist producers, pressure/soak and migration/rollback/release evidence remain",
       "tests": [
         "test/capabilities/lab-production.test.ts",
         "test/features/lab-production.test.ts",
@@ -3069,14 +3071,17 @@
         "test/features/reaction-control.test.ts",
         "test/engine/lab-empire-pause-bot.ts",
         "test/engine/lab-empire-pause-local-bot.ts",
-        "test/engine/boost-paused-bot.ts"
+        "test/engine/boost-paused-bot.ts",
+        "test/capabilities/stock-thresholds.test.ts",
+        "test/engine/lab-stock-policy.ts"
       ],
       "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
       "sharedOperatorSources": [
         "1292402602fdb0b29799c789fdc1228bcaa00848",
         "8a475ae5eacce12c9c95a6a04df8c95ac87fd683",
         "001e6352347b0f920ca835ae5680d55ddb937b70"
-      ]
+      ],
+      "stockPolicySource": "5dbbc87ced8cbd9626ecb3e09173a0653356d5b3"
     }
   },
   {

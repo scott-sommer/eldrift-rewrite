@@ -32,3 +32,7 @@ For the current evidence-gap increment, smoke 76/15 files in0.477s, quality906 p
 ## Production-policy implementation follow-up
 
 The [threshold policy](industry-stock-policy.md) now implements the identified separation of intermediate stock demands and final thresholds, including configurable terminal scaling and duplicate-product priority boundaries. Native shared/local/priority validation is pending at this implementation checkpoint. Do not mark the preceding original-scope gates complete from portable tests alone; consolidated milestone/full-suite and downstream obligations remain required.
+
+## Native stock-policy follow-up
+
+The identified production-policy gap now has [bounded native qualification](industry-stock-policy.md) at5dbbc87: shared/local terminal scaling, separate duplicate thresholds, stable root context and ordinary-production regressions. Preserve the explicit canonical intermediate tie-order correction rather than claiming the old hard-coded chemistry table is copied. ED-36 remains In Progress pending consolidated current-source evidence for its original criteria and the full-unit/manual-CI milestone gate; no such gate is satisfied by these five incremental cases.
