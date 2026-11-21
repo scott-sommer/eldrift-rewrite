@@ -1,3 +1,4 @@
+import { beginStartupScheduleProbe, resumeStartupScheduleProbe } from './startup-schedule-probe';
 import { extendStartupReplacements } from '../../src/capabilities/economy/startup/replacements';
 import { createStartupCandidateCycle } from '../../src/features/remotes/startup/candidates/cycle';
 import { createStartupCandidateCatalog } from '../../src/features/remotes/startup/candidates/catalog';
@@ -16,6 +17,7 @@ export function nativeProjectionOptions(quote: NativeStartupQuote): NativeStartu
   ] };
 }
 export function beginNativeProjection(state: StatePort, quote: NativeStartupQuote): void {
+  beginStartupScheduleProbe(state,quote);
   const proposal = createNativeStartupCohort(state)('finite-cohort',quote,{ horizon: 1500,validityTicks: 200,protectedEnergy: 350,retirementMargin: 4,
     minimumBatch: 25,minerPriority: 20,courierPriority: 30,courierReadyAt: 0,assumeAssignmentRenewal: true,repairPolicy: { criticalFraction: 0.2,energyReserve: 20 } });
   if (proposal.status !== 'ready' || !quote.facts.authority) throw new Error('Expected ordinary pre-birth native cohort proposal');
@@ -29,6 +31,7 @@ export function beginNativeProjection(state: StatePort, quote: NativeStartupQuot
 }
 /** Continues the original observation scenario only; never treats its result as current birth authority. */
 export function resumeNativeProjection(state: StatePort): void {
+  resumeStartupScheduleProbe();
   const proof = (Memory as ProjectionMemory).nativeProjection; if (!proof) return;
   const owner = createStartupPlanningJob(state,'W0N1'), record = owner.read(), job = record.job; if (!job || record.clock === Game.time) return;
   const query = { ...job,tick: Game.time,input: decodeStartupPlanningInput(job.input) }, before = JSON.stringify(Memory.eldrift);

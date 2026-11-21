@@ -25,6 +25,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   if (memory.startupProjectProof) evidence.remoteStartup.projectCheckpoint = memory.startupProjectProof;
   if (memory.startupPlanningProof) evidence.remoteStartup.planningJob = memory.startupPlanningProof;
   if (memory.nativeProjection) evidence.remoteStartup.nativeProjection = memory.nativeProjection;
+  if (memory.startupScheduleProbe) evidence.remoteStartup.scheduleProbe = memory.startupScheduleProbe;
   if (memory.incumbentProjection) evidence.remoteStartup.incumbentProjection = memory.incumbentProjection;
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.equal(rows.length,mode === 'staged' ? 5000 : 150); rows.forEach((row,index) => assert.equal(row.tick,index+1));
@@ -48,6 +49,10 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
     assert.equal(last.income,0); assert.deepEqual(memory.stampReloads,[21,81,150]);
     if (mode === 'selected') {
       const projection = memory.nativeProjection; assert.ok(projection);
+      const schedule = memory.startupScheduleProbe; assert.ok(schedule); assert.equal(schedule.frames,20005);
+      assert.deepEqual(schedule.rows.map(row => row.tick),[25,30,46,81,150]); assert.equal(schedule.rows.at(-1).status,'complete');
+      assert.equal(schedule.result.spawning.births.length,6); assert.equal(schedule.result.cash.birthEnergy,2250);
+      assert.equal(schedule.readOnly,true); assert.equal(schedule.namespace.owner,'remotes'); assert.equal(schedule.namespace.version,1); assert.equal(schedule.namespace.complete,true);
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
       const proposal = projection.cohortProposal; assert.equal(proposal.id,'finite-cohort');
       assert.equal(proposal.expiresAt,Math.min(225,proposal.authorityExpiresAt)); assert.equal(proposal.births.length,2);
