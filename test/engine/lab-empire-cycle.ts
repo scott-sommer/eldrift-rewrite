@@ -1,3 +1,4 @@
+import { changeLocalReactionPause } from './lab-local-pause';
 import { verifyEmpireOperatorBoundaries } from './lab-empire-operator';
 import { prepareEmpireLoss, recordEmpireLoss } from './lab-empire-loss';
 import { changeEmpirePolicy, labReceiptTotal } from './lab-empire-change';
@@ -11,7 +12,7 @@ import type { EmpireProductionWindow } from '../../src/features/industry/empire-
 interface EmpireRoomRow { bankUH: number; carriedUH: number; receipts: number; home: string; bank: number; rootInLabs: number; cargo: number; courier: string; reactionLabs: string[]; buffer: { id: string; mineral: string | null; amount: number; energy: number } }
 declare global { interface Memory { empireProductionRows?: { tick: number; paused: boolean; products: Record<string,number>; total: number; windows: EmpireProductionWindow[]; rooms: EmpireRoomRow[] }[] } }
 const state = createMemoryPort(() => Memory);
-export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 'loss' | 'intel' | 'pause'): void {
+export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 'loss' | 'intel' | 'pause' | 'pause-local'): void {
   if (!Memory.empireProductionRows) {
     const settings = openState(state,'operator/config',operatorSchema);
     settings.empire = { logisticsEnabled: true,workersEnabled: false };
@@ -20,11 +21,13 @@ export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 
     const policy = { labReactionsEnabled: true,labProductionScope: 'empire' as const,labProductionTargets: industry.labs.legacyTargets({ upgradeProduct: 'UH2O',amounts: { XZHO2: 0,XLHO2: 0,XZH2O: 0,XLH2O: 0,XUH2O: 0,XKHO2: 0,XGHO2: 0,BOOST: 15 } }),labProductionBatch: 10,labTransportBatch: 20 };
     if (!industry.labs.previewEmpire(policy).ok || !industry.labs.configureEmpire(policy).changed || industry.labs.configureEmpire(policy).changed) throw new Error('Shared lab operator admission/replay failed');
     verifyEmpireOperatorBoundaries();
+    if (mode === 'pause-local') industry.labs.configureMany(['W0N1','W1N1'].map(home => ({ home,input: { labReactionsEnabled: true,labProductionScope: 'room' } })));
     if (mode === 'pause') industry.labs.configureMany(['W0N1','W1N1'].map(home => ({ home,input: { labReactionsEnabled: true } })));
     industry.labs.configureMany(['W0N1','W1N1'].map(home => ({ home,input: { labBoostRoles: [{ lab: bufferLab(home).id,resource: 'XGH2O',mineral: 60,energy: 40 }] } })));
   }
   for (const creep of Object.values(Game.creeps).filter(item => item.name.startsWith('boost-courier'))) creep.memory.population = { owner: haulingOwner(creep.room.name),home: creep.room.name };
-  if (mode === 'loss' || mode === 'intel') prepareEmpireLoss(); else changeEmpirePolicy(mode);
+  if (mode === 'pause-local') changeLocalReactionPause();
+  else if (mode === 'loss' || mode === 'intel') prepareEmpireLoss(); else changeEmpirePolicy(mode);
   botLoop(); const rooms = ['W0N1','W1N1'].filter(home => !!Game.rooms[home]).map(roomRow);
   (Memory.empireProductionRows ??= []).push({ tick: Game.time,paused: industry.labs.reactionsStatus().paused,products: reactionStocks(),total: rooms.reduce((sum,room) => sum+room.bank+room.rootInLabs,0),windows: createEmpireProductionStore(state,() => false).list(),rooms });
   if (mode === 'loss' || mode === 'intel') recordEmpireLoss();

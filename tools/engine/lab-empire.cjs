@@ -10,6 +10,7 @@ function verifyLabEmpire(memory,evidence,mode = 'normal') {
   if (['loss','vision','intel'].includes(mode)) return verifyEmpireLoss(memory,evidence,mode);
   const rows = memory.empireProductionRows, records = memory.eldrift.records, last = rows.at(-1);
   evidence.empireProduction = { mode,rows,reloads: memory.stampReloads,change: memory.empirePolicyChange,policyReload: evidence.empirePolicyReload,state: records['industry-empire-production/empire'] };
+  if (mode === 'pause-local') return verifyLocalPause(memory,evidence);
   assert.equal(rows.length,640); assert.deepEqual(memory.stampReloads,mode === 'normal' ? [31,181,401] : [...new Set([evidence.empirePolicyReload.tick,31,181,401])].sort((a,b) => a-b));
   assert.ok(rows.every(row => row.total <= 15),'Shared target cannot be independently produced in each room');
   assert.equal(last.total,mode === 'policy' ? memory.empirePolicyChange.oldRoot : 15); assert.deepEqual(last.windows,[]);
@@ -62,4 +63,25 @@ function verifyPause(memory,evidence) {
   assert.equal(memory.eldrift.records['operator/config'].data.rooms.W0N1.override.labReactionsEnabled,true);
   assert.equal(memory.eldrift.records['operator/config'].data.rooms.W1N1.override.labReactionsEnabled,true);
   assert.deepEqual(memory.eldrift.records['industry-reaction-control/empire'].data,{ paused: false });
+}
+
+function verifyLocalPause(memory,evidence) {
+  const rows = memory.empireProductionRows, change = memory.localReactionPause, records = memory.eldrift.records;
+  evidence.empireProduction.localPause = change;
+  assert.equal(rows.length,640); assert.ok(change.cargo > 0);
+  assert.equal(evidence.empirePolicyReload.pending,true);
+  assert.deepEqual(memory.stampReloads,[...new Set([31,181,401,evidence.empirePolicyReload.tick])].sort((a,b) => a-b));
+  const paused = rows.filter(row => row.paused); assert.equal(paused.length,30);
+  assert.ok(paused.every(row => JSON.stringify(row.products) === JSON.stringify(paused[0].products)),'Local reactions must stop despite room enable overrides');
+  assert.ok(rows.every(row => !row.windows.length),'Local policy must not create shared windows');
+  assert.ok(paused.at(-1).rooms.find(room => room.home === 'W0N1').receipts >= change.receipts+change.cargo,'Admitted local cargo settles while paused');
+  assert.equal(rows.at(-1).total,30); assert.equal(rows.at(-1).paused,false);
+  for (const room of rows.at(-1).rooms) {
+    assert.equal(room.bank,15); assert.equal(room.rootInLabs,0); assert.equal(room.cargo,0);
+    assert.deepEqual(records['tasks/'+room.courier].data.queue,[]);
+    assert.equal(records['operator/config'].data.rooms[room.home].override.labReactionsEnabled,true);
+    assert.equal(records['operator/config'].data.rooms[room.home].override.labProductionScope,'room');
+    assert.equal(room.buffer.amount,60); assert.equal(room.buffer.energy,40);
+  }
+  assert.equal(records['quantity-reservations/empire'].data.claims.filter(claim => claim.expiresAt > 640).length,0);
 }

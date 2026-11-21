@@ -1,7 +1,7 @@
 const boostedBuilderMode = ['shortage','lower'].find(mode => process.argv.includes('--boosted-builder-'+mode)) ?? (process.argv.includes('--boosted-builder') ? 'normal' : undefined);
 const { boostedBuilderWorld,verifyBoostedBuilder } = require('./boosted-builder.cjs');
 const { changeEmpireOwnership } = require('./lab-empire-loss.cjs');
-const labEmpireMode = ['policy','participant','loss','vision','intel','pause'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
+const labEmpireMode = ['policy','participant','loss','vision','intel','pause','pause-local'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
 const labEmpire = !!labEmpireMode;
 const { labEmpireWorld,verifyLabEmpire } = require('./lab-empire.cjs');
 const boostBulkMode = process.argv.includes('--boost-bulk-refused') ? 'refused' : process.argv.includes('--boost-bulk') ? 'normal' : undefined;
@@ -694,6 +694,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (labEmpireMode !== 'normal' && !evidence.empirePolicyReload) {
         const current = JSON.parse((await bot.memory) || '{}');
         if (current.empirePolicyChange && current.empireProductionRows?.at(-1)?.windows.some(window => window.home === 'W0N1' && window.retiring)) { reloads = [tick]; evidence.empirePolicyReload = { tick: tick+1,pending: true }; }
+        if (current.localReactionPause && current.eldrift?.records?.['industry-reaction-control/empire']?.data.paused) { reloads = [tick]; evidence.empirePolicyReload = { tick: tick+1,pending: true }; }
       }
       const reloaded = await reloadStampDraft(server,bot,modules,tick,reloads);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
