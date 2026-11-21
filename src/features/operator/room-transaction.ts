@@ -1,7 +1,6 @@
 import type { StatePort } from '../../persistence/versioned-state';
-import { peekState } from '../../persistence/versioned-state';
 import { copyPlain } from '../../persistence/plain-data';
-import { operatorSchema } from './state';
+import { editOperatorConfiguration } from './configuration-transaction';
 import type { ConfigurationStore } from '../../config/provider';
 export type OperatorRoomSettings = NonNullable<ConfigurationStore['rooms']>[string];
 export interface OperatorRoomEdit { home: string; apply(settings: OperatorRoomSettings): OperatorRoomSettings }
@@ -20,10 +19,10 @@ export function editOperatorRooms(state: StatePort,edits: readonly OperatorRoomE
   validateOperatorHomes(edits.map(edit => edit.home));
   if (edits.some(edit => !owns(edit.home))) throw new Error('Visible owned room is required');
   if (!edits.length) return false;
-  const saved = peekState(state,'operator/config',operatorSchema) ?? {}, rooms = { ...saved.rooms };
-  for (const edit of edits) replaceRoom(rooms,edit);
-  const next: ConfigurationStore = { ...saved,rooms }; if (!Object.keys(rooms).length) delete next.rooms;
-  if (!operatorSchema.valid(next)) throw new Error('Invalid operator configuration');
-  if (JSON.stringify(next) === JSON.stringify(saved)) return false;
-  state.write('operator/config',{ owner: operatorSchema.owner,version: operatorSchema.version,data: copyPlain(next) }); return true;
+  return editOperatorConfiguration(state,saved => {
+    const rooms = { ...saved.rooms };
+    for (const edit of edits) replaceRoom(rooms,edit);
+    const next: ConfigurationStore = { ...saved,rooms }; if (!Object.keys(rooms).length) delete next.rooms;
+    return next;
+  });
 }
