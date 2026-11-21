@@ -316,7 +316,7 @@ function finish(code, error) {
   console.log('ENGINE_EVIDENCE ' + path.join(directory, 'evidence.json'));
   process.exit(code);
 }
-const timeout = setTimeout(() => { console.error('Engine smoke exceeded scenario time limit', directory); finish(1, new Error('Engine smoke timeout')); }, process.argv.includes('--inject-timeout') ? 1500 : startupMode ? (startupMode === 'staged' ? 1500000 : 120000) : reachabilityMode ? 420000 : remoteCapacityMode ? 120000 : reservationVision ? 120000 : remotePipeline ? 180000 : reservationPopulation ? 150000 : remoteFleetMode === 'lifetime' ? 300000 : remoteFleetMode === 'bootstrap' ? 180000 : stampBudget ? 90000 : 60000);
+const timeout = setTimeout(() => { console.error('Engine smoke exceeded scenario time limit', directory); finish(1, new Error('Engine smoke timeout')); }, process.argv.includes('--inject-timeout') ? 1500 : startupMode ? (startupMode === 'staged' ? 1500000 : 120000) : reachabilityMode ? 420000 : remoteCapacityMode ? 120000 : reservationVision ? 120000 : remotePipeline ? 180000 : reservationPopulation ? 150000 : remoteFleetMode === 'lifetime' ? 300000 : remoteFleetMode === 'bootstrap' ? 180000 : stampBudget ? 90000 : labEmpireMode === 'intel' ? 120000 : 60000);
 server.on('error', error => { console.error(error); finish(1, error); });
 (async () => {
   await server.world.reset();
