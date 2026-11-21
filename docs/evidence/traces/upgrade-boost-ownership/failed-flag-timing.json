@@ -1,0 +1,2365 @@
+{
+  "status": "failed",
+  "directory": "E:\\dev\\personal\\screeps\\eldrift-rewrite\\artifacts\\engine-yF6v20",
+  "messages": [],
+  "errors": [],
+  "samples": [
+    {
+      "tick": 2,
+      "wallMilliseconds": 305.8501,
+      "cpuMilliseconds": 53,
+      "memoryBytes": 2585
+    },
+    {
+      "tick": 3,
+      "wallMilliseconds": 30.063300000000027,
+      "cpuMilliseconds": 11,
+      "memoryBytes": 8206
+    },
+    {
+      "tick": 4,
+      "wallMilliseconds": 26.578699999999913,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 8928
+    },
+    {
+      "tick": 5,
+      "wallMilliseconds": 26.573300000000017,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 9650
+    },
+    {
+      "tick": 6,
+      "wallMilliseconds": 27.182300000000055,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 10373
+    },
+    {
+      "tick": 7,
+      "wallMilliseconds": 30.608199999999897,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 11096
+    },
+    {
+      "tick": 8,
+      "wallMilliseconds": 88.80010000000016,
+      "cpuMilliseconds": 49,
+      "memoryBytes": 11892
+    },
+    {
+      "tick": 9,
+      "wallMilliseconds": 46.33879999999999,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 12615
+    },
+    {
+      "tick": 10,
+      "wallMilliseconds": 26.244900000000143,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 13345
+    },
+    {
+      "tick": 11,
+      "wallMilliseconds": 24.458700000000135,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 14100
+    },
+    {
+      "tick": 12,
+      "wallMilliseconds": 31.088700000000017,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 14824
+    },
+    {
+      "tick": 13,
+      "wallMilliseconds": 24.998100000000022,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 15548
+    },
+    {
+      "tick": 14,
+      "wallMilliseconds": 31.492999999999938,
+      "cpuMilliseconds": 14,
+      "memoryBytes": 16280
+    },
+    {
+      "tick": 15,
+      "wallMilliseconds": 28.14560000000006,
+      "cpuMilliseconds": 10,
+      "memoryBytes": 17048
+    },
+    {
+      "tick": 16,
+      "wallMilliseconds": 83.83410000000003,
+      "cpuMilliseconds": 47,
+      "memoryBytes": 17786
+    },
+    {
+      "tick": 17,
+      "wallMilliseconds": 26.19159999999988,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 18498
+    },
+    {
+      "tick": 18,
+      "wallMilliseconds": 25.168199999999842,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 19210
+    },
+    {
+      "tick": 19,
+      "wallMilliseconds": 26.116400000000112,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 19922
+    },
+    {
+      "tick": 20,
+      "wallMilliseconds": 27.42540000000008,
+      "cpuMilliseconds": 9,
+      "memoryBytes": 20634
+    },
+    {
+      "tick": 21,
+      "wallMilliseconds": 26.7166000000002,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 21346
+    },
+    {
+      "tick": 22,
+      "wallMilliseconds": 23.897500000000036,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 22058
+    },
+    {
+      "tick": 23,
+      "wallMilliseconds": 35.50240000000008,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 22770
+    },
+    {
+      "tick": 24,
+      "wallMilliseconds": 24.194100000000162,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 23482
+    },
+    {
+      "tick": 25,
+      "wallMilliseconds": 26.39319999999998,
+      "cpuMilliseconds": 8,
+      "memoryBytes": 24194
+    }
+  ],
+  "provenance": {
+    "commit": "0e9900bfda282dc18a700415a9f0f7a74163771e",
+    "dirty": false,
+    "bundleSha256": "ba676a5291908cf9f68071689c5450620327ed60bcebb96984a419a3f2df2f66",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "reloadProvenance": {
+    "commit": "0e9900bfda282dc18a700415a9f0f7a74163771e",
+    "dirty": false,
+    "bundleSha256": "cb695a90d829461ba4242dace7766312c956ca68399afa66a4e780d693fa2550",
+    "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+    "node": "v24.22.1",
+    "platform": "win32",
+    "engine": "4.3.2",
+    "driver": "5.3.0"
+  },
+  "upgradeRoom": {
+    "shortage": false,
+    "contention": true,
+    "rows": [
+      {
+        "blocked": false,
+        "tick": 1,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 0,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1449,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1199,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 999,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 799,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 599,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 399,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1379,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 2,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 294,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1448,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1198,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 998,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 798,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 598,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 398,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1390,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 3,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 588,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1447,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1197,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 997,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 797,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 597,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 397,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1401,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 4,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 882,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1446,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1196,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 996,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 796,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 596,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 396,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1412,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 5,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 1176,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1445,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1195,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 995,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 795,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 595,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 395,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1423,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 6,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 1470,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1444,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1194,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 994,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 794,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 594,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 394,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1434,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 7,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 1764,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1443,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1193,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 993,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 793,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 593,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 393,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1445,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 8,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2058,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1442,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1192,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 992,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 792,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 592,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 392,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1456,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 9,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2352,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1441,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1191,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 991,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 791,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 591,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 391,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1467,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 10,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2646,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1440,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1190,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 990,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 790,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 590,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 390,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1478,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 11,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 2940,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1439,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1189,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 989,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 789,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 589,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 389,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1489,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 12,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 0
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 1
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 2
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 3
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 4
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 5
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 6
+          }
+        ],
+        "renewing": "2c44c701e50a37c",
+        "boosting": [],
+        "retiring": [],
+        "progress": 3234,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1438,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1188,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 988,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 788,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 588,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 388,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1488,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 13,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [
+          "2c44c701e50a37c"
+        ],
+        "retiring": [],
+        "progress": 3528,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1437,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1187,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 987,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 787,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 587,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 387,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1499,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 14,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [
+          "2c44c701e50a37c"
+        ],
+        "retiring": [],
+        "progress": 3822,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1436,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1186,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 986,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 786,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 586,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 386,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1498,
+            "x": 21,
+            "y": 21,
+            "boost": 0
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 15,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 4116,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1435,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1185,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 985,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 785,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 585,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 385,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1497,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 16,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 4452,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1434,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1184,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 984,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 784,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 584,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 384,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1496,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 17,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 4788,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1433,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1183,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 983,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 783,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 583,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 383,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1495,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 18,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 5124,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1432,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1182,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 982,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 782,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 582,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 382,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1494,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 19,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 5460,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1431,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1181,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 981,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 781,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 581,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 381,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1493,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 20,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 5796,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1430,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1180,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 980,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 780,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 580,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 380,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1492,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 21,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 6132,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1429,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1179,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 979,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 779,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 579,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 379,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1491,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 22,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 6468,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1428,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1178,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 978,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 778,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 578,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 378,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1490,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 23,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 6804,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1427,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1177,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 977,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 777,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 577,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 377,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1489,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      },
+      {
+        "blocked": false,
+        "tick": 24,
+        "slots": [
+          {
+            "unit": "d8c1c701e4f760c",
+            "slot": 1
+          },
+          {
+            "unit": "006fc701e4f1476",
+            "slot": 2
+          },
+          {
+            "unit": "b5aec701e4f72a0",
+            "slot": 3
+          },
+          {
+            "unit": "dc11c701e4f862d",
+            "slot": 4
+          },
+          {
+            "unit": "5201c701e50763a",
+            "slot": 5
+          },
+          {
+            "unit": "34fdc701e50348c",
+            "slot": 6
+          },
+          {
+            "unit": "2c44c701e50a37c",
+            "slot": 0
+          }
+        ],
+        "renewing": null,
+        "boosting": [],
+        "retiring": [],
+        "progress": 7140,
+        "reserve": 0,
+        "units": [
+          {
+            "name": "u0",
+            "ttl": 1426,
+            "x": 20,
+            "y": 21,
+            "boost": 0
+          },
+          {
+            "name": "u1",
+            "ttl": 1176,
+            "x": 20,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u2",
+            "ttl": 976,
+            "x": 20,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u3",
+            "ttl": 776,
+            "x": 21,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u4",
+            "ttl": 576,
+            "x": 22,
+            "y": 23,
+            "boost": 0
+          },
+          {
+            "name": "u5",
+            "ttl": 376,
+            "x": 22,
+            "y": 22,
+            "boost": 0
+          },
+          {
+            "name": "u6",
+            "ttl": 1488,
+            "x": 21,
+            "y": 21,
+            "boost": 42
+          }
+        ]
+      }
+    ],
+    "reloads": [
+      {
+        "tick": 7,
+        "renewing": "2c44c701e50a37c",
+        "attempt": null
+      },
+      {
+        "tick": 15,
+        "renewing": null,
+        "attempt": {
+          "unit": "2c44c701e50a37c",
+          "tick": 14,
+          "before": 0,
+          "unavailable": false
+        }
+      }
+    ]
+  },
+  "childPids": [
+    79768,
+    74136,
+    72548
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Foreign claim prevents native admission through reset\n+ actual - expected\n\n+ {\n+   before: 0,\n+   tick: 14,\n+   unavailable: false,\n+   unit: '2c44c701e50a37c'\n+ }\n- null\n\n    at verifyUpgradeRoom (E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\upgrade-room.cjs:41:12)\n    at E:\\dev\\personal\\screeps\\eldrift-rewrite\\tools\\engine\\smoke.cjs:1017:20\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+}

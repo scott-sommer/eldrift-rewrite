@@ -6088,7 +6088,8 @@
       "test/engine/upgrade-bootstrap-bot.ts",
       "docs/work-role-audit.md",
       "docs/worker-role-acceptance.md",
-      "docs/evidence/worker-final-engine-suite.json"
+      "docs/evidence/worker-final-engine-suite.json",
+      "docs/evidence/upgrade-boost-ownership-native.json"
     ],
     "plannedIssues": [
       "ED-22",
@@ -6126,11 +6127,14 @@
         "test/capabilities/upgrade-stations.test.ts",
         "test/capabilities/upgrade-rotation.test.ts",
         "test/engine/upgrade-rebuild-bot.ts",
-        "test/engine/upgrade-bootstrap-bot.ts"
+        "test/engine/upgrade-bootstrap-bot.ts",
+        "test/app/native-upgrade-boost.test.ts",
+        "test/engine/upgrade-boost-contention.ts"
       ],
       "status": "ED-22 functional scope accepted; later integration/control/migration requirements remain open; not whole-module release parity",
       "validationCommit": "88a39c7fc93a53c92f7eabd72afe087cd39b59ce",
-      "fullNativeSuite": "docs/evidence/worker-final-engine-suite.json"
+      "fullNativeSuite": "docs/evidence/worker-final-engine-suite.json",
+      "industryIntegrationSource": "e569e42b7aa5eb666ce542d282f6b8279ede3555"
     }
   },
   {
