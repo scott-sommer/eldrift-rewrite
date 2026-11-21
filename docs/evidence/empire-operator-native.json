@@ -59,6 +59,33 @@
         "engine": "4.3.2",
         "driver": "5.3.0"
       }
+    },
+    {
+      "scenario": "--lab-empire (conflict/clear boundaries)",
+      "source": "001e6352347b0f920ca835ae5680d55ddb937b70",
+      "rawFile": "docs/evidence/traces/empire-operator/boundaries.json",
+      "rawSha256": "1b700a6d55d45105df457563ad5fdf315c0fd686064de65efc9bab9b799ce3ef",
+      "rowsFile": "docs/evidence/traces/empire-operator/boundaries.jsonl",
+      "rowsSha256": "647408246b96ab5f5c5ac33a26540bbb31cc163e10c5f24d2708c27146732edb",
+      "rows": 640,
+      "provenance": {
+        "commit": "001e6352347b0f920ca835ae5680d55ddb937b70",
+        "dirty": false,
+        "bundleSha256": "2fa74689043a06d38e72742be9469b1180104f2cc946e1ff69a1b2510682d141",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "assertions": [
+        "conflict preview identifies W0N1",
+        "conflicting shared write refuses with byte-identical Memory",
+        "room conflict clears",
+        "shared reserve clear restores inherited value",
+        "repeat clear makes no write",
+        "ordinary production and reset regression remains green"
+      ]
     }
   ]
 }
