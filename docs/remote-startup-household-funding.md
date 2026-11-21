@@ -22,3 +22,5 @@ The full project must opt into this wrapper, release accepting-sink capacity fro
 
 
 Clean source67dca8a4b12efef1d303f6a35576ff5b8fbac58e passes the focused `node tools/engine/smoke.cjs --remote-startup-selected` regression with150 actual ticks, errors/messages empty, existing20005 schedule-evaluation frames and six-model-body outcome intact. This exercises existing users of the modified shared spawn timeline, not the new household wrapper or actual household transfer lifecycle. [Exact-source archived evidence](evidence/household-funding.json) preserves raw bytes and three hashed traces; verify with `python -X utf8 tools/evidence/verify_archives.py docs/evidence/household-funding.json --published`. No full unit/native registry gate or ticket closure is claimed.
+
+The subsequent [full-project household integration](remote-startup-household-project.md) now connects this timeline to source cash and physical sink capacity, with conditional project format3 and planning version3. Native household route generation, actual lifecycle/cashflow, default adoption and release rehearsal remain open.

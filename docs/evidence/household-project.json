@@ -1,0 +1,162 @@
+{
+  "issue": "ED-29",
+  "source": "5d1d06fd7dd12f7a9a3b447de89a78ea943a8abb",
+  "scope": "Full-project household model/sink integration, format3 and planning schema3 migration; not actual native household lifecycle or RC",
+  "native": [
+    {
+      "scenario": "--remote-startup-selected",
+      "expectedStatus": "passed",
+      "nativeSource": "5d1d06fd7dd12f7a9a3b447de89a78ea943a8abb",
+      "rawFile": "docs/evidence/household-project/selected-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "012d7cbc75640a5f3deb1acbc6b6010b2af4b0816ac7b8634ed2a2551f6a2713",
+      "uncompressedSha256": "540a8450415d123a0b6a05824fcf7958fc89a34247a779c4d26cf5ceac5268a9",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "5d1d06fd7dd12f7a9a3b447de89a78ea943a8abb",
+        "dirty": false,
+        "bundleSha256": "6f8ca4856b25df227a9183c6c0974f1fe77c1f85b5a9445a2afc1f8703b6a73f",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/household-project/selected-samples.jsonl",
+          "rowsSha256": "8e68a42279a9fdb4600c069f171592a9cab45c53946f6866f46722c44eb9ff89",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/household-project/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/household-project/selected-household-schedule.jsonl",
+          "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+          "rows": 5
+        },
+        {
+          "rowsFile": "docs/evidence/household-project/selected-ordinary-schedule.jsonl",
+          "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+          "rows": 5
+        }
+      ],
+      "householdModel": {
+        "horizon": 4000,
+        "evaluationFrames": 20005,
+        "cash": {
+          "endingEnergy": 19906,
+          "minimumEnergy": 9150,
+          "minimumAt": 33,
+          "requiredHomeEnergy": 1300,
+          "homeShortfall": 0,
+          "birthEnergy": 2450,
+          "homeConstructionEnergy": 0,
+          "upkeepEnergy": 0,
+          "deliveredEnergy": 12256,
+          "homeCashSurplus": 9806,
+          "constructionRecoveryMargin": 4806,
+          "firstDeliveryAt": 1321,
+          "firstRecoveryAt": 2795
+        },
+        "redistribution": {
+          "cargo": 0,
+          "picked": 400,
+          "delivered": 400,
+          "lost": 0,
+          "endpointEnergy": 19656
+        },
+        "readOnly": true,
+        "planningVersion": 3,
+        "projectFormat": 3,
+        "assumptions": [
+          "Assignment renewal assumed",
+          "Four declared pickup trips, loaded2/return1 ticks; not native household route calibration",
+          "Isolated planning-only root; modeled income is not actual game income"
+        ]
+      }
+    },
+    {
+      "scenario": "--remote-startup-admission",
+      "expectedStatus": "passed",
+      "nativeSource": "5d1d06fd7dd12f7a9a3b447de89a78ea943a8abb",
+      "rawFile": "docs/evidence/household-project/migration-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "bb5c2341ee49f66750e4f18ec2cdbf2fed1f46fa033476dff96d73df66d03960",
+      "uncompressedSha256": "9739019ad318060f53e261d1d03e02e4fdaac040c9f645ea2a7fa2577ee8b746",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "5d1d06fd7dd12f7a9a3b447de89a78ea943a8abb",
+        "dirty": false,
+        "bundleSha256": "305eccda202d13846d6d418e74b5588458ee9c8d24213ad33f85585aa00411b9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/household-project/migration-samples.jsonl",
+          "rowsSha256": "92dbc519c6a6b12fd60cfc95eb991919215c9602af1e0c5264e854a4da09f3bd",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/household-project/migration-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        }
+      ],
+      "migration": {
+        "legacyVersion": 1,
+        "initialThrough": 43,
+        "pendingBefore": 1,
+        "recoveredThrough": 43,
+        "nextThrough": 44,
+        "completeThrough": 101,
+        "version": 3,
+        "readOnly": true
+      }
+    }
+  ],
+  "checks": {
+    "targeted": {
+      "cases": 74,
+      "files": 7,
+      "seconds": 2.47
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.495
+    },
+    "quality": {
+      "productionFiles": 932,
+      "testFiles": 791,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "compatibility": {
+    "ordinaryProjectFormat": 2,
+    "householdProjectFormat": 3,
+    "planningNamespaceVersion": 3,
+    "schema1And2ReadOnlyMigration": "qualified (schema1 native, schema2 targeted contracts)",
+    "olderReaders": "fail closed",
+    "releaseRollbackRehearsal": "not executed"
+  },
+  "remaining": [
+    "Native quoted household routes/trip generation and incumbent templates",
+    "Complete home workforce schedules and actual native same-strategy lifecycle/cashflow calibration",
+    "Default runtime configuration/adoption and concurrent multi-room capital",
+    "Aggregate pressure and release migration/rollback/RC gates"
+  ]
+}
