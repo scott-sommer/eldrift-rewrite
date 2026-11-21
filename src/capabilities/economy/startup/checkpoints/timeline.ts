@@ -1,3 +1,4 @@
+import type { StartupEnergyCheckpoint } from '../energy/model';
 import { copyPlain } from '../../../../core/plain-data';
 import { bodyCost } from '../../../spawning/body';
 import { integer, keys, record, requireCheckpoint } from './validation';
@@ -5,12 +6,13 @@ import type { StartupSpawnInput, StartupScheduledBirth, StartupSpawnSlot } from 
 import type { StartupCashCheckpoint } from './cash';
 import type { StartupFundingCheckpoint } from './funding';
 export interface StartupTimelineCheckpoint {
+  energy?: StartupEnergyCheckpoint;
   tick: number; slots: StartupSpawnSlot[]; births: StartupScheduledBirth[];
   receiptCount: number; receiptIds: string[]; funding: StartupFundingCheckpoint; accounting: StartupCashCheckpoint;
 }
 export function restoreTimelineCheckpoint(input: StartupSpawnInput, value: unknown): StartupTimelineCheckpoint {
   requireCheckpoint(record(value)); const saved = value as StartupTimelineCheckpoint;
-  requireCheckpoint(keys(value as Record<string,unknown>,['tick','slots','births','receiptCount','receiptIds','funding','accounting']));
+  requireCheckpoint(keys(value as Record<string,unknown>,['tick','slots','births','receiptCount','receiptIds','funding','accounting',...(input.funding.energyLayout ? ['energy'] : [])]));
   requireCheckpoint(integer(saved.tick,0,input.cash.horizon+1));
   requireCheckpoint(Array.isArray(saved.births) && saved.births.length <= input.requests.length);
   validateBirths(input,saved);

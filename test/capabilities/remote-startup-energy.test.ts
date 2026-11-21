@@ -31,7 +31,7 @@ test('phase ordering and charge identity prevent same-frame deposits financing a
 test('JSON restore replays bounded events, rejects invented energy and does not duplicate charges',() => {
   const input = startupEnergyLayout(), model = createStartupEnergyLedger(input); model.charge('spawn',450,0,'body'); model.deposit('spawn',100,1,'cargo');
   const saved = JSON.parse(JSON.stringify(model.checkpoint())), resumed = createStartupEnergyLedger(input,saved); expect(resumed.result()).toEqual(model.result());
-  const reordered = startupEnergyLayout(); reordered.structures.reverse();
+  const reordered = startupEnergyLayout(); reordered.structures = [...reordered.structures].reverse();
   expect(createStartupEnergyLedger(reordered,saved).available()).toBe(model.available());
   saved.points[0].energy++; expect(() => createStartupEnergyLedger(input,saved)).toThrow('conservation');
   const changed = startupEnergyLayout(); changed.orders[0]!.structures = ['near','spawn','second','far']; expect(() => createStartupEnergyLedger(changed,model.checkpoint())).toThrow('binding');

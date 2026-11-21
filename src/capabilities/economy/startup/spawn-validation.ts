@@ -1,3 +1,4 @@
+import { validateStructureFunding } from './energy/funding-validation';
 import { validateRequest } from '../../spawning/allocate';
 import { validateStartupCash } from './cash-validation';
 import type { StartupSpawnInput } from './spawn-model';
@@ -31,5 +32,6 @@ function validateFunding(input: StartupSpawnInput): void {
   const funding = input.funding;
   if (![funding.capacity,funding.initialEnergy].every(value => Number.isSafeInteger(value) && value >= 0 && value <= 1000000)) throw new Error('Invalid startup spawn energy');
   if (funding.initialEnergy > Math.min(funding.capacity,input.cash.homeEnergy) || funding.refills.length > 64) throw new Error('Invalid startup spawn funding');
+  validateStructureFunding(input);
   validateStartupCash({ ...input.cash,flows: funding.refills.map(flow => ({ ...flow,kind: 'delivery' })) });
 }

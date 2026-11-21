@@ -12,6 +12,7 @@ import { readHouseholdCheckpoint, validateHouseholdLinks } from './checkpoint';
 import type { StartupHouseholdInput, StartupHouseholdCheckpoint } from './model';
 /** Paid births and physical transfers share actual frame phases; no project/native owner is replaced. */
 export function createStartupHousehold(input: StartupHouseholdInput, checkpoint?: StartupHouseholdCheckpoint) {
+  if (input.spawning.funding.energyLayout) throw new Error('Addressed household transfer integration pending');
   validateHousehold(input);
   return new Household({ ...input,spawning: snapshotStartupSpawns(input.spawning),redistribution: copyPlain(input.redistribution) },checkpoint);
 }

@@ -1,7 +1,9 @@
 import { copyPlain } from '../../../core/plain-data';
 import { restoreTimelineCheckpoint } from './checkpoints/timeline';
 import { snapshotStartupSpawns } from './snapshot';
-import { allocateSpawns } from '../../spawning/allocate';
+import { admitStartupSpawns } from './spawn-admission';
+import { createStartupEnergyLedger } from './energy/ledger';
+import { validateEnergyFundingCheckpoint } from './energy/funding-checkpoint';
 import { createStartupSpawnFunding } from './spawn-funding';
 import { createStartupCashLedger } from './cash-ledger';
 import { validateStartupReceipt } from './cash-receipts';
@@ -17,6 +19,7 @@ class StartupSpawnTimeline {
   private readonly slots: StartupSpawnInput['spawns'][number][];
   private readonly pending;
   private readonly funding;
+  private readonly energy;
   private readonly births: StartupScheduledBirth[] = [];
   private readonly flows: StartupCashFlow[];
   private receiptCount = 0;
@@ -32,6 +35,8 @@ class StartupSpawnTimeline {
     this.slots = input.spawns.map(spawn => ({ ...spawn }));
     this.pending = new Map(this.input.requests.map(request => [request.id,request]));
     this.funding = createStartupSpawnFunding(this.input.funding,input.cash.homeEnergy,saved?.funding);
+    this.energy = this.input.funding.energyLayout ? createStartupEnergyLedger(this.input.funding.energyLayout,saved?.energy) : undefined;
+    if (saved && this.energy) validateEnergyFundingCheckpoint(this.input,saved,this.energy.result());
     this.flows = this.input.cash.flows.map(flow => ({ ...flow }));
     this.accounting = createStartupCashLedger(this.input.cash,saved?.accounting);
     this.receiptIds = new Set([...this.flows.map(flow => flow.id),...input.requests.map(request => 'birth:'+request.id)]);
@@ -48,14 +53,16 @@ class StartupSpawnTimeline {
 
   checkpoint() {
     if (this.open) throw new Error('Cannot checkpoint an open startup spawn frame');
-    return copyPlain({ tick: this.tick,slots: this.slots,births: this.births,receiptCount: this.receiptCount,receiptIds: [...this.receiptIds],funding: this.funding.checkpoint(),accounting: this.accounting.checkpoint() });
+    return copyPlain({ tick: this.tick,slots: this.slots,births: this.births,receiptCount: this.receiptCount,receiptIds: [...this.receiptIds],funding: this.funding.checkpoint(),...(this.energy ? { energy: this.energy.checkpoint() } : {}),accounting: this.accounting.checkpoint() });
   }
   begin(tick: number): StartupScheduledBirth[] {
     if (this.open || tick !== this.tick || tick > this.input.cash.horizon) throw new Error('Startup spawn frame order');
     this.frame = this.external(tick);
     this.funding.spend(this.frame.filter(flow => flow.kind !== 'delivery').reduce((sum,flow) => sum+flow.energy,0));
     const slots = this.slots.map(spawn => ({ id: spawn.id,room: spawn.room,busy: spawn.availableAt > tick }));
-    const allocated = allocateSpawns([...this.pending.values()],slots,{ [this.input.room]: this.funding.available(this.input.cash.protectedEnergy) },this.input.liveNames,tick,this.input.unaffordable);
+    const allocated = admitStartupSpawns({ ...this.input,requests: [...this.pending.values()] },slots,tick,{
+      available: () => this.funding.available(this.input.cash.protectedEnergy),charge: allocation => this.charge(allocation,tick),
+    });
     const births = allocated.map(allocation => this.commit(allocation,tick)); this.open = true;
     return births;
   }
@@ -69,9 +76,14 @@ class StartupSpawnTimeline {
     this.open = false; this.tick++; return this.frame.map(flow => ({ ...flow }));
   }
   fundingState() { return this.funding.checkpoint(); }
-  transferHousehold(energy: number): number {
+  transferHousehold(energy: number, destination?: string, holder?: string): number {
     if (!this.open) throw new Error('Household transfer outside action frame');
-    return this.funding.transfer(energy);
+    if (!Number.isSafeInteger(energy) || energy < 0) throw new Error('Invalid household funding transfer');
+    if (!this.energy) return this.funding.transfer(energy);
+    if (!destination || !holder) throw new Error('Structure transfer needs destination and holder');
+    const state = this.funding.checkpoint();
+    const maximum = Math.max(0,Math.min(energy,this.input.funding.capacity-state.accessible,state.bank-state.accessible));
+    return this.funding.transfer(this.energy.deposit(destination,maximum,this.tick,holder));
   }
   loseHousehold(flow: StartupCashFlow): void {
     if (!this.open || flow.kind !== 'upkeep' || flow.firstTick !== this.tick || flow.interval !== null || flow.occurrences !== 1) throw new Error('Invalid household loss frame');
@@ -87,13 +99,17 @@ class StartupSpawnTimeline {
     return { births: this.births.map(birth => ({ ...birth })),unscheduled,flows: this.flows.map(flow => ({ ...flow })),funding: this.funding.result(),
       cash: this.accounting.result() };
   }
+  private charge(allocation: SpawnAssignment, tick: number): boolean {
+    if (this.energy && !this.energy.charge(allocation.spawn,allocation.cost,tick,allocation.request.id)) return false;
+    this.funding.spend(allocation.cost); return true;
+  }
   private commit(allocation: SpawnAssignment, tick: number): StartupScheduledBirth {
     const activeAt = tick+allocation.request.body.length*3;
     const birth = { request: allocation.request.id,spawn: allocation.spawn,startAt: tick,activeAt,cost: allocation.cost };
     const flow = birthFlow(birth);
     this.births.push(birth); this.flows.push(flow); this.frame.push(flow);
     this.slots.find(spawn => spawn.id === allocation.spawn)!.availableAt = activeAt;
-    this.pending.delete(birth.request); this.funding.spend(birth.cost);
+    this.pending.delete(birth.request);
     return { ...birth };
   }
   private accept(receipts: readonly StartupCashReceipt[]): number {
