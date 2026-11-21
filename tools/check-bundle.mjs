@@ -11,7 +11,7 @@ vm.runInContext(source, context, { filename: 'main.js', timeout: 1000 });
 assert.equal(typeof module.exports.loop, 'function');
 assert.deepEqual(Object.keys(module.exports.industry.boosts).sort(), ['acknowledge','aliases','cancel','get','list','request']);
 assert.equal(vm.runInContext('module.exports.industry.boosts.list().length', context), 0);
-assert.deepEqual(Object.keys(module.exports.industry.labs).sort(), ['assignAllBoostRoles','assignBoostRoles','assignBoostRolesForRooms','clearEmpire','clearOverride','clearTemporary','configure','configureEmpire','configureMany','inspect','inspectEmpire','legacyTargets','previewAllBoostRoles','previewBoostRoles','previewBoostRolesForRooms','previewEmpire','replanStatus','requestReplan','requestReplans','temporary']);
+assert.deepEqual(Object.keys(module.exports.industry.labs).sort(), ['assignAllBoostRoles','assignBoostRoles','assignBoostRolesForRooms','clearEmpire','clearOverride','clearTemporary','configure','configureEmpire','configureMany','inspect','inspectEmpire','legacyTargets','previewAllBoostRoles','previewBoostRoles','previewBoostRolesForRooms','previewEmpire','reactionsStatus','replanStatus','requestReplan','requestReplans','setReactionsPaused','temporary']);
 assert.equal(vm.runInContext("module.exports.industry.labs.inspect('W0N1').owned", context), false);
 assert.equal(vm.runInContext('module.exports.industry.labs.inspectEmpire().ok', context), true);
 vm.runInContext('module.exports.loop(); module.exports.loop();', context, { timeout: 1000 });

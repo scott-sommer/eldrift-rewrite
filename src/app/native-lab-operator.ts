@@ -1,3 +1,4 @@
+import { createReactionControl } from '../features/industry/reaction-control';
 import { createEmpireLabOperator } from '../features/operator/lab-empire';
 import { createLabMaintenanceOperator } from '../features/operator/lab-maintenance';
 import { createNativeLabAllocation } from './native-lab-allocation';
@@ -15,5 +16,5 @@ export function createNativeLabOperator(state: StatePort) {
         .map(lab => ({ id: lab.id,active: lab.isActive(),mineral: lab.mineralType ?? null,amount: lab.mineralAmount ?? 0,energy: lab.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,cooldown: lab.cooldown ?? 0 }));
     },
   });
-  return { ...commands,...createNativeLabAllocation(commands),...createEmpireLabOperator(state,{ clock: () => Game.time,homes: () => Object.values(Game.rooms).filter(room => room.controller?.my).map(room => room.name),productSupported: product => reactionReagents(REACTIONS,product) !== null }),...createLabMaintenanceOperator(state,home => Game.rooms[home]?.controller?.my === true) };
+  return { ...commands,...createReactionControl(state),...createNativeLabAllocation(commands),...createEmpireLabOperator(state,{ clock: () => Game.time,homes: () => Object.values(Game.rooms).filter(room => room.controller?.my).map(room => room.name),productSupported: product => reactionReagents(REACTIONS,product) !== null }),...createLabMaintenanceOperator(state,home => Game.rooms[home]?.controller?.my === true) };
 }

@@ -1,3 +1,4 @@
+import { reactionsPaused } from '../features/industry/reaction-control';
 import { maintainLostEmpireSupply } from './native-empire-loss';
 import type { StatePort } from '../persistence/versioned-state';
 import type { LabConfig } from '../config/labs';
@@ -13,7 +14,7 @@ export function createNativeEmpireProduction(state: StatePort,configuration: (ho
     if (tick === Game.time) return;
     const policy = configuration(), owned = Object.values(Game.rooms).filter(room => room.controller?.my);
     const entries = owned.map(room => ({ room,config: configuration(room.name) }));
-    const participants = entries.filter(item => item.config.labProductionScope === 'empire' && item.config.labReactionsEnabled);
+    const participants = empireParticipants(state,entries);
     if (!participants.length && !store.list().length) { tick = Game.time; windows = []; return; }
     if (participants.some(item => JSON.stringify(item.config.labProductionTargets) !== JSON.stringify(policy.labProductionTargets))) throw new Error('Empire production targets must match shared empire policy');
     maintainLostEmpireSupply(state,store.list().map(window => window.home));
@@ -32,4 +33,9 @@ export function createNativeEmpireProduction(state: StatePort,configuration: (ho
     const snapshot = empireLabSnapshot(state,room,config);
     return { recipe: window.step,needed: Math.max(0,window.step.target-(snapshot.inventory.total[window.step.product] ?? 0)) };
   };
+}
+
+function empireParticipants<T extends { config: Readonly<LabConfig> }>(state: StatePort,entries: readonly T[]): T[] {
+  if (reactionsPaused(state)) return [];
+  return entries.filter(item => item.config.labProductionScope === 'empire' && item.config.labReactionsEnabled);
 }

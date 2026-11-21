@@ -1,3 +1,5 @@
+import { reactionsPaused } from '../features/industry/reaction-control';
+import { idleEmpireProduction } from './native-empire-lab-facts';
 import { pendingLabReplans, settleLabReplan } from '../features/industry/lab-replan';
 import { nativeLabSettings } from './native-lab-settings';
 import type { NativeProduction } from './native-lab-production';
@@ -23,7 +25,7 @@ export function createNativeLabs(state: StatePort,actions: Pick<ReturnType<typeo
     const room = Game.rooms[context.room.name];
     if (!room) return;
     if (settleLabReplan(state,room.name,Game.time)) return;
-    const { recipe,needed } = shared ?? nativeLabProduction(state,room,config);
+    const { recipe,needed } = reactionProduction(state,room,config,shared);
     const facts = nativeReactionLabs(state,room,config.labReservedIds);
     const assignment = reconcileLabAssignment(state,room.name,Game.time,facts.physical,recipe);
     generateNativeLabTransport(state,room,assignment,facts.physical,needed,config);
@@ -40,4 +42,9 @@ function executeLabReactions(state: StatePort,actions: Pick<ReturnType<typeof cr
     const first = Game.getObjectById(reaction.inputs[0] as Id<StructureLab>)!, second = Game.getObjectById(reaction.inputs[1] as Id<StructureLab>)!;
     actions.react(output,first,second,'industry');
   }
+}
+
+function reactionProduction(state: StatePort,room: Room,config: Parameters<typeof nativeLabProduction>[2],shared: NativeProduction | null): NativeProduction {
+  if (reactionsPaused(state)) return idleEmpireProduction(state,room.name);
+  return shared ?? nativeLabProduction(state,room,config);
 }
