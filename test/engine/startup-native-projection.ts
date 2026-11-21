@@ -19,6 +19,7 @@ export function beginNativeProjection(state: StatePort, quote: NativeStartupQuot
   const request = { room: quote.plan.room,source: quote.plan.source,generation: quote.facts.authority.generation,binding: 'native-prospective:'+quote.identity,
     observedAt: Game.time,expiresAt: Game.time+200,tick: Game.time,expectedRevision: 0,input: projection.input };
   const result = owner.advance(request,64);
+  if (owner.assess(request,returnPolicy()) !== undefined) throw new Error('Incomplete native forecast must not be assessed');
   if (result.status !== 'deferred' || result.frames !== 64) throw new Error('Expected saved native projection progress');
   (Memory as ProjectionMemory).nativeProjection = { observedAt: Game.time,costScope: projection.costScope,quoteIdentity: quote.identity,facts: quote.facts,input: owner.read().job!.input,
     declaredPolicy: { finiteBirths: 2,reservation: 'none',refills: 'none',householdFlows: 'none' },steps: [{ tick: Game.time,through: 64,revision: 1,status: result.status }] };
@@ -28,8 +29,14 @@ export function resumeNativeProjection(state: StatePort): void {
   const proof = (Memory as ProjectionMemory).nativeProjection; if (!proof) return;
   const owner = createStartupPlanningJob(state,'W0N1'), record = owner.read(), job = record.job; if (!job || record.clock === Game.time) return;
   const query = { ...job,tick: Game.time,input: decodeStartupPlanningInput(job.input) }, before = JSON.stringify(Memory.eldrift);
-  if (job.checkpoint.tick === query.input.project.spawning.cash.horizon+1) { proof.readOnly = !!owner.result(query) && before === JSON.stringify(Memory.eldrift); return; }
+  if (job.checkpoint.tick === query.input.project.spawning.cash.horizon+1) {
+    proof.assessment = owner.assess(query,returnPolicy());
+    proof.expiredAssessmentAbsent = owner.assess({ ...query,tick: query.expiresAt+1 },returnPolicy()) === undefined;
+    proof.readOnly = !!owner.result(query) && before === JSON.stringify(Memory.eldrift); return;
+  }
   const result = owner.advance({ ...query,expectedRevision: record.revision },500), after = owner.read();
   (proof.steps as unknown[]).push({ tick: Game.time,through: after.job!.checkpoint.tick,revision: after.revision,status: result.status });
   if (result.status === 'complete') proof.result = result.result;
 }
+
+function returnPolicy() { return { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: 1500,maximumHouseholdCapital: 100000 }; }

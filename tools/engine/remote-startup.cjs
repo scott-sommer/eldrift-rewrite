@@ -51,6 +51,12 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
       assert.deepEqual(projection.steps.map(step => [step.tick,step.through,step.revision]),[[25,64,1],[30,564,2],[46,1064,3],[81,1501,4]]);
       assert.ok(projection.result); assert.equal(projection.readOnly,true);
+      const assessment = projection.assessment; assert.ok(assessment); assert.equal(assessment.accepted,false);
+      assert.deepEqual(assessment.rejected,['recovery-deadline','final-return']);
+      assert.equal(assessment.recoveryMargin,projection.result.projectCash.constructionRecoveryMargin);
+      assert.equal(assessment.deliveredEnergy,projection.result.projectCash.deliveredEnergy);
+      assert.ok(assessment.deliveredEnergy > 0); assert.ok(assessment.recoveryMargin < 0); assert.equal(assessment.recoveryAt,null);
+      assert.equal(projection.expiredAssessmentAbsent,true);
       const incumbent = memory.incumbentProjection; assert.ok(incumbent);
       assert.ok(incumbent.observedAt >= 70 && incumbent.observedAt <= 80); assert.equal(incumbent.resumedAt,81); assert.equal(incumbent.checkpointFormat,2);
       assert.equal(incumbent.checkpointTick,10); assert.equal(incumbent.recoveredThrough,10); assert.equal(incumbent.readOnly,true);
