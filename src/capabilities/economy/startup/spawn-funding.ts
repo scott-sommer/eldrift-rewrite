@@ -14,6 +14,15 @@ export function createStartupSpawnFunding(input: StartupSpawnFunding, homeEnergy
       accessible = Math.max(0,accessible-energy);
     },
     receive(energy: number): void { bank += energy; },
+    transfer(energy: number): number {
+      if (!Number.isSafeInteger(energy) || energy < 0) throw new Error('Invalid household funding transfer');
+      const amount = Math.max(0,Math.min(energy,input.capacity-accessible,bank-accessible));
+      accessible += amount; refilledEnergy += amount; return amount;
+    },
+    lose(energy: number): void {
+      if (!Number.isSafeInteger(energy) || energy < 0 || energy > bank-accessible) throw new Error('Invalid household cargo loss');
+      bank -= energy;
+    },
     refill(tick: number): void {
       for (const flow of input.refills) {
         if (!startupFlowDue({ ...flow,kind: 'delivery' },tick)) continue;

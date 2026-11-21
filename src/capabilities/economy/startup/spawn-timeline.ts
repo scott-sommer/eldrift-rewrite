@@ -59,13 +59,22 @@ class StartupSpawnTimeline {
     const births = allocated.map(allocation => this.commit(allocation,tick)); this.open = true;
     return births;
   }
-  finish(receipts: readonly StartupCashReceipt[] = []): void {
+  finish(receipts: readonly StartupCashReceipt[] = [], beforeAccounting: () => void = () => {}): StartupCashFlow[] {
     if (!this.open) throw new Error('Startup spawn frame not open');
     const credited = this.accept(receipts);
+    beforeAccounting();
     this.accounting.frame(this.tick,this.frame,credited);
     this.funding.refill(this.tick);
     this.funding.receive(credited+this.external(this.tick).filter(flow => flow.kind === 'delivery').reduce((sum,flow) => sum+flow.energy,0));
-    this.open = false; this.tick++;
+    this.open = false; this.tick++; return this.frame.map(flow => ({ ...flow }));
+  }
+  transferHousehold(energy: number): number {
+    if (!this.open) throw new Error('Household transfer outside action frame');
+    return this.funding.transfer(energy);
+  }
+  loseHousehold(flow: StartupCashFlow): void {
+    if (!this.open || flow.kind !== 'upkeep' || flow.firstTick !== this.tick || flow.interval !== null || flow.occurrences !== 1) throw new Error('Invalid household loss frame');
+    this.funding.lose(flow.energy); this.frame.push({ ...flow });
   }
   frameFlows(): StartupCashFlow[] {
     if (!this.open) throw new Error('Startup spawn frame not open');

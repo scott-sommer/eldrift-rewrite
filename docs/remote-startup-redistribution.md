@@ -27,3 +27,5 @@ These are remaining ED-29 requirements. The component's tests do not establish c
 ## Incremental checks
 
 `npx vitest run test/capabilities/remote-startup-redistribution.test.ts test/capabilities/remote-startup-project.test.ts test/features/remote-startup-schedules.test.ts`:32cases/3files0.747s, including11 new physical transfer/checkpoint behaviors. `npm test`:76smoke/15files0.460s. Typecheck/lint/boundaries and pinned Lizard pass,926production/788testfiles, zero violations after separating input validation, checkpoint/occupancy validation and phase rules. `npm run check:bundle` passes. No full-unit/full-native-registry or new native scenario was run for this unintegrated portable increment. Full units remain a milestone/ticket-closing gate.
+
+The subsequent [paid household funding timeline](remote-startup-household-funding.md) now composes paid births, physical endpoint/cargo state, next-frame funding and once-only cash loss. Full project/sink integration and required project/planning checkpoint migration remain open; old declared-refill behavior is unchanged.
