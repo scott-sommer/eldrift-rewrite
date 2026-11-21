@@ -1749,7 +1749,8 @@
       "docs/empire-lab-production.md",
       "docs/boosted-builder-recipe.md",
       "docs/evidence/specialist-lab-allocation-native.json",
-      "docs/evidence/upgrade-lab-toggle-native.json"
+      "docs/evidence/upgrade-lab-toggle-native.json",
+      "docs/evidence/upgrade-lab-loss-native.json"
     ],
     "plannedIssues": [
       "ED-36"
@@ -1850,7 +1851,8 @@
       ],
       "status": "partial; explicit scope and source-qualified milestones in linked evidence, not full module parity",
       "specialistLabAllocationSource": "6fd9d5faa24321c7ec93c4d4754f1d1474f2404d",
-      "specialistExistingPinNativeSource": "473595d47d106edb860e8cae927c3e6143b1847b"
+      "specialistExistingPinNativeSource": "473595d47d106edb860e8cae927c3e6143b1847b",
+      "specialistControlledLabLossSource": "40a81f75384f489325743c6c4e7076f52d948c5b"
     }
   },
   {
@@ -6095,7 +6097,8 @@
       "docs/evidence/worker-final-engine-suite.json",
       "docs/evidence/upgrade-boost-ownership-native.json",
       "docs/evidence/specialist-lab-allocation-native.json",
-      "docs/evidence/upgrade-lab-toggle-native.json"
+      "docs/evidence/upgrade-lab-toggle-native.json",
+      "docs/evidence/upgrade-lab-loss-native.json"
     ],
     "plannedIssues": [
       "ED-22",
@@ -6142,7 +6145,8 @@
       "fullNativeSuite": "docs/evidence/worker-final-engine-suite.json",
       "industryIntegrationSource": "e569e42b7aa5eb666ce542d282f6b8279ede3555",
       "specialistLabAllocationSource": "6fd9d5faa24321c7ec93c4d4754f1d1474f2404d",
-      "specialistExistingPinNativeSource": "473595d47d106edb860e8cae927c3e6143b1847b"
+      "specialistExistingPinNativeSource": "473595d47d106edb860e8cae927c3e6143b1847b",
+      "specialistControlledLabLossSource": "40a81f75384f489325743c6c4e7076f52d948c5b"
     }
   },
   {
