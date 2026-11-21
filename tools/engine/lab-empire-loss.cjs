@@ -12,7 +12,7 @@ async function changeEmpireOwnership(server,bot,modules,index,evidence,mode) {
   if (!evidence.empireLossDeath && index+1 >= evidence.empireLossChanged.tick+6) {
     await db['rooms.objects'].removeWhere({ room: 'W0N1',name: 'boost-courier' });
     evidence.empireLossDeath = { tick: index+1,unit: trigger.unit };
-    if (mode === 'vision') {
+    if (['vision','intel'].includes(mode)) {
       await db['rooms.objects'].removeWhere({ room: 'W0N1',name: 'ownership-witness' });
       evidence.empireVisionHidden = { tick: index+1 };
     }
@@ -22,7 +22,7 @@ async function changeEmpireOwnership(server,bot,modules,index,evidence,mode) {
     evidence.empireVisionRestored = { tick: index+1 };
   }
   const row = memory.empireLossRows?.at(-1);
-  if (mode === 'vision' && evidence.empireVisionHidden && !evidence.empireVisionReload && row && !row.visible && row.window?.retiring) {
+  if (['vision','intel'].includes(mode) && evidence.empireVisionHidden && !evidence.empireVisionReload && row && !row.visible && row.window?.retiring) {
     evidence.empireVisionReload = { tick: index+1,pending: true };
     return reloadStampDraft(server,bot,modules,index,[index]);
   }
@@ -47,7 +47,8 @@ function verifyEmpireLoss(memory,evidence,mode) {
   const released = lost.find(row => !row.window); assert.ok(released && released.tick >= death.tick); assert.equal(released.alive,false);
   assert.deepEqual(records['tasks/boost-courier'].data.queue,[]);
   assert.ok(records['logistics-retired/empire'].data.entries.some(entry => entry.unit === death.unit),'Ordinary lifecycle archives retired courier evidence');
-  if (mode === 'vision') verifyVisionGap(rows,production,evidence);
+  if (['vision','intel'].includes(mode)) verifyVisionGap(rows,production,evidence);
+  if (mode === 'intel') verifyIntelRetention(rows,evidence);
   const last = production.at(-1); assert.deepEqual(last.windows,[]);
   assert.equal(last.rooms.find(room => room.home === 'W1N1').bank,15); assert.equal(last.rooms.find(room => room.home === 'W1N1').cargo,0);
   assert.ok(production.every(row => row.rooms.find(room => room.home === 'W1N1').bank+row.rooms.find(room => room.home === 'W1N1').rootInLabs <= 15));
@@ -66,5 +67,20 @@ function verifyVisionGap(rows,production,evidence) {
   const signature = window => JSON.stringify([window.home,window.context,window.rootTarget,window.initialStep]);
   const initial = new Set(production.find(row => row.tick === hidden.tick).windows.map(signature));
   assert.ok(production.filter(row => row.tick >= hidden.tick && row.tick < restored.tick).every(row => row.windows.every(window => initial.has(signature(window)))),'Unseen commitment freezes new admissions');
+}
+function verifyIntelRetention(rows,evidence) {
+  const hidden = evidence.empireVisionHidden.tick, restored = evidence.empireVisionRestored.tick;
+  const owned = rows.find(row => row.owned && row.intel?.data?.summary);
+  assert.ok(owned); assert.equal(owned.intel.owner,'intel'); assert.equal(owned.intel.version,2); assert.equal(owned.intel.data.owned,true);
+  const prior = rows.filter(row => row.tick < hidden && row.intel?.data?.summary).at(-1);
+  assert.ok(prior); assert.equal(prior.intel.data.owned,false); assert.ok(prior.intel.data.sourceIds.length > 0);
+  const blind = rows.filter(row => row.tick >= hidden && row.tick < restored);
+  assert.ok(blind.length >= 15); assert.ok(blind.every(row => JSON.stringify(row.intel) === JSON.stringify(prior.intel)),'Last valid intel survives actual blindness and reset byte-for-byte');
+  const assignment = prior.assignment.data.assignment;
+  assert.ok(assignment.roster.every(id => prior.intel.data.structureIds.includes(id)),'Retained intel covers actual former lab IDs');
+  const refreshed = rows.find(row => row.tick >= restored && row.intel?.data?.lastSeen > prior.intel.data.lastSeen);
+  assert.ok(refreshed,'Ordinary capture refreshes only after native visibility returns');
+  assert.equal(refreshed.intel.data.owned,false); assert.ok(refreshed.intel.data.summary.observedAt >= restored);
+  evidence.empireIntelRetention = { firstOwned: owned.intel,lastBeforeBlind: prior.intel,firstAfterRegain: refreshed.intel,hidden,restored,blindRows: blind.length,reload: evidence.empireVisionReload };
 }
 module.exports = { changeEmpireOwnership,verifyEmpireLoss };

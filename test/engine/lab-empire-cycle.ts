@@ -10,19 +10,20 @@ import type { EmpireProductionWindow } from '../../src/features/industry/empire-
 interface EmpireRoomRow { bankUH: number; carriedUH: number; receipts: number; home: string; bank: number; rootInLabs: number; cargo: number; courier: string; reactionLabs: string[]; buffer: { id: string; mineral: string | null; amount: number; energy: number } }
 declare global { interface Memory { empireProductionRows?: { tick: number; total: number; windows: EmpireProductionWindow[]; rooms: EmpireRoomRow[] }[] } }
 const state = createMemoryPort(() => Memory);
-export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 'loss'): void {
+export function runEmpireProduction(mode: 'normal' | 'policy' | 'participant' | 'loss' | 'intel'): void {
   if (!Memory.empireProductionRows) {
     const settings = openState(state,'operator/config',operatorSchema);
     settings.empire = { logisticsEnabled: true,workersEnabled: false,labReactionsEnabled: true,labProductionScope: 'empire',
       labProductionTargets: [{ product: 'UH2O',amount: 15,priority: 0 }],labProductionBatch: 10,labTransportBatch: 20 };
+    if (mode === 'intel') settings.empire = { ...settings.empire as object,intelEnabled: true,intelCaptureInterval: 1,intelCaptureCpuBudget: 100,intelCaptureRooms: 4,intelCaptureScans: 32 };
     saveState(state,'operator/config',operatorSchema,settings);
     industry.labs.configureMany(['W0N1','W1N1'].map(home => ({ home,input: { labBoostRoles: [{ lab: bufferLab(home).id,resource: 'XGH2O',mineral: 60,energy: 40 }] } })));
   }
   for (const creep of Object.values(Game.creeps).filter(item => item.name.startsWith('boost-courier'))) creep.memory.population = { owner: haulingOwner(creep.room.name),home: creep.room.name };
-  if (mode === 'loss') prepareEmpireLoss(); else changeEmpirePolicy(mode);
+  if (mode === 'loss' || mode === 'intel') prepareEmpireLoss(); else changeEmpirePolicy(mode);
   botLoop(); const rooms = ['W0N1','W1N1'].filter(home => !!Game.rooms[home]).map(roomRow);
   (Memory.empireProductionRows ??= []).push({ tick: Game.time,total: rooms.reduce((sum,room) => sum+room.bank+room.rootInLabs,0),windows: createEmpireProductionStore(state,() => false).list(),rooms });
-  if (mode === 'loss') recordEmpireLoss();
+  if (mode === 'loss' || mode === 'intel') recordEmpireLoss();
 }
 function bufferLab(home: string): StructureLab {
   return Game.rooms[home]!.find(FIND_STRUCTURES).find((item): item is StructureLab => item.structureType === STRUCTURE_LAB && item.pos.x === 17 && item.pos.y === 20)!;

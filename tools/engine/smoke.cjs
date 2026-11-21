@@ -1,5 +1,5 @@
 const { changeEmpireOwnership } = require('./lab-empire-loss.cjs');
-const labEmpireMode = ['policy','participant','loss','vision'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
+const labEmpireMode = ['policy','participant','loss','vision','intel'].find(mode => process.argv.includes('--lab-empire-'+mode)) ?? (process.argv.includes('--lab-empire') ? 'normal' : undefined);
 const labEmpire = !!labEmpireMode;
 const { labEmpireWorld,verifyLabEmpire } = require('./lab-empire.cjs');
 const boostBulkMode = process.argv.includes('--boost-bulk-refused') ? 'refused' : process.argv.includes('--boost-bulk') ? 'normal' : undefined;
@@ -681,7 +681,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       const reloaded = await reloadStampDraft(server,bot,modules,tick,[30,120,240]);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }
-    if (['loss','vision'].includes(labEmpireMode)) {
+    if (['loss','vision','intel'].includes(labEmpireMode)) {
       const reloaded = await changeEmpireOwnership(server,bot,modules,tick,evidence,labEmpireMode);
       if (reloaded) evidence.reloadProvenance = provenance(root,reloaded);
     }

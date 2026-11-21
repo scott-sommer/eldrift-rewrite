@@ -4,10 +4,10 @@ const { boostBulkWorld } = require('./boost-bulk.cjs');
 async function labEmpireWorld(server,bot,mode) {
   await boostBulkWorld(server,bot,'normal'); const { db } = await server.world.load();
   for (const room of ['W0N1','W1N1']) await db['rooms.objects'].update({ room,type: 'storage' },{ $set: { store: { energy: 100000,H: 200,O: 200,U: 200,XGH2O: 120 } } });
-  if (['loss','vision'].includes(mode)) await server.world.addRoomObject('W0N1','creep',24,25,{ user: bot.id,name: 'ownership-witness',body: [{ type: 'move',hits: 100 }],store: {},storeCapacity: 0,hits: 100,hitsMax: 100,fatigue: 0,spawning: false,ageTime: 1500 });
+  if (['loss','vision','intel'].includes(mode)) await server.world.addRoomObject('W0N1','creep',24,25,{ user: bot.id,name: 'ownership-witness',body: [{ type: 'move',hits: 100 }],store: {},storeCapacity: 0,hits: 100,hitsMax: 100,fatigue: 0,spawning: false,ageTime: 1500 });
 }
 function verifyLabEmpire(memory,evidence,mode = 'normal') {
-  if (['loss','vision'].includes(mode)) return verifyEmpireLoss(memory,evidence,mode);
+  if (['loss','vision','intel'].includes(mode)) return verifyEmpireLoss(memory,evidence,mode);
   const rows = memory.empireProductionRows, records = memory.eldrift.records, last = rows.at(-1);
   evidence.empireProduction = { mode,rows,reloads: memory.stampReloads,change: memory.empirePolicyChange,policyReload: evidence.empirePolicyReload,state: records['industry-empire-production/empire'] };
   assert.equal(rows.length,640); assert.deepEqual(memory.stampReloads,mode === 'normal' ? [31,181,401] : [...new Set([evidence.empirePolicyReload.tick,31,181,401])].sort((a,b) => a-b));
