@@ -1,0 +1,468 @@
+{
+  "issue": "ED-29",
+  "source": "b583a0502af90166ea9f22196855b5a917cfc30f",
+  "scope": "Native static route/point-capacity observation and measured-clock probe correction; not per-structure funding admission or real actor trip calibration",
+  "native": {
+    "scenario": "--remote-startup-selected",
+    "nativeSource": "b583a0502af90166ea9f22196855b5a917cfc30f",
+    "expectedStatus": "passed",
+    "rawFile": "docs/evidence/household-travel/qualified-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "b32f1a3487d0037168f8b23a2629a1099dcb8a430026cdac422f6cf92f0de7b8",
+    "uncompressedSha256": "d8ae928ecc22b1182ab472ce36d05d929f51ed4f96b820b9aef102f73fd36ff8",
+    "actualTicks": 150,
+    "travel": {
+      "quote": {
+        "status": "complete",
+        "identity": "[{\"home\":\"W0N1\",\"body\":[\"carry\",\"carry\",\"move\",\"move\"],\"spawn\":{\"id\":\"427ae7b5fd6f18d\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"source\":{\"id\":\"1b1ee7b60a18b20\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"pickup\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"destination\":{\"id\":\"427ae7b5fd6f18d\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}}},\"[\\\"household-fixed-service-v1\\\",\\\"[[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\"]\"]",
+        "plan": {
+          "home": "W0N1",
+          "body": [
+            "carry",
+            "carry",
+            "move",
+            "move"
+          ],
+          "spawn": {
+            "id": "427ae7b5fd6f18d",
+            "position": {
+              "room": "W0N1",
+              "x": 47,
+              "y": 25
+            },
+            "exit": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            }
+          },
+          "source": {
+            "id": "1b1ee7b60a18b20",
+            "position": {
+              "room": "W0N1",
+              "x": 45,
+              "y": 25
+            },
+            "pickup": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            }
+          },
+          "destination": {
+            "id": "427ae7b5fd6f18d",
+            "position": {
+              "room": "W0N1",
+              "x": 47,
+              "y": 25
+            },
+            "deposit": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            }
+          }
+        },
+        "legs": [
+          {
+            "kind": "approach",
+            "origin": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            },
+            "destination": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            },
+            "body": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ],
+            "load": 0,
+            "range": 0,
+            "ticks": 2,
+            "operations": 1,
+            "arrival": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            }
+          },
+          {
+            "kind": "loaded",
+            "origin": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            },
+            "destination": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            },
+            "body": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ],
+            "load": 100,
+            "range": 0,
+            "ticks": 2,
+            "operations": 1,
+            "arrival": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            }
+          },
+          {
+            "kind": "return",
+            "origin": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            },
+            "destination": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            },
+            "body": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ],
+            "load": 0,
+            "range": 0,
+            "ticks": 2,
+            "operations": 1,
+            "arrival": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            }
+          }
+        ],
+        "operations": 3,
+        "observedAt": 25,
+        "source": {
+          "id": "1b1ee7b60a18b20",
+          "position": {
+            "room": "W0N1",
+            "x": 45,
+            "y": 25
+          },
+          "type": "storage",
+          "energy": 7800,
+          "capacity": 1000000,
+          "freeCapacity": 992200,
+          "claimedCapacity": 0,
+          "availableCapacity": 992200,
+          "claimedEnergy": 0,
+          "availableEnergy": 7800
+        },
+        "destination": {
+          "id": "427ae7b5fd6f18d",
+          "type": "spawn",
+          "position": {
+            "room": "W0N1",
+            "x": 47,
+            "y": 25
+          },
+          "energy": 300,
+          "capacity": 300,
+          "freeCapacity": 0,
+          "claimedCapacity": 0,
+          "availableCapacity": 0
+        }
+      },
+      "readOnly": true,
+      "aggregateSpawnCapacity": 2300,
+      "use": "geometry and one observed destination only; no aggregate funding substitution"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/household-travel/samples.jsonl",
+        "rowsSha256": "dd49df477bec24290728e6aa6789640158fe398c1bb8cf9118ab1d2a0a1d19f0",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/household-travel/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/household-travel/household-schedule.jsonl",
+        "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+        "rows": 5
+      }
+    ],
+    "correctedTripClock": [
+      {
+        "energy": 100,
+        "id": "home-trip0",
+        "loadedTicks": 2,
+        "pickupAt": 14,
+        "request": "household-probe",
+        "returnTicks": 2
+      },
+      {
+        "energy": 100,
+        "id": "home-trip1",
+        "loadedTicks": 2,
+        "pickupAt": 20,
+        "request": "household-probe",
+        "returnTicks": 2
+      },
+      {
+        "energy": 100,
+        "id": "home-trip2",
+        "loadedTicks": 2,
+        "pickupAt": 26,
+        "request": "household-probe",
+        "returnTicks": 2
+      },
+      {
+        "energy": 100,
+        "id": "home-trip3",
+        "loadedTicks": 2,
+        "pickupAt": 32,
+        "request": "household-probe",
+        "returnTicks": 2
+      }
+    ],
+    "actualIncome": 0
+  },
+  "priorObservation": {
+    "scenario": "--remote-startup-selected",
+    "nativeSource": "3eeb687b6956622c41abba9ced639e7c2070d3ca",
+    "expectedStatus": "passed",
+    "rawFile": "docs/evidence/household-travel/initial-observation-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "5d63ac9e34eb3731ad3488e42243ca33161a685d40dd084ca0231b94e7a13dd2",
+    "uncompressedSha256": "d3ffd801d74671de5f61547e0b444edbcb171c12d9f1004269f95d88f92319b4",
+    "actualTicks": 150,
+    "travel": {
+      "quote": {
+        "status": "complete",
+        "identity": "[{\"home\":\"W0N1\",\"body\":[\"carry\",\"carry\",\"move\",\"move\"],\"spawn\":{\"id\":\"e684e6e8f4c44ae\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"exit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}},\"source\":{\"id\":\"7fe9e6e90107aab\",\"position\":{\"room\":\"W0N1\",\"x\":45,\"y\":25},\"pickup\":{\"room\":\"W0N1\",\"x\":44,\"y\":25}},\"destination\":{\"id\":\"e684e6e8f4c44ae\",\"position\":{\"room\":\"W0N1\",\"x\":47,\"y\":25},\"deposit\":{\"room\":\"W0N1\",\"x\":46,\"y\":25}}},\"[\\\"household-fixed-service-v1\\\",\\\"[[\\\\\\\"W0N1\\\\\\\",\\\\\\\"W0N1:[[30,10,255],[32,10,255],[34,10,255],[36,10,255],[38,10,255],[40,10,255],[42,10,255],[44,10,255],[46,10,255],[48,10,255],[30,12,255],[32,12,255],[34,12,255],[36,12,255],[38,12,255],[40,12,255],[42,12,255],[44,12,255],[46,12,255],[48,12,255],[30,14,255],[32,14,255],[34,14,255],[36,14,255],[38,14,255],[39,14,255],[40,14,255],[42,14,255],[44,14,255],[46,14,255],[48,14,255],[30,16,255],[32,16,255],[34,16,255],[36,16,255],[38,16,255],[40,16,255],[42,16,255],[44,16,255],[46,16,255],[48,16,255],[14,18,255],[45,25,255],[47,25,255],[11,37,255],[8,43,255]]\\\\\\\"]]\\\"]\"]",
+        "plan": {
+          "home": "W0N1",
+          "body": [
+            "carry",
+            "carry",
+            "move",
+            "move"
+          ],
+          "spawn": {
+            "id": "e684e6e8f4c44ae",
+            "position": {
+              "room": "W0N1",
+              "x": 47,
+              "y": 25
+            },
+            "exit": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            }
+          },
+          "source": {
+            "id": "7fe9e6e90107aab",
+            "position": {
+              "room": "W0N1",
+              "x": 45,
+              "y": 25
+            },
+            "pickup": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            }
+          },
+          "destination": {
+            "id": "e684e6e8f4c44ae",
+            "position": {
+              "room": "W0N1",
+              "x": 47,
+              "y": 25
+            },
+            "deposit": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            }
+          }
+        },
+        "legs": [
+          {
+            "kind": "approach",
+            "origin": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            },
+            "destination": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            },
+            "body": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ],
+            "load": 0,
+            "range": 0,
+            "ticks": 2,
+            "operations": 1,
+            "arrival": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            }
+          },
+          {
+            "kind": "loaded",
+            "origin": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            },
+            "destination": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            },
+            "body": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ],
+            "load": 100,
+            "range": 0,
+            "ticks": 2,
+            "operations": 1,
+            "arrival": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            }
+          },
+          {
+            "kind": "return",
+            "origin": {
+              "room": "W0N1",
+              "x": 46,
+              "y": 25
+            },
+            "destination": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            },
+            "body": [
+              "carry",
+              "carry",
+              "move",
+              "move"
+            ],
+            "load": 0,
+            "range": 0,
+            "ticks": 2,
+            "operations": 1,
+            "arrival": {
+              "room": "W0N1",
+              "x": 44,
+              "y": 25
+            }
+          }
+        ],
+        "operations": 3,
+        "observedAt": 25,
+        "source": {
+          "id": "7fe9e6e90107aab",
+          "position": {
+            "room": "W0N1",
+            "x": 45,
+            "y": 25
+          },
+          "type": "storage",
+          "energy": 7800,
+          "capacity": 1000000,
+          "freeCapacity": 992200,
+          "claimedCapacity": 0,
+          "availableCapacity": 992200,
+          "claimedEnergy": 0,
+          "availableEnergy": 7800
+        },
+        "destination": {
+          "id": "e684e6e8f4c44ae",
+          "type": "spawn",
+          "position": {
+            "room": "W0N1",
+            "x": 47,
+            "y": 25
+          },
+          "energy": 300,
+          "capacity": 300,
+          "freeCapacity": 0,
+          "claimedCapacity": 0,
+          "availableCapacity": 0
+        }
+      },
+      "readOnly": true,
+      "aggregateSpawnCapacity": 2300,
+      "use": "geometry and one observed destination only; no aggregate funding substitution"
+    },
+    "traces": [],
+    "scope": "Retained initial passing geometry observation; its declared one-tick return financial fixture is superseded, not final qualification"
+  },
+  "primarySourceInspection": [
+    {
+      "sourcePath": "tools/engine/node_modules/@screeps/engine/src/processor/intents/spawns/_charge-energy.js",
+      "sha256": "40ef723a75c837f90326c9a6960e61484562ff7e03fc7671d699c3f634952e55"
+    },
+    {
+      "sourcePath": "src/adapters/screeps/spawn.ts",
+      "sha256": "b291bda0f167cace7eef63557fd871c29a55e5809fdea8137adfe7ab9069d364"
+    }
+  ],
+  "checks": {
+    "targeted": {
+      "cases": 13,
+      "files": 3,
+      "seconds": 0.303
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 1.02
+    },
+    "quality": {
+      "productionFiles": 934,
+      "testFiles": 795,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Per-structure energy vector/consumption and destination capacity before native funding admission",
+    "Production household trip generation and paid-incumbent/full workforce schedules",
+    "Actual native actor route/lifecycle/cashflow calibration and default adoption",
+    "Concurrent multi-room capital, aggregate pressure and rollback/RC gates"
+  ]
+}
