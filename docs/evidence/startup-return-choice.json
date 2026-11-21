@@ -1,0 +1,82 @@
+{
+  "issue": "ED-29",
+  "source": "b766695f372eb68219842c9a4193540b1d23d1a7",
+  "scope": "Incremental portable alternative comparison and native-derived forecast return refusal; not ticket closure or automatic runtime selection",
+  "native": {
+    "scenario": "--remote-startup-selected",
+    "expectedStatus": "passed",
+    "nativeSource": "b766695f372eb68219842c9a4193540b1d23d1a7",
+    "rawFile": "docs/evidence/startup-return-choice/selected-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "8eb6eaf0ffb0a2d9b7291b72493f90836f8594bbcf070571fb76263fa04a8a6c",
+    "uncompressedSha256": "c4f77de4f0102aac83b0ccb808afa878f2f45e2c02e2cdf1cbdc356e3bfff030",
+    "nativeTicks": 150,
+    "forecastHorizon": 1500,
+    "assessment": {
+      "accepted": false,
+      "rejected": [
+        "recovery-deadline",
+        "final-return"
+      ],
+      "horizon": 1500,
+      "requiredHouseholdCapital": 1100,
+      "householdShortfall": 0,
+      "deliveredEnergy": 856,
+      "recoveryAt": null,
+      "recoveryMargin": -4894
+    },
+    "readOnly": true,
+    "expiredAssessmentAbsent": true,
+    "provenance": {
+      "commit": "b766695f372eb68219842c9a4193540b1d23d1a7",
+      "dirty": false,
+      "bundleSha256": "f3129d693df5fa9d9662e96e6421c9fc43eadfe219453ba1e872705bf0ed5a97",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/startup-return-choice/samples.jsonl",
+        "rowsSha256": "baf45144119663862571bf28d1bc16644f4f27559b8a90e730f4f01dad037c13",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/startup-return-choice/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      }
+    ]
+  },
+  "checks": {
+    "targeted": {
+      "cases": 28,
+      "files": 3,
+      "seconds": 0.536
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.451
+    },
+    "quality": {
+      "productionFiles": 910,
+      "testFiles": 781,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "limitations": [
+    "Forecast income is modeled; actual 150-tick income is zero",
+    "No ordinary candidate policy/configuration adoption",
+    "Independent alternative household forecasts cannot be aggregated into a concurrent portfolio",
+    "Native lifecycle calibration, replacement and household schedules, multi-room stability and milestone/RC gates remain open"
+  ]
+}
