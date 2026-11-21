@@ -1,0 +1,99 @@
+{
+  "issue": "ED-29",
+  "source": "5ac411ef6e42f1a9d4ab4492fcc5780bbd75ec51",
+  "scope": "Incremental durable candidate evidence and reset qualification; no ticket closure",
+  "native": {
+    "scenario": "--remote-startup-selected",
+    "expectedStatus": "passed",
+    "nativeSource": "5ac411ef6e42f1a9d4ab4492fcc5780bbd75ec51",
+    "rawFile": "docs/evidence/startup-candidates/selected-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "bde0a9b97866ed99cbbbfdc215cc8b4dbdd54002348aa4dd62c056ceef5481e3",
+    "uncompressedSha256": "36bf40c4299c7315d8137aeb7fdd2f220b9fd952cb4feed5fc5f6e01a99874f6",
+    "ticks": 150,
+    "candidateCapturedAt": 81,
+    "candidateRevision": 1,
+    "candidateChoice": {
+      "status": "complete",
+      "selected": null,
+      "assessments": [
+        {
+          "id": "finite-cohort",
+          "accepted": false,
+          "rejected": [
+            "recovery-deadline",
+            "final-return"
+          ],
+          "horizon": 1500,
+          "requiredHouseholdCapital": 1100,
+          "householdShortfall": 0,
+          "deliveredEnergy": 856,
+          "recoveryAt": null,
+          "recoveryMargin": -4894
+        }
+      ]
+    },
+    "expiredCandidateAbsent": true,
+    "readOnly": true,
+    "provenance": {
+      "commit": "5ac411ef6e42f1a9d4ab4492fcc5780bbd75ec51",
+      "dirty": false,
+      "bundleSha256": "ecf15669bda32fe925fa70fbdea880fedc8eb688e2700fa25c35dcfb65e4217b",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/startup-candidates/samples.jsonl",
+        "rowsSha256": "dbbc0299f5ac6ad2e61cc6611bddbd3862f98d435389ffdd95ecc192b2464bcf",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/startup-candidates/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      }
+    ]
+  },
+  "checks": {
+    "targeted": {
+      "cases": 21,
+      "files": 3,
+      "seconds": 0.499
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.446
+    },
+    "quality": {
+      "productionFiles": 915,
+      "testFiles": 782,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "namespace": {
+    "name": "remoteStartupCandidates/<home>",
+    "owner": "remotes",
+    "version": 1,
+    "maximumEntries": 16,
+    "maximumInputIdentityCharacters": 262144,
+    "maximumRecordCharacters": 1048576
+  },
+  "remaining": [
+    "Default runtime candidate generation and configuration/adoption",
+    "Same-strategy native cashflow and lifecycle calibration",
+    "Achievable replacement/reservation/household distribution schedules",
+    "Concurrent multi-room capital stability",
+    "CPU/aggregate Memory pressure qualification and rollback rehearsal"
+  ]
+}
