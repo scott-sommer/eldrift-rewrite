@@ -1,0 +1,103 @@
+{
+  "issue": "ED-29",
+  "source": "861cb836cdf4cd827a8cf8858d87168a0c849200",
+  "scope": "Incremental checkpoint-bound finite replacement derivation; not actual native replacement lifecycle or ticket closure",
+  "native": {
+    "scenario": "--remote-startup-selected",
+    "expectedStatus": "passed",
+    "nativeSource": "861cb836cdf4cd827a8cf8858d87168a0c849200",
+    "rawFile": "docs/evidence/startup-replacements/selected-native.json.gz",
+    "rawEncoding": "gzip",
+    "rawSha256": "31d158dfb66d840d5254adcca772610152e0c61e39a2440390c82b8c80d96051",
+    "uncompressedSha256": "080d1d71d543bb0349eb6fa8079fd715db29cd5fe7d5c9daa800c843a0fee35c",
+    "ticks": 150,
+    "replacement": {
+      "parent": "startup-proposal:[\"finite-cohort\",\"W0N1\",\"E0N1\",\"d00ddb5aa1975fb\",21,\"miner\"]",
+      "kind": "miner",
+      "request": {
+        "body": [
+          "work",
+          "work",
+          "work",
+          "work",
+          "carry",
+          "move",
+          "move"
+        ],
+        "expiresAt": 1501,
+        "id": "startup-proposal:[\"finite-cohort\",\"W0N1\",\"E0N1\",\"d00ddb5aa1975fb\",21,\"miner\"]:next",
+        "name": "startup-proposal:[\"finite-cohort\",\"W0N1\",\"E0N1\",\"d00ddb5aa1975fb\",21,\"miner\"]:next",
+        "owner": "remote-fleet:[\"W0N1\",\"E0N1\",\"d00ddb5aa1975fb\",\"miner\"]",
+        "priority": 20,
+        "readyAt": 1443,
+        "room": "W0N1",
+        "placement": {
+          "spawn": "861ddb5a96aabed",
+          "exit": {
+            "room": "W0N1",
+            "x": 46,
+            "y": 25
+          }
+        }
+      },
+      "plannedBirths": 3,
+      "unchangedFunding": {
+        "capacity": 2300,
+        "initialEnergy": 2300,
+        "refills": []
+      },
+      "unchangedFlows": []
+    },
+    "provenance": {
+      "commit": "861cb836cdf4cd827a8cf8858d87168a0c849200",
+      "dirty": false,
+      "bundleSha256": "7a9c5a690632d9780acf0fb45a944f022601845a42c422c75b1451bad048c1f8",
+      "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+      "node": "v24.22.1",
+      "platform": "win32",
+      "engine": "4.3.2",
+      "driver": "5.3.0"
+    },
+    "traces": [
+      {
+        "rowsFile": "docs/evidence/startup-replacements/samples.jsonl",
+        "rowsSha256": "8215180fbd218fd91fc0a3b7869e5a12b7902defe2a54c9b76f65f90ef83c43a",
+        "rows": 150
+      },
+      {
+        "rowsFile": "docs/evidence/startup-replacements/pipeline.jsonl",
+        "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+        "rows": 150
+      }
+    ]
+  },
+  "checks": {
+    "targeted": {
+      "cases": 29,
+      "files": 3,
+      "seconds": 0.592
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.461
+    },
+    "quality": {
+      "productionFiles": 919,
+      "testFiles": 785,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnits": "not run; incremental change",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Automatic budgeted whole-horizon extension and explicit paid-incumbent templates",
+    "Household distribution/workforce schedules and same-strategy native lifecycle/economic calibration",
+    "Runtime configuration/adoption, comparable geometry/body alternatives, concurrent multi-room capital",
+    "Aggregate CPU/Memory, migration/rollback and RC gates"
+  ]
+}
