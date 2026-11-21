@@ -1,3 +1,5 @@
+import { assessStartupProject, validateStartupReturnPolicy } from '../../../../capabilities/economy/startup/assessment';
+import type { StartupReturnPolicy } from '../../../../capabilities/economy/startup/assessment';
 import { PlainDataCapacityError } from '../../../../core/plain-data';
 import { StartupCheckpointCapacityError } from '../../../../capabilities/economy/startup/checkpoints/capacity';
 import { startupProjectIdentity } from '../../../../capabilities/economy/startup/checkpoints/project-identity';
@@ -47,7 +49,15 @@ export function createStartupPlanningJob(state: StatePort, home: string) {
       return project.advance(0).done ? project.result() : undefined;
     } catch (error) { if (capacityError(error)) return undefined; throw error; }
   }
-  return { read: store.read,advance,result,withdraw: store.withdraw };
+  function assess(request: StartupPlanningQuery, policy: StartupReturnPolicy) {
+    validateStartupReturnPolicy(policy);
+    const completed = result(request);
+    if (!completed) return undefined;
+    const participants = new Set([...request.input.project.workers,...request.input.couriers].map(worker => worker.request));
+    const requiredBirths = request.input.project.spawning.requests.filter(birth => participants.has(birth.id)).map(birth => birth.id);
+    return assessStartupProject(completed,request.input.project.spawning.cash.horizon,policy,requiredBirths);
+  }
+  return { read: store.read,advance,result,assess,withdraw: store.withdraw };
 }
 function validateRequest(request: StartupPlanningQuery, home: string): void {
   if (!natural(request.tick) || !validPlanningContext(request,home,request.tick)) throw new Error('Invalid startup planning context');
