@@ -1,0 +1,189 @@
+{
+  "issue": "ED-29",
+  "scope": "Finite fixed-route action travel, actual loaded plain-terrain worker movement/work/return across reloads; supplied route and targets, not traffic-aware automatic strategy",
+  "source": "4a8e05c198a12567fd2e34cebc6c835ac9118114",
+  "native": [
+    {
+      "scenario": "--household-labor-upgrade-travel",
+      "nativeSource": "4a8e05c198a12567fd2e34cebc6c835ac9118114",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/loaded-labor-travel/upgrade-travel.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9ffee713354999137d39ea5852f9b90156e0b7d918cbaf01bde4c2322cf118a1",
+      "uncompressedSha256": "7fd2bd8af634abc5d37ccda9a49be52e8879f96ad3d491bfaf79f1f69bca88d6",
+      "observedFinal": {
+        "tick": 26,
+        "actual": {
+          "spawn": 125,
+          "endpoint": 998,
+          "cargo": 0,
+          "bank": 1123,
+          "progress": 2
+        },
+        "position": {
+          "x": 14,
+          "y": 15,
+          "fatigue": 0
+        },
+        "expected": {
+          "spawn": 125,
+          "endpoint": 998,
+          "cargo": 0,
+          "bank": 1123,
+          "progress": 2
+        }
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/upgrade-travel-samples.jsonl",
+          "rowsSha256": "d0ea21ffbeb5b75119392774b8730f5601984415f33fabd5fabf79be78b513cc",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/upgrade-travel-observations.jsonl",
+          "rowsSha256": "14abc55826f4b64d168fa4de9ccef387b16784086dc3c050518020b2d181789f",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/upgrade-travel-sdk-calls.jsonl",
+          "rowsSha256": "a9e35269f4a01585b9ecf90d9ae4c6703e0c54ffa86c01fe8304e786c686003d",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "4a8e05c198a12567fd2e34cebc6c835ac9118114",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/loaded-labor-travel/build-complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "782a16bfeba06a04da99a9b043c971d8f4ce1421788ce1cff35405341ca1042d",
+      "uncompressedSha256": "d40cdcd191065f5acbe55a3415594ec8ddfb72e1b5fbe2b121d3e3ab5b0b20b4",
+      "observedFinal": {
+        "tick": 26,
+        "actual": {
+          "spawn": 125,
+          "endpoint": 997,
+          "cargo": 0,
+          "bank": 1122,
+          "progress": 3
+        },
+        "position": {
+          "x": 14,
+          "y": 15,
+          "fatigue": 0
+        },
+        "expected": {
+          "spawn": 125,
+          "endpoint": 997,
+          "cargo": 0,
+          "bank": 1122,
+          "progress": 3
+        }
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/build-complete-samples.jsonl",
+          "rowsSha256": "5af5de42e13ee5eb35b92b67ef08a7e0f9ff0ecf9f3e642975d6b21373b281b0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/build-complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/build-complete-sdk-calls.jsonl",
+          "rowsSha256": "b657374f288c8d9d46899471a048a9b8b1f01a3a115ee317f819862d52aed4b7",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-upgrade",
+      "nativeSource": "4a8e05c198a12567fd2e34cebc6c835ac9118114",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/loaded-labor-travel/upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "69b44ae98ca1b9bb7b1c435f1d986f27d5a23158be6758582654d36e131fe22c",
+      "uncompressedSha256": "61ae4884749639c34a0862e6d9bfdb1d6901abf20b01a7b7d6315d6fdb58c397",
+      "observedFinal": {
+        "tick": 26,
+        "actual": {
+          "spawn": 125,
+          "endpoint": 998,
+          "cargo": 0,
+          "bank": 1123,
+          "progress": 2
+        },
+        "position": {
+          "x": 14,
+          "y": 15,
+          "fatigue": 0
+        },
+        "expected": {
+          "spawn": 125,
+          "endpoint": 998,
+          "cargo": 0,
+          "bank": 1123,
+          "progress": 2
+        }
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/upgrade-samples.jsonl",
+          "rowsSha256": "b183108ca44c459c41bca41a4c1809dc2ebd95cbba9cc718d9a9c9cdb724af0a",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/upgrade-observations.jsonl",
+          "rowsSha256": "d8d110d72a448aa23c743b9b502890ea4cd1821eabaa8ccce8fd6dc6187a9cd0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/loaded-labor-travel/upgrade-sdk-calls.jsonl",
+          "rowsSha256": "d2d37b5449c86381ffc717a41ab37ac183e810702ddacfe2c0384ded48eaae08",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "route": {
+    "outboundTiles": 3,
+    "returnTiles": 3,
+    "outboundTicks": 5,
+    "returnTicks": 5,
+    "outboundMoveAt": [
+      11,
+      13,
+      15
+    ],
+    "workAt": [
+      16,
+      17
+    ],
+    "returnMoveAt": [
+      18,
+      20,
+      22
+    ],
+    "depositAt": 23,
+    "loadOut": 10,
+    "loadBack": 8,
+    "arrivalFatigue": 2
+  },
+  "checks": {
+    "targeted": "27 tests / 5 files / 1.04s",
+    "smoke": "76 tests / 15 files / 475ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard962 production833 test files zero violations",
+    "suiteReportCheck": "1 passed / 131ms",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Dynamic traffic, path changes, damage/boost and swamp/road native calibration",
+    "Native capacity contention, target refusal and TTL loss",
+    "Automatic room-assessed workforce strategy and combined source/home economics",
+    "Remaining parity, pressure, rollback and RC gates"
+  ]
+}
