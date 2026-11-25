@@ -1,0 +1,68 @@
+{
+  "issue": "ED-29",
+  "scope": "Native two-creep prior incoming carry-capacity contention: labor refusal preserves separate delivery identity and zero labor output; explicit idle after refusal; donor fixture input accounted separately",
+  "native": [
+    {
+      "scenario": "incoming",
+      "nativeSource": "c82481307e9f8b7dfe34eb3be3c0ea54ba2f1efc",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-incoming-contention/incoming.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c8fadb1478d8f0f05f3ac4096995eb5e8877859e299a277b8a6da68dd250f098",
+      "uncompressedSha256": "5052306f35e2280040b6b37a4345c74b8708867b3aa1550f3572424de43b8d47",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/incoming-receipt.jsonl",
+          "rowsSha256": "7f4d04e4bad7554b023cc0a7584b637dc7f4d1ce465de36da3318339e1613560",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/incoming-claims.jsonl",
+          "rowsSha256": "894fde8fd35e26dcffc8a2001e992640f9fed12817da9974af9990a9843135e2",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/incoming-sdk-calls.jsonl",
+          "rowsSha256": "8e0502fdb088f5ed45dbbb53fdcb5947742ed8bed5ca31a7c12c2f5417c38168",
+          "rows": 2
+        },
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/incoming-observations.jsonl",
+          "rowsSha256": "112ab3bebde7ec86654d236d3400b32695e1894f63ea3e6ef07dc7d167a0ac7a",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "complete",
+      "nativeSource": "c82481307e9f8b7dfe34eb3be3c0ea54ba2f1efc",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-incoming-contention/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c3e1d715274290cc70f67e658cf59388d311f45e9d72489567ea3e94a3f77452",
+      "uncompressedSha256": "b8d400cc03fe14aecdfbe3b2ca77d0e5944e0f7a1077f4b7d61973c7f593a4ad",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/complete-receipt.jsonl",
+          "rowsSha256": "1b3a4aa4ace59a4f8910d06cead1000e9447dc79bedd561ec95b11016e91a96e",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/complete-claims.jsonl",
+          "rowsSha256": "e8d70b098092ba6d8f7c324e4d55adee758cded177c42a65a48095750e1347fc",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-incoming-contention/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}
