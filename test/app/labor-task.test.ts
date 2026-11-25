@@ -47,3 +47,12 @@ test('disabled productive authority refunds confirmed cargo across reset without
   expect(f.completed).toEqual([]); expect(f.failures[0]).toMatchObject({ progress: { picked: 3,spent: 0,returned: 3 } });
   expect(f.staging.read('worker')?.queue).toEqual([]);
 });
+
+
+test('unexpected external cargo refuses attribution and refund while preserving actual retained energy',() => {
+  const f = fixture(); f.run(); f.at(11); f.worker.energy = 4;
+  expect(f.run()).toMatchObject({ status: 'failed',reason: 'labor-settlement' });
+  expect(f.calls).toEqual(['pickup']); expect(f.completed).toEqual([]);
+  expect(f.failures).toMatchObject([{ reason: 'labor-settlement',progress: { picked: 0,spent: 0,returned: 0 } }]);
+  expect(f.worker.energy).toBe(4); expect(f.staging.read('worker')?.queue).toEqual([]);
+});

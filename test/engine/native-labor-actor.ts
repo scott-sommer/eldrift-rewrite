@@ -26,7 +26,7 @@ export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undef
   });
   const home = proof.proposal!.input.request.room;
   // Keep the contended worker idle after refusal so later ordinary cargo policy is outside this fixture.
-  if (!proof.incoming || !proof.actorFailure) workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult && !proof.actorFailure && !(proof.cancel && Game.time >= (proof.loaded ? 12 : 11)),workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
+  if ((!proof.incoming && !proof.unknown) || !proof.actorFailure) workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult && !proof.actorFailure && !(proof.cancel && Game.time >= (proof.loaded ? 12 : 11)),workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
   dispatch.flush();
   };
   reconstructInterruptedLabor(proof,run);
