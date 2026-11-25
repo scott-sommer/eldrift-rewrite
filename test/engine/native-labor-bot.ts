@@ -1,3 +1,4 @@
+import { moveNativeLabor } from './native-labor-travel';
 import { createStartupHousehold } from '../../src/capabilities/economy/startup/household/timeline';
 import { createNativeSpawn } from '../../src/adapters/screeps/spawn';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
@@ -8,9 +9,9 @@ import type { LaborMemory, NativeLaborProof, LaborSnapshot } from './native-labo
 export function loop(): void {
   const memory = Memory as LaborMemory, spawn = Game.spawns.Spawn1!, storage = spawn.room.storage!;
   openState(createMemoryPort(() => Memory),'operator/config',operatorSchema);
-  const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,complete: !!memory.nativeLaborComplete,targetTotal: targetTotal(memory.nativeLaborKind!),initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
+  const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,complete: !!memory.nativeLaborComplete,travel: !!memory.nativeLaborTravel,targetTotal: targetTotal(memory.nativeLaborKind!),initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
   const creep = Game.creeps['native-labor'], actual = observe(proof,spawn,storage,creep);
-  proof.rows.push({ tick: Game.time,actual,...(proof.expected ? { expected: proof.expected } : {}) });
+  proof.rows.push({ tick: Game.time,actual,...(creep ? { position: { x: creep.pos.x,y: creep.pos.y,fatigue: creep.fatigue } } : {}),...(proof.expected ? { expected: proof.expected } : {}) });
   if (creep && !creep.spawning && proof.activeAt === undefined) proof.activeAt = Game.time;
   const tick = Game.time-1;
   if (tick > 24) return;
@@ -24,6 +25,7 @@ export function loop(): void {
   if (picked) record(proof,'pickup',creep!.withdraw(storage,RESOURCE_ENERGY,picked),picked);
   if (spent) record(proof,proof.kind,work(proof,creep!),spent);
   if (returned) record(proof,'return',creep!.transfer(storage,RESOURCE_ENERGY,returned),returned);
+  moveNativeLabor(proof,creep,tick,after,picked+spent+returned > 0);
   proof.checkpoint = saved; proof.expected = expectedLabor(proof,saved);
   if (tick === 24) proof.result = model.result();
 }
