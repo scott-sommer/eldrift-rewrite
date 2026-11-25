@@ -13,7 +13,7 @@ import { nativeLaborWork, nativeLaborActor, inLaborRange } from './facts';
 type Dispatch = Pick<ReturnType<typeof createNativeDispatch>,'arbiter' | 'movement'>;
 export interface NativeLaborPolicy {
   enabled(home: string): boolean;
-  completed(creep: Creep, progress: Readonly<LaborProgress>): void;
+  completed(creep: Creep, progress: Readonly<LaborProgress>, payload: LaborTaskPayload): void;
   observeIntent?(creep: Creep, action: string, energy: number, result: IntentResult): void;
 }
 /** Native quantities and current authority; the application supplies its shared dispatch instance. */

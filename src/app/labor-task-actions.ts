@@ -30,7 +30,7 @@ export function laborDeposit<Context>(ports: LaborTaskPorts<Context>, payload: L
   if (ports.now(context) < due) return { status: 'running' };
   if (!worker.energy) {
     if (state.spent !== payload.proposal.job.energy) return failed('unfinished-work');
-    ports.completed(context,{ ...state }); return { status: 'done' };
+    ports.completed(context,{ ...state },copyPlain(payload)); return { status: 'done' };
   }
   if (ports.deposit(context,copyPlain(payload),worker.energy,owner)) state.pending = { kind: 'return',tick: ports.now(context),before: worker.energy,maximum: worker.energy };
   return { status: 'running' };

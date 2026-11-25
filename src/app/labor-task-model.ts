@@ -13,5 +13,5 @@ export interface LaborTaskPorts<Context> {
   pickup(context: Context, payload: LaborTaskPayload, energy: number, owner: string): boolean;
   work(context: Context, payload: LaborTaskPayload, maximum: number, owner: string): boolean;
   deposit(context: Context, payload: LaborTaskPayload, energy: number, owner: string): boolean;
-  completed(context: Context, progress: Readonly<LaborProgress>): void;
+  completed(context: Context, progress: Readonly<LaborProgress>, payload: LaborTaskPayload): void;
 }

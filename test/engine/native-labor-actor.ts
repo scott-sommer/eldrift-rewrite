@@ -1,16 +1,14 @@
 import { peekState } from '../../src/persistence/versioned-state';
 import { quantitySchema } from '../../src/persistence/quantities/schema';
-import { createLaborTaskBehavior } from '../../src/app/labor-task';
-import { createTaskRunner } from '../../src/app/task-runner';
 import { createLaborTaskStaging } from '../../src/features/work/stage-labor-task';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
-import { createActionArbiter } from '../../src/core/execution/action-arbiter';
-import { createMovementService } from '../../src/adapters/screeps/movement-service';
-import { createNativeLaborTaskPorts } from '../../src/app/native-labor/ports';
-const arbiter = createActionArbiter(() => Game.time), dispatch = { arbiter,movement: createMovementService(arbiter) };
+import { createNativeDispatch } from '../../src/app/native-dispatch';
+import { createNativeWorkFeature } from '../../src/app/native-work';
+import { resolveConfig } from '../../src/config/resolve';
+import type { FeatureContext } from '../../src/app/runtime-model';
 import type { NativeLaborProof } from './native-labor-model';
 import type { LaborTaskPayload } from '../../src/features/work/labor-task';
-/** Controlled SDK ports; financial phase deltas do not choose these actions. */
+/** Exercise the production worker room feature; financial phase deltas do not choose these actions. */
 export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undefined): void {
   const state = createMemoryPort(() => proof.stagedTask!.root), name = proof.proposal!.input.request.name;
   if (Game.time === 11) {
@@ -18,13 +16,15 @@ export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undef
     if (task?.phase !== 'pickup' || payload.progress?.pending?.kind !== 'pickup') throw new Error('Expected restored pending pickup');
     proof.actorReloadAt = Game.time;
   }
-  const ports = createNativeLaborTaskPorts(state,dispatch,{ enabled: () => true,
+  const dispatch = createNativeDispatch(state);
+  const workers = createNativeWorkFeature(state,dispatch,{},() => false,{
     observeIntent: (_,action,energy,result) => { if (result.status === 'issued') proof.calls.push({ tick: Game.time,action,energy,code: result.code }); },
-    completed: (_,progress) => { proof.actorResult = { tick: Game.time,...progress }; },
   });
-  const behavior = createLaborTaskBehavior(ports);
-  const result = createTaskRunner(state,{ 'household-labor': behavior },() => Game.time)(name,creep!);
-  dispatch.movement.flush();
+  const home = proof.proposal!.input.request.room;
+  workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult,workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
+  dispatch.flush();
+  const receipt = creep?.memory.startupLaborReceipt;
+  if (receipt?.completedAt === Game.time) { proof.actorReceipt = { ...receipt }; proof.actorResult = { tick: Game.time,worker: receipt.unit,picked: receipt.picked,spent: receipt.spent,returned: receipt.returned,pending: null }; }
   if ([10,11,12].includes(Game.time)) (proof.actorClaims ??= []).push({ tick: Game.time,allocations: (peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? []).flatMap(claim => claim.allocations) });
-  if (result?.status === 'failed') throw new Error('Native labor task failed: '+result.reason);
+
 }

@@ -1,3 +1,6 @@
+import { createNativeLaborExecution } from './native-labor/execute';
+import { laborTaskDefinition } from '../features/work/labor-task';
+import type { NativeLaborPolicy } from './native-labor/ports';
 import { nativeArtAssessment } from './native-art-assessment';
 import { assignNativeWorkerSource } from './native-worker-assignment';
 import { nativeWorkerWorkPolicy, retainedWorkerTarget } from './native-worker-work-policy';
@@ -21,7 +24,7 @@ import { createTaskRunner } from './task-runner';
 /** Work and cargo disposal share ownership; worker collection remains a separate capability. */
 export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>,
   otherDefinitions: Readonly<Record<string, TaskDefinition>> = {},
-  recovering: (room: Room, config: Readonly<RuntimeConfig>) => boolean = () => false) {
+  recovering: (room: Room, config: Readonly<RuntimeConfig>) => boolean = () => false, laborHooks: Pick<NativeLaborPolicy,'observeIntent'> = {}) {
   const work = createNativeWork(dispatch.arbiter, dispatch.movement);
   const collect = createNativeWorkerCollection(state, dispatch);
   const definitions = { work: createWorkTaskBehavior<{ creep: Creep; config: Readonly<RuntimeConfig> }>({
@@ -30,8 +33,10 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     supply: { energy: ({ creep }) => creep.store.energy, free: ({ creep }) => creep.store.getFreeCapacity(),
       collect: ({ creep, config }, payload, owner) => collect(creep, payload.home, owner, config) },
   }) };
-  const cargo = createNativeWorkerCargo(state, dispatch, { ...otherDefinitions, ...definitions });
-  const schemas = { ...otherDefinitions, ...definitions, ...cargo.definitions };
+  const shared = { ...otherDefinitions,'household-labor': laborTaskDefinition };
+  const cargo = createNativeWorkerCargo(state, dispatch, { ...shared, ...definitions });
+  const schemas = { ...shared, ...definitions, ...cargo.definitions };
+  const labor = createNativeLaborExecution(state,dispatch,schemas,laborHooks);
   const execute = createTaskRunner(state, definitions, () => Game.time, schemas);
   const feature: RoomFeature = { id: 'work', urgency: 'urgent', interval: 1, run({ room: view, config }) {
     const room = Game.rooms[view.name];
@@ -49,6 +54,7 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
   } };
   function runWorker(creep: Creep, room: Room, settings: Readonly<RuntimeConfig>, recoveryActive: boolean,
     assessment: ReturnType<typeof assessNativeWork>): void {
+    if (labor.run(creep,settings)) return;
     assignNativeWorkerSource(creep, room, settings);
     if (cargo.run(creep, room.name, settings)) return;
     if (settings.workerMode === 'fortifier' || settings.workerMode === 'builder') {
@@ -61,5 +67,5 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     if (!settings.workersEnabled) return;
     dispatch.activate(); execute(creep.name, { creep, config: settings });
   }
-  return { feature, definitions: { ...definitions, ...cargo.definitions } };
+  return { feature, definitions: { ...definitions, ...cargo.definitions,...labor.definitions } };
 }
