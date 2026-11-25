@@ -1,0 +1,153 @@
+{
+  "issue": "ED-29",
+  "scope": "Portable task-bounded workload quote and one real nearly-completed site; ordinary adjacent unboosted native work regressions",
+  "source": "03f51e47b39d5895cf1d32192232f1da7e3a836d",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "03f51e47b39d5895cf1d32192232f1da7e3a836d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/task-bounded-labor/build-complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c89c2f689f69897db47c69bb082fdc1c644f2a7b80851e04dea70980daf48e11",
+      "uncompressedSha256": "ec20b31793245c082d4630a69d1a56462c4d6d351426fe26d4a45dbbbc01aeac",
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 997,
+        "cargo": 0,
+        "bank": 1122,
+        "progress": 3
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/build-complete-samples.jsonl",
+          "rowsSha256": "e62a0121bb7b7c24b30848c72d1c73a78984159fa1b724803c7e1878dcf639f7",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/build-complete-observations.jsonl",
+          "rowsSha256": "cafbe5a63189b09c14e1bfe403cec8af5e2b464a9bb87c90fa78ee1a1d36a8cf",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/build-complete-sdk-calls.jsonl",
+          "rowsSha256": "b657374f288c8d9d46899471a048a9b8b1f01a3a115ee317f819862d52aed4b7",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-build",
+      "nativeSource": "03f51e47b39d5895cf1d32192232f1da7e3a836d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/task-bounded-labor/build.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9fff2307df39a33db9b3fb6748b1c87c4189e8ba494d6d607ce2533f09eb4723",
+      "uncompressedSha256": "e6041f4e097d4e876e92a9652bdd661917dc0823136bc0b4534b5d0501b3ff94",
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 990,
+        "cargo": 0,
+        "bank": 1115,
+        "progress": 10
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/build-samples.jsonl",
+          "rowsSha256": "fb52dde0b66e9ee98220cf27ed96468b72ffee806e1e4a3f1424ed445d2b591c",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/build-observations.jsonl",
+          "rowsSha256": "7dc558402fc3c7546b5d7e7249d6b0763e68ac4a2063de524a308ba2e93c133d",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/build-sdk-calls.jsonl",
+          "rowsSha256": "29380861564aaeefa6796d8d103cff6213e155f45433ccebece9f7a5ae9864b9",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-repair",
+      "nativeSource": "03f51e47b39d5895cf1d32192232f1da7e3a836d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/task-bounded-labor/repair.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a2fb20a62eac7e4b0fbfd141e9765cfd83321c456872fc8214b0bbbc58c78919",
+      "uncompressedSha256": "f78cfce71b2e0bb4e7450b45f3d4a53100341a36d966e90171323d1b47876ccc",
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 998,
+        "cargo": 0,
+        "bank": 1123,
+        "progress": 200
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/repair-samples.jsonl",
+          "rowsSha256": "f66a4687f25886905c4e66280bb43e10ed8ea66b2357cd6219c2a89b20abb994",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/repair-observations.jsonl",
+          "rowsSha256": "5b7fd567334e2371c2a3183051eac83ac56cfb2e853ea41147aa54eebb00d995",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/repair-sdk-calls.jsonl",
+          "rowsSha256": "dd7348fab114a9c06dfe74050603e992aae91ff89d017c1aae9946d0b0621ea1",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-upgrade",
+      "nativeSource": "03f51e47b39d5895cf1d32192232f1da7e3a836d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/task-bounded-labor/upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1256522e491ec57e074785e844a70b04565ec9056114a5af19befd7b8e6a229d",
+      "uncompressedSha256": "d6d95be1eefbb62793804cc54182791698e574551f47557c638d37433b366db7",
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 998,
+        "cargo": 0,
+        "bank": 1123,
+        "progress": 2
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/upgrade-samples.jsonl",
+          "rowsSha256": "96e48387197a4292caab6ed12e9f73738f1b6c0b7d15b229aaf9943e8123da38",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/upgrade-observations.jsonl",
+          "rowsSha256": "69c07fa4a8bacbdc6d2502ef8600c226e943e9447119c9cddd6dc259507aecb2",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/task-bounded-labor/upgrade-sdk-calls.jsonl",
+          "rowsSha256": "d2d37b5449c86381ffc717a41ab37ac183e810702ddacfe2c0384ded48eaae08",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "24 tests / 4 files / 965ms",
+    "smoke": "76 tests / 15 files / 468ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard961 production831 test files zero violations",
+    "suiteReportCheck": "1 passed / 121ms",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Dynamic target changes/refusal and RCL/boost contention calibration",
+    "Loaded travel, capacity contention and native TTL loss",
+    "Room-assessed paid workforce strategy/configuration and automatic dispatch",
+    "Combined home/source economics and broader parity/RC gates"
+  ]
+}
