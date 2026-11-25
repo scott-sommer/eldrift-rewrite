@@ -1,0 +1,49 @@
+{
+  "issue": "ED-29",
+  "relatedIssue": "ED-44",
+  "scope": "Authentic historical forecast records resumed across native module reset; isolated scratch root, not whole-bot downgrade or evolving-world rollback",
+  "oldSource": "ee26176e06076eabaebcddc30b7349078575b93c",
+  "native": [
+    {
+      "scenario": "--remote-startup-admission",
+      "nativeSource": "16743c7126c891d3a1b82126466dcf7faed823de",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/historical-native-reset/admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a9debd97a0b951444000513aef1809e7aec6d02ff522eca35a6166bd0342fa81",
+      "uncompressedSha256": "0822d65ae0dc317f67756806fe1bf6de249583ec59be6647338e2051042851ce",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/historical-native-reset/samples.jsonl",
+          "rowsSha256": "52904b47012021e39e4a8a65cc17d233aa6c2c2c96d26103f23dee5c2562c808",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/historical-native-reset/pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/historical-native-reset/historical.jsonl",
+          "rowsSha256": "cfea9ea546b7ee99e5c247db495dbb3373ce4955749f1a30f342499b191b02c0",
+          "rows": 1
+        }
+      ]
+    }
+  ],
+  "fixtureSha256": {
+    "old": "465fdd2097bdea86c44dcfa05e2ecabf27d69de60a2671d368d59393a3c0970e",
+    "upgraded": "b018eb5ccbdf53ee729272555e6303d02cc970881303b32d9fe83c4ef647038f"
+  },
+  "checks": {
+    "targeted": "10 tests / 2 files / 518ms",
+    "smoke": "76 tests / 15 files / 471ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard953 production822 test files zero violations",
+    "fullUnits": "not run: incremental work"
+  },
+  "remaining": [
+    "Whole old main-loop rollback with world changes and colony recovery",
+    "Other operational namespace and legacy import gates",
+    "Matched household workforce expense generation and broad parity/RC requirements"
+  ]
+}
