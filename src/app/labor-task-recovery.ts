@@ -1,3 +1,5 @@
+import { issueLaborIntent } from './labor-intent';
+import type { TaskCheckpoint } from './task-runner';
 import { copyPlain } from '../core/plain-data';
 import type { Outcome } from '../core/execution/model';
 import type { LaborTaskPayload } from '../features/work/labor-task';
@@ -13,8 +15,8 @@ export function unwindLabor<Context>(ports: LaborTaskPorts<Context>, payload: La
   state.failure ??= { reason,tick: ports.now(context) };
   return { status: 'transition',phase: 'recover-return' };
 }
-export function refundLabor<Context>(ports: LaborTaskPorts<Context>, payload: LaborTaskPayload, worker: LaborActor, context: Context, owner: string): Outcome {
+export function refundLabor<Context>(ports: LaborTaskPorts<Context>, payload: LaborTaskPayload, worker: LaborActor, context: Context, owner: string, checkpoint?: TaskCheckpoint): Outcome {
   if (!worker.energy) return failLabor(ports,payload,context,payload.progress!.failure!.reason);
-  if (ports.deposit(context,copyPlain(payload),worker.energy,owner)) payload.progress!.pending = { kind: 'return',tick: ports.now(context),before: worker.energy,maximum: worker.energy };
+  issueLaborIntent(payload,{ kind: 'return',tick: ports.now(context),before: worker.energy,maximum: worker.energy },() => ports.deposit(context,copyPlain(payload),worker.energy,owner),checkpoint);
   return { status: 'running' };
 }

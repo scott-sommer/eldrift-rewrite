@@ -12,7 +12,7 @@ import { settleLaborIntent } from './labor-task-settlement';
 import { laborPickup, laborWork, laborDeposit } from './labor-task-actions';
 /** Effects must use the caller's shared action admission; this behavior owns only its task lifecycle. */
 export function createLaborTaskBehavior<Context>(ports: LaborTaskPorts<Context>): TaskBehavior<Context> {
-  return { ...laborTaskDefinition,handlers(task) {
+  return { ...laborTaskDefinition,handlers(task,checkpoint) {
     const payload = task.payload as LaborTaskPayload, proposal = payload.proposal;
     payload.progress ??= initialLaborProgress();
     const owner = taskScope(proposal.input.request.name,task.id);
@@ -39,13 +39,13 @@ export function createLaborTaskBehavior<Context>(ports: LaborTaskPorts<Context>)
     return {
       'await-birth': context => guarded(context,() => ({ status: 'transition',phase: 'approach' })),
       approach: context => travel(context,proposal.input.pickup,'pickup'),
-      pickup: context => guarded(context,worker => laborPickup(ports,payload,worker,context,owner)),
+      pickup: context => guarded(context,worker => laborPickup(ports,payload,worker,context,owner,checkpoint)),
       loaded: context => travel(context,proposal.input.service,'work'),
-      work: context => guarded(context,worker => laborWork(ports,payload,worker,context,owner)),
+      work: context => guarded(context,worker => laborWork(ports,payload,worker,context,owner,checkpoint)),
       return: context => travel(context,proposal.input.pickup,'deposit'),
-      deposit: context => guarded(context,worker => laborDeposit(ports,payload,worker,context,owner)),
+      deposit: context => guarded(context,worker => laborDeposit(ports,payload,worker,context,owner,checkpoint)),
       'recover-return': context => travel(context,proposal.input.pickup,'recover-deposit',true),
-      'recover-deposit': context => guarded(context,worker => refundLabor(ports,payload,worker,context,owner),true),
+      'recover-deposit': context => guarded(context,worker => refundLabor(ports,payload,worker,context,owner,checkpoint),true),
     };
   } };
 }

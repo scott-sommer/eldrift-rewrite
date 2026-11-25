@@ -1,3 +1,4 @@
+import { checkpointTask } from './task-checkpoint';
 import { taskScope } from '../persistence/tasks/scope';
 import { execute } from '../core/execution/execute';
 import type { Handlers } from '../core/execution/model';
@@ -7,8 +8,9 @@ import { stateKey } from '../persistence/state-key';
 import { taskSchema } from '../persistence/tasks/schema';
 import type { TaskDefinition, TaskRecord } from '../persistence/tasks/schema';
 import { createReservationCleanup } from '../persistence/reservation-cleanup';
+export type TaskCheckpoint = (update: Pick<TaskRecord,'phase' | 'payload'>) => void;
 export interface TaskBehavior<Context> extends TaskDefinition {
-  handlers(task: Readonly<TaskRecord>): Handlers<Context>;
+  handlers(task: Readonly<TaskRecord>, checkpoint?: TaskCheckpoint): Handlers<Context>;
 }
 export { taskScope } from '../persistence/tasks/scope';
 export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<Record<string, TaskBehavior<Context>>>, clock: () => number,
@@ -25,7 +27,8 @@ export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<R
     const state = openState(port, key, schema);
     const task = state.queue[0];
     if (!task || !Object.hasOwn(behaviors, task.kind)) return undefined;
-    const result = execute(task, behaviors[task.kind]!.handlers(task), context, tick);
+    const checkpoint: TaskCheckpoint = update => { state.queue = checkpointTask(port,key,schema,task,update).queue; };
+    const result = execute(task, behaviors[task.kind]!.handlers(task,checkpoint), context, tick);
     if (result.outcome.status === 'done' || result.outcome.status === 'failed') {
       createReservationCleanup(port).releaseScope(taskScope(unit, task.id));
       state.queue.shift();
