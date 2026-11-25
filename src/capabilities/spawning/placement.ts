@@ -19,3 +19,9 @@ export function sameSpawnPlacement(a: SpawnPlacement | undefined, b: SpawnPlacem
   if (!a || !b) return a === b;
   return a.spawn === b.spawn && a.exit.room === b.exit.room && a.exit.x === b.exit.x && a.exit.y === b.exit.y;
 }
+
+export function sameSpawnRequest(a: SpawnRequest, b: SpawnRequest): boolean {
+  const fields = ['id','owner','room','home','name','priority','readyAt','expiresAt'] as const;
+  return fields.every(key => a[key] === b[key]) && JSON.stringify(a.body) === JSON.stringify(b.body) && sameSpawnPlacement(a.placement,b.placement)
+    && JSON.stringify(a.boost ? copySpawnBoost(a.boost) : null) === JSON.stringify(b.boost ? copySpawnBoost(b.boost) : null);
+}

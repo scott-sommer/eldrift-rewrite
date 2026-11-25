@@ -59,6 +59,9 @@ class StartupProject {
     this.delivery.containerEnergy = this.input.initial?.containerEnergy ?? 0;
     this.couriers.push(...startupProjectCouriers(this.input,[]));
   }
+  birth(request: string): StartupScheduledBirth | undefined {
+    const birth = this.births.find(item => item.request === request); return birth ? { ...birth } : undefined;
+  }
   checkpoint(): StartupProjectCheckpoint {
     return boundedProjectCheckpoint({ format: startupProjectFormat(this.input),binding: startupProjectIdentity(this.input),tick: this.tick,
       ...this.timeline.checkpoint(),container: this.container.checkpoint(),sink: this.sink.checkpoint(),

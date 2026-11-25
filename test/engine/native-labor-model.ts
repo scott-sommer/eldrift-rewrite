@@ -1,3 +1,4 @@
+import { nativeLaborSpawning } from './native-labor-input';
 import type { LaborTravelQuote } from '../../src/capabilities/economy/startup/household/labor/travel';
 import { nativeLaborRoute } from './native-labor-travel';
 import { nativeLaborProposal } from './native-labor-proposal';
@@ -22,9 +23,7 @@ export function laborInput(proof: NativeLaborProof, spawn: StructureSpawn): Star
   if (proof.complete) job = nativeLaborProposal(proof,request,spawn);
   return { endpointEnergy: proof.initialEndpoint,endpointCapacity: 1000000,redistribution: { horizon: 24,trips: [] },
     labor: { horizon: 24,jobs: [job] },
-    spawning: { room,requests: [request],spawns: [{ id: spawn.id,room,availableAt: 0 }],liveNames: new Set(),unaffordable: 'skip',
-      cash: { homeEnergy: proof.initialSpawn+proof.initialEndpoint,protectedEnergy: 0,horizon: 24,readyAt: 0,selfHarvestedConstruction: 0,flows: [] },
-      funding: { capacity: 300,initialEnergy: proof.initialSpawn,refills: [],energyLayout: { structures: [{ id: spawn.id,kind: 'spawn',energy: proof.initialSpawn,capacity: 300 }],orders: [{ spawn: spawn.id,structures: [spawn.id] }],regeneration: { eligibleSpawns: [spawn.id],otherRoomEnergy: 0 } } } } };
+    spawning: nativeLaborSpawning(proof,spawn,request) };
 }
 export function expectedLabor(proof: NativeLaborProof, saved: StartupHouseholdCheckpoint): LaborSnapshot {
   const cargo = saved.labor!.jobs[0]!.cargo, spent = saved.labor!.jobs[0]!.spent;
