@@ -1,0 +1,62 @@
+{
+  "issue": "ED-29",
+  "scope": "Standalone household labor funding contracts; native selected/admission runs are existing shared-accounting regressions, not new labor actor qualification",
+  "source": "4bddb051e40f363074e5d80e7411cfb93bcfbc9d",
+  "native": [
+    {
+      "scenario": "selected",
+      "nativeSource": "4bddb051e40f363074e5d80e7411cfb93bcfbc9d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-household-funding/selected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "6a6634a5e74a3ae6c20e589a2fbc2e9f2e7f314e78e577588a312ce94d9c6859",
+      "uncompressedSha256": "45a5c6256c0a1573d36ba7164f034b2433efe38c91d7d197ce33e025b428ce78",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-household-funding/selected-samples.jsonl",
+          "rowsSha256": "f5d6172dd83e2f4f3439910c11a63486ede7473fc2e9030773ab5645ce6bbea4",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/labor-household-funding/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        }
+      ]
+    },
+    {
+      "scenario": "admission",
+      "nativeSource": "4bddb051e40f363074e5d80e7411cfb93bcfbc9d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-household-funding/admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9c04db4c3a3fc4d26d50a884d3a31e5862555c15f66be5f06166d1deb1a9877c",
+      "uncompressedSha256": "c2a2c840230877b44081c6c1f22e50523343adc97bac6075673142abe79c9eae",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-household-funding/admission-samples.jsonl",
+          "rowsSha256": "8970131e76cfe1397ef8ea46887787bd5afa2448b70c8ee732aaa13cde303c94",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/labor-household-funding/admission-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "26 tests / 5 files / 855ms",
+    "smoke": "76 tests / 15 files / 492ms",
+    "quality": "typecheck/lint/boundaries/bundle passed; Lizard959 production824 test files zero violations",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Full-project accepting-sink return capacity and cross-ledger links",
+    "Persisted forecast-owner compatibility for labor inputs",
+    "Paid native workforce and measured target consumption",
+    "Shared multi-room capital and remaining parity/pressure/rollback/RC gates"
+  ]
+}
