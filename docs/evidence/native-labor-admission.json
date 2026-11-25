@@ -1,0 +1,37 @@
+{
+  "issue": "ED-29",
+  "scope": "Native task actor with shared action/movement dispatch and quantity reservation boundaries; controlled world and isolated task/claim root, not automatic main-loop recruitment",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "e9ba9d0051221678eb14ce0e14f96ed0e1658594",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-labor-admission/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4939935c23284aba75866be69aed61f4eb10972bd5b15097cb623ba2311e2ee6",
+      "uncompressedSha256": "b15a56a6059e37eea5c0357ba002df1c7239ad028f4dbbb390a64fb2e16417e7",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-labor-admission/claims.jsonl",
+          "rowsSha256": "e36837def0f921d94ef9e6163b5b5374f1d2c52c03714a5682a26a9f5c1bc687",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-admission/sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-admission/observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-admission/actor.jsonl",
+          "rowsSha256": "8f9430dff4ba882f97ec24213a46e3666de626b2d896936bc1470d30e5052195",
+          "rows": 1
+        }
+      ]
+    }
+  ]
+}
