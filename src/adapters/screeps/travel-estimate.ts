@@ -1,14 +1,11 @@
 import type { BodyPart } from '../../capabilities/spawning/body';
 import type { Position } from '../../capabilities/movement/step';
-import { mobilityCosts } from '../../capabilities/movement/mobility';
+import { plannedMobility } from '../../capabilities/movement/planned-mobility';
+export { plannedMobility };
 import { createPathService } from '../../capabilities/movement/path-service';
 import type { PathRequest, PathSearch } from '../../capabilities/movement/path-model';
 import { createMatrixSnapshots } from './matrix-snapshots';
 import { createNativePathSearch } from './path-search';
-export function plannedMobility(body: readonly BodyPart[], load: number) {
-  return mobilityCosts(body.map(type => ({ kind: type === 'move' ? 'move' : type === 'carry' ? 'carry' : 'other',
-    active: true, movePower: type === 'move' ? 1 : 0, carryCapacity: type === 'carry' ? 50 : 0 })), load);
-}
 /** Static, terrain/body-aware travel estimate. Dynamic traffic delay belongs to route policy. */
 export function createTravelEstimator() {
   const snapshots = createMatrixSnapshots();

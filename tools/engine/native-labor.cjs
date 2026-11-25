@@ -24,6 +24,8 @@ function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false)
   evidence.nativeLabor = proof;
 }
 function verifyTravel(proof) {
+  assert.equal(proof.routeReadOnly,true); assert.ok(proof.travelQuote.operations > 0);
+  assert.deepEqual(proof.travelQuote.legs.map(leg => [leg.load,leg.path.length,leg.ticks]),[[0,0,0],[10,3,5],[8,3,5]]);
   assert.ok(proof.rows.some(row => row.position?.fatigue > 0));
   assert.deepEqual(proof.calls.map(call => [call.tick,call.action,call.code]),[
     [1,'birth',0],[10,'pickup',0],[11,'move',0],[13,'move',0],[15,'move',0],
