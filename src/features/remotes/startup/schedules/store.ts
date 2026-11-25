@@ -12,7 +12,7 @@ export interface StartupScheduleRecord { home: string; revision: number; clock: 
 export function createStartupScheduleStore(state: StatePort, home: string) {
   if (!room(home)) throw new Error('Invalid startup schedule home');
   const key = stateKey('remoteStartupSchedules',home);
-  const schema: StateSchema<StartupScheduleRecord> = { owner: 'remotes',version: 3,migrations: { 1: value => upgradeSchedule(value,home),2: value => upgradeSecondSchedule(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
+  const schema: StateSchema<StartupScheduleRecord> = { owner: 'remotes',version: 4,migrations: { 1: value => upgradeSchedule(value,home),2: value => upgradeSecondSchedule(value,home),3: value => upgradeThirdSchedule(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
     valid: (value): value is StartupScheduleRecord => validRecord(value,home) };
   const read = () => peekState(state,key,schema) ?? schema.initial();
   function save(expected: number, tick: number, job: StartupSchedule | null) {
@@ -63,5 +63,12 @@ function upgradeSecondSchedule(value: unknown, home: string): StartupScheduleRec
   if (!validRecord(value,home)) throw new Error('Invalid schema2 startup schedule');
   const next = value as StartupScheduleRecord;
   if (next.job && startupHasLocatedExpenses(decodeStartupPlanningInput(next.job.input).project.spawning.cash.flows)) throw new Error('Unsupported schema2 located spending');
+  return next;
+}
+
+function upgradeThirdSchedule(value: unknown, home: string): StartupScheduleRecord {
+  if (!validRecord(value,home)) throw new Error('Invalid schema3 startup schedule');
+  const next = value as StartupScheduleRecord, household = next.job && decodeStartupPlanningInput(next.job.input).household;
+  if (household && (household.labor !== undefined || household.endpointCapacity !== undefined)) throw new Error('Unsupported schema3 household labor');
   return next;
 }

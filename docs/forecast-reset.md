@@ -2,7 +2,7 @@
 
 This tool prepares a separate Memory JSON file for resetting derived startup forecasts for named homes. It has no connection to a shard and performs no live writes. Keep the original snapshot and its exact bytes outside mutable game memory. Resetting scratch forecasts does not reverse births, movements, receipts or world changes and is not a full release rollback.
 
-For each selected home, the allowlist is `remoteStartupPlanning` (versions1–6), `remoteStartupSchedules` (1–3) and `remoteStartupCandidates` (1–3), owned by `remotes`. All three present records are removed together. Other homes, root legacy keys, creep memory and all operational namespaces remain structurally unchanged. Unknown owners, future/corrupt envelopes and unsupported roots block the operation. Absence is reported as an empty selection, not interpreted as compatibility.
+For each selected home, the allowlist is `remoteStartupPlanning` (versions1–7), `remoteStartupSchedules` (1–4) and `remoteStartupCandidates` (1–4), owned by `remotes`. All three present records are removed together. Other homes, root legacy keys, creep memory and all operational namespaces remain structurally unchanged. Unknown owners, future/corrupt envelopes and unsupported roots block the operation. Absence is reported as an empty selection, not interpreted as compatibility.
 
 Run from the primary checkout with an exported JSON Memory snapshot:
 

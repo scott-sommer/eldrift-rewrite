@@ -141,7 +141,7 @@ class StartupProject {
   }
   private account(): void {
     const receipts = this.due.get(this.tick) ?? []; receipts.sort((a,b) => a.request.localeCompare(b.request));
-    const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0), settlement = this.timeline.finish(receipts), flows = settlement.flows;
+    const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0), settlement = this.timeline.finish(receipts,(energy: number) => this.sink.occupyAfterFrame(energy)), flows = settlement.flows;
     this.sink.releaseAfterFrame(settlement.picked+settlement.spent);
     const ready = this.construction.completeAt !== null && this.construction.completeAt <= this.tick;
     this.houseAccounting.frame(this.tick,flows,credit,ready,this.opening.constructionCredit(),settlement.ambientEnergy); this.sourceAccounting.frame(this.tick,flows.filter(flow => flow.kind !== 'delivery'),credit,ready,this.opening.constructionCredit(),settlement.ambientEnergy);

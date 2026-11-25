@@ -50,18 +50,18 @@ function verifyStartupAdmission(memory,rows) {
   assert.deepEqual(historical.root,require('../../test/fixtures/startup-historical-upgraded.json'));
   const candidate = memory.startupCandidateMigration; assert.ok(candidate);
   assert.equal(candidate.savedAt,149); assert.equal(candidate.resumedAt,150); assert.equal(candidate.readOnly,true);
-  assert.deepEqual(candidate.retained,['compatible']); assert.equal(candidate.version,3); assert.equal(candidate.revision,2);
+  assert.deepEqual(candidate.retained,['compatible']); assert.equal(candidate.version,4); assert.equal(candidate.revision,2);
   assert.equal(candidate.lookup,true); assert.equal(candidate.isolated,true);
   const passive = memory.startupPassiveMigration; assert.ok(passive);
   assert.equal(passive.savedAt,149); assert.equal(passive.resumedAt,150);
   assert.equal(passive.readOnly,true); assert.equal(passive.through,101);
-  assert.equal(passive.planningVersion,6); assert.equal(passive.scheduleVersion,3); assert.deepEqual(passive.result,passive.uninterrupted);
+  assert.equal(passive.planningVersion,7); assert.equal(passive.scheduleVersion,4); assert.deepEqual(passive.result,passive.uninterrupted);
   const planning = memory.startupPlanningProof; assert.ok(planning);
   assert.equal(planning.legacyVersion,1); assert.equal(planning.savedAt,149); assert.equal(planning.resumedAt,150);
   assert.equal(planning.initialThrough,43); assert.equal(planning.initialRevision,1); assert.equal(planning.pendingBefore,1);
   assert.equal(planning.recoveredThrough,43); assert.equal(planning.nextThrough,44); assert.equal(planning.nextRevision,2);
   assert.equal(planning.completeThrough,101); assert.equal(planning.completeRevision,3);
-  assert.equal(planning.readOnly,true); assert.equal(planning.owner,'remotes'); assert.equal(planning.version,6);
+  assert.equal(planning.readOnly,true); assert.equal(planning.owner,'remotes'); assert.equal(planning.version,7);
   assert.deepEqual(planning.result,planning.uninterrupted);
 
 }

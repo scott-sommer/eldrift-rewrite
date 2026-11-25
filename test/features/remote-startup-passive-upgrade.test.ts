@@ -18,7 +18,7 @@ test('schema4 physical progress/cargo migrates read-only and writes5 only on pro
   const f = fixture(false); f.owner.advance({ ...f.query,expectedRevision: 0 },7); const data = f.owner.read();
   f.state.write('remoteStartupPlanning/W0N1',{ owner: 'remotes',version: 4,data }); const before = JSON.stringify(f.root);
   expect(f.owner.read()).toEqual(data); expect(JSON.stringify(f.root)).toBe(before);
-  f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1); expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 6,data: { revision: 2,job: { checkpoint: { tick: 8,format: 4 } } } });
+  f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1); expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 7,data: { revision: 2,job: { checkpoint: { tick: 8,format: 4 } } } });
 });
 test('schema5 passive jobs resume and schema4 readers/labels cannot consume their new accounting',() => {
   const f = fixture(); f.owner.advance({ ...f.query,expectedRevision: 0 },7); expect(f.owner.read().job?.checkpoint.format).toBe(5);
@@ -31,7 +31,7 @@ test('schema5 passive jobs resume and schema4 readers/labels cannot consume thei
 test('schedule1 preserves genuine non-passive seeds on read and schedule2 refuses old readers/passive relabels',() => {
   const f = fixture(false), schedules = createStartupSchedulePlanner(f.state,f.home); schedules.advance(f.query,{ frames: 7,extensions: 0 }); const data = schedules.read();
   f.state.write('remoteStartupSchedules/W0N1',{ owner: 'remotes',version: 1,data }); const before = JSON.stringify(f.root); expect(schedules.read()).toEqual(data); expect(JSON.stringify(f.root)).toBe(before);
-  schedules.advance({ ...f.query,tick: 2 },{ frames: 1,extensions: 0 }); expect(f.state.read('remoteStartupSchedules/W0N1')).toMatchObject({ version: 3 });
+  schedules.advance({ ...f.query,tick: 2 },{ frames: 1,extensions: 0 }); expect(f.state.read('remoteStartupSchedules/W0N1')).toMatchObject({ version: 4 });
   expect(() => peekState(f.state,'remoteStartupSchedules/W0N1',oldReader(1))).toThrow('future');
   const p = fixture(), passive = createStartupSchedulePlanner(p.state,p.home); passive.advance(p.query,{ frames: 7,extensions: 0 });
   p.state.write('remoteStartupSchedules/W0N1',{ owner: 'remotes',version: 1,data: passive.read() }); expect(() => passive.read()).toThrow('legacy');

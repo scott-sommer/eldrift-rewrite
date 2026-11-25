@@ -64,7 +64,7 @@ test('bounded growth refuses excess entries and reclaims only expired evidence o
   f.planner.advance({ ...next,expectedRevision: 1 },1001); expect(f.catalog.capture('new',next,policy,16)).toBe('saved'); expect(f.catalog.read().entries).toHaveLength(1);
 });
 test('foreign/future/corrupt candidate records fail closed and remain unchanged',() => {
-  for (const alter of [(record: { owner: string }) => { record.owner = 'other'; },(record: { version: number }) => { record.version = 4; },(record: { data: unknown }) => { record.data = {}; }]) {
+  for (const alter of [(record: { owner: string }) => { record.owner = 'other'; },(record: { version: number }) => { record.version = 5; },(record: { data: unknown }) => { record.data = {}; }]) {
     const f = completed(); f.catalog.capture('a',f.query,policy,0);
     const key = 'remoteStartupCandidates/W0N1', raw = f.state.read(key) as { owner: string; version: number; data: unknown }; alter(raw); f.state.write(key,raw);
     const before = JSON.stringify(f.root); expect(() => f.catalog.lookup('a',f.query,policy)).toThrow(); expect(JSON.stringify(f.root)).toBe(before);

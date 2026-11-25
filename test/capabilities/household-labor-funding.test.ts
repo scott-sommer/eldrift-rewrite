@@ -40,7 +40,7 @@ test('labor expiry loss is charged once and cannot disappear from a restored fun
   model = createStartupHousehold(input,saved); advance(model,1509,1520); expect(model.result().cash).toMatchObject({ upkeepEnergy: 10,endingEnergy: 990 });
   const wrong = JSON.parse(JSON.stringify(saved)); wrong.losses = []; expect(() => createStartupHousehold(input,wrong)).toThrow();
 });
-test('checkpoint parent links reject forged endpoint/birth facts; full-project labor is explicitly unavailable',() => {
+test('checkpoint parent links reject forged endpoint/birth facts; project worker overlap is refused',() => {
   const input = fixture(), model = createStartupHousehold(input); advance(model,0,12); const saved = model.checkpoint();
   const wrong = JSON.parse(JSON.stringify(saved)); wrong.endpointEnergy++; expect(() => createStartupHousehold(input,wrong)).toThrow('conservation');
   const changed = JSON.parse(JSON.stringify(saved)); changed.labor.jobs[0].worker.birth.spawn = 'other'; expect(() => createStartupHousehold(input,changed)).toThrow('paid-birth');
@@ -50,5 +50,5 @@ test('checkpoint parent links reject forged endpoint/birth facts; full-project l
   const pending = createStartupHousehold(unfunded); advance(pending,0,9); const before = pending.checkpoint();
   expect(() => pending.begin(10)).toThrow('endpoint'); expect(pending.checkpoint()).toEqual(before);
   const project = startupPassiveProject(); project.household = { ...project.household!,labor: input.labor!,endpointCapacity: 730 };
-  expect(() => createStartupProject(project)).toThrow('not yet supported');
+  expect(() => createStartupProject(project)).toThrow('share a body');
 });

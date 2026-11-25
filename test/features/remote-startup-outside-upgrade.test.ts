@@ -14,12 +14,12 @@ function fixture(outside = true) {
   return { root,state,query,home,owner: createStartupPlanningJob(state,home) };
 }
 function old(version: number) { return { owner: 'remotes',version,migrations: {},initial: () => null,valid: (value: unknown): value is null => value !== undefined }; }
-test('planning5 without located costs preserves progress read-only and writes6 after progress',() => {
+test('planning5 without located costs preserves progress read-only and writes7 after progress',() => {
   const f = fixture(false); f.owner.advance({ ...f.query,expectedRevision: 0 },21); const data = f.owner.read(); f.state.write('remoteStartupPlanning/W0N1',{ owner: 'remotes',version: 5,data });
   const before = JSON.stringify(f.root); expect(f.owner.read()).toEqual(data); expect(JSON.stringify(f.root)).toBe(before);
-  f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1); expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 6,data: { job: { checkpoint: { tick: 22,format: 5 } } } });
+  f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1); expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 7,data: { job: { checkpoint: { tick: 22,format: 5 } } } });
 });
-test('planning6 reset resumes located expense counters and old5 readers/labels refuse',() => {
+test('current planning reset resumes located expense counters and old5 readers/labels refuse',() => {
   const f = fixture(); f.owner.advance({ ...f.query,expectedRevision: 0 },21); const root = JSON.parse(JSON.stringify(f.root)),state = createMemoryPort(() => root), owner = createStartupPlanningJob(state,f.home);
   expect(() => peekState(state,'remoteStartupPlanning/W0N1',old(5))).toThrow('future');
   expect(owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },80)).toMatchObject({ status: 'complete',through: 101 });

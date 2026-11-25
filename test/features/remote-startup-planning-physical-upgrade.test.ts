@@ -16,7 +16,7 @@ test('schema3 aggregate household migration is read-only and preserves in-flight
   const f = fixture(false), data = f.owner.read(); f.state.write('remoteStartupPlanning/W0N1',{ owner: 'remotes',version: 3,data });
   const before = JSON.stringify(f.root); expect(f.owner.read()).toEqual(data); expect(JSON.stringify(f.root)).toBe(before);
   expect(f.owner.read().job?.checkpoint.household!.redistribution.trips[0]!.cargo).toBe(50);
-  f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1); expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 6,data: { revision: 2,job: { checkpoint: { tick: 8,format: 3 } } } });
+  f.owner.advance({ ...f.query,tick: 2,expectedRevision: 1 },1); expect(f.state.read('remoteStartupPlanning/W0N1')).toMatchObject({ version: 7,data: { revision: 2,job: { checkpoint: { tick: 8,format: 3 } } } });
 });
 test('schema4 physical planning survives JSON reset and schema3 readers refuse it without writes',() => {
   const f = fixture(true), root = JSON.parse(JSON.stringify(f.root)), state = createMemoryPort(() => root), owner = createStartupPlanningJob(state,f.home);

@@ -7,7 +7,7 @@ import type { StartupCandidateEntry, StartupCandidateRecord, StartupCandidateWri
 export function createStartupCandidateStore(state: StatePort, home: string) {
   if (!room(home)) throw new Error('Invalid startup candidate home');
   const key = stateKey('remoteStartupCandidates',home);
-  const schema: StateSchema<StartupCandidateRecord> = { owner: 'remotes',version: 3,migrations: { 1: value => upgradeAssessments(value,home),2: value => upgradeSecondAssessments(value,home) },
+  const schema: StateSchema<StartupCandidateRecord> = { owner: 'remotes',version: 4,migrations: { 1: value => upgradeAssessments(value,home),2: value => upgradeSecondAssessments(value,home),3: value => upgradeThirdAssessments(value,home) },
     initial: () => ({ home,revision: 0,clock: 0,entries: [] }),valid: (value): value is StartupCandidateRecord => validCandidateRecord(value,home) };
   const read = () => peekState(state,key,schema) ?? schema.initial();
   function save(expected: number, tick: number, entries: StartupCandidateEntry[]): StartupCandidateWrite {
@@ -37,5 +37,16 @@ function reusableIdentity(identity: string): boolean {
     const input = JSON.parse(identity) as { project?: { spawning?: { cash?: { flows?: unknown } } } } | null;
     const flows = input?.project?.spawning?.cash?.flows;
     return Array.isArray(flows) && flows.every(flow => object(flow) && flow.spending === undefined);
+  } catch { return false; }
+}
+
+function upgradeThirdAssessments(value: unknown, home: string): StartupCandidateRecord {
+  if (!validCandidateRecord(value,home)) throw new Error('Invalid schema3 startup assessments');
+  return { ...value,entries: value.entries.filter(entry => nonLaborIdentity(entry.inputIdentity)) };
+}
+function nonLaborIdentity(identity: string): boolean {
+  try {
+    const input = JSON.parse(identity) as { project?: { spawning?: { cash?: { flows?: unknown } } }; household?: { labor?: unknown; endpointCapacity?: unknown } } | null;
+    return Array.isArray(input?.project?.spawning?.cash?.flows) && input?.household?.labor === undefined && input?.household?.endpointCapacity === undefined;
   } catch { return false; }
 }

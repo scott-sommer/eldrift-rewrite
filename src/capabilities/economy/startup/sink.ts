@@ -10,7 +10,7 @@ export interface StartupSinkInput {
 }
 export interface StartupSink {
   checkpoint(): StartupSinkCheckpoint;
-  prepare(tick: number): void; take(energy: number): number; finish(): void; releaseAfterFrame(energy: number): void;
+  prepare(tick: number): void; take(energy: number): number; finish(): void; occupyAfterFrame(energy: number): number; releaseAfterFrame(energy: number): void;
   result(): { remainingCapacity: number; acceptedEnergy: number; projectedThrough: number };
 }
 /** Physical sink capacity only: internal releases neither create cash nor charge it again. */
@@ -38,6 +38,10 @@ export function createStartupSink(input: StartupSinkInput, cash: StartupCashInpu
       const accepted = Math.min(free,energy); free -= accepted; acceptedEnergy += accepted; return accepted;
     },
     finish() { if (finished) throw new Error('Startup sink frame already finished'); apply(through,'release'); finished = true; },
+    occupyAfterFrame(energy) {
+      if (!finished || !Number.isSafeInteger(energy) || energy < 0) throw new Error('Invalid household sink return');
+      const accepted = Math.min(energy,free); free -= accepted; return accepted;
+    },
     releaseAfterFrame(energy) {
       if (!finished || !Number.isSafeInteger(energy) || energy < 0 || free+energy > capacity) throw new Error('Invalid household sink release');
       free += energy;

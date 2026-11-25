@@ -1,3 +1,4 @@
+import { accepted } from './labor/validation';
 import { createHouseholdLabor } from './labor/timeline';
 import { laborConstruction, laborFlows, laborTotals } from './labor/funding';
 import type { HouseholdLaborJob } from './labor/model';
@@ -25,6 +26,7 @@ class Household {
   private readonly transfers;
   private readonly labor: ReturnType<typeof createHouseholdLabor> | undefined;
   private incoming = 0;
+  private acceptReturn: (energy: number) => number = energy => energy;
   private readonly births = new Map<string,StartupScheduledBirth>();
   private readonly losses: StartupCashFlow[];
   private endpoint: number;
@@ -57,15 +59,16 @@ class Household {
     for (const birth of births) this.births.set(birth.request,birth);
     this.open = true; return births;
   }
-  finish(receipts: readonly StartupCashReceipt[] = []) {
+  finish(receipts: readonly StartupCashReceipt[] = [], acceptReturn: (energy: number) => number = energy => energy) {
     if (!this.open) throw new Error('Household frame not open');
     if (receipts.some(receipt => receipt.id.startsWith('household-loss:') || receipt.id.startsWith('household-work:'))) throw new Error('Reserved household receipt identity');
+    const before = laborTotals(this.labor?.result()); this.acceptReturn = acceptReturn;
     this.incoming = receipts.reduce((sum,receipt) => sum+receipt.energy,0);
     if (this.input.labor && this.endpoint+this.incoming > this.input.endpointCapacity!) throw new Error('Labor endpoint receipt capacity');
     let effects = { withdrawn: 0,delivered: 0,lost: 0,missed: 0 };
     const flows = this.timeline.finish(receipts,() => { effects = this.transfers.step(this.tick); this.labor?.step(this.tick); });
     const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0); this.endpoint += credit; this.received += credit;
-    this.open = false; this.tick++; return { ...effects,flows };
+    this.open = false; this.tick++; return { ...effects,laborWithdrawn: laborTotals(this.labor?.result()).picked-before.picked,flows };
   }
   frameOutsideExpense(): number { return this.timeline.frameOutsideExpense(); }
   frameAmbientEnergy(): number { return this.timeline.frameAmbientEnergy(); }
@@ -93,7 +96,8 @@ class Household {
     return energy;
   }
   private returnLabor(energy: number): number {
-    const amount = Math.max(0,Math.min(energy,this.input.endpointCapacity!-this.endpoint-this.incoming));
+    const maximum = Math.max(0,Math.min(energy,this.input.endpointCapacity!-this.endpoint-this.incoming));
+    const amount = accepted(this.acceptReturn(maximum),maximum);
     this.endpoint += amount; return amount;
   }
   private withdraw(energy: number): number { const amount = Math.min(energy,this.endpoint); this.endpoint -= amount; return amount; }

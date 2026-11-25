@@ -64,3 +64,10 @@ test('successive partial unloads each observe transfer delay and retain the outs
   expect(result.delivery.receipts.map(receipt => [receipt.tick,receipt.energy])).toEqual([[43,30],[52,10],[62,10]]);
   expect(result.cash.deliveredEnergy).toBe(50);
 });
+
+test('internal household returns share free space after remote acceptance without increasing income receipts',() => {
+  const sink = createStartupSink({ capacity: 100,freeCapacity: 10,changes: [] },{ homeEnergy: 0,protectedEnergy: 0,horizon: 1,readyAt: 0,selfHarvestedConstruction: 0,flows: [] });
+  sink.prepare(0); expect(sink.take(8)).toBe(8); expect(() => sink.occupyAfterFrame(5)).toThrow(); sink.finish();
+  expect(sink.occupyAfterFrame(5)).toBe(2); sink.releaseAfterFrame(10);
+  expect(sink.result()).toMatchObject({ remainingCapacity: 10,acceptedEnergy: 8 });
+});
