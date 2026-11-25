@@ -1,4 +1,4 @@
-import { parsePlain } from '../../../../core/plain-data';
+import { copyPlain, parsePlain } from '../../../../core/plain-data';
 import { startupProjectIdentity } from '../../../../capabilities/economy/startup/checkpoints/project-identity';
 import type { StartupDeliveryInput } from '../../../../capabilities/economy/startup/delivery-model';
 import type { StartupPlanningInput } from './model';
@@ -7,6 +7,7 @@ export function encodeStartupPlanningInput(input: StartupDeliveryInput): Startup
   return parsePlain(startupProjectIdentity(input)) as StartupPlanningInput;
 }
 export function decodeStartupPlanningInput(input: StartupPlanningInput): StartupDeliveryInput {
+  input = copyPlain(input);
   const spawning = input.project.spawning;
   const names = spawning.liveNames;
   if (!Array.isArray(names) || !names.every(name => typeof name === 'string') || new Set(names).size !== names.length) throw new Error('Invalid startup planning live names');

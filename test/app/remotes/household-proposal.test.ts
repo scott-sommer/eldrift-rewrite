@@ -1,6 +1,7 @@
 import { afterEach, expect, test, vi } from 'vitest';
 import { createNativeHouseholdProposal } from '../../../src/app/remotes/startup/household/proposal';
 import { createMemoryPort } from '../../../src/adapters/screeps/memory';
+import { encodeStartupPlanningInput, decodeStartupPlanningInput } from '../../../src/features/remotes/startup/planning/input';
 import { startupHouseholdProject } from '../../fixtures/startup-household-project';
 import { householdTravelPlan } from '../../fixtures/household-travel';
 const controls = vi.hoisted(() => ({ energy: 300 }));
@@ -34,4 +35,13 @@ test('stale observations, competing refill owners and an unpaid initial househol
 test('guard refusal and a route/body mismatch cannot create a proposal',() => {
   const f = fixture(); expect(f.build(f.input,f.proposal,() => false)).toMatchObject({ status: 'deferred',reason: 'admission' });
   f.proposal.request.body = ['move']; expect(() => f.build(f.input,f.proposal)).toThrow('route mismatch');
+});
+
+test('decoded proposal inputs detach nested cash flows and physical assumptions from their persisted seed',() => {
+  const f = fixture(), seed = encodeStartupPlanningInput(f.input), before = JSON.stringify(seed);
+  const decoded = decodeStartupPlanningInput(seed);
+  decoded.project.spawning.cash.flows = [...decoded.project.spawning.cash.flows,{ id: 'outside',kind: 'upkeep',spending: 'outside-spawn',energy: 1,firstTick: 20,interval: null,occurrences: 1 }];
+  decoded.homeSink.freeCapacity = 0;
+  expect(JSON.stringify(seed)).toBe(before);
+  expect(decodeStartupPlanningInput(seed).project.spawning.cash.flows).toEqual(f.input.project.spawning.cash.flows);
 });
