@@ -1,3 +1,4 @@
+import { peekSpawnIdentity } from '../../src/features/population/spawn-identity';
 import { beginLaborPlanning } from './native-labor-planning';
 import { createNativeLaborWorkforce } from '../../src/app/remotes/startup/household/labor-workforce';
 import { startupDeliveryInput } from '../fixtures/startup-delivery';
@@ -15,7 +16,7 @@ export function nativeLaborProposal(proof: NativeLaborProof, request: SpawnReque
   base.project.remainingProgress = 0; base.project.workers = []; base.couriers = [];
   base.household = { endpointEnergy: proof.initialEndpoint,redistribution: { horizon: 24,trips: [] } };
   base.homeSink = { capacity: storage.store.getCapacity(RESOURCE_ENERGY),freeCapacity: storage.store.getFreeCapacity(RESOURCE_ENERGY),changes: [] };
-  const proposal = createNativeLaborWorkforce(createMemoryPort(() => Memory),4000)({ base,endpoint: storage.id,demand: { home: spawn.room.name,mode: 'builder',enabled: true,budget: 200,recipe: 'balanced',maximumParts: 3,maximumUnits: 1,id: request.id,placement: request.placement!,replacementTravel: 0,replacementMargin: 0 },workPolicy: { ...defaultWorkPolicy,allowUpgrade: false },
+  const proposal = createNativeLaborWorkforce(createMemoryPort(() => Memory),4000)({ base,endpoint: storage.id,demand: { home: spawn.room.name,mode: 'builder',enabled: true,budget: 200,recipe: 'balanced',maximumParts: 3,maximumUnits: 1,id: peekSpawnIdentity(createMemoryPort(() => Memory),spawn.room.name),placement: request.placement!,replacementTravel: 0,replacementMargin: 0 },workPolicy: { ...defaultWorkPolicy,allowUpgrade: false },
     laborPolicy: { horizon: 24,maximumLoad: 10,maximumWorkTicks: 2,reserve: 20 } },1);
   if (proposal.status !== 'ready') throw new Error('Native workload proposal refused: '+proposal.reason);
   const candidate = proposal.read();

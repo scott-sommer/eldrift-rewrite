@@ -1,7 +1,7 @@
 import { resumeLaborPlanning } from './native-labor-planning';
 import { moveNativeLabor } from './native-labor-travel';
 import { createStartupHousehold } from '../../src/capabilities/economy/startup/household/timeline';
-import { createNativeSpawn } from '../../src/adapters/screeps/spawn';
+import { spawnNativeLabor } from './native-labor-birth';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { openState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
@@ -11,7 +11,7 @@ export function loop(): void {
   const memory = Memory as LaborMemory, spawn = Game.spawns.Spawn1!, storage = spawn.room.storage!;
   openState(createMemoryPort(() => Memory),'operator/config',operatorSchema);
   const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,complete: !!memory.nativeLaborComplete,travel: !!memory.nativeLaborTravel,targetTotal: targetTotal(memory.nativeLaborKind!),initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
-  const creep = Game.creeps['native-labor'], actual = observe(proof,spawn,storage,creep);
+  const creep = Game.creeps[proof.proposal?.input.request.name ?? 'native-labor'], actual = observe(proof,spawn,storage,creep);
   proof.rows.push({ tick: Game.time,actual,...(creep ? { position: { x: creep.pos.x,y: creep.pos.y,fatigue: creep.fatigue } } : {}),...(proof.expected ? { expected: proof.expected } : {}) });
   if (creep && !creep.spawning && proof.activeAt === undefined) proof.activeAt = Game.time;
   resumeLaborPlanning(proof);
@@ -19,7 +19,7 @@ export function loop(): void {
   if (tick > 24) return;
   const input = laborInput(proof,spawn), model = createStartupHousehold(input,proof.checkpoint), before = proof.checkpoint?.labor?.jobs[0];
   for (const birth of model.begin(tick)) {
-    const code = createNativeSpawn(() => ({}),() => [spawn])({ request: input.spawning.requests[0]!,spawn: spawn.id,cost: birth.cost });
+    const code = spawnNativeLabor(proof,input.spawning.requests[0]!,birth,spawn);
     record(proof,'birth',code,birth.cost);
   }
   model.finish(); const saved = model.checkpoint(), after = saved.labor!.jobs[0]!;
