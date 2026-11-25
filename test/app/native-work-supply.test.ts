@@ -13,7 +13,7 @@ test('fallback never drains its controller reserve or supplies unowned worker id
     store: { getUsedCapacity: () => energy, getFreeCapacity: () => 2000 - energy } });
   const room = { name: 'home', energyAvailable: 300, controller: {}, find: (kind: string) => kind === 'FIND_STRUCTURES' ?
     [container('reserve', 1900, 2), container('source', 30, 10)] : [] } as unknown as Room;
-  const worker = (id: string, owner: string, home = 'home') => ({ id, my: true, spawning: false, room,
+  const worker = (id: string, owner: string, home = 'home') => ({ id,name: id, my: true, spawning: false, room,
     memory: { population: { owner, home } }, store: { getFreeCapacity: () => 50 } });
   vi.stubGlobal('Game', { time: 1, creeps: { worker: worker('worker', workOwner('home')), courier: worker('courier', 'logistics:home'),
     other: worker('other', workOwner('home'), 'away') } });
@@ -23,7 +23,10 @@ test('fallback never drains its controller reserve or supplies unowned worker id
   const config = { ...defaults, workerSupplyEnabled: true };
   generateNativeWorkSupply(state, room, [], config);
   expect(queue.pending(1).map(item => [item.source, item.sink, item.quantity])).toEqual([['source', 'worker', 30]]);
+  state.write('tasks/worker',{ owner: 'tasks',version: 2,data: { unit: 'worker',queue: [{ id: 'labor',kind: 'household-labor',phase: 'await-birth',payload: { opaque: 'owned by labor decoder' },wakeAt: 1,retries: 0,expiresAt: 100 }] } });
   Game.time = 2;
+  generateNativeWorkSupply(state,room,[],config); expect(queue.pending(2)).toEqual([]);
+  Game.time = 3;
   generateNativeWorkSupply(state, room, [], { ...config, workerSupplyEnabled: false });
-  expect(queue.pending(2)).toEqual([]);
+  expect(queue.pending(3)).toEqual([]);
 });

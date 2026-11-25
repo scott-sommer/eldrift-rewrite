@@ -14,19 +14,19 @@ function fixture() {
   let tick = 10,enabled = true;
   const home = { name: 'W0N1',controller: { my: true } }, source = { id: 'stock',pos: { roomName: 'W0N1',x: 2,y: 2 },structureType: 'storage',my: true,isActive: () => true,store: { energy: 100,getFreeCapacity: () => 900,getCapacity: () => 1000 } };
   const site = { id: 'target',pos: { roomName: 'W0N1',x: 8,y: 1 },structureType: 'road',my: true,progress: 297,progressTotal: 300 };
-  const creep = { id: 'actor',name: 'worker',memory: { population: { owner: 'home',home: 'W0N1' } },body: [{ type: 'work',hits: 100 },{ type: 'carry',hits: 100 },{ type: 'move',hits: 100 }],pos: { roomName: 'W0N1',x: 2,y: 1 },store: { energy: 0 },spawning: false,withdraw: vi.fn(() => 0),build: vi.fn(() => 0),transfer: vi.fn(() => 0) };
+  const creep = { id: 'actor',name: 'worker',memory: { population: { owner: 'home',home: 'W0N1' } },body: [{ type: 'work',hits: 100 },{ type: 'carry',hits: 100 },{ type: 'move',hits: 100 }],pos: { roomName: 'W0N1',x: 2,y: 1 },store: { energy: 0,getCapacity: () => 50,getFreeCapacity: () => 50 },spawning: false,withdraw: vi.fn(() => 0),build: vi.fn(() => 0),transfer: vi.fn(() => 0) };
   vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('Game',{ get time() { return tick; },rooms: { W0N1: home },getObjectById: (id: string) => id === 'stock' ? source : id === 'target' ? site : null });
   const arbiter = createActionArbiter(() => tick), movement = { move: vi.fn(() => ({ status: 'running' as const })),flush: vi.fn() };
   const ports = createNativeLaborTaskPorts(state,{ arbiter,movement },{ enabled: () => enabled,completed: () => {} });
   return { root,state,payload,source,site,creep: creep as unknown as Creep,raw: creep,arbiter,ports,owner: laborScope(payload),claims: createQuantityReservations(state),at: (value: number) => { tick = value; },enable: (value: boolean) => { enabled = value; } };
 }
 test('accepted pickup reserves source stock, duplicate admission preserves it, and next-tick observation releases it',() => {
-  const f = fixture(); expect(f.ports.authorized(f.creep,f.payload)).toBe(true); expect(f.root).toEqual({});
-  expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(true); expect(f.claims.list(10)).toHaveLength(1);
-  expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.claims.list(10)).toHaveLength(1); expect(f.raw.withdraw).toHaveBeenCalledTimes(1);
+  const f = fixture(); expect(f.ports.authorized(f.creep,f.payload)).toBe(true); expect(f.claims.list(10)[0]?.allocations).toEqual([{ pool: logisticsPool('capacity','actor'),amount: 50 }]);
+  expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(true); expect(f.claims.list(10)).toHaveLength(2);
+  expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.claims.list(10)).toHaveLength(2); expect(f.raw.withdraw).toHaveBeenCalledTimes(1);
   f.payload.progress = { worker: 'actor',picked: 0,spent: 0,returned: 0,pending: { kind: 'pickup',tick: 10,before: 0,maximum: 3 } };
-  f.at(11); expect(f.ports.authorized(f.creep,f.payload)).toBe(true); expect(f.claims.list(11)).toEqual([]);
-  f.raw.withdraw.mockReturnValueOnce(-6); expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.claims.list(11)).toEqual([]);
+  f.at(11); expect(f.ports.authorized(f.creep,f.payload)).toBe(true); expect(f.claims.list(11).flatMap(claim => claim.allocations)).toEqual([{ pool: logisticsPool('capacity','actor'),amount: 50 }]);
+  f.raw.withdraw.mockReturnValueOnce(-6); expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.claims.list(11).flatMap(claim => claim.allocations)).toEqual([{ pool: logisticsPool('capacity','actor'),amount: 50 }]);
 });
 test('stock reserve and competing target budgets refuse without native effects',() => {
   const f = fixture(); f.source.store.energy = 22; expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.raw.withdraw).not.toHaveBeenCalled();
@@ -43,4 +43,11 @@ test('disabled policy, boosts, mismatched scope and another action owner block e
   expect(f.ports.pickup(f.creep,f.payload,3,'other-scope')).toBe(false); expect(f.root).toEqual({});
   f.arbiter.claim(f.creep.name,'other-owner'); expect(f.ports.authorized(f.creep,f.payload)).toBe(false);
   expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.raw.withdraw).not.toHaveBeenCalled();
+});
+
+test('a pre-existing incoming capacity claim prevents labor ownership without erasing the delivery',() => {
+  const f = fixture(), pool = logisticsPool('capacity','actor');
+  f.claims.reserve({ id: 'incoming',owner: 'hauling',holder: 'hauler',scope: 'hauler-task',expiresAt: 26,allocations: [{ pool,amount: 1 }] },{ [pool]: 50 },10);
+  expect(f.ports.authorized(f.creep,f.payload)).toBe(false); expect(f.claims.list(10).map(claim => claim.id)).toEqual(['incoming']);
+  expect(f.raw.withdraw).not.toHaveBeenCalled();
 });

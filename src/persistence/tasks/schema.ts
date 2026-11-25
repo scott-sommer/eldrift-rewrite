@@ -18,14 +18,15 @@ export interface TaskDefinition {
 function nonempty(value: unknown): value is string {
   return typeof value === 'string' && value.length > 0;
 }
-function validTask(value: unknown, definitions: Readonly<Record<string, TaskDefinition>>): value is TaskRecord {
+export function validTaskHeader(value: unknown): value is TaskRecord {
   if (!value || typeof value !== 'object') return false;
   const task = value as Partial<TaskRecord>;
-  if (!nonempty(task.id) || !nonempty(task.kind)) return false;
-  if (!Object.hasOwn(definitions, task.kind)) return false;
-  const definition = definitions[task.kind]!;
-  return definition.phases.includes(task.phase ?? '') && definition.validPayload(task.payload)
-    && validExecution(task);
+  return nonempty(task.id) && nonempty(task.kind) && validExecution(task);
+}
+function validTask(value: unknown, definitions: Readonly<Record<string, TaskDefinition>>): value is TaskRecord {
+  if (!validTaskHeader(value) || !Object.hasOwn(definitions,value.kind)) return false;
+  const definition = definitions[value.kind]!;
+  return definition.phases.includes(value.phase) && definition.validPayload(value.payload);
 }
 export function taskSchema(unit: string, definitions: Readonly<Record<string, TaskDefinition>>, maximum = 20): StateSchema<UnitTasks> {
   if (!unit || !Number.isSafeInteger(maximum) || maximum < 1) throw new Error('Invalid task schema limits');

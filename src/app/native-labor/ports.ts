@@ -36,6 +36,7 @@ export function createNativeLaborTaskPorts(state: StatePort, dispatch: Dispatch,
       const home = payload.proposal.input.request.room;
       if (!policy.enabled(home) || creep.memory.population?.home !== home || creep.body.some(part => part.boost) || !endpoint(payload)) return false;
       if (!dispatch.arbiter.claim(creep.name,laborScope(payload))) return false;
+      if (!claims.protectCargo(creep,payload)) return false;
       claims.releaseObserved(creep,payload); return true;
     },
     remainingWork: (_,order) => nativeLaborWork(order)?.remaining,

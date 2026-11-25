@@ -18,8 +18,9 @@ function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false)
   assert.equal(result.labor.jobs[0].returned,load-spent); assert.equal(result.labor.jobs[0].cargo,0);
   assert.equal(result.cash.homeConstructionEnergy,kind === 'build' ? spent : 0); assert.equal(result.cash.upkeepEnergy,kind === 'build' ? 0 : 2);
   if (complete) {
-    assert.deepEqual(proof.actorClaims.find(row => row.tick === 10).allocations,[{ pool: 'logistics:'+JSON.stringify(['stock',proof.proposal.input.source,'energy']),amount: 3 }]);
-    assert.deepEqual(proof.actorClaims.find(row => row.tick === 11).allocations,[{ pool: 'logistics:'+JSON.stringify(['work',proof.proposal.input.order.id,'build']),amount: 3 }]);
+    const cargo = { pool: 'logistics:'+JSON.stringify(['capacity',proof.actorResult.worker]),amount: 50 };
+    assert.deepEqual(proof.actorClaims.find(row => row.tick === 10).allocations,[cargo,{ pool: 'logistics:'+JSON.stringify(['stock',proof.proposal.input.source,'energy']),amount: 3 }]);
+    assert.deepEqual(proof.actorClaims.find(row => row.tick === 11).allocations,[cargo,{ pool: 'logistics:'+JSON.stringify(['work',proof.proposal.input.order.id,'build']),amount: 3 }]);
     assert.deepEqual(proof.actorClaims.find(row => row.tick === 12).allocations,[]);
     assert.equal(proof.actorReceipt.request,proof.proposal.input.request.id); assert.equal(proof.actorReceipt.unit,proof.actorResult.worker);
     assert.equal(proof.actorReceipt.observedAt,1); assert.equal(proof.actorReceipt.completedAt,12);

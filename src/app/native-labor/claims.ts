@@ -13,6 +13,13 @@ export function createLaborClaims(state: StatePort) {
     ledger.releasePool(identity(creep,payload,kind),pool(payload,kind));
   }
   return {
+    protectCargo(creep: Creep, payload: LaborTaskPayload): boolean {
+      const scope = laborScope(payload), id = scope+':cargo', pool = logisticsPool('capacity',creep.id), capacity = creep.store.getCapacity(RESOURCE_ENERGY);
+      if (!Number.isSafeInteger(capacity) || capacity < 1) return false;
+      const existing = ledger.list(Game.time).find(claim => claim.id === id);
+      if (existing) return existing.owner === payload.proposal.input.request.owner && existing.holder === creep.name && existing.scope === scope && JSON.stringify(existing.allocations) === JSON.stringify([{ pool,amount: capacity }]);
+      return ledger.reserve({ id,owner: payload.proposal.input.request.owner,holder: creep.name,scope,expiresAt: payload.proposal.observedAt+payload.proposal.input.policy.horizon+1,allocations: [{ pool,amount: capacity }] },{ [pool]: creep.store.getFreeCapacity(RESOURCE_ENERGY) },Game.time);
+    },
     releaseObserved(creep: Creep, payload: LaborTaskPayload): void {
       const pending = payload.progress?.pending;
       if (pending && pending.tick < Game.time) release(creep,payload,pending.kind);
