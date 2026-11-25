@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Bounded financial birth preview and native task-bounded completion; initial fixture refusal retained",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "3d8604452d6708305050bcbfdf5a4864c7cc65ff",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/funded-labor-candidate/initial-fixture-refusal.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b906388018bb113e7faae72715b010af124d362e7a5d88525bf100cdbb83b41e",
+      "uncompressedSha256": "830b4173ab74000f3b2f882ce1aa6019c6592d386109b5f0db6b4d6f6eb6f226"
+    },
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "cbcd6fdc4774ec9db6dbe52de0d1b8764ab19a71",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/funded-labor-candidate/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0a316bd5c425c30eb7a9ebee934c3fc7d01254e8a2eefb51b4392e5737cdb367",
+      "uncompressedSha256": "04d7d413c2709c2afdb5e082fa4133a136ee6243847358be00093fc46119b112"
+    }
+  ]
+}
