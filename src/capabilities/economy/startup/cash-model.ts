@@ -10,6 +10,8 @@ export interface StartupCashInput {
   selfHarvestedConstruction: number; flows: readonly StartupCashFlow[];
 }
 export interface StartupCashForecast {
+  /** Native ambient input: spendable after settlement, excluded from source surplus/recovery. */
+  ambientEnergy?: number;
   endingEnergy: number; minimumEnergy: number; minimumAt: number; requiredHomeEnergy: number; homeShortfall: number;
   birthEnergy: number; homeConstructionEnergy: number; upkeepEnergy: number; deliveredEnergy: number;
   homeCashSurplus: number; constructionRecoveryMargin: number; firstDeliveryAt: number | null; firstRecoveryAt: number | null;

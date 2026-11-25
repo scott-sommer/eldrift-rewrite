@@ -1,28 +1,30 @@
+import { startupHomeCashSurplus } from './cash-balances';
 import { restoreCashCheckpoint } from './checkpoints/cash';
 import { validateStartupCash } from './cash-validation';
 import type { StartupCashInput, StartupCashForecast, StartupCashFlow } from './cash-model';
 /** Statistical accounting only; physical funding/claims remain owned by the caller. */
-export function createStartupCashLedger(input: Omit<StartupCashInput,'flows'>, checkpoint?: unknown) { return new StartupCashLedger(input,checkpoint); }
+export function createStartupCashLedger(input: Omit<StartupCashInput,'flows'>, checkpoint?: unknown, options: { ambient?: boolean } = {}) { return new StartupCashLedger(input,checkpoint,options.ambient ?? false); }
 class StartupCashLedger {
   private readonly input;
   private state: StartupCashForecast;
   private tick = 0;
   private openingConstructionEnergy = 0;
-  constructor(input: Omit<StartupCashInput,'flows'>, checkpoint?: unknown) {
+  constructor(input: Omit<StartupCashInput,'flows'>, checkpoint: unknown, private readonly ambient: boolean) {
     validateStartupCash({ ...input,flows: [] }); this.input = { ...input };
-    this.state = { endingEnergy: input.homeEnergy,minimumEnergy: input.homeEnergy,minimumAt: 0,requiredHomeEnergy: 0,homeShortfall: 0,
+    this.state = { ...(ambient ? { ambientEnergy: 0 } : {}),endingEnergy: input.homeEnergy,minimumEnergy: input.homeEnergy,minimumAt: 0,requiredHomeEnergy: 0,homeShortfall: 0,
       birthEnergy: 0,homeConstructionEnergy: 0,upkeepEnergy: 0,deliveredEnergy: 0,homeCashSurplus: 0,constructionRecoveryMargin: -input.selfHarvestedConstruction-(input.openingAssets ?? 0),firstDeliveryAt: null,firstRecoveryAt: null };
-    if (checkpoint !== undefined) { const saved = restoreCashCheckpoint(input,checkpoint); this.state = saved.state; this.tick = saved.tick; this.openingConstructionEnergy = saved.openingConstructionEnergy; }
+    if (checkpoint !== undefined) { const saved = restoreCashCheckpoint(input,checkpoint,ambient); this.state = saved.state; this.tick = saved.tick; this.openingConstructionEnergy = saved.openingConstructionEnergy; }
   }
-  frame(tick: number, flows: readonly StartupCashFlow[], credit = 0, ready = true, openingConstructionEnergy = this.openingConstructionEnergy): void {
+  frame(tick: number, flows: readonly StartupCashFlow[], credit = 0, ready = true, openingConstructionEnergy = this.openingConstructionEnergy, ambientEnergy = 0): void {
     if (tick !== this.tick || tick > this.input.horizon) throw new Error('Startup cash frame order');
+    if (!Number.isSafeInteger(ambientEnergy) || ambientEnergy < 0 || ambientEnergy > 1000000 || !this.ambient && ambientEnergy !== 0) throw new Error('Invalid startup ambient credit');
     validateFrame(flows,credit);
     validateOpeningCredit(this.input,openingConstructionEnergy,this.openingConstructionEnergy);
     const next = { ...this.state };
     spend(next,flows);
     if (next.endingEnergy < next.minimumEnergy) { next.minimumEnergy = next.endingEnergy; next.minimumAt = tick; }
     const delivered = credit+flows.filter(flow => flow.kind === 'delivery').reduce((sum,flow) => sum+flow.energy,0);
-    receive(next,this.input,delivered,tick,ready,openingConstructionEnergy);
+    receive(next,this.input,delivered,tick,ready,openingConstructionEnergy,ambientEnergy);
     if (!Object.values(next).every(value => value === null || Number.isSafeInteger(value))) throw new Error('Startup cash arithmetic overflow');
     this.state = next; this.openingConstructionEnergy = openingConstructionEnergy; this.tick++;
   }
@@ -50,10 +52,17 @@ function validateFrame(flows: readonly StartupCashFlow[], credit: number): void 
   }
 }
 
-function receive(result: StartupCashForecast, input: Omit<StartupCashInput,'flows'>, delivered: number, tick: number, ready: boolean, openingConstructionEnergy: number): void {
-  result.endingEnergy += delivered; result.deliveredEnergy += delivered;
+function receive(result: StartupCashForecast, input: Omit<StartupCashInput,'flows'>, delivered: number, tick: number, ready: boolean, openingConstructionEnergy: number, ambientEnergy: number): void {
+  result.endingEnergy += delivered+ambientEnergy;
+  creditAmbient(result,ambientEnergy); result.deliveredEnergy += delivered;
   if (delivered > 0) result.firstDeliveryAt ??= tick;
-  result.homeCashSurplus = result.endingEnergy-input.homeEnergy;
+  updateRecovery(result,input,tick,ready,openingConstructionEnergy);
+}
+function creditAmbient(result: StartupCashForecast, energy: number): void {
+  if (result.ambientEnergy !== undefined) result.ambientEnergy += energy;
+}
+function updateRecovery(result: StartupCashForecast, input: Omit<StartupCashInput,'flows'>, tick: number, ready: boolean, openingConstructionEnergy: number): void {
+  result.homeCashSurplus = startupHomeCashSurplus(input,result);
   result.constructionRecoveryMargin = result.homeCashSurplus-input.selfHarvestedConstruction-(input.openingAssets ?? 0)+openingConstructionEnergy;
   if (canRecover(result,input,tick,ready)) result.firstRecoveryAt ??= tick;
 }
