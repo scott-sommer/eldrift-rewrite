@@ -1,0 +1,68 @@
+{
+  "issue": "ED-29",
+  "scope": "Task-owned refund of confirmed funded cargo after productive configuration cancellation; failed-work receipt, reset continuity and explicit invalidation of prior forecast",
+  "native": [
+    {
+      "scenario": "cancel",
+      "nativeSource": "bfe391f23a7a573db15e2588e7f6b217e033039b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-refund/cancel.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "cdbd62eee72b105d0f4e69e2e50663817f466e0e323b5e621be2249cb37743ff",
+      "uncompressedSha256": "0a30f5fe67bed769e6e40cb83fc56a0b9405d37c48d7b11c586be015b84f761c",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-refund/cancel-receipt.jsonl",
+          "rowsSha256": "9bc2f3c840db6a8fdd906b5fddc306e96b68f08359e8c9d7978012bfde94360e",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-refund/cancel-claims.jsonl",
+          "rowsSha256": "ddce5329ecd89faec9159e93c65a2c3461b4a23dc53e631e884c03b6d173c5d2",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-refund/cancel-sdk-calls.jsonl",
+          "rowsSha256": "f376197dffde616879cab2696cc2fddbf556d0487c4f0793b20e031286385099",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-refund/cancel-observations.jsonl",
+          "rowsSha256": "291f2ab349fe5617459e96f617455f7d96a7b0f1c386ead781e101731f66ae60",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "complete",
+      "nativeSource": "bfe391f23a7a573db15e2588e7f6b217e033039b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-refund/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c767829a903df49dfbdef8e620dbabcd5f698043e2d029aed8cdc440cc61b6bd",
+      "uncompressedSha256": "6c69b26851376be7f379eb5dec3f99f4b06f1910cdaa21b0dd1466b4a0174e68",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-refund/complete-receipt.jsonl",
+          "rowsSha256": "602362ca30a7a326360459aa9936c9fb5c2ef21fd7285d9a1fa65c63091fc96f",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-refund/complete-claims.jsonl",
+          "rowsSha256": "a4cc56693a482b8b076182ac3db71b1273370ac0ffd40d87945589e67031d22b",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-refund/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-refund/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}

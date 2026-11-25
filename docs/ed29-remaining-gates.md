@@ -18,3 +18,7 @@ The recent household labor components serve gates1/2. They are not a new endless
 ## Scope that remains downstream
 
 ED-31/33/35 own concrete specialist/vassal/military/keeper/power-bank consumers; ED-37/38 own trade and residual advanced structures; ED-39 owns complete operator compatibility; ED-40/41 own diagnostics/docs; ED-42/43/44 own aggregate parity/pressure/migration and release. Closing an ordinary remote scope never silently retires those requirements. The existing unrelated layout and industry milestones remain separately evidenced.
+
+## Latest qualification
+
+At bfe391f, native configuration cancellation returns3 confirmed energy with0 productive spend and preserves a failure receipt across reload; normal completion remains qualified on the same source. See evidence/labor-refund.json and household-labor.md. Gate1 remains open for loaded/native recovery and uncertain/missing-home cases; gates2–6 are not implied complete.
