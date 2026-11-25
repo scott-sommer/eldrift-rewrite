@@ -5,7 +5,7 @@ import { createNativeDispatch } from '../../src/app/native-dispatch';
 import { createNativeStartupEnergyAdmission } from '../../src/app/remotes/startup/energy-admission';
 import { createSpawnQueue } from '../../src/features/population/spawn-queue';
 import { logisticsPool } from '../../src/capabilities/logistics/request';
-interface Probe { calls: { tick: number; name: string; code: number; order: string[] }[]; pending: string[]; energy: number; names: string[]; recreated: boolean }
+interface Probe { observedAt: number; calls: { tick: number; name: string; code: number; order: string[] }[]; pending: string[]; energy: number; names: string[]; recreated: boolean }
 interface ProbeMemory extends Memory { spawnPreflight?: Probe }
 const state = createMemoryPort(() => Memory);
 function dispatch() { return createNativeDispatch(state,() => true,createNativeStartupEnergyAdmission(state)); }
@@ -14,7 +14,7 @@ export function loop(): void {
   const memory = Memory as ProbeMemory, spawn = Game.spawns.Spawn1!;
   if (!memory.spawnPreflight) {
     openState(state,'operator/config',operatorSchema);
-    memory.spawnPreflight = { calls: [],pending: [],energy: 0,names: [],recreated: false };
+    memory.spawnPreflight = { observedAt: Game.time,calls: [],pending: [],energy: 0,names: [],recreated: false };
     state.write('quantity-reservations/empire',{ owner: 'quantity-reservations',version: 1,data: { claims: [{ id: 'other-owner',owner: 'other',holder: 'worker',scope: 'home',expiresAt: 50,
       allocations: [{ pool: logisticsPool('stock',spawn.id,'energy'),amount: 100 }] }] } });
     const queue = createSpawnQueue(state,'W0N1');
@@ -29,5 +29,5 @@ export function loop(): void {
   try { runtime.activate(); runtime.flush(); const recreated = dispatch(); recreated.activate(); recreated.flush(); probe.recreated = true; }
   finally { StructureSpawn.prototype.spawnCreep = original; }
   probe.pending = createSpawnQueue(state,'W0N1').list().map(request => request.id);
-  probe.energy = spawn.store.energy; probe.names = Object.keys(Game.creeps);
+  probe.observedAt = Game.time; probe.energy = spawn.store.energy; probe.names = Object.keys(Game.creeps);
 }
