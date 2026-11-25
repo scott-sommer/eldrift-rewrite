@@ -21,7 +21,7 @@ export function laborInput(proof: NativeLaborProof, spawn: StructureSpawn): Star
     placement: { spawn: spawn.id,exit: { room,x: 14,y: 15 } } };
   let job: HouseholdLaborJob = { id: 'native-work',request: request.id,kind: proof.kind,pickupAt: 9,outboundTicks: 0,workTicks: 2,returnTicks: 0,energy: 10 };
   if (proof.travel) { const quote = nativeLaborRoute(proof,request.body,spawn); job.outboundTicks = quote.legs[1]!.ticks; job.returnTicks = quote.legs[2]!.ticks; }
-  if (proof.complete) job = nativeLaborProposal(proof,request,spawn);
+  if (proof.complete) { if (proof.proposal) Object.assign(request,proof.proposal.input.request); job = nativeLaborProposal(proof,request,spawn); }
   return { endpointEnergy: proof.initialEndpoint,endpointCapacity: 1000000,redistribution: { horizon: 24,trips: [] },
     labor: { horizon: 24,jobs: [job] },
     spawning: nativeLaborSpawning(proof,spawn,request) };

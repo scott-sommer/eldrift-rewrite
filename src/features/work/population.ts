@@ -3,7 +3,7 @@ import type { SpawnBoost } from '../../capabilities/spawning/boost';
 import type { StatePort } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
 import type { PopulationUnit } from '../../capabilities/spawning/demand';
-import { builderBody, upgraderBody } from '../../capabilities/spawning/worker-recipes';
+import { workerBody } from './body-policy';
 import { applyPopulationDemand } from '../population/apply-demand';
 import { createSpawnQueue } from '../population/spawn-queue';
 import { workOwner, workModeFor, workerModes } from './identity';
@@ -32,10 +32,6 @@ function cancelWorkerDemand(state: StatePort, room: string, owner: string): void
   for (const request of queue.list().filter(item => item.owner === owner)) queue.cancel(request.id, owner);
 }
 
-function workerBody(mode: WorkerMode,plan: WorkerPopulationPlan) {
-  if (mode === 'upgrader') return upgraderBody(plan.budget,plan.level);
-  return builderBody(plan.budget,mode === 'builder' && plan.builderRecipe === 'boosted');
-}
 function workerBirthBoost(plan: WorkerPopulationPlan,mode: WorkerMode,body: readonly BodyPart[]): SpawnBoost | null | 'wait' {
   const selected = plan.selectBirthBoost?.(mode,body) ?? null;
   if (mode !== 'builder' || plan.builderRecipe !== 'boosted') return selected;
