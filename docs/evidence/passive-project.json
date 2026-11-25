@@ -1,0 +1,140 @@
+{
+  "issue": "ED-29",
+  "source": "678de305619521104338c4107abf17e72f8d0e5f",
+  "scope": "Passive full-project cash/physical integration and forecast-owner compatibility; native model/migration execution, not matched real household actors or realized long-horizon income",
+  "native": [
+    {
+      "scenario": "--remote-startup-selected",
+      "nativeSource": "678de305619521104338c4107abf17e72f8d0e5f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/passive-project/selected-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "70fd1e3f1a877957735dd1cce3f128e586db946e11eb8ce4fbd8bcee98a7c299",
+      "uncompressedSha256": "f45ea6f7abcb6895fd8e53e7c8e64beb0c8545bfa5b79f2f3e6a3df557764a28",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "678de305619521104338c4107abf17e72f8d0e5f",
+        "dirty": false,
+        "bundleSha256": "a38da22d01cac280b141e411d936a882d409462287632e47e22e31d07c90f55a",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/passive-project/selected-samples.jsonl",
+          "rowsSha256": "e09bc3f5e55d9c554cd1ac0bc0d90ef76a87619bc60fbcef5df6704b7d3974cd",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-project/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-project/selected-passive-schedule.jsonl",
+          "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+          "rows": 5
+        },
+        {
+          "rowsFile": "docs/evidence/passive-project/selected-physical-events.jsonl",
+          "rowsSha256": "6c7c90e1b40f0d6d4fef60bb3a53bc39f4eedc42a419941ea463a57568d18e72",
+          "rows": 61
+        }
+      ]
+    },
+    {
+      "scenario": "--remote-startup-admission",
+      "nativeSource": "678de305619521104338c4107abf17e72f8d0e5f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/passive-project/admission-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8c70015b4dab4a50b7fe7a11d403bee17d2c885555a818622b873270f5e6363e",
+      "uncompressedSha256": "7457959f13d79ee6ee37771dc212a5425059176148031306637a7e294e0c764d",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "678de305619521104338c4107abf17e72f8d0e5f",
+        "dirty": false,
+        "bundleSha256": "c9b9e8c0403e7e94be3c801bbc8751b9f3c01b6bdacbbe501b4b2ec2d6a86473",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/passive-project/admission-samples.jsonl",
+          "rowsSha256": "94d64d7a9ed63851279e282488d9f1efe61d97f2dbdce56b9064e2b062f7ccae",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-project/admission-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-project/admission-migration.jsonl",
+          "rowsSha256": "f859b70883844f01ee936e61eb5b3b168a1cf0f1c842c184a1f2aeb9310a2bcb",
+          "rows": 1
+        }
+      ]
+    }
+  ],
+  "compatibility": {
+    "passiveProject": 5,
+    "passiveHousehold": 3,
+    "passiveEnergy": 2,
+    "planning": 5,
+    "schedules": 2,
+    "candidateCache": 2,
+    "legacyPlanningMigration": "schema1 native; schema2/3/4 targeted contracts",
+    "scheduleMigration": "v1 non-passive read-only contracts",
+    "candidateMigration": "v1 read-only invalidation and recapture contracts",
+    "releaseRollback": "not rehearsed"
+  },
+  "model": {
+    "frames": 20005,
+    "separatePreviewFrames": 1,
+    "births": 7,
+    "birthEnergy": 2450,
+    "householdTransfers": 400,
+    "ambientEnergy": 50,
+    "sourceDeliveredEnergy": 12256,
+    "endingCash": 19956,
+    "recoveryMargin": 4806,
+    "firstRecoveryAt": 2795
+  },
+  "actual150TickSourceIncome": 0,
+  "checks": {
+    "targeted": {
+      "cases": 56,
+      "files": 8,
+      "seconds": 0.885
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.517
+    },
+    "quality": {
+      "productionFiles": 952,
+      "testFiles": 815,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "fullUnitSuite": "not run; incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Addressed physical expense and complete home workforce schedules",
+    "Matched native household/source actor lifecycle and realized cashflow",
+    "Incumbent household templates and shared multi-room capital",
+    "Default economic policy adoption and broader parity/pressure/rollback/RC gates"
+  ]
+}
