@@ -43,6 +43,10 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(proof.frames,1); assert.equal(proof.accountedThrough,44);
   assert.ok(proof.checkpointCharacters > 0 && proof.checkpointCharacters < 1048576);
   assert.deepEqual(proof.result,proof.uninterrupted);
+  const passive = memory.startupPassiveMigration; assert.ok(passive);
+  assert.equal(passive.savedAt,149); assert.equal(passive.resumedAt,150);
+  assert.equal(passive.readOnly,true); assert.equal(passive.through,101);
+  assert.equal(passive.planningVersion,6); assert.equal(passive.scheduleVersion,3); assert.equal(passive.equal,true);
   const planning = memory.startupPlanningProof; assert.ok(planning);
   assert.equal(planning.legacyVersion,1); assert.equal(planning.savedAt,149); assert.equal(planning.resumedAt,150);
   assert.equal(planning.initialThrough,43); assert.equal(planning.initialRevision,1); assert.equal(planning.pendingBefore,1);

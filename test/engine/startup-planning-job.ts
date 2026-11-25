@@ -1,3 +1,4 @@
+import { probeStartupPassiveMigration } from './startup-passive-migration';
 import { legacyStartupCheckpoint } from '../fixtures/startup-legacy-checkpoint';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
 import { forecastStartupProject } from '../../src/capabilities/economy/startup/project';
@@ -12,6 +13,7 @@ interface PlanningProof {
 interface PlanningMemory extends Memory { startupPlanningProof?: PlanningProof }
 /** Production job ownership with synthetic model inputs; no native economic selection is implied. */
 export function snapshotStartupPlanningJob(state: StatePort): void {
+  probeStartupPassiveMigration();
   const input = startupDeliveryInput(), home = 'W0N1', memory = Memory as PlanningMemory;
   input.project.spawning.room = home;
   input.project.spawning.requests = input.project.spawning.requests.map(request => ({ ...request,room: home }));
