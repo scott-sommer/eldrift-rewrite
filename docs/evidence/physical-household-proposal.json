@@ -1,0 +1,93 @@
+{
+  "issue": "ED-29",
+  "source": "3436953d9852b427faef8f8218e2b12216d2d0fd",
+  "scope": "Native observed physical household proposal and cooperative model execution; not native physical household actors or realized model income",
+  "native": [
+    {
+      "scenario": "--remote-startup-selected",
+      "nativeSource": "3436953d9852b427faef8f8218e2b12216d2d0fd",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/physical-household-proposal/selected-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a33034401646220ea41e4f7a4a2d32e8b252d0ea4538253a0a13929bdf5a91bf",
+      "uncompressedSha256": "2eb6e1db9d4ccf9190e787d45992292deb3f65238e0c5fac1027d5070546d7a6",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "3436953d9852b427faef8f8218e2b12216d2d0fd",
+        "dirty": false,
+        "bundleSha256": "e646dde5d436be05f1cfe16f6315b53cbaa7b6e1bfe754038b8d5e9d4d21b360",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/physical-household-proposal/samples.jsonl",
+          "rowsSha256": "038fb1032aff384d426e60ea61dd819a1ceefe2440fe2978dc7de3d6cc46d01d",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/physical-household-proposal/pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/physical-household-proposal/physical-schedule.jsonl",
+          "rowsSha256": "8f54e2fdb2e797700688e98544d4e80f7bd611eff749fa15cafb3a89d90f6d9e",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "model": {
+    "physicalStructures": 41,
+    "initialSpawnEnergy": 2300,
+    "physicalCapacity": 2300,
+    "destinationCapacity": 300,
+    "energyPolicy": "spawn-first-range-id-v1",
+    "cooperativeFrames": 20005,
+    "separatePreviewFrames": 1,
+    "paidBirths": 7,
+    "birthEnergy": 2450,
+    "internalTransfers": 400,
+    "heldCargo": 0,
+    "lostCargo": 0,
+    "deliveredEnergy": 12256,
+    "recoveryMargin": 4806,
+    "firstRecoveryAt": 2795,
+    "readOnlyCache": true,
+    "projectFormat": 4,
+    "planningSchema": 4
+  },
+  "actualNativeIncome": 0,
+  "checks": {
+    "targeted": {
+      "cases": 10,
+      "files": 3,
+      "seconds": 0.381
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.463
+    },
+    "lizard": {
+      "productionFiles": 945,
+      "testFiles": 804,
+      "violations": 0
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "boundaries": "passed",
+    "bundle": "passed",
+    "fullUnitSuite": "not run; incremental work"
+  },
+  "remaining": [
+    "Wire and revalidate explicit order at actual chosen-strategy admission",
+    "Calibrate matching native household and remote actors across their lifecycle",
+    "Incumbent/full-workforce schedules and concurrent room capital",
+    "Broader parity, pressure/soak, release rollback and RC gates"
+  ]
+}
