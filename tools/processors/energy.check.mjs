@@ -1,3 +1,4 @@
+import { quoteStartupSpawnRegeneration } from '../../src/capabilities/economy/startup/energy/regeneration';
 import { orderedSpawnEnergy } from '../../src/adapters/screeps/spawn-energy';
 import { createRequire } from 'node:module';
 import { expect, test } from 'vitest';
@@ -7,7 +8,7 @@ const require = createRequire(new URL('./package.json',import.meta.url));
 function withProcessors(run) {
   const utils = require('@screeps/engine/src/utils'), constants = require('@screeps/common/lib/constants'), original = utils.getDriver;
   utils.getDriver = () => ({ constants });
-  try { return run({ charge: require('@screeps/engine/src/processor/intents/spawns/_charge-energy'),transfer: require('@screeps/engine/src/processor/intents/creeps/transfer') }); }
+  try { return run({ charge: require('@screeps/engine/src/processor/intents/spawns/_charge-energy'),transfer: require('@screeps/engine/src/processor/intents/creeps/transfer'),spawnTick: require('@screeps/engine/src/processor/intents/spawns/tick') }); }
   finally { utils.getDriver = original; }
 }
 function fixture() {
@@ -45,4 +46,23 @@ test('shared explicit SDK policy resolves equal-range ties identically in foreca
   const order = orderedSpawnEnergy(points.find(point => point.id === 'spawn'),points).map(point => point.id);
   expect(order).toEqual(['spawn','second','far','near']); f.layout.orders[0].structures = order;
   const model = createStartupEnergyLedger(f.layout); expect(model.charge('spawn',450,0,'birth')).toBe(charge(f.roomObjects.spawn,450,order,f.scope)); compare(model,f.roomObjects);
+}));
+
+test.each([
+  { stock: [100,100],roomEnergy: 200,level: 8,tutorial: false,owned: true,eligible: [true,true] },
+  { stock: [150,149],roomEnergy: 299,level: 8,tutorial: false,owned: true,eligible: [true,true] },
+  { stock: [150,150],roomEnergy: 300,level: 8,tutorial: false,owned: true,eligible: [true,true] },
+  { stock: [0,0],roomEnergy: 0,level: 8,tutorial: true,owned: true,eligible: [false,false] },
+  { stock: [0,0],roomEnergy: 0,level: 8,tutorial: false,owned: false,eligible: [false,false] },
+  { stock: [0,0],roomEnergy: 0,level: 0,tutorial: false,owned: true,eligible: [false,false] },
+  { stock: [100,0],roomEnergy: 100,level: 1,tutorial: false,owned: true,eligible: [true,false] },
+])('passive spawn increment matches pinned tick processor for %j',facts => withProcessors(({ spawnTick }) => {
+  const f = fixture(), spawns = [f.roomObjects.spawn,f.roomObjects.second];
+  f.roomObjects.near.store.energy = 0; f.roomObjects.far.store.energy = 0;
+  spawns.forEach((point,index) => { point.store.energy = facts.stock[index]; point.tutorial = facts.tutorial; });
+  f.scope.roomController = { level: facts.level,user: facts.owned ? 'self' : 'other',x: 10,y: 10 }; f.scope.energyAvailable = facts.roomEnergy; f.scope.gameTime = 0;
+  const quote = quoteStartupSpawnRegeneration({ roomEnergy: facts.roomEnergy,spawns: spawns.map((point,index) => ({ id: point._id,energy: point.store.energy,eligible: facts.eligible[index] })) });
+  for (const point of spawns) spawnTick(point,f.scope);
+  expect(spawns.map((point,index) => point.store.energy-facts.stock[index])).toEqual(spawns.map(point => quote.credits.find(credit => credit.structure === point._id)?.energy ?? 0));
+  expect(spawns.reduce((sum,point,index) => sum+point.store.energy-facts.stock[index],0)).toBe(quote.energy);
 }));
