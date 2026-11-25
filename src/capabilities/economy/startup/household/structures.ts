@@ -1,3 +1,4 @@
+import { startupOutsideExpenseThrough } from '../cash-expenses';
 import type { StartupEnergyEvent } from '../energy/model';
 import type { StartupRedistributionState } from '../redistribution/model';
 import type { StartupHouseholdInput, StartupHouseholdCheckpoint } from './model';
@@ -35,6 +36,7 @@ function validateDepositClock(event: StartupEnergyEvent, state: StartupRedistrib
 
 export function validatePassiveHouseholdStock(input: StartupHouseholdInput, saved: StartupHouseholdCheckpoint, cargo: number): void {
   if (!input.spawning.funding.energyLayout?.regeneration) return;
+  if (saved.endpointSpentEnergy !== startupOutsideExpenseThrough(input.spawning.cash.flows,saved.through)) throw new Error('Household outside expense conservation');
   const stock = saved.spawning.energy!.points.reduce((sum,point) => sum+point.energy,0);
   if (saved.spawning.funding.bank < saved.endpointEnergy+stock+cargo) throw new Error('Passive household outside-stock conservation');
 }

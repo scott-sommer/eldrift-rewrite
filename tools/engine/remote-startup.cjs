@@ -66,8 +66,8 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       const household = memory.householdScheduleProbe; assert.ok(household); assert.equal(household.frames,20005);
       assert.deepEqual(household.rows.map(row => row.tick),[25,30,46,81,150]); assert.equal(household.rows.at(-1).status,'complete');
       assert.equal(household.result.spawning.births.length,7); assert.equal(household.result.cash.birthEnergy,2450);
-      assert.deepEqual(household.result.spawning.redistribution,{ picked: 400,delivered: 400,cargo: 0,lost: 0,endpointEnergy: household.seed.household.endpointEnergy+household.result.delivery.deliveredEnergy-400 });
-      assert.equal(household.result.homeSink.remainingCapacity,household.seed.homeSink.freeCapacity+400-household.result.delivery.deliveredEnergy);
+      assert.deepEqual(household.result.spawning.redistribution,{ picked: 400,delivered: 400,cargo: 0,lost: 0,endpointEnergy: household.seed.household.endpointEnergy+household.result.delivery.deliveredEnergy-400-4 });
+      assert.equal(household.result.homeSink.remainingCapacity,household.seed.homeSink.freeCapacity+400+4-household.result.delivery.deliveredEnergy);
       assert.equal(household.result.cash.deliveredEnergy,household.result.delivery.deliveredEnergy); assert.equal(household.readOnly,true);
       assert.ok(household.seed.project.spawning.funding.energyLayout.regeneration);
       assert.ok(household.result.cash.ambientEnergy > 0); assert.equal(household.result.projectCash.ambientEnergy,household.result.cash.ambientEnergy); assert.equal(household.previewFrames,1); assert.equal(household.energyPolicy,'spawn-first-range-id-v1');
@@ -76,8 +76,9 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
       household.seed.household.redistribution.trips.forEach((trip,index) => {
         assert.equal(trip.pickupAt,homeBirth.activeAt+approach+index*(1+loaded+1+returning)); assert.equal(trip.loadedTicks,loaded); assert.equal(trip.returnTicks,returning); assert.equal(trip.destination,travel.plan.destination.id);
       });
-      const planningEnvelope = household.root.eldrift.records['remoteStartupPlanning/W0N1']; assert.equal(planningEnvelope.version,5); assert.equal(planningEnvelope.data.job.checkpoint.format,5);
-      assert.equal(schedule.namespace.owner,'remotes'); assert.equal(schedule.namespace.version,2); assert.equal(schedule.namespace.complete,true);
+      assert.equal(household.root.eldrift.records['remoteStartupPlanning/W0N1'].data.job.checkpoint.household.endpointSpentEnergy,4);
+      const planningEnvelope = household.root.eldrift.records['remoteStartupPlanning/W0N1']; assert.equal(planningEnvelope.version,6); assert.equal(planningEnvelope.data.job.checkpoint.format,6);
+      assert.equal(schedule.namespace.owner,'remotes'); assert.equal(schedule.namespace.version,3); assert.equal(schedule.namespace.complete,true);
       assert.equal(projection.observedAt,25); assert.equal(projection.costScope,'prospective'); assert.equal(projection.facts.workers.length,0);
       const proposal = projection.cohortProposal; assert.equal(proposal.id,'finite-cohort');
       assert.equal(proposal.expiresAt,Math.min(225,proposal.authorityExpiresAt)); assert.equal(proposal.births.length,2);

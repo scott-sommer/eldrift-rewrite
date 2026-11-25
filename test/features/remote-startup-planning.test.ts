@@ -84,7 +84,7 @@ test('withdrawal is scoped by source/generation/revision and preserves independe
 test.each(['owner','version','checkpoint','input'])('incompatible or corrupt %s state fails closed without replacement',field => {
   const f = fixture(); f.owner.advance(f.request,20);
   const raw = f.state.read('remoteStartupPlanning/W0N1') as { owner: string; version: number; data: { job: { checkpoint: { format: number }; input: { project: { spawning: { liveNames: string[] } } } } } };
-  if (field === 'owner') raw.owner = 'other'; if (field === 'version') raw.version = 6;
+  if (field === 'owner') raw.owner = 'other'; if (field === 'version') raw.version = 7;
   if (field === 'checkpoint') raw.data.job.checkpoint.format = 3; if (field === 'input') raw.data.job.input.project.spawning.liveNames = ['duplicate','duplicate'];
   f.state.write('remoteStartupPlanning/W0N1',raw); const before = JSON.stringify(f.root);
   expect(() => f.owner.read()).toThrow(); expect(() => f.owner.advance({ ...f.request,tick: 2,expectedRevision: 1 },1)).toThrow(); expect(JSON.stringify(f.root)).toBe(before);

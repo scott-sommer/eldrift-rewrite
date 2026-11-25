@@ -1,7 +1,7 @@
+import { startupFlowCount } from '../flow';
 import { requireCheckpoint, record } from '../checkpoints/validation';
 import type { StartupTimelineCheckpoint } from '../checkpoints/timeline';
 import type { StartupSpawnInput } from '../spawn-model';
-import type { StartupCashFlow } from '../cash-model';
 export function validateEnergyFundingCheckpoint(input: StartupSpawnInput, saved: StartupTimelineCheckpoint, result: { available: number; deposited: number; ambientEnergy?: number }): void {
   if (input.funding.energyLayout?.regeneration) validateAmbientLinks(input,saved,result.ambientEnergy);
   const events = saved.energy!.events;
@@ -24,19 +24,20 @@ export function validateEnergyFundingCheckpoint(input: StartupSpawnInput, saved:
 }
 function expenses(input: StartupSpawnInput, from: number, through: number): number {
   if (from > through) return 0;
-  return input.cash.flows.filter(flow => flow.kind !== 'delivery').reduce((sum,flow) => sum+flow.energy*occurrences(flow,from,through),0);
-}
-function occurrences(flow: StartupCashFlow, from: number, through: number): number {
-  if (flow.interval === null) return from <= flow.firstTick && flow.firstTick <= through ? 1 : 0;
-  const first = Math.max(0,Math.ceil((from-flow.firstTick)/flow.interval));
-  const last = Math.min(flow.occurrences-1,Math.floor((through-flow.firstTick)/flow.interval));
-  return Math.max(0,last-first+1);
+  return input.cash.flows.filter(flow => flow.kind !== 'delivery' && flow.spending !== 'outside-spawn').reduce((sum,flow) => sum+flow.energy*startupFlowCount(flow,from,through),0);
 }
 
 function validateAmbientLinks(input: StartupSpawnInput, saved: StartupTimelineCheckpoint, ambientEnergy: number | undefined): void {
   requireCheckpoint(record(saved.accounting.state));
   requireCheckpoint(expenses(input,0,saved.tick-1) === 0);
-  requireCheckpoint(saved.funding.bank >= 0 && saved.accounting.state.minimumEnergy >= 0);
+  const stock = saved.energy!.points.reduce((sum,point) => sum+point.energy,0);
+  requireCheckpoint(saved.funding.bank >= stock && saved.accounting.state.minimumEnergy >= 0);
+  requireCheckpoint(saved.accounting.state.homeConstructionEnergy === scheduledExpense(input,'home-construction',saved.tick-1));
+  requireCheckpoint(saved.accounting.state.upkeepEnergy >= scheduledExpense(input,'upkeep',saved.tick-1));
   requireCheckpoint(saved.energy!.ambientThrough === saved.tick-1);
   requireCheckpoint(saved.accounting.state.ambientEnergy === ambientEnergy);
+}
+
+function scheduledExpense(input: StartupSpawnInput, kind: string, through: number): number {
+  return input.cash.flows.filter(flow => flow.kind === kind).reduce((sum,flow) => sum+flow.energy*startupFlowCount(flow,0,through),0);
 }

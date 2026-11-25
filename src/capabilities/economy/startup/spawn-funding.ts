@@ -13,6 +13,10 @@ export function createStartupSpawnFunding(input: StartupSpawnFunding, homeEnergy
       // External expenses conservatively consume accessible stock first when their physical pool is unspecified.
       accessible = Math.max(0,accessible-energy);
     },
+    spendOutside(energy: number): void {
+      if (!Number.isSafeInteger(energy) || energy < 0 || energy > bank-accessible) throw new Error('Unfunded outside expense');
+      bank -= energy;
+    },
     receive(energy: number): void { bank += energy; },
     ambient(energy: number): void {
       if (!input.energyLayout?.regeneration || !Number.isSafeInteger(energy) || energy < 0 || energy > input.capacity-accessible) throw new Error('Invalid ambient funding credit');

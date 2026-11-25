@@ -1,3 +1,4 @@
+import { startupExpenseTotals } from '../cash-expenses';
 import { StartupCheckpointCapacityError } from '../checkpoints/capacity';
 import { copyPlain } from '../../../../core/plain-data';
 import { spawnedActiveTicks } from '../../../spawning/lifetime';
@@ -40,11 +41,12 @@ class Household {
   begin(tick: number): StartupScheduledBirth[] {
     if (this.open || tick !== this.tick) throw new Error('Household frame order');
     const before = this.timeline.fundingState();
-    const costs = this.input.spawning.cash.flows.filter(flow => flow.kind !== 'delivery' && startupFlowDue(flow,tick)).reduce((sum,flow) => sum+flow.energy,0);
+    const expenses = startupExpenseTotals(this.input.spawning.cash.flows.filter(flow => startupFlowDue(flow,tick))), costs = expenses.outside+expenses.unlocated;
+    if (expenses.outside > this.endpoint) throw new Error('Household endpoint cannot fund outside expense');
     if (costs > before.bank-this.transfers.result().cargo) throw new Error('Household expenses require reserved cargo');
     const births = this.timeline.begin(tick);
     const total = this.timeline.frameFlows().filter(flow => flow.kind !== 'delivery').reduce((sum,flow) => sum+flow.energy,0);
-    const spent = Math.min(this.endpoint,Math.max(0,total-before.accessible)); this.endpoint -= spent; this.spent += spent;
+    const spent = expenses.outside+Math.min(this.endpoint-expenses.outside,Math.max(0,total-expenses.outside-before.accessible)); this.endpoint -= spent; this.spent += spent;
     for (const birth of births) this.births.set(birth.request,birth);
     this.open = true; return births;
   }
@@ -56,6 +58,7 @@ class Household {
     const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0); this.endpoint += credit; this.received += credit;
     this.open = false; this.tick++; return { ...effects,flows };
   }
+  frameOutsideExpense(): number { return this.timeline.frameOutsideExpense(); }
   frameAmbientEnergy(): number { return this.timeline.frameAmbientEnergy(); }
   checkpoint(): StartupHouseholdCheckpoint {
     if (this.open) throw new Error('Cannot checkpoint open household frame');

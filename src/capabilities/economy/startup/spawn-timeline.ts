@@ -1,3 +1,4 @@
+import { startupExpenseTotals } from './cash-expenses';
 import { copyPlain } from '../../../core/plain-data';
 import { restoreTimelineCheckpoint } from './checkpoints/timeline';
 import { snapshotStartupSpawns } from './snapshot';
@@ -22,6 +23,7 @@ class StartupSpawnTimeline {
   private readonly energy;
   private readonly passive: boolean;
   private ambientEnergy = 0;
+  private outsideExpense = 0;
   private readonly births: StartupScheduledBirth[] = [];
   private readonly flows: StartupCashFlow[];
   private receiptCount = 0;
@@ -51,6 +53,7 @@ class StartupSpawnTimeline {
     this.flows.push(...this.births.map(birthFlow)); this.receiptIds.clear();
     for (const id of saved.receiptIds) this.receiptIds.add(id);
     this.tick = saved.tick; this.receiptCount = saved.receiptCount;
+    this.outsideExpense = startupExpenseTotals(this.external(saved.tick-1)).outside;
     this.ambientEnergy = this.passive ? saved.energy!.events.filter(event => event.kind === 'ambient' && event.tick === saved.tick-1).reduce((sum,event) => sum+event.energy,0) : 0;
     if (this.funding.checkpoint().bank !== saved.accounting.state.endingEnergy || saved.accounting.state.birthEnergy !== this.births.reduce((sum,birth) => sum+birth.cost,0)) throw new Error('Invalid startup checkpoint funding/accounting');
   }
@@ -61,10 +64,11 @@ class StartupSpawnTimeline {
   }
   begin(tick: number): StartupScheduledBirth[] {
     if (this.open || tick !== this.tick || tick > this.input.cash.horizon) throw new Error('Startup spawn frame order');
-    const frame = this.external(tick), expenses = frame.filter(flow => flow.kind !== 'delivery').reduce((sum,flow) => sum+flow.energy,0);
-    if (this.passive && expenses > this.funding.checkpoint().bank) throw new Error('Unfunded passive startup expenses');
-    if (this.passive && expenses > 0) throw new Error('Unlocated passive startup expense');
-    this.frame = frame; this.ambientEnergy = 0; this.funding.spend(expenses);
+    const frame = this.external(tick), expenses = startupExpenseTotals(frame);
+    this.validateExpenses(expenses);
+    this.frame = frame; this.ambientEnergy = 0; this.outsideExpense = expenses.outside;
+    if (expenses.outside) this.funding.spendOutside(expenses.outside);
+    this.funding.spend(expenses.unlocated);
     const slots = this.slots.map(spawn => ({ id: spawn.id,room: spawn.room,busy: spawn.availableAt > tick }));
     const allocated = admitStartupSpawns({ ...this.input,requests: [...this.pending.values()] },slots,tick,{
       available: () => this.funding.available(this.input.cash.protectedEnergy),charge: allocation => this.charge(allocation,tick),
@@ -83,6 +87,7 @@ class StartupSpawnTimeline {
     this.funding.receive(credited+this.external(this.tick).filter(flow => flow.kind === 'delivery').reduce((sum,flow) => sum+flow.energy,0));
     this.open = false; this.tick++; return this.frame.map(flow => ({ ...flow }));
   }
+  frameOutsideExpense(): number { return this.outsideExpense; }
   frameAmbientEnergy(): number { return this.ambientEnergy; }
   fundingState() { return this.funding.checkpoint(); }
   transferHousehold(energy: number, destination?: string, holder?: string): number {
@@ -108,6 +113,12 @@ class StartupSpawnTimeline {
     const unscheduled = [...this.pending.values()].map(request => ({ request: request.id,reason: this.reason(request.name,request.expiresAt) }));
     return { births: this.births.map(birth => ({ ...birth })),unscheduled,flows: this.flows.map(flow => ({ ...flow })),funding: this.funding.result(),
       cash: this.accounting.result() };
+  }
+  private validateExpenses(expenses: ReturnType<typeof startupExpenseTotals>): void {
+    const bank = this.funding.checkpoint().bank, stock = this.energy?.stock() ?? 0;
+    if (expenses.outside > Math.max(0,bank-stock)) throw new Error('Unfunded outside expense');
+    if (this.passive && expenses.unlocated > bank-expenses.outside) throw new Error('Unfunded passive startup expenses');
+    if (this.passive && expenses.unlocated > 0) throw new Error('Unlocated passive startup expense');
   }
   private charge(allocation: SpawnAssignment, tick: number): boolean {
     if (this.energy && !this.energy.charge(allocation.spawn,allocation.cost,tick,allocation.request.id)) return false;

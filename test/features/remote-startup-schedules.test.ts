@@ -57,7 +57,7 @@ test('older clocks and incompatible metadata refuse without changing either owne
   const f = fixture(); f.owner.advance({ ...f.query,tick: 5 },{ frames: 10,extensions: 1 }); const before = JSON.stringify(f.root);
   expect(f.owner.advance(f.query,{ frames: 10,extensions: 1 })).toMatchObject({ status: 'deferred',reason: 'clock' }); expect(JSON.stringify(f.root)).toBe(before);
   const key = 'remoteStartupSchedules/W0N1', envelope = f.state.read(key) as { owner: string; version: number; data: unknown };
-  f.state.write(key,{ ...envelope,version: 3 }); const future = JSON.stringify(f.root);
+  f.state.write(key,{ ...envelope,version: 4 }); const future = JSON.stringify(f.root);
   expect(() => f.owner.result({ ...f.query,tick: 5 })).toThrow('future'); expect(JSON.stringify(f.root)).toBe(future);
 });
 test('invalid budgets fail before state initialization',() => {

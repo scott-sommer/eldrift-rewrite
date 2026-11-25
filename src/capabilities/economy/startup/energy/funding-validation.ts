@@ -1,7 +1,9 @@
+import { startupHasLocatedExpenses } from '../cash-expenses';
 import { validateEnergyLayout } from './validation';
 import type { StartupSpawnInput } from '../spawn-model';
 export function validateStructureFunding(input: StartupSpawnInput): void {
   const layout = input.funding.energyLayout;
+  if (startupHasLocatedExpenses(input.cash.flows) && !layout?.regeneration) throw new Error('Located spending requires passive physical mode');
   if (!layout) return;
   validateEnergyLayout(layout);
   const available = layout.structures.reduce((sum,point) => sum+point.energy-(point.reservedEnergy ?? 0),0);

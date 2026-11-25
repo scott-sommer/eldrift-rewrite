@@ -3,9 +3,8 @@ import { StartupCheckpointCapacityError } from '../checkpoints/capacity';
 import { spawnedActiveTicks } from '../../../spawning/lifetime';
 import { copyPlain } from '../../../../core/plain-data';
 import { householdIdentity, householdCheckpointFormat } from './validation';
-import { startupFlowDue } from '../flow';
+import { startupFlowCount } from '../flow';
 import type { StartupHouseholdInput, StartupHouseholdCheckpoint } from './model';
-import type { StartupCashFlow } from '../cash-model';
 export function readHouseholdCheckpoint(input: StartupHouseholdInput, value: StartupHouseholdCheckpoint): StartupHouseholdCheckpoint {
   const saved = copyPlain(value);
   if (saved.format !== householdCheckpointFormat(input) || saved.binding !== householdIdentity(input)) throw new Error('Invalid household checkpoint binding');
@@ -33,11 +32,7 @@ function validateLosses(input: StartupHouseholdInput, saved: StartupHouseholdChe
   });
 }
 function scheduled(input: StartupHouseholdInput, kind: string, through: number): number {
-  return input.spawning.cash.flows.filter(flow => flow.kind === kind).reduce((sum,flow) => sum+occurrences(flow,through)*flow.energy,0);
-}
-function occurrences(flow: StartupCashFlow, through: number): number {
-  if (flow.interval === null) return startupFlowDue(flow,through) || through >= flow.firstTick ? 1 : 0;
-  return Math.max(0,Math.min(flow.occurrences,Math.floor((through-flow.firstTick)/flow.interval)+1));
+  return input.spawning.cash.flows.filter(flow => flow.kind === kind).reduce((sum,flow) => sum+startupFlowCount(flow,0,through)*flow.energy,0);
 }
 function natural(value: number): boolean { return Number.isSafeInteger(value) && value >= 0; }
 

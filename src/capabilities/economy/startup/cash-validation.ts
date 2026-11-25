@@ -10,7 +10,7 @@ function validateFlow(flow: StartupCashFlow): void {
   if (typeof flow.id !== 'string' || flow.id.length === 0 || flow.id.length > 256) throw new Error('Invalid startup cash flow identity');
   if (!['birth','home-construction','upkeep','delivery'].includes(flow.kind)) throw new Error('Invalid startup cash flow kind');
   if (![flow.energy,flow.firstTick,flow.occurrences].every(bounded) || flow.occurrences === 0) throw new Error('Invalid startup cash flow bounds');
-  validateRecurrence(flow);
+  validateRecurrence(flow); validateStartupCashLocation(flow);
 }
 function bounded(value: number): boolean { return Number.isSafeInteger(value) && value >= 0 && value <= 1000000; }
 
@@ -20,3 +20,8 @@ function validateRecurrence(flow: StartupCashFlow): void {
 }
 
 function capital(value: number): boolean { return Number.isSafeInteger(value) && value >= 0 && value <= 1000000000; }
+
+export function validateStartupCashLocation(flow: StartupCashFlow): void {
+  if (flow.spending === undefined) return;
+  if (flow.spending !== 'outside-spawn' || !['upkeep','home-construction'].includes(flow.kind)) throw new Error('Invalid startup spending location');
+}

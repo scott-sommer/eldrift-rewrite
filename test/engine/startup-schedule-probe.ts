@@ -50,9 +50,10 @@ function advance(probe: ScheduleProbe, frames: number): void {
 /** Native physical facts and measured geometry; actual actor policy still needs calibration. */
 function householdProbe(state: StatePort, seed: ScheduleProbe, quote: NativeStartupQuote, measured: HouseholdTravelQuote): ScheduleProbe {
   const base = decodeStartupPlanningInput(seed.seed);
+  base.project.spawning.cash.flows = [...base.project.spawning.cash.flows,{ id: 'declared-outside-upkeep',kind: 'upkeep',spending: 'outside-spawn',energy: 1,firstTick: 20,interval: 10,occurrences: 4 }];
   const proposal = createNativeHouseholdProposal(state,4000)(base,{ observedAt: quote.observedAt,plan: measured.plan,trips: 4,energy: 100,regeneration: { eligibleSpawns: quote.facts.spawns.map(spawn => spawn.id),otherRoomEnergy: 0 },
     request: { id: 'household-probe',name: 'household-probe',owner: 'household-model',room: quote.plan.home,body: [...quote.plan.courier],
       priority: 10,readyAt: 0,expiresAt: 4001,placement: { spawn: quote.plan.spawn.id,exit: { ...quote.plan.spawn.exit } } } });
   if (proposal.status !== 'ready') throw new Error('Expected physical household proposal: '+proposal.reason);
-  return { root: {},previewFrames: proposal.previewFrames,energyPolicy: proposal.energyPolicy,seed: encodeStartupPlanningInput(proposal.input),context: { ...seed.context,binding: seed.context.binding+':physical-home-passive-v2:'+proposal.energyPolicy },frames: 0,rows: [] };
+  return { root: {},previewFrames: proposal.previewFrames,energyPolicy: proposal.energyPolicy,seed: encodeStartupPlanningInput(proposal.input),context: { ...seed.context,binding: seed.context.binding+':physical-home-passive-outside-v3:'+proposal.energyPolicy },frames: 0,rows: [] };
 }

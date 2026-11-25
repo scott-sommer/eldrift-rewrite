@@ -1,6 +1,6 @@
 import { startupHomeCashSurplus } from './cash-balances';
 import { restoreCashCheckpoint } from './checkpoints/cash';
-import { validateStartupCash } from './cash-validation';
+import { validateStartupCash, validateStartupCashLocation } from './cash-validation';
 import type { StartupCashInput, StartupCashForecast, StartupCashFlow } from './cash-model';
 /** Statistical accounting only; physical funding/claims remain owned by the caller. */
 export function createStartupCashLedger(input: Omit<StartupCashInput,'flows'>, checkpoint?: unknown, options: { ambient?: boolean } = {}) { return new StartupCashLedger(input,checkpoint,options.ambient ?? false); }
@@ -48,6 +48,7 @@ function spend(result: StartupCashForecast, flows: readonly StartupCashFlow[]): 
 function validateFrame(flows: readonly StartupCashFlow[], credit: number): void {
   if (flows.length > 144 || !Number.isSafeInteger(credit) || credit < 0) throw new Error('Invalid startup cash frame');
   for (const flow of flows) {
+    validateStartupCashLocation(flow);
     if (!['birth','home-construction','upkeep','delivery'].includes(flow.kind) || !Number.isSafeInteger(flow.energy) || flow.energy < 0 || flow.energy > 1000000) throw new Error('Invalid startup cash effect');
   }
 }

@@ -11,13 +11,13 @@ export function createStartupProjectTimeline(input: StartupDeliveryInput, saved?
   const snapshot = saved ? { ...saved.household!,spawning: saved.timeline } : undefined;
   const timeline = createStartupHousehold({ ...input.household,spawning: input.project.spawning },snapshot);
   return { begin: (tick: number) => timeline.begin(tick),result: () => timeline.result(),
-    finish(receipts: readonly StartupCashReceipt[]) { const result = timeline.finish(receipts); return { flows: result.flows,picked: result.withdrawn,ambientEnergy: timeline.frameAmbientEnergy() }; },
+    finish(receipts: readonly StartupCashReceipt[]) { const result = timeline.finish(receipts); return { flows: result.flows,picked: result.withdrawn,spent: timeline.frameOutsideExpense(),ambientEnergy: timeline.frameAmbientEnergy() }; },
     checkpoint() { const wire = timeline.checkpoint(); return { timeline: wire.spawning,household: householdPart(wire) }; } };
 }
 function ordinary(input: StartupDeliveryInput, saved?: StartupProjectCheckpoint) {
   const timeline = createStartupSpawnTimeline(input.project.spawning,saved?.timeline);
   return { begin: (tick: number) => timeline.begin(tick),result: () => timeline.result(),
-    finish(receipts: readonly StartupCashReceipt[]) { const flows = timeline.finish(receipts); return { flows,picked: 0,ambientEnergy: timeline.frameAmbientEnergy() }; },checkpoint: () => ({ timeline: timeline.checkpoint() }) };
+    finish(receipts: readonly StartupCashReceipt[]) { const flows = timeline.finish(receipts); return { flows,picked: 0,spent: 0,ambientEnergy: timeline.frameAmbientEnergy() }; },checkpoint: () => ({ timeline: timeline.checkpoint() }) };
 }
 function householdPart(wire: StartupHouseholdCheckpoint): Omit<StartupHouseholdCheckpoint,'spawning'> {
   return { format: wire.format,binding: wire.binding,through: wire.through,endpointEnergy: wire.endpointEnergy,endpointSpentEnergy: wire.endpointSpentEnergy,
@@ -33,5 +33,5 @@ export function validateHouseholdProject(input: StartupDeliveryInput): void {
 }
 
 function validatePassiveProject(input: StartupDeliveryInput): void {
-  if (input.project.spawning.funding.energyLayout?.regeneration && input.project.spawning.cash.flows.some(flow => flow.kind !== 'delivery' && flow.energy > 0)) throw new Error('Unlocated passive project expense');
+  if (input.project.spawning.funding.energyLayout?.regeneration && input.project.spawning.cash.flows.some(flow => flow.kind !== 'delivery' && flow.spending !== 'outside-spawn' && flow.energy > 0)) throw new Error('Unlocated passive project expense');
 }
