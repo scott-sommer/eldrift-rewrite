@@ -1,3 +1,5 @@
+import { openState } from '../../src/persistence/versioned-state';
+import { operatorSchema } from '../../src/features/operator/state';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createNativeDispatch } from '../../src/app/native-dispatch';
 import { createNativeStartupEnergyAdmission } from '../../src/app/remotes/startup/energy-admission';
@@ -11,6 +13,7 @@ const runtime = dispatch();
 export function loop(): void {
   const memory = Memory as ProbeMemory, spawn = Game.spawns.Spawn1!;
   if (!memory.spawnPreflight) {
+    openState(state,'operator/config',operatorSchema);
     memory.spawnPreflight = { calls: [],pending: [],energy: 0,names: [],recreated: false };
     state.write('quantity-reservations/empire',{ owner: 'quantity-reservations',version: 1,data: { claims: [{ id: 'other-owner',owner: 'other',holder: 'worker',scope: 'home',expiresAt: 50,
       allocations: [{ pool: logisticsPool('stock',spawn.id,'energy'),amount: 100 }] }] } });
