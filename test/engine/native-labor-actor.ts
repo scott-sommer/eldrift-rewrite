@@ -7,7 +7,7 @@ import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createNativeDispatch } from '../../src/app/native-dispatch';
 import { createNativeWorkFeature } from '../../src/app/native-work';
 import { resolveConfig } from '../../src/config/resolve';
-import type { FeatureContext } from '../../src/app/runtime-model';
+import type { EmpireFeatureContext, FeatureContext } from '../../src/app/runtime-model';
 import type { NativeLaborProof } from './native-labor-model';
 import type { LaborTaskPayload } from '../../src/features/work/labor-task';
 /** Exercise the production worker room feature; financial phase deltas do not choose these actions. */
@@ -24,6 +24,7 @@ export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undef
   const workers = createNativeWorkFeature(state,dispatch,{},() => false,{
     observeIntent: (_,action,energy,result) => { if (result.status === 'issued') { proof.calls.push({ tick: Game.time,action,energy,code: result.code }); if (action === 'pickup') interruptLabor(proof,'after'); } },
   });
+  workers.loss.run({} as EmpireFeatureContext);
   const home = proof.proposal!.input.request.room;
   // Keep the contended worker idle after refusal so later ordinary cargo policy is outside this fixture.
   if ((!proof.incoming && !proof.unknown) || !proof.actorFailure) workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult && !proof.actorFailure && !(proof.cancel && Game.time >= (proof.loaded ? 12 : 11)),workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);

@@ -1,3 +1,4 @@
+import { createNativeLaborLossFeature } from './native-labor/loss';
 import { createNativeLaborExecution } from './native-labor/execute';
 import { laborTaskDefinition } from '../features/work/labor-task';
 import type { NativeLaborPolicy } from './native-labor/ports';
@@ -67,5 +68,5 @@ export function createNativeWorkFeature(state: StatePort, dispatch: ReturnType<t
     if (!settings.workersEnabled) return;
     dispatch.activate(); execute(creep.name, { creep, config: settings });
   }
-  return { feature, definitions: { ...definitions, ...cargo.definitions,...labor.definitions } };
+  return { feature,loss: createNativeLaborLossFeature(state,schemas), definitions: { ...definitions, ...cargo.definitions,...labor.definitions } };
 }

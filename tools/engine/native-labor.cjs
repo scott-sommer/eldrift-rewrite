@@ -1,3 +1,4 @@
+const { verifyNativeLaborHomeLoss } = require('./native-labor-home-loss.cjs');
 const { verifyNativeLaborUnknown } = require('./native-labor-unknown.cjs');
 const { verifyNativeLaborIncoming } = require('./native-labor-incoming.cjs');
 const { verifyNativeLaborLoaded } = require('./native-labor-loaded.cjs');
@@ -13,12 +14,14 @@ async function nativeLaborWorld(server,bot,kind,complete = false,travel = false,
   if (incoming || unknown) await server.world.addRoomObject('W0N1','creep',14,14,{ name: 'labor-donor',user: bot.id,body: ['carry','move'].map(type => ({ type,hits: 100 })),store: { energy: 1 },storeCapacity: 50,hits: 200,hitsMax: 200,spawning: false,fatigue: 0,ageTime: 1500 });
   if (kind === 'repair') await server.world.addRoomObject('W0N1','road',14,16,{ user: bot.id,hits: 1000,hitsMax: 5000,nextDecayTime: 100000 });
 }
-function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false,cancel = false,fault,loaded = false,incoming = false,unknown = false) {
+function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false,cancel = false,fault,loaded = false,incoming = false,unknown = false,homeLost = false) {
   const proof = memory.nativeLabor; evidence.nativeLabor = proof; assert.ok(proof); assert.equal(proof.complete,complete); assert.equal(proof.travel,travel); assert.equal(proof.kind,kind); assert.equal(proof.rows.length,26);
   assert.equal(proof.initialSpawn,300); assert.equal(proof.initialEndpoint,1000); assert.equal(proof.activeAt,10);
   assert.deepEqual(memory.stampReloads,loaded ? [11,13,17] : [11,13]);
   assert.equal(proof.loaded,loaded);
   assert.equal(proof.incoming,incoming);
+  assert.equal(proof.homeLost,homeLost);
+  if (homeLost) { verifyNativeLaborHomeLoss(proof); return; }
   assert.equal(proof.unknown,unknown);
   if (unknown) { verifyNativeLaborUnknown(proof); return; }
   if (incoming) { verifyNativeLaborIncoming(proof); return; }
