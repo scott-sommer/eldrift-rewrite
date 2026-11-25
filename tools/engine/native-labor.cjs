@@ -18,6 +18,9 @@ function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false)
   assert.equal(result.labor.jobs[0].returned,load-spent); assert.equal(result.labor.jobs[0].cargo,0);
   assert.equal(result.cash.homeConstructionEnergy,kind === 'build' ? spent : 0); assert.equal(result.cash.upkeepEnergy,kind === 'build' ? 0 : 2);
   if (complete) {
+    assert.equal(proof.planning.savedAt,1); assert.equal(proof.planning.resumedAt,14); assert.equal(proof.planning.through,25);
+    assert.equal(proof.planning.endingEnergy,1122); assert.equal(proof.planning.readOnlyOperational,true);
+    assert.equal(proof.planning.assessment.accepted,false); assert.ok(proof.planning.assessment.rejected.includes('delivery'));
     assert.equal(proof.proposalCurrent,true); assert.equal(proof.proposalReadOnly,true);
     assert.equal(proof.proposal.facts.target.remainingWork,3); assert.equal(proof.proposal.job.energy,3);
   }

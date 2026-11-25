@@ -1,3 +1,4 @@
+import { resumeLaborPlanning } from './native-labor-planning';
 import { moveNativeLabor } from './native-labor-travel';
 import { createStartupHousehold } from '../../src/capabilities/economy/startup/household/timeline';
 import { createNativeSpawn } from '../../src/adapters/screeps/spawn';
@@ -13,6 +14,7 @@ export function loop(): void {
   const creep = Game.creeps['native-labor'], actual = observe(proof,spawn,storage,creep);
   proof.rows.push({ tick: Game.time,actual,...(creep ? { position: { x: creep.pos.x,y: creep.pos.y,fatigue: creep.fatigue } } : {}),...(proof.expected ? { expected: proof.expected } : {}) });
   if (creep && !creep.spawning && proof.activeAt === undefined) proof.activeAt = Game.time;
+  resumeLaborPlanning(proof);
   const tick = Game.time-1;
   if (tick > 24) return;
   const input = laborInput(proof,spawn), model = createStartupHousehold(input,proof.checkpoint), before = proof.checkpoint?.labor?.jobs[0];

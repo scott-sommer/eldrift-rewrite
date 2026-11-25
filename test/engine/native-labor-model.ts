@@ -1,3 +1,4 @@
+import type { LaborCandidatePlanningProof } from './native-labor-planning-model';
 import { nativeLaborSpawning } from './native-labor-input';
 import type { LaborTravelQuote } from '../../src/capabilities/economy/startup/household/labor/travel';
 import { nativeLaborRoute } from './native-labor-travel';
@@ -10,7 +11,7 @@ export type LaborKind = 'build' | 'repair' | 'upgrade';
 export interface LaborSnapshot { spawn: number; endpoint: number; cargo: number; bank: number; progress: number }
 export interface NativeLaborProof {
   kind: LaborKind; complete: boolean; travel: boolean; targetTotal: number; initialSpawn: number; initialEndpoint: number; initialProgress: number;
-  proposal?: LaborProposalSnapshot; proposalCurrent?: boolean; proposalReadOnly?: boolean; travelQuote?: LaborTravelQuote; routeReadOnly?: boolean; checkpoint?: StartupHouseholdCheckpoint; result?: ReturnType<ReturnType<typeof createStartupHousehold>['result']>;
+  planning?: LaborCandidatePlanningProof; proposal?: LaborProposalSnapshot; proposalCurrent?: boolean; proposalReadOnly?: boolean; travelQuote?: LaborTravelQuote; routeReadOnly?: boolean; checkpoint?: StartupHouseholdCheckpoint; result?: ReturnType<ReturnType<typeof createStartupHousehold>['result']>;
   expected?: LaborSnapshot; rows: { tick: number; actual: LaborSnapshot; expected?: LaborSnapshot; position?: { x: number; y: number; fatigue: number } }[];
   calls: { tick: number; action: string; code: number; energy: number }[]; activeAt?: number;
 }

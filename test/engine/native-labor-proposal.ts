@@ -1,3 +1,4 @@
+import { beginLaborPlanning } from './native-labor-planning';
 import { createNativeLaborCandidate } from '../../src/app/remotes/startup/household/labor-candidate';
 import { startupDeliveryInput } from '../fixtures/startup-delivery';
 import { nativeLaborSpawning } from './native-labor-input';
@@ -24,6 +25,7 @@ export function nativeLaborProposal(proof: NativeLaborProof, request: SpawnReque
   if (proposal.status !== 'ready') throw new Error('Native workload proposal refused: '+proposal.reason);
   const candidate = proposal.read();
   if (candidate.previewFrames !== 1 || !proposal.fulfilled(forecastStartupProject(candidate.input))) throw new Error('Funded labor candidate failed its work obligation');
+  proof.planning = beginLaborPlanning(candidate.input,candidate.binding);
   proof.proposal = candidate.proposal; proof.proposalCurrent = proposal.current(); proof.proposalReadOnly = before === JSON.stringify(Memory.eldrift);
   return proof.proposal.job;
 }
