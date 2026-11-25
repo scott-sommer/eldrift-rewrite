@@ -20,7 +20,8 @@ function fixture() {
   return { seed,facts,prepare: createLaborCandidate(createLaborProposal(ports)) };
 }
 test('candidate preview admits and charges the worker once before attaching required work',() => {
-  const f = fixture(), before = startupProjectIdentity(f.seed.base), result = f.prepare(f.seed,1); expect(result.status).toBe('ready');
+  const f = fixture(); delete f.seed.base.household!.endpointCapacity;
+  const before = startupProjectIdentity(f.seed.base), result = f.prepare(f.seed,1); expect(result.status).toBe('ready');
   if (result.status !== 'ready') throw new Error('Expected candidate');
   const candidate = result.read(); expect(candidate.previewFrames).toBe(1); expect(candidate.proposal.input.birth).toMatchObject({ request: 'worker',startAt: 0,activeAt: 9,cost: 200 });
   expect(candidate.input.project.spawning.requests.filter(request => request.id === 'worker')).toHaveLength(1);

@@ -16,7 +16,7 @@ export function nativeLaborProposal(proof: NativeLaborProof, request: SpawnReque
   const base = startupDeliveryInput(), storage = spawn.room.storage!;
   base.project.spawning = nativeLaborSpawning(proof,spawn,request); base.project.spawning.requests = [];
   base.project.remainingProgress = 0; base.project.workers = []; base.couriers = [];
-  base.household = { endpointEnergy: proof.initialEndpoint,endpointCapacity: storage.store.getCapacity(RESOURCE_ENERGY),redistribution: { horizon: 24,trips: [] } };
+  base.household = { endpointEnergy: proof.initialEndpoint,redistribution: { horizon: 24,trips: [] } };
   base.homeSink = { capacity: storage.store.getCapacity(RESOURCE_ENERGY),freeCapacity: storage.store.getFreeCapacity(RESOURCE_ENERGY),changes: [] };
   const proposal = createNativeLaborCandidate(createMemoryPort(() => Memory),4000)({ base,endpoint: storage.id,proposal: {
     observedAt: Game.time,request,source: storage.id,pickup: point,order,service: point,
