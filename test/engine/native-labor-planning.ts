@@ -1,3 +1,4 @@
+import { createLaborTaskStaging } from '../../src/features/work/stage-labor-task';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
 import { createStartupCandidateCatalog } from '../../src/features/remotes/startup/candidates/catalog';
@@ -16,6 +17,7 @@ export function beginLaborPlanning(input: StartupDeliveryInput, binding: string)
 /** Resume only after native global reloads; root is isolated from operational state. */
 export function resumeLaborPlanning(labor: NativeLaborProof): void {
   if (!labor.planning || Game.time !== 14) return;
+  restoreStagedTask(labor);
   const proof = labor.planning, state = createMemoryPort(() => proof.root), planner = createStartupPlanningJob(state,'W0N1');
   const before = JSON.stringify(Memory.eldrift), saved = planner.read();
   if (saved.job?.checkpoint.tick !== 13 || planner.result(query(proof))) throw new Error('Expected incomplete restored labor planning');
@@ -34,4 +36,13 @@ export function resumeLaborPlanning(labor: NativeLaborProof): void {
 }
 function query(proof: LaborCandidatePlanningProof) {
   return { room: 'E0N1',source: 'finance-only-source',generation: 1,binding: proof.binding,observedAt: proof.savedAt,expiresAt: 26,tick: Game.time,input: decodeStartupPlanningInput(proof.input) };
+}
+
+function restoreStagedTask(labor: NativeLaborProof): void {
+  const proof = labor.stagedTask;
+  if (!proof) throw new Error('Missing staged labor task');
+  const before = JSON.stringify(proof.root), task = createLaborTaskStaging(createMemoryPort(() => proof.root)).read(labor.proposal!.input.request.name)?.queue[0];
+  if (!task || task.phase !== 'await-birth') throw new Error('Missing restored labor obligation');
+  proof.restoredAt = Game.time; proof.readOnly = before === JSON.stringify(proof.root);
+  if (!proof.readOnly) throw new Error('Restoring labor obligation changed its owner state');
 }

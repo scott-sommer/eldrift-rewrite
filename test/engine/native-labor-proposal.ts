@@ -1,3 +1,4 @@
+import { createLaborTaskStaging } from '../../src/features/work/stage-labor-task';
 import { peekSpawnIdentity } from '../../src/features/population/spawn-identity';
 import { beginLaborPlanning } from './native-labor-planning';
 import { createNativeLaborWorkforce } from '../../src/app/remotes/startup/household/labor-workforce';
@@ -22,6 +23,8 @@ export function nativeLaborProposal(proof: NativeLaborProof, request: SpawnReque
   const candidate = proposal.read();
   if (candidate.previewFrames !== 1 || !proposal.fulfilled(forecastStartupProject(candidate.input))) throw new Error('Funded labor candidate failed its work obligation');
   Object.assign(request,candidate.proposal.input.request);
+  proof.stagedTask = { root: {},stagedAt: Game.time };
+  if (createLaborTaskStaging(createMemoryPort(() => proof.stagedTask!.root)).stage(candidate.proposal,Game.time,proposal.current) !== 'staged') throw new Error('Expected staged labor obligation');
   proof.planning = beginLaborPlanning(candidate.input,candidate.binding);
   proof.proposal = candidate.proposal; proof.proposalCurrent = proposal.current(); proof.proposalReadOnly = before === JSON.stringify(Memory.eldrift);
   return proof.proposal.job;

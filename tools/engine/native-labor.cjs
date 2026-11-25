@@ -18,6 +18,7 @@ function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false)
   assert.equal(result.labor.jobs[0].returned,load-spent); assert.equal(result.labor.jobs[0].cargo,0);
   assert.equal(result.cash.homeConstructionEnergy,kind === 'build' ? spent : 0); assert.equal(result.cash.upkeepEnergy,kind === 'build' ? 0 : 2);
   if (complete) {
+    assert.equal(proof.stagedTask.stagedAt,1); assert.equal(proof.stagedTask.restoredAt,14); assert.equal(proof.stagedTask.readOnly,true);
     assert.deepEqual(proof.birthQueue,{ id: 'ed-W0N1-1',readyAt: 1,expiresAt: 2,activeAt: 10,reserved: true,removed: true });
     assert.equal(proof.proposal.input.request.id,proof.birthQueue.id);
     assert.equal(proof.planning.savedAt,1); assert.equal(proof.planning.resumedAt,14); assert.equal(proof.planning.through,25);

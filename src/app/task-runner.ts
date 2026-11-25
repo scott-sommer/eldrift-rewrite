@@ -1,3 +1,4 @@
+import { taskScope } from '../persistence/tasks/scope';
 import { execute } from '../core/execution/execute';
 import type { Handlers } from '../core/execution/model';
 import { openState, saveState } from '../persistence/versioned-state';
@@ -9,9 +10,7 @@ import { createReservationCleanup } from '../persistence/reservation-cleanup';
 export interface TaskBehavior<Context> extends TaskDefinition {
   handlers(task: Readonly<TaskRecord>): Handlers<Context>;
 }
-export function taskScope(unit: string, task: string): string {
-  return `task:${JSON.stringify([unit, task])}`;
-}
+export { taskScope } from '../persistence/tasks/scope';
 export function createTaskRunner<Context>(port: StatePort, behaviors: Readonly<Record<string, TaskBehavior<Context>>>, clock: () => number,
   definitions: Readonly<Record<string, TaskDefinition>> = behaviors) {
   let lastTick: number | undefined;
