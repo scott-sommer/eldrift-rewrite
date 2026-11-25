@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Read-only missing-worker/body proposal and native funded completion; unchanged ordinary population after shared body-policy extraction",
+  "native": [
+    {
+      "scenario": "completion",
+      "nativeSource": "d6469935ec73f528a885b2766f88440426ca2070",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-workforce/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "856e5b97516f9acec6be841e7b468446b0b1d0b69ad77ea062b9d212fcbd8a19",
+      "uncompressedSha256": "8467e7639a99d02f1484684c69c6167cecb73463665f9f80aaafde3354d36ae1",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-workforce/proposal.jsonl",
+          "rowsSha256": "1b3a93031f9125dc7c7bb788576d38a59726f918bce19edc54c8b887c0230f9b",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-workforce/observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-workforce/planning.jsonl",
+          "rowsSha256": "63735199dd499f4d5b1e4e47971779faa7b2620c8f7dffc61532e5df62046957",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-population",
+      "nativeSource": "d6469935ec73f528a885b2766f88440426ca2070",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-workforce/ordinary-population.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d12626511542834d434497267d99e63bd243dba285e7a6cdaca7218e60c3930c",
+      "uncompressedSha256": "3fff4e18660eb0bd97939d00829643fa4ef07831e0b53815eaa444fbe7b7e015",
+      "traces": []
+    }
+  ]
+}
