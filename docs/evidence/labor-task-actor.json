@@ -1,0 +1,73 @@
+{
+  "issue": "ED-29",
+  "scope": "Persisted task-driven native construction with next-tick settlement; financial model is comparison only. Controlled SDK ports, not automatic main-loop admission.",
+  "native": [
+    {
+      "scenario": "initial-empty-memory",
+      "nativeSource": "e58ba68c466d30d718ba196ce586980f3d59c95b",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/labor-task-actor/initial-empty-memory.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f216fe6072497c3eeccc8d7e6f909ae64f58384ee97521599f9ebe699d456153",
+      "uncompressedSha256": "f389b4dbe9cd3515ccc90d6a2cb41edd85f9b4f133fc73c8b7434be4d5b1d04c",
+      "traces": []
+    },
+    {
+      "scenario": "completion",
+      "nativeSource": "5291490999840a01d84c11c1d5eec145452c8d3b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-task-actor/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "90755056d2797a8602e076735b5194ca0e0a8f45f3a3600a3c6ef68fdc772a8b",
+      "uncompressedSha256": "e220a2146ff1890dff6d36f10b87408a23e0d97ccb18364caeba80d1236db755",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/completion-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/completion-sdk-calls.jsonl",
+          "rowsSha256": "b657374f288c8d9d46899471a048a9b8b1f01a3a115ee317f819862d52aed4b7",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/completion-actor.jsonl",
+          "rowsSha256": "bf5fe10f213bef319f048dd53fa3deab835e848d4d759999f9c0c6173bd55d6a",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/completion-task-owner.jsonl",
+          "rowsSha256": "ad132a0ddf2a21e7b7d3d0766d7d2fda0c58951eb8f559fe6119b50cb9101873",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/completion-proposal.jsonl",
+          "rowsSha256": "3a50d5a09babf6446dad6945d37a0ca1c66c77cb7b67c8f741f381d1e77e7efe",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "loaded-travel-regression",
+      "nativeSource": "5291490999840a01d84c11c1d5eec145452c8d3b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-task-actor/loaded-travel-regression.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b3c467c332cc8537f4722d381fc70a214f32001e18643de89dae951b82ef61dc",
+      "uncompressedSha256": "a71c19b39fae872b7a7f80c01b838096ccdd65335b6a9b44ededf90f3c81f8c2",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/loaded-travel-regression-observations.jsonl",
+          "rowsSha256": "14abc55826f4b64d168fa4de9ccef387b16784086dc3c050518020b2d181789f",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-actor/loaded-travel-regression-sdk-calls.jsonl",
+          "rowsSha256": "a9e35269f4a01585b9ecf90d9ae4c6703e0c54ffa86c01fe8304e786c686003d",
+          "rows": 11
+        }
+      ]
+    }
+  ]
+}
