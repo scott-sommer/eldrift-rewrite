@@ -1,3 +1,5 @@
+import { createSpawnCoordinator } from '../../../src/features/population/spawn-coordinator';
+import { createSpawnQueue } from '../../../src/features/population/spawn-queue';
 import { afterEach, expect, test, vi } from 'vitest';
 import { createNativeStartupEnergyAdmission } from '../../../src/app/remotes/startup/energy-admission';
 import { createNativeStructureActions } from '../../../src/adapters/screeps/structure-actions';
@@ -42,4 +44,14 @@ test('rejected SDK calls retain scalar admission and do not fabricate accepted p
 test('stock changes after acceptance refuse further physical plans instead of dropping accepted debits',() => {
   const f = fixture(); expect(f.make().spawn(f.assignment('first',['carry','move']))).toBe(0); f.points[1]!.store.energy--;
   expect(f.make().spawn(f.assignment('later',['carry','move'],'second'))).toBe(-6); expect(f.native).toHaveBeenCalledTimes(1);
+});
+
+test('prepared coordinator skips unsafe physical requests and admits a cheaper body in the same sealed flush',() => {
+  const f = fixture(); f.state.write('quantity-reservations/empire',{ owner: 'quantity-reservations',version: 1,data: { claims: [{ id: 'held',owner: 'other',holder: 'worker',scope: 'home',expiresAt: 10,allocations: [{ pool: logisticsPool('stock','spawn','energy'),amount: 100 }] }] } });
+  const queue = createSpawnQueue(f.state,'W0N1'), actions = f.make();
+  queue.submit({ ...f.assignment('unsafe',['work','work','move']).request,priority: 0 });
+  queue.submit({ ...f.assignment('safe',['work','carry','move']).request,priority: 1 });
+  const make = () => createSpawnCoordinator(f.state,{ clock: () => Game.time,invoke: actions.spawn },() => ({ rooms: ['W0N1'],slots: actions.availableSpawn('spawn') ? [{ id: 'spawn',room: 'W0N1',busy: false }] : [],energy: { W0N1: actions.availableEnergy('W0N1',500) },names: new Set() }),'skip',actions.preflightSpawn);
+  expect(make()().map(receipt => [receipt.request,receipt.status])).toEqual([['unsafe','rejected'],['safe','accepted']]);
+  expect(f.native).toHaveBeenCalledTimes(1); expect(actions.availableEnergy('W0N1',500)).toBe(300); expect(make()()).toEqual([]);
 });

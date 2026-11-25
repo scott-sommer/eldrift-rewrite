@@ -1,3 +1,5 @@
+import { executePreparedSpawns } from './prepared-spawns';
+import type { SpawnPreparation } from './prepared-spawns';
 import { openState, saveState } from '../../persistence/versioned-state';
 import type { StatePort, StateSchema } from '../../persistence/versioned-state';
 import { createSpawnQueue } from './spawn-queue';
@@ -20,7 +22,7 @@ const dispatchSchema: StateSchema<DispatchState> = {
   },
 };
 /** Empire-wide once-per-tick composition; persist admission before any native effect. */
-export function createSpawnCoordinator(state: StatePort, ports: SpawnExecutionPorts, observe: () => SpawnObservation, policy: UnaffordablePolicy) {
+export function createSpawnCoordinator(state: StatePort, ports: SpawnExecutionPorts, observe: () => SpawnObservation, policy: UnaffordablePolicy, prepare?: SpawnPreparation) {
   const executor = createSpawnExecutor(ports);
   return () => {
     const tick = ports.clock();
@@ -32,6 +34,7 @@ export function createSpawnCoordinator(state: StatePort, ports: SpawnExecutionPo
     const queues = [...new Set(observation.rooms)].map(room => createSpawnQueue(state, room));
     for (const queue of queues) queue.reconcile(tick, observation.names);
     const requests = queues.flatMap(queue => queue.list());
+    if (prepare) return executePreparedSpawns(requests,ports,observe,prepare,ids => { for (const queue of queues) queue.defer(ids,tick); },policy);
     const assignments = allocateSpawns(requests, observation.slots, observation.energy, observation.names, tick, policy);
     const attempted = new Set(assignments.map(assignment => assignment.request.id));
     for (const queue of queues) queue.defer(attempted, tick);

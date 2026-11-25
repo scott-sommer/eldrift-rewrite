@@ -19,7 +19,7 @@ export function createNativeDispatch(state: StatePort, acceptSpawn: (request: Sp
       energy: Object.fromEntries(Object.entries(view.energy).map(([room, energy]) => [room, structures.availableEnergy(room, energy)])) };
   };
   const spawn = createSpawnCoordinator(state,
-    { clock: () => Game.time, invoke: assignment => acceptSpawn(assignment.request) ? structures.spawn(assignment) : ERR_NOT_OWNER }, observe, 'skip');
+    { clock: () => Game.time, invoke: assignment => acceptSpawn(assignment.request) ? structures.spawn(assignment) : ERR_NOT_OWNER }, observe, 'skip',physicalEnergy ? assignment => acceptSpawn(assignment.request) ? structures.preflightSpawn(assignment) : ERR_NOT_OWNER : undefined);
   let activeTick = -1;
   return {
     arbiter, movement, structures, controllers: createNativeControllerActions(state, arbiter),

@@ -19,13 +19,7 @@ export function createSpawnExecutor(ports: SpawnExecutionPorts) {
       tick = now;
       receipts = [];
       for (const assignment of assignments) {
-        const identity = { request: assignment.request.id, spawn: assignment.spawn };
-        try {
-          const code = ports.invoke(assignment);
-          receipts.push({ ...identity, status: code === 0 ? 'accepted' : 'rejected', code });
-        } catch (error) {
-          receipts.push({ ...identity, status: 'uncertain', error });
-        }
+        receipts.push(executeSpawnAssignment(ports,assignment));
       }
       return receipts;
     },
@@ -41,4 +35,13 @@ function validateBatch(assignments: readonly SpawnAssignment[]): void {
     requests.add(assignment.request.id);
     names.add(assignment.request.name);
   }
+}
+
+/** Single effect boundary; its caller must seal dispatch and reserve ownership before invoking it. */
+export function executeSpawnAssignment(ports: SpawnExecutionPorts, assignment: SpawnAssignment): SpawnReceipt {
+  const identity = { request: assignment.request.id,spawn: assignment.spawn };
+  try {
+    const code = ports.invoke(assignment);
+    return { ...identity,status: code === 0 ? 'accepted' : 'rejected',code };
+  } catch (error) { return { ...identity,status: 'uncertain',error }; }
 }
