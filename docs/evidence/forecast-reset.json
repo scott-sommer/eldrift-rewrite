@@ -1,0 +1,95 @@
+{
+  "toolSource": "76046f9593d5a2cde051458680e50db356e329bf",
+  "nativeSnapshotSource": "d55d41b5b0eef9f676492756c39894bad032d765",
+  "scope": "Offline transform of isolated native probe roots; no native old-build rollback or live upload",
+  "cases": [
+    {
+      "name": "passive",
+      "sourceSha256": "ee7270803ca60e71e0426d09e1448f963ccc0010d64532c4d802f888e39312d9",
+      "outputSha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11",
+      "removed": [
+        {
+          "key": "remoteStartupPlanning/W0N1",
+          "owner": "remotes",
+          "version": 6
+        },
+        {
+          "key": "remoteStartupSchedules/W0N1",
+          "owner": "remotes",
+          "version": 3
+        }
+      ],
+      "sourcePreserved": true,
+      "remainingValuesEqual": true,
+      "overwriteRefused": true,
+      "changedSnapshotRefused": true,
+      "archives": [
+        {
+          "rawFile": "docs/evidence/forecast-reset/passive-source.json.gz",
+          "rawEncoding": "gzip",
+          "rawSha256": "e9a7f27699f77f0cfbd9b9f940b1de5f60245ac48cebf5f4ba7e383f604738bc",
+          "uncompressedSha256": "ee7270803ca60e71e0426d09e1448f963ccc0010d64532c4d802f888e39312d9"
+        },
+        {
+          "rawFile": "docs/evidence/forecast-reset/passive-plan.json.gz",
+          "rawEncoding": "gzip",
+          "rawSha256": "668d897da19f817745dadfc2f77ebedc069ed3a63a91a9471e9f5b0cc83bc337",
+          "uncompressedSha256": "96e0a33ee0b44dfc6abed565d900ab80e25271267ca1f25266429ba08409ac80"
+        },
+        {
+          "rawFile": "docs/evidence/forecast-reset/passive-output.json.gz",
+          "rawEncoding": "gzip",
+          "rawSha256": "e1a5a5feaf6f695ef3487c0887343c6611d93ef2d639af31814038483137fedd",
+          "uncompressedSha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11"
+        }
+      ]
+    },
+    {
+      "name": "candidate",
+      "sourceSha256": "652743b598bd5c95f1e2853512354220e27b7256e1841556608af069d7a2f594",
+      "outputSha256": "4afc1613c20b5e030691854bd8cd9ded0aa067302fe49eaea3f054c8d814c919",
+      "removed": [
+        {
+          "key": "remoteStartupPlanning/W0N1",
+          "owner": "remotes",
+          "version": 6
+        },
+        {
+          "key": "remoteStartupCandidates/W0N1",
+          "owner": "remotes",
+          "version": 3
+        }
+      ],
+      "sourcePreserved": true,
+      "remainingValuesEqual": true,
+      "overwriteRefused": true,
+      "changedSnapshotRefused": true,
+      "archives": [
+        {
+          "rawFile": "docs/evidence/forecast-reset/candidate-source.json.gz",
+          "rawEncoding": "gzip",
+          "rawSha256": "0ee962783615df9978379f99172b88e75c140cdd6170ad8f851634cdb2d0e757",
+          "uncompressedSha256": "652743b598bd5c95f1e2853512354220e27b7256e1841556608af069d7a2f594"
+        },
+        {
+          "rawFile": "docs/evidence/forecast-reset/candidate-plan.json.gz",
+          "rawEncoding": "gzip",
+          "rawSha256": "9164ecd4b777d705415940eb997cc33eab48d5458f2741b4f0559ca1fc3fed3f",
+          "uncompressedSha256": "8fe6810361b7973f95485250475cb0ffc0fe1feef3ecb89aaf039f7fdc1ae3c4"
+        },
+        {
+          "rawFile": "docs/evidence/forecast-reset/candidate-output.json.gz",
+          "rawEncoding": "gzip",
+          "rawSha256": "067c068d7d6656dec9875f1c947f44ea4fc1d2ebc80bfaca6cf5649fed3a9ed9",
+          "uncompressedSha256": "4afc1613c20b5e030691854bd8cd9ded0aa067302fe49eaea3f054c8d814c919"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "5 tests / 1 file / 647ms",
+    "smoke": "76 tests / 15 files / 1.32s",
+    "quality": "typecheck/lint/boundaries pass; Lizard953 production821 tests zero violations",
+    "fullUnits": "not run: incremental work"
+  }
+}
