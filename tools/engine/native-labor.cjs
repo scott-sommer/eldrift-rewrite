@@ -17,6 +17,10 @@ function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false)
   assert.equal(result.cash.endingEnergy,1125-spent); assert.equal(result.labor.jobs[0].spent,spent);
   assert.equal(result.labor.jobs[0].returned,load-spent); assert.equal(result.labor.jobs[0].cargo,0);
   assert.equal(result.cash.homeConstructionEnergy,kind === 'build' ? spent : 0); assert.equal(result.cash.upkeepEnergy,kind === 'build' ? 0 : 2);
+  if (complete) {
+    assert.equal(proof.proposalCurrent,true); assert.equal(proof.proposalReadOnly,true);
+    assert.equal(proof.proposal.facts.target.remainingWork,3); assert.equal(proof.proposal.job.energy,3);
+  }
   if (travel) { verifyTravel(proof); return; }
   assert.deepEqual(proof.calls.map(call => [call.tick,call.action,call.energy,call.code]),[
     [1,'birth',200,0],[10,'pickup',load,0],[11,kind,complete ? 3 : kind === 'build' ? 5 : 1,0],...(complete ? [] : [[12,kind,kind === 'build' ? 5 : 1,0]]),...(kind === 'build' ? [] : [[13,'return',8,0]]),

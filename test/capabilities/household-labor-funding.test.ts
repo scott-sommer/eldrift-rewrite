@@ -49,6 +49,8 @@ test('checkpoint parent links reject forged endpoint/birth facts; project worker
   const unfunded = fixture(); unfunded.spawning.cash.flows = [{ id: 'bill',kind: 'upkeep',spending: 'outside-spawn',energy: 700,firstTick: 10,interval: null,occurrences: 1 }];
   const pending = createStartupHousehold(unfunded); advance(pending,0,9); const before = pending.checkpoint();
   expect(() => pending.begin(10)).toThrow('endpoint'); expect(pending.checkpoint()).toEqual(before);
+  const boosted = fixture(); boosted.spawning.requests = boosted.spawning.requests.map(request => ({ ...request,boost: { steps: [{ part: 'work',resource: 'XGH2O',count: 1 }],required: true,timeout: 50 } }));
+  expect(() => createStartupHousehold(boosted)).toThrow('boosted');
   const project = startupPassiveProject(); project.household = { ...project.household!,labor: input.labor!,endpointCapacity: 730 };
   expect(() => createStartupProject(project)).toThrow('share a body');
 });

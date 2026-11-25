@@ -15,6 +15,7 @@ export function validateFundedLabor(input: StartupHouseholdInput): void {
 function validatePaidJob(input: StartupHouseholdInput, job: HouseholdLaborJob): void {
   const request = input.spawning.requests.find(request => request.id === job.request);
   if (!request?.body.includes('work') || !request.body.includes('carry')) throw new Error('Labor needs paid WORK/CARRY request');
+  if (request.boost !== undefined) throw new Error('Unsupported boosted household labor');
   if (job.outboundTicks+job.returnTicks > 0 && !request.body.includes('move')) throw new Error('Traveling labor needs MOVE');
   if (input.redistribution.trips.some(trip => trip.request === job.request)) throw new Error('Labor and redistribution share a body');
 }
