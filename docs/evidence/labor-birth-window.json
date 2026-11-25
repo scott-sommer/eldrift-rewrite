@@ -1,0 +1,32 @@
+{
+  "issue": "ED-29",
+  "scope": "Prospective/checked birth identity and relative-to-native exact-frame queue conversion; controlled fixture publication only",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "676abe616cdc2557b65858346452fdcbba6623a1",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-birth-window/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b150417b934d12c3df3004e3bd1d6ff70efae1629fa94467e98b47b79a968973",
+      "uncompressedSha256": "5763d8ef7cd7580893f1106d6939510da73f2c0619da162f3dbb3b0e150b3692",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-birth-window/birth-window.jsonl",
+          "rowsSha256": "54ed7f1e701cff93a12e0b46c4dc191930025bddd059471411b5ccd6c97653e6",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-birth-window/proposal.jsonl",
+          "rowsSha256": "88468b140354c274449b3181462873b4f59c1741f162504661abd9617a7fcdc1",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-birth-window/observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}
