@@ -26,6 +26,7 @@ function householdPart(wire: StartupHouseholdCheckpoint): Omit<StartupHouseholdC
 export function validateHouseholdProject(input: StartupDeliveryInput): void {
   validatePassiveProject(input);
   const household = input.household;
+  if (household?.labor !== undefined) throw new Error('Labor project integration is not yet supported');
   if (!household) return;
   const remote = new Set([...input.project.workers,...input.couriers].map(worker => worker.request));
   if (household.redistribution.trips.some(trip => remote.has(trip.request))) throw new Error('Household and remote work share a body');

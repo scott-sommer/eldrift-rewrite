@@ -1,3 +1,4 @@
+import { validateFundedLabor } from './labor/funding';
 import { startupHasLocatedExpenses } from '../cash-expenses';
 import { StartupCheckpointCapacityError } from '../checkpoints/capacity';
 import { snapshotStartupSpawns } from '../snapshot';
@@ -14,18 +15,20 @@ export function householdIdentity(input: StartupHouseholdInput): string {
 }
 export function validateHousehold(input: StartupHouseholdInput): void {
   if (input.spawning.funding.energyLayout?.regeneration && input.spawning.cash.flows.some(flow => flow.kind !== 'delivery' && flow.spending !== 'outside-spawn' && flow.energy > 0)) throw new Error('Unlocated passive household expense');
+  validateFundedLabor(input);
   validateStartupSpawns(input.spawning); validateRedistribution(input.redistribution);
   validateHouseholdStructures(input);
   if (input.spawning.funding.refills.length || input.spawning.cash.horizon !== input.redistribution.horizon) throw new Error('Conflicting household refill strategy/horizon');
   if (!Number.isSafeInteger(input.endpointEnergy) || input.endpointEnergy < 0 || input.endpointEnergy > input.spawning.cash.homeEnergy-input.spawning.funding.initialEnergy) throw new Error('Invalid household endpoint stock');
-  if (input.spawning.cash.flows.some(flow => flow.id.startsWith('household-loss:'))) throw new Error('Reserved household loss identity');
+  if (input.spawning.cash.flows.some(flow => flow.id.startsWith('household-loss:') || flow.id.startsWith('household-work:'))) throw new Error('Reserved household loss identity');
   input.redistribution.trips.forEach(trip => {
     const request = input.spawning.requests.find(request => request.id === trip.request);
     if (!request || !request.body.includes('carry') || !request.body.includes('move') || request.body.some(part => !['carry','move'].includes(part))) throw new Error('Household worker requires paid courier request');
   });
 }
 
-export function householdCheckpointFormat(input: StartupHouseholdInput): 1 | 2 | 3 | 4 {
+export function householdCheckpointFormat(input: StartupHouseholdInput): 1 | 2 | 3 | 4 | 5 {
+  if (input.labor !== undefined) return 5;
   if (startupHasLocatedExpenses(input.spawning.cash.flows)) return 4;
   if (input.spawning.funding.energyLayout?.regeneration) return 3;
   return input.spawning.funding.energyLayout ? 2 : 1;
