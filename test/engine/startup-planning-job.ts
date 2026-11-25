@@ -1,3 +1,4 @@
+import { probeStartupLaborProjects } from './startup-labor-project-probe';
 import { probeStartupHistoricalMigration } from './startup-historical-migration';
 import { probeStartupCandidateMigration } from './startup-candidate-migration';
 import { probeStartupPassiveMigration } from './startup-passive-migration';
@@ -15,7 +16,7 @@ interface PlanningProof {
 interface PlanningMemory extends Memory { startupPlanningProof?: PlanningProof }
 /** Production job ownership with synthetic model inputs; no native economic selection is implied. */
 export function snapshotStartupPlanningJob(state: StatePort): void {
-  probeStartupHistoricalMigration(); probeStartupPassiveMigration(); probeStartupCandidateMigration();
+  probeStartupLaborProjects(); probeStartupHistoricalMigration(); probeStartupPassiveMigration(); probeStartupCandidateMigration();
   const input = startupDeliveryInput(), home = 'W0N1', memory = Memory as PlanningMemory;
   input.project.spawning.room = home;
   input.project.spawning.requests = input.project.spawning.requests.map(request => ({ ...request,room: home }));

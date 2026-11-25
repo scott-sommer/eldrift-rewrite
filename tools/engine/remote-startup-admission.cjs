@@ -43,6 +43,15 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(proof.frames,1); assert.equal(proof.accountedThrough,44);
   assert.ok(proof.checkpointCharacters > 0 && proof.checkpointCharacters < 1048576);
   assert.deepEqual(proof.result,proof.uninterrupted);
+  assert.deepEqual(memory.startupLaborProjects.map(proof => proof.kind),['build','upgrade']);
+  for (const proof of memory.startupLaborProjects) {
+    assert.equal(proof.savedAt,149); assert.equal(proof.resumedAt,150); assert.equal(proof.readOnly,true);
+    assert.equal(proof.recoveredThrough,13); assert.equal(proof.through,101); assert.deepEqual(proof.result,proof.uninterrupted);
+    assert.equal(proof.result.spawning.labor.jobs[0].spent,proof.kind === 'build' ? 10 : 2);
+    const envelope = proof.root.eldrift.records['remoteStartupPlanning/W0N1'];
+    assert.equal(envelope.version,7); assert.equal(envelope.data.job.checkpoint.format,7);
+    assert.equal(envelope.data.job.checkpoint.household.format,5);
+  }
   const historical = memory.startupHistoricalMigration; assert.ok(historical);
   assert.equal(historical.savedAt,149); assert.equal(historical.resumedAt,150); assert.equal(historical.readOnly,true);
   assert.equal(historical.recoveredThrough,21); assert.equal(historical.through,101); assert.equal(historical.status,'complete');
