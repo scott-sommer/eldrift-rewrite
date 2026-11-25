@@ -25,7 +25,7 @@ export function loop(): void {
   }
   model.finish(); const saved = model.checkpoint(), after = saved.labor!.jobs[0]!;
   const picked = after.picked-(before?.picked ?? 0), spent = after.spent-(before?.spent ?? 0), returned = after.returned-(before?.returned ?? 0);
-  if (proof.complete) runNativeLaborTask(proof,creep,storage);
+  if (proof.complete) runNativeLaborTask(proof,creep);
   else {
   if (picked) record(proof,'pickup',creep!.withdraw(storage,RESOURCE_ENERGY,picked),picked);
   if (spent) record(proof,proof.kind,work(proof,creep!),spent);

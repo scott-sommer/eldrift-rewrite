@@ -10,8 +10,8 @@ export interface LaborTaskPorts<Context> {
   authorized(context: Context, payload: LaborTaskPayload): boolean;
   remainingWork(context: Context, order: WorkOrder): number | undefined;
   move(context: Context, destination: Position, owner: string): void;
-  pickup(context: Context, source: string, energy: number, owner: string): boolean;
-  work(context: Context, order: WorkOrder, owner: string): boolean;
-  deposit(context: Context, source: string, energy: number, owner: string): boolean;
+  pickup(context: Context, payload: LaborTaskPayload, energy: number, owner: string): boolean;
+  work(context: Context, payload: LaborTaskPayload, maximum: number, owner: string): boolean;
+  deposit(context: Context, payload: LaborTaskPayload, energy: number, owner: string): boolean;
   completed(context: Context, progress: Readonly<LaborProgress>): void;
 }
