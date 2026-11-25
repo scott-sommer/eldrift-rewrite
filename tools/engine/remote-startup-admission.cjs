@@ -43,6 +43,11 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(proof.frames,1); assert.equal(proof.accountedThrough,44);
   assert.ok(proof.checkpointCharacters > 0 && proof.checkpointCharacters < 1048576);
   assert.deepEqual(proof.result,proof.uninterrupted);
+  const historical = memory.startupHistoricalMigration; assert.ok(historical);
+  assert.equal(historical.savedAt,149); assert.equal(historical.resumedAt,150); assert.equal(historical.readOnly,true);
+  assert.equal(historical.recoveredThrough,21); assert.equal(historical.through,101); assert.equal(historical.status,'complete');
+  assert.equal(historical.operationalIsolated,true);
+  assert.deepEqual(historical.root,require('../../test/fixtures/startup-historical-upgraded.json'));
   const candidate = memory.startupCandidateMigration; assert.ok(candidate);
   assert.equal(candidate.savedAt,149); assert.equal(candidate.resumedAt,150); assert.equal(candidate.readOnly,true);
   assert.deepEqual(candidate.retained,['compatible']); assert.equal(candidate.version,3); assert.equal(candidate.revision,2);
