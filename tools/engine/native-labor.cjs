@@ -1,18 +1,21 @@
+const { verifyNativeLaborLoaded } = require('./native-labor-loaded.cjs');
 const { verifyNativeLaborInterruption } = require('./native-labor-interruption.cjs');
 const { verifyNativeLaborCancel } = require('./native-labor-cancel.cjs');
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
-async function nativeLaborWorld(server,bot,kind,complete = false,travel = false) {
+async function nativeLaborWorld(server,bot,kind,complete = false,travel = false,loaded = false) {
   const { db } = await server.world.load(); await server.world.setTerrain('W0N1',new TerrainMatrix());
   await db['rooms.objects'].update({ room: 'W0N1',type: 'controller' },{ $set: { x: travel ? 20 : 14,y: 14,user: bot.id,level: 4,progress: 0,downgradeTime: 20000 } });
   await server.world.addRoomObject('W0N1','storage',13,15,{ user: bot.id,store: { energy: 1000 },storeCapacity: 1000000,hits: 10000,hitsMax: 10000 });
-  if (kind === 'build') await server.world.addRoomObject('W0N1','constructionSite',14,16,{ user: bot.id,structureType: 'road',progress: complete ? 297 : 0,progressTotal: 300 });
+  if (kind === 'build') await server.world.addRoomObject('W0N1','constructionSite',loaded ? 20 : 14,loaded ? 14 : 16,{ user: bot.id,structureType: 'road',progress: complete ? 297 : 0,progressTotal: 300 });
   if (kind === 'repair') await server.world.addRoomObject('W0N1','road',14,16,{ user: bot.id,hits: 1000,hitsMax: 5000,nextDecayTime: 100000 });
 }
-function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false,cancel = false,fault) {
+function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false,cancel = false,fault,loaded = false) {
   const proof = memory.nativeLabor; evidence.nativeLabor = proof; assert.ok(proof); assert.equal(proof.complete,complete); assert.equal(proof.travel,travel); assert.equal(proof.kind,kind); assert.equal(proof.rows.length,26);
   assert.equal(proof.initialSpawn,300); assert.equal(proof.initialEndpoint,1000); assert.equal(proof.activeAt,10);
-  assert.deepEqual(memory.stampReloads,[11,13]);
+  assert.deepEqual(memory.stampReloads,loaded ? [11,13,17] : [11,13]);
+  assert.equal(proof.loaded,loaded);
+  if (loaded) { verifyNativeLaborLoaded(proof); return; }
   if (fault) { verifyNativeLaborInterruption(proof,fault); if (fault === 'before') return; }
   if (cancel) { verifyNativeLaborCancel(proof); return; }
   for (const row of proof.rows.slice(1)) assert.deepEqual(row.actual,row.expected,'native settlement/model mismatch at '+row.tick);

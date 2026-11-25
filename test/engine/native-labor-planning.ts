@@ -16,7 +16,7 @@ export function beginLaborPlanning(input: StartupDeliveryInput, binding: string)
 }
 /** Resume only after native global reloads; root is isolated from operational state. */
 export function resumeLaborPlanning(labor: NativeLaborProof): void {
-  if (!labor.planning || Game.time !== 14) return;
+  if (!labor.planning || Game.time !== (labor.loaded ? 18 : 14)) return;
   restoreStagedTask(labor);
   const proof = labor.planning, state = createMemoryPort(() => proof.root), planner = createStartupPlanningJob(state,'W0N1');
   const before = JSON.stringify(Memory.eldrift), saved = planner.read();

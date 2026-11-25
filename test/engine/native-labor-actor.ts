@@ -23,18 +23,18 @@ export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undef
     observeIntent: (_,action,energy,result) => { if (result.status === 'issued') { proof.calls.push({ tick: Game.time,action,energy,code: result.code }); if (action === 'pickup') interruptLabor(proof,'after'); } },
   });
   const home = proof.proposal!.input.request.room;
-  workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult && !proof.actorFailure && !(proof.cancel && Game.time >= 11),workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
+  workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult && !proof.actorFailure && !(proof.cancel && Game.time >= (proof.loaded ? 12 : 11)),workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
   dispatch.flush();
   };
   reconstructInterruptedLabor(proof,run);
   const failure = creep?.memory.startupLaborFailure;
-  if (proof.actorFailure && Game.time === 13) {
+  if (proof.actorFailure && Game.time === (proof.loaded ? 17 : 13)) {
     if (JSON.stringify(failure) !== JSON.stringify(proof.actorFailure)) throw new Error('Failure receipt did not survive reset');
     proof.failureReloadedAt = Game.time;
   }
   if (failure?.resolvedAt === Game.time) proof.actorFailure = { ...failure };
   const receipt = creep?.memory.startupLaborReceipt;
   if (receipt?.completedAt === Game.time) { proof.actorReceipt = { ...receipt }; proof.actorResult = { tick: Game.time,worker: receipt.unit,picked: receipt.picked,spent: receipt.spent,returned: receipt.returned,pending: null }; }
-  if ([10,11,12].includes(Game.time)) (proof.actorClaims ??= []).push({ tick: Game.time,allocations: (peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? []).flatMap(claim => claim.allocations) });
+  if (Game.time >= 10 && Game.time <= (proof.loaded ? 17 : 12)) (proof.actorClaims ??= []).push({ tick: Game.time,allocations: (peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? []).flatMap(claim => claim.allocations) });
 
 }
