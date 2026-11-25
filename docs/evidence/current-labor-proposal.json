@@ -1,0 +1,103 @@
+{
+  "issue": "ED-29",
+  "scope": "Current target/endpoint facts plus workload/native route quote; transient same-tick revalidation and controlled real completion selected through shared work policy",
+  "source": "81383a69e51f542ac0ca147a61773e927a001be6",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "81383a69e51f542ac0ca147a61773e927a001be6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/current-labor-proposal/build-complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1ed64e378053d3cc805702f082c040a1de1ede0f50f8f5ebc30cc7b7a7b73ab4",
+      "uncompressedSha256": "e0cd40f9b4dc3b6bec34e4516bfb96af9aa255c6489b12b56db9d9f960130876",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/build-complete-samples.jsonl",
+          "rowsSha256": "4efbbf963d1e1bc4a0837a0cc593787944ec7e11f8ba105c12144da48ba17037",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/build-complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/build-complete-sdk-calls.jsonl",
+          "rowsSha256": "b657374f288c8d9d46899471a048a9b8b1f01a3a115ee317f819862d52aed4b7",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/build-complete-proposal.jsonl",
+          "rowsSha256": "04a90ba6ded3c43cf76c620859548c4a384da8afdb5f7f0ffe565d8c82594956",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-upgrade-travel",
+      "nativeSource": "81383a69e51f542ac0ca147a61773e927a001be6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/current-labor-proposal/upgrade-travel.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "abb87f7449dce16cc34ffcfcd6bac3c263cf50f12bd1ef6b3daba13269171e8a",
+      "uncompressedSha256": "b9b00376cf5b538d403fd98e3d3e4262714bded8abc94a427b17bc261a337175",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/upgrade-travel-samples.jsonl",
+          "rowsSha256": "473ddbb63cc4a7500e7ec1d2608ecb112b46a37d3cfdf3870273893273b044dc",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/upgrade-travel-observations.jsonl",
+          "rowsSha256": "14abc55826f4b64d168fa4de9ccef387b16784086dc3c050518020b2d181789f",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/upgrade-travel-sdk-calls.jsonl",
+          "rowsSha256": "a9e35269f4a01585b9ecf90d9ae4c6703e0c54ffa86c01fe8304e786c686003d",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-upgrade",
+      "nativeSource": "81383a69e51f542ac0ca147a61773e927a001be6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/current-labor-proposal/upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "08fb6e1f138faf04110115d0d603abbc8e1c6571bb76e6536f2638b63af91d8d",
+      "uncompressedSha256": "a0887f026f6a1836f3ca7feebe2ef885110ddbd8cbd1bad95b051a8691ec6195",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/upgrade-samples.jsonl",
+          "rowsSha256": "77619f0c2f9bc521cb4ec7b749874a81b06f31fe5acfc6e0f0724a9822b0c490",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/upgrade-observations.jsonl",
+          "rowsSha256": "d8d110d72a448aa23c743b9b502890ea4cd1821eabaa8ccce8fd6dc6187a9cd0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/current-labor-proposal/upgrade-sdk-calls.jsonl",
+          "rowsSha256": "d2d37b5449c86381ffc717a41ab37ac183e810702ddacfe2c0384ded48eaae08",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "25 tests / 6 files / 1.04s",
+    "smoke": "76 tests / 15 files / 475ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard971 production837 test files zero violations",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Automatic workforce strategy/configuration and binding to parent financial/spawn admission",
+    "Dynamic changes after future work begins and native contention/TTL",
+    "Qualified boosted/max-level-controller proposal strategies",
+    "Combined native home/source economics and broader parity/RC gates"
+  ]
+}
