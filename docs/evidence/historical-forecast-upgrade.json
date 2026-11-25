@@ -1,0 +1,94 @@
+{
+  "oldSource": "ee26176e06076eabaebcddc30b7349078575b93c",
+  "currentSource": "33ed99db7c3e756345e22315f9bc6e8e6e07e357",
+  "entrySha256": "fb942b71037b2663472189069fdc54c6329c6e5b170c54ba73f7b03f0bddbb76",
+  "oldRestartedFromReset": true,
+  "oldBundleSha256": "d8533172f75b75d9eb2f71a75e0803b1a587d9e4a79d06bd39f4c908be4b6bdf",
+  "currentBundleSha256": "c8d627041e662a81ef3b8eb2758eb1e4107604579d6bb07a15ce1cf991e6b5ca",
+  "oldSourceFiles": 102,
+  "currentSourceFiles": 103,
+  "readOnlyMigration": true,
+  "resumedResultsEqual": true,
+  "oldReaderRefusedUpgrade": true,
+  "oldReaderAcceptedReset": true,
+  "scope": "Host execution of actual committed owner modules; no native world rollback",
+  "files": [
+    {
+      "name": "old.json",
+      "sha256": "465fdd2097bdea86c44dcfa05e2ecabf27d69de60a2671d368d59393a3c0970e"
+    },
+    {
+      "name": "upgraded.json",
+      "sha256": "b018eb5ccbdf53ee729272555e6303d02cc970881303b32d9fe83c4ef647038f"
+    },
+    {
+      "name": "reset-plan.json",
+      "sha256": "adfed98fdf01df263f67caf77c422b3964dd1c702984333ce05caaf0eb09f31c"
+    },
+    {
+      "name": "reset.json",
+      "sha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11"
+    }
+  ],
+  "archives": [
+    {
+      "rawFile": "docs/evidence/historical-forecast-upgrade/old.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "720a812ca28f8345b486021d4c2d09d0d7d918f7b12a6e961d971d2f63804f47",
+      "uncompressedSha256": "465fdd2097bdea86c44dcfa05e2ecabf27d69de60a2671d368d59393a3c0970e"
+    },
+    {
+      "rawFile": "docs/evidence/historical-forecast-upgrade/upgraded.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "527411451ca6cf621b8fb5a42d95eb0455a720acc233e5480bc4700d843f2dea",
+      "uncompressedSha256": "b018eb5ccbdf53ee729272555e6303d02cc970881303b32d9fe83c4ef647038f"
+    },
+    {
+      "rawFile": "docs/evidence/historical-forecast-upgrade/reset-plan.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "306989d493be9f0a788790d6d7331b901b06ca2a16ba0d69e224dc45dd35579a",
+      "uncompressedSha256": "adfed98fdf01df263f67caf77c422b3964dd1c702984333ce05caaf0eb09f31c"
+    },
+    {
+      "rawFile": "docs/evidence/historical-forecast-upgrade/reset.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e1a5a5feaf6f695ef3487c0887343c6611d93ef2d639af31814038483137fedd",
+      "uncompressedSha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11"
+    },
+    {
+      "rawFile": "docs/evidence/historical-forecast-upgrade/report.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "ffb218c54d4fa5d3349cfbd21595cd7d3af7eafc80984c4e781ea9227cc1357d",
+      "uncompressedSha256": "bdc46d4a1936ac79e1bb63f0a71bb33971fb88e7a22ef2ba2007f7a01f9e9435"
+    }
+  ],
+  "oldEnvelopes": {
+    "remoteStartupPlanning/W0N1": {
+      "owner": "remotes",
+      "version": 5
+    },
+    "remoteStartupSchedules/W0N1": {
+      "owner": "remotes",
+      "version": 2
+    },
+    "remoteStartupPlanning/W1N1": {
+      "owner": "remotes",
+      "version": 5
+    },
+    "remoteStartupCandidates/W1N1": {
+      "owner": "remotes",
+      "version": 2
+    }
+  },
+  "checks": {
+    "targeted": "10 tests / 2 files / 1.48s",
+    "smoke": "76 tests / 15 files / 480ms",
+    "quality": "typecheck/lint/boundaries pass; Lizard953 production821 test files zero violations",
+    "fullUnits": "not run: incremental work"
+  },
+  "remaining": [
+    "Native upgrade using these authentic old records",
+    "Matched old whole-bot rollback with evolving world state and colony recovery",
+    "Other operational namespace and legacy migration gates"
+  ]
+}

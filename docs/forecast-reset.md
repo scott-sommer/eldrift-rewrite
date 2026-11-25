@@ -18,3 +18,15 @@ Before any deployment, qualify the target build against the prepared state and c
 ## Recorded local rehearsal
 
 Tool source76046f9593d5a2cde051458680e50db356e329bf was run against the two isolated probe roots retained from native sourced55d41b5b0eef9f676492756c39894bad032d765. The passive root resets planning/schedule; the candidate root resets planning/cache and preserves its unrelated sentinel. Both retain their input bytes, preserve every unselected JSON value, refuse output overwrite, and refuse a changed source without creating output. [Evidence and archived source/plan/output bytes](evidence/forecast-reset.json) allow the transformation to be reproduced. Unit coverage additionally checks all three namespaces together, another home's forecast and operational queue/creep/legacy state preservation. This is an offline transformation rehearsal, not execution of an old build against current world state. Full old-build rollback remains open.
+
+## Historical-owner upgrade and restart
+
+The reproducible harness loads every imported owner/fixture dependency directly from committed Git objects, without checking out or editing the old source:
+
+```powershell
+node tools/memory/rehearse-forecast-upgrade.mjs ee26176 artifacts/new-forecast-upgrade-run
+```
+
+Use a new output directory; existing output files are never overwritten. It builds the same small orchestration wrapper against old/current committed modules, generates real old records, checks detached current reads, compares resumed outcomes to an old-code branch, proves old readers reject upgraded records, applies the scoped reset, and reruns old-owner planning/cache creation. This does not execute the complete old main loop or an evolving native world.
+
+[Historical evidence](evidence/historical-forecast-upgrade.json) records successful execution from current33ed99db7c3e756345e22315f9bc6e8e6e07e357 against oldee26176e06076eabaebcddc30b7349078575b93c, with102/103 actual imported source files, bundle/entry hashes, genuine old planning5/schedule2/cache2 envelopes and archived old/upgraded/reset-plan/reset bytes. All checks pass, including old-owner restart matching initial derived state. Native upgrade with these records and full colony rollback remain open.
