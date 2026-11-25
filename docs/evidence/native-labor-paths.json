@@ -1,0 +1,103 @@
+{
+  "issue": "ED-29",
+  "scope": "Portable three-leg WORK labor geometry/fatigue and read-only native path search; actual worker follows quoted loaded paths across reloads",
+  "source": "89784d536f568207e8268fad9b0af17694fa09cc",
+  "native": [
+    {
+      "scenario": "--household-labor-upgrade-travel",
+      "nativeSource": "89784d536f568207e8268fad9b0af17694fa09cc",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-labor-paths/upgrade-travel.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9c5decb110f360d599c0a7b17ced0552883f6f33725a61c6cad5be4ea707ae88",
+      "uncompressedSha256": "5f4e5a859a490a7c6af69cf7e59d4785066906e25d9fb294df78a7de1adfae95",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-travel-samples.jsonl",
+          "rowsSha256": "f34877786823a2b6c57c4b1d9405bc5e8affe1ba95a0362479ef2e5e4d9eecc0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-travel-observations.jsonl",
+          "rowsSha256": "14abc55826f4b64d168fa4de9ccef387b16784086dc3c050518020b2d181789f",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-travel-sdk-calls.jsonl",
+          "rowsSha256": "a9e35269f4a01585b9ecf90d9ae4c6703e0c54ffa86c01fe8304e786c686003d",
+          "rows": 11
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-travel-path-quote.jsonl",
+          "rowsSha256": "14954056aebad5c852ca4a9f6aab643e2460b8c27a10a605c6bf06adeca79c8e",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "89784d536f568207e8268fad9b0af17694fa09cc",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-labor-paths/build-complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2e10e7ea9a8221ad651458843b6e87ddd93845117211bb711d0754e92f85d508",
+      "uncompressedSha256": "e7d300054c612f226ac5e6f92bfab91c8e4eafe8127a7f1253907d4b4f18fe22",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/build-complete-samples.jsonl",
+          "rowsSha256": "aa80fe1426577eb94cc4afecb6b5ff0efa1c3994abad88e7aa90c4da15d60253",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/build-complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/build-complete-sdk-calls.jsonl",
+          "rowsSha256": "b657374f288c8d9d46899471a048a9b8b1f01a3a115ee317f819862d52aed4b7",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-upgrade",
+      "nativeSource": "89784d536f568207e8268fad9b0af17694fa09cc",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-labor-paths/upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "fb868e99390c0f60ab8489c70bbce6a89b701ee2edb6d9d9dcf5a474d1e6ceaa",
+      "uncompressedSha256": "b362e494a56855d496cdf24dfa7b5d3dd1861bc10fa091c237ca10b889e0adc2",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-samples.jsonl",
+          "rowsSha256": "f932c9da3f8ee5901bfb5fe062df2181fda3b7fc941cd3cc121b7e522cacdd3a",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-observations.jsonl",
+          "rowsSha256": "d8d110d72a448aa23c743b9b502890ea4cd1821eabaa8ccce8fd6dc6187a9cd0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-labor-paths/upgrade-sdk-calls.jsonl",
+          "rowsSha256": "d2d37b5449c86381ffc717a41ab37ac183e810702ddacfe2c0384ded48eaae08",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "19 tests / 5 files / 1.35s",
+    "smoke": "76 tests / 15 files / 492ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard967 production834 test files zero violations",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Dynamic route/traffic/target revalidation and native road/swamp calibration",
+    "Automatic paid home workforce proposal/configuration and admission",
+    "Native contention/TTL and combined home/source economics",
+    "Remaining parity, pressure, rollback and RC gates"
+  ]
+}
