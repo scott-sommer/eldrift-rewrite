@@ -1,3 +1,4 @@
+import { orderedSpawnEnergy } from '../../src/adapters/screeps/spawn-energy';
 import { createRequire } from 'node:module';
 import { expect, test } from 'vitest';
 import { createStartupEnergyLedger } from '../../src/capabilities/economy/startup/energy/ledger';
@@ -36,4 +37,12 @@ test('reservation-aware admission refuses a native debit that would consume anot
   const f = fixture(); f.layout.structures[0].reservedEnergy = 100; const model = createStartupEnergyLedger(f.layout);
   expect(charge(f.roomObjects.spawn,250,undefined,f.scope)).toBe(true); expect(f.roomObjects.spawn.store.energy).toBe(50);
   expect(model.charge('spawn',250,0,'unsafe')).toBe(false); expect(model.result().points[0].energy).toBe(300);
+}));
+
+test('shared explicit SDK policy resolves equal-range ties identically in forecast and pinned processor',() => withProcessors(({ charge }) => {
+  const f = fixture(); f.roomObjects.far.x = 9;
+  const points = Object.values(f.roomObjects).map(point => ({ id: point._id,structureType: point.type,my: true,isActive: () => true,pos: { roomName: point.room,x: point.x,y: point.y } }));
+  const order = orderedSpawnEnergy(points.find(point => point.id === 'spawn'),points).map(point => point.id);
+  expect(order).toEqual(['spawn','second','far','near']); f.layout.orders[0].structures = order;
+  const model = createStartupEnergyLedger(f.layout); expect(model.charge('spawn',450,0,'birth')).toBe(charge(f.roomObjects.spawn,450,order,f.scope)); compare(model,f.roomObjects);
 }));

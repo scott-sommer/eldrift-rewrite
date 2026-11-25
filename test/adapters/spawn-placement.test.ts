@@ -43,3 +43,10 @@ test('failed placement preflight consumes no shared structure or room-energy adm
   expect(actions.spawn(f.assignment)).toBe(-7); expect(actions.availableSpawn('spawn')).toBe(true); expect(actions.availableEnergy('W0N1',300)).toBe(300);
   f.tiles.structure = []; expect(actions.spawn(f.assignment)).toBe(0); expect(actions.availableEnergy('W0N1',300)).toBe(250);
 });
+
+test('an injected explicit energy policy reaches the SDK unchanged and can refuse invocation',() => {
+  const f = fixture(), points = [f.spawn];
+  const invoke = createNativeSpawn(() => ({}),() => points); expect(invoke(f.assignment)).toBe(0);
+  expect(f.native).toHaveBeenCalledWith(['move'],'new',{ memory: {},directions: [7],energyStructures: points });
+  f.native.mockClear(); expect(createNativeSpawn(() => ({}),() => null)(f.assignment)).toBe(-7); expect(f.native).not.toHaveBeenCalled();
+});
