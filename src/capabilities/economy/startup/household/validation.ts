@@ -12,6 +12,7 @@ export function householdIdentity(input: StartupHouseholdInput): string {
   return identity;
 }
 export function validateHousehold(input: StartupHouseholdInput): void {
+  if (input.spawning.funding.energyLayout?.regeneration) throw new Error('Passive household integration pending');
   validateStartupSpawns(input.spawning); validateRedistribution(input.redistribution);
   validateHouseholdStructures(input);
   if (input.spawning.funding.refills.length || input.spawning.cash.horizon !== input.redistribution.horizon) throw new Error('Conflicting household refill strategy/horizon');

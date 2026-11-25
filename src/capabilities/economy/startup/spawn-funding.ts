@@ -14,6 +14,10 @@ export function createStartupSpawnFunding(input: StartupSpawnFunding, homeEnergy
       accessible = Math.max(0,accessible-energy);
     },
     receive(energy: number): void { bank += energy; },
+    ambient(energy: number): void {
+      if (!input.energyLayout?.regeneration || !Number.isSafeInteger(energy) || energy < 0 || energy > input.capacity-accessible) throw new Error('Invalid ambient funding credit');
+      bank += energy; accessible += energy;
+    },
     transfer(energy: number): number {
       if (!Number.isSafeInteger(energy) || energy < 0) throw new Error('Invalid household funding transfer');
       const amount = Math.max(0,Math.min(energy,input.capacity-accessible,bank-accessible));

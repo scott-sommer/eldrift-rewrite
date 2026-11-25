@@ -1,8 +1,9 @@
-import { requireCheckpoint } from '../checkpoints/validation';
+import { requireCheckpoint, record } from '../checkpoints/validation';
 import type { StartupTimelineCheckpoint } from '../checkpoints/timeline';
 import type { StartupSpawnInput } from '../spawn-model';
 import type { StartupCashFlow } from '../cash-model';
-export function validateEnergyFundingCheckpoint(input: StartupSpawnInput, saved: StartupTimelineCheckpoint, result: { available: number; deposited: number }): void {
+export function validateEnergyFundingCheckpoint(input: StartupSpawnInput, saved: StartupTimelineCheckpoint, result: { available: number; deposited: number; ambientEnergy?: number }): void {
+  if (input.funding.energyLayout?.regeneration) validateAmbientLinks(input,saved,result.ambientEnergy);
   const events = saved.energy!.events;
   requireCheckpoint(events.every(event => event.tick < saved.tick));
   const charges = events.filter(event => event.kind === 'charge');
@@ -30,4 +31,12 @@ function occurrences(flow: StartupCashFlow, from: number, through: number): numb
   const first = Math.max(0,Math.ceil((from-flow.firstTick)/flow.interval));
   const last = Math.min(flow.occurrences-1,Math.floor((through-flow.firstTick)/flow.interval));
   return Math.max(0,last-first+1);
+}
+
+function validateAmbientLinks(input: StartupSpawnInput, saved: StartupTimelineCheckpoint, ambientEnergy: number | undefined): void {
+  requireCheckpoint(record(saved.accounting.state));
+  requireCheckpoint(expenses(input,0,saved.tick-1) === 0);
+  requireCheckpoint(saved.funding.bank >= 0 && saved.accounting.state.minimumEnergy >= 0);
+  requireCheckpoint(saved.energy!.ambientThrough === saved.tick-1);
+  requireCheckpoint(saved.accounting.state.ambientEnergy === ambientEnergy);
 }

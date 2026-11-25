@@ -21,6 +21,7 @@ class EnergyLedger {
     this.orders = new Map(input.orders.map(order => [order.spawn,[...order.structures]]));
     if (checkpoint !== undefined) this.restore(copyPlain(checkpoint));
   }
+  stock(): number { return [...this.points.values()].reduce((sum,point) => sum+point.energy,0); }
   available(): number { return [...this.points.values()].reduce((sum,point) => sum+point.energy-(point.reservedEnergy ?? 0),0); }
   charge(spawn: string, energy: number, tick: number, holder: string): boolean {
     const event: StartupEnergyEvent = { kind: 'charge',spawn,energy,tick,holder }; this.validateNext(event);

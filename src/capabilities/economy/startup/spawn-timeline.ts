@@ -20,6 +20,8 @@ class StartupSpawnTimeline {
   private readonly pending;
   private readonly funding;
   private readonly energy;
+  private readonly passive: boolean;
+  private ambientEnergy = 0;
   private readonly births: StartupScheduledBirth[] = [];
   private readonly flows: StartupCashFlow[];
   private receiptCount = 0;
@@ -31,6 +33,7 @@ class StartupSpawnTimeline {
   constructor(input: StartupSpawnInput, checkpoint?: unknown) {
     validateStartupSpawns(input);
     this.input = snapshotStartupSpawns(input);
+    this.passive = !!this.input.funding.energyLayout?.regeneration;
     const saved = checkpoint === undefined ? undefined : restoreTimelineCheckpoint(this.input,checkpoint);
     this.slots = input.spawns.map(spawn => ({ ...spawn }));
     this.pending = new Map(this.input.requests.map(request => [request.id,request]));
@@ -38,7 +41,7 @@ class StartupSpawnTimeline {
     this.energy = this.input.funding.energyLayout ? createStartupEnergyLedger(this.input.funding.energyLayout,saved?.energy) : undefined;
     if (saved && this.energy) validateEnergyFundingCheckpoint(this.input,saved,this.energy.result());
     this.flows = this.input.cash.flows.map(flow => ({ ...flow }));
-    this.accounting = createStartupCashLedger(this.input.cash,saved?.accounting);
+    this.accounting = createStartupCashLedger(this.input.cash,saved?.accounting,{ ambient: this.passive });
     this.receiptIds = new Set([...this.flows.map(flow => flow.id),...input.requests.map(request => 'birth:'+request.id)]);
     if (saved) this.resume(saved);
   }
@@ -48,6 +51,7 @@ class StartupSpawnTimeline {
     this.flows.push(...this.births.map(birthFlow)); this.receiptIds.clear();
     for (const id of saved.receiptIds) this.receiptIds.add(id);
     this.tick = saved.tick; this.receiptCount = saved.receiptCount;
+    this.ambientEnergy = this.passive ? saved.energy!.events.filter(event => event.kind === 'ambient' && event.tick === saved.tick-1).reduce((sum,event) => sum+event.energy,0) : 0;
     if (this.funding.checkpoint().bank !== saved.accounting.state.endingEnergy || saved.accounting.state.birthEnergy !== this.births.reduce((sum,birth) => sum+birth.cost,0)) throw new Error('Invalid startup checkpoint funding/accounting');
   }
 
@@ -57,8 +61,10 @@ class StartupSpawnTimeline {
   }
   begin(tick: number): StartupScheduledBirth[] {
     if (this.open || tick !== this.tick || tick > this.input.cash.horizon) throw new Error('Startup spawn frame order');
-    this.frame = this.external(tick);
-    this.funding.spend(this.frame.filter(flow => flow.kind !== 'delivery').reduce((sum,flow) => sum+flow.energy,0));
+    const frame = this.external(tick), expenses = frame.filter(flow => flow.kind !== 'delivery').reduce((sum,flow) => sum+flow.energy,0);
+    if (this.passive && expenses > this.funding.checkpoint().bank) throw new Error('Unfunded passive startup expenses');
+    if (this.passive && expenses > 0) throw new Error('Unlocated passive startup expense');
+    this.frame = frame; this.ambientEnergy = 0; this.funding.spend(expenses);
     const slots = this.slots.map(spawn => ({ id: spawn.id,room: spawn.room,busy: spawn.availableAt > tick }));
     const allocated = admitStartupSpawns({ ...this.input,requests: [...this.pending.values()] },slots,tick,{
       available: () => this.funding.available(this.input.cash.protectedEnergy),charge: allocation => this.charge(allocation,tick),
@@ -70,11 +76,14 @@ class StartupSpawnTimeline {
     if (!this.open) throw new Error('Startup spawn frame not open');
     const credited = this.accept(receipts);
     beforeAccounting();
-    this.accounting.frame(this.tick,this.frame,credited);
+    this.ambientEnergy = this.passive ? this.energy!.regenerate(this.tick) : 0;
+    if (this.passive) this.funding.ambient(this.ambientEnergy);
+    this.accounting.frame(this.tick,this.frame,credited,true,0,this.ambientEnergy);
     this.funding.refill(this.tick);
     this.funding.receive(credited+this.external(this.tick).filter(flow => flow.kind === 'delivery').reduce((sum,flow) => sum+flow.energy,0));
     this.open = false; this.tick++; return this.frame.map(flow => ({ ...flow }));
   }
+  frameAmbientEnergy(): number { return this.ambientEnergy; }
   fundingState() { return this.funding.checkpoint(); }
   transferHousehold(energy: number, destination?: string, holder?: string): number {
     if (!this.open) throw new Error('Household transfer outside action frame');
@@ -82,11 +91,12 @@ class StartupSpawnTimeline {
     if (!this.energy) return this.funding.transfer(energy);
     if (!destination || !holder) throw new Error('Structure transfer needs destination and holder');
     const state = this.funding.checkpoint();
-    const maximum = Math.max(0,Math.min(energy,this.input.funding.capacity-state.accessible,state.bank-state.accessible));
+    const maximum = Math.max(0,Math.min(energy,this.input.funding.capacity-state.accessible,state.bank-this.energy.stock()));
     return this.funding.transfer(this.energy.deposit(destination,maximum,this.tick,holder));
   }
   loseHousehold(flow: StartupCashFlow): void {
     if (!this.open || flow.kind !== 'upkeep' || flow.firstTick !== this.tick || flow.interval !== null || flow.occurrences !== 1) throw new Error('Invalid household loss frame');
+    if (this.energy && flow.energy > this.funding.checkpoint().bank-this.energy.stock()) throw new Error('Physical cargo loss exceeds outside stock');
     this.funding.lose(flow.energy); this.frame.push({ ...flow });
   }
   frameFlows(): StartupCashFlow[] {

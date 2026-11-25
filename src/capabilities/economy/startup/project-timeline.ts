@@ -5,6 +5,7 @@ import type { StartupDeliveryInput } from './delivery-model';
 import type { StartupProjectCheckpoint } from './checkpoints/project-model';
 import type { StartupCashReceipt } from './cash-model';
 export function createStartupProjectTimeline(input: StartupDeliveryInput, saved?: StartupProjectCheckpoint) {
+  validatePassiveProject(input);
   if (!input.household) return ordinary(input,saved);
   validateHouseholdProject(input);
   const snapshot = saved ? { ...saved.household!,spawning: saved.timeline } : undefined;
@@ -23,9 +24,14 @@ function householdPart(wire: StartupHouseholdCheckpoint): Omit<StartupHouseholdC
     endpointReceivedEnergy: wire.endpointReceivedEnergy,redistribution: wire.redistribution,losses: wire.losses };
 }
 export function validateHouseholdProject(input: StartupDeliveryInput): void {
+  validatePassiveProject(input);
   const household = input.household;
   if (!household) return;
   const remote = new Set([...input.project.workers,...input.couriers].map(worker => worker.request));
   if (household.redistribution.trips.some(trip => remote.has(trip.request))) throw new Error('Household and remote work share a body');
   if (household.endpointEnergy > input.homeSink.capacity-input.homeSink.freeCapacity) throw new Error('Household endpoint stock exceeds occupied sink capacity');
+}
+
+function validatePassiveProject(input: StartupDeliveryInput): void {
+  if (input.project.spawning.funding.energyLayout?.regeneration) throw new Error('Passive project integration pending');
 }
