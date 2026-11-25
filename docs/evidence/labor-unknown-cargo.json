@@ -1,0 +1,68 @@
+{
+  "issue": "ED-29",
+  "scope": "Native active pickup plus unreserved second-creep transfer produces excess cargo; failed settlement retains actual cargo without guessed attribution/refund; explicit idle after terminal failure",
+  "native": [
+    {
+      "scenario": "unknown",
+      "nativeSource": "34fbaa1024e21e3dae34552eee87dabde5414ef8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-unknown-cargo/unknown.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e1f87e1eacc0fbf7faa6e8a869c50eebd35cb8994c955fe39e9a3e18092f9a48",
+      "uncompressedSha256": "1ab71ea4ee1616e48fe9742b82ce8ff25e2c413e985401c2bbc2528f29b86ab7",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/unknown-receipt.jsonl",
+          "rowsSha256": "9f75bb50efd9a9b37ae93f10c5168453f7e17eaf6a4fbb612fe5e18e5615bbea",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/unknown-claims.jsonl",
+          "rowsSha256": "a802da586d8ab3fd99de8e8077435e3e734d69439e25a898e6cf0c23c65ed8fb",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/unknown-sdk-calls.jsonl",
+          "rowsSha256": "6a804cf8438bf8c0e8859e281a5ec68888669278c317852854ea2e0ff662a224",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/unknown-observations.jsonl",
+          "rowsSha256": "3fda62b1d9fa99b29cf55dcd1748a023777d1eb5e941068148d118e3027d5558",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "incoming",
+      "nativeSource": "34fbaa1024e21e3dae34552eee87dabde5414ef8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-unknown-cargo/incoming.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a793330d5a1e7d049680eb1bd0508e74cb89ac3fe8e57b8e806f35ef834d11d4",
+      "uncompressedSha256": "91cc4b139a3331c0dc024e2ee186bbd5b6fa9e809297a1b9e97679e116972e13",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/incoming-receipt.jsonl",
+          "rowsSha256": "565268caa118bacd40d3c16911636f810d3bd4e2a1e9c141d1b9479bca12f49b",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/incoming-claims.jsonl",
+          "rowsSha256": "ea81364878c9c482664f30f34437a8314b37256afa58423f66941160853a908d",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/incoming-sdk-calls.jsonl",
+          "rowsSha256": "8e0502fdb088f5ed45dbbb53fdcb5947742ed8bed5ca31a7c12c2f5417c38168",
+          "rows": 2
+        },
+        {
+          "rowsFile": "docs/evidence/labor-unknown-cargo/incoming-observations.jsonl",
+          "rowsSha256": "112ab3bebde7ec86654d236d3400b32695e1894f63ea3e6ef07dc7d167a0ac7a",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}
