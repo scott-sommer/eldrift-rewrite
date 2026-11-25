@@ -1,3 +1,4 @@
+const { verifyNativeLaborCancel } = require('./native-labor-cancel.cjs');
 const assert = require('node:assert/strict');
 const { TerrainMatrix } = require('screeps-server-mockup');
 async function nativeLaborWorld(server,bot,kind,complete = false,travel = false) {
@@ -7,10 +8,11 @@ async function nativeLaborWorld(server,bot,kind,complete = false,travel = false)
   if (kind === 'build') await server.world.addRoomObject('W0N1','constructionSite',14,16,{ user: bot.id,structureType: 'road',progress: complete ? 297 : 0,progressTotal: 300 });
   if (kind === 'repair') await server.world.addRoomObject('W0N1','road',14,16,{ user: bot.id,hits: 1000,hitsMax: 5000,nextDecayTime: 100000 });
 }
-function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false) {
+function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false,cancel = false) {
   const proof = memory.nativeLabor; evidence.nativeLabor = proof; assert.ok(proof); assert.equal(proof.complete,complete); assert.equal(proof.travel,travel); assert.equal(proof.kind,kind); assert.equal(proof.rows.length,26);
   assert.equal(proof.initialSpawn,300); assert.equal(proof.initialEndpoint,1000); assert.equal(proof.activeAt,10);
   assert.deepEqual(memory.stampReloads,[11,13]);
+  if (cancel) { verifyNativeLaborCancel(proof); return; }
   for (const row of proof.rows.slice(1)) assert.deepEqual(row.actual,row.expected,'native settlement/model mismatch at '+row.tick);
   const spent = complete ? 3 : kind === 'build' ? 10 : 2, load = complete ? 3 : 10, result = proof.result;
   assert.equal(result.cash.birthEnergy,200); assert.equal(result.cash.ambientEnergy,25); assert.equal(result.cash.deliveredEnergy,0);

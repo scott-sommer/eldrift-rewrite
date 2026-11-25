@@ -51,3 +51,13 @@ test('a pre-existing incoming capacity claim prevents labor ownership without er
   expect(f.ports.authorized(f.creep,f.payload)).toBe(false); expect(f.claims.list(10).map(claim => claim.id)).toEqual(['incoming']);
   expect(f.raw.withdraw).not.toHaveBeenCalled();
 });
+
+test('disabled productive work still permits an owned refund and releases only its observed allocation',() => {
+  const f = fixture(); f.ports.authorized(f.creep,f.payload); f.enable(false); f.raw.store.energy = 3;
+  expect(f.ports.recoverable?.(f.creep,f.payload)).toBe(true);
+  expect(f.ports.deposit(f.creep,f.payload,3,f.owner)).toBe(true);
+  expect(f.claims.list(10)).toHaveLength(2);
+  f.payload.progress = { worker: 'actor',picked: 3,spent: 0,returned: 0,pending: { kind: 'return',tick: 10,before: 3,maximum: 3 },failure: { reason: 'labor-authority',tick: 10 } };
+  f.at(11); f.raw.store.energy = 0; expect(f.ports.recoverable?.(f.creep,f.payload)).toBe(true);
+  expect(f.claims.list(11).flatMap(claim => claim.allocations)).toEqual([{ pool: logisticsPool('capacity','actor'),amount: 50 }]);
+});

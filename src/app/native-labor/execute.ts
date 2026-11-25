@@ -1,4 +1,4 @@
-import { recordNativeLaborReceipt } from './receipt';
+import { recordNativeLaborReceipt, recordNativeLaborFailure } from './receipt';
 import { createNativeLaborTaskPorts } from './ports';
 import type { NativeLaborPolicy } from './ports';
 import { createLaborTaskBehavior } from '../labor-task';
@@ -20,7 +20,7 @@ export function createNativeLaborExecution(state: StatePort, dispatch: ReturnTyp
       const head = peekState(state,stateKey('tasks',creep.name),taskSchema(creep.name,definitions))?.queue[0];
       if (head?.kind !== 'household-labor') return false;
       const ports = createNativeLaborTaskPorts(state,dispatch,{ ...hooks,enabled: () => config.workersEnabled,
-        completed: recordNativeLaborReceipt,
+        completed: recordNativeLaborReceipt,failed: recordNativeLaborFailure,
       });
       dispatch.activate();
       createTaskRunner(state,{ 'household-labor': createLaborTaskBehavior(ports) },() => Game.time,definitions)(creep.name,creep);

@@ -1,6 +1,7 @@
 const { nativeLaborWorld,verifyNativeLabor } = require('./native-labor.cjs');
-const nativeLaborMode = ['upgrade-travel','build-complete','build','repair','upgrade'].find(kind => process.argv.includes('--household-labor-'+kind));
+const nativeLaborMode = ['upgrade-travel','build-cancel','build-complete','build','repair','upgrade'].find(kind => process.argv.includes('--household-labor-'+kind));
 const nativeLaborKind = nativeLaborMode?.split('-')[0];
+const nativeLaborComplete = ['build-complete','build-cancel'].includes(nativeLaborMode);
 const { verifySpawnPreflight } = require('./spawn-preflight.cjs');
 const { stockPolicyWorld,verifyStockPolicy } = require('./lab-stock-policy.cjs');
 const stockPolicyMode = ['shared','local','priority'].find(mode => process.argv.includes('--lab-stock-'+mode));
@@ -433,7 +434,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--unseen')) modules.main = await actionBundle(root, 'unseen-navigation-bot');
   if (process.argv.includes('--occupied-exit')) modules.main = await actionBundle(root, 'occupied-exit-bot');
   if (process.argv.includes('--spawn')) modules.main = await actionBundle(root, 'spawn-bot');
-  if (nativeLaborKind) modules.main = await actionBundle(root,'native-labor-bot')+'\nMemory.nativeLaborKind = '+JSON.stringify(nativeLaborKind)+'; Memory.nativeLaborComplete = '+JSON.stringify(nativeLaborMode === 'build-complete')+'; Memory.nativeLaborTravel = '+JSON.stringify(nativeLaborMode === 'upgrade-travel')+';';
+  if (nativeLaborKind) modules.main = await actionBundle(root,'native-labor-bot')+'\nMemory.nativeLaborKind = '+JSON.stringify(nativeLaborKind)+'; Memory.nativeLaborComplete = '+JSON.stringify(nativeLaborComplete)+'; Memory.nativeLaborCancel = '+JSON.stringify(nativeLaborMode === 'build-cancel')+'; Memory.nativeLaborTravel = '+JSON.stringify(nativeLaborMode === 'upgrade-travel')+';';
   if (process.argv.includes('--spawn-preflight')) modules.main = await actionBundle(root, 'spawn-preflight-bot');
   if (process.argv.includes('--spawn-contention')) modules.main = await actionBundle(root, 'spawn-contention-bot');
   if (process.argv.includes('--stations')) modules.main = await actionBundle(root, 'stations-bot');
@@ -593,7 +594,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--unseen')) await unseenWorld(server, bot);
   if (process.argv.includes('--occupied-exit')) await occupiedExitWorld(server, bot);
   if (process.argv.includes('--spawn')) await server.world.setTerrain('W0N1', new TerrainMatrix());
-  if (nativeLaborKind) await nativeLaborWorld(server,bot,nativeLaborKind,nativeLaborMode === 'build-complete',nativeLaborMode === 'upgrade-travel');
+  if (nativeLaborKind) await nativeLaborWorld(server,bot,nativeLaborKind,nativeLaborComplete,nativeLaborMode === 'upgrade-travel');
   if (process.argv.includes('--spawn-preflight')) await contentionWorld(server, bot);
   if (process.argv.includes('--spawn-contention')) await contentionWorld(server, bot);
   if (process.argv.includes('--stations')) {
@@ -1174,7 +1175,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
     assert.ok(memory.spawnEvidence.spawning.includes(true));
     assert.equal(memory.spawnEvidence.spawning.at(-1), false);
   }
-  if (nativeLaborKind) verifyNativeLabor(memory,evidence,nativeLaborKind,nativeLaborMode === 'build-complete',nativeLaborMode === 'upgrade-travel');
+  if (nativeLaborKind) verifyNativeLabor(memory,evidence,nativeLaborKind,nativeLaborComplete,nativeLaborMode === 'upgrade-travel',nativeLaborMode === 'build-cancel');
   if (process.argv.includes('--spawn-preflight')) verifySpawnPreflight(memory,evidence);
   if (process.argv.includes('--spawn-contention')) verifyContention(memory,evidence);
   if (process.argv.includes('--mining-storage')) verifyMiningStorage(memory);

@@ -5,7 +5,7 @@ import type { LaborProposalSnapshot } from '../../capabilities/economy/startup/h
 import type { TaskDefinition, TaskRecord } from '../../persistence/tasks/schema';
 export interface LaborTaskPayload { proposal: LaborProposalSnapshot; progress?: LaborProgress }
 /** Portable payload validation; actor behavior and live authority are supplied by composition. */
-export const laborTaskDefinition: TaskDefinition = { phases: ['await-birth','approach','pickup','loaded','work','return','deposit'],validPayload(value: unknown): value is LaborTaskPayload {
+export const laborTaskDefinition: TaskDefinition = { phases: ['await-birth','approach','pickup','loaded','work','return','deposit','recover-return','recover-deposit'],validPayload(value: unknown): value is LaborTaskPayload {
   if (!value || typeof value !== 'object' || Object.keys(value).some(key => !['proposal','progress'].includes(key)) || !('proposal' in value)) return false;
   try { const proposal = readLaborProposalSnapshot(value.proposal); return !('progress' in value) || validLaborProgress(value.progress,proposal.job); } catch { return false; }
 } };

@@ -13,6 +13,7 @@ import { nativeLaborWork, nativeLaborActor, inLaborRange } from './facts';
 type Dispatch = Pick<ReturnType<typeof createNativeDispatch>,'arbiter' | 'movement'>;
 export interface NativeLaborPolicy {
   enabled(home: string): boolean;
+  failed?(creep: Creep, progress: Readonly<LaborProgress>, payload: LaborTaskPayload, reason: string): void;
   completed(creep: Creep, progress: Readonly<LaborProgress>, payload: LaborTaskPayload): void;
   observeIntent?(creep: Creep, action: string, energy: number, result: IntentResult): void;
 }
@@ -24,7 +25,7 @@ export function createNativeLaborTaskPorts(state: StatePort, dispatch: Dispatch,
     return home?.controller?.my ? observeStartupEndpoint(payload.proposal.input.source,home,startupClaimedPools(state)) : undefined;
   };
   function issue(creep: Creep, payload: LaborTaskPayload, kind: 'pickup' | 'work' | 'return', amount: number, capacity: number, owner: string, action: string, invoke: () => IntentResult): boolean {
-    if (!policy.enabled(payload.proposal.input.request.room) || creep.body.some(part => part.boost)) return false;
+    if (kind !== 'return' && (!policy.enabled(payload.proposal.input.request.room) || creep.body.some(part => part.boost))) return false;
     if (!Game.rooms[payload.proposal.input.request.room]?.controller?.my) return false;
     if (owner !== laborScope(payload) || !dispatch.arbiter.claim(creep.name,owner)) return false;
     const result = claims.issue(creep,payload,kind,amount,capacity,invoke);
@@ -33,12 +34,19 @@ export function createNativeLaborTaskPorts(state: StatePort, dispatch: Dispatch,
   }
   return { now: () => Game.time,worker: nativeLaborActor,
     authorized(creep,payload) {
+      claims.releaseObserved(creep,payload);
       const home = payload.proposal.input.request.room;
       if (!policy.enabled(home) || creep.memory.population?.home !== home || creep.body.some(part => part.boost) || !endpoint(payload)) return false;
       if (!dispatch.arbiter.claim(creep.name,laborScope(payload))) return false;
       if (!claims.protectCargo(creep,payload)) return false;
       claims.releaseObserved(creep,payload); return true;
     },
+    recoverable(creep,payload) {
+      claims.releaseObserved(creep,payload);
+      if (!endpoint(payload) || creep.memory.population?.home !== payload.proposal.input.request.room) return false;
+      return dispatch.arbiter.claim(creep.name,laborScope(payload)) && claims.protectCargo(creep,payload);
+    },
+    failed: (creep,progress,payload,reason) => policy.failed?.(creep,progress,payload,reason),
     remainingWork: (_,order) => nativeLaborWork(order)?.remaining,
     move: (creep,destination,owner) => { dispatch.movement.move(creep,{ owner,destination,range: 0,policy: { version: 'home-labor-v1',blockedRooms: [],costs: {},maximumRooms: 1 } }); },
     pickup(creep,payload,amount,owner) {

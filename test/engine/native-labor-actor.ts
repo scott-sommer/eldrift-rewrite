@@ -21,8 +21,14 @@ export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undef
     observeIntent: (_,action,energy,result) => { if (result.status === 'issued') proof.calls.push({ tick: Game.time,action,energy,code: result.code }); },
   });
   const home = proof.proposal!.input.request.room;
-  workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult,workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
+  workers.feature.run({ room: { name: home },config: resolveConfig({ empire: { workersEnabled: !proof.actorResult && !(proof.cancel && Game.time >= 11),workerSpawningEnabled: false,workerMode: 'builder' } },Game.time) } as FeatureContext);
   dispatch.flush();
+  const failure = creep?.memory.startupLaborFailure;
+  if (proof.cancel && Game.time === 13) {
+    if (failure?.resolvedAt !== 12 || failure.returned !== 3 || failure.retainedEnergy !== 0) throw new Error('Failure receipt did not survive reset');
+    proof.failureReloadedAt = Game.time;
+  }
+  if (failure?.resolvedAt === Game.time) proof.actorFailure = { ...failure };
   const receipt = creep?.memory.startupLaborReceipt;
   if (receipt?.completedAt === Game.time) { proof.actorReceipt = { ...receipt }; proof.actorResult = { tick: Game.time,worker: receipt.unit,picked: receipt.picked,spent: receipt.spent,returned: receipt.returned,pending: null }; }
   if ([10,11,12].includes(Game.time)) (proof.actorClaims ??= []).push({ tick: Game.time,allocations: (peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? []).flatMap(claim => claim.allocations) });

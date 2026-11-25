@@ -42,7 +42,7 @@ function restoreStagedTask(labor: NativeLaborProof): void {
   const proof = labor.stagedTask;
   if (!proof) throw new Error('Missing staged labor task');
   const before = JSON.stringify(proof.root), task = createLaborTaskStaging(createMemoryPort(() => proof.root)).read(labor.proposal!.input.request.name)?.queue[0];
-  if (task || labor.actorResult?.tick !== 12) throw new Error('Completed labor task was not removed after settlement');
+  if (task || labor.actorResult?.tick !== 12 && labor.actorFailure?.resolvedAt !== 12) throw new Error('Completed labor task was not removed after settlement');
   proof.restoredAt = Game.time; proof.readOnly = before === JSON.stringify(proof.root);
   if (!proof.readOnly) throw new Error('Restoring labor obligation changed its owner state');
 }
