@@ -1,0 +1,32 @@
+{
+  "issue": "ED-29",
+  "scope": "Validated recorded proposal and staged await-birth obligation under existing task schema; scoped cancellation and native read-only reset recovery, not task-driven actor execution",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "0286f6e6c33dbde072b0af3296337983a28e479b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-task-staging/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "6d795bf83917a2d71c0ce2413c3031bbee428792e17786b61a8bdb409e94ce25",
+      "uncompressedSha256": "c538c297de5c35757babfe54370aa1d8c99dbb45dd418f7084280d7eb8bf23df",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-task-staging/staged-task.jsonl",
+          "rowsSha256": "ced831722f8e1801868d2ffce9babd8aed85ceb95c024d570fb8865fc9dbb902",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-staging/observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-task-staging/proposal.jsonl",
+          "rowsSha256": "7a52f0224b00565b87563dcb66469c24ffe1790a7ee484cc760a47bc611e62ff",
+          "rows": 1
+        }
+      ]
+    }
+  ]
+}
