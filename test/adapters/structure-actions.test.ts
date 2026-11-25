@@ -10,7 +10,7 @@ function fixture() {
   const lab = { id: 'lab', my: true, room, boostCreep: vi.fn(() => 0),runReaction: vi.fn(() => 0) } as unknown as StructureLab;
   const creep = { id: 'unit', my: true, room, body: [{ type: 'work', hits: 100 }, { type: 'move', hits: 100 }] } as Creep;
   vi.stubGlobal('Game', { time: 1, getObjectById: () => spawn });
-  for (const [name, value] of Object.entries({ ERR_BUSY: -4, ERR_INVALID_TARGET: -7, ERR_NOT_OWNER: -1,
+  for (const [name, value] of Object.entries({ OK: 0, ERR_NOT_ENOUGH_ENERGY: -6, ERR_BUSY: -4, ERR_INVALID_TARGET: -7, ERR_NOT_OWNER: -1,
     CREEP_SPAWN_TIME: 3, BODYPART_COST: { work: 100, move: 50 } })) vi.stubGlobal(name, value);
   const make = () => createNativeStructureActions(state, () => ({}));
   const assignment = { spawn: 'spawn', cost: 50, request: { id: 'request', name: 'new', owner: 'population', room: room.name,

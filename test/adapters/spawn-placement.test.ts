@@ -5,7 +5,7 @@ import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import type { SpawnAssignment } from '../../src/capabilities/spawning/request';
 afterEach(() => vi.unstubAllGlobals());
 function fixture() {
-  for (const [key,value] of Object.entries({ ERR_INVALID_TARGET: -7,ERR_BUSY: -4,LOOK_STRUCTURES: 'structure',LOOK_CONSTRUCTION_SITES: 'constructionSite',LOOK_SOURCES: 'source',LOOK_MINERALS: 'mineral',LOOK_DEPOSITS: 'deposit',STRUCTURE_RAMPART: 'rampart',TERRAIN_MASK_WALL: 1,OBSTACLE_OBJECT_TYPES: ['spawn','extension','constructedWall'],BODYPART_COST: { move: 50 } })) vi.stubGlobal(key,value);
+  for (const [key,value] of Object.entries({ OK: 0, ERR_NOT_ENOUGH_ENERGY: -6, ERR_INVALID_TARGET: -7,ERR_BUSY: -4,LOOK_STRUCTURES: 'structure',LOOK_CONSTRUCTION_SITES: 'constructionSite',LOOK_SOURCES: 'source',LOOK_MINERALS: 'mineral',LOOK_DEPOSITS: 'deposit',STRUCTURE_RAMPART: 'rampart',TERRAIN_MASK_WALL: 1,OBSTACLE_OBJECT_TYPES: ['spawn','extension','constructedWall'],BODYPART_COST: { move: 50 } })) vi.stubGlobal(key,value);
   const tiles: Record<string,unknown[]> = {}, terrain = { wall: false }, room = { name: 'W0N1',energyAvailable: 300,controller: undefined as { pos: { x: number; y: number } } | undefined,
     lookForAt: (kind: string) => tiles[kind] ?? [],getTerrain: () => ({ get: () => terrain.wall ? 1 : 0 }) };
   const native = vi.fn(() => 0), direction = vi.fn(() => 7);

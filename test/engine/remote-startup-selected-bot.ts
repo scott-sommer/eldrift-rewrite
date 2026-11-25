@@ -38,7 +38,7 @@ export function createSelectedStartupLoop(expiring = false) {
       return selection ? { spawn: selection.quote.plan.spawn.id,exit: { ...selection.quote.plan.spawn.exit } } : null;
     },
   };
-  const runtime = createNativeBot({ remoteBirths: policy });
+  const runtime = createNativeBot({ remoteBirths: policy,spawnEnergyPolicy: 'spawn-first-range-id-v1' });
   return () => {
     if (!expiring && (Game.time >= 70 && Game.time <= 81)) snapshotNativeIncumbent(state);
     runStartup(expiring ? 'selection-expiry' : 'selected',runtime);

@@ -1,3 +1,4 @@
+import type { NativeSpawnEnergyAdmission } from './spawn-energy-admission';
 import { nativeSpawnDirections } from './spawn-placement';
 import { createIntentAdmission } from '../../persistence/intent-admission';
 import type { StatePort } from '../../persistence/versioned-state';
@@ -5,9 +6,8 @@ import type { SpawnAssignment, SpawnRequest } from '../../capabilities/spawning/
 import { createNativeSpawn } from './spawn';
 
 /** One durable admission boundary for spawn production, renewal and body-changing lab intents. */
-export function createNativeStructureActions(state: StatePort, memory: (request: SpawnRequest) => CreepMemory) {
+export function createNativeStructureActions(state: StatePort, memory: (request: SpawnRequest) => CreepMemory, physicalEnergy?: NativeSpawnEnergyAdmission) {
   const admission = createIntentAdmission(state, () => Game.time);
-  const spawn = createNativeSpawn(memory);
   const structureKey = (id: string) => 'structure:' + id;
   const bodyKey = (id: string) => 'body:' + id;
   function allowed(identity: string,owner: string): boolean {
@@ -30,9 +30,14 @@ export function createNativeStructureActions(state: StatePort, memory: (request:
       const target = Game.getObjectById(assignment.spawn as Id<StructureSpawn>);
       if (!target?.my || target.room.name !== assignment.request.room) return ERR_INVALID_TARGET;
       if (nativeSpawnDirections(target,assignment.request) === null) return ERR_INVALID_TARGET;
+      const pending = target.room.energyAvailable-admission.remaining(target.room.name,target.room.energyAvailable);
+      const plan = physicalEnergy?.(target,assignment.request,pending);
+      if (plan === null) return ERR_NOT_ENOUGH_ENERGY;
       const cost = assignment.request.body.reduce((sum, part) => sum + BODYPART_COST[part], 0);
       if (!admission.admit(assignment.request.owner, [structureKey(target.id)], energy(target.room, cost))) return ERR_BUSY;
-      return spawn(assignment);
+      const result = createNativeSpawn(memory,plan ? () => plan.structures : undefined)(assignment);
+      if (plan && result === OK) plan.commit();
+      return result;
     },
     cancelSpawning(spawn: StructureSpawn, name: string, owner: string): number {
       if (!spawn.my) return ERR_NOT_OWNER;

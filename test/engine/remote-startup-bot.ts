@@ -1,3 +1,4 @@
+import { nativeSpawnEnergyStructures, orderedSpawnEnergy } from '../../src/adapters/screeps/spawn-energy';
 import { snapshotStartupProjectCheckpoint } from './startup-project-checkpoint';
 import { snapshotStartupNativeTravel } from './startup-native-travel';
 import { snapshotStartupNativeFacts } from './startup-native-facts';
@@ -16,7 +17,7 @@ import type { PipelineMemory } from './remote-pipeline-probe';
 interface StartupMemory extends PipelineMemory {
   startupAttrition?: StartupAttrition; startupFacts?: StartupFactsResult; startupTravel?: ReturnType<typeof snapshotStartupNativeTravel>[];
   startupConstruction?: number; startupSites?: Record<string,{ progress: number; total: number; complete: boolean }>;
-  startupCalls?: { tick: number; name: string; family: string; code: number }[]; startupStaleAt?: number;
+  startupCalls?: { tick: number; name: string; family: string; code: number; energyOrder?: string[]; expectedEnergyOrder?: string[] }[]; startupStaleAt?: number;
 }
 type StartupMode = 'staged' | 'refusal' | 'admission' | 'selected' | 'selection-expiry';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
@@ -32,7 +33,7 @@ export function runStartup(mode: StartupMode, run = runtimeLoop): void {
   const original = StructureSpawn.prototype.spawnCreep;
   StructureSpawn.prototype.spawnCreep = function(body,name,options) {
     const code = original.call(this,body,name,options), family = pipelineFamily(options?.memory?.population?.owner ?? '');
-    (memory.startupCalls ??= []).push({ tick: Game.time,name,family: family ?? 'other',code }); return code;
+    (memory.startupCalls ??= []).push({ tick: Game.time,name,family: family ?? 'other',code,...(options?.energyStructures ? { energyOrder: options.energyStructures.map(point => point.id),expectedEnergyOrder: orderedSpawnEnergy(this,nativeSpawnEnergyStructures(this.room)).map(point => point.id) } : {}) }); return code;
   };
   try { run(); } finally { StructureSpawn.prototype.spawnCreep = original; restoreCollections(); }
   measureConstruction(memory);

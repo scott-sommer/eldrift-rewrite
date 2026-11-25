@@ -50,6 +50,8 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
     assert.equal(tick,miners[0].activeAt); assert.deepEqual(position,selection.plan.spawn.exit);
     assert.equal(last.income,0); assert.deepEqual(memory.stampReloads,[21,81,150]);
     if (mode === 'selected') {
+      const acceptedCalls = memory.startupCalls.filter(call => call.code === 0); assert.ok(acceptedCalls.length > 0);
+      for (const call of acceptedCalls) { assert.ok(call.energyOrder.length > 0); assert.deepEqual(call.energyOrder,call.expectedEnergyOrder); }
       const projection = memory.nativeProjection; assert.ok(projection);
       const travelProof = memory.householdTravelProbe; assert.equal(travelProof.readOnly,true); const travel = travelProof.quote;
       assert.equal(travel.status,'complete'); assert.equal(travel.observedAt,25); assert.equal(travel.destination.capacity,300);

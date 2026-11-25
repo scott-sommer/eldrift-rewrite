@@ -1,3 +1,5 @@
+import { createNativeStartupEnergyAdmission } from './remotes/startup/energy-admission';
+import type { explicitSpawnEnergyPolicy } from '../adapters/screeps/spawn-energy';
 import { createNativeEmpireProduction } from './native-empire-production';
 import { createNativeBoostLabRoles } from './native-boost-lab-roles';
 import { createNativeBoosts } from './native-boosts';
@@ -50,13 +52,13 @@ import { createPersistentConfiguration } from './persistent-configuration';
 import { createGamePorts } from '../adapters/screeps/runtime';
 import { createMemoryPort } from '../adapters/screeps/memory';
 
-export interface NativeBotOptions { remoteBirths?: RemoteFleetBirthPolicy }
+export interface NativeBotOptions { remoteBirths?: RemoteFleetBirthPolicy; spawnEnergyPolicy?: typeof explicitSpawnEnergyPolicy }
 /** One composition root; injected planning policy shares ordinary recruitment and final dispatch. */
 export function createNativeBot(options: NativeBotOptions = {}) {
   const constructionLedger = createConstructionReservationLedger();
   const ports = createGamePorts();
   const state = createMemoryPort(() => Memory);
-  const dispatch = createNativeDispatch(state,request => startup.admit(request) && admitReachableRemoteSpawn(state,request) && remoteWorkers.admit(request) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig));
+  const dispatch = createNativeDispatch(state,request => startup.admit(request) && admitReachableRemoteSpawn(state,request) && remoteWorkers.admit(request) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig),options.spawnEnergyPolicy ? createNativeStartupEnergyAdmission(state) : undefined);
   const recovery = createNativeRecovery(state);
   const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
   const runtimeConfig = (room?: string) => resolveConfig(configuration(room), Game.time).values;
