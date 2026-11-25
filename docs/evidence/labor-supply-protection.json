@@ -1,0 +1,48 @@
+{
+  "issue": "ED-29",
+  "scope": "Exclude labor-owned supply recipients and protect full worker capacity with shared quantities; native completion/ordinary supply regressions, unit incoming-claim contention",
+  "native": [
+    {
+      "scenario": "completion",
+      "nativeSource": "46ebe54908f2eb270c1840ad2f2873ffdd475992",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-supply-protection/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b47ae62dd06e2e2af5327841c121337470d0d1cc2b090bb45a83ede3a0a70be9",
+      "uncompressedSha256": "b1f649d92f2b85a9437cbd2b0657e23f3a64bd13e875f5bd252cf7a027d93efe",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-supply-protection/completion-claims.jsonl",
+          "rowsSha256": "09dffdb1ff1d001c0c34d35c1073e62769777b1063f4aa4c1f573bcc6015e749",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-supply-protection/completion-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-supply-protection/completion-receipt.jsonl",
+          "rowsSha256": "c7956efa8d072c25e2e33428b4e6ef94cee5add163ca72574f1fe4748180695f",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-work-supply",
+      "nativeSource": "46ebe54908f2eb270c1840ad2f2873ffdd475992",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-supply-protection/ordinary-work-supply.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "89aa370a86ee19724682488e2df05031ff533ab95e25c026a494d7990f8ed3e0",
+      "uncompressedSha256": "1f351349832a93350b8b749bea6d120bab6a36b7542af41699436a2470d13fc3",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-supply-protection/ordinary-work-supply-samples.jsonl",
+          "rowsSha256": "9cb17727a9138f24a105973b3f0b56a4c6e464a83517e9c64752ae46d4206d1c",
+          "rows": 10
+        }
+      ]
+    }
+  ]
+}
