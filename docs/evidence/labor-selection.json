@@ -1,0 +1,32 @@
+{
+  "issue": "ED-29",
+  "scope": "Shared work policy and configurable service geometry select a real home construction obligation before funded candidate/planner/catalog qualification",
+  "native": [
+    {
+      "scenario": "--household-labor-build-complete",
+      "nativeSource": "d4f84725f02e9b985d9bf402775e2978b7fbfd5f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-selection/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "835c5de238dac77c76cd25672ac4b0fbdc4d3ff44e08bb34b3e93027097c6c1a",
+      "uncompressedSha256": "cb479d3d60b55d29e4c6af6f6d4ed5e4284557b4d738eb9581c35f690d58048a",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-selection/selection.jsonl",
+          "rowsSha256": "501e08fc779266ceda4f349d0ad57ced6dad7ec4c9156fbe41250ade58e81fc3",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-selection/observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-selection/planning.jsonl",
+          "rowsSha256": "c97901e2ce90483d371636db194ce8ed61745198d0ac2058cdc2a6897d144570",
+          "rows": 1
+        }
+      ]
+    }
+  ]
+}
