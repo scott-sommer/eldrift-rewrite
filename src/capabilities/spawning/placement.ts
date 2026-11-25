@@ -12,7 +12,7 @@ export function matchesSpawn(request: SpawnRequest, slot: SpawnSlot): boolean {
   return slot.room === request.room && (request.placement === undefined || request.placement.spawn === slot.id);
 }
 export function copySpawnRequest(request: SpawnRequest): SpawnRequest {
-  return { ...request,body: [...request.body],...(request.boost ? { boost: copySpawnBoost(request.boost) } : {}),...(request.placement ? { placement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
+  return { ...request,...(request.admission ? { admission: { ...request.admission } } : {}),body: [...request.body],...(request.boost ? { boost: copySpawnBoost(request.boost) } : {}),...(request.placement ? { placement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
 }
 
 export function sameSpawnPlacement(a: SpawnPlacement | undefined, b: SpawnPlacement | undefined): boolean {
@@ -23,5 +23,9 @@ export function sameSpawnPlacement(a: SpawnPlacement | undefined, b: SpawnPlacem
 export function sameSpawnRequest(a: SpawnRequest, b: SpawnRequest): boolean {
   const fields = ['id','owner','room','home','name','priority','readyAt','expiresAt'] as const;
   return fields.every(key => a[key] === b[key]) && JSON.stringify(a.body) === JSON.stringify(b.body) && sameSpawnPlacement(a.placement,b.placement)
-    && JSON.stringify(a.boost ? copySpawnBoost(a.boost) : null) === JSON.stringify(b.boost ? copySpawnBoost(b.boost) : null);
+    && JSON.stringify(a.boost ? copySpawnBoost(a.boost) : null) === JSON.stringify(b.boost ? copySpawnBoost(b.boost) : null) && sameSpawnAdmission(a,b);
+}
+
+function sameSpawnAdmission(a: SpawnRequest, b: SpawnRequest): boolean {
+  return JSON.stringify(a.admission ?? null) === JSON.stringify(b.admission ?? null);
 }

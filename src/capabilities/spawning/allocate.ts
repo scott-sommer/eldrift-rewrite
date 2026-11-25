@@ -1,3 +1,4 @@
+import { validateSpawnAdmission } from './admission';
 import { validateSpawnBoost } from './boost';
 import { validateSpawnPlacement, matchesSpawn, copySpawnRequest } from './placement';
 import { bodyCost, partCosts } from './body';
@@ -22,6 +23,7 @@ export function validateRequest(request: SpawnRequest): void {
   if (request.expiresAt <= request.readyAt) throw new Error('Empty spawn lifetime');
   if (!request.body.length || request.body.length > 50 || request.body.some(part => !Object.hasOwn(partCosts, part))) throw new Error('Invalid spawn body');
   validateSpawnBoost(request);
+  validateSpawnAdmission(request.admission);
 }
 /** Pure proposal: only execution receipts may remove requests from persistent queues. */
 export function allocateSpawns(requests: readonly SpawnRequest[], slots: readonly SpawnSlot[], energy: Readonly<Record<string, number>>,

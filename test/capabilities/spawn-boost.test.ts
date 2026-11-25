@@ -31,10 +31,10 @@ test('allocation detaches nested steps and rejects impossible part counts or amb
   const conflict = request(); conflict.boost!.steps = [...conflict.boost!.steps,...conflict.boost!.steps]; expect(() => validateRequest(conflict)).toThrow('Conflicting');
   const invalid = request(); invalid.boost!.timeout = 0; expect(() => validateRequest(invalid)).toThrow('policy');
 });
-test.each([1,2])('legacy spawn schema %s migrates without inventing boost contracts; old readers refuse schema 3',version => {
+test.each([1,2])('legacy spawn schema %s migrates without inventing boost contracts; old readers refuse schema 4',version => {
   const memory = {}, state = createMemoryPort(() => memory), legacy = request(); delete legacy.boost;
   state.write('spawning/W0N1',{ owner: 'population',version,data: { requests: [legacy] } });
-  expect(createSpawnQueue(state,'W0N1').list()).toEqual([legacy]); expect(state.read('spawning/W0N1')).toMatchObject({ version: 3 });
+  expect(createSpawnQueue(state,'W0N1').list()).toEqual([legacy]); expect(state.read('spawning/W0N1')).toMatchObject({ version: 4 });
   expect(() => openState(state,'spawning/W0N1',{ ...spawnQueueSchema('W0N1'),version: 2 })).toThrow('future');
 });
 test('a boost contract disguised as old schema refuses migration without changing its bytes',() => {

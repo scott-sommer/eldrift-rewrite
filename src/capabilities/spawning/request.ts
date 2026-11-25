@@ -1,3 +1,4 @@
+import type { SpawnAdmission } from './admission';
 import type { SpawnBoost } from './boost';
 import type { Position } from '../movement/step';
 import type { BodyPart } from './body';
@@ -17,6 +18,8 @@ export interface SpawnRequest {
   placement?: SpawnPlacement;
   /** Exact boost policy chosen by the owning producer; industry confirms after birth. */
   boost?: SpawnBoost;
+  /** Required final authority; missing task must never downgrade to ordinary recruitment. */
+  admission?: SpawnAdmission;
 }
 export interface SpawnSlot { id: string; room: string; busy: boolean }
 export interface SpawnAssignment { spawn: string; request: SpawnRequest; cost: number }

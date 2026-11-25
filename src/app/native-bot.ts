@@ -1,3 +1,5 @@
+import { createNativeLaborBirthAdmission } from './native-labor/birth-admission';
+import { nativeWorkerSettings } from './native-worker-settings';
 import { withLaborReceiptRetirement } from './native-labor/receipt';
 import { createNativeStartupEnergyAdmission } from './remotes/startup/energy-admission';
 import type { explicitSpawnEnergyPolicy } from '../adapters/screeps/spawn-energy';
@@ -59,7 +61,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   const constructionLedger = createConstructionReservationLedger();
   const ports = createGamePorts();
   const state = createMemoryPort(() => Memory);
-  const dispatch = createNativeDispatch(state,request => startup.admit(request) && admitReachableRemoteSpawn(state,request) && remoteWorkers.admit(request) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig),options.spawnEnergyPolicy ? createNativeStartupEnergyAdmission(state) : undefined);
+  const dispatch = createNativeDispatch(state,request => admitLaborBirth(request) && startup.admit(request) && admitReachableRemoteSpawn(state,request) && remoteWorkers.admit(request) && admitRemoteConstructionSpawn(state,request,runtimeConfig) && admitReservationSpawn(state,request,runtimeConfig) && admitRemoteWorkforceSpawn(state,request,runtimeConfig),options.spawnEnergyPolicy ? createNativeStartupEnergyAdmission(state) : undefined);
   const recovery = createNativeRecovery(state);
   const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
   const runtimeConfig = (room?: string) => resolveConfig(configuration(room), Game.time).values;
@@ -78,6 +80,10 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   const workers = createNativeWorkFeature(state, dispatch, { ...mining.definitions, ...logistics.definitions },
     recovering);
   const taskDefinitions = { ...mining.definitions,...logistics.definitions,...workers.definitions,...remoteFleetDefinitions,...remoteConstructionDefinitions,...reservationDefinitions };
+  const admitLaborBirth = createNativeLaborBirthAdmission(state,(home,owner) => {
+    const policy = nativeWorkerSettings(owner,home,runtimeConfig(home));
+    return !!policy?.workersEnabled && policy.workerSpawningEnabled;
+  },taskDefinitions);
   const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths);
   const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
