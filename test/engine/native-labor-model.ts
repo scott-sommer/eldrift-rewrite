@@ -1,3 +1,4 @@
+import type { QuantityClaim } from '../../src/persistence/quantities/schema';
 import type { LaborProgress } from '../../src/features/work/labor-progress';
 import type { LaborCandidatePlanningProof } from './native-labor-planning-model';
 import { nativeLaborSpawning } from './native-labor-input';
@@ -12,12 +13,13 @@ export type LaborKind = 'build' | 'repair' | 'upgrade';
 export interface LaborSnapshot { spawn: number; endpoint: number; cargo: number; bank: number; progress: number }
 export interface NativeLaborProof {
   kind: LaborKind; loaded: boolean; cancel: boolean; complete: boolean; travel: boolean; targetTotal: number; initialSpawn: number; initialEndpoint: number; initialProgress: number;
+  incoming: boolean; incomingClaim?: QuantityClaim; incomingSettledAt?: number;
   fault?: 'before' | 'after'; interruptedAt?: number; reconstructedAt?: number;
   failureReloadedAt?: number; actorFailure?: NonNullable<CreepMemory['startupLaborFailure']>; actorReceipt?: NonNullable<CreepMemory['startupLaborReceipt']>; actorClaims?: { tick: number; allocations: { pool: string; amount: number }[] }[]; actorResult?: LaborProgress & { tick: number }; actorReloadAt?: number; stagedTask?: { root: { eldrift?: unknown }; stagedAt: number; restoredAt?: number; readOnly?: boolean }; birthQueue?: { id: string; readyAt: number; expiresAt: number; activeAt: number; reserved: boolean; removed: boolean }; planning?: LaborCandidatePlanningProof; proposal?: LaborProposalSnapshot; proposalCurrent?: boolean; proposalReadOnly?: boolean; travelQuote?: LaborTravelQuote; routeReadOnly?: boolean; checkpoint?: StartupHouseholdCheckpoint; result?: ReturnType<ReturnType<typeof createStartupHousehold>['result']>;
   expected?: LaborSnapshot; rows: { tick: number; actual: LaborSnapshot; expected?: LaborSnapshot; position?: { x: number; y: number; fatigue: number } }[];
   calls: { tick: number; action: string; code: number; energy: number }[]; activeAt?: number;
 }
-export interface LaborMemory extends Memory { nativeLaborLoaded?: boolean; nativeLaborFault?: 'before' | 'after'; nativeLaborCancel?: boolean; nativeLaborTravel?: boolean; nativeLaborComplete?: boolean; nativeLaborKind?: LaborKind; nativeLabor?: NativeLaborProof }
+export interface LaborMemory extends Memory { nativeLaborIncoming?: boolean; nativeLaborLoaded?: boolean; nativeLaborFault?: 'before' | 'after'; nativeLaborCancel?: boolean; nativeLaborTravel?: boolean; nativeLaborComplete?: boolean; nativeLaborKind?: LaborKind; nativeLabor?: NativeLaborProof }
 export function laborInput(proof: NativeLaborProof, spawn: StructureSpawn): StartupHouseholdInput {
   const room = spawn.room.name, request = { id: 'native-labor',name: 'native-labor',owner: 'fixture',room,body: ['work','carry','move'] as ('work' | 'carry' | 'move')[],priority: 0,readyAt: 0,expiresAt: 25,
     placement: { spawn: spawn.id,exit: { room,x: 14,y: 15 } } };

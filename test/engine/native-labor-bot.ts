@@ -11,7 +11,7 @@ import type { LaborMemory, NativeLaborProof, LaborSnapshot } from './native-labo
 export function loop(): void {
   const memory = Memory as LaborMemory, spawn = Game.spawns.Spawn1!, storage = spawn.room.storage!;
   openState(createMemoryPort(() => Memory),'operator/config',operatorSchema);
-  const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,loaded: !!memory.nativeLaborLoaded,...(memory.nativeLaborFault ? { fault: memory.nativeLaborFault } : {}),cancel: !!memory.nativeLaborCancel,complete: !!memory.nativeLaborComplete,travel: !!memory.nativeLaborTravel,targetTotal: targetTotal(memory.nativeLaborKind!),initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
+  const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,incoming: !!memory.nativeLaborIncoming,loaded: !!memory.nativeLaborLoaded,...(memory.nativeLaborFault ? { fault: memory.nativeLaborFault } : {}),cancel: !!memory.nativeLaborCancel,complete: !!memory.nativeLaborComplete,travel: !!memory.nativeLaborTravel,targetTotal: targetTotal(memory.nativeLaborKind!),initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
   const creep = Game.creeps[proof.proposal?.input.request.name ?? 'native-labor'], actual = observe(proof,spawn,storage,creep);
   proof.rows.push({ tick: Game.time,actual,...(creep ? { position: { x: creep.pos.x,y: creep.pos.y,fatigue: creep.fatigue } } : {}),...(proof.expected ? { expected: proof.expected } : {}) });
   if (creep && !creep.spawning && proof.activeAt === undefined) proof.activeAt = Game.time;
