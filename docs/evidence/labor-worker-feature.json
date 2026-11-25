@@ -1,0 +1,53 @@
+{
+  "issue": "ED-29",
+  "scope": "Production worker room feature executes staged labor before ordinary cargo/work, publishes bounded receipt; ordinary main-bot population regression and identity-safe receipt retirement unit test",
+  "native": [
+    {
+      "scenario": "completion",
+      "nativeSource": "de1a0cdd713bf39e391fb06248de64ed0c871fb8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-worker-feature/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a82f68467832d6d3cd950a536876f5018c2073184c639aa942ccda35d741ac69",
+      "uncompressedSha256": "7218eb697d143b042a7666a117dc08b2f212fcaa663ed14826e0897b9891fecc",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-worker-feature/completion-receipt.jsonl",
+          "rowsSha256": "3e57dd2669c69fa4109ee6f2b9b0339ae488a2a26b603def6aaea3e7caf8ac30",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-worker-feature/completion-claims.jsonl",
+          "rowsSha256": "480b0a91b37740c0a7862fca458eaf89e06006b2867a297ab7f547a0289344b3",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-worker-feature/completion-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/labor-worker-feature/completion-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-population",
+      "nativeSource": "de1a0cdd713bf39e391fb06248de64ed0c871fb8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-worker-feature/ordinary-population.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a66a7b755c063115f5e44ca15071fcc275a2b1c1e437571576c580e0e65567e1",
+      "uncompressedSha256": "e5e0e3c71434b7be06558977b18c05419adcb95b7e75a45d9c492755f399a478",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-worker-feature/ordinary-population-samples.jsonl",
+          "rowsSha256": "ab969cc78e4dcbe2b0273b0d9fe662c61b56b0ca5e960d037ca13676233c5a12",
+          "rows": 44
+        }
+      ]
+    }
+  ]
+}
