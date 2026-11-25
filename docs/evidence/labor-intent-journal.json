@@ -1,0 +1,99 @@
+{
+  "issue": "ED-29",
+  "scope": "Task-owned prepared-intent persistence around controlled before/after SDK interruption, same-tick component reconstruction and subsequent actual global reloads; not uncaught mid-tick VM termination durability",
+  "native": [
+    {
+      "scenario": "before",
+      "nativeSource": "b26ad4889b39de5df624b01e9e29ecfaa0a342ff",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-intent-journal/before.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "692963eb560b83d5c7fc4a9c2fbd6e3a2a745c0719bc5d45e4192a6a323e9212",
+      "uncompressedSha256": "2ec45e2cfe3655d4bec0152d6ba8627570ff9838292d700cb2db283cab78402c",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/before-receipt.jsonl",
+          "rowsSha256": "6fc2c1e4ae294ae57eb2a1800191be0d5a5ba248d4c11c9d31d79a2f92309ef3",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/before-claims.jsonl",
+          "rowsSha256": "0143edffa7e62a619c0c40daeb20b7a7b0bfe415a9f46f2ce00c55f3fe74e1ac",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/before-sdk-calls.jsonl",
+          "rowsSha256": "0f2d31019b6da76d32949afb6e36874e2e5160b4e0eaf386f0ab8ef72954f69b",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/before-observations.jsonl",
+          "rowsSha256": "7cd44968ef7e4477f5a8996938a69f90a0d99bea5f7fe5ce8df3fc4ddf623004",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "after",
+      "nativeSource": "b26ad4889b39de5df624b01e9e29ecfaa0a342ff",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-intent-journal/after.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "26f2b86b36da1296117b3b7421a5bb30beec5806b77adac51b3d13aa20312194",
+      "uncompressedSha256": "d8ab3e8792a68dcfdc0982ce019c3d72e0d83d6acac341b0f7c85cb78fef008a",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/after-receipt.jsonl",
+          "rowsSha256": "fdb2baa8f315cb07182b06822e2afdae8a37ab3064514868d4337e53cd1911ce",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/after-claims.jsonl",
+          "rowsSha256": "ac65f94ad0e0325a42b0e8b1017c109919b004c1aae20c2e39519ea7aa6ea0a9",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/after-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/after-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "complete",
+      "nativeSource": "b26ad4889b39de5df624b01e9e29ecfaa0a342ff",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-intent-journal/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c5f19b1011fe8704425ff268572cae85ec877d3d5400a0d628e085a7e594893e",
+      "uncompressedSha256": "3173ad56369e0c362562b5e21b5cc352622ddc9b5ab329a0815d85153f09b7c2",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/complete-receipt.jsonl",
+          "rowsSha256": "dc030027f9f8e0d8d7cd43259bfa3a27d1371e28a30ad2675477444b56bab246",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/complete-claims.jsonl",
+          "rowsSha256": "06c35e9f95db700387071f677aa1f5b95960fc7f6cb1716efe9edb0b1ae05b52",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-intent-journal/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}

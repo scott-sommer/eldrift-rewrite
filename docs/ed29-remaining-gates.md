@@ -22,3 +22,5 @@ ED-31/33/35 own concrete specialist/vassal/military/keeper/power-bank consumers;
 ## Latest qualification
 
 At bfe391f, native configuration cancellation returns3 confirmed energy with0 productive spend and preserves a failure receipt across reload; normal completion remains qualified on the same source. See evidence/labor-refund.json and household-labor.md. Gate1 remains open for loaded/native recovery and uncertain/missing-home cases; gates2–6 are not implied complete.
+
+At b26ad48, prepared intents survive controlled before/after-SDK exceptions and fresh same-tick reconstruction, with actual reloads11/13 and exact no-duplicate assertions. See evidence/labor-intent-journal.json. Uncaught mid-tick VM termination durability is not yet qualified; gate1 still includes loaded recovery/uncertain cargo/home loss. Proceed to those realized lifecycle cases before additional optional planning variants.
