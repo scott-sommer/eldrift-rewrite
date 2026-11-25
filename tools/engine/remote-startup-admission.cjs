@@ -43,6 +43,10 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(proof.frames,1); assert.equal(proof.accountedThrough,44);
   assert.ok(proof.checkpointCharacters > 0 && proof.checkpointCharacters < 1048576);
   assert.deepEqual(proof.result,proof.uninterrupted);
+  const candidate = memory.startupCandidateMigration; assert.ok(candidate);
+  assert.equal(candidate.savedAt,149); assert.equal(candidate.resumedAt,150); assert.equal(candidate.readOnly,true);
+  assert.deepEqual(candidate.retained,['compatible']); assert.equal(candidate.version,3); assert.equal(candidate.revision,2);
+  assert.equal(candidate.lookup,true); assert.equal(candidate.isolated,true);
   const passive = memory.startupPassiveMigration; assert.ok(passive);
   assert.equal(passive.savedAt,149); assert.equal(passive.resumedAt,150);
   assert.equal(passive.readOnly,true); assert.equal(passive.through,101);
