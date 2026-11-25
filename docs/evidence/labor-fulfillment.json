@@ -1,0 +1,56 @@
+{
+  "issue": "ED-29",
+  "scope": "Required productive labor and cache5 semantics; native completion/admission and authentic historical upgrade/reset",
+  "native": [
+    {
+      "scenario": "completion",
+      "nativeSource": "07eb33854494ecb774c51a3e2eaa8a8ba7a0fa95",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-fulfillment/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "452e277876ae85eab35269a567826915ee7ba5b66039a65c4689ed202f16d102",
+      "uncompressedSha256": "97b5d6af947e67a5fa78dabde8fdbd6ec0de58bf0ac39f87e182e63149ad9f29"
+    },
+    {
+      "scenario": "admission",
+      "nativeSource": "07eb33854494ecb774c51a3e2eaa8a8ba7a0fa95",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-fulfillment/admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9b7e6d3b401eba8a614afbd5cfd5c8339a2ff3025102c9089449cfb9bc8a012e",
+      "uncompressedSha256": "558e01d1a77f0a01e658326e2322a8fd1a76e7365ffd3b43ceb857e01faf66f9"
+    }
+  ],
+  "archives": [
+    {
+      "rawFile": "docs/evidence/labor-fulfillment/historical-old.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "720a812ca28f8345b486021d4c2d09d0d7d918f7b12a6e961d971d2f63804f47",
+      "uncompressedSha256": "465fdd2097bdea86c44dcfa05e2ecabf27d69de60a2671d368d59393a3c0970e"
+    },
+    {
+      "rawFile": "docs/evidence/labor-fulfillment/historical-upgraded.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2e77418371ce2b90d2aaddebcf89e4be40f2ed69e53233782b2540758d217657",
+      "uncompressedSha256": "46970188cf314f5d5e3e5ef58e97eb45ae9ffb8935329ef7305d5745087e4bb3"
+    },
+    {
+      "rawFile": "docs/evidence/labor-fulfillment/historical-reset-plan.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8863cbcce46e070adc94086b68c5af6ff076e6808d8af9925ca29ddf5b44193e",
+      "uncompressedSha256": "cc17b1228b064ca8a03c2659f5806c8c153bc8d8aecd5d3565349b0d23913f0c"
+    },
+    {
+      "rawFile": "docs/evidence/labor-fulfillment/historical-reset.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e1a5a5feaf6f695ef3487c0887343c6611d93ef2d639af31814038483137fedd",
+      "uncompressedSha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11"
+    },
+    {
+      "rawFile": "docs/evidence/labor-fulfillment/historical-report.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b8a8e518dbfe3420d86d9a6a0baf29ff01451b9d38366310f89693804e86eb20",
+      "uncompressedSha256": "f5c21126fc1cf330693cb9483edb61d1de6cd6630c16b413f502c497ba0c4b03"
+    }
+  ]
+}
