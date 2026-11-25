@@ -1,0 +1,53 @@
+{
+  "issue": "ED-29",
+  "scope": "Task-bound explicit queued birth admission, current native fact recheck and shared structure payment; ordinary full-bot recruitment regression; controlled fixture publication remains separate from automatic economic adoption",
+  "native": [
+    {
+      "scenario": "complete",
+      "nativeSource": "a2a9976fbdcd54ef52fa9ebc28e3ff4167ba4bb0",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-birth-admission/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8a48fb91406a6ded83acd689402249407d18a7713aeaf16cea61ee938ae989da",
+      "uncompressedSha256": "debad17f22ac53b636980fe90bf1b5fd5b48d95b661289e24ab139c87fdeeed8",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-birth-admission/complete-receipt.jsonl",
+          "rowsSha256": "d787c6095d994dcc3947b592136b28a508562cfd59b70dddb4d5aea525ba0ffa",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-birth-admission/complete-claims.jsonl",
+          "rowsSha256": "6d29fbddc91050fe1358bd22f2b3228bfaef4dffb62defc586355aea5d8161b3",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-birth-admission/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-birth-admission/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "worker-population",
+      "nativeSource": "a2a9976fbdcd54ef52fa9ebc28e3ff4167ba4bb0",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-birth-admission/worker-population.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "611204dda1bb076f4beac4377823aad1d6709aba08bf972fb5a578d736244a6f",
+      "uncompressedSha256": "ab2fbc2d4a25712dd20aeaa75c618b7bb07e288b3d9fb94c030157be94638ec1",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-birth-admission/worker-population-samples.jsonl",
+          "rowsSha256": "b142e3f2e8e9970a3f2e252f32338346f9dd1e3f33b566e0d750cade3a0097fb",
+          "rows": 44
+        }
+      ]
+    }
+  ]
+}
