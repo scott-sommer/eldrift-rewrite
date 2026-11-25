@@ -1,0 +1,141 @@
+{
+  "issue": "ED-29",
+  "scope": "Controlled real paid native worker, adjacent unboosted build/repair/upgrade actions with no travel, per-tick physical settlement versus standalone household model and two reloads",
+  "source": "4b03ad1eeb4e8714d4c148aec0eaee2c0bc462bf",
+  "native": [
+    {
+      "scenario": "--household-labor-build",
+      "nativeSource": "4b03ad1eeb4e8714d4c148aec0eaee2c0bc462bf",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-household-labor/build.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "38bc3aed98a314978644c9a47cb55d97c40af5659c53de72c61d67d14e51c2a3",
+      "uncompressedSha256": "70adc280851271a12826458611f2a6bb920633bae00c7b99768eb35edcd4d80c",
+      "actualTicks": 26,
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 990,
+        "cargo": 0,
+        "bank": 1115,
+        "progress": 10
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-household-labor/build-samples.jsonl",
+          "rowsSha256": "9ce89770cfb76d605bc36ff7eda22ae45577c72b66dbf9c22df10bd67fcbf1e2",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-household-labor/build-observations.jsonl",
+          "rowsSha256": "7dc558402fc3c7546b5d7e7249d6b0763e68ac4a2063de524a308ba2e93c133d",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-household-labor/build-sdk-calls.jsonl",
+          "rowsSha256": "29380861564aaeefa6796d8d103cff6213e155f45433ccebece9f7a5ae9864b9",
+          "rows": 4
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-repair",
+      "nativeSource": "4b03ad1eeb4e8714d4c148aec0eaee2c0bc462bf",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-household-labor/repair.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a031b6577e277c2299691dcca52960198b0f3f2d3216e0074f4911d754290422",
+      "uncompressedSha256": "3050189524e90ddd4b4685b3588d96565a585749c736310aefb579442db95f43",
+      "actualTicks": 26,
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 998,
+        "cargo": 0,
+        "bank": 1123,
+        "progress": 200
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-household-labor/repair-samples.jsonl",
+          "rowsSha256": "323053af37a5bc8a7b20bda0985cda5d8b884574fbc1ecd985df1cef5e81c706",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-household-labor/repair-observations.jsonl",
+          "rowsSha256": "5b7fd567334e2371c2a3183051eac83ac56cfb2e853ea41147aa54eebb00d995",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-household-labor/repair-sdk-calls.jsonl",
+          "rowsSha256": "dd7348fab114a9c06dfe74050603e992aae91ff89d017c1aae9946d0b0621ea1",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "scenario": "--household-labor-upgrade",
+      "nativeSource": "4b03ad1eeb4e8714d4c148aec0eaee2c0bc462bf",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/native-household-labor/upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4acf8cdd17412dd195ff94d5b19353447d6cd2afaf00124ba44bf0ad60d034ae",
+      "uncompressedSha256": "5b3479072e7148abb3d2767825b710da39666f260b27d12b62016d842d52bd9d",
+      "actualTicks": 26,
+      "observedFinal": {
+        "spawn": 125,
+        "endpoint": 998,
+        "cargo": 0,
+        "bank": 1123,
+        "progress": 2
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/native-household-labor/upgrade-samples.jsonl",
+          "rowsSha256": "574c847dae72e90be36bbc303d19560e12ec22f91ab16e644f3a392ef69b3b3f",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-household-labor/upgrade-observations.jsonl",
+          "rowsSha256": "69c07fa4a8bacbdc6d2502ef8600c226e943e9447119c9cddd6dc259507aecb2",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/native-household-labor/upgrade-sdk-calls.jsonl",
+          "rowsSha256": "d2d37b5449c86381ffc717a41ab37ac183e810702ddacfe2c0384ded48eaae08",
+          "rows": 5
+        }
+      ]
+    }
+  ],
+  "facts": {
+    "birthEnergy": 200,
+    "nativeActiveAt": 10,
+    "pickupAt": 10,
+    "pickupEnergy": 10,
+    "workAt": [
+      11,
+      12
+    ],
+    "returnAt": 13,
+    "moduleReloads": [
+      11,
+      13
+    ],
+    "nativeAmbientEnergy": 25,
+    "externalIncome": 0
+  },
+  "checks": {
+    "targeted": "18 tests / 3 files / 1.00s",
+    "smoke": "76 tests / 15 files / 468ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard959 production830 test files zero violations",
+    "suiteReportCheck": "1 passed / 134ms",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Loaded route/return calibration and target completion/refusal behavior",
+    "Native lifetime loss and contended endpoint capacity",
+    "Automatic paid home workforce proposal, admission and configurable strategies",
+    "Combined native household/source lifecycle and shared multi-room capital",
+    "Remaining broad parity/pressure/rollback/RC gates"
+  ]
+}
