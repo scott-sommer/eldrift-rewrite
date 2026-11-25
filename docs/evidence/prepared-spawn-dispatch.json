@@ -1,0 +1,203 @@
+{
+  "issue": "ED-29",
+  "source": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+  "scope": "Prepared same-flush physical spawn selection, native claim preservation and legacy/selected regressions; not complete matched household/source strategy",
+  "native": [
+    {
+      "nativeSource": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/prepared-spawn-dispatch/spawn-preflight.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a8676e7b832fe152da81e2e094eaace10d22b30d07a21b8f3ecf979c62d52ac6",
+      "uncompressedSha256": "5f12358460d456fd6d06fcc98be0ae1574e15d98647a413a00c96deb6b1f6309",
+      "provenance": {
+        "commit": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+        "dirty": false,
+        "bundleSha256": "6db2bef13d232b76c2d006510df714a5fbacc86c8735f2dee04afe9ae50e80f9",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "scenario": "--spawn-preflight",
+      "actualTicks": 3,
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/prepared-spawn-dispatch/spawn-preflight-samples.jsonl",
+          "rowsSha256": "301931f99a9a48522289f1f9b6e6e35e8c72243d63f55d62cb0e0ca99b50bf7c",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/prepared-spawn-dispatch/preflight-proof.jsonl",
+          "rowsSha256": "168f0a08570d213ebdfaf7be82d75eb39798536db5cd1a35980e948c22c0655b",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "nativeSource": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/prepared-spawn-dispatch/remote-startup-selected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "778018835c96a3b444bf95169ad20a5cc9da67a712265dadfad45751f7519dda",
+      "uncompressedSha256": "ea0a7a6e6c537a23e515f788ae73e6470d97d12509e2e6bafbb5b8a1df97c9a9",
+      "provenance": {
+        "commit": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+        "dirty": false,
+        "bundleSha256": "84b5e2c68bb9a437fa81ba27207cdaefc114a269ac75fb1fefe051c273d1e2a0",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "scenario": "--remote-startup-selected",
+      "actualTicks": 150,
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/prepared-spawn-dispatch/remote-startup-selected-samples.jsonl",
+          "rowsSha256": "59eba4b2f9bc49c86fde12fc3ee8e77e3d64249781203c0e4a33959412d91a3d",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/prepared-spawn-dispatch/selected-sdk-calls.jsonl",
+          "rowsSha256": "8675bbaed23273ea5e20fc0d76b8f4610b341a139c52bed6bd9c5960b9bebf09",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/prepared-spawn-dispatch/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        }
+      ]
+    },
+    {
+      "nativeSource": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/prepared-spawn-dispatch/spawn-contention.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9786b1dbf405e6c5d88be1ee259523f252547f91ea4deba07794ea2489b39081",
+      "uncompressedSha256": "5df27493e660b47e76ccab6aaf59f03b3b3b0e8869c22a920c2b660318f5b03e",
+      "provenance": {
+        "commit": "819d6f5afe5b997b175cc6b10a83240ffcb50dc7",
+        "dirty": false,
+        "bundleSha256": "b8b9428de3c48385789845120f85c5cded3996b8248ebef29c6c542a70a74c12",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "scenario": "--spawn-contention",
+      "actualTicks": 3,
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/prepared-spawn-dispatch/spawn-contention-samples.jsonl",
+          "rowsSha256": "a0683ee21ee82725e0657da3b6223bfe400522509e2e9856295ef952e088d5b4",
+          "rows": 3
+        }
+      ]
+    }
+  ],
+  "failedAttempts": [
+    {
+      "nativeSource": "dcc1cfc919b2375c7e467f6785879f6adfd5109c",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/prepared-spawn-dispatch/failed-fixture-config.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "28dc64f00cbc08e1f4b7323c353b07ed117f44716db2842f6b01e31038cf3305",
+      "uncompressedSha256": "a35b30af79ad4231a13c5f2993dbf1fb6bae7cc5c62299070913d715e7c4233d",
+      "provenance": {
+        "commit": "dcc1cfc919b2375c7e467f6785879f6adfd5109c",
+        "dirty": false,
+        "bundleSha256": "e20928faa510291804afae85ee7abacf8f05de446cb8f3ead065c4c64190dfeb",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "failureScope": "Isolated dispatcher fixture omitted required operator schema initialization; failed generic harness owner check"
+    },
+    {
+      "nativeSource": "61153c0dbe539e055a721825d547aaf9e5449655",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/prepared-spawn-dispatch/failed-passive-regeneration.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "53934b7ddbbead51de463dade5a29f583fecd7abdffdde84ce5d5b81f87a0936",
+      "uncompressedSha256": "7bfb0e3d1e03e963b16f4583d4545d7e59787e1f4452d4331e4748ee370c1cab",
+      "provenance": {
+        "commit": "61153c0dbe539e055a721825d547aaf9e5449655",
+        "dirty": false,
+        "bundleSha256": "35aa57b5a0dc6fe3717cc9dbb6192949520d2f383234f4c7733adc3e53d51d67",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "failureScope": "Fixture expected100 stock but native spawn tick had regenerated2 in observed target; corrected exact clock-bound assertion102"
+    },
+    {
+      "nativeSource": "347270410fb5ff0dfbb7427ee283676a099497cc",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/prepared-spawn-dispatch/failed-duplicate-workforce-admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3e5e6dee4e985f15d0d415c7909ca9504a59a07535cf0129368539430a53ad9c",
+      "uncompressedSha256": "c5e45b9609243354be7c19207e634b660963ace3a602ca75e92a68884555f4b2",
+      "provenance": {
+        "commit": "347270410fb5ff0dfbb7427ee283676a099497cc",
+        "dirty": false,
+        "bundleSha256": "53e65cea01777745a909e7e96db8cde592f7477e9b970553840d40b8f18823f1",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "failureScope": "Real integration regression: producer admission repeated in preflight booked workforce permit twice and refused miner; fixed single-call boundary and regression tested"
+    }
+  ],
+  "preflightProof": {
+    "unsafeCost": 250,
+    "safeCost": 200,
+    "reservedStock": 100,
+    "acceptedName": "safe",
+    "acceptedTick": 1,
+    "observedAt": 3,
+    "observedTargetEnergy": 102,
+    "passiveTargetRegeneration": 2,
+    "pendingName": "unsafe"
+  },
+  "checks": {
+    "targeted": {
+      "cases": 25,
+      "files": 6,
+      "seconds": 0.319
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.449
+    },
+    "quality": {
+      "productionFiles": 948,
+      "testFiles": 808,
+      "lizardViolations": 0,
+      "typecheck": "passed",
+      "lint": "passed",
+      "boundaries": "passed"
+    },
+    "bundle": "passed",
+    "engineReportCheck": "passed1",
+    "fullUnits": "not run; incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Matched household/source native actor lifecycle and realized cashflow",
+    "Physical passive spawn regeneration in appropriate forecast accounting",
+    "Full household workforce/incumbents and shared multi-room capital",
+    "Default economic strategy adoption and broader parity/pressure/rollback/RC gates"
+  ]
+}
