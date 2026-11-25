@@ -26,6 +26,7 @@ test('accepted pickup reserves source stock, duplicate admission preserves it, a
   expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.claims.list(10)).toHaveLength(1); expect(f.raw.withdraw).toHaveBeenCalledTimes(1);
   f.payload.progress = { worker: 'actor',picked: 0,spent: 0,returned: 0,pending: { kind: 'pickup',tick: 10,before: 0,maximum: 3 } };
   f.at(11); expect(f.ports.authorized(f.creep,f.payload)).toBe(true); expect(f.claims.list(11)).toEqual([]);
+  f.raw.withdraw.mockReturnValueOnce(-6); expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.claims.list(11)).toEqual([]);
 });
 test('stock reserve and competing target budgets refuse without native effects',() => {
   const f = fixture(); f.source.store.energy = 22; expect(f.ports.pickup(f.creep,f.payload,3,f.owner)).toBe(false); expect(f.raw.withdraw).not.toHaveBeenCalled();
