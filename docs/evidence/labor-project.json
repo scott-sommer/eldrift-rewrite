@@ -1,0 +1,146 @@
+{
+  "issue": "ED-29",
+  "relatedIssue": "ED-44",
+  "scope": "Labor-aware full-project model, shared sink capacity and persisted owner/reset qualification; not matched native household actors or measured target consumption",
+  "source": "f48866f1d0b24f29c5b1b1f995fb33d593af83f4",
+  "native": [
+    {
+      "scenario": "selected",
+      "nativeSource": "f48866f1d0b24f29c5b1b1f995fb33d593af83f4",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-project/selected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "6ec68896074385a7ba7103c97b4918b810653950d4982699f51e939e36274351",
+      "uncompressedSha256": "f0abec02b364ba5ed2cb063db9b1f2564fc4716a9cbe8b66b692127af28256de",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-project/selected-samples.jsonl",
+          "rowsSha256": "049eda1aa7704bb67263979963d38dd24a3179088d5656dfc9945200053fe7ba",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/labor-project/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        }
+      ]
+    },
+    {
+      "scenario": "admission",
+      "nativeSource": "f48866f1d0b24f29c5b1b1f995fb33d593af83f4",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-project/admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a39552fe9fb9dbd9caa6d32ab6c75f2320391d849b3f4ae03b51755cefa719ee",
+      "uncompressedSha256": "bca112a3779d017892924a3ef21250b3400b3dcfbc4cc4edca836189d2958eb4",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-project/admission-samples.jsonl",
+          "rowsSha256": "1fe0b1d559c2dafac6a7ffbbf7df99600abaeef939398a871ef64b5370013d61",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/labor-project/admission-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/labor-project/admission-labor-model-reset.jsonl",
+          "rowsSha256": "53ebba2135d0273957283f21134f9af6c2d3ddd4aaeccb44e22a55205cc8741b",
+          "rows": 2
+        },
+        {
+          "rowsFile": "docs/evidence/labor-project/admission-authentic-migration.jsonl",
+          "rowsSha256": "3e9f8627ff443e51f6d4c5fe82cfa81e619fe6b066cccf629dd2502c30abf05a",
+          "rows": 1
+        }
+      ]
+    }
+  ],
+  "historical": {
+    "oldSource": "ee26176e06076eabaebcddc30b7349078575b93c",
+    "currentSource": "2932f3ed8f020f1a242c2737c8b87d4eb5187aa4",
+    "entrySha256": "fb942b71037b2663472189069fdc54c6329c6e5b170c54ba73f7b03f0bddbb76",
+    "oldRestartedFromReset": true,
+    "oldBundleSha256": "d8533172f75b75d9eb2f71a75e0803b1a587d9e4a79d06bd39f4c908be4b6bdf",
+    "currentBundleSha256": "d5dd38129625cf21fb71ff8a471cd087da3794bbd3c6cd76dbfd8e34a04b91b4",
+    "oldSourceFiles": 102,
+    "currentSourceFiles": 108,
+    "readOnlyMigration": true,
+    "resumedResultsEqual": true,
+    "oldReaderRefusedUpgrade": true,
+    "oldReaderAcceptedReset": true,
+    "scope": "Host execution of actual committed owner modules; no native world rollback",
+    "files": [
+      {
+        "name": "old.json",
+        "sha256": "465fdd2097bdea86c44dcfa05e2ecabf27d69de60a2671d368d59393a3c0970e"
+      },
+      {
+        "name": "upgraded.json",
+        "sha256": "9e8fad1b81e1f1e9112477ed237598f2d8b5de64d1ae461ebb9af5b732650dd1"
+      },
+      {
+        "name": "reset-plan.json",
+        "sha256": "aa990552b40d7bd06a2902197bbe109e134229bc60add714c2b4107829f99fc0"
+      },
+      {
+        "name": "reset.json",
+        "sha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11"
+      }
+    ],
+    "archives": [
+      {
+        "rawFile": "docs/evidence/labor-project/historical-old.json.json.gz",
+        "rawEncoding": "gzip",
+        "rawSha256": "720a812ca28f8345b486021d4c2d09d0d7d918f7b12a6e961d971d2f63804f47",
+        "uncompressedSha256": "465fdd2097bdea86c44dcfa05e2ecabf27d69de60a2671d368d59393a3c0970e"
+      },
+      {
+        "rawFile": "docs/evidence/labor-project/historical-upgraded.json.json.gz",
+        "rawEncoding": "gzip",
+        "rawSha256": "7a8026870cb595a6e2bb94047a9b92c9ade50ce77132a696bcea51ed7c0a5ca7",
+        "uncompressedSha256": "9e8fad1b81e1f1e9112477ed237598f2d8b5de64d1ae461ebb9af5b732650dd1"
+      },
+      {
+        "rawFile": "docs/evidence/labor-project/historical-reset-plan.json.json.gz",
+        "rawEncoding": "gzip",
+        "rawSha256": "0d9a1df950e3544d8c382df8752a96073f8762cc644ad32aea059762ec65fdb6",
+        "uncompressedSha256": "aa990552b40d7bd06a2902197bbe109e134229bc60add714c2b4107829f99fc0"
+      },
+      {
+        "rawFile": "docs/evidence/labor-project/historical-reset.json.json.gz",
+        "rawEncoding": "gzip",
+        "rawSha256": "e1a5a5feaf6f695ef3487c0887343c6611d93ef2d639af31814038483137fedd",
+        "uncompressedSha256": "455521af7469d1f65c7b54fa3b0d6fef16e9138f7f0fa30b8463b6a49f972f11"
+      },
+      {
+        "rawFile": "docs/evidence/labor-project/historical-report.json.json.gz",
+        "rawEncoding": "gzip",
+        "rawSha256": "8d62987f5fb7d16d8e0d0a71c8dee593996ce271c74b84ae568703156286e222",
+        "uncompressedSha256": "51fad03d4ab76d04058cd0f88714897123af849f633efb7d223c75e8294f521f"
+      }
+    ]
+  },
+  "versions": {
+    "project": 7,
+    "household": 5,
+    "labor": 1,
+    "planning": 7,
+    "schedules": 4,
+    "candidateCache": 4
+  },
+  "checks": {
+    "targeted": "120 tests / 19 files / 7.42s",
+    "smoke": "76 tests / 15 files / 457ms",
+    "quality": "typecheck/lint/boundaries/bundle pass; Lizard959 production828 test files zero violations",
+    "fullUnits": "not run: incremental work",
+    "fullNativeRegistry": "not run"
+  },
+  "remaining": [
+    "Paid native household actor lifecycle and observed target consumption",
+    "Room assessment/configuration for alternative paid home workforce strategies",
+    "Default economic admission policy and shared multi-room capital",
+    "Other parity, pressure, rollback and release gates"
+  ]
+}
