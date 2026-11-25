@@ -1,5 +1,5 @@
 import { bodyCost } from '../../../../spawning/body';
-import { spawnedActiveTicks } from '../../../../spawning/lifetime';
+import { laborBody } from './body';
 import type { HouseholdLaborInput, HouseholdLaborJob, HouseholdLaborWorker } from './model';
 export const natural = (value: number): boolean => Number.isSafeInteger(value) && value >= 0;
 const text = (value: string): boolean => typeof value === 'string' && value.length > 0 && value.length <= 240;
@@ -17,11 +17,10 @@ function validateService(job: HouseholdLaborJob, horizon: number): void {
 }
 export function laborWorker(worker: HouseholdLaborWorker, job: HouseholdLaborJob, tick: number) {
   validateWorkerShape(worker);
-  const { birth,body } = worker, life = spawnedActiveTicks(body);
+  const { birth,body } = worker, facts = laborBody(body,job.kind);
   if (birth.request !== job.request || ![birth.startAt,birth.activeAt,birth.cost].every(natural) || birth.activeAt !== birth.startAt+body.length*3 || birth.cost !== bodyCost(body)) throw new Error('Invalid paid household labor birth');
-  const capacity = body.filter(part => part === 'carry').length*50, work = body.filter(part => part === 'work').length;
-  const expiresAt = birth.activeAt+life;
-  return capacity && work && birth.activeAt <= tick && tick < expiresAt ? { capacity,expiresAt,rate: work*(job.kind === 'build' ? 5 : 1) } : undefined;
+  const expiresAt = birth.activeAt+facts.life;
+  return facts.capacity && facts.rate && birth.activeAt <= tick && tick < expiresAt ? { capacity: facts.capacity,expiresAt,rate: facts.rate } : undefined;
 }
 export function accepted(amount: number, maximum: number): number {
   if (!natural(amount) || amount > maximum) throw new Error('Invalid household labor effect');

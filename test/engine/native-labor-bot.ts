@@ -8,7 +8,7 @@ import type { LaborMemory, NativeLaborProof, LaborSnapshot } from './native-labo
 export function loop(): void {
   const memory = Memory as LaborMemory, spawn = Game.spawns.Spawn1!, storage = spawn.room.storage!;
   openState(createMemoryPort(() => Memory),'operator/config',operatorSchema);
-  const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
+  const proof = memory.nativeLabor ??= { kind: memory.nativeLaborKind!,complete: !!memory.nativeLaborComplete,targetTotal: targetTotal(memory.nativeLaborKind!),initialSpawn: spawn.store.energy,initialEndpoint: storage.store.energy,initialProgress: progress(memory.nativeLaborKind!),rows: [],calls: [] };
   const creep = Game.creeps['native-labor'], actual = observe(proof,spawn,storage,creep);
   proof.rows.push({ tick: Game.time,actual,...(proof.expected ? { expected: proof.expected } : {}) });
   if (creep && !creep.spawning && proof.activeAt === undefined) proof.activeAt = Game.time;
@@ -35,13 +35,25 @@ function work(proof: NativeLaborProof, creep: Creep): number {
   if (proof.kind === 'build') return creep.build(creep.room.find(FIND_MY_CONSTRUCTION_SITES)[0]!);
   return creep.repair(creep.room.find(FIND_STRUCTURES).find(point => point.structureType === STRUCTURE_ROAD)!);
 }
-function progress(kind: NativeLaborProof['kind']): number {
+function progress(kind: NativeLaborProof['kind'], total = 0): number {
   const room = Game.spawns.Spawn1!.room;
   if (kind === 'upgrade') return room.controller!.progress;
-  if (kind === 'build') return room.find(FIND_MY_CONSTRUCTION_SITES)[0]!.progress;
+  if (kind === 'build') return buildProgress(room,total);
   return room.find(FIND_STRUCTURES).find(point => point.structureType === STRUCTURE_ROAD)!.hits;
 }
 function observe(proof: NativeLaborProof, spawn: StructureSpawn, storage: StructureStorage, creep: Creep | undefined): LaborSnapshot {
   const cargo = creep?.store.energy ?? 0;
-  return { spawn: spawn.store.energy,endpoint: storage.store.energy,cargo,bank: spawn.store.energy+storage.store.energy+cargo,progress: progress(proof.kind)-proof.initialProgress };
+  return { spawn: spawn.store.energy,endpoint: storage.store.energy,cargo,bank: spawn.store.energy+storage.store.energy+cargo,progress: progress(proof.kind,proof.targetTotal)-proof.initialProgress };
+}
+
+function targetTotal(kind: NativeLaborProof['kind']): number {
+  const room = Game.spawns.Spawn1!.room;
+  if (kind === 'build') return room.find(FIND_MY_CONSTRUCTION_SITES)[0]!.progressTotal;
+  if (kind === 'repair') return room.find(FIND_STRUCTURES).find(point => point.structureType === STRUCTURE_ROAD)!.hitsMax;
+  return room.controller!.progressTotal;
+}
+function buildProgress(room: Room, total: number): number {
+  const site = room.find(FIND_MY_CONSTRUCTION_SITES)[0]; if (site) return site.progress;
+  if (room.find(FIND_STRUCTURES).some(point => point.structureType === STRUCTURE_ROAD && point.pos.x === 14 && point.pos.y === 16)) return total;
+  throw new Error('Native construction target vanished without a completed road');
 }
