@@ -3,7 +3,7 @@ import { createStartupPlanningJob } from '../../src/features/remotes/startup/pla
 import { createStartupSchedulePlanner } from '../../src/features/remotes/startup/schedules/runner';
 import { forecastStartupProject } from '../../src/capabilities/economy/startup/project';
 import { startupPassiveProject } from '../fixtures/startup-passive-project';
-interface Proof { root: { eldrift?: unknown }; savedAt: number; resumedAt?: number; readOnly?: boolean; through?: number; planningVersion?: number; scheduleVersion?: number; equal?: boolean }
+interface Proof { root: { eldrift?: unknown }; savedAt: number; resumedAt?: number; readOnly?: boolean; through?: number; planningVersion?: number; scheduleVersion?: number; result?: ReturnType<typeof forecastStartupProject>; uninterrupted?: ReturnType<typeof forecastStartupProject> }
 interface ProbeMemory extends Memory { startupPassiveMigration?: Proof }
 /** Compatible synthetic v5/v2 records, not archived bytes produced by an old deployed bundle. */
 export function probeStartupPassiveMigration(): void {
@@ -29,5 +29,5 @@ export function probeStartupPassiveMigration(): void {
   if (resumed.status !== 'complete') throw new Error('Passive migration did not complete');
   const envelope = (key: string) => state.read(key+'/'+home) as { version: number };
   Object.assign(proof,{ resumedAt: Game.time,through: resumed.through,planningVersion: envelope('remoteStartupPlanning').version,
-    scheduleVersion: envelope('remoteStartupSchedules').version,equal: JSON.stringify(resumed.result) === JSON.stringify(forecastStartupProject(input)) });
+    scheduleVersion: envelope('remoteStartupSchedules').version,result: resumed.result,uninterrupted: forecastStartupProject(input) });
 }

@@ -46,7 +46,7 @@ function verifyStartupAdmission(memory,rows) {
   const passive = memory.startupPassiveMigration; assert.ok(passive);
   assert.equal(passive.savedAt,149); assert.equal(passive.resumedAt,150);
   assert.equal(passive.readOnly,true); assert.equal(passive.through,101);
-  assert.equal(passive.planningVersion,6); assert.equal(passive.scheduleVersion,3); assert.equal(passive.equal,true);
+  assert.equal(passive.planningVersion,6); assert.equal(passive.scheduleVersion,3); assert.deepEqual(passive.result,passive.uninterrupted);
   const planning = memory.startupPlanningProof; assert.ok(planning);
   assert.equal(planning.legacyVersion,1); assert.equal(planning.savedAt,149); assert.equal(planning.resumedAt,150);
   assert.equal(planning.initialThrough,43); assert.equal(planning.initialRevision,1); assert.equal(planning.pendingBefore,1);
