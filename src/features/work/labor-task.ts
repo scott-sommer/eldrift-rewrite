@@ -1,11 +1,13 @@
+import { validLaborProgress } from './labor-progress';
+import type { LaborProgress } from './labor-progress';
 import { readLaborProposalSnapshot } from '../../capabilities/economy/startup/household/labor/proposal-reader';
 import type { LaborProposalSnapshot } from '../../capabilities/economy/startup/household/labor/proposal';
 import type { TaskDefinition, TaskRecord } from '../../persistence/tasks/schema';
-export interface LaborTaskPayload { proposal: LaborProposalSnapshot }
-/** Staged obligations only; execution phases must be registered by the owning actor composition. */
-export const laborTaskDefinition: TaskDefinition = { phases: ['await-birth'],validPayload(value: unknown): value is LaborTaskPayload {
-  if (!value || typeof value !== 'object' || Object.keys(value).length !== 1 || !('proposal' in value)) return false;
-  try { readLaborProposalSnapshot(value.proposal); return true; } catch { return false; }
+export interface LaborTaskPayload { proposal: LaborProposalSnapshot; progress?: LaborProgress }
+/** Portable payload validation; actor behavior and live authority are supplied by composition. */
+export const laborTaskDefinition: TaskDefinition = { phases: ['await-birth','approach','pickup','loaded','work','return','deposit'],validPayload(value: unknown): value is LaborTaskPayload {
+  if (!value || typeof value !== 'object' || Object.keys(value).some(key => !['proposal','progress'].includes(key)) || !('proposal' in value)) return false;
+  try { const proposal = readLaborProposalSnapshot(value.proposal); return !('progress' in value) || validLaborProgress(value.progress,proposal.job); } catch { return false; }
 } };
 
 export function validateStagedLaborTask(task: TaskRecord, name: string): void {

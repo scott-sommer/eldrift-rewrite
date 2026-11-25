@@ -1,3 +1,4 @@
+import { runNativeLaborTask } from './native-labor-actor';
 import { resumeLaborPlanning } from './native-labor-planning';
 import { moveNativeLabor } from './native-labor-travel';
 import { createStartupHousehold } from '../../src/capabilities/economy/startup/household/timeline';
@@ -24,10 +25,13 @@ export function loop(): void {
   }
   model.finish(); const saved = model.checkpoint(), after = saved.labor!.jobs[0]!;
   const picked = after.picked-(before?.picked ?? 0), spent = after.spent-(before?.spent ?? 0), returned = after.returned-(before?.returned ?? 0);
+  if (proof.complete) runNativeLaborTask(proof,creep,storage);
+  else {
   if (picked) record(proof,'pickup',creep!.withdraw(storage,RESOURCE_ENERGY,picked),picked);
   if (spent) record(proof,proof.kind,work(proof,creep!),spent);
   if (returned) record(proof,'return',creep!.transfer(storage,RESOURCE_ENERGY,returned),returned);
   moveNativeLabor(proof,creep,tick,after,picked+spent+returned > 0);
+  }
   proof.checkpoint = saved; proof.expected = expectedLabor(proof,saved);
   if (tick === 24) proof.result = model.result();
 }
