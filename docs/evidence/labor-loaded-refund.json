@@ -1,0 +1,68 @@
+{
+  "issue": "ED-29",
+  "scope": "Native loaded movement followed by productive configuration cancellation, return/refund, cargo ownership until observed settlement, actual reset continuity and normal completion regression",
+  "native": [
+    {
+      "scenario": "loaded-cancel",
+      "nativeSource": "e7d05cfb48a56057401200c00ab2f2c30bc0e82c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-loaded-refund/loaded-cancel.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "fad25a22f588b6a9ffddb10277dcc96f90be48c7bfe21c4b2471cacc0638ed38",
+      "uncompressedSha256": "84346ae9edd87a3b55210dd1cf7e6864bb22f1e8e9f12ffc3f08dbf062e59ec8",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/loaded-cancel-receipt.jsonl",
+          "rowsSha256": "4d575d82fb077e67c3818b98a97918134819f06929164b65a091752c85715123",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/loaded-cancel-claims.jsonl",
+          "rowsSha256": "b9254c601109b8cc809266cd0ec449eac599a427ee238b19907306c8fbe927b0",
+          "rows": 8
+        },
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/loaded-cancel-sdk-calls.jsonl",
+          "rowsSha256": "c793eab7633faf1c2b1c2e5bdde80b8f44438135eb2a29ad397f9d2d28ca7afd",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/loaded-cancel-observations.jsonl",
+          "rowsSha256": "5b2bb93df275affda0215adc1f2631f0031a0ddda4ee7f1fd24d0b77dd869320",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "complete",
+      "nativeSource": "e7d05cfb48a56057401200c00ab2f2c30bc0e82c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-loaded-refund/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "24534fa8e03c57c06e70f7e189c524ae1a42bf1679bb066c327bc8962a9bc7a6",
+      "uncompressedSha256": "07f8da927bfb156c4933dbd95448efb0c74324db57bcc929c9d0ba613c890219",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/complete-receipt.jsonl",
+          "rowsSha256": "8a442dba9aaa0aad9143ffaa538a7802944e4c500db96ac88df2cb1a066d5d0c",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/complete-claims.jsonl",
+          "rowsSha256": "d924b1c733582d86af1a3cc3945499a1e76ae3e7fc2dcedcb265dd6214bf53bc",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-loaded-refund/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}
