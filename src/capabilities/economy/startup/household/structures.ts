@@ -32,3 +32,9 @@ function validateDepositClock(event: StartupEnergyEvent, state: StartupRedistrib
   if (state.arrivalAt === null || state.expiresAt === null || event.tick < state.arrivalAt || event.tick >= state.expiresAt) throw new Error('Household deposit outside paid trip lifetime');
   if (state.doneAt !== null && event.tick > state.doneAt) throw new Error('Household deposit after trip completion');
 }
+
+export function validatePassiveHouseholdStock(input: StartupHouseholdInput, saved: StartupHouseholdCheckpoint, cargo: number): void {
+  if (!input.spawning.funding.energyLayout?.regeneration) return;
+  const stock = saved.spawning.energy!.points.reduce((sum,point) => sum+point.energy,0);
+  if (saved.spawning.funding.bank < saved.endpointEnergy+stock+cargo) throw new Error('Passive household outside-stock conservation');
+}

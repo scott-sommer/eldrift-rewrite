@@ -11,7 +11,7 @@ export interface StartupScheduleRecord { home: string; revision: number; clock: 
 export function createStartupScheduleStore(state: StatePort, home: string) {
   if (!room(home)) throw new Error('Invalid startup schedule home');
   const key = stateKey('remoteStartupSchedules',home);
-  const schema: StateSchema<StartupScheduleRecord> = { owner: 'remotes',version: 1,migrations: {},initial: () => ({ home,revision: 0,clock: 0,job: null }),
+  const schema: StateSchema<StartupScheduleRecord> = { owner: 'remotes',version: 2,migrations: { 1: value => upgradeSchedule(value,home) },initial: () => ({ home,revision: 0,clock: 0,job: null }),
     valid: (value): value is StartupScheduleRecord => validRecord(value,home) };
   const read = () => peekState(state,key,schema) ?? schema.initial();
   function save(expected: number, tick: number, job: StartupSchedule | null) {
@@ -49,4 +49,11 @@ function validJobInput(job: StartupSchedule, home: string): boolean {
     if (input.project.spawning.room !== home || JSON.stringify(encodeStartupPlanningInput(input)) !== JSON.stringify(job.input)) return false;
     createStartupProject(input); return true;
   } catch { return false; }
+}
+
+function upgradeSchedule(value: unknown, home: string): StartupScheduleRecord {
+  if (!validRecord(value,home)) throw new Error('Invalid legacy startup schedule');
+  const next = value as StartupScheduleRecord;
+  if (next.job && decodeStartupPlanningInput(next.job.input).project.spawning.funding.energyLayout?.regeneration !== undefined) throw new Error('Unsupported legacy passive schedule');
+  return next;
 }

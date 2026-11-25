@@ -12,7 +12,7 @@ export function householdIdentity(input: StartupHouseholdInput): string {
   return identity;
 }
 export function validateHousehold(input: StartupHouseholdInput): void {
-  if (input.spawning.funding.energyLayout?.regeneration) throw new Error('Passive household integration pending');
+  if (input.spawning.funding.energyLayout?.regeneration && input.spawning.cash.flows.some(flow => flow.kind !== 'delivery' && flow.energy > 0)) throw new Error('Unlocated passive household expense');
   validateStartupSpawns(input.spawning); validateRedistribution(input.redistribution);
   validateHouseholdStructures(input);
   if (input.spawning.funding.refills.length || input.spawning.cash.horizon !== input.redistribution.horizon) throw new Error('Conflicting household refill strategy/horizon');
@@ -24,6 +24,7 @@ export function validateHousehold(input: StartupHouseholdInput): void {
   });
 }
 
-export function householdCheckpointFormat(input: StartupHouseholdInput): 1 | 2 {
+export function householdCheckpointFormat(input: StartupHouseholdInput): 1 | 2 | 3 {
+  if (input.spawning.funding.energyLayout?.regeneration) return 3;
   return input.spawning.funding.energyLayout ? 2 : 1;
 }

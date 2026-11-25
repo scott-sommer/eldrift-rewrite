@@ -56,6 +56,7 @@ class Household {
     const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0); this.endpoint += credit; this.received += credit;
     this.open = false; this.tick++; return { ...effects,flows };
   }
+  frameAmbientEnergy(): number { return this.timeline.frameAmbientEnergy(); }
   checkpoint(): StartupHouseholdCheckpoint {
     if (this.open) throw new Error('Cannot checkpoint open household frame');
     const saved: StartupHouseholdCheckpoint = copyPlain({ format: householdCheckpointFormat(this.input),binding: this.binding,through: this.tick-1,endpointEnergy: this.endpoint,endpointSpentEnergy: this.spent,endpointReceivedEnergy: this.received,

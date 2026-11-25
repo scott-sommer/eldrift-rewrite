@@ -36,13 +36,13 @@ export function boundedProjectCheckpoint<T>(value: T): T {
   return saved;
 }
 function validateComponents(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
-  const spawning = input.project.spawning;
+  const spawning = input.project.spawning, ambient = !!spawning.funding.energyLayout?.regeneration;
   validateHouseholdProject(input);
   if (input.household) createStartupHousehold({ ...input.household,spawning },{ ...saved.household!,spawning: saved.timeline });
   else createStartupSpawnTimeline(spawning,saved.timeline);
-  saved.timeline.accounting = restoreCashCheckpoint(spawning.cash,saved.timeline.accounting);
-  saved.houseAccounting = restoreCashCheckpoint(spawning.cash,saved.houseAccounting);
-  saved.sourceAccounting = restoreCashCheckpoint(spawning.cash,saved.sourceAccounting);
+  saved.timeline.accounting = restoreCashCheckpoint(spawning.cash,saved.timeline.accounting,ambient);
+  saved.houseAccounting = restoreCashCheckpoint(spawning.cash,saved.houseAccounting,ambient);
+  saved.sourceAccounting = restoreCashCheckpoint(spawning.cash,saved.sourceAccounting,ambient);
   restoreContainerCheckpoint(input.container,saved.container);
   restoreSinkCheckpoint(input.homeSink.capacity,spawning.cash.horizon,saved.sink);
 }

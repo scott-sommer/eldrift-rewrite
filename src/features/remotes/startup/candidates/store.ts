@@ -7,7 +7,7 @@ import type { StartupCandidateEntry, StartupCandidateRecord, StartupCandidateWri
 export function createStartupCandidateStore(state: StatePort, home: string) {
   if (!room(home)) throw new Error('Invalid startup candidate home');
   const key = stateKey('remoteStartupCandidates',home);
-  const schema: StateSchema<StartupCandidateRecord> = { owner: 'remotes',version: 1,migrations: {},
+  const schema: StateSchema<StartupCandidateRecord> = { owner: 'remotes',version: 2,migrations: { 1: value => upgradeAssessments(value,home) },
     initial: () => ({ home,revision: 0,clock: 0,entries: [] }),valid: (value): value is StartupCandidateRecord => validCandidateRecord(value,home) };
   const read = () => peekState(state,key,schema) ?? schema.initial();
   function save(expected: number, tick: number, entries: StartupCandidateEntry[]): StartupCandidateWrite {
@@ -20,4 +20,10 @@ export function createStartupCandidateStore(state: StatePort, home: string) {
     openState(state,key,schema); saveState(state,key,schema,next); return 'saved';
   }
   return { read,save };
+}
+
+/** Old assessments are derived caches; recapture under current cash attribution without touching raw reads. */
+function upgradeAssessments(value: unknown, home: string): StartupCandidateRecord {
+  if (!validCandidateRecord(value,home)) throw new Error('Invalid legacy startup assessments');
+  return { ...value,entries: [] };
 }

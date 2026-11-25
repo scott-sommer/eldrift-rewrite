@@ -13,6 +13,7 @@ export function validateProjectLinks(input: StartupDeliveryInput, saved: Startup
   requireCheckpoint(saved.sink.acceptedEnergy === saved.delivery.deliveredEnergy);
   requireCheckpoint(source.state.deliveredEnergy === saved.settled.reduce((sum,receipt) => sum+receipt.energy,0));
   validateProjectHouseholdLinks(input,saved);
+  validateAmbientLinks(input,saved);
   validateReceiptIdentities(input,saved);
   validateEnergy(input,saved);
   validateOpeningLinks(input,saved);
@@ -51,4 +52,10 @@ function validateOpeningLinks(input: StartupDeliveryInput, saved: StartupProject
   const credit = Math.min(opening.constructionEnergyFromOpening,input.project.spawning.cash.selfHarvestedConstruction);
   requireCheckpoint(saved.houseAccounting.openingConstructionEnergy === credit && saved.sourceAccounting.openingConstructionEnergy === credit);
   requireCheckpoint(saved.timeline.accounting.openingConstructionEnergy === 0);
+}
+
+function validateAmbientLinks(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
+  if (!input.project.spawning.funding.energyLayout?.regeneration) return;
+  const ambient = saved.timeline.accounting.state.ambientEnergy;
+  requireCheckpoint(saved.houseAccounting.state.ambientEnergy === ambient && saved.sourceAccounting.state.ambientEnergy === ambient);
 }

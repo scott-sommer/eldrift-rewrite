@@ -46,7 +46,8 @@ class StartupProject {
     if (!Number.isSafeInteger(input.containerCapacity) || input.containerCapacity < 1 || input.containerCapacity > 1000000) throw new Error('Invalid startup container capacity');
     this.input = snapshotStartupProject(input);
     const saved = checkpoint === undefined ? undefined : readStartupProjectCheckpoint(this.input,checkpoint);
-    this.houseAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.houseAccounting); this.sourceAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.sourceAccounting);
+    const cashOptions = { ambient: !!this.input.project.spawning.funding.energyLayout?.regeneration };
+    this.houseAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.houseAccounting,cashOptions); this.sourceAccounting = createStartupCashLedger(this.input.project.spawning.cash,saved?.sourceAccounting,cashOptions);
     this.timeline = createStartupProjectTimeline(this.input,saved);
     this.container = createStartupContainer(this.input.container,saved?.container); this.sink = createStartupSink(this.input.homeSink,this.input.project.spawning.cash,saved?.sink);
     this.construction = saved?.construction ?? initialStartupConstruction(this.input.project); this.delivery = saved?.delivery ?? initialStartupDelivery(this.construction);
@@ -143,7 +144,7 @@ class StartupProject {
     const credit = receipts.reduce((sum,receipt) => sum+receipt.energy,0), settlement = this.timeline.finish(receipts), flows = settlement.flows;
     this.sink.releaseAfterFrame(settlement.picked);
     const ready = this.construction.completeAt !== null && this.construction.completeAt <= this.tick;
-    this.houseAccounting.frame(this.tick,flows,credit,ready,this.opening.constructionCredit()); this.sourceAccounting.frame(this.tick,flows.filter(flow => flow.kind !== 'delivery'),credit,ready,this.opening.constructionCredit());
+    this.houseAccounting.frame(this.tick,flows,credit,ready,this.opening.constructionCredit(),settlement.ambientEnergy); this.sourceAccounting.frame(this.tick,flows.filter(flow => flow.kind !== 'delivery'),credit,ready,this.opening.constructionCredit(),settlement.ambientEnergy);
     this.due.delete(this.tick);
     this.settled.push(...receipts.map(({ tick,energy,request }) => ({ tick,energy,request })));
   }

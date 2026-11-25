@@ -1,3 +1,4 @@
+import type { StartupEnergyRegeneration } from '../../../../capabilities/economy/startup/energy/model';
 import { copyPlain } from '../../../../core/plain-data';
 import { snapshotStartupProject } from '../../../../capabilities/economy/startup/snapshot';
 import { createStartupSpawnTimeline } from '../../../../capabilities/economy/startup/spawn-timeline';
@@ -9,6 +10,7 @@ import type { StatePort } from '../../../../persistence/versioned-state';
 import { observeNativeStartupEnergy } from '../energy';
 import { createNativeHouseholdTravel } from './travel';
 export interface NativeHouseholdProposal {
+  regeneration?: StartupEnergyRegeneration;
   request: SpawnRequest; plan: HouseholdTravelPlan; trips: number; energy: number; observedAt: number;
 }
 /** Finite initial paid-body strategy; queue writes and native admission remain separate owners. */
@@ -25,7 +27,7 @@ export function createNativeHouseholdProposal(state: StatePort, maximumOps: numb
     const quoted = travel(proposal.plan,guard); if (quoted.status !== 'complete') return quoted;
     if (!guard()) return deferred('admission');
     const input = base, spawning = input.project.spawning;
-    spawning.funding = { capacity: physical.capacity,initialEnergy: physical.initialEnergy,energyLayout: physical.layout,refills: [] };
+    spawning.funding = householdFunding(physical,proposal.regeneration);
     spawning.requests = [{ ...proposal.request,body: [...proposal.request.body] },...spawning.requests];
     const preview = createStartupSpawnTimeline(spawning), birth = preview.begin(0).find(birth => birth.request === proposal.request.id); preview.finish();
     if (!birth) return deferred('initial-household-birth');
@@ -60,3 +62,9 @@ function sameExit(a: HouseholdTravelPlan['spawn']['exit'], b: typeof a): boolean
 }
 
 function deferred(reason: string) { return { status: 'deferred' as const,reason }; }
+
+function householdFunding(physical: Extract<ReturnType<typeof observeNativeStartupEnergy>,{ status: 'observed' }>, regeneration?: StartupEnergyRegeneration) {
+  const layout = { ...physical.layout,...(regeneration ? { regeneration } : {}) };
+  const capacity = regeneration ? layout.structures.reduce((sum,point) => sum+point.capacity-(point.reservedEnergy ?? 0),0) : physical.capacity;
+  return { capacity,initialEnergy: physical.initialEnergy,energyLayout: layout,refills: [] };
+}
