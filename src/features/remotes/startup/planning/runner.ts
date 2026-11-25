@@ -55,7 +55,7 @@ export function createStartupPlanningJob(state: StatePort, home: string) {
     if (!completed) return undefined;
     const participants = new Set([...request.input.project.workers,...request.input.couriers].map(worker => worker.request));
     const requiredBirths = request.input.project.spawning.requests.filter(birth => participants.has(birth.id)).map(birth => birth.id);
-    return assessStartupProject(completed,request.input.project.spawning.cash.horizon,policy,requiredBirths);
+    return assessStartupProject(completed,request.input.project.spawning.cash.horizon,policy,requiredBirths,request.input.household?.labor?.jobs);
   }
   return { read: store.read,advance,result,assess,withdraw: store.withdraw };
 }

@@ -7,7 +7,7 @@ import type { StartupCandidateEntry, StartupCandidateRecord, StartupCandidateWri
 export function createStartupCandidateStore(state: StatePort, home: string) {
   if (!room(home)) throw new Error('Invalid startup candidate home');
   const key = stateKey('remoteStartupCandidates',home);
-  const schema: StateSchema<StartupCandidateRecord> = { owner: 'remotes',version: 4,migrations: { 1: value => upgradeAssessments(value,home),2: value => upgradeSecondAssessments(value,home),3: value => upgradeThirdAssessments(value,home) },
+  const schema: StateSchema<StartupCandidateRecord> = { owner: 'remotes',version: 5,migrations: { 1: value => upgradeAssessments(value,home),2: value => upgradeSecondAssessments(value,home),3: value => upgradeThirdAssessments(value,home),4: value => upgradeThirdAssessments(value,home) },
     initial: () => ({ home,revision: 0,clock: 0,entries: [] }),valid: (value): value is StartupCandidateRecord => validCandidateRecord(value,home) };
   const read = () => peekState(state,key,schema) ?? schema.initial();
   function save(expected: number, tick: number, entries: StartupCandidateEntry[]): StartupCandidateWrite {

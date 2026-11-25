@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-const versions = { remoteStartupPlanning: 7,remoteStartupSchedules: 4,remoteStartupCandidates: 4 };
+const versions = { remoteStartupPlanning: 7,remoteStartupSchedules: 4,remoteStartupCandidates: 5 };
 const digest = source => createHash('sha256').update(source).digest('hex');
 function snapshot(source) {
   if (Buffer.byteLength(source) > 10*1024*1024) throw new Error('Snapshot exceeds 10 MiB limit');

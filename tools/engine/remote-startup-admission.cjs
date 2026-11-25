@@ -59,7 +59,7 @@ function verifyStartupAdmission(memory,rows) {
   assert.deepEqual(historical.root,require('../../test/fixtures/startup-historical-upgraded.json'));
   const candidate = memory.startupCandidateMigration; assert.ok(candidate);
   assert.equal(candidate.savedAt,149); assert.equal(candidate.resumedAt,150); assert.equal(candidate.readOnly,true);
-  assert.deepEqual(candidate.retained,['compatible']); assert.equal(candidate.version,4); assert.equal(candidate.revision,2);
+  assert.deepEqual(candidate.retained,['compatible']); assert.equal(candidate.version,5); assert.equal(candidate.revision,2);
   assert.equal(candidate.lookup,true); assert.equal(candidate.isolated,true);
   const passive = memory.startupPassiveMigration; assert.ok(passive);
   assert.equal(passive.savedAt,149); assert.equal(passive.resumedAt,150);

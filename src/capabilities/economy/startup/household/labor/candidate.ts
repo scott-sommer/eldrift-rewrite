@@ -1,3 +1,4 @@
+import { laborFulfilled } from './fulfillment';
 import type { HouseholdLaborState } from './model';
 import { copyPlain } from '../../../../../core/plain-data';
 import { copySpawnRequest, sameSpawnRequest } from '../../../../spawning/placement';
@@ -38,8 +39,7 @@ function attach(input: LaborCandidateSeed['base'], proposal: Extract<ReturnType<
   const read = () => ({ input: snapshotStartupProject(input),proposal: proposal.read(),previewFrames,binding });
   return { status: 'ready' as const,read,current: proposal.current,
     fulfilled(result: ReturnType<ReturnType<typeof createStartupProject>['result']>): boolean {
-      const job = (result.spawning as { labor?: { jobs: HouseholdLaborState[] } }).labor?.jobs.find(item => item.id === snapshot.job.id);
-      return job?.phase === 'complete' && job.spent === snapshot.job.energy;
+      return laborFulfilled(result.spawning as { labor?: { jobs: HouseholdLaborState[] } },[snapshot.job]);
     } };
 }
 function contextRefusal(input: LaborCandidateSeed['base'], seed: LaborCandidateSeed): string | undefined {

@@ -1,13 +1,14 @@
+import type { HouseholdLaborJob } from './household/labor/model';
 import { assessStartupProject, validateStartupReturnPolicy } from './assessment';
 import type { StartupReturnPolicy } from './assessment';
 export interface StartupProjectAlternative {
-  id: string; result: Parameters<typeof assessStartupProject>[0]; requiredBirths: readonly string[];
+  id: string; result: Parameters<typeof assessStartupProject>[0]; requiredBirths: readonly string[]; requiredLabor?: readonly HouseholdLaborJob[];
 }
 export type StartupProjectOrder = 'final-return' | 'payback';
 /** Mutually exclusive alternatives at one horizon; never sums independent household forecasts. */
 export function chooseStartupProject(alternatives: readonly StartupProjectAlternative[], horizon: number, policy: StartupReturnPolicy, order: StartupProjectOrder) {
   validateChoice(alternatives,horizon,policy,order);
-  const assessments = alternatives.map(item => ({ id: item.id,...assessStartupProject(item.result,horizon,policy,item.requiredBirths) }));
+  const assessments = alternatives.map(item => ({ id: item.id,...assessStartupProject(item.result,horizon,policy,item.requiredBirths,item.requiredLabor) }));
   return chooseAssessedStartupProjects(assessments,order);
 }
 /** Callers retain responsibility for policy, horizon and evidence freshness. */

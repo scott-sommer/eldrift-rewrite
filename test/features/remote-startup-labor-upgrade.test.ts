@@ -29,10 +29,10 @@ test('schedule3 migrates lazily while labor-aware4 retains its project checkpoin
   expect(restored.advance({ ...next.query,tick: 2 },{ frames: 1,extensions: 0 })).toMatchObject({ status: 'deferred',frames: 1 });
   next.state.write('remoteStartupSchedules/W0N1',{ owner: 'remotes',version: 3,data: future.read() }); expect(() => future.read()).toThrow('schema3');
 });
-test.each([false,true])('cache3 retains only non-labor derived identities and recaptures under4 (labor=%s)',labor => {
+test.each([[3,false],[3,true],[4,false],[4,true]])('cache%s retains only non-labor derived identities and recaptures under5 (labor=%s)',(version,labor) => {
   const f = fixture(labor),catalog = createStartupCandidateCatalog(f.state,f.home),store = createStartupCandidateStore(f.state,f.home);
   const policy = { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: 100,maximumHouseholdCapital: 1000 };
   f.owner.advance({ ...f.query,expectedRevision: 0 },101); expect(catalog.capture('a',f.query,policy,0)).toBe('saved'); const record = store.read();
-  f.state.write('remoteStartupCandidates/W0N1',{ owner: 'remotes',version: 3,data: record }); const before = JSON.stringify(f.root); expect(store.read().entries).toHaveLength(labor ? 0 : 1); expect(JSON.stringify(f.root)).toBe(before);
-  expect(catalog.capture('a',f.query,policy,record.revision)).toBe('saved'); expect(() => peekState(f.state,'remoteStartupCandidates/W0N1',old(3))).toThrow('future');
+  f.state.write('remoteStartupCandidates/W0N1',{ owner: 'remotes',version,data: record }); const before = JSON.stringify(f.root); expect(store.read().entries).toHaveLength(labor ? 0 : 1); expect(JSON.stringify(f.root)).toBe(before);
+  expect(catalog.capture('a',f.query,policy,record.revision)).toBe('saved'); expect(() => peekState(f.state,'remoteStartupCandidates/W0N1',old(version))).toThrow('future');
 });
