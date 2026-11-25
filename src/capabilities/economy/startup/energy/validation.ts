@@ -1,10 +1,11 @@
+import { validateRegenerationLayout } from './regeneration-layout';
 import type { StartupEnergyLayout, StartupEnergyStructure, StartupEnergyEvent } from './model';
 export function energyNatural(value: unknown): value is number { return Number.isSafeInteger(value) && Number(value) >= 0; }
 function identity(value: unknown): value is string { return typeof value === 'string' && value.length > 0 && value.length <= 240; }
 export function validateEnergyLayout(input: StartupEnergyLayout): void {
   if (!input.structures.length || input.structures.length > 128 || input.orders.length > 16) throw new Error('Invalid energy layout limits');
   unique(input.structures.map(point => point.id)); unique(input.orders.map(order => order.spawn));
-  input.structures.forEach(validatePoint);
+  input.structures.forEach(validatePoint); validateRegenerationLayout(input);
   const points = new Map(input.structures.map(point => [point.id,point]));
   input.orders.forEach(order => {
     if (points.get(order.spawn)?.kind !== 'spawn' || !order.structures.length || order.structures.length > 128) throw new Error('Invalid energy charge origin');
@@ -31,9 +32,9 @@ function unique(values: readonly string[]): void {
 export function energyLayoutIdentity(input: StartupEnergyLayout): string {
   const points = input.structures.map(point => [point.id,point.kind,point.energy,point.capacity,point.reservedEnergy ?? 0,point.reservedCapacity ?? 0]).sort((a,b) => String(a[0]).localeCompare(String(b[0])));
   const orders = input.orders.map(order => [order.spawn,[...order.structures]]).sort((a,b) => String(a[0]).localeCompare(String(b[0])));
-  return JSON.stringify([points,orders]);
+  return JSON.stringify([points,orders,...(input.regeneration ? [[input.regeneration.otherRoomEnergy,[...input.regeneration.eligibleSpawns].sort()]] : [])]);
 }
 export function validateEnergyEvent(event: StartupEnergyEvent): void {
   if (!identity(event.holder) || !energyNatural(event.energy) || event.energy < 1 || !energyNatural(event.tick) || event.tick > 10000) throw new Error('Invalid energy event');
-  if (!['charge','deposit'].includes(event.kind)) throw new Error('Invalid energy operation');
+  if (!['charge','deposit','ambient'].includes(event.kind)) throw new Error('Invalid energy operation');
 }

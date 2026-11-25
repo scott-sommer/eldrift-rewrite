@@ -66,3 +66,14 @@ test.each([
   expect(spawns.map((point,index) => point.store.energy-facts.stock[index])).toEqual(spawns.map(point => quote.credits.find(credit => credit.structure === point._id)?.energy ?? 0));
   expect(spawns.reduce((sum,point,index) => sum+point.store.energy-facts.stock[index],0)).toBe(quote.energy);
 }));
+
+test('physical passive settlement can occupy reserved incoming space and block a real native transfer',() => withProcessors(({ spawnTick,transfer }) => {
+  const f = fixture(); delete f.roomObjects.second; delete f.roomObjects.near; delete f.roomObjects.far;
+  const spawn = f.roomObjects.spawn; spawn.store.energy = 299;
+  const model = createStartupEnergyLedger({ structures: [{ id: 'spawn',kind: 'spawn',energy: 299,capacity: 300,reservedCapacity: 1 }],orders: [{ spawn: 'spawn',structures: ['spawn'] }],regeneration: { eligibleSpawns: ['spawn'],otherRoomEnergy: 0 } });
+  f.scope.roomController = { level: 8,user: 'self',x: 10,y: 10 }; f.scope.energyAvailable = 299; f.scope.gameTime = 0;
+  spawnTick(spawn,f.scope); expect(model.regenerate(0)).toBe(1); compare(model,f.roomObjects);
+  const creep = { _id: 'courier',type: 'creep',user: 'self',x: 11,y: 10,store: { energy: 10 } }; f.roomObjects.courier = creep;
+  transfer(creep,{ id: 'spawn',resourceType: 'energy',amount: 10 },f.scope); expect(model.deposit('spawn',10,1,'cargo')).toBe(0);
+  expect(creep.store.energy).toBe(10); compare(model,f.roomObjects);
+}));
