@@ -1,0 +1,84 @@
+{
+  "issue": "ED-29",
+  "scope": "Located forecast expenses and detached planning input; declared costs are not measured native worker consumption",
+  "native": [
+    {
+      "scenario": "selected",
+      "nativeSource": "0ffc4c423a81fa90828a04cedf118d7a4e719428",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/located-expenses/selected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2aba8f939501c7f295f4c826aa54fd46a60e9de05a500780c321a49329569129",
+      "uncompressedSha256": "7d40f00640e97cdc04fcda910f1262964eca9595769ef6dc435abe1f70685172",
+      "actualTicks": 150,
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/located-expenses/selected-samples.jsonl",
+          "rowsSha256": "7300a6d0e99e7e550fac7188193ebc6d3460920ebc8855c4b8ced8b4304b5f9e",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/located-expenses/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        }
+      ]
+    },
+    {
+      "scenario": "admission",
+      "nativeSource": "14d281485bed26d0fee66446b1ebdae853be3d69",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/located-expenses/admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b46931e051bd9b24483eb52b6ea88fe20147d1640cc3ccd35891309f1d123380",
+      "uncompressedSha256": "6435b69b53ea9edb1ff7dae238652de00ae1c937ec4bf4c540fb052b4eb8e8c2",
+      "actualTicks": 150,
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/located-expenses/admission-samples.jsonl",
+          "rowsSha256": "f5e365fbd5cda7efa07c75590c9a8f455792b173badf010c06f21dcfaadbbfd6",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/located-expenses/admission-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        }
+      ]
+    },
+    {
+      "scenario": "selected-before-fix",
+      "nativeSource": "14d281485bed26d0fee66446b1ebdae853be3d69",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/located-expenses/selected-before-fix.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9e30beb754c1ebd65d832429350ea7d4030f43c0a91fea602e3a04b18b156ae6",
+      "uncompressedSha256": "dcf9b8065e1b6bbb33a76854645d3039f0e8ba75a1eb642b58124ad02eaff53f",
+      "actualTicks": 150,
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/located-expenses/selected-before-fix-samples.jsonl",
+          "rowsSha256": "3d2f93ec071c5e5c7344b26fafe24670d011b302a8e420a8a9ce027e21452984",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/located-expenses/selected-before-fix-pipeline.jsonl",
+          "rowsSha256": "a6118bba7ea906a86518c6387e94021339112031e4b9fa7bfd61e10b2354a607",
+          "rows": 149
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "26 tests / 3 files / 578 ms",
+    "smoke": "76 tests / 15 files / 477 ms",
+    "quality": "953 source files / 818 test files; typecheck, lint, boundaries and Lizard passed; zero violations",
+    "bundle": "passed",
+    "fullUnitSuite": "not run: incremental work"
+  },
+  "remaining": [
+    "Actual paid household workforce and expense generation",
+    "Matched household/source actor lifecycle and realized cashflow",
+    "Full rollback, pressure, parity and release gates"
+  ]
+}
