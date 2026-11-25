@@ -1,0 +1,65 @@
+{
+  "issue": "ED-29",
+  "relatedIssue": "ED-44",
+  "scope": "Native reset with synthetic compatible planning5/schedule2 records; not archived old-bundle bytes or whole-release rollback",
+  "native": [
+    {
+      "scenario": "admission",
+      "nativeSource": "74c69d581d823609ebf1892865683f9223338e7c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/passive-reset/admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b498243721e7ff5de39ce49820af8292e21c39df1d8b5d8b20ab25672b00d7f9",
+      "uncompressedSha256": "0434988d6873b776b270c2d469fe64604d799605064b6409e8a4f599e59d65da",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/passive-reset/admission-samples.jsonl",
+          "rowsSha256": "e8ff9d623c96406181f767a5c6e48a121ccd4392a1f528e089b54578916a66ca",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-reset/admission-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-reset/admission-migration.jsonl",
+          "rowsSha256": "c85623934af7ea7af320aa15ef6a99572f02ae54d902862085f24d9f3636f38d",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "order-sensitive-probe",
+      "nativeSource": "a34b753ba6c2c1390f45f73fb5472cc5ada146ee",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/passive-reset/order-sensitive-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2f1a48d6a6aa08b181167b2102d78daa31fd23c22f3302f5611b732ba556eb6e",
+      "uncompressedSha256": "9091ec0cac8409670199b7815df6c3d357fb1e5d1378530b0aef280efdae6313",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/passive-reset/order-sensitive-probe-samples.jsonl",
+          "rowsSha256": "e11a094b6597b139f67c18d4f884c764e3ba4d917e63aa9035fd03ffdfab2299",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/passive-reset/order-sensitive-probe-pipeline.jsonl",
+          "rowsSha256": "7b062642a514d2109db444e818ba9362a4a29000bb96163c74fec90d9a8e0379",
+          "rows": 150
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "targeted": "5 tests / 1 file / 754 ms",
+    "smoke": "76 tests / 15 files / 466 ms",
+    "quality": "typecheck/lint/boundaries passed; Lizard 953 production / 819 test files, zero violations",
+    "fullUnits": "not run: incremental work"
+  },
+  "remaining": [
+    "Candidate-cache migration native rehearsal",
+    "Archived prior-bundle upgrade and scoped rollback of all forecast owners",
+    "Full release migration and rollback gates"
+  ]
+}
