@@ -1,0 +1,115 @@
+{
+  "issue": "ED-29",
+  "scope": "Empire-level confirmed home-loss settlement outside owned-room worker execution; preserved native income-assumption failure, corrected native loss qualification and ordinary execution/composition regressions",
+  "native": [
+    {
+      "scenario": "initial-income-assumption",
+      "nativeSource": "85fbcd70a8d7f4b098bf5e87b4d2aac62036fe50",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/labor-home-loss/initial-income-assumption.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "87c7407ddf061dbf5267e2a7981666f82d5d8c17b245489e4fc5d051b4526251",
+      "uncompressedSha256": "2213bdf1f62f03f9fa10f55fd8e64446ce1d5fbc59f7b226f8db234f48e6cc0c",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/initial-income-assumption-receipt.jsonl",
+          "rowsSha256": "964022ae961baf23dca5e89b6cd2e7e9bcff33c4932a6c324ae8ddc67aae0ea1",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/initial-income-assumption-claims.jsonl",
+          "rowsSha256": "2bc1920a9a85275ba85347173630498bf9ba9c2cbb2c4a500ae5e783d60b7102",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/initial-income-assumption-sdk-calls.jsonl",
+          "rowsSha256": "d28fe7a66b9aa64321e5e53f31a0786e8c59a4121f01510618bd3e1c0c5b9498",
+          "rows": 2
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/initial-income-assumption-observations.jsonl",
+          "rowsSha256": "ce83745aec3e70df72dc0945eac9f36bd4f5701539b29861a0ba496e92377ed8",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "home-loss",
+      "nativeSource": "00bb510ae4749a93efd23f7bafd6decd996b14fe",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-home-loss/home-loss.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d25ea42498776f91447b876f6122dffa76104cc5a3ee238e04c81b8943d97545",
+      "uncompressedSha256": "cfe712eba10c4f1ff416c0154575f0cb0ae71b4e4c11ff99f5ecabd1e422b7f0",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/home-loss-receipt.jsonl",
+          "rowsSha256": "2fb86fda5ec47649aadd9d0d3575b5c35b2ce91a2ba5cf7164b3e0286010c7c9",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/home-loss-claims.jsonl",
+          "rowsSha256": "5dfef756c362b24ce9c56fbe64f2920f209756c2a004d3ecf38d4d705c021b29",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/home-loss-sdk-calls.jsonl",
+          "rowsSha256": "d28fe7a66b9aa64321e5e53f31a0786e8c59a4121f01510618bd3e1c0c5b9498",
+          "rows": 2
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/home-loss-observations.jsonl",
+          "rowsSha256": "ce83745aec3e70df72dc0945eac9f36bd4f5701539b29861a0ba496e92377ed8",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "complete",
+      "nativeSource": "00bb510ae4749a93efd23f7bafd6decd996b14fe",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-home-loss/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b9fea3b17f7f792c0680e1d7335b2162ccd816dcebbe4f3fb5cf5de1d9107447",
+      "uncompressedSha256": "50f55f52cc1e9ea2c4e119e983d2167f2eed6a551bd25d981bd7f5d20c922bd1",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/complete-receipt.jsonl",
+          "rowsSha256": "4a7b38013be677305f4fe557afedf4a29af1db5ea88d915fe24e9c27c278d778",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/complete-claims.jsonl",
+          "rowsSha256": "174216ee4c322cfeb5b09dbc246395d37231beacfafa5ce79db28c4e82597e27",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "worker-population",
+      "nativeSource": "00bb510ae4749a93efd23f7bafd6decd996b14fe",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-home-loss/worker-population.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5bdc104e556d135a1e2c48aafdfaa86b7adc71a276584d3f8ecbb8aafc0ec723",
+      "uncompressedSha256": "41dd002a3aaa30ab19ad0ce6d7560b80c51ce17c5083fc5b86b55b93ea9804b7",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-home-loss/worker-population-samples.jsonl",
+          "rowsSha256": "6d46899497f8079ca96326569985cf102deb651e14fd8fa8291fb5ca0e9fa4ed",
+          "rows": 44
+        }
+      ]
+    }
+  ]
+}
