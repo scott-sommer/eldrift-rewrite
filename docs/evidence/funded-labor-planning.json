@@ -1,0 +1,74 @@
+{
+  "issue": "ED-29",
+  "scope": "Funded completion candidate persisted across native reloads and cached as economically rejected; adjacent regressions",
+  "native": [
+    {
+      "scenario": "upgrade",
+      "nativeSource": "9bf4b62b9a8218f01b1d568e6f17869f64399d0e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/funded-labor-planning/upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e5e76ad4ceb20336b3f631689688c91d2b8e2c23ecdfe51d93046a5aaaf8e71e",
+      "uncompressedSha256": "53afc9a850e4b07258c85c6411e6754a89902a860a63216ff4f600a798ff5bec",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/upgrade-observations.jsonl",
+          "rowsSha256": "d8d110d72a448aa23c743b9b502890ea4cd1821eabaa8ccce8fd6dc6187a9cd0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/upgrade-sdk-calls.jsonl",
+          "rowsSha256": "d2d37b5449c86381ffc717a41ab37ac183e810702ddacfe2c0384ded48eaae08",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "scenario": "loaded-upgrade",
+      "nativeSource": "9bf4b62b9a8218f01b1d568e6f17869f64399d0e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/funded-labor-planning/loaded-upgrade.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "7e7fc994226a84d01c55d2930f3d9ba15861a2a7474e5b11cb414f2df1f62220",
+      "uncompressedSha256": "201c70b0718060b960004bb08c14d616c1806b6863f23d65da066d2d5c6daccf",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/loaded-upgrade-observations.jsonl",
+          "rowsSha256": "14abc55826f4b64d168fa4de9ccef387b16784086dc3c050518020b2d181789f",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/loaded-upgrade-sdk-calls.jsonl",
+          "rowsSha256": "a9e35269f4a01585b9ecf90d9ae4c6703e0c54ffa86c01fe8304e786c686003d",
+          "rows": 11
+        }
+      ]
+    },
+    {
+      "scenario": "completion",
+      "nativeSource": "9bf4b62b9a8218f01b1d568e6f17869f64399d0e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/funded-labor-planning/completion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e7b908f0b5719e221aa8251b6397c28a7a31f345cf17ead3ae96ad7f0c335c71",
+      "uncompressedSha256": "b209d1faa8ab69b0124e7d44de62e88e017c37eac541da808c84168f9a96191a",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/completion-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        },
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/completion-sdk-calls.jsonl",
+          "rowsSha256": "b657374f288c8d9d46899471a048a9b8b1f01a3a115ee317f819862d52aed4b7",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/funded-labor-planning/completion-planning.jsonl",
+          "rowsSha256": "cfa963955d86b89802771df3b79cb0945dba2b440867a0782ec1ead8098373c7",
+          "rows": 1
+        }
+      ]
+    }
+  ]
+}
