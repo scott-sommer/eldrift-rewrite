@@ -1,0 +1,117 @@
+{
+  "issue": "ED-29",
+  "source": "51fd882137f2a13eb4eb1f6915397a8ea94405fb",
+  "scope": "Optional physical spawn preflight and real SDK explicit order; not full matched household/source actor strategy",
+  "native": [
+    {
+      "scenario": "--remote-startup-selected",
+      "nativeSource": "51fd882137f2a13eb4eb1f6915397a8ea94405fb",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/physical-spawn-admission/remote-startup-selected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1cd81aa7ca9f1116631fa642a7352f6c5d14be3483685d6967418e01861acad2",
+      "uncompressedSha256": "82db49526c2a5f2d2281251fcb48e43554eeea89158c44eb06090c2b9e5f6c0c",
+      "actualTicks": 150,
+      "provenance": {
+        "commit": "51fd882137f2a13eb4eb1f6915397a8ea94405fb",
+        "dirty": false,
+        "bundleSha256": "227c9ba58400fa437f1956468646dca3b00a9639a104e75e1695622c3fc55472",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/physical-spawn-admission/remote-startup-selected-samples.jsonl",
+          "rowsSha256": "104aa0b12952fc5a368be4ca01bee6e46d03f308d4d645358490f024fee217f9",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/physical-spawn-admission/selected-pipeline.jsonl",
+          "rowsSha256": "fc5c9f1c82011bb9b779f4b1cb6fcf106fe167d79f63e8ddce4b9c24c2ed5ecb",
+          "rows": 150
+        },
+        {
+          "rowsFile": "docs/evidence/physical-spawn-admission/selected-sdk-calls.jsonl",
+          "rowsSha256": "a3a638190d436b5c8b3aa6fb83bf5bc1e1bff806aacd04df4e1b9908b30a43f4",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "--spawn-contention",
+      "nativeSource": "51fd882137f2a13eb4eb1f6915397a8ea94405fb",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/physical-spawn-admission/spawn-contention.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c495c010af946a99e65740dac24fd1a0eb5edc05c9e3c6b2f1ebaf364f3f944e",
+      "uncompressedSha256": "229bbb2751f601a20f4f6d9ac9da9b91b7d483fea129bc26fac9a13e6581de15",
+      "actualTicks": 3,
+      "provenance": {
+        "commit": "51fd882137f2a13eb4eb1f6915397a8ea94405fb",
+        "dirty": false,
+        "bundleSha256": "dc1cc7bd442cd9de7bc62b887ceba9c66a41748c07a504794266131a404883bc",
+        "engineLockSha256": "ddb8bd08b8a4d8694f49085ce237a1dd966da858e4ddc886f388f8fba354561b",
+        "node": "v24.22.1",
+        "platform": "win32",
+        "engine": "4.3.2",
+        "driver": "5.3.0"
+      },
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/physical-spawn-admission/spawn-contention-samples.jsonl",
+          "rowsSha256": "06f2ccee3ec50506fdcc7a4c28b8a2f345171056ba0e13a20964fbc5697fce23",
+          "rows": 3
+        }
+      ]
+    }
+  ],
+  "actualAcceptedSdkCalls": [
+    {
+      "tick": 1,
+      "family": "distributor",
+      "orderPoints": 41
+    },
+    {
+      "tick": 10,
+      "family": "scout",
+      "orderPoints": 41
+    },
+    {
+      "tick": 25,
+      "family": "miner",
+      "orderPoints": 41
+    }
+  ],
+  "actualNativeIncome": 0,
+  "checks": {
+    "targeted": {
+      "cases": 24,
+      "files": 4,
+      "seconds": 0.33
+    },
+    "smoke": {
+      "cases": 76,
+      "files": 15,
+      "seconds": 0.444
+    },
+    "lizard": {
+      "productionFiles": 947,
+      "testFiles": 805,
+      "violations": 0
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "boundaries": "passed",
+    "bundle": "passed",
+    "fullUnits": "not run; incremental work"
+  },
+  "remaining": [
+    "Batch coordinator reconsideration of cheaper requests after preflight refusal",
+    "Matched native physical household and source actor lifecycle/cashflow",
+    "Incumbents/full workforce, multi-room capital and default economic adoption",
+    "Broader parity, pressure/soak, rollback and RC gates"
+  ]
+}
