@@ -1,3 +1,4 @@
+import { populationMemory } from '../../src/adapters/screeps/population';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createNativeSpawn } from '../../src/adapters/screeps/spawn';
 import { createSpawnQueue } from '../../src/features/population/spawn-queue';
@@ -16,7 +17,7 @@ export function spawnNativeLabor(proof: NativeLaborProof, request: SpawnRequest,
   if (!id) throw new Error('Native quoted identity lost its reservation race');
   const queue = createSpawnQueue(state,request.room); queue.submit(materialized.request);
   const pending = queue.list().find(item => item.id === id)!;
-  const code = createNativeSpawn(() => ({}),() => [spawn])({ request: pending,spawn: spawn.id,cost: birth.cost });
+  const code = createNativeSpawn(populationMemory,() => [spawn])({ request: pending,spawn: spawn.id,cost: birth.cost });
   proof.birthQueue = { id,readyAt: pending.readyAt,expiresAt: pending.expiresAt,activeAt: materialized.activeAt,reserved: true,removed: code === OK && queue.cancel(id,request.owner) };
   return code;
 }

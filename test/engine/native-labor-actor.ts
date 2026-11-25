@@ -14,7 +14,7 @@ export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undef
     proof.actorReloadAt = Game.time;
   }
   const behavior = createLaborTaskBehavior<null>({ now: () => Game.time,
-    worker: () => creep ? { id: creep.id,name: creep.name,owner: creep.memory.population!.owner,body: creep.body.filter(part => part.hits > 0).map(part => part.type),position: movementPosition(creep.pos),energy: creep.store.energy,spawning: creep.spawning } : undefined,
+    worker: () => creep ? { id: creep.id,name: creep.name,owner: creep.memory.population?.owner ?? '',body: creep.body.filter(part => part.hits > 0).map(part => part.type),position: movementPosition(creep.pos),energy: creep.store.energy,spawning: creep.spawning } : undefined,
     authorized: () => !!storage.room.controller?.my,
     remainingWork: (_,order) => { const site = Game.getObjectById(order.id as Id<ConstructionSite>); return site && site.progressTotal-site.progress || undefined; },
     move: (_,point) => { effect(proof,'move',creep!.moveTo(new RoomPosition(point.x,point.y,point.room),{ range: 0 }),0); },
