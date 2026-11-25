@@ -15,7 +15,10 @@ export interface HouseholdLaborPorts {
   lose(energy: number, job: Readonly<HouseholdLaborJob>): void;
 }
 export interface HouseholdLaborState {
+  worker: HouseholdLaborWorker | null;
   id: string; phase: 'waiting' | 'working' | 'returning' | 'complete' | 'missed' | 'expired';
   cargo: number; picked: number; spent: number; returned: number; lost: number;
   workAt: number | null; stopAt: number | null; returnAt: number | null; expiresAt: number | null; doneAt: number | null; rate: number;
 }
+
+export interface HouseholdLaborCheckpoint { format: 1; binding: string; through: number; jobs: HouseholdLaborState[] }

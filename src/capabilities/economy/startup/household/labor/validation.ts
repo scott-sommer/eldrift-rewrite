@@ -16,6 +16,7 @@ function validateService(job: HouseholdLaborJob, horizon: number): void {
   if (job.pickupAt > horizon || job.outboundTicks > 1500 || job.returnTicks > 1500 || job.workTicks < 1 || job.workTicks > 1500 || job.energy < 1 || job.energy > 2500) throw new Error('Invalid household labor service');
 }
 export function laborWorker(worker: HouseholdLaborWorker, job: HouseholdLaborJob, tick: number) {
+  validateWorkerShape(worker);
   const { birth,body } = worker, life = spawnedActiveTicks(body);
   if (birth.request !== job.request || ![birth.startAt,birth.activeAt,birth.cost].every(natural) || birth.activeAt !== birth.startAt+body.length*3 || birth.cost !== bodyCost(body)) throw new Error('Invalid paid household labor birth');
   const capacity = body.filter(part => part === 'carry').length*50, work = body.filter(part => part === 'work').length;
@@ -25,4 +26,14 @@ export function laborWorker(worker: HouseholdLaborWorker, job: HouseholdLaborJob
 export function accepted(amount: number, maximum: number): number {
   if (!natural(amount) || amount > maximum) throw new Error('Invalid household labor effect');
   return amount;
+}
+
+export function laborIdentity(input: HouseholdLaborInput): string {
+  return JSON.stringify([input.horizon,input.jobs.map(job => [job.id,job.request,job.kind,job.pickupAt,job.outboundTicks,job.workTicks,job.returnTicks,job.energy])]);
+}
+export function requireLabor(valid: boolean): void { if (!valid) throw new Error('Invalid household labor checkpoint'); }
+
+function validateWorkerShape(worker: HouseholdLaborWorker): void {
+  if (Object.keys(worker).sort().join() !== 'birth,body') throw new Error('Invalid labor worker fields');
+  if (Object.keys(worker.birth).sort().join() !== 'activeAt,cost,request,spawn,startAt' || !text(worker.birth.spawn)) throw new Error('Invalid labor birth fields');
 }
