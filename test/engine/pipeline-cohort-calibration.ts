@@ -9,7 +9,7 @@ import type { RuntimeConfig } from '../../src/config/model';
 import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model';
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
 import type { NativeStartupQuote } from '../../src/app/remotes/startup/projection/model';
-interface CalibrationProof { quote: NativeStartupQuote; input: ReturnType<typeof encodeStartupPlanningInput>; result: ReturnType<typeof forecastStartupProject>; horizon: number; frames: { tick: number; remaining: number | null; spawning: string | null; occupants: string[] }[]; events: { tick: number; actor: string; action: string; amount: number }[] }
+interface CalibrationProof { quote: NativeStartupQuote; input: ReturnType<typeof encodeStartupPlanningInput>; result: ReturnType<typeof forecastStartupProject>; horizon: number; frames: { tick: number; remaining: number | null; spawning: string | null; occupants: string[]; units: { name: string; room: string; x: number; y: number; fatigue: number; cargo: number }[] }[]; events: { tick: number; actor: string; action: string; amount: number }[] }
 export interface CalibrationMemory extends Memory { pipelineCalibrationMode?: boolean; pipelineCalibration?: CalibrationProof; pipelineCalibrationAttempts?: { tick: number; reason: string }[]; pipelineCalibrationPolicy?: Record<string,{ count: number; lastAt: number }> }
 export function capturePipelineCalibration(state: StatePort, profile: Readonly<RemoteFleetProfile>, plan: StartupTravelPlan, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean {
   const memory = Memory as CalibrationMemory;
@@ -43,5 +43,6 @@ export function recordCalibrationFrame(): void {
   const proof = (Memory as CalibrationMemory).pipelineCalibration; if (!proof || Game.time > proof.quote.observedAt+proof.horizon+1) return;
   const spawn = Game.spawns.Spawn1!, exit = proof.quote.plan.spawn.exit;
   const occupants = Object.values(Game.creeps).filter(creep => creep.pos.roomName === exit.room && creep.pos.x === exit.x && creep.pos.y === exit.y).map(creep => creep.name);
-  proof.frames.push({ tick: Game.time,remaining: spawn.spawning?.remainingTime ?? null,spawning: spawn.spawning?.name ?? null,occupants });
+  const units = proof.result.spawning.births.flatMap(birth => { const creep = Game.creeps[birth.request]; return creep && !creep.spawning ? [{ name: creep.name,room: creep.pos.roomName,x: creep.pos.x,y: creep.pos.y,fatigue: creep.fatigue,cargo: creep.store.getUsedCapacity(RESOURCE_ENERGY) }] : []; });
+  proof.frames.push({ tick: Game.time,units,remaining: spawn.spawning?.remainingTime ?? null,spawning: spawn.spawning?.name ?? null,occupants });
 }
