@@ -1,3 +1,4 @@
+import { createActorCycles } from './actor-cycles';
 import { fleetServicePlan, fleetServiceOptions } from './service-policy';
 import type { RemoteFleetBirthPolicy } from '../startup/model';
 import type { StatePort } from '../../../persistence/versioned-state';
@@ -13,9 +14,6 @@ import { resolveRemoteFleetAssignment } from '../../../features/remotes/fleet/au
 import { createRemoteAssignmentStore } from '../../../features/remotes/assignment-store';
 import { remoteAssignmentDemands } from '../../../features/remotes/assignment-demand';
 import type { RemoteMiningDemand } from '../mining-task';
-import { createNativeRemoteMiningCycle } from '../native-mining-cycle';
-import { createNativeRemoteTransportCycle } from '../native-transport-cycle';
-import { nativeRemoteTraversalFor } from '../management/policy';
 import { settleRemoteFleetTransfers } from './confirmations';
 import { remoteFleetWorkEnabled } from './spawn-policy';
 import { healthyRemoteActor } from './health';
@@ -52,6 +50,9 @@ function runHomeActors(state: StatePort, dispatch: ReturnType<typeof createNativ
   definitions: Readonly<Record<string,TaskDefinition>>, parentGuard: () => boolean, services?: RemoteActorServices): void {
   const deadline = Game.cpu.getUsed()+policy.remoteWorkerCpuBudget, guard = () => parentGuard() && Game.cpu.getUsed() < deadline;
   const profiles = createRemoteFleetStore(state,home).read().actors, assignments = createRemoteAssignmentStore(state), cursor = createRemoteActorCursor(state,home);
+  let deferred: boolean;
+  function admittedGuard(): boolean { const available = guard(); if (!available) deferred = true; return available; }
+  const cycles = createActorCycles({ state,dispatch,home,policy,definitions,guard: admittedGuard });
   for (const creep of cursor.order(creeps)) {
     if (!guard()) { traceActor(services,profiles.find(actor => actor.owner === creep.memory.population!.owner),creep.name,'deferred'); break; }
     const owner = creep.memory.population!.owner, identity = remoteFleetIdentity(owner)!, profile = profiles.find(actor => actor.owner === owner);
@@ -59,11 +60,11 @@ function runHomeActors(state: StatePort, dispatch: ReturnType<typeof createNativ
     const selected = actorService(profile,policy,services), service = fleetServiceOptions(selected);
     const lease = selected !== null && active(creep,profile,policy) ? resolveRemoteFleetAssignment(assignments,profile!,Game.time) : undefined;
     const demand = lease && remoteAssignmentDemands(lease,Game.time).find((item): item is RemoteMiningDemand => item.kind === 'mine' && item.source === identity.source);
-    const options = { maximumRooms: policy.remoteMaximumRouteRooms,guard,policy: (_home: string,username: string) => nativeRemoteTraversalFor(username,policy) };
-    const binding = { home,owner }; traceActor(services,profile,creep.name,'execute');
-    if (identity.kind === 'miner') createNativeRemoteMiningCycle(state,dispatch,binding,{ ...options,...service.mining },definitions).run(creep,demand);
-    else createNativeRemoteTransportCycle(state,dispatch,binding,{ ...options,minimumBatch: policy.remoteMinimumBatch,requestLifetime: policy.remoteTripLifetime,...service.transport },definitions).run(creep,demand);
-    traceActor(services,profile,creep.name,'done'); cursor.save(creep.name);
+    deferred = false; traceActor(services,profile,creep.name,'execute');
+    cycles(owner,identity.kind,service).run(creep,demand);
+    traceActor(services,profile,creep.name,'done');
+    if (deferred) break;
+    cursor.save(creep.name);
   }
 }
 function active(creep: Creep, profile: RemoteFleetProfile | undefined, config: Readonly<RuntimeConfig>): boolean {

@@ -15,10 +15,10 @@ export function settleHaulingTask(state: StatePort, definitions: Readonly<Record
   unit: { name: string; id: string }, observe: (attempt: TransferAttempt) => TransferObservation): void {
   const key = stateKey('tasks', unit.name);
   if (state.read(key) === undefined || state.read(stateKey('logistics-attempts', unit.id)) === undefined) return;
-  const task = openState(state, key, taskSchema(unit.name, definitions)).queue[0];
-  if (!task || task.kind !== 'haul' || !validHaulingPayload(task.payload) || task.payload.unitId !== unit.id) return;
   const journal = createTransferJournal(state, unit.id).read();
   if (!journal.attempt || (journal.acknowledged && journal.result?.status !== 'unknown')) return;
+  const task = openState(state, key, taskSchema(unit.name, definitions)).queue[0];
+  if (!task || task.kind !== 'haul' || !validHaulingPayload(task.payload) || task.payload.unitId !== unit.id) return;
   const binding = { home: task.payload.home, unit: unit.id, holder: unit.name, request: task.payload.request, scope: taskScope(unit.name, task.id) };
   const observation = observe(journal.attempt);
   settleHaulingTransfer(state, binding, observation, () => { createQuantityReservations(state).releaseScope(binding.scope); });
