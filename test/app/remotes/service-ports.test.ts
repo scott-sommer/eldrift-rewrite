@@ -13,10 +13,11 @@ function fixture() {
   const sink = { id: 'bank',structureType: 'storage',my: true,pos: { roomName: 'W0N1',x: 45,y: 25 },isActive: () => true,store: { getFreeCapacity: () => 1000 } };
   const service = { collection: { room: 'E0N1',x: 4,y: 25 },deposit: { room: 'W0N1',x: 46,y: 25 } };
   const request = { id: 'trip',owner: remoteTransportOwner(demand,f.courier.owner),source: 'container',sink: 'bank',resource: 'energy',quantity: 56,priority: 0,expiresAt: 100,service };
-  f.state.write('tasks/courier',{ owner: 'tasks',version: 2,data: { unit: 'courier',queue: [{ id: 'trip',kind: 'haul',phase: 'work',payload: { home: 'W0N1',unitId: creep.id,request },wakeAt: 1,retries: 0,expiresAt: 100 }] } });
+  const task = { owner: 'tasks',version: 2,data: { unit: 'courier',queue: [{ id: 'trip',kind: 'haul',phase: 'work',payload: { home: 'W0N1',unitId: creep.id,request },wakeAt: 1,retries: 0,expiresAt: 100 }] } };
+  f.state.write('tasks/courier',task);
   vi.stubGlobal('Game',{ time: 1,rooms: { W0N1: { controller: { my: true } } },creeps: { courier: creep },getObjectById: () => sink });
   const observe = createNativeRemoteServicePorts(f.state,{ haul: { phases: ['work'],validPayload: validHaulingPayload } });
-  return { ...f,creep,sink,service,observe };
+  return { ...f,creep,sink,service,task,observe };
 }
 test('nearby loaded current remote task grants a detached transient port without writes',() => {
   const f = fixture(), before = JSON.stringify(f.root), ports = f.observe();
@@ -28,4 +29,13 @@ test('empty or distant actors and withdrawn leases grant no port access',() => {
   f.creep.store.energy = 56; f.creep.pos.x = 40; expect(f.observe()).toEqual([]); f.creep.pos.x = 47;
   f.sink.my = false; expect(f.observe()).toEqual([]); f.sink.my = true;
   f.assignments.reconcile({ home: 'W0N1',tick: 1,lifetime: 100,expectedRevision: f.assignments.read().revision,plans: [] }); expect(f.observe()).toEqual([]);
+});
+
+test('one logical port groups all valid users independently of position property order',() => {
+  const f = fixture(), other = { ...f.creep,id: 'other-id',name: 'other',store: { energy: 0 } };
+  Game.creeps.other = other as unknown as Creep;
+  const task = structuredClone(f.task); task.data.unit = 'other'; task.data.queue[0]!.payload.unitId = other.id;
+  task.data.queue[0]!.payload.request.service.deposit = { y: 25,x: 46,room: 'W0N1' };
+  f.state.write('tasks/other',task);
+  const ports = f.observe(); expect(ports).toHaveLength(1); expect(ports[0]!.allowed).toEqual(['courier','other']);
 });

@@ -1,3 +1,4 @@
+import { tileKey } from '../../capabilities/movement/traffic/model';
 import { peekState } from '../../persistence/versioned-state';
 import { taskSchema } from '../../persistence/tasks/schema';
 import type { TaskDefinition } from '../../persistence/tasks/schema';
@@ -21,7 +22,7 @@ export function createNativeRemoteServicePorts(state: StatePort, definitions: Re
     if (!eligibleCourier(creep)) return undefined;
     const payload = serviceTask(state,creep,definitions); if (!payload || !authorized(creep,payload,assignments)) return undefined;
     const position = deposit(payload.request,payload.home); if (!position) return undefined;
-    return { name: creep.name,position,key: JSON.stringify(position),active: creep.store.energy > 0 && creep.getActiveBodyparts(MOVE) > 0 && near(creep,position) };
+    return { name: creep.name,position,key: tileKey(position),active: creep.store.energy > 0 && creep.getActiveBodyparts(MOVE) > 0 && near(creep,position) };
   }
 }
 function serviceTask(state: StatePort, creep: Creep, definitions: Readonly<Record<string,TaskDefinition>>): HaulingTaskPayload | undefined {
