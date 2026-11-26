@@ -1,4 +1,3 @@
-import { createSpawnQueue } from '../../src/features/population/spawn-queue';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 import { observeStartupBirths } from '../../src/adapters/screeps/startup-birth-observation';
@@ -16,7 +15,7 @@ import type { NativeStartupQuote } from '../../src/app/remotes/startup/projectio
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 export type NativeCalibrationQuote = NativeStartupQuote & { rooms: string[] };
 export interface PipelineEconomicContext { binding: string; generation: number; expiresAt: number }
-export interface PipelineEconomicMemory extends Memory { pipelineEconomicChangeMode?: boolean; pipelineEconomicCancelledAt?: number; pipelineEconomicChanges?: number[]; pipelineEconomicMode?: boolean; pipelineEconomicChecks?: { tick: number; request: string; allowed: boolean; bindingMatches: boolean }[] }
+export interface PipelineEconomicMemory extends Memory { pipelineEconomicChangeMode?: boolean;  pipelineEconomicChanges?: number[]; pipelineEconomicMode?: boolean; pipelineEconomicChecks?: { tick: number; request: string; allowed: boolean; bindingMatches: boolean }[] }
 function policy(horizon: number) { return { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: horizon,maximumHouseholdCapital: 10000 }; }
 export function forecastPipelineCalibration(state: StatePort, profile: Readonly<RemoteFleetProfile>, quote: NativeCalibrationQuote, input: StartupDeliveryInput, config: Readonly<RuntimeConfig>, horizon: number, guard: () => boolean) {
   if (!(Memory as PipelineEconomicMemory).pipelineEconomicMode) return { status: 'ready' as const,result: forecastStartupProject(input) };
@@ -32,26 +31,27 @@ export function forecastPipelineCalibration(state: StatePort, profile: Readonly<
 export function admitPipelineEconomic(state: StatePort, profile: Readonly<RemoteFleetProfile>, request: Readonly<SpawnRequest>, config: Readonly<RuntimeConfig>): boolean {
   const memory = Memory as PipelineEconomicMemory & CalibrationMemory;
   if (!memory.pipelineEconomicMode) return true;
-  const proof = memory.pipelineCalibration, economic = proof?.economic;
-  if (!proof || !economic) return false;
-  const currentPolicy = policy(proof.horizon), binding = createNativeStartupExecutionBinding(state)(proof.quote.plan,proof.quote.rooms,config,currentPolicy);
-  const query = { ...economic,room: profile.room,source: profile.source,observedAt: proof.quote.observedAt,tick: Game.time,input: decodeStartupPlanningInput(proof.input) };
-  const allowed = !!binding && createStartupForecastAdmission(state,profile.home)(profile,request,{ query,policy: currentPolicy,binding,tick: Game.time,births: observeStartupBirths(query.input.project.spawning.requests) });
-  (memory.pipelineEconomicChecks ??= []).push({ tick: Game.time,request: request.id,allowed,bindingMatches: binding === economic.binding });
+  const current = currentPipelineEconomic(state,profile,config);
+  if (!current) return false;
+  const allowed = !!current.binding && createStartupForecastAdmission(state,profile.home)(profile,request,current);
+  (memory.pipelineEconomicChecks ??= []).push({ tick: Game.time,request: request.id,allowed,bindingMatches: current.binding === current.query.binding });
   return allowed;
 }
 
 export function changePipelineEconomicPolicy(state: StatePort): void {
   const memory = Memory as PipelineEconomicMemory & CalibrationMemory & { pipelineStopped?: number };
-  if (!memory.pipelineEconomicChangeMode || ![50,60,64,120].includes(Game.time)) return;
-  if (Game.time === 64) {
-    const request = memory.pipelineCalibration!.input.project.spawning.requests.find(request => request.id === 'ed-W0N1-5')!;
-    if (!createSpawnQueue(state,'W0N1').cancel(request.id,request.owner)) throw new Error('Missing missed-slot request');
-    memory.pipelineEconomicCancelledAt = Game.time; return;
-  }
+  if (!memory.pipelineEconomicChangeMode || ![50,60,120].includes(Game.time)) return;
   const config = openState(state,'operator/config',operatorSchema);
   config.empire = { ...config.empire as object,...(Game.time === 120 ? { remoteMaximumSlots: 0 } : { remoteStartupEnergyReserve: Game.time === 50 ? 1 : 0 }) };
   saveState(state,'operator/config',operatorSchema,config);
   (memory.pipelineEconomicChanges ??= []).push(Game.time);
   if (Game.time === 120) memory.pipelineStopped = Game.time;
+}
+
+export function currentPipelineEconomic(state: StatePort, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
+  const proof = (Memory as CalibrationMemory).pipelineCalibration, economic = proof?.economic;
+  if (!proof || !economic) return undefined;
+  const currentPolicy = policy(proof.horizon), binding = createNativeStartupExecutionBinding(state)(proof.quote.plan,proof.quote.rooms,config,currentPolicy) ?? '';
+  const query = { ...economic,room: proof.quote.plan.room,source: proof.quote.plan.source,observedAt: proof.quote.observedAt,tick: Game.time,input: decodeStartupPlanningInput(proof.input) };
+  return { query,policy: currentPolicy,binding,tick: Game.time,births: observeStartupBirths(query.input.project.spawning.requests) };
 }

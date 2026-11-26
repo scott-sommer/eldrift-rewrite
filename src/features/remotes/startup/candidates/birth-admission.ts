@@ -22,7 +22,7 @@ export function createStartupForecastAdmission(state: StatePort, home: string) {
     const participants = [...query.input.project.workers,...query.input.couriers].map(worker => worker.request);
     const assessment = assessStartupProject(completed,query.input.project.spawning.cash.horizon,policy,participants,query.input.household?.labor?.jobs);
     if (!assessment.accepted) return false;
-    if (!priorBirthsMatch(completed.spawning.births,query.input.project.spawning.requests,current)) return false;
+    if (!startupPriorBirthsMatch(completed.spawning.births,query.input.project.spawning.requests,current)) return false;
     return matchesSlot(completed.spawning.births,request,query,participants);
   };
 }
@@ -32,7 +32,7 @@ function sameContext(home: string, profile: Readonly<RemoteFleetProfile>, curren
     && query.tick === tick && query.binding === binding;
 }
 
-function priorBirthsMatch(births: readonly StartupScheduledBirth[], requests: readonly SpawnRequest[], current: StartupBirthAdmissionContext): boolean {
+export function startupPriorBirthsMatch(births: readonly StartupScheduledBirth[], requests: readonly SpawnRequest[], current: StartupBirthAdmissionContext): boolean {
   const epoch = current.query.observedAt;
   return births.filter(birth => birth.startAt+epoch < current.tick).every(birth => {
     const request = requests.find(request => request.id === birth.request), observed = current.births?.find(item => item.request === birth.request);

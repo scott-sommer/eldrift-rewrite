@@ -1,3 +1,4 @@
+import { maintainPipelineEconomic } from './pipeline-economic-maintenance';
 import { admitPipelineEconomic } from './pipeline-economic';
 import { capturePipelineCalibration, noteCalibrationPolicy } from './pipeline-cohort-calibration';
 import { createRemoteFleetStore } from '../../src/features/remotes/fleet/store';
@@ -23,6 +24,7 @@ export const pipelineServicePolicy: RemoteFleetBirthPolicy = {
   prepare(profile,config,guard) {
     if (!(Memory as PipelineServiceMemory).pipelineServiceMode) return undefined;
     noteCalibrationPolicy('prepare-'+profile.kind);
+    if (!maintainPipelineEconomic(state,profile,config)) return null;
     if (selected(profile)) return placement(profile);
     if (!guard()) { noteCalibrationPolicy('guard'); return null; }
     const plan = prepare(profile);
