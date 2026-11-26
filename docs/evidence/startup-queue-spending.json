@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Queue spending fence: initial native attempt-seal regression and refusal replan failure retained; correction qualification pending.",
+  "scope": "Fresh queue-spending fence across proposal publication, cohort maintenance and final payment; exact attempt and observed paid-birth seals preserved. Six failed runs plus two native passes retained; refusal revisit remains unresolved.",
   "native": [
     {
       "scenario": "initial-supported",
@@ -55,6 +55,24 @@
       "rawEncoding": "gzip",
       "rawSha256": "f9b7e43fe3f2de6a2e6bd6f773b3f7ce88d88d61b77c724c75a8b3bdfb4a0429",
       "uncompressedSha256": "e2ffd83906557c86d0352b4d1ea29e10bbf8757643178c86b007226c870adf42"
+    },
+    {
+      "scenario": "paid-supported",
+      "nativeSource": "f3b6c0a82955f78cb38643e2a2b02f2c87044dec",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-queue-spending-paid-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "fd6f7aba0a853ec13539fb2599f67b90e2917f5d9ef6822608ae0f7497409f89",
+      "uncompressedSha256": "83cf960e842227f12d8bf6dcd46f61a82fd9780f9470f60edee6fb885d5f8e6d"
+    },
+    {
+      "scenario": "paid-changed",
+      "nativeSource": "f3b6c0a82955f78cb38643e2a2b02f2c87044dec",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-queue-spending-paid-changed.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8c60c89ee89bceffb24d8a3500dcaf16eb78df0c8dd266c3674875763b40d4bf",
+      "uncompressedSha256": "d5708fbc2b9eb3608075281f0d7adf40750791397f3d58bbbbf8342a579cdb50"
     }
   ]
 }
