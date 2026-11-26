@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Failed first native economic-context attempt: the exact full policy/topology binding exceeds the8192-character limit, so no forecast approval or source births are published.",
+  "scope": "Controlled native economic cohort through ordinary recruitment/final dispatch with full effective configuration/static topology binding and current predecessor clocks; changed-policy/missed-slot refusal and loaded withdrawal; default strategy generation and automatic stale-slot cleanup remain open.",
   "native": [
     {
       "scenario": "economic-binding-capacity",
@@ -19,6 +19,54 @@
       "rawEncoding": "gzip",
       "rawSha256": "4f2a03336623b1299ba082045784d636897a997c91657245819c346505d9764c",
       "uncompressedSha256": "df7e0fdc878e3be3c684958d7421c4b57d352902070460bebf4466f2b421cdf7"
+    },
+    {
+      "scenario": "economic-initial-accepted",
+      "nativeSource": "68a5a05e0c36b5061cabf3f5e015abce55983e2f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-economic-initial-accepted.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f916c51b1a78e8d94d31685bf5a633100f7f90e5d912a0e2c5fb2c57aa86af27",
+      "uncompressedSha256": "3fe73de53f7d6ca1db49f76a71f3a969c78134f8900d27ccb7624a4a488a5b0e",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-economic-initial-accepted-checks.jsonl",
+          "rowsSha256": "8a68b4e40eebc92f2796a5aac0f39aaff6f63920a35dc39cd219248b1bfb57cf",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "economic-accepted",
+      "nativeSource": "d670e243d8316c1d895c0fd9713bd463226c63c4",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-economic-accepted.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0e6baef6a296688967f70e315639b974cecd76e899d49433c15711ab94f87544",
+      "uncompressedSha256": "d3f5af261bff38cafe34744344bac103c9668d58c7d4f66c1465a1a45c728d41",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-economic-accepted-checks.jsonl",
+          "rowsSha256": "8a68b4e40eebc92f2796a5aac0f39aaff6f63920a35dc39cd219248b1bfb57cf",
+          "rows": 3
+        }
+      ]
+    },
+    {
+      "scenario": "economic-changed-policy",
+      "nativeSource": "d670e243d8316c1d895c0fd9713bd463226c63c4",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-economic-changed-policy.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d7b2626a0f7c2fea93bb26464e71aae6a628e57a171f951a025270eded9ce4af",
+      "uncompressedSha256": "4fd9c97e0336ad57623e3415cac21b200e40996b271db73bd49c22c393d82dfc",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-economic-changed-policy-checks.jsonl",
+          "rowsSha256": "0911da74b5c9f927a93a3deaabcf5433738cdb338401214154a3a13d0abb9f46",
+          "rows": 68
+        }
+      ]
     }
   ]
 }
