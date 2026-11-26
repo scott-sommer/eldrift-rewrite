@@ -1,0 +1,83 @@
+{
+  "issue": "ED-29",
+  "scope": "Strict prospective prefix calibration: five failed attempts retained plus passing ordinary spawn/movement regressions. No passing prospective calendar or economic adoption claim.",
+  "native": [
+    {
+      "scenario": "initial-phase",
+      "nativeSource": "757efa3f0ad7710837fb55c387f6a3a73184b9f9",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/initial-phase.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f351ac88d14b378560a691524161705c3511a98b67beb6eaccae321e9cf3b5c6",
+      "uncompressedSha256": "595ffc033ec1ea610d6e8e2541d7d5c278b9191604f946f5d0476c13b2472576"
+    },
+    {
+      "scenario": "phase-diagnostics",
+      "nativeSource": "b86f5dc309397a6583a247597c88444a085eb1f9",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/phase-diagnostics.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9c04cef14a9a757f3225330e777edc5c7449510eae649dcba76f6ed78ab685c4",
+      "uncompressedSha256": "3475e24650dad4f891b4cd3ec7af07ed6f2309a41c9345f7b20192548784d816"
+    },
+    {
+      "scenario": "birth-delays",
+      "nativeSource": "25f6325eabdb61ca85ef0b8dcccfbfac02682a06",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/birth-delays.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4ebb7f89cc40c1c5985a8edbf6027985958ee1376a7ef9b8a3b8b72f121e62f8",
+      "uncompressedSha256": "81544216257dca6a3972fb43b9c45a84ca14bc18463a4a0a00b90ff76d67987a"
+    },
+    {
+      "scenario": "exit-protection",
+      "nativeSource": "7ddac1efd025d943e94be508cbf3bea0a0d19722",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/exit-protection.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "ece16e5f78e8ba05b75fcefd92f6bde8b5b1d4d2b46c23f8feb22b25247be46f",
+      "uncompressedSha256": "3e12874eb13b754cbf4e082a48ea4e8b7f713b62187b3d35ee3a240b655f17f6",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-calibration/exit-protection-frames.jsonl",
+          "rowsSha256": "87153c5aedfc7cc627c7b26d63155e351fc160554ff439e435db7e12c883144d",
+          "rows": 122
+        }
+      ]
+    },
+    {
+      "scenario": "movement-trace",
+      "nativeSource": "844fb1ac26bf0cecb69441937c17c53a0a2babc7",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/movement-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8cc837eb87ff7fcfea07e5bfd6fb38c456a6aab59946ba705db1a65e3ab7bca4",
+      "uncompressedSha256": "904c070c20a42ad74975c778de8e0a62f3fdfd3943de706b4e1cdec8bf9f1cf9",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-calibration/movement-trace-frames.jsonl",
+          "rowsSha256": "ca1a018559be5241096490306e6cafe24963317cf18fea8a8821a4dcec7e3b0e",
+          "rows": 122
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-workers",
+      "nativeSource": "7ddac1efd025d943e94be508cbf3bea0a0d19722",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/ordinary-workers.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1bf69e7c712ec9bc6643ca78e1b2d4da7a5de75bc6cabaa1e289c0850552d3ae",
+      "uncompressedSha256": "105f273465f92381b28e4c644cb9dabad04fbe48c022dd99f06177f47f659e71"
+    },
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "7ddac1efd025d943e94be508cbf3bea0a0d19722",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/ordinary-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0f49365c451984c739ed2b83a9721c2e1738b121e04463f59c1d1737691925f4",
+      "uncompressedSha256": "65cfadc6fcd64e189746a8041ddbb09f4f88400966fb509ee842180e227d9ae7"
+    }
+  ]
+}

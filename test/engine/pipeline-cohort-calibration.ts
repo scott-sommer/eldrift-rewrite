@@ -29,7 +29,7 @@ function deferred(memory: CalibrationMemory, reason: string): false {
 export function recordCalibrationCall(creep: Creep, action: string, target: { energy?: number }, amount?: number): void {
   const proof = (Memory as CalibrationMemory).pipelineCalibration;
   if (!proof || Game.time > proof.quote.observedAt+proof.horizon) return;
-  const energy = action === 'harvest' ? Math.min(creep.getActiveBodyparts(WORK)*HARVEST_POWER,target.energy ?? 0,creep.store.getFreeCapacity(RESOURCE_ENERGY)) : amount ?? 0;
+  const energy = action === 'harvest' ? Math.min(creep.getActiveBodyparts(WORK)*HARVEST_POWER,target.energy ?? 0) : amount ?? 0;
   proof.events.push({ tick: Game.time,actor: creep.name,action,amount: energy });
 }
 
