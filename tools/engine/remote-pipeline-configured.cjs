@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 function verifyConfiguredPipeline(memory,evidence) {
   const planning = memory.pipelineConfiguredPlanning, approval = memory.pipelineConfiguredApproval, proof = memory.pipelineCalibration, variant = memory.pipelineConfiguredVariant;
-  evidence.pipelineConfigured = { trace: memory.pipelineStartupTrace,pathProbe: memory.pipelinePathProbe,variant,planning,approval,changes: memory.pipelineConfiguredChanges,rejected: memory.pipelineConfiguredRejected,rows: memory.pipelineRows,births: memory.pipelineBirths,job: memory.eldrift.records['remoteStartupPlanning/W0N1'],queue: memory.eldrift.records['spawning/W0N1'],approvals: memory.eldrift.records['remoteStartupApprovals/W0N1'] };
+  evidence.pipelineConfigured = { trace: memory.pipelineStartupTrace,pathProbe: memory.pipelinePathProbe,revisitRequestedAt: memory.pipelineConfiguredRevisitRequestedAt,variant,planning,approval,changes: memory.pipelineConfiguredChanges,rejected: memory.pipelineConfiguredRejected,rows: memory.pipelineRows,births: memory.pipelineBirths,job: memory.eldrift.records['remoteStartupPlanning/W0N1'],queue: memory.eldrift.records['spawning/W0N1'],approvals: memory.eldrift.records['remoteStartupApprovals/W0N1'] };
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   if (variant === 'refused') return verifyRefused(memory,evidence);
   assert.ok(planning?.length > 10,'forecast must resume over multiple native ticks');
@@ -24,7 +24,10 @@ function verifyConfiguredPipeline(memory,evidence) {
 function verifyRefused(memory,evidence) {
   const rows = memory.pipelineRows, births = Object.values(memory.pipelineBirths), last = rows.at(-1);
   evidence.pipelineConfigured.rows = rows; evidence.pipelineConfigured.births = memory.pipelineBirths;
-  assert.equal(rows.length,180); assert.ok(memory.pipelineConfiguredRejected.length >= 1,'at least one completed proposal must be refused');
+  assert.equal(rows.length,180); assert.equal(memory.pipelineConfiguredRevisitRequestedAt,70);
+  assert.ok(rows.some(row => row.tick < 70 && !row.visible) && rows.some(row => row.tick > 70 && row.visible),'actual scout must lose and restore source vision');
+  assert.ok(memory.pipelineConfiguredRejected.length >= 2,'both completed observed proposals must be refused');
+  assert.ok(memory.pipelineConfiguredRejected.some(row => row.observedAt > 70),'fresh rejection must follow the explicit revisit mission');
   assert.ok(new Set(memory.pipelineConfiguredPlanning.map(row => row.observedAt)).size >= 2,'a fresh proposal must follow the first deadline when vision returns');
   assert.equal(memory.pipelineCalibration,undefined); assert.equal(memory.pipelineConfiguredApproval,undefined);
   assert.ok(!memory.eldrift.records['remoteStartupApprovals/W0N1'] || memory.eldrift.records['remoteStartupApprovals/W0N1'].data.approvals.length === 0);

@@ -13,11 +13,21 @@ export function configuredStartupSettings(variant: ConfiguredPipelineMemory['pip
 }
 /** Change only ordinary configuration; cleanup and fresh proposals remain production responsibilities. */
 export function changeConfiguredPolicy(state: StatePort, memory: ConfiguredPipelineMemory): void {
+  requestRefusedRevisit(state,memory);
   if (memory.pipelineConfiguredVariant !== 'changed' || ![45,70].includes(Game.time)) return;
   const record = openState(state,'operator/config',operatorSchema);
   record.empire = { ...record.empire as object,remoteStartupMinimumMargin: Game.time === 45 ? 1000000 : 0 };
   saveState(state,'operator/config',operatorSchema,record);
   (memory.pipelineConfiguredChanges ??= []).push(Game.time);
+}
+
+/** Financial refusal needs a real second observation, rather than an incidental exploration transit. */
+function requestRefusedRevisit(state: StatePort, memory: ConfiguredPipelineMemory): void {
+  if (memory.pipelineConfiguredVariant !== 'refused' || Game.time !== 70) return;
+  const record = openState(state,'operator/config',operatorSchema);
+  record.empire = { ...record.empire as object,scoutAssignedRooms: ['W0N1','E0N1'] };
+  saveState(state,'operator/config',operatorSchema,record);
+  memory.pipelineConfiguredRevisitRequestedAt = Game.time;
 }
 
 const coldActorTicks = new Set([311,591,861]);
