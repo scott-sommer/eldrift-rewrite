@@ -1,3 +1,4 @@
+import { startupQueueMatches } from '../queue-fence';
 import { assessStartupProject } from '../../../../capabilities/economy/startup/assessment';
 import type { StatePort } from '../../../../persistence/versioned-state';
 import { createStartupPlanningJob } from '../planning/runner';
@@ -13,6 +14,7 @@ export function createStartupCohortMaintenance(state: StatePort, home: string, r
   function invalidation(current: StartupBirthAdmissionContext): string | undefined {
     const { query,policy,binding,tick } = current;
     if (query.tick !== tick || query.binding !== binding) return 'binding';
+    if (!startupQueueMatches(state,home,query)) return 'queue-context';
     const completed = readResult(query); if (!completed) return 'planning-evidence';
     if (!startupPriorBirthsMatch(completed.spawning.births,query.input.project.spawning.requests,current)) return 'cohort-progress';
     const participants = [...query.input.project.workers,...query.input.couriers].map(worker => worker.request);

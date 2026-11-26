@@ -1,3 +1,5 @@
+import { startupQueueMatches } from '../../src/features/remotes/startup/queue-fence';
+import { createStartupCohortMaintenance } from '../../src/features/remotes/startup/candidates/cohort-maintenance';
 import { missingStartupBirths } from '../../src/app/remotes/startup/economic/proposals';
 import { startupFixture } from '../fixtures/remote-startup';
 import { afterEach, expect, test, vi } from 'vitest';
@@ -54,4 +56,47 @@ test('a damaged incumbent cannot suppress an economically modeled replacement',(
   const f = startupFixture(), creep = f.activeMiner(); f.game.creeps[creep.name] = creep;
   expect(missingStartupBirths(f.state,f.miner,f.config)).toBe(0);
   creep.getActiveBodyparts = () => 0; expect(missingStartupBirths(f.state,f.miner,f.config)).toBe(1);
+});
+
+test('new home spending during planning refuses publication and preserves the competing request',() => {
+  const f = economicCohortFixture(), queue = createSpawnQueue(f.state,f.home);
+  queue.submit({ id: 'new-home-work',name: 'new-home-work',owner: 'household',room: f.home,body: ['work','carry','move'],priority: 0,readyAt: 10,expiresAt: 100 });
+  for (const tick of [2,3,4,5]) { f.at(tick); expect(advanceEconomicProposal(f.state,f.home,f.context,f.config,() => true)).toBe(false); }
+  expect(f.approvals.read().approvals).toEqual([]);
+  expect(queue.list().map(request => request.id)).toEqual(['new-home-work']);
+  expect(f.planner.read().job).toBeNull();
+});
+test('new spending after approval cannot borrow its old financial calendar at final payment',() => {
+  const f = economicCohortFixture();
+  for (const tick of [2,3,4,5]) { f.at(tick); advanceEconomicProposal(f.state,f.home,f.context,f.config,() => true); }
+  const queue = createSpawnQueue(f.state,f.home), request = queue.list()[0]!;
+  const profile = { home: f.home,room: f.query.room,source: f.query.source,generation: 1,owner: request.owner } as RemoteFleetProfile;
+  f.at(21); const admit = createStartupForecastAdmission(f.state,f.home,f.approvals.result);
+  expect(admit(profile,request,f.context)).toBe(true);
+  queue.submit({ id: 'new-home-work',name: 'new-home-work',owner: 'household',room: f.home,body: ['work','carry','move'],priority: 0,readyAt: 21,expiresAt: 100 });
+  const before = f.root(); expect(admit(profile,request,f.context)).toBe(false); expect(f.root()).toBe(before);
+});
+
+test('queue changes revoke only unstarted cohort members and preserve the other spending owner',() => {
+  const f = economicCohortFixture();
+  for (const tick of [2,3,4,5]) { f.at(tick); advanceEconomicProposal(f.state,f.home,f.context,f.config,() => true); }
+  const queue = createSpawnQueue(f.state,f.home);
+  queue.submit({ id: 'new-home-work',name: 'new-home-work',owner: 'household',room: f.home,body: ['move'],priority: 0,readyAt: 10,expiresAt: 100 });
+  f.at(6);
+  const result = createStartupCohortMaintenance(f.state,f.home,f.approvals.result)(f.context,new Set([queue.list()[0]!.name]));
+  expect(result).toMatchObject({ status: 'invalid',reason: 'queue-context',cancelled: ['ed-'+f.home+'-2'],occupied: ['ed-'+f.home+'-1'] });
+  expect(queue.list().map(request => request.id)).toEqual(['ed-'+f.home+'-1','new-home-work']);
+});
+test('queue comparison normalizes observation clocks, ignores expired and beyond-horizon requests, and fences changed terms read-only',() => {
+  const f = economicCohortFixture(), queue = createSpawnQueue(f.state,f.home);
+  const proposed = { id: 'priced',name: 'priced',owner: 'household',room: f.home,body: ['move' as const],priority: 0,readyAt: 0,expiresAt: 100 };
+  f.query.input.project.spawning.requests = [...f.query.input.project.spawning.requests,proposed];
+  const current = { ...proposed,readyAt: 0,expiresAt: 101 }; queue.submit(current);
+  queue.submit({ ...current,id: 'expired',name: 'expired',readyAt: 0,expiresAt: 1 });
+  queue.submit({ ...current,id: 'later',name: 'later',readyAt: 1002,expiresAt: 1100 });
+  const before = f.root(); expect(startupQueueMatches(f.state,f.home,f.query)).toBe(true); expect(f.root()).toBe(before);
+  for (const changed of [{ priority: 2 },{ readyAt: 3 },{ expiresAt: 102 },{ body: ['carry' as const] }]) {
+    queue.cancel(current.id,current.owner); queue.submit({ ...current,...changed });
+    const snapshot = f.root(); expect(startupQueueMatches(f.state,f.home,f.query)).toBe(false); expect(f.root()).toBe(snapshot);
+  }
 });

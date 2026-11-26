@@ -1,3 +1,4 @@
+import { startupQueueMatches } from '../../../../features/remotes/startup/queue-fence';
 import { createStartupPlanningJob, assessCompletedStartupPlanning } from '../../../../features/remotes/startup/planning/runner';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
 import { createStartupSelections } from '../../../../features/remotes/startup/selection-store';
@@ -10,7 +11,7 @@ import type { EconomicExecutionContext } from './context';
 export function advanceEconomicProposal(state: StatePort, home: string, current: EconomicExecutionContext, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean {
   const planner = createStartupPlanningJob(state,home), { query } = current;
   const deadline = firstCohortDeadline(current);
-  if (current.binding !== query.binding || Game.time >= deadline || Game.time > query.expiresAt) { discardEconomicProposal(state,home,current); return false; }
+  if (current.binding !== query.binding || Game.time >= deadline || Game.time > query.expiresAt || !startupQueueMatches(state,home,query)) { discardEconomicProposal(state,home,current); return false; }
   const planning = current.planning ?? planner.inspect(), record = planning.record, horizon = query.input.project.spawning.cash.horizon;
   let completed = record.job?.checkpoint.tick === horizon+1 ? planning.result(query) : undefined;
   if (!completed && record.clock !== Game.time) {
@@ -19,6 +20,7 @@ export function advanceEconomicProposal(state: StatePort, home: string, current:
   }
   if (!completed || !guard()) return false;
   if (!cohortStartsBeforeExpiry(completed.spawning.births,current) || !assessCompletedStartupPlanning(completed,query,current.policy).accepted) return false;
+  if (!startupQueueMatches(state,home,query)) { discardEconomicProposal(state,home,current); return false; }
   const published = publishStartupCohort(state,home,query,new Set(Object.keys(Game.creeps)));
   if (published !== 'published') { discardEconomicProposal(state,home,current); return false; }
   const approvals = createStartupApprovals(state,home);

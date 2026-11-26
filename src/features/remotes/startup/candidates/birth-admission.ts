@@ -1,3 +1,4 @@
+import { startupQueueMatches } from '../queue-fence';
 import { sameSpawnRequest } from '../../../../capabilities/spawning/placement';
 import { assessStartupProject } from '../../../../capabilities/economy/startup/assessment';
 import type { StartupReturnPolicy } from '../../../../capabilities/economy/startup/assessment';
@@ -19,6 +20,7 @@ export function createStartupForecastAdmission(state: StatePort, home: string, r
     const { query,policy } = current, marker = request.admission;
     if (marker?.kind === 'remote-startup' && (marker.generation !== query.generation || marker.observedAt !== query.observedAt)) return false;
     if (!sameContext(home,profile,current) || request.owner !== profile.owner) return false;
+    if (!startupQueueMatches(state,home,query)) return false;
     const completed = readResult(query); if (!completed) return false;
     const participants = [...query.input.project.workers,...query.input.couriers].map(worker => worker.request);
     const assessment = assessStartupProject(completed,query.input.project.spawning.cash.horizon,policy,participants,query.input.household?.labor?.jobs);
