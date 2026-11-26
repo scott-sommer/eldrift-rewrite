@@ -5,7 +5,6 @@ import { defaultMiningRepairPolicy } from '../../../../capabilities/mining/repai
 import { nativeRemoteTraversalFor } from '../../management/policy';
 import { createNativeStartupExecutionBinding } from '../execution-binding';
 import { createStartupSelections } from '../../../../features/remotes/startup/selection-store';
-import { createStartupPlanningJob } from '../../../../features/remotes/startup/planning/runner';
 import { proposeEconomicBirths } from './proposals';
 import { startupEconomicPolicy } from './policy';
 import type { StatePort } from '../../../../persistence/versioned-state';
@@ -30,8 +29,5 @@ export function prepareEconomicProposal(state: StatePort, structures: StartupStr
   if (query.observedAt+config.remoteStartupPlanningLead >= query.expiresAt) return undefined;
   const selections = createStartupSelections(state,profile.home);
   if (!selections.publish(selections.read().revision,Game.time,{ generation: profile.generation,binding,expiresAt: query.expiresAt,quote })) return undefined;
-  const planner = createStartupPlanningJob(state,profile.home);
-  const seeded = planner.advance({ ...query,expectedRevision: planner.read().revision },config.remoteStartupFrames,guard);
-  trace(profile,seeded.status === 'complete' ? 'seed:complete' : 'seed:'+seeded.reason);
   return query;
 }

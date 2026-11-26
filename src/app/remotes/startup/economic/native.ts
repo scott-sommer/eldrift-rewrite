@@ -1,3 +1,4 @@
+import { createEconomicProposalStaging } from './staging';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
 import { createStartupForecastAdmission } from '../../../../features/remotes/startup/candidates/birth-admission';
 import { fleetServicePlan } from '../../fleet/service-policy';
@@ -11,6 +12,7 @@ import type { RemoteFleetBirthPolicy, RemoteStartupProbe, StartupStructures } fr
 type StartupGuard = () => boolean;
 /** Configured adapter composition; facts, geometry, forecast, publication and payment keep their existing owners. */
 export function createNativeEconomicStartup(state: StatePort, structures: StartupStructures, trace: RemoteStartupProbe = () => {}): RemoteFleetBirthPolicy {
+  const staging = createEconomicProposalStaging(state);
   function current(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;
     const context = approvedEconomicContext(state,profile,config);
@@ -19,7 +21,7 @@ export function createNativeEconomicStartup(state: StatePort, structures: Startu
   }
   function prepare(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;
-    return prepareEconomicCohort(state,structures,profile,config,guard,trace) ? current(profile,config) : null;
+    return prepareEconomicCohort(state,structures,profile,config,guard,trace,staging) ? current(profile,config) : null;
   }
   function cohort(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;

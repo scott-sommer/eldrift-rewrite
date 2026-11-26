@@ -11,9 +11,10 @@ export function advanceEconomicProposal(state: StatePort, home: string, current:
   const planner = createStartupPlanningJob(state,home), { query } = current;
   const deadline = firstCohortDeadline(current);
   if (current.binding !== query.binding || Game.time >= deadline || Game.time > query.expiresAt) { discardEconomicProposal(state,home,current); return false; }
-  let completed = planner.result(query);
-  if (!completed && planner.read().clock !== Game.time) {
-    const progress = planner.advance({ ...query,expectedRevision: planner.read().revision },config.remoteStartupFrames,guard);
+  const record = planner.read(), horizon = query.input.project.spawning.cash.horizon;
+  let completed = record.job?.checkpoint.tick === horizon+1 ? planner.result(query) : undefined;
+  if (!completed && record.clock !== Game.time) {
+    const progress = planner.advance({ ...query,expectedRevision: record.revision },config.remoteStartupFrames,guard);
     if (progress.status === 'complete') completed = progress.result;
   }
   if (!completed || !guard()) return false;

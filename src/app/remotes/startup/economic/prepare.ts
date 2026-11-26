@@ -1,3 +1,4 @@
+import type { EconomicProposalStaging } from './staging';
 import { createStartupPlanningJob } from '../../../../features/remotes/startup/planning/runner';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
 import { createStartupCohortMaintenance } from '../../../../features/remotes/startup/candidates/cohort-maintenance';
@@ -10,20 +11,25 @@ import type { RuntimeConfig } from '../../../../config/model';
 import type { RemoteFleetProfile } from '../../../../features/remotes/fleet/model';
 import type { StartupStructures, RemoteStartupProbe } from '../model';
 type StartupGuard = () => boolean;
-export function prepareEconomicCohort(state: StatePort, structures: StartupStructures, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard, trace: RemoteStartupProbe): boolean {
+export function prepareEconomicCohort(state: StatePort, structures: StartupStructures, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard, trace: RemoteStartupProbe, staging: EconomicProposalStaging): boolean {
   trace(profile,'prepare:enter');
   const approvals = createStartupApprovals(state,profile.home), approved = approvedEconomicContext(state,profile,config);
   if (approved) {
     const maintained = createStartupCohortMaintenance(state,profile.home,approvals.result)(approved,new Set(Object.keys(Game.creeps)));
     if (maintained.status === 'current' && !missingStartupBirths(state,profile,config)) return true;
   }
-  let pending = pendingEconomicContext(state,profile,config,guard);
+  const resumed = staging.resume(profile,Game.time,config.remoteStartupFrames,guard);
+  trace(profile,'staging:'+resumed); if (resumed === 'waiting') return false;
+  const pending = pendingEconomicContext(state,profile,config,guard);
   if (!pending) {
     if (!missingStartupBirths(state,profile,config) || !canStartHomeJob(state,profile)) return false;
-    if (!prepareEconomicProposal(state,structures,profile,config,guard,trace)) return false;
-    pending = pendingEconomicContext(state,profile,config,guard);
+    const proposal = prepareEconomicProposal(state,structures,profile,config,guard,trace);
+    if (proposal) staging.stage(profile.home,proposal);
+    return false;
   }
-  return !!pending && advanceEconomicProposal(state,profile.home,pending,config,guard);
+  trace(profile,'pending:ready');
+  const accepted = advanceEconomicProposal(state,profile.home,pending,config,guard);
+  trace(profile,accepted ? 'advance:accepted' : 'advance:waiting'); return accepted;
 }
 function canStartHomeJob(state: StatePort, profile: Readonly<RemoteFleetProfile>): boolean {
   const record = createStartupPlanningJob(state,profile.home).read(); if (record.clock === Game.time) return false;
