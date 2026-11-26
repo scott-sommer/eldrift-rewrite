@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Matrix construction baseline and immutable same-tick room geometry sharing; native qualification remains open.",
+  "native": [
+    {
+      "scenario": "configured-budget-matrix-before",
+      "nativeSource": "2646c6c8efe8a1b64a9944ae913083b19c179de1",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-matrix-observations-before.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "6be3b2d30cb59dc22587150898e89b1e6ed7af165130be4e475902b0e5bb04c3",
+      "uncompressedSha256": "a080793293fce8113a9e18269234102d7fd1ffa74a18792d0353de256c728515"
+    }
+  ]
+}
