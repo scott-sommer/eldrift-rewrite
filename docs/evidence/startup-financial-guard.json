@@ -1,0 +1,33 @@
+{
+  "issue": "ED-29",
+  "scope": "Durable economic request markers, queue5, retained approval1000, invalid-cohort cleanup180 and ordinary transport240; missing-policy refusal is targeted contract coverage. Default configured orchestration remains open.",
+  "native": [
+    {
+      "scenario": "retained-approval",
+      "nativeSource": "080b068db7d02712b220edcc5b0bfce705d9c479",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-financial-guard-retained-approval.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "356f4655ef7ba54331f5ad8d404e5712c4059b35981a6ab55ab4cd1dc65957e7",
+      "uncompressedSha256": "0dc817fb530f0e7278bad6a487a244c30cf389c5254cf0db5c2223797e4a45d8"
+    },
+    {
+      "scenario": "invalid-cohort",
+      "nativeSource": "080b068db7d02712b220edcc5b0bfce705d9c479",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-financial-guard-invalid-cohort.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a0c7c536149e35c6a2d3930e7c6daec03565175115195f163bb6e54a0948b2f7",
+      "uncompressedSha256": "da5ebf99903187e623c9f38f535b7d828f42c8bc8a009693b20086fdb703a69a"
+    },
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "080b068db7d02712b220edcc5b0bfce705d9c479",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-financial-guard-ordinary-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1509eff5cb20c6dd8b2d8ee12441cc40c195ed5e5bffa1497dd2a35e5bdb2720",
+      "uncompressedSha256": "cfc7cd9e5fbfafd54542c54d73a7398a6909adf22d151d6a3d90809ea853fb2a"
+    }
+  ]
+}
