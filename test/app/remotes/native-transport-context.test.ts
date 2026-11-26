@@ -32,8 +32,13 @@ function fixture() {
 test('a trip retains its valid source container when another candidate ranks higher', () => {
   const f = fixture(), context = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,f.options);
   expect(context.source(f.creep,f.demand)?.endpoint?.id).toBe('second');
+  const scan = vi.spyOn(Game.rooms.E0N1!,'find'); scan.mockClear();
   const request = { id: 'trip',owner: context.owner(f.demand),source: 'first',sink: 'home',resource: 'energy',quantity: 10,priority: 0,expiresAt: 50 };
+  scan.mockImplementation(() => { throw new Error('Existing trip must not discover alternatives'); });
+  expect(context.approach(f.creep,f.demand)?.visible).toBe(true);
   expect(context.route(f.creep,request,'collect')?.allowedRooms).toEqual(['W0N1','E0N1']);
+  expect(scan).not.toHaveBeenCalled();
+  f.first.pos.x = 1; expect(context.route(f.creep,request,'collect')).toBeUndefined();
 });
 test('transport actor ownership is checked before task state reads', () => {
   const f = fixture(), cycle = createNativeRemoteTransportCycle(f.state,f.dispatch,f.binding,f.options);
@@ -49,6 +54,7 @@ test('selected transport uses only its quoted container and refuses changed requ
   const request = { id: 'fixed-trip',owner: context.owner(f.demand),source: 'first',sink: 'home',resource: 'energy',quantity: 10,priority: 0,expiresAt: 50,service: transportService(service) };
   expect(context.route(f.creep,request,'collect')).toBeDefined();
   expect(context.authority({ ...request,sink: 'alternate' })).toBeUndefined();
+  f.first.pos.x = 8; expect(context.route(f.creep,request,'collect')).toBeUndefined(); f.first.pos.x = 9;
   request.service.collection.x--; expect(context.authority(request)).toBeUndefined();
   f.first.pos.x = 8; expect(context.source(f.creep,f.demand)?.endpoint).toBeUndefined();
 });
@@ -83,4 +89,19 @@ test('courier diagnostics identify a real budget refusal without initializing wo
   expect(rows).toContain('courier:transport:run:denied');
   expect(f.dispatch.activate).not.toHaveBeenCalled();
   expect(JSON.stringify(f.root)).toBe(before);
+});
+
+test('approach and existing collection still refuse changed controller safety, leases and budget',() => {
+  const f = fixture(), context = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,f.options);
+  const request = { id: 'trip',owner: context.owner(f.demand),source: 'first',sink: 'home',resource: 'energy',quantity: 10,priority: 0,expiresAt: 50 };
+  expect(context.route(f.creep,request,'collect')).toBeDefined();
+  createIntelStore(f.state).observeSummary({ ...intelSummary(10,'E0N1'),structures: [],units: [],
+    controller: { id: 'controller',x: 25,y: 25,level: 1,owned: false,owner: 'hostile',reservation: null } });
+  expect(context.approach(f.creep,f.demand)).toBeUndefined();
+  expect(context.route(f.creep,request,'collect')).toBeUndefined();
+  const denied = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,{ ...f.options,guard: () => false });
+  expect(denied.approach(f.creep,f.demand)).toBeUndefined();
+  const assignments = createRemoteAssignmentStore(f.state);
+  assignments.reconcile({ home: 'W0N1',tick: 10,lifetime: 100,expectedRevision: assignments.read().revision,plans: [] });
+  expect(context.authority(request)).toBeUndefined();
 });

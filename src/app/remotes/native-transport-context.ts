@@ -36,7 +36,7 @@ export function createNativeRemoteTransportContext(state: StatePort, dispatch: R
     const value = assignments.resolve(token,Game.time);
     return value?.kind === 'mine' ? value : undefined;
   }
-  function source(creep: Creep, demand: RemoteTransportDemand) {
+  function approach(creep: Creep, demand: RemoteTransportDemand) {
     const route = travel.route(creep,binding.home,demand.room);
     if (!route) return undefined;
     const summary = intel.peek(demand.room,Game.time).record.summary;
@@ -44,8 +44,12 @@ export function createNativeRemoteTransportContext(state: StatePort, dispatch: R
     const target = summary?.sources.find(source => source.id === demand.source);
     if (!target) return undefined;
     const position = { room: demand.room,x: target.x,y: target.y };
+    return { position,route,visible: !!Game.rooms[demand.room] };
+  }
+  function source(creep: Creep, demand: RemoteTransportDemand) {
+    const view = approach(creep,demand); if (!view) return undefined;
     const room = Game.rooms[demand.room];
-    return { position,route,visible: !!room,endpoint: room && transportSources(room,position).find(source => selectedTransportSource(source,options.service)) };
+    return { ...view,endpoint: room && transportSources(room,view.position).find(source => selectedTransportSource(source,options.service)) };
   }
   function sinks() {
     const room = Game.rooms[binding.home];
@@ -58,10 +62,10 @@ export function createNativeRemoteTransportContext(state: StatePort, dispatch: R
     const demand = authority(request);
     if (!demand || request.resource !== RESOURCE_ENERGY) return undefined;
     if (phase === 'deliver') return sinks().some(sink => sink.id === request.sink) ? travel.route(creep,binding.home,binding.home,true) : undefined;
-    const view = source(creep,demand);
+    const view = approach(creep,demand);
     return view && validSource(request.source,view.position,options.service) ? view.route : undefined;
   }
-  return { current,owns,authority,source,sinks,route,travel,owner: (demand: RemoteTransportDemand) => remoteTransportOwner(demand,binding.owner) };
+  return { current,owns,authority,approach,source,sinks,route,travel,owner: (demand: RemoteTransportDemand) => remoteTransportOwner(demand,binding.owner) };
 }
 function neutral(controller: { owner: string | null; reservation: { username: string } | null } | null | undefined, username: string): boolean {
   return !controller?.owner && (!controller?.reservation || controller.reservation.username === username);
