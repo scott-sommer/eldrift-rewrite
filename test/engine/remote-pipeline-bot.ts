@@ -8,14 +8,15 @@ import { remoteFleetIdentity } from '../../src/features/remotes/fleet/identity';
 import { snapshotPipeline, pipelineIncome } from './remote-pipeline-probe';
 import type { PipelineMemory } from './remote-pipeline-probe';
 const state = createMemoryPort(() => Memory), home = 'W0N1';
-export function loop(): void {
+export function loop(): void { runPipeline(); }
+export function runPipeline(run = runtimeLoop, before: () => void = () => {}, probe: () => Record<string,unknown> | undefined = () => undefined): void {
   const memory = Memory as PipelineMemory;
   if (Game.time === 1) setup();
   if (!memory.pipelineStopped && Game.time >= 800 && pipelineIncome(memory) >= 3000 && Object.values(Game.creeps).some(creep => remoteFleetIdentity(creep.memory.population?.owner ?? '')?.kind === 'courier' && creep.pos.roomName === 'E0N1' && creep.store.energy > 0)) {
     const config = openState(state,'operator/config',operatorSchema); config.empire = { ...config.empire as object,remoteMaximumSlots: 0 };
     saveState(state,'operator/config',operatorSchema,config); memory.pipelineStopped = Game.time;
   }
-  runtimeLoop(); snapshotPipeline(state,memory);
+  before(); run(); snapshotPipeline(state,memory,probe());
 }
 function setup(): void {
   const config = openState(state,'operator/config',operatorSchema);
