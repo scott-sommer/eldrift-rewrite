@@ -10,6 +10,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "621322010a0d02e0e289bc7e3e96f62532ea30d542376acea7b80c95620ef404",
       "uncompressedSha256": "547ebb9e70be98f23c33738bc8768ee9c3722bdd82a001d3e1419f506c5c3edf"
+    },
+    {
+      "scenario": "configured-budget-path-probe-global-failure",
+      "nativeSource": "a954278797dfdf9ff1db3fdbb3b6ec609acf9183",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-path-operations-global-failure.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "30772fc73a512b8e434e5600ee87a26a065f7cb57dccf6eee5d4878bc438f54b",
+      "uncompressedSha256": "c0260ff7189e48d875d5959e2e5e91f47f4536ae8461a05a74b1e408b6bbdb39"
     }
   ]
 }

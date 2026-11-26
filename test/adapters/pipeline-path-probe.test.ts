@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { observePathActor, withPipelinePathProbe } from '../engine/pipeline-path-probe';
+import { observePathActor, pathProbeSearch, withPipelinePathProbe } from '../engine/pipeline-path-probe';
 import type { PathProbeMemory } from '../engine/pipeline-path-probe';
 afterEach(() => vi.unstubAllGlobals());
 function fixture(search: (value: number) => { path: number[] } = () => ({ path: [] })) {
@@ -17,7 +17,7 @@ test('SDK measurement preserves arguments, receivers, object identity and origin
   const search = f.finder.search, find = f.NativeRoom.prototype.find;
   withPipelinePathProbe(() => {
     observePathActor('actor:unit:begin');
-    expect(new f.NativeRoom().find(1)).toBe(f.values); expect((PathFinder.search as unknown as typeof f.finder.search)(7)).toBe(result);
+    expect(new f.NativeRoom().find(1)).toBe(f.values); expect((pathProbeSearch as unknown as typeof f.finder.search)(7)).toBe(result);
     observePathActor('actor:unit:done');
   });
   expect(f.finder.search).toBe(search); expect(f.NativeRoom.prototype.find).toBe(find);
@@ -26,14 +26,14 @@ test('SDK measurement preserves arguments, receivers, object identity and origin
 });
 test('throwing SDK calls retain the exact error and restore hooks',() => {
   const error = new Error('native failure'), f = fixture(() => { throw error; }), original = f.finder.search, find = f.NativeRoom.prototype.find;
-  expect(() => withPipelinePathProbe(() => (PathFinder.search as unknown as typeof f.finder.search)(7))).toThrow(error);
+  expect(() => withPipelinePathProbe(() => (pathProbeSearch as unknown as typeof f.finder.search)(7))).toThrow(error);
   expect(f.finder.search).toBe(original); expect(f.NativeRoom.prototype.find).toBe(find);
   expect(Object.values(f.memory.pipelinePathProbe!.rows)[0]!.calls).toBe(1);
 });
 test('operation aggregation has a fixed key bound and disabled probes create no metrics',() => {
   const f = fixture(); f.memory.pipelineConfiguredPathProbeMode = false;
-  withPipelinePathProbe(() => (PathFinder.search as unknown as typeof f.finder.search)(1)); expect(f.memory.pipelinePathProbe).toBeUndefined();
+  withPipelinePathProbe(() => (pathProbeSearch as unknown as typeof f.finder.search)(1)); expect(f.memory.pipelinePathProbe).toBeUndefined();
   f.memory.pipelineConfiguredPathProbeMode = true;
-  withPipelinePathProbe(() => { for (let index = 0; index < 300; index++) { observePathActor('actor:unit'+index+':begin'); (PathFinder.search as unknown as typeof f.finder.search)(1); } });
+  withPipelinePathProbe(() => { for (let index = 0; index < 300; index++) { observePathActor('actor:unit'+index+':begin'); (pathProbeSearch as unknown as typeof f.finder.search)(1); } });
   expect(Object.keys(f.memory.pipelinePathProbe!.rows)).toHaveLength(256); expect(f.memory.pipelinePathProbe!.droppedCalls).toBe(44);
 });

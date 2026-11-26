@@ -30,14 +30,17 @@ function measured<F extends (...args: never[]) => unknown>(original: F, label: (
     finally { record(label(args),Game.cpu.getUsed()-start); }
   } as unknown as F;
 }
+/** Injected only into diagnostic bundles; the native global and frozen SDK remain untouched. */
+export function pathProbeSearch(...args: Parameters<typeof PathFinder.search>): ReturnType<typeof PathFinder.search> {
+  const native = (globalThis as unknown as { PathFinder: typeof PathFinder }).PathFinder;
+  if (!(Memory as PathProbeMemory).pipelineConfiguredPathProbeMode) return Reflect.apply(native.search,native,args);
+  return Reflect.apply(measured(native.search,() => 'search'),native,args);
+}
 export function withPipelinePathProbe(run: () => void): void {
   if (!(Memory as PathProbeMemory).pipelineConfiguredPathProbeMode) { run(); return; }
-  const finder = PathFinder, find = Room.prototype.find; actor = undefined;
+  const find = Room.prototype.find; actor = undefined;
   try {
-    const facade = Object.create(finder) as typeof PathFinder;
-    Object.defineProperty(facade,'search',{ value: measured(finder.search,() => 'search') });
-    if (!Reflect.set(globalThis,'PathFinder',facade)) throw new Error('PathFinder global is not replaceable');
     Room.prototype.find = measured(find,args => 'find:'+(typeof args[0] === 'number' ? args[0] : 'invalid'));
     run();
-  } finally { Reflect.set(globalThis,'PathFinder',finder); Room.prototype.find = find; actor = undefined; }
+  } finally { Room.prototype.find = find; actor = undefined; }
 }
