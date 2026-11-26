@@ -1,0 +1,7 @@
+# Idempotent remote task renewal
+
+Sourcef0d59e3 skips a save only after resolving the actual current assignment, validating the queued task, and comparing the complete replacement payload and absolute expiry. Actual lease/expiry changes still save; withdrawn or changed-generation authority still refuses adoption. Tests cover reset, absent writes, changed expiry, current lease extension, withdrawal, generation changes and stale expiry. Targeted21tests/4files PASS300ms; fixedsmoke76/15 PASS484ms; quality1041production/897testfiles0violations; bundle PASS. Fullunits/milestoneCI not run.
+
+[Native source-qualified evidence](evidence/startup-task-renewal.json): supported configured1000 PASS;5ms configured1000 FAILED exact receipts. First observation35 approved89; birth/activation clocks, firstharvest166/income183 andrepair88 match. First receipt difference moves to297vs296, but delivery3024vs3080 andharvest3248vs3264 remain short,51actual vs53predicted receipt frames. This does not qualify the5ms calendar. Preserve prior failures rather than interpreting a later first difference as a guaranteed performance gain.
+
+Next measured write target: quantity releasePool rewrites an existing claim even when the requested pool is already absent. Delivering couriers call this repeatedly after the initial stock release. Make that operation idempotent after the live owner check, preserving actual pool release and subsequent reservations; test wrong-owner no-op attempts and final-claim removal. ED-29 and broader feature/RC gates remain open.

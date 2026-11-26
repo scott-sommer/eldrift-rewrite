@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Unchanged remote task renewal saves omitted after fresh authority validation; supported campaign passes, exact5ms calendar still fails.",
+  "native": [
+    {
+      "scenario": "budget",
+      "nativeSource": "f0d59e34f65326b66f34d88bbed092180f7328b6",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-task-renewal-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a078c1c9caa9568fc88ed3fd9c5f97ec443c12f12fbde6a82a110d77490440b6",
+      "uncompressedSha256": "a211ebf3843a3a32440cd8b1189700246a85cbbdb7bf19aa891de219777c357a"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "f0d59e34f65326b66f34d88bbed092180f7328b6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-task-renewal-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f479faa82bd65045e81e60ee9df9e26a69283f21a021a9071eb5f8ed99a01e33",
+      "uncompressedSha256": "39f78abeb0d6fe1fe92db3f7e2338f4fce89cb609698080a2b0efa6e6d8a4a62"
+    }
+  ]
+}
