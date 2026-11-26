@@ -1,6 +1,7 @@
+import { demandScope } from './demand-scope';
 import type { BodyPart } from '../../capabilities/spawning/body';
 import type { SpawnBoost } from '../../capabilities/spawning/boost';
-import type { SpawnPlacement } from '../../capabilities/spawning/request';
+import type { SpawnPlacement, SpawnRequest } from '../../capabilities/spawning/request';
 import { copySpawnRequest } from '../../capabilities/spawning/placement';
 import { validateRequest } from '../../capabilities/spawning/allocate';
 import type { StatePort } from '../../persistence/versioned-state';
@@ -14,6 +15,7 @@ export interface DemandPlan extends PopulationDemand {
   requestLifetime: number;
   placement?: SpawnPlacement;
   boost?: SpawnBoost;
+  externallyOwned?: (request: SpawnRequest) => boolean;
   selectBirthBoost?: (body: readonly BodyPart[]) => SpawnBoost | null | 'wait';
 }
 export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: readonly PopulationUnit[], tick: number) {
@@ -22,7 +24,8 @@ export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: 
   validateRequest(demandRequest(plan,'validation',tick));
   const queue = createSpawnQueue(port, plan.room);
   const pending = queue.list();
-  const decision = reconcileDemand(plan, units, pending, tick);
+  const scope = demandScope(units,pending,tick,plan.externallyOwned);
+  const decision = reconcileDemand(plan, scope.units, scope.pending, tick);
   if (pending.length - decision.cancel.length + decision.missing > 200) throw new Error('Spawn demand exceeds queue capacity');
   for (const id of decision.cancel) queue.cancel(id, plan.owner);
   const created: string[] = [];

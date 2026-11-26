@@ -22,14 +22,14 @@ export function reconcileWorkerPopulation(state: StatePort, plan: WorkerPopulati
     const owner = workOwner(plan.room, mode);
     const body = workerBody(mode,plan);
     if (!plan.enabled || !body || plan.targets[mode] === 0) { cancelWorkerDemand(state, plan.room, owner); continue; }
-    applyPopulationDemand(state, { owner, room: plan.room, body: body.parts, desired: plan.targets[mode],
+    applyPopulationDemand(state, { externallyOwned: request => request.admission?.kind === 'household-labor',owner, room: plan.room, body: body.parts, desired: plan.targets[mode],
       replacementParts: body.parts.length, travelTicks: 25, marginTicks: 10, priority: 5 + workerModes.indexOf(mode), requestLifetime: 100,...((plan.selectBirthBoost || plan.builderRecipe === 'boosted' && mode === 'builder') ? { selectBirthBoost: (parts: readonly BodyPart[]) => workerBirthBoost(plan,mode,parts) } : {}) }, scoped, tick);
   }
 }
 function cancelWorkerDemand(state: StatePort, room: string, owner: string): void {
   if (state.read(stateKey('spawning', room)) === undefined) return;
   const queue = createSpawnQueue(state, room);
-  for (const request of queue.list().filter(item => item.owner === owner)) queue.cancel(request.id, owner);
+  for (const request of queue.list().filter(item => item.owner === owner && !item.admission)) queue.cancel(request.id, owner);
 }
 
 function workerBirthBoost(plan: WorkerPopulationPlan,mode: WorkerMode,body: readonly BodyPart[]): SpawnBoost | null | 'wait' {

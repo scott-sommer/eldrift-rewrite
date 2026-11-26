@@ -25,8 +25,8 @@ function verifyRemotePipeline(memory,evidence,labor = false) {
   assert.ok(rows.some(row => row.quantityClaims > 0 && row.miningClaims > 0),'probe must observe owned resource claims before cleanup');
   assert.ok(Object.values(memory.pipelineBirths).every(birth => birth.activeAt !== undefined),'stable one-outpost startup must not churn cancelled births');
   assert.ok(Object.values(memory.pipelineBirths).filter(birth => ['miner','courier','reserver'].includes(birth.family)).every(birth => birth.target === 'E0N1'),'blocked adjacent rooms must not acquire workforce');
-  const laborExpense = labor ? memory.pipelineLabor.birthCost+memory.pipelineLabor.receipt.spent : 0;
   if (labor) verifyPipelineLabor(memory,evidence);
+  const laborExpense = labor ? memory.pipelineLabor.birthCost+memory.pipelineLabor.receipt.spent : 0;
   assert.ok(last.income > last.birthCost+laborExpense,'confirmed remote deliveries must exceed observed workforce birth expenditure');
   assert.ok(last.localTransfers > 0,'home redistribution must actually run');
   for (const id of Object.keys(memory.pipelineRemote.amounts)) assert.ok(!Object.hasOwn(memory.pipelineLocal.amounts,id),'local redistribution cannot also be credited as remote income');
