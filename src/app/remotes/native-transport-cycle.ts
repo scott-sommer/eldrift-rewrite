@@ -47,7 +47,10 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   }
   function prepareCollection(creep: Creep, demand: RemoteTransportDemand, task: TaskRecord): boolean {
     const view = probe.step('approach',() => context.approach(creep,demand));
-    if (!view) { tasks.cancel(creep.name,task); retire(creep); return false; }
+    if (!view) {
+      if (!options.guard()) return false;
+      tasks.cancel(creep.name,task); retire(creep); return false;
+    }
     if (view.visible) return true;
     dispatch.activate(); dispatch.movement.move(creep,{ owner: binding.owner,destination: options.service?.collection ?? view.position,range: options.service ? 0 : 1,policy: view.route });
     return false;

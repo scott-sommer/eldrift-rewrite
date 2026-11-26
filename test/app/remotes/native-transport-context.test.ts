@@ -1,3 +1,6 @@
+import { createLogisticsRequests } from '../../../src/features/logistics/request-store';
+import { submitHaulingTask } from '../../../src/app/submit-hauling-task';
+import { createQuantityReservations } from '../../../src/persistence/quantities/store';
 import { transportService } from '../../../src/app/remotes/transport-service';
 import { afterEach, expect, test, vi } from 'vitest';
 import { createMemoryPort } from '../../../src/adapters/screeps/memory';
@@ -104,4 +107,36 @@ test('approach and existing collection still refuse changed controller safety, l
   const assignments = createRemoteAssignmentStore(f.state);
   assignments.reconcile({ home: 'W0N1',tick: 10,lifetime: 100,expectedRevision: assignments.read().revision,plans: [] });
   expect(context.authority(request)).toBeUndefined();
+});
+
+function assignedTrip(guard: () => boolean) {
+  const f = fixture(), options = { ...f.options,guard };
+  const context = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,options);
+  const cycle = createNativeRemoteTransportCycle(f.state,f.dispatch,f.binding,options);
+  const request = { id: 'existing',owner: context.owner(f.demand),source: 'first',sink: 'home',resource: 'energy',quantity: 10,priority: 0,expiresAt: 50 };
+  const creep = { ...f.creep,id: 'unit',name: 'courier',store: { getUsedCapacity: () => 0 },
+    memory: { population: { home: f.binding.home,owner: f.binding.owner } } } as unknown as Creep;
+  expect(submitHaulingTask(f.state,cycle.definitions,{ home: f.binding.home,name: creep.name,unitId: creep.id,request,tick: 10,
+    phase: 'collect',maximum: 10,sinkRoom: f.binding.home,available: { sourceStock: 10,sinkFree: 100,sinkPool: 'home-capacity' } })).toBe(true);
+  Object.assign(Game.rooms.W0N1!,{ storage: { pos: { roomName: 'W0N1',x: 5,y: 5 } } });
+  return { ...f,cycle,request,creep };
+}
+test('a guard exhausted inside collection routing preserves the trip and request without dispatch',() => {
+  let available = true; const f = assignedTrip(() => available), before = JSON.stringify(f.root);
+  vi.spyOn(Game.map,'findRoute').mockImplementation((_origin,_target,options) => {
+    available = false; options?.routeCallback?.('W1N1','W0N1'); return [{ room: 'E0N1',exit: 3 }];
+  });
+  f.cycle.run(f.creep,f.demand);
+  expect(JSON.stringify(f.root)).toBe(before); expect(f.dispatch.activate).not.toHaveBeenCalled();
+  expect(f.dispatch.movement.move).not.toHaveBeenCalled();
+});
+test('an unsafe collection room with available budget still cancels the trip and retreats',() => {
+  const f = assignedTrip(() => true);
+  createIntelStore(f.state).observeSummary({ ...intelSummary(10,'E0N1'),structures: [],units: [],
+    controller: { ...intelSummary(10,'E0N1').controller!,owned: false,owner: 'hostile' } });
+  f.cycle.run(f.creep,f.demand);
+  expect((f.state.read('tasks/courier') as { data: { queue: unknown[] } }).data.queue).toEqual([]);
+  expect(createLogisticsRequests(f.state,f.binding.home).findPending(f.request.owner,f.request.id,10)).toBeUndefined();
+  expect(createQuantityReservations(f.state).list(10)).toEqual([]);
+  expect(f.dispatch.movement.move).toHaveBeenCalledTimes(1);
 });
