@@ -1,0 +1,13 @@
+# Detached native intel snapshots
+
+Source 7d35ee8 adds the optional IntelTraversalPorts.detachedReads contract. Native scout intel already uses createIntelStore.peek, which validates and detaches each snapshot, so it declares the contract. Traversal avoids another clone for that port while retaining current status, fresh per-request intel, schema, risk, clock, room-budget and guard checks. Other ports retain defensive copying. Existing request-owned decision caching is unchanged; no cross-request authority cache was added.
+
+Validation: 38 targeted tests/four files passed in379ms, fixed smoke76/15 in478ms, quality (1042 production/898 test files, zero violations) and CommonJS bundle passed. Tests cover native snapshot mutation isolation and changed actual hostile intel; detached traversal still rejects malformed schemas, current closed status and denied budget. Existing generic-port, policy and routing tests remain. Full units and milestone CI were not run.
+
+[Three clean-source archives and one bounded trace](evidence/startup-detached-intel.json) retain all outcomes. The short260-tick probe failed forecast cutoff as expected. It collected600 rows: source median/max0.358/1.420ms (19pairs), approach0.597/0.856ms (2), admission1.071/1.330ms (2), execution0.880/1.595ms (20), whole courier run1.016/3.598ms (37). No denial/yield was captured in the bounded trace. The sample is not statistical proof of improvement or whole-horizon qualification.
+
+Supported configured1000 passed. The full untraced5ms campaign FAILED exact receipts: observation45 approved101, exact births145/166/178 and activations166/178/190, first harvest176/income193 andrepair88 match. Harvest3256 differs from3264 and delivery3024 differs from3080;40 actual frames differ from53 predicted, first late211 rather than210. Keep this failure independently of earlier runs with equal totals; do not select favorable evidence.
+
+The next measured cost remains new-trip admission and execution. Source inspection shows submitHaulingTask reserves a claim, then immediately executes the admitted task, whose first runHauling books the same claim again in the same tick. Quantity reserve currently rewrites even an identical active claim. Investigate a no-change return only after fresh owner/capacity validation, requiring unchanged expiry/allocations and no expired records needing pruning. Test lower capacity, competing claims, wrong identity, actual renewal, changed allocation and expiry pruning; no cached financial authority is acceptable.
+
+ED-29 remains open. The remaining schedules, shared capital, replacement, home-loss and downstream specialist/operator/parity/pressure/migration/RC requirements still apply.

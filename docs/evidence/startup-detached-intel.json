@@ -1,0 +1,40 @@
+{
+  "issue": "ED-29",
+  "scope": "Explicit detached native intel snapshot contract; bounded failed diagnostic, failed exact5ms receipt campaign, passing supported campaign retained.",
+  "native": [
+    {
+      "scenario": "probe",
+      "nativeSource": "7d35ee840416d9a6ee3b721d084d499c93042d8f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-detached-intel-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "7a8772dc6b32e6672545344424336045bec15246a15d3373f7cd0b603a96009f",
+      "uncompressedSha256": "15ac8b4cf811293191096afbf8befc0b5bf754271be9f4c1d201e318f768999b",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-detached-intel-probe.jsonl",
+          "rowsSha256": "c317970c91a2df9043162cdf420af3e04662122d3f13a752cab6be7029cf26c3",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "7d35ee840416d9a6ee3b721d084d499c93042d8f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-detached-intel-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "56411e5ef1273383cd4b6b7ee99865ae42136574c395d7212ba56a39a280d919",
+      "uncompressedSha256": "1a51f5f9a0b4ccb678af5422d189e125f7b14910a32a58d0d5a8eba79f9394bc"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "7d35ee840416d9a6ee3b721d084d499c93042d8f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-detached-intel-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d078dfd0d2e616cc6ab21a919ed298ebaa48824d14afc806bef7500e66fe1700",
+      "uncompressedSha256": "431aac45490d1012f589446a5da2b74386c1f1672c2b5f598f4f50563fb63798"
+    }
+  ]
+}
