@@ -1,0 +1,11 @@
+# Selected cargo endpoint resolution
+
+Source 5c6a3034b59e5cf8c9fe36c4e59a7aba44bf9d1e resolves a configured endpoint with current Game.getObjectById rather than scanning and ranking the home room. The common recoveryPriority policy still decides eligibility. Room identity, structure type, activity, ownership, free resource capacity, home ownership and caller banking policies are checked live. Unselected recovery still ranks alternatives. No state schema or financial authority changed.
+
+Seven targeted tests in two files passed in 321ms; the fixed smoke suite remained 76 tests/15 files and passed in 498ms. Quality passed:1041 production/894 test files, zero Lizard violations, types/lint/boundaries passed. CommonJS bundle passed. Full units and full milestone CI were not run.
+
+[Native evidence](evidence/startup-selected-sinks.json) preserves three clean-source runs. Remote transport240ticks passed. Configured economic1000ticks passed: observation32, approval55, starts62/83/95 and activations83/95/107 matched; first harvest93, income110, all61 receipt frames through799 matched; harvest3752, delivery3528 and repair88 matched. Withdrawal804 and cleanup passed, final home12637 from10300+3690-1150-203, unrelated request and sentinel preserved.
+
+The configured5ms run failed the unchanged single-planning-epoch assertion (2 rather than1). Observation45 did not complete before its deadline; a fresh observation165 completed at229 and gained approval. Receipt-calendar verification was not reached, so neither its final aggregate income3152 nor its final home12099 qualifies forecast execution. Preserve this failure separately from the earlier receipt-calendar failures; do not infer improvement from incomparable runs. The supported-budget pass does not close the5ms gate or ED-29.
+
+Next work should distinguish planning deadline reliability from paid actor service cost using existing phase diagnostics, then address the measured owner. Current source still repeatedly decodes detached logistics/task state during one actor step; any operation-scoped inspection must retain fresh authoritative write fences and unknown-transfer liabilities. Do not cache live financial, lease, risk or capacity authority, weaken exact receipts, or raise the gate budget to obtain a pass.

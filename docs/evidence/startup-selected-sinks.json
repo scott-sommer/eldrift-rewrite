@@ -1,0 +1,33 @@
+{
+  "issue": "ED-29",
+  "scope": "Direct live lookup for selected cargo sinks; transport and supported-budget passes; 5ms planning deadline retry fails unchanged single-epoch gate.",
+  "native": [
+    {
+      "scenario": "transport",
+      "nativeSource": "5c6a3034b59e5cf8c9fe36c4e59a7aba44bf9d1e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-selected-sinks-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8a3e10376847b456fe2f4f16b8cd5ea744b73f7cf18bcdae8358fed38fb5a5c9",
+      "uncompressedSha256": "113ff3f03899e2255dac3198482f7db3ad6718f135463dd52b40f0bff901a684"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "5c6a3034b59e5cf8c9fe36c4e59a7aba44bf9d1e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-selected-sinks-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4e8fae079040364083c46ca2bf2f34e36d6d5319ee444cef07a9021ab1ea992c",
+      "uncompressedSha256": "c35334a17e8c00093a012a6a8ecf76c39355061aba116ab53cb4e69d1410841d"
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "5c6a3034b59e5cf8c9fe36c4e59a7aba44bf9d1e",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-selected-sinks-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9bc4508f02de7fc58dea6f1dd4bb3fe9358b0ae5c849918a759ed422a20cd86c",
+      "uncompressedSha256": "63dad2667340551a0d61460a0cbde948fa36920fae64feb6ff7378489c5aefb7"
+    }
+  ]
+}
