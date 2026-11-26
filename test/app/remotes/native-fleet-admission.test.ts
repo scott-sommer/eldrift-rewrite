@@ -44,5 +44,10 @@ test('final dispatch consults only the current selection and blocks stale unboun
   expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => config,{ current: () => placement,prepare })).toBe(true);
   expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => config,{ current: () => null,prepare })).toBe(false);
   expect(admitRemoteFleetSpawn(f.state,{ ...request,placement: { ...placement,spawn: 'other' } },() => config,{ current: () => placement,prepare })).toBe(false);
+  const before = JSON.stringify(f.root), admit = vi.fn((currentProfile: typeof profile,queued: typeof request,currentConfig: typeof config) => currentProfile.generation === profile.generation && queued.id === 'request' && currentConfig.remoteStartupEnergyReserve === 0);
+  expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => config,{ current: () => placement,prepare,admit })).toBe(true);
+  expect(admitRemoteFleetSpawn(f.state,{ ...request,placement,id: 'stale' },() => config,{ current: () => placement,prepare,admit })).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => ({ ...config,remoteStartupEnergyReserve: 1 }),{ current: () => placement,prepare,admit })).toBe(false);
+  expect(admit).toHaveBeenCalledTimes(3); expect(JSON.stringify(f.root)).toBe(before);
   expect(prepare).not.toHaveBeenCalled();
 });

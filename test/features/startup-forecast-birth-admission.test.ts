@@ -1,0 +1,40 @@
+import { expect, test } from 'vitest';
+import { createMemoryPort } from '../../src/adapters/screeps/memory';
+import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
+import { createStartupForecastAdmission } from '../../src/features/remotes/startup/candidates/birth-admission';
+import { startupDeliveryInput } from '../fixtures/startup-delivery';
+import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model';
+const policy = { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: 1000,maximumHouseholdCapital: 1000 };
+function fixture(complete = true) {
+  const root = {}, state = createMemoryPort(() => root), home = 'W0N1', input = startupDeliveryInput();
+  input.project.spawning.room = home;
+  input.project.spawning.requests = input.project.spawning.requests.map(request => ({ ...request,room: home }));
+  input.project.spawning.spawns = input.project.spawning.spawns.map(spawn => ({ ...spawn,room: home }));
+  input.project.spawning.cash.horizon = 1000; input.project.source.energy = 1000; input.project.source.capacity = 1000;
+  const query = { room: 'E0N1',source: 'source',generation: 1,binding: 'current-config-world',observedAt: 1,expiresAt: 100,tick: 1,input };
+  if (complete) createStartupPlanningJob(state,home).advance({ ...query,expectedRevision: 0 },1001);
+  const proposed = input.project.spawning.requests[0]!, request = { ...proposed,readyAt: 1,expiresAt: 101 };
+  const profile: RemoteFleetProfile = { home,room: query.room,source: query.source,generation: 1,owner: request.owner,body: [...request.body],kind: 'miner',desired: 1,travelTicks: 0,marginTicks: 0,retireTicks: 10,priority: 0 };
+  return { root,state,home,query,request,profile,current: { query,policy,binding: query.binding,tick: 1 },admit: createStartupForecastAdmission(state,home) };
+}
+test('accepted completed cohort admits its exact current paid-birth slot without writes, including after reset',() => {
+  const f = fixture(), before = JSON.stringify(f.root);
+  expect(f.admit(f.profile,f.request,f.current)).toBe(true);
+  const restored = JSON.parse(before);
+  expect(createStartupForecastAdmission(createMemoryPort(() => restored),f.home)(f.profile,f.request,f.current)).toBe(true);
+  expect(JSON.stringify(f.root)).toBe(before); expect(JSON.stringify(restored)).toBe(before);
+});
+test('incomplete evidence, rejected current return policy, changed binding and stale slot refuse',() => {
+  const missing = fixture(false); expect(missing.admit(missing.profile,missing.request,missing.current)).toBe(false); expect(missing.root).toEqual({});
+  const f = fixture();
+  expect(f.admit(f.profile,f.request,{ ...f.current,policy: { ...policy,minimumRecoveryMargin: 100000 } })).toBe(false);
+  expect(f.admit(f.profile,f.request,{ ...f.current,binding: 'changed-config' })).toBe(false);
+  expect(f.admit(f.profile,f.request,{ ...f.current,tick: 2,query: { ...f.query,tick: 2 } })).toBe(false);
+  expect(f.admit({ ...f.profile,generation: 2 },f.request,f.current)).toBe(false);
+});
+test('a different queued request, expiry, body, owner or population home cannot borrow the approved slot',() => {
+  const f = fixture();
+  for (const change of [{ id: 'other' },{ expiresAt: 102 },{ body: ['move'] as const },{ owner: 'other' },{ home: 'W1N1' }]) {
+    expect(f.admit(f.profile,{ ...f.request,...change },f.current)).toBe(false);
+  }
+});

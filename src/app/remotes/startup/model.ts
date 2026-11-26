@@ -1,6 +1,6 @@
 import type { StartupTravelPlan } from '../../../features/remotes/startup/travel-model';
 import type { RemoteFleetProfile } from '../../../features/remotes/fleet/model';
-import type { SpawnPlacement } from '../../../capabilities/spawning/request';
+import type { SpawnRequest, SpawnPlacement } from '../../../capabilities/spawning/request';
 import type { RuntimeConfig } from '../../../config/model';
 import type { BodyPart } from '../../../capabilities/spawning/body';
 export type RemoteBirthPermit = (owner: string, body: readonly BodyPart[], config: Readonly<RuntimeConfig>) => boolean;
@@ -15,6 +15,8 @@ export interface RemoteFleetBirthPolicy {
   /** Undefined retains ordinary geometry; null withdraws productive service. */
   service?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): StartupTravelPlan | null | undefined;
   prepare?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: () => boolean): RemoteBirthSelection;
+  /** Optional current request/economic fence; no planning, publication or spending. */
+  admit?(profile: Readonly<RemoteFleetProfile>, request: Readonly<SpawnRequest>, config: Readonly<RuntimeConfig>): boolean;
   /** Read-only final admission; must not start expensive planning or publish state. */
   current(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): RemoteBirthSelection;
 }
