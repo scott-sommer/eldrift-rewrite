@@ -123,6 +123,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "82868c4f59551cc3c29946e81f240da9a35595da28e19d2ffa3b646f330ba948",
       "uncompressedSha256": "59b4ea1bb492afd917aaa90322a41817898b6cf5d55f7bd60f0c501380e639df"
+    },
+    {
+      "scenario": "long-early-booking",
+      "nativeSource": "b88108594b39560795e0e839b5ec152530c96561",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/long-early-booking.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d6409b16628198a40e2f29421d27d254adea8ad9f8e390c509e4bfe3fb9a6193",
+      "uncompressedSha256": "b89bb967443b849e9de5c3f7867fae69bf5ff732144c3c5a7bf3162ab9b58df2"
     }
   ]
 }

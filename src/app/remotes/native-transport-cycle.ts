@@ -1,3 +1,4 @@
+import { withinRange } from '../../capabilities/movement/path-model';
 import { transportService } from './transport-service';
 import { movementPosition } from '../../adapters/screeps/movement-traffic';
 import type { StatePort } from '../../persistence/versioned-state';
@@ -52,7 +53,7 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   function recruitTrip(creep: Creep, demand: RemoteTransportDemand): void {
     const view = context.source(creep,demand);
     if (!view) { retire(creep); return; }
-    if (!view.endpoint) {
+    if (!view.endpoint || (options.service && !withinRange(movementPosition(creep.pos),options.service.collection,0))) {
       stage(creep,view); return;
     }
     const maximum = creep.store.getFreeCapacity(RESOURCE_ENERGY);
