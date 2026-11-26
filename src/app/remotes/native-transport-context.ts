@@ -1,3 +1,4 @@
+import type { TransportProbe } from './transport-probe';
 import { selectedTransportSource, selectedTransportRequest } from './transport-service';
 import type { RemoteTransportService } from './transport-service';
 import { eligibleTransportSource, transportSources } from './native-transport-sources';
@@ -15,7 +16,7 @@ import type { NativeRemoteBankingPolicy } from './native-banking';
 import type { RemoteActorBinding } from './actor';
 import type { createNativeDispatch } from '../native-dispatch';
 export interface NativeRemoteTransportOptions extends NativeRemoteOptions {
-  minimumBatch: number; requestLifetime: number; service?: RemoteTransportService; banking?: NativeRemoteBankingPolicy;
+  trace?: TransportProbe; minimumBatch: number; requestLifetime: number; service?: RemoteTransportService; banking?: NativeRemoteBankingPolicy;
 }
 export function createNativeRemoteTransportContext(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, binding: RemoteActorBinding, options: NativeRemoteTransportOptions) {
   if (![options.minimumBatch,options.requestLifetime].every(value => Number.isSafeInteger(value) && value >= 1)) throw new Error('Invalid remote transport limits');

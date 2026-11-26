@@ -1,3 +1,4 @@
+import { createTransportProbe } from './transport-probe';
 import type { HaulingTaskPayload } from '../hauling-task';
 import { withinRange } from '../../capabilities/movement/path-model';
 import { transportService } from './transport-service';
@@ -25,6 +26,7 @@ import { remoteTransportTasks } from './transport-tasks';
 export function createNativeRemoteTransportCycle(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, binding: RemoteActorBinding,
   options: NativeRemoteTransportOptions, otherDefinitions: Readonly<Record<string,TaskDefinition>> = {}) {
   if (!binding.owner) throw new Error('Remote transport actor owner is required');
+  const probe = createTransportProbe(options.trace); options = { ...options,guard: probe.guard(options.guard) };
   const context = createNativeRemoteTransportContext(state,dispatch,binding,options);
   const bank = createNativeRemoteBanking(state,dispatch,binding.home,options,options.banking);
   const haul = createNativeHaulingTask(state,dispatch,context.route);
@@ -33,36 +35,36 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   const tasks = remoteTransportTasks(state,definitions,binding.home), execute = createTaskRunner(state,behaviors,() => Game.time,definitions);
   const retire = (creep: Creep) => context.travel.retire(creep,binding.home,'remote-transport-return:' + creep.name);
   function existing(creep: Creep, task: TaskRecord, payload: HaulingTaskPayload, desired: RemoteTransportDemand | undefined): void {
-    settleHaulingTask(state,definitions,creep,observeTransfer);
+    probe.step('settle',() => settleHaulingTask(state,definitions,creep,observeTransfer));
     if (tasks.pending(creep.id)) return;
-    if (!validTrip(payload.request,desired)) {
+    if (!probe.step('authority',() => validTrip(payload.request,desired))) {
       tasks.cancel(creep.name,task); retire(creep); return;
     }
     if (!options.guard()) return;
-    if (creep.store.getUsedCapacity() === 0 && !prepareCollection(creep,desired,task)) return;
-    dispatch.activate(); execute(creep.name,creep);
+    if (creep.store.getUsedCapacity() === 0 && !probe.step('collection',() => prepareCollection(creep,desired!,task))) return;
+    dispatch.activate(); probe.step('execute',() => execute(creep.name,creep));
     if (!tasks.head(creep.name)) tasks.close(task);
   }
   function prepareCollection(creep: Creep, demand: RemoteTransportDemand, task: TaskRecord): boolean {
-    const view = context.source(creep,demand);
+    const view = probe.step('source',() => context.source(creep,demand));
     if (!view) { tasks.cancel(creep.name,task); retire(creep); return false; }
     if (view.visible) return true;
     dispatch.activate(); dispatch.movement.move(creep,{ owner: binding.owner,destination: options.service?.collection ?? view.position,range: options.service ? 0 : 1,policy: view.route });
     return false;
   }
   function recruitTrip(creep: Creep, demand: RemoteTransportDemand): void {
-    const view = context.source(creep,demand);
+    const view = probe.step('source',() => context.source(creep,demand));
     if (!view) { retire(creep); return; }
     if (!view.endpoint || (options.service && !withinRange(movementPosition(creep.pos),options.service.collection,0))) {
       stage(creep,view); return;
     }
     const maximum = creep.store.getFreeCapacity(RESOURCE_ENERGY);
     if (maximum < 1) return;
-    const sinks = context.sinks();
+    const sinks = probe.step('sinks',context.sinks);
     for (const sink of sinks) {
       if (!options.guard()) return;
-      if (admit(creep,demand,view.endpoint,sink,maximum)) {
-        dispatch.activate(); execute(creep.name,creep); return;
+      if (probe.step('admit',() => admit(creep,demand,view.endpoint!,sink,maximum))) {
+        dispatch.activate(); probe.step('execute',() => execute(creep.name,creep)); return;
       }
     }
     if (sinks.length) stage(creep,view);
@@ -93,12 +95,13 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
     if (creep.store.getUsedCapacity() > 0 || !desired) { retire(creep); return; }
     recruitTrip(creep,desired);
   }
-  return { definitions,run(creep: Creep, input?: RemoteTransportDemand): void {
+  function run(creep: Creep, input?: RemoteTransportDemand): void {
     if (!eligibleRemoteActor(creep,binding)) return;
-    const desired = context.current(input), head = tasks.head(creep.name);
+    const desired = probe.step('current',() => context.current(input)), head = probe.step('head',() => tasks.head(creep.name));
     if (processExisting(creep,head,desired)) return;
-    const mode = bank.prepare(creep,definitions);
+    const mode = probe.step('bank',() => bank.prepare(creep,definitions));
     if (mode === 'bank') { execute(creep.name,creep); return; }
     if (mode === 'service' && !head) idle(creep,desired);
-  } };
+  }
+  return { definitions,run: (creep: Creep,input?: RemoteTransportDemand) => probe.run(creep.name,() => run(creep,input)) };
 }

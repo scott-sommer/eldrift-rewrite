@@ -22,6 +22,7 @@ export function changeConfiguredPolicy(state: StatePort, memory: ConfiguredPipel
 export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
   const memory = Memory as ConfiguredPipelineMemory;
   if (memory.pipelineConfiguredActorTraceMode && !phase.startsWith('actor:')) return;
+  if (memory.pipelineConfiguredCourierTraceMode && (Game.time < 200 || Game.time > 240)) return;
   const rows = memory.pipelineStartupTrace ??= [];
   if (rows.length < (memory.pipelineConfiguredActorTraceMode ? 600 : 200)) rows.push({ tick: Game.time,phase,owner: profile.owner,cpu: Game.cpu.getUsed() });
 };

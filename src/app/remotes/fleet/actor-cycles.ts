@@ -10,7 +10,7 @@ import type { fleetServiceOptions } from './service-policy';
 interface ActorCycle { run(creep: Creep, demand?: RemoteMiningDemand): void }
 interface ActorCyclePorts {
   state: StatePort; dispatch: ReturnType<typeof createNativeDispatch>; home: string; policy: Readonly<RuntimeConfig>;
-  definitions: Readonly<Record<string,TaskDefinition>>; guard(): boolean;
+  definitions: Readonly<Record<string,TaskDefinition>>; guard(): boolean; trace?(owner: string, unit: string, phase: string): void;
 }
 /** One home/tick scope; same-owner actors share observation and task-runner setup without retaining stale policy or guards. */
 export function createActorCycles(ports: ActorCyclePorts) {
@@ -20,7 +20,7 @@ export function createActorCycles(ports: ActorCyclePorts) {
     const options = { maximumRooms: policy.remoteMaximumRouteRooms,guard,policy: (_home: string,username: string) => nativeRemoteTraversalFor(username,policy) };
     const binding = { home,owner };
     const cycle = kind === 'miner' ? createNativeRemoteMiningCycle(state,dispatch,binding,{ ...options,...service.mining },definitions)
-      : createNativeRemoteTransportCycle(state,dispatch,binding,{ ...options,minimumBatch: policy.remoteMinimumBatch,requestLifetime: policy.remoteTripLifetime,...service.transport },definitions);
+      : createNativeRemoteTransportCycle(state,dispatch,binding,{ ...options,minimumBatch: policy.remoteMinimumBatch,requestLifetime: policy.remoteTripLifetime,...service.transport,...(ports.trace ? { trace: (unit: string,phase: string) => ports.trace!(owner,unit,phase) } : {}) },definitions);
     cycles.set(key,cycle); return cycle;
   };
 }

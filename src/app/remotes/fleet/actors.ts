@@ -52,7 +52,7 @@ function runHomeActors(state: StatePort, dispatch: ReturnType<typeof createNativ
   const profiles = createRemoteFleetStore(state,home).read().actors, assignments = createRemoteAssignmentStore(state), cursor = createRemoteActorCursor(state,home);
   let deferred: boolean;
   function admittedGuard(): boolean { const available = guard(); if (!available) deferred = true; return available; }
-  const cycles = createActorCycles({ state,dispatch,home,policy,definitions,guard: admittedGuard });
+  const cycles = createActorCycles({ state,dispatch,home,policy,definitions,guard: admittedGuard,...(services?.trace ? { trace: (owner: string,unit: string,phase: string) => traceActor(services,profiles.find(profile => profile.owner === owner),unit,phase) } : {}) });
   for (const creep of cursor.order(creeps)) {
     if (!guard()) { traceActor(services,profiles.find(actor => actor.owner === creep.memory.population!.owner),creep.name,'deferred'); break; }
     const owner = creep.memory.population!.owner, identity = remoteFleetIdentity(owner)!, profile = profiles.find(actor => actor.owner === owner);
@@ -63,7 +63,7 @@ function runHomeActors(state: StatePort, dispatch: ReturnType<typeof createNativ
     deferred = false; traceActor(services,profile,creep.name,'execute');
     cycles(owner,identity.kind,service).run(creep,demand);
     traceActor(services,profile,creep.name,'done');
-    if (deferred) break;
+    if (deferred) { traceActor(services,profile,creep.name,'yield'); break; }
     cursor.save(creep.name);
   }
 }

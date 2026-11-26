@@ -12,7 +12,7 @@ import type { RemoteFleetProfile } from '../../../../features/remotes/fleet/mode
 import type { RemoteFleetBirthPolicy, RemoteStartupProbe, StartupStructures } from '../model';
 type StartupGuard = () => boolean;
 /** Configured adapter composition; facts, geometry, forecast, publication and payment keep their existing owners. */
-export function createNativeEconomicStartup(state: StatePort, structures: StartupStructures, trace: RemoteStartupProbe = () => {}): RemoteFleetBirthPolicy {
+export function createNativeEconomicStartup(state: StatePort, structures: StartupStructures, trace?: RemoteStartupProbe): RemoteFleetBirthPolicy {
   const staging = createEconomicProposalStaging(state), views = createEconomicApprovalViews(profile => matchingEconomicApproval(state,profile));
   function current(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;
@@ -22,7 +22,7 @@ export function createNativeEconomicStartup(state: StatePort, structures: Startu
   }
   function prepare(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;
-    return prepareEconomicCohort(state,structures,profile,config,guard,trace,staging,views.current) ? current(profile,config) : null;
+    return prepareEconomicCohort(state,structures,profile,config,guard,trace ?? (() => {}),staging,views.current) ? current(profile,config) : null;
   }
   function cohort(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;
@@ -35,6 +35,6 @@ export function createNativeEconomicStartup(state: StatePort, structures: Startu
     const context = approvedEconomicContext(state,profile,config,views.current); if (!context) return false;
     return createStartupForecastAdmission(state,profile.home,createStartupApprovals(state,profile.home).result)(profile,request,context);
   }
-  return { current,prepare,cohort,service: views.service,admit,trace };
+  return { current,prepare,cohort,service: views.service,admit,...(trace ? { trace } : {}) };
 }
 function placement(plan: ReturnType<typeof fleetServicePlan>) { return plan ? { spawn: plan.spawn.id,exit: { ...plan.spawn.exit } } : null; }

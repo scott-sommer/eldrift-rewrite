@@ -69,3 +69,18 @@ test('selected home sink rechecks room ownership, banking policy and current cap
   sinkAllowed = true; home.controller.my = false; expect(context.sinks()).toEqual([]);
   home.controller.my = true; sink.store.getFreeCapacity = () => 0; expect(context.sinks()).toEqual([]);
 });
+
+test('courier diagnostics identify a real budget refusal without initializing work or dispatching',() => {
+  const f = fixture(), rows: string[] = [];
+  const creep = { ...f.creep,id: 'unit',name: 'courier',store: { getUsedCapacity: () => 0 },
+    memory: { population: { home: f.binding.home,owner: f.binding.owner } } } as unknown as Creep;
+  const before = JSON.stringify(f.root);
+  const cycle = createNativeRemoteTransportCycle(f.state,f.dispatch,f.binding,{ ...f.options,guard: () => false,
+    trace: (unit,phase) => rows.push(unit+':'+phase) });
+  cycle.run(creep);
+  expect(rows).toContain('courier:transport:head:end');
+  expect(rows).toContain('courier:transport:bank:end');
+  expect(rows).toContain('courier:transport:run:denied');
+  expect(f.dispatch.activate).not.toHaveBeenCalled();
+  expect(JSON.stringify(f.root)).toBe(before);
+});
