@@ -1,0 +1,94 @@
+{
+  "issue": "ED-29",
+  "scope": "Bounded complete-path following plus preservation of admitted trips on CPU routing deferral. Seven native passes and two exact5ms calendar failures retained.",
+  "native": [
+    {
+      "scenario": "paths",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-paths.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9de0f3382ed59ba40ea71819083f8213d9c43e26752a6f1e349c71c75ef5defc",
+      "uncompressedSha256": "cfe4eaff44ff6e59e1bde664cc6b2321b92ab92c69968f547f69d18344b0a219"
+    },
+    {
+      "scenario": "traffic",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-traffic.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "7c77b7bff4b1fdc76af286d34cf4c1cfa3980ed23349e0b946de3373c7b572a2",
+      "uncompressedSha256": "828ded45c8995f7b91dcdcbcb3b2ac7584ef4d8eac214d58367cd5b023fd3498"
+    },
+    {
+      "scenario": "exits",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-exits.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3cbcd27bad7e95320470a018129165d2e6cfd24dea79df0e531f88c6d45ab3b2",
+      "uncompressedSha256": "9703cc663577c78f884e1d70ec402391fea11888390c4af752025fd3f0e79956"
+    },
+    {
+      "scenario": "occupied-exit",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-occupied-exit.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3b962ff6828646c6949036433e6a565fee683f93be440563d93acd9b1fa84c26",
+      "uncompressedSha256": "87b6a02ae52faf96993b0fe12937410d7824f326d8cca07998779f9dd1d299ed"
+    },
+    {
+      "scenario": "fleet-border",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-fleet-border.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "cb81c8d5a263ed59712876491974606f801729202e6b985afe22224a42c04b38",
+      "uncompressedSha256": "0e68376ebf5feaf703a8170a50ad536b24dcaa23db2bbcbcfe6dbd48698cc39f"
+    },
+    {
+      "scenario": "transport",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1d93976f68a44517a4f874d50d4384cd79a7a68511896821dfd3aeb05a8f3848",
+      "uncompressedSha256": "7757d129dc34f24b9040ff099324e388fd4638126271729f6eef6a4610345b1d"
+    },
+    {
+      "scenario": "refusals",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-path-following-refusals.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "418eade971ffad316f071cc4bc6fdfc75f6e22d11bf3d827f5b3babe111daf44",
+      "uncompressedSha256": "eee09d02663e47bd21457e2893059a64f627d2fa5b3b5c3c605bf84c06ca4294",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-path-following-refusals.jsonl",
+          "rowsSha256": "6f4276899717fca65c29a62b4b80c6b284684411161560fc0109d7dcd4cd897c",
+          "rows": 100
+        }
+      ]
+    },
+    {
+      "scenario": "untraced",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-path-following-untraced.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b8463aa754260e20cd3744d2cf84c95b0ea63a4236a0f192391bbfe5fe0cb9dc",
+      "uncompressedSha256": "5ae19036fc593c0ddd2af0eea9090d61a39002b6e3c0fbc1bde22f8d64eb07f6"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "2881a0b3cace5f9bc66ae508a1cbb86f2301a37c",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-path-following-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b4e0f40dccfc4a3a8ba11678c159947e128da1250b832077ddefb9409cd7fdd2",
+      "uncompressedSha256": "419d4e65b803c1379a8931ca942dd649ea37f220f3ba79c8914903aa93d2cb66"
+    }
+  ]
+}
