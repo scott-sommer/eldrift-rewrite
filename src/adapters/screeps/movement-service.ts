@@ -19,14 +19,15 @@ export interface MovementCommand {
   allowPartial?: boolean;
   avoid?: readonly Position[];
 }
+export interface MovementTileAccess { avoid(name: string): readonly Position[]; permits(unit: string, destination: Position): boolean }
 type Arbiter = ReturnType<typeof createActionArbiter>;
-export function createMovementService(arbiter: Arbiter = createActionArbiter(() => Game.time)) {
-  const preparation = createMovementPaths();
+export function createMovementService(arbiter: Arbiter = createActionArbiter(() => Game.time), access?: MovementTileAccess) {
+  const preparation = createMovementPaths(access?.avoid);
   const paths = createPathService(preparation.search, () => Game.time);
   const commands = new Map<string, MovementCommand>();
   let tick = -1;
   const dispatch = createTrafficDispatch({
-    clock: () => Game.time, observe: movementOccupants, legal: createMovementLegality(preparation.snapshots),
+    clock: () => Game.time, observe: movementOccupants, legal: createMovementLegality(preparation.snapshots,access?.permits),
     issue: request => createCreepActions(creepById(request.unit), request.owner, arbiter)
       .move(stepDirection(request.from, request.via ?? request.to) as DirectionConstant),
   }, (unit, time, outcome) => navigate.settle(unit, time, outcome));

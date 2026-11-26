@@ -9,7 +9,7 @@ import { createMatrixSnapshots } from './matrix-snapshots';
 import { createNativePathSearch } from './path-search';
 import { findRoomRoute } from './room-route';
 import { creepMobility } from './mobility';
-export function createMovementPaths() {
+export function createMovementPaths(additionalAvoidance: (name: string) => readonly Position[] = () => []) {
   const snapshots = createMatrixSnapshots();
   const route = createRoomRouter(findRoomRoute);
   const searches = new WeakMap<PathRequest, PathSearch>();
@@ -19,7 +19,7 @@ export function createMovementPaths() {
       if (!mobility.mobile) throw new Error('Cannot prepare an immobile creep');
       const result = route(view.position.room, view.destination.room, policy);
       const rooms = result.status === 'complete' ? result.rooms : [];
-      const prepared = movementAvoidance(snapshots.prepare(rooms, { roadCost: mobility.roadCost, avoidUnits, ignoreUnitId: creep.id }), [...avoid,...spawnExitAvoidance(creep.name,view.destination)]);
+      const prepared = movementAvoidance(snapshots.prepare(rooms, { roadCost: mobility.roadCost, avoidUnits, ignoreUnitId: creep.id }), [...avoid,...spawnExitAvoidance(creep.name,view.destination),...additionalAvoidance(creep.name)]);
       const request: PathRequest = {
         origin: view.position, destination: view.destination, range: view.range,
         profile: { id: 'body', plainCost: mobility.plainCost, swampCost: mobility.swampCost, maxOps: 4000, maxRooms: policy.maximumRooms },

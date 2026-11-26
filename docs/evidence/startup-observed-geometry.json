@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "First observed-geometry campaign failed exact receipt calendars under home deposit contention despite matching total delivery/extraction and native geometry; preserved for service-access correction.",
+  "native": [
+    {
+      "scenario": "observed-geometry-traffic",
+      "nativeSource": "c84a4fa7d995c6df933468afa90b89874c78b4ee",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-observed-geometry-traffic.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "70c76c8c72374445fa41c14bfd229e75744a51ba6a9af0bdce9f7f54961b7435",
+      "uncompressedSha256": "2c50ea3b5125cad7c16f8c1fc45c8a30ec2b1555da220118cd2ad83d38c9e0ec"
+    }
+  ]
+}

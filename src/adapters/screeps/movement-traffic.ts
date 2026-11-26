@@ -9,7 +9,7 @@ export function movementOccupants(): Occupant[] {
   return Object.values(Game.rooms).flatMap(room =>
     [...room.find(FIND_CREEPS), ...room.find(FIND_POWER_CREEPS)].map(unit => ({ unit: unit.id, position: movementPosition(unit.pos) })));
 }
-export function createMovementLegality(snapshots: ReturnType<typeof createMatrixSnapshots>) {
+export function createMovementLegality(snapshots: ReturnType<typeof createMatrixSnapshots>, permits: (unit: string, destination: Position) => boolean = () => true) {
   function passable(position: Position): boolean {
     const matrix = snapshots.prepare([position.room], { roadCost: 1, avoidUnits: false }).matrix(position.room);
     const cost = matrix?.get(position.x, position.y) ?? 0;
@@ -22,7 +22,7 @@ export function createMovementLegality(snapshots: ReturnType<typeof createMatrix
     if (!transition || tileKey(transition.landing) !== tileKey(request.to)) return false;
     if (!validTransit(request, transition.local)) return false;
     if (!connected(request.from.room, request.to.room)) return false;
-    return permitsSpawnExit(request.unit,transition.landing) && passable(transition.local) && passable(transition.landing);
+    return permitsSpawnExit(request.unit,transition.landing) && permits(request.unit,transition.landing) && passable(transition.local) && passable(transition.landing);
   };
 }
 
