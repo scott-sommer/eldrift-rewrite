@@ -1,3 +1,4 @@
+import { createNativeStartupGeometry } from '../../src/app/remotes/startup/native-geometry';
 import { maintainPipelineEconomic } from './pipeline-economic-maintenance';
 import { admitPipelineEconomic } from './pipeline-economic';
 import { capturePipelineCalibration, noteCalibrationPolicy } from './pipeline-cohort-calibration';
@@ -8,7 +9,7 @@ import type { RemoteFleetBirthPolicy } from '../../src/app/remotes/startup/model
 import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model';
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
 export interface PipelineServiceMemory extends Memory {
-  pipelineServiceMode?: boolean; pipelineServicePlans?: Record<string,{ generation: number; plan: StartupTravelPlan }>;
+  pipelineGeometryMode?: boolean; pipelineServiceMode?: boolean; pipelineServicePlans?: Record<string,{ generation: number; plan: StartupTravelPlan }>;
   pipelineServiceCalls?: Record<string,{ count: number; firstAt: number; lastAt: number; matches: boolean }>;
 }
 const state = createMemoryPort(() => Memory);
@@ -37,6 +38,7 @@ export const pipelineServicePolicy: RemoteFleetBirthPolicy = {
   service: profile => (Memory as PipelineServiceMemory).pipelineServiceMode ? selected(profile) : undefined,
 };
 function prepare(profile: Readonly<RemoteFleetProfile>): StartupTravelPlan | undefined {
+  if ((Memory as PipelineServiceMemory).pipelineGeometryMode) return createNativeStartupGeometry(state)(profile);
   const home = Game.rooms[profile.home], room = Game.rooms[profile.room], source = room?.find(FIND_SOURCES).find(source => source.id === profile.source), spawn = home?.find(FIND_MY_SPAWNS)[0], endpoint = home?.storage;
   if (!source || !spawn || !endpoint || !room) return undefined;
   const station = room.find(FIND_STRUCTURES).find(item => item.structureType === STRUCTURE_CONTAINER && item.pos.getRangeTo(source) === 1);
