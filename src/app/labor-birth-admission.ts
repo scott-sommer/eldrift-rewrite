@@ -1,3 +1,6 @@
+import { peekState } from '../persistence/versioned-state';
+import { stateKey } from '../persistence/state-key';
+import { laborPublicationSchema } from '../features/work/labor-publication';
 import { peekTaskHead } from '../persistence/tasks/head';
 import type { StatePort } from '../persistence/versioned-state';
 import type { TaskDefinition } from '../persistence/tasks/schema';
@@ -11,13 +14,18 @@ export interface LaborBirthAdmissionPorts { now(): number; current(proposal: Lab
 /** Read-only final check; a guarded request cannot silently become ordinary after task loss. */
 export function createLaborBirthAdmission(state: StatePort, ports: LaborBirthAdmissionPorts, definitions: Readonly<Record<string,TaskDefinition>> = {}) {
   const staging = createLaborTaskStaging(state,definitions);
+  function published(request: SpawnRequest): boolean {
+    if (!request.admission?.publication) return true;
+    const entry = peekState(state,stateKey('labor-publications',request.room),laborPublicationSchema(request.room))?.entry;
+    return entry?.phase === 'queued' && sameSpawnRequest(entry.request,request);
+  }
   return (request: SpawnRequest): boolean => {
     const head = peekTaskHead(state,request.name);
     if (!request.admission) return head?.kind !== 'household-labor';
     if (head?.kind !== 'household-labor' || head.id !== request.admission.task || head.phase !== 'await-birth') return false;
     const payload = staging.read(request.name)!.queue[0]!.payload as LaborTaskPayload;
-    if (payload.progress) return false;
-    const quoted = materializeLaborBirth(payload.proposal,ports.now());
+    if (payload.progress || !published(request)) return false;
+    const quoted = materializeLaborBirth(payload.proposal,ports.now(),request.admission.publication === true);
     return quoted.status === 'ready' && sameSpawnRequest(quoted.request,request) && ports.current(payload.proposal);
   };
 }

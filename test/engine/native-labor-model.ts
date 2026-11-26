@@ -14,6 +14,7 @@ export interface LaborSnapshot { spawn: number; endpoint: number; cargo: number;
 export interface NativeLaborProof {
   kind: LaborKind; loaded: boolean; cancel: boolean; complete: boolean; travel: boolean; targetTotal: number; initialSpawn: number; initialEndpoint: number; initialProgress: number;
   homeLost: boolean; unknown: boolean; incoming: boolean; incomingClaim?: QuantityClaim; incomingSettledAt?: number;
+  publication?: { publishedAt: number; acknowledgedAt?: number };
   fault?: 'before' | 'after'; interruptedAt?: number; reconstructedAt?: number;
   failureReloadedAt?: number; actorFailure?: NonNullable<CreepMemory['startupLaborFailure']>; actorReceipt?: NonNullable<CreepMemory['startupLaborReceipt']>; actorClaims?: { tick: number; allocations: { pool: string; amount: number }[] }[]; actorResult?: LaborProgress & { tick: number }; actorReloadAt?: number; stagedTask?: { root: { eldrift?: unknown }; stagedAt: number; restoredAt?: number; readOnly?: boolean }; birthQueue?: { id: string; readyAt: number; expiresAt: number; activeAt: number; reserved: boolean; removed: boolean }; planning?: LaborCandidatePlanningProof; proposal?: LaborProposalSnapshot; proposalCurrent?: boolean; proposalReadOnly?: boolean; travelQuote?: LaborTravelQuote; routeReadOnly?: boolean; checkpoint?: StartupHouseholdCheckpoint; result?: ReturnType<ReturnType<typeof createStartupHousehold>['result']>;
   expected?: LaborSnapshot; rows: { tick: number; actual: LaborSnapshot; expected?: LaborSnapshot; position?: { x: number; y: number; fatigue: number } }[];

@@ -24,6 +24,7 @@ function verifyNativeLabor(memory,evidence,kind,complete = false,travel = false,
   if (homeLost) { verifyNativeLaborHomeLoss(proof); return; }
   assert.equal(proof.unknown,unknown);
   if (unknown) { verifyNativeLaborUnknown(proof); return; }
+  if (complete) assert.deepEqual(proof.publication,{ publishedAt: 1,acknowledgedAt: 2 });
   if (incoming) { verifyNativeLaborIncoming(proof); return; }
   if (loaded) { verifyNativeLaborLoaded(proof); return; }
   if (fault) { verifyNativeLaborInterruption(proof,fault); if (fault === 'before') return; }

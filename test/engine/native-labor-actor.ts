@@ -3,7 +3,7 @@ import { interruptLabor, interruptibleLaborState, reconstructInterruptedLabor } 
 import { peekState } from '../../src/persistence/versioned-state';
 import { quantitySchema } from '../../src/persistence/quantities/schema';
 import { createLaborTaskStaging } from '../../src/features/work/stage-labor-task';
-import { createMemoryPort } from '../../src/adapters/screeps/memory';
+import { nativeLaborTaskState } from './native-labor-state';
 import { createNativeDispatch } from '../../src/app/native-dispatch';
 import { createNativeWorkFeature } from '../../src/app/native-work';
 import { resolveConfig } from '../../src/config/resolve';
@@ -12,7 +12,7 @@ import type { NativeLaborProof } from './native-labor-model';
 import type { LaborTaskPayload } from '../../src/features/work/labor-task';
 /** Exercise the production worker room feature; financial phase deltas do not choose these actions. */
 export function runNativeLaborTask(proof: NativeLaborProof, creep: Creep | undefined): void {
-  const state = interruptibleLaborState(createMemoryPort(() => proof.stagedTask!.root),proof), name = proof.proposal!.input.request.name;
+  const state = interruptibleLaborState(nativeLaborTaskState(proof),proof), name = proof.proposal!.input.request.name;
   runIncomingLaborDelivery(state,proof,creep);
   if (Game.time === 11) {
     const task = createLaborTaskStaging(state).read(name)?.queue[0], payload = task?.payload as LaborTaskPayload;

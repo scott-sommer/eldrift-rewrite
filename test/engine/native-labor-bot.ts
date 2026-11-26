@@ -1,3 +1,4 @@
+import { createNativeLaborPublication } from '../../src/app/native-labor/publication';
 import { runNativeLaborTask } from './native-labor-actor';
 import { resumeLaborPlanning } from './native-labor-planning';
 import { moveNativeLabor } from './native-labor-travel';
@@ -15,6 +16,7 @@ export function loop(): void {
   const creep = Game.creeps[proof.proposal?.input.request.name ?? 'native-labor'], actual = observe(proof,spawn,storage,creep);
   proof.rows.push({ tick: Game.time,actual,...(creep ? { position: { x: creep.pos.x,y: creep.pos.y,fatigue: creep.fatigue } } : {}),...(proof.expected ? { expected: proof.expected } : {}) });
   if (creep && !creep.spawning && proof.activeAt === undefined) proof.activeAt = Game.time;
+  if (proof.publication && createNativeLaborPublication(createMemoryPort(() => Memory),spawn.room.name).maintain() === 'born') proof.publication.acknowledgedAt = Game.time;
   resumeLaborPlanning(proof);
   const tick = Game.time-1;
   if (tick > 24) return;

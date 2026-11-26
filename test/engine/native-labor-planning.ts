@@ -1,3 +1,4 @@
+import { nativeLaborTaskState } from './native-labor-state';
 import { createLaborTaskStaging } from '../../src/features/work/stage-labor-task';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
@@ -41,9 +42,9 @@ function query(proof: LaborCandidatePlanningProof) {
 function restoreStagedTask(labor: NativeLaborProof): void {
   const proof = labor.stagedTask;
   if (!proof) throw new Error('Missing staged labor task');
-  const before = JSON.stringify(proof.root), task = createLaborTaskStaging(createMemoryPort(() => proof.root)).read(labor.proposal!.input.request.name)?.queue[0];
+  const state = nativeLaborTaskState(labor), key = 'tasks/'+labor.proposal!.input.request.name, before = JSON.stringify(state.read(key)), task = createLaborTaskStaging(state).read(labor.proposal!.input.request.name)?.queue[0];
   const terminal = labor.actorResult?.tick ?? labor.actorFailure?.resolvedAt;
   if (task || terminal === undefined || terminal >= Game.time) throw new Error('Completed labor task was not removed after settlement');
-  proof.restoredAt = Game.time; proof.readOnly = before === JSON.stringify(proof.root);
+  proof.restoredAt = Game.time; proof.readOnly = before === JSON.stringify(state.read(key));
   if (!proof.readOnly) throw new Error('Restoring labor obligation changed its owner state');
 }
