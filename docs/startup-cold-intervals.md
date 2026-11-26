@@ -1,0 +1,9 @@
+# Cold actor intervals
+
+Fixture963c887 adds only existing begin/execute/done actor markers around actual VM reload frames311/591/861 to the bounded refusal trace. Targeted6/2 passed582ms; fixedsmoke76/15 passed641ms; quality/bundle passed. No production behavior changed and no full units/milestone CI ran.
+
+[Two raw FAILED runs and55 trace rows](evidence/startup-cold-intervals.json) preserve diagnosis and independent untraced qualification. At311 courier5 begins58.044ms, reaches role execution59.599 and ends62.718: preparation1.555ms, role3.119ms, then courier6 is deferred. At591 preparation1.312ms and role4.795ms end in source/run denial. At861 miner preparation1.138ms and role4.974ms end in yield. Much of absolute tickCPU was already consumed before these intervals; do not attribute50–60ms to one method. Instrumented harvest/delivery totals match, but exact receipts fail. Untraced harvest3264 matches while delivery2396/3080 and41/53frames fail.
+
+Inspection identifies two concrete next changes. Navigator's search cache keys exact origins, so movement can search again on each new tile; bounded per-unit following can reuse complete tails only after preparing the current topology/policy/mobility context, with detours/expiry/displacement invalidation. This is heap-only and does not promise cold-reset retention.
+
+A separate correctness regression was reproduced: if the CPU guard expires inside collection route assessment, prepareCollection interprets undefined as invalid work and cancels a live request/task. Preserve a deferred trip and its actual quantity booking; retain cancellation/retreat for genuine danger when budget is available. Regression first failed by observing cancelled request and empty task queue, then passed after the guarded distinction. These changes must receive their own source-qualified native evidence; neither this diagnosis nor equal aggregate output closes ED-29.

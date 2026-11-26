@@ -1,0 +1,31 @@
+{
+  "issue": "ED-29",
+  "scope": "Cold actor intervals and independent5ms failures before path-following and budget-deferral correction.",
+  "native": [
+    {
+      "scenario": "intervals",
+      "nativeSource": "963c8872c9214f981e7e50b8fb2e7ce880ef982f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-cold-intervals-intervals.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "ddf529e01cfc63dbe0dca35763def515b919668590330e61a6d9db03b9794fef",
+      "uncompressedSha256": "73987c0a8382cdda5e27551ddffbcfeac7fa179329d62347051dc4803cb32415",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-cold-intervals.jsonl",
+          "rowsSha256": "2dfd49dff4ac04f67a790e71a865ac5d143545b833262b42a89129cc56d51384",
+          "rows": 55
+        }
+      ]
+    },
+    {
+      "scenario": "untraced",
+      "nativeSource": "963c8872c9214f981e7e50b8fb2e7ce880ef982f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-cold-intervals-untraced.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "40eca071704e974eaf0f53bcfe4961de7c9d07fb785c5e875581c371708dd2bd",
+      "uncompressedSha256": "7f6f9c3846dfd07652bb6fac79a8f16849bac570227d2d4932de15cdcf14af65"
+    }
+  ]
+}
