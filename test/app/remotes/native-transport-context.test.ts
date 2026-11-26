@@ -1,3 +1,4 @@
+import { transportService } from '../../../src/app/remotes/transport-service';
 import { afterEach, expect, test, vi } from 'vitest';
 import { createMemoryPort } from '../../../src/adapters/screeps/memory';
 import { createIntelStore } from '../../../src/features/intel/store';
@@ -26,7 +27,7 @@ function fixture() {
       maximumAge: 20,maximumRooms: 64,unknownCost: 8,staleCost: 4,keeperCost: 25 }) };
   const binding = { home: 'W0N1',owner: 'hauler' };
   const creep = { my: true,spawning: false,memory: { population: { home: 'W0N1',owner: 'other' } },owner: { username: 'bot' },pos: { roomName: 'W0N1' } } as Creep;
-  return { root,state,dispatch,options,binding,creep,demand };
+  return { root,state,dispatch,options,binding,creep,demand,first,second };
 }
 test('a trip retains its valid source container when another candidate ranks higher', () => {
   const f = fixture(), context = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,f.options);
@@ -38,4 +39,16 @@ test('transport actor ownership is checked before task state reads', () => {
   const f = fixture(), cycle = createNativeRemoteTransportCycle(f.state,f.dispatch,f.binding,f.options);
   const read = vi.spyOn(f.state,'read'), before = JSON.stringify(f.root);
   cycle.run(f.creep,f.demand); expect(read).not.toHaveBeenCalled(); expect(JSON.stringify(f.root)).toBe(before);
+});
+
+test('selected transport uses only its quoted container and refuses changed request geometry or sink',() => {
+  const f = fixture(); f.second.pos.x = 10; f.second.pos.y = 9;
+  const service = { station: { room: 'E0N1',x: 9,y: 10 },collection: { room: 'E0N1',x: 8,y: 10 },deposit: { room: 'W0N1',x: 1,y: 1 },endpoint: 'home' };
+  const context = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,{ ...f.options,service });
+  expect(context.source(f.creep,f.demand)?.endpoint?.id).toBe('first');
+  const request = { id: 'fixed-trip',owner: context.owner(f.demand),source: 'first',sink: 'home',resource: 'energy',quantity: 10,priority: 0,expiresAt: 50,service: transportService(service) };
+  expect(context.route(f.creep,request,'collect')).toBeDefined();
+  expect(context.authority({ ...request,sink: 'alternate' })).toBeUndefined();
+  request.service.collection.x--; expect(context.authority(request)).toBeUndefined();
+  f.first.pos.x = 8; expect(context.source(f.creep,f.demand)?.endpoint).toBeUndefined();
 });

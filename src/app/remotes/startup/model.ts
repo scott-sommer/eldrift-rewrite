@@ -1,3 +1,4 @@
+import type { StartupTravelPlan } from '../../../features/remotes/startup/travel-model';
 import type { RemoteFleetProfile } from '../../../features/remotes/fleet/model';
 import type { SpawnPlacement } from '../../../capabilities/spawning/request';
 import type { RuntimeConfig } from '../../../config/model';
@@ -11,6 +12,8 @@ export type StartupSurvey = (room: string,source: string) => SourceStartupSurvey
 /** Undefined permits ordinary allocation; null defers births; placement binds a selected origin. */
 export type RemoteBirthSelection = SpawnPlacement | null | undefined;
 export interface RemoteFleetBirthPolicy {
+  /** Undefined retains ordinary geometry; null withdraws productive service. */
+  service?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): StartupTravelPlan | null | undefined;
   prepare?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: () => boolean): RemoteBirthSelection;
   /** Read-only final admission; must not start expensive planning or publish state. */
   current(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): RemoteBirthSelection;

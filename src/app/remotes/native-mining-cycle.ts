@@ -7,15 +7,15 @@ import { createTaskRunner } from '../task-runner';
 import type { createNativeDispatch } from '../native-dispatch';
 import { createRemoteMiningTaskBehavior } from './mining-task';
 import type { RemoteMiningDemand } from './mining-task';
+import type { NativeRemoteMiningServiceOptions } from './native-mining-service';
 import { createNativeRemoteMiningService } from './native-mining-service';
 import type { NativeRemoteBankingPolicy } from './native-banking';
 import { createNativeRemoteBanking } from './native-banking';
-import type { NativeRemoteOptions } from './native-movement';
 import { eligibleRemoteActor } from './actor';
 import type { RemoteActorBinding } from './actor';
 import { cancelTask } from '../cancel-task';
 import { assignRemoteTask } from './assign-task';
-export interface NativeRemoteMiningCycleOptions extends NativeRemoteOptions { banking?: NativeRemoteBankingPolicy }
+export interface NativeRemoteMiningCycleOptions extends NativeRemoteMiningServiceOptions { banking?: NativeRemoteBankingPolicy }
 export type RemoteMiningActorBinding = RemoteActorBinding;
 /** One actor cycle and runner own source service, safe-home banking and empty retirement. Recruitment stays separate. */
 export function createNativeRemoteMiningCycle(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, binding: RemoteMiningActorBinding,

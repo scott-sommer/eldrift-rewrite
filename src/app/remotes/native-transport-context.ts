@@ -1,3 +1,5 @@
+import { selectedTransportSource, selectedTransportRequest } from './transport-service';
+import type { RemoteTransportService } from './transport-service';
 import { eligibleTransportSource, transportSources } from './native-transport-sources';
 import type { RemoteTransportSource } from './native-transport-sources';
 import type { StatePort } from '../../persistence/versioned-state';
@@ -13,7 +15,7 @@ import type { NativeRemoteBankingPolicy } from './native-banking';
 import type { RemoteActorBinding } from './actor';
 import type { createNativeDispatch } from '../native-dispatch';
 export interface NativeRemoteTransportOptions extends NativeRemoteOptions {
-  minimumBatch: number; requestLifetime: number; banking?: NativeRemoteBankingPolicy;
+  minimumBatch: number; requestLifetime: number; service?: RemoteTransportService; banking?: NativeRemoteBankingPolicy;
 }
 export function createNativeRemoteTransportContext(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, binding: RemoteActorBinding, options: NativeRemoteTransportOptions) {
   if (![options.minimumBatch,options.requestLifetime].every(value => Number.isSafeInteger(value) && value >= 1)) throw new Error('Invalid remote transport limits');
@@ -29,7 +31,7 @@ export function createNativeRemoteTransportContext(state: StatePort, dispatch: R
   }
   function authority(request: LogisticsRequest): RemoteTransportDemand | undefined {
     const token = transportToken(request);
-    if (!token || !owns(request)) return undefined;
+    if (!token || !owns(request) || !selectedTransportRequest(request,options.service)) return undefined;
     const value = assignments.resolve(token,Game.time);
     return value?.kind === 'mine' ? value : undefined;
   }
@@ -42,19 +44,19 @@ export function createNativeRemoteTransportContext(state: StatePort, dispatch: R
     if (!target) return undefined;
     const position = { room: demand.room,x: target.x,y: target.y };
     const room = Game.rooms[demand.room];
-    return { position,route,visible: !!room,endpoint: room && transportSources(room,position)[0] };
+    return { position,route,visible: !!room,endpoint: room && transportSources(room,position).find(source => selectedTransportSource(source,options.service)) };
   }
   function sinks() {
     const room = Game.rooms[binding.home];
     if (!room?.controller?.my || policy.acceptsResource && !policy.acceptsResource(RESOURCE_ENERGY)) return [];
-    return nativeCargoSinks(room,RESOURCE_ENERGY,policy.terminalReserve).filter(policy.acceptsSink ?? (() => true));
+    return nativeCargoSinks(room,RESOURCE_ENERGY,policy.terminalReserve).filter(policy.acceptsSink ?? (() => true)).filter(sink => !options.service || sink.id === options.service.endpoint);
   }
   function route(creep: Creep, request: LogisticsRequest, phase: 'collect' | 'deliver') {
     const demand = authority(request);
     if (!demand || request.resource !== RESOURCE_ENERGY) return undefined;
     if (phase === 'deliver') return sinks().some(sink => sink.id === request.sink) ? travel.route(creep,binding.home,binding.home,true) : undefined;
     const view = source(creep,demand);
-    return view && validSource(request.source,view.position) ? view.route : undefined;
+    return view && validSource(request.source,view.position,options.service) ? view.route : undefined;
   }
   return { current,owns,authority,source,sinks,route,travel,owner: (demand: RemoteTransportDemand) => remoteTransportOwner(demand,binding.owner) };
 }
@@ -62,7 +64,7 @@ function neutral(controller: { owner: string | null; reservation: { username: st
   return !controller?.owner && (!controller?.reservation || controller.reservation.username === username);
 }
 
-function validSource(id: string, source: { room: string; x: number; y: number }): boolean {
+function validSource(id: string, source: { room: string; x: number; y: number }, service?: RemoteTransportService): boolean {
   const target = Game.getObjectById(id as Id<RemoteTransportSource>);
-  return !!target && eligibleTransportSource(target,source);
+  return !!target && eligibleTransportSource(target,source) && selectedTransportSource(target,service);
 }

@@ -1,3 +1,5 @@
+import { pipelineServicePolicy } from './pipeline-service-policy';
+import { withPipelineServiceProbe } from './pipeline-service-probe';
 import { createNativeBot } from '../../src/app/native-bot';
 import { runPipeline } from './remote-pipeline-bot';
 import { pipelineLaborPlan } from './pipeline-labor-plan';
@@ -8,8 +10,8 @@ import { operatorSchema } from '../../src/features/operator/state';
 import { bodyCost } from '../../src/capabilities/spawning/body';
 import type { LaborProposalSnapshot } from '../../src/capabilities/economy/startup/household/labor/proposal';
 interface PipelineLaborMemory extends Memory { pipelineLabor?: { proposal: LaborProposalSnapshot; publishedAt: number; acknowledgedAt?: number; birthCost?: number; activeAt?: number; receipt?: NonNullable<CreepMemory['startupLaborReceipt']>; idleAt?: number; moveCodes: number[] } }
-const state = createMemoryPort(() => Memory), runtime = createNativeBot({ spawnEnergyPolicy: 'spawn-first-range-id-v1' });
-export function loop(): void { runPipeline(runtime,before,probe); }
+const state = createMemoryPort(() => Memory), runtime = createNativeBot({ remoteBirths: pipelineServicePolicy,spawnEnergyPolicy: 'spawn-first-range-id-v1' });
+export function loop(): void { runPipeline(() => withPipelineServiceProbe(runtime),before,probe); }
 function before(): void {
   const memory = Memory as PipelineLaborMemory, publisher = createNativeLaborPublication(state,'W0N1');
   if (Game.time === 1) {
