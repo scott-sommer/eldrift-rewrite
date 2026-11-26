@@ -151,3 +151,18 @@ test('invalid policy and future/wrong-room facts cannot certify traversal', () =
   fixture.ports.intel.mockImplementation(() => fixture.store.peek('W2N1', 10).record);
   expect(() => fixture.traversal().assess('W1N1')).toThrow('Invalid traversal intel');
 });
+
+test('detached intel ports retain fresh request risk, schema validation, status and budget gates',() => {
+  const f = setup(); f.store.observeSummary(summary());
+  const ports = { ...f.ports,detachedReads: true as const };
+  const first = createIntelTraversal(ports,policy(),10); expect(first.allows('W1N1')).toBe(true);
+  f.store.observeSummary({ ...summary(),controller: { ...summary().controller!,owned: false,owner: 'enemy' } });
+  expect(createIntelTraversal(ports,policy(),10).assess('W1N1')).toMatchObject({ reason: 'hostile' });
+  expect(first.allows('W1N1')).toBe(true); // Existing request remains its own bounded assessment.
+  const bad = f.store.peek('W1N1',10).record; bad.sourceIds = ['duplicate','duplicate'];
+  f.ports.intel.mockReturnValue(bad);
+  expect(() => createIntelTraversal(ports,policy(),10).assess('W1N1')).toThrow('Invalid traversal intel');
+  f.ports.status.mockReturnValue('closed');
+  expect(createIntelTraversal(ports,policy(),10).assess('W1N1')).toMatchObject({ reason: 'status' });
+  expect(createIntelTraversal(ports,policy(),10,() => false).assess('W1N1')).toMatchObject({ reason: 'admission' });
+});

@@ -13,6 +13,8 @@ export interface IntelTraversalPolicy {
   keeperCost: number;
 }
 export interface IntelTraversalPorts {
+  /** Declared only when intel() returns fresh plain-data-validated snapshots with no shared mutable references. */
+  readonly detachedReads?: true;
   intel(room: string): IntelRecord;
   /** Current map status, independently of old observed room details. */
   status(room: string): IntelRoomStatus;

@@ -1,4 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
+import { nativeScoutIntelPorts } from '../../../src/app/native-scout-policy';
 import { nativeRemoteRoute } from '../../../src/app/remotes/native-route';
 import { createMemoryPort } from '../../../src/adapters/screeps/memory';
 import { createIntelStore } from '../../../src/features/intel/store';
@@ -39,4 +40,13 @@ test('admission and room limits fail closed without terrain-only or exploration 
   expect(nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,1,false,() => true)).toBeUndefined();
   expect(nativeRemoteRoute(f.port,'W0N1','E0N1',{ ...f.policy,maximumRooms: 1 },8,false,() => true)).toBeUndefined();
   expect(() => nativeRemoteRoute(f.port,'W0N1','E0N1',{ ...f.policy,mode: 'exploration' },8,false,() => true)).toThrow('policy');
+});
+
+test('native routing snapshots are detached and a new route sees changed actual intel',() => {
+  const f = fixture(), ports = nativeScoutIntelPorts(f.port), snapshot = ports.intel('E0N1');
+  snapshot.sourceIds.length = 0;
+  expect(ports.intel('E0N1').sourceIds).toEqual(['source']);
+  expect(nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,8,false,() => true)).toBeDefined();
+  f.intel.observeSummary({ ...f.target,controller: { id: 'controller',x: 25,y: 25,level: 1,owned: false,owner: 'hostile',reservation: null } });
+  expect(nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,8,false,() => true)).toBeUndefined();
 });

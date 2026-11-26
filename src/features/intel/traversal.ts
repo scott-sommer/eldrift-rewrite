@@ -34,7 +34,7 @@ export function createIntelTraversal(ports: IntelTraversalPorts, input: IntelTra
     const status = ports.status(room);
     if (status !== 'normal') return deniedTraversal('status', true);
     if (!guard()) return refuse('admission');
-    const record = copyPlain(ports.intel(room));
+    const snapshot = ports.intel(room), record = ports.detachedReads ? snapshot : copyPlain(snapshot);
     if (!intelSchema(room).valid(record)) throw new Error('Invalid traversal intel');
     return decideIntelTraversal(room, record, policy, friendly, tick);
   }

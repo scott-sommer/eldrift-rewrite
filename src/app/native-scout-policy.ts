@@ -16,7 +16,7 @@ export function nativeScoutPolicy(state: StatePort, home: string, username: stri
 }
 export function nativeScoutIntelPorts(state: StatePort) {
   const intel = createIntelStore(state);
-  return { intel: (room: string) => intel.peek(room,Game.time).record,
+  return { detachedReads: true as const,intel: (room: string) => intel.peek(room,Game.time).record,
     status: (room: string) => Game.map.getRoomStatus(room)?.status ?? 'unknown',
     exits: (room: string) => {
       const exits = Game.map.describeExits(room);
