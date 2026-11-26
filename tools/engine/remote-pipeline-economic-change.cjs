@@ -1,9 +1,9 @@
 const assert = require('node:assert/strict');
 function verifyPipelineEconomicChange(memory,evidence) {
   const proof = memory.pipelineCalibration, checks = memory.pipelineEconomicChecks, rows = memory.pipelineRows, last = rows.at(-1);
-  evidence.pipelineEconomicChange = { proof,checks,rows,births: memory.pipelineBirths,changes: memory.pipelineEconomicChanges };
+  evidence.pipelineEconomicChange = { proof,checks,rows,births: memory.pipelineBirths,changes: memory.pipelineEconomicChanges,cancelledAt: memory.pipelineEconomicCancelledAt };
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]); assert.equal(rows.length,180);
-  assert.ok(proof?.economic); assert.deepEqual(memory.pipelineEconomicChanges,[50,60,120]);
+  assert.ok(proof?.economic); assert.deepEqual(memory.pipelineEconomicChanges,[50,60,120]); assert.equal(memory.pipelineEconomicCancelledAt,64);
   const births = Object.values(memory.pipelineBirths).filter(birth => ['miner','courier'].includes(birth.family));
   assert.equal(births.length,1); assert.equal(births[0].family,'miner'); assert.equal(births[0].seenAt,32);
   assert.deepEqual(checks.filter(check => check.allowed).map(check => check.tick),[32]);

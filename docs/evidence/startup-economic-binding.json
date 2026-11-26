@@ -10,6 +10,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "8f1e8f270925cec04349eb1e8f5fb3aeb894bd47d661e9016c882f8a22f4d662",
       "uncompressedSha256": "6f88588e8b5372d2f2e1c4c2849c6b235521380f0619492edf10db8c82a9352a"
+    },
+    {
+      "scenario": "economic-change-head-block",
+      "nativeSource": "f4ba60dc10f948f80add7dc91824cace6c9b4007",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-economic-change-head-block.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4f2a03336623b1299ba082045784d636897a997c91657245819c346505d9764c",
+      "uncompressedSha256": "df7e0fdc878e3be3c684958d7421c4b57d352902070460bebf4466f2b421cdf7"
     }
   ]
 }
