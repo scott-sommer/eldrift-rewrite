@@ -1,0 +1,31 @@
+{
+  "issue": "ED-29",
+  "scope": "Bounded full-horizon refusal trace with external history; instrumented and uninstrumented5ms exact calendar failures retained, no qualification claim.",
+  "native": [
+    {
+      "scenario": "refusals",
+      "nativeSource": "1ca5111d84ea720c949c14e2e4101780d303be3f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-refusal-trace-refusals.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f3398f96ce69ea573a4a216bebf213d62579454299b84ab0f12fa5a595158cb9",
+      "uncompressedSha256": "a64812f0808423498351b50691af79bef61c36db67d231cc9890faf803bfd701",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-refusal-trace.jsonl",
+          "rowsSha256": "d4e630e113953716c0c7ddd7377b91416f5cfb00a02725061db53437ef71a24f",
+          "rows": 60
+        }
+      ]
+    },
+    {
+      "scenario": "untraced",
+      "nativeSource": "1ca5111d84ea720c949c14e2e4101780d303be3f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-refusal-trace-untraced.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5e4dd154b558c9a84d2f5372124a26c0eb3ba7bd8c2406edbf7edd6317db0e07",
+      "uncompressedSha256": "c69675a9c3a96a5f5c3c673ca3c82867efb7b4cec6112f55330d2a87e757055b"
+    }
+  ]
+}
