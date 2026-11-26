@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Native operation probe: initial frozen SDK failure preserved; no gameplay qualification.",
+  "scope": "Diagnostic SDK operation counts and same-source untraced configured5ms control. Both exact calendars fail; frozen SDK/global failures retained.",
   "native": [
     {
       "scenario": "configured-budget-path-probe-sdk-failure",
@@ -19,6 +19,24 @@
       "rawEncoding": "gzip",
       "rawSha256": "30772fc73a512b8e434e5600ee87a26a065f7cb57dccf6eee5d4878bc438f54b",
       "uncompressedSha256": "c0260ff7189e48d875d5959e2e5e91f47f4536ae8461a05a74b1e408b6bbdb39"
+    },
+    {
+      "scenario": "configured-budget-path-operations-measured",
+      "nativeSource": "af3a5ebbdd0820d999c886a23f6c947a7da67aaa",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-path-operations-measured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9d028e70feda456f7f513c7b99fef633546df2f4f189e9d039291d7629c2062b",
+      "uncompressedSha256": "7aba209a252ae387580b420036b239cf21f7cb56a1491e03813c13df778b701b"
+    },
+    {
+      "scenario": "configured-budget-path-operations-control",
+      "nativeSource": "af3a5ebbdd0820d999c886a23f6c947a7da67aaa",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-path-operations-control.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "7900ba1a881475bae908b3d9897bf6025e1f6c9317e594b2a2e250069312e792",
+      "uncompressedSha256": "88b87e600e2740a0fb115a3d5bf04bbc6bf97b4a31358999521b457e3309245f"
     }
   ]
 }
