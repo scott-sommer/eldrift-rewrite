@@ -72,3 +72,30 @@ test('repeated pool release avoids unchanged writes but still checks ownership a
   f.ledger.releasePool(first,'capacity:storage'); expect(write).toHaveBeenCalledTimes(1);
   expect(f.ledger.list(1)).toEqual([other]);
 });
+
+test('identical booking avoids a save only after current competing capacity and identity checks',() => {
+  const f = fixture(), first = claim('first',40), other = claim('other',20,'H');
+  f.ledger.reserve(other,capacities,1); f.ledger.reserve(first,capacities,1);
+  const write = vi.spyOn(f.port,'write'), before = JSON.stringify([...f.records]);
+  expect(createQuantityReservations(f.port).reserve(first,capacities,1)).toBe(true);
+  expect(write).not.toHaveBeenCalled(); expect(JSON.stringify([...f.records])).toBe(before);
+  expect(f.ledger.reserve(first,{ ...capacities,'capacity:storage': 50 },1)).toBe(false);
+  expect(() => f.ledger.reserve({ ...first,holder: 'thief' },capacities,1)).toThrow('identity conflict');
+  expect(write).not.toHaveBeenCalled(); expect(JSON.stringify([...f.records])).toBe(before);
+  const toJSON = vi.fn(() => first), forged = { ...first,toJSON };
+  expect(() => f.ledger.reserve(forged,capacities,1)).toThrow('non-JSON');
+  expect(toJSON).not.toHaveBeenCalled(); expect(write).not.toHaveBeenCalled();
+});
+test('booking changes and expired-record pruning still save; existing ledger order is preserved',() => {
+  const f = fixture(), first = claim('first',40), expired = { ...claim('expired',1),expiresAt: 2 };
+  f.ledger.reserve(expired,capacities,1); f.ledger.reserve(first,capacities,1);
+  const write = vi.spyOn(f.port,'write');
+  expect(f.ledger.reserve(first,capacities,2)).toBe(true); expect(write).toHaveBeenCalledTimes(1);
+  expect((f.records.get('quantity-reservations/empire')!.data as { claims: QuantityClaim[] }).claims).toEqual([first]);
+  expect(f.ledger.reserve({ ...first,expiresAt: 11 },capacities,2)).toBe(true);
+  expect(f.ledger.reserve({ ...claim('first',30),expiresAt: 11 },capacities,2)).toBe(true);
+  expect(write).toHaveBeenCalledTimes(3);
+  f.ledger.reserve(claim('other',20,'H'),capacities,2); write.mockClear();
+  expect(f.ledger.reserve({ ...claim('first',30),expiresAt: 11 },capacities,2)).toBe(true);
+  expect(write).toHaveBeenCalledTimes(1); expect(f.ledger.list(2).map(item => item.id)).toEqual(['other','first']);
+});

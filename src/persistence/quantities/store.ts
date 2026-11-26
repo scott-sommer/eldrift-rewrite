@@ -1,7 +1,8 @@
 import { openState, saveState } from '../versioned-state';
+import { copyPlain } from '../plain-data';
 import type { StatePort } from '../versioned-state';
 import { quantitySchema, validQuantityClaim } from './schema';
-import type { QuantityClaim } from './schema';
+import type { QuantityClaim, QuantityLedger } from './schema';
 const key = 'quantity-reservations/empire';
 /** A claim reserves every pool in one write, so stock and sink capacity cannot be half-booked. */
 export function createQuantityReservations(port: StatePort) {
@@ -23,6 +24,7 @@ export function createQuantityReservations(port: StatePort) {
       if (existing && !sameOwner(existing, claim)) throw new Error('Quantity claim identity conflict');
       const retained = active.filter(item => item.id !== claim.id);
       if (!fits(claim, retained, capacities)) return false;
+      if (unchangedLastClaim(state,active,claim)) return true;
       saveState(port, key, quantitySchema, { claims: [...retained, claim] });
       return true;
     },
@@ -45,6 +47,12 @@ export function createQuantityReservations(port: StatePort) {
     releaseHolder: (holder: string) => release(claim => claim.holder === holder),
     expire(tick: number): number { validTick(tick); return release(claim => claim.expiresAt <= tick); },
   };
+}
+/** Keeping the same last record preserves the ledger's existing observable order and expiry pruning. */
+function unchangedLastClaim(state: QuantityLedger, active: QuantityClaim[], claim: QuantityClaim): boolean {
+  const last = state.claims.at(-1);
+  return active.length === state.claims.length && last?.id === claim.id && last.expiresAt === claim.expiresAt
+    && JSON.stringify(last) === JSON.stringify(copyPlain(claim));
 }
 function sameOwner(a: Pick<QuantityClaim, 'owner' | 'holder' | 'scope'>, b: Pick<QuantityClaim, 'owner' | 'holder' | 'scope'>): boolean {
   return a.owner === b.owner && a.holder === b.holder && a.scope === b.scope;
