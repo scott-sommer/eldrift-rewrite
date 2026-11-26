@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Ordinary native remote transport240 compatibility after optional final forecast/request admission hook. This run supplies no economic callback and does not qualify native economic adoption.",
+  "native": [
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "6eb5c183b2e4994bbd64cb8035004d9849098edc",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-birth-admission-ordinary.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b8fb3b784a2362edeb2091b742e34c570eeddecd7cdf1712a87054822a8df256",
+      "uncompressedSha256": "fe048a792c1c8fa5d1f8b69a4bba1c165b4c4d6ff1a47ee1c4bb146f01a5c98d"
+    }
+  ]
+}
