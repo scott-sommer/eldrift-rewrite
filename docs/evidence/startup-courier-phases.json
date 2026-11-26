@@ -1,0 +1,40 @@
+{
+  "issue": "ED-29",
+  "scope": "Bounded optional courier phase/denied-guard diagnostics; short probe fails cutoff as expected, untraced5ms fails exact receipts, supported campaign passes.",
+  "native": [
+    {
+      "scenario": "probe",
+      "nativeSource": "544b57aaddd22dbc7e64548695a7ae5e34d35d7f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-courier-phases-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "abdff7e8b74306f27f38d86fdd30bac139a5657b7ebaf4f04461309f556c2b47",
+      "uncompressedSha256": "f1406739f791b227a8270430659d2df67ed43f1529cf9f882f086f84b8d5f07a",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-courier-phases-probe.jsonl",
+          "rowsSha256": "d93d73de3f9c4d3c7e4cb69df3407465a41cb3a8bce00ae3265d793e6fe81cff",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "544b57aaddd22dbc7e64548695a7ae5e34d35d7f",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-courier-phases-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "57542116d3d06f7a9bacd8997610f938a91b04cc0eff906a6f9f6faee0c1586f",
+      "uncompressedSha256": "7ccbe882bbcc2215267b4b35f7b36eb60c496e07765ce12d268b343a8f96cdb4"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "544b57aaddd22dbc7e64548695a7ae5e34d35d7f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-courier-phases-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3d0c1611a38c04f2918d6358753000fa4f1b9c6077ad3d3b3a4736cd83ed73c2",
+      "uncompressedSha256": "1886b78aa2830e89cf46535e7cbfbd6d3dd388ad20c9e50f9c6a5406646a9683"
+    }
+  ]
+}
