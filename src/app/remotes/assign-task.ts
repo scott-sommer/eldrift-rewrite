@@ -18,6 +18,7 @@ export function assignRemoteTask(state: StatePort, definitions: Readonly<Record<
     generation: current.generation,expiresAt: current.expiresAt } };
   if (previous) {
     if (previous.kind !== kind || !sameAuthority(previous.payload,payload)) return undefined;
+    if (previous.expiresAt === tick + lifetime && JSON.stringify(previous.payload) === JSON.stringify(payload)) return previous.id;
     previous.payload = payload; previous.expiresAt = tick + lifetime;
   } else tasks.queue.push({ id: 'remote-task:' + current.id + ':' + current.generation + ':' + tick,
     kind,phase: 'work',payload,wakeAt: tick,retries: 0,expiresAt: tick + lifetime });
