@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Idempotent quantity pool release with current owner check; uncertainty and supported economic passes; 5ms exact receipt failure preserved.",
+  "native": [
+    {
+      "scenario": "unknown-delivery",
+      "nativeSource": "7700885153f7917cb858e9875503a243191886e1",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-pool-release-unknown-delivery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "ab8b09f87eddd2e7e516adab837217cc108221d19c479b85b9ee9e4994116ef5",
+      "uncompressedSha256": "796a2ffac77f46bf6efb15634220c85b5543baa1b6baeaf5e4c25937e2153f2a"
+    },
+    {
+      "scenario": "unknown-recovery",
+      "nativeSource": "7700885153f7917cb858e9875503a243191886e1",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-pool-release-unknown-recovery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8ddda1207c8ce81bee5cc8f0d185cef218ff78a97ca6382136afd95a0b5c030f",
+      "uncompressedSha256": "51cf21d727aa924622b30712fba0269b6a5f8642f6f7075e09c8d39ece34ef89"
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "7700885153f7917cb858e9875503a243191886e1",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-pool-release-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "394386f98358d3dacf1b1eddd2e705d5d1f395ef4b34ca7c8672a7a1e265966f",
+      "uncompressedSha256": "ed11ce720005411ee5e3ee58ccd104f712de7ffdf6e605ee077279bc6f86b482"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "7700885153f7917cb858e9875503a243191886e1",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-pool-release-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e6284595cd6ac38215a615c4e494225eeb25d968c1f87e78e01bd365e780bd9e",
+      "uncompressedSha256": "5768586e43c5f0615f4d4278f15c57fdc080c5cb7eda9c84fc990129a25a687b"
+    }
+  ]
+}
