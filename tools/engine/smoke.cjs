@@ -1086,6 +1086,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (remotePipeline && !remotePipelineCalibration) verifyRemotePipeline(memory,evidence,remotePipelineLabor);
   if (remotePipelineService && !remotePipelineCalibration) verifyPipelineService(memory,evidence);
   if (remotePipelineCalibration) verifyPipelineCalibration(memory,evidence);
+  if (remotePipelineCalibrationLong) verifyRemotePipeline(memory,evidence,true,true);
   if (reservationPopulation) (reservationPopulationCancellation ? verifyReservationPopulationCancellation : reservationPopulationAdmission ? verifyReservationPopulationAdmission : verifyReservationPopulation)(memory,evidence);
   if (reservationSelection) verifyReservationSelection(memory,evidence);
   if (roomReservation) verifyRoomReservation(memory,evidence);

@@ -13,16 +13,20 @@ async function changeRemotePipeline(server,bot,modules,index) {
   await server.driver.activateRoom(['W0N1','E0N1']);
   return reloadStampDraft(server,bot,modules,index,[20,310,590,860]);
 }
-function verifyRemotePipeline(memory,evidence,labor = false) {
+function verifyRemotePipeline(memory,evidence,labor = false,unreserved = false) {
   const rows = memory.pipelineRows, last = rows.at(-1);
   evidence.remotePipeline = { rows,births: memory.pipelineBirths,remoteReceipts: memory.pipelineRemote,localReceipts: memory.pipelineLocal,reloads: memory.stampReloads };
   assert.equal(rows.length,1000); assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   assert.equal(rows[0].visible,false); assert.equal(rows[0].lease,null); assert.ok(rows[0].units.every(unit => unit.spawning));
   assert.ok(rows.some(row => row.units.some(unit => unit.family === 'scout' && unit.room === 'E0N1')),'recruited scout must reveal the remote');
-  assert.ok(rows.some(row => row.discovered.includes('E0N1') && row.lease?.reserve),'ordinary discovery/management must select priced reservation');
-  for (const family of ['scout','distributor','miner','courier','reserver']) assert.ok(Object.values(memory.pipelineBirths).some(birth => birth.family === family),family+' must be recruited');
-  assert.ok(rows.some(row => row.reservation > 5 && row.units.some(unit => unit.family === 'reserver' && !unit.spawning && unit.room === 'E0N1')),'recruited reserver must actually buffer the controller');
-  assert.ok(rows.some(row => row.source?.capacity === 3000),'reservation must affect observed source capacity');
+  assert.ok(rows.some(row => row.discovered.includes('E0N1') && row.lease && row.lease.reserve === !unreserved),'ordinary discovery/management must select priced reservation');
+  for (const family of ['scout','distributor','miner','courier',...(unreserved ? [] : ['reserver'])]) assert.ok(Object.values(memory.pipelineBirths).some(birth => birth.family === family),family+' must be recruited');
+  if (!unreserved) assert.ok(rows.some(row => row.reservation > 5 && row.units.some(unit => unit.family === 'reserver' && !unit.spawning && unit.room === 'E0N1')),'recruited reserver must actually buffer the controller');
+  if (!unreserved) assert.ok(rows.some(row => row.source?.capacity === 3000),'reservation must affect observed source capacity');
+  else {
+    assert.ok(rows.every(row => row.reservation === null && (!row.source || row.source.capacity === 1500)));
+    assert.ok(Object.values(memory.pipelineBirths).every(birth => birth.family !== 'reserver'));
+  }
   assert.ok(rows.some(row => row.quantityClaims > 0 && row.miningClaims > 0),'probe must observe owned resource claims before cleanup');
   assert.ok(Object.values(memory.pipelineBirths).every(birth => birth.activeAt !== undefined),'stable one-outpost startup must not churn cancelled births');
   assert.ok(Object.values(memory.pipelineBirths).filter(birth => ['miner','courier','reserver'].includes(birth.family)).every(birth => birth.target === 'E0N1'),'blocked adjacent rooms must not acquire workforce');
