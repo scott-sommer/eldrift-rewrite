@@ -1,3 +1,4 @@
+import { admitPipelineEconomic } from './pipeline-economic';
 import { capturePipelineCalibration, noteCalibrationPolicy } from './pipeline-cohort-calibration';
 import { createRemoteFleetStore } from '../../src/features/remotes/fleet/store';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
@@ -18,6 +19,7 @@ function placement(profile: Readonly<RemoteFleetProfile>) {
   const plan = selected(profile); return plan ? { spawn: plan.spawn.id,exit: { ...plan.spawn.exit } } : null;
 }
 export const pipelineServicePolicy: RemoteFleetBirthPolicy = {
+  admit: (profile,request,config) => admitPipelineEconomic(state,profile,request,config),
   prepare(profile,config,guard) {
     if (!(Memory as PipelineServiceMemory).pipelineServiceMode) return undefined;
     noteCalibrationPolicy('prepare-'+profile.kind);

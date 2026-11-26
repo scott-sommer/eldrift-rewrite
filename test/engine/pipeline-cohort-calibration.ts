@@ -1,3 +1,5 @@
+import { forecastPipelineCalibration } from './pipeline-economic';
+import type { PipelineEconomicContext, NativeCalibrationQuote } from './pipeline-economic';
 import { defaultMiningRepairPolicy } from '../../src/capabilities/mining/repair-policy';
 import { createNativeStartupTravel } from '../../src/app/remotes/startup/travel/native';
 import { createNativeStartupProjection } from '../../src/app/remotes/startup/projection/native';
@@ -9,8 +11,7 @@ import type { StatePort } from '../../src/persistence/versioned-state';
 import type { RuntimeConfig } from '../../src/config/model';
 import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model';
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
-import type { NativeStartupQuote } from '../../src/app/remotes/startup/projection/model';
-interface CalibrationProof { quote: NativeStartupQuote; input: ReturnType<typeof encodeStartupPlanningInput>; result: ReturnType<typeof forecastStartupProject>; horizon: number; frames: { tick: number; remaining: number | null; spawning: string | null; occupants: string[]; units: { name: string; room: string; x: number; y: number; fatigue: number; cargo: number }[] }[]; events: { tick: number; actor: string; action: string; amount: number }[] }
+export interface CalibrationProof { economic?: PipelineEconomicContext; quote: NativeCalibrationQuote; input: ReturnType<typeof encodeStartupPlanningInput>; result: ReturnType<typeof forecastStartupProject>; horizon: number; frames: { tick: number; remaining: number | null; spawning: string | null; occupants: string[]; units: { name: string; room: string; x: number; y: number; fatigue: number; cargo: number }[] }[]; events: { tick: number; actor: string; action: string; amount: number }[] }
 export interface CalibrationMemory extends Memory { pipelineCalibrationHorizon?: number; pipelineCalibrationMode?: boolean; pipelineCalibration?: CalibrationProof; pipelineCalibrationAttempts?: { tick: number; reason: string }[]; pipelineCalibrationPolicy?: Record<string,{ count: number; lastAt: number }> }
 export function capturePipelineCalibration(state: StatePort, profile: Readonly<RemoteFleetProfile>, plan: StartupTravelPlan, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean {
   const memory = Memory as CalibrationMemory;
@@ -21,7 +22,9 @@ export function capturePipelineCalibration(state: StatePort, profile: Readonly<R
   if (quote.status !== 'complete') return deferred(memory,quote.reason);
   const horizon = memory.pipelineCalibrationHorizon ?? 120, projected = createNativeStartupProjection(state)(quote,{ horizon,protectedEnergy: 0,births: calibrationBirths(state,quote,config),unaffordable: 'skip',repairPolicy: defaultMiningRepairPolicy,refills: [],householdFlows: [],sinkChanges: [] },guard);
   if (projected.status !== 'ready') return deferred(memory,projected.reason);
-  memory.pipelineCalibration = { quote,input: encodeStartupPlanningInput(projected.input),result: forecastStartupProject(projected.input),horizon,frames: [],events: [] };
+  const forecast = forecastPipelineCalibration(state,profile,quote,projected.input,config,horizon,guard);
+  if (forecast.status !== 'ready') return deferred(memory,forecast.reason);
+  memory.pipelineCalibration = { ...('economic' in forecast ? { economic: forecast.economic } : {}),quote,input: encodeStartupPlanningInput(projected.input),result: forecast.result,horizon,frames: [],events: [] };
   return true;
 }
 function deferred(memory: CalibrationMemory, reason: string): false {

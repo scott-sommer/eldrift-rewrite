@@ -40,7 +40,8 @@ const remoteCapacityMode = ['idle','starved','busy','off'].find(mode => process.
 const { remoteCapacityWorld,changeRemoteCapacity,verifyRemoteCapacity } = require('./remote-capacity.cjs');
 const reservationVision = process.argv.includes('--reservation-vision');
 const { reservationVisionWorld,changeReservationVision,verifyReservationVision } = require('./reservation-vision.cjs');
-const remotePipelineCalibrationLong = process.argv.includes('--remote-pipeline-calibration-long');
+const remotePipelineEconomic = process.argv.includes('--remote-pipeline-economic');
+const remotePipelineCalibrationLong = remotePipelineEconomic || process.argv.includes('--remote-pipeline-calibration-long');
 const remotePipelineCalibration = remotePipelineCalibrationLong || process.argv.includes('--remote-pipeline-calibration');
 const remotePipelineService = remotePipelineCalibration || process.argv.includes('--remote-pipeline-service');
 const remotePipelineLabor = remotePipelineService || process.argv.includes('--remote-pipeline-labor');
@@ -405,7 +406,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (reachabilityMode) modules.main = await actionBundle(root,'remote-reachability-'+reachabilityMode+'-bot');
   if (remoteCapacityMode) modules.main = await actionBundle(root,'remote-capacity-'+remoteCapacityMode+'-bot');
   if (reservationVision) modules.main = await actionBundle(root,'reservation-vision-bot');
-  if (remotePipeline) modules.main = await actionBundle(root,remotePipelineLabor ? 'remote-pipeline-labor-bot' : 'remote-pipeline-bot')+'\nMemory.pipelineServiceMode = '+JSON.stringify(remotePipelineService)+'; Memory.pipelineCalibrationMode = '+JSON.stringify(remotePipelineCalibration)+'; Memory.pipelineCalibrationHorizon = '+JSON.stringify(remotePipelineCalibrationLong ? 767 : 120)+';';
+  if (remotePipeline) modules.main = await actionBundle(root,remotePipelineLabor ? 'remote-pipeline-labor-bot' : 'remote-pipeline-bot')+'\nMemory.pipelineServiceMode = '+JSON.stringify(remotePipelineService)+'; Memory.pipelineCalibrationMode = '+JSON.stringify(remotePipelineCalibration)+'; Memory.pipelineCalibrationHorizon = '+JSON.stringify(remotePipelineCalibrationLong ? 767 : 120)+'; Memory.pipelineEconomicMode = '+JSON.stringify(remotePipelineEconomic)+';';
   if (reservationPopulation) modules.main = await actionBundle(root,reservationPopulationCancellation ? 'reservation-population-cancel-bot' : reservationPopulationAdmission ? 'reservation-population-admission-bot' : 'reservation-population-bot');
   if (reservationSelection) modules.main = await actionBundle(root,'reservation-selection-bot');
   if (roomReservation) modules.main = await actionBundle(root,'room-reservation-bot');

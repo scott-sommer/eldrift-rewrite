@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 function verifyPipelineCalibration(memory,evidence) {
-  const proof = memory.pipelineCalibration; evidence.pipelineCalibration = { proof,rows: memory.pipelineRows,births: memory.pipelineBirths,attempts: memory.pipelineCalibrationAttempts,policy: memory.pipelineCalibrationPolicy }; assert.ok(proof);
+  const proof = memory.pipelineCalibration; evidence.pipelineCalibration = { proof,rows: memory.pipelineRows,births: memory.pipelineBirths,attempts: memory.pipelineCalibrationAttempts,policy: memory.pipelineCalibrationPolicy,economicChecks: memory.pipelineEconomicChecks }; assert.ok(proof);
   const epoch = proof.quote.observedAt, cutoff = epoch+proof.horizon, rows = memory.pipelineRows;
   const actualBirths = proof.result.spawning.births.map(birth => { const observed = memory.pipelineBirths[birth.request]; return { request: birth.request,predictedStart: epoch+birth.startAt,actualStart: observed?.seenAt,predictedActive: epoch+birth.activeAt,actualActive: observed?.activeAt }; });
   const predictedMining = epoch+proof.result.spawning.births.find(birth => proof.input.project.workers.some(worker => worker.request === birth.request)).activeAt+proof.quote.legs.find(leg => leg.kind === 'miner-approach').ticks;
@@ -16,6 +16,12 @@ function verifyPipelineCalibration(memory,evidence) {
   assert.equal(firstIncome,comparison.firstIncome.predicted,'First settled receipt must match the projected calendar');
   assert.deepEqual(actualReceipts,predictedReceipts,'Every settled receipt frame and amount must match the prospective calendar');
   assert.equal(repairs.actual,repairs.predicted,'Native upkeep spend must match the projection');
+  if (memory.pipelineEconomicMode) {
+    assert.ok(proof.economic);
+    const accepted = memory.pipelineEconomicChecks.filter(check => check.allowed);
+    assert.deepEqual(accepted.map(check => ({ request: check.request,tick: check.tick })),actualBirths.map(birth => ({ request: birth.request,tick: birth.actualStart })));
+    assert.ok(accepted.every(check => check.bindingMatches));
+  }
   assert.equal(comparison.harvested.actual,comparison.harvested.predicted); assert.equal(comparison.delivered.actual,comparison.delivered.predicted);
 }
 module.exports = { verifyPipelineCalibration };
