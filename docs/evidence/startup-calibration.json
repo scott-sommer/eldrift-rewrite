@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Prospective finite cohort operating-period calibration through799: exact births, extraction, all64 receipts and upkeep across depletion/regeneration; eight failures retained and ordinary/selected-service regressions. No automatic adoption, full withdrawal forecast, shared-capital or infrastructure-payback claim.",
+  "scope": "Prospective finite ready-container cohort through799 with exact births, extraction,64 receipts and upkeep across depletion/regeneration; realized household labor/capital/loaded withdrawal/cleanup closing gates through1000. No post-cutoff cargo credit or automatic adoption. Eight failures retained.",
   "native": [
     {
       "scenario": "initial-phase",
@@ -159,6 +159,22 @@
       "rawEncoding": "gzip",
       "rawSha256": "f0b3250be6dfdfac59ccaf80af8362143230e42ebd68657e1b1823c86c7d3bb3",
       "uncompressedSha256": "1f1c227b30193a7039a811904a87358f8e88932b540da4195d3df171fb7295e8"
+    },
+    {
+      "scenario": "long-closing-gates",
+      "nativeSource": "757e525565c19241444bc0381fb0ac24f70b3951",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/long-closing-gates.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2afdc5b7837c1879d71aef609e1f3037b8fadf19686c0802ccca0f1838715f36",
+      "uncompressedSha256": "f37a01ec2e30e9dd1bee89b95f7d4459a572c96f582f78a5f5fba85f32d5f61d",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-calibration/long-closing-rows.jsonl",
+          "rowsSha256": "36f79e0268f9b13162356a6a797159f4760ca9cf678e65eb94b802f425e3c186",
+          "rows": 1000
+        }
+      ]
     }
   ]
 }
