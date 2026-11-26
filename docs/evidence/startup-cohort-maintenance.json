@@ -1,0 +1,38 @@
+{
+  "issue": "ED-29",
+  "scope": "Producer-side exact invalid cohort cleanup without fixture queue cancellation; paid-body preservation, restored-context refusal, unrelated state/withdrawal cleanup and accepted economic cohort regression. Default proposal generation/replanning remain open.",
+  "native": [
+    {
+      "scenario": "changed-policy",
+      "nativeSource": "5c9b7de57b0a2a24d3aa8eb275aeb83ef45425b2",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-cohort-maintenance-changed-policy.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "15b20e125a0f871d1f290645546aa0cf3e29fcb4201f5bd2723e4551bec49051",
+      "uncompressedSha256": "41c448f66686bb6b91dec282d46ef74d75e3fd0976e3db341825655ab24274d1",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-cohort-maintenance-changed-policy.jsonl",
+          "rowsSha256": "d923087fd7daa1ea72f24a27cbc00f2d761bea3306e8e3846db3ae0460e87088",
+          "rows": 2
+        }
+      ]
+    },
+    {
+      "scenario": "accepted",
+      "nativeSource": "5c9b7de57b0a2a24d3aa8eb275aeb83ef45425b2",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-cohort-maintenance-accepted.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "931a65881a329c5d62b30ee37241af1e0109b4401f11bd3b2103c3d8ee8cc046",
+      "uncompressedSha256": "48c56d1d0c84214146ae9cc6ac7bf494310ab7ebb90b65a9e47ae5aa9ba4c471",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-cohort-maintenance-accepted.jsonl",
+          "rowsSha256": "8a68b4e40eebc92f2796a5aac0f39aaff6f63920a35dc39cd219248b1bfb57cf",
+          "rows": 3
+        }
+      ]
+    }
+  ]
+}
