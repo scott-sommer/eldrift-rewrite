@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Assigned hauling lookup and uncertainty preservation. Two focused passes; exact 5ms calendar failed; supported-budget run timed out and is not qualification.",
+  "native": [
+    {
+      "scenario": "unknown-delivery",
+      "nativeSource": "b500d544b9994bcab7c159455bf0ef2bc5b2a822",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-hauling-reads-unknown-delivery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "76b6148e1b6120a71bced7165f39e4854deabf77c8b08483ca92507244616542",
+      "uncompressedSha256": "ecb50d28efc8438073ec3037f2aa478fd72749cebe6329b8513ac8b4dc8c8292"
+    },
+    {
+      "scenario": "unknown-recovery",
+      "nativeSource": "b500d544b9994bcab7c159455bf0ef2bc5b2a822",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-hauling-reads-unknown-recovery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "cff6cf4ffa708b837e595d1a2bd0917f27861d7b23279ee4cddd471cfc8bb6d0",
+      "uncompressedSha256": "8f65a68ec11e5f36a141b91308b6fe514f748a39605422a5d1ef9c1b5d1201eb"
+    },
+    {
+      "scenario": "configured-budget",
+      "nativeSource": "b500d544b9994bcab7c159455bf0ef2bc5b2a822",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-hauling-reads-configured-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9e38fe6205208b8f277acb5cf8ee0d2ce2be8b415c967fda3f8547c3ea040f44",
+      "uncompressedSha256": "e5066886fe19a4805e63b551ee1061ce7c0726b2fe19d08d1e5f5a71580ea498"
+    },
+    {
+      "scenario": "configured-timeout",
+      "nativeSource": "b500d544b9994bcab7c159455bf0ef2bc5b2a822",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-hauling-reads-configured-timeout.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "68ab756f412e7bdec4e104eff4a52430d0a99f478ccac44e15e2090131a8c16f",
+      "uncompressedSha256": "ed3ad25e1dad052b7a22fba06f1d96c80b82f959a8298e868c22b14d170c510d"
+    }
+  ]
+}
