@@ -1,0 +1,45 @@
+{
+  "issue": "ED-29",
+  "scope": "Production configured economic cohort, bounded future planning with mid-planning reload, exact native birth/receipt calendar and closing capital; ordinary transport and staged refusal regressions. Broader schedules/shared capital/replanning campaigns/default-budget pressure remain open.",
+  "native": [
+    {
+      "scenario": "configured",
+      "nativeSource": "14ece8a6d3436afe856515582ca3d0985ef29729",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c8f50ce3b4f2be04ab4ff96d5c579beb8a3879eadd017a0d8cf1158a2de4b37e",
+      "uncompressedSha256": "f26858cdf339331bee2d4f42807a836f31dadbced83a7fcfb042e7b50895e476",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-configured-planning.jsonl",
+          "rowsSha256": "ec9c80882f377e6ec9de59a685d9324aeb2d1ef3d65011b7fa8f335dfdbf3f34",
+          "rows": 24
+        },
+        {
+          "rowsFile": "docs/evidence/startup-configured-receipts.jsonl",
+          "rowsSha256": "de41d245c3088ebbc05fb7a88cc5878a7313cf69da069ad7de0159f6a3d4ba61",
+          "rows": 61
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "14ece8a6d3436afe856515582ca3d0985ef29729",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-ordinary-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "db5fa0b6dd34b549d7e968c523aedeff61bc08beafff213e2fdedf772a33b42e",
+      "uncompressedSha256": "61f735d1805cdd96e7427291bf6fd80478e5b1a5523bf8898c7e3e9672f8050f"
+    },
+    {
+      "scenario": "staged-refusal",
+      "nativeSource": "14ece8a6d3436afe856515582ca3d0985ef29729",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-staged-refusal.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "263f11bb07d279bfbfb88fd10f2aa7a1b99b1ea9c93827c1cae2a7411383fb69",
+      "uncompressedSha256": "0f06febfe1f537ba3f6829178e70404481fb76c805c19d89454011ab4e9a5af3"
+    }
+  ]
+}
