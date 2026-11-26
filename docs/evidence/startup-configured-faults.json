@@ -1,0 +1,132 @@
+{
+  "issue": "ED-29",
+  "scope": "Configured policy-change and refusal qualification, latest accepted/ordinary regressions, preserved verifier failure and real5ms planning starvation/diagnostic failures. Default-budget viability is NOT achieved.",
+  "native": [
+    {
+      "scenario": "refusal-verifier-initial",
+      "nativeSource": "170aee2102f4e66b6377992699892f90d4f1bb46",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-configured-faults-refusal-verifier-initial.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0d4a3bd7f4030a2c023067ed322c534203074753ff8d93b6eb742e755fe9019f",
+      "uncompressedSha256": "cf5457090e3d9b24530bf86ebfe89db0c56f7b0a46e5358569fd68c50d01ab83"
+    },
+    {
+      "scenario": "budget-initial",
+      "nativeSource": "170aee2102f4e66b6377992699892f90d4f1bb46",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-configured-faults-budget-initial.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "75f3fe2cbd524f69aae3946f98502791959e312719738a62525901bd2604e045",
+      "uncompressedSha256": "75e1f6c6c4269b96a28c78bb3b369af19418d3e9f3c65de975ddac4f76d8c571"
+    },
+    {
+      "scenario": "policy-change",
+      "nativeSource": "170aee2102f4e66b6377992699892f90d4f1bb46",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-faults-policy-change.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c5bae6cb37c941ed3d5ca84641c4ee29faecd53a48c7dbf5c69cebec4651e55b",
+      "uncompressedSha256": "41dc8f08365613b801d798e86b57537ca3a6d4f76de078e43fa7e7ad16463e23",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-configured-faults-policy-change-planning.jsonl",
+          "rowsSha256": "96ce85cbdd3f48e90594395d29382489cd31c61edbea9b4a8f334747e59d074c",
+          "rows": 55
+        },
+        {
+          "rowsFile": "docs/evidence/startup-configured-faults-policy-change-receipts.jsonl",
+          "rowsSha256": "6962fe1766be0f83aa32a9453841033f9a7e51fcaaa1332801e6a4bab09de940",
+          "rows": 50
+        }
+      ]
+    },
+    {
+      "scenario": "budget-stage-trace",
+      "nativeSource": "eddb6882d28203ff5c8c9e80759f8e525526b433",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-configured-faults-budget-stage-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5d79ef67b094040a7fbbc755c82e8fa8b6b02fdab7e0f63bd702bc744b5fc284",
+      "uncompressedSha256": "10b989b0eb825431b1e07fcecbf8587cc5d4680342c9bd562567eb9181834f23"
+    },
+    {
+      "scenario": "refusal-corrected",
+      "nativeSource": "eddb6882d28203ff5c8c9e80759f8e525526b433",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-faults-refusal-corrected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e57f065d8617904aad1acf880962a7c45a88eee783c60e98353c0b6689b05e8a",
+      "uncompressedSha256": "96beb2fcaef181c2051e007040684bab9fd9bdb9fb474a8a8760e6f05984918f"
+    },
+    {
+      "scenario": "budget-staging-trace",
+      "nativeSource": "d0bfe216ae917b3779133b0a8c83a0a3e53e3373",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-configured-faults-budget-staging-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2a5939cf0b956cd5a50a1a6a68ba9d7f3e328232ee40aad9dca6a23f7b83fcf3",
+      "uncompressedSha256": "1ae1eeaed7242129c1ee5bca806d460759c7eeeb5a66e15a8d9f42cb80acd49a"
+    },
+    {
+      "scenario": "budget-preserved-trace",
+      "nativeSource": "082f18e54848cc0016b46fd2716b001e61d31245",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-configured-faults-budget-preserved-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e72e2c37f53c259455c59e3ce55ec051696348f725e44b120656c5da89043f66",
+      "uncompressedSha256": "b89ffbf2fb69b87215e829a310784515919c09bc999cd91c672f90ec9a6bbc9a",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-configured-faults-budget-preserved-trace-planning.jsonl",
+          "rowsSha256": "f869ef1c0fa3df2e321613bf2df9b3aa4b5e24c854343522527d5c56d2a23790",
+          "rows": 2
+        },
+        {
+          "rowsFile": "docs/evidence/startup-configured-faults-budget-preserved-trace-phases.jsonl",
+          "rowsSha256": "35b84d57dd5e84dca2f54a1281337fc9ecc259d167aa819aee59a145902067a8",
+          "rows": 200
+        }
+      ]
+    },
+    {
+      "scenario": "configured-regression",
+      "nativeSource": "082f18e54848cc0016b46fd2716b001e61d31245",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-faults-configured-regression.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "67dce152ab83554a9be3c03469add917dad0d75d84dcdafa555abf54fc57e6e0",
+      "uncompressedSha256": "85abf4749de06c635f50844feff1b3499f2a44008e8b9e568911850b54e1afe5",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-configured-faults-configured-regression-planning.jsonl",
+          "rowsSha256": "ec9c80882f377e6ec9de59a685d9324aeb2d1ef3d65011b7fa8f335dfdbf3f34",
+          "rows": 24
+        },
+        {
+          "rowsFile": "docs/evidence/startup-configured-faults-configured-regression-receipts.jsonl",
+          "rowsSha256": "de41d245c3088ebbc05fb7a88cc5878a7313cf69da069ad7de0159f6a3d4ba61",
+          "rows": 61
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "082f18e54848cc0016b46fd2716b001e61d31245",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-faults-ordinary-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c682d8de743908f0004d812498a4d02a5ac1a636fe6a3efd0d606f6b4428e07d",
+      "uncompressedSha256": "cafc35e6660c50cd1e60e35751fc4ac8466fcce2f0b6466a2e76a5d785611c24"
+    },
+    {
+      "scenario": "refusal-latest",
+      "nativeSource": "082f18e54848cc0016b46fd2716b001e61d31245",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-configured-faults-refusal-latest.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "788cfd8657ead4da44e5490fa5a5a8f7484e7c8c6e6536d2d8f226c2cbfb1f66",
+      "uncompressedSha256": "168ba0cf26fec6492352c7bb89874dbdf515d3efb43d17301928a95b7fd59280"
+    }
+  ]
+}
