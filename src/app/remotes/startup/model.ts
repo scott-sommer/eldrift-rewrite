@@ -12,7 +12,9 @@ export type StartupSurvey = (room: string,source: string) => SourceStartupSurvey
 
 /** Undefined permits ordinary allocation; null defers births; placement binds a selected origin. */
 export type RemoteBirthSelection = SpawnPlacement | null | undefined;
+export type RemoteStartupProbe = (profile: Readonly<RemoteFleetProfile>, phase: string) => void;
 export interface RemoteFleetBirthPolicy {
+  trace?: RemoteStartupProbe;
   /** Cohort identity persists on each request; losing the reader must never remove its final fence. */
   cohort?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): RemoteStartupAdmission | undefined;
   /** Undefined retains ordinary geometry; null withdraws productive service. */

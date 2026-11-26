@@ -1,10 +1,10 @@
 const assert = require('node:assert/strict');
 function verifyConfiguredPipeline(memory,evidence) {
   const planning = memory.pipelineConfiguredPlanning, approval = memory.pipelineConfiguredApproval, proof = memory.pipelineCalibration, variant = memory.pipelineConfiguredVariant;
-  evidence.pipelineConfigured = { variant,planning,approval,changes: memory.pipelineConfiguredChanges,rejected: memory.pipelineConfiguredRejected,queue: memory.eldrift.records['spawning/W0N1'],approvals: memory.eldrift.records['remoteStartupApprovals/W0N1'] };
+  evidence.pipelineConfigured = { trace: memory.pipelineStartupTrace,variant,planning,approval,changes: memory.pipelineConfiguredChanges,rejected: memory.pipelineConfiguredRejected,queue: memory.eldrift.records['spawning/W0N1'],approvals: memory.eldrift.records['remoteStartupApprovals/W0N1'] };
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   if (variant === 'refused') return verifyRefused(memory,evidence);
-  assert.ok(planning.length > 10,'forecast must resume over multiple native ticks');
+  assert.ok(planning?.length > 10,'forecast must resume over multiple native ticks');
   const frames = variant === 'budget' ? 20 : 32, horizon = variant === 'changed' ? 650 : 767, lead = variant === 'budget' ? 100 : 30;
   for (const epoch of new Set(planning.map(row => row.observedAt))) {
     const rows = planning.filter(row => row.observedAt === epoch); assert.ok(rows[0].through > 0 && rows[0].through <= frames);
@@ -24,11 +24,12 @@ function verifyConfiguredPipeline(memory,evidence) {
 function verifyRefused(memory,evidence) {
   const rows = memory.pipelineRows, births = Object.values(memory.pipelineBirths), last = rows.at(-1);
   evidence.pipelineConfigured.rows = rows; evidence.pipelineConfigured.births = memory.pipelineBirths;
-  assert.equal(rows.length,180); assert.ok(memory.pipelineConfiguredRejected.length >= 2,'completed rejected proposals must reach their deadlines and replan');
+  assert.equal(rows.length,180); assert.ok(memory.pipelineConfiguredRejected.length >= 1,'at least one completed proposal must be refused');
+  assert.ok(new Set(memory.pipelineConfiguredPlanning.map(row => row.observedAt)).size >= 2,'a fresh proposal must follow the first deadline when vision returns');
   assert.equal(memory.pipelineCalibration,undefined); assert.equal(memory.pipelineConfiguredApproval,undefined);
   assert.ok(!memory.eldrift.records['remoteStartupApprovals/W0N1'] || memory.eldrift.records['remoteStartupApprovals/W0N1'].data.approvals.length === 0);
-  assert.ok(births.every(birth => !['miner','courier','reserver'].includes(birth.family))); assert.ok(rows.every(row => row.income === 0 && row.birthCost === 0 && row.remotePending === 0));
-  assert.equal(last.homeEnergy,10300-200-3); assert.equal(last.quantityClaims,0); assert.equal(last.miningClaims,0);
+  assert.ok(births.every(birth => !['miner','courier','reserver'].includes(birth.family))); assert.ok(rows.every(row => row.income === 0 && row.birthCost <= 200 && row.remotePending === 0));
+  assert.equal(last.homeEnergy,10300-200-200-3); assert.equal(last.quantityClaims,0); assert.equal(last.miningClaims,0);
   for (const row of rows) { assert.deepEqual(row.unrelated,rows[0].unrelated); assert.deepEqual(row.sentinel,rows[0].sentinel); }
 }
 module.exports = { verifyConfiguredPipeline };

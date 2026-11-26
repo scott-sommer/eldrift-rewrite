@@ -1,3 +1,4 @@
+import type { RemoteStartupProbe } from '../../src/app/remotes/startup/model';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 import type { StatePort } from '../../src/persistence/versioned-state';
@@ -17,3 +18,8 @@ export function changeConfiguredPolicy(state: StatePort, memory: ConfiguredPipel
   saveState(state,'operator/config',operatorSchema,record);
   (memory.pipelineConfiguredChanges ??= []).push(Game.time);
 }
+
+export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
+  const rows = (Memory as ConfiguredPipelineMemory).pipelineStartupTrace ??= [];
+  if (rows.length < 200) rows.push({ tick: Game.time,phase,owner: profile.owner,cpu: Game.cpu.getUsed() });
+};

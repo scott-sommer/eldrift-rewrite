@@ -14,6 +14,7 @@ import type { createNativeDispatch } from '../../native-dispatch';
 /** Birth planning never owns fleet state or cancels a paid body just because new planning is pending. */
 export function createRemoteProfileRecruitment(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, births?: RemoteFleetBirthPolicy) {
   return (profile: RemoteFleetProfile, target: number, roster: ReturnType<typeof observePopulation>, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean => {
+    births?.trace?.(profile,'profile:enter');
     if (!guard()) return false;
     const placement = target > 0 ? prepareBirth(births,profile,config,guard) : undefined;
     if (!guard()) return false;

@@ -11,7 +11,7 @@ import { createNativeBoosts } from './native-boosts';
 import { createNativeLabs } from './native-labs';
 import { observeTransfer } from '../adapters/screeps/transfer-observation';
 import { settleHaulingTask } from './settle-hauling-task';
-import type { RemoteFleetBirthPolicy } from './remotes/startup/model';
+import type { RemoteFleetBirthPolicy, RemoteStartupProbe } from './remotes/startup/model';
 import { createNativeRemoteStartup } from './remotes/startup/native';
 import { createNativeRemoteReachabilityFeature } from './remotes/reachability/feature';
 import { admitReachableRemoteSpawn } from './remotes/reachability/policy';
@@ -57,7 +57,7 @@ import { createPersistentConfiguration } from './persistent-configuration';
 import { createGamePorts } from '../adapters/screeps/runtime';
 import { createMemoryPort } from '../adapters/screeps/memory';
 
-export interface NativeBotOptions { remoteBirths?: RemoteFleetBirthPolicy; spawnEnergyPolicy?: typeof explicitSpawnEnergyPolicy }
+export interface NativeBotOptions { remoteBirths?: RemoteFleetBirthPolicy; remoteStartupProbe?: RemoteStartupProbe; spawnEnergyPolicy?: typeof explicitSpawnEnergyPolicy }
 /** One composition root; injected planning policy shares ordinary recruitment and final dispatch. */
 export function createNativeBot(options: NativeBotOptions = {}) {
   const constructionLedger = createConstructionReservationLedger();
@@ -87,7 +87,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
     const policy = nativeWorkerSettings(owner,home,runtimeConfig(home));
     return !!policy?.workersEnabled && policy.workerSpawningEnabled;
   },taskDefinitions);
-  const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths ?? createNativeEconomicStartup(state,dispatch.structures));
+  const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths ?? createNativeEconomicStartup(state,dispatch.structures,options.remoteStartupProbe));
   const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, taskDefinitions, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time), withLaborReceiptRetirement(unit => settleHaulingTask(state,taskDefinitions,unit,observeTransfer)));

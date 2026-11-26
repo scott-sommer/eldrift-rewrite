@@ -1,3 +1,4 @@
+import { captureStartupTrace } from './pipeline-configured-policy';
 import { observeConfiguredPipeline } from './pipeline-configured';
 import type { ConfiguredPipelineMemory } from './pipeline-configured';
 import { changePipelineEconomicPolicy } from './pipeline-economic';
@@ -18,7 +19,7 @@ interface PipelineLaborMemory extends Memory { pipelineLabor?: { proposal: Labor
 const state = createMemoryPort(() => Memory);
 let runtime: ReturnType<typeof createNativeBot> | undefined;
 export function loop(): void {
-  runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
+  runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredTraceMode ? { remoteStartupProbe: captureStartupTrace } : {}),...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
   runPipeline(() => withPipelineServiceProbe(runtime!),before,probe);
 }
 function before(): void {

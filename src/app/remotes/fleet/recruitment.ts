@@ -23,6 +23,7 @@ export function createNativeRemoteRecruitment(state: StatePort, dispatch: Return
     if (!room?.controller?.my) return;
     const deadline = Math.min(Game.cpu.getUsed()+config.remoteWorkerCpuBudget,Game.cpu.tickLimit*0.9), guard = () => Game.cpu.getUsed() < deadline;
     if (!remoteFleetSpawningEnabled(config)) { cancelFleetSpawns(state,dispatch,home,record.actors); return; }
+    births?.trace?.(record.actors[record.next%record.actors.length]!,'scan:enter');
     const safe = new Map<string,boolean>(), roster = observePopulation(); let processed = 0;
     function desired(profile: RemoteFleetProfile): number {
       if (!remoteFleetBodyAllowed(profile.body,profile.kind,room!,config) || !resolveRemoteFleetAssignment(assignments,profile,Game.time)) return 0;

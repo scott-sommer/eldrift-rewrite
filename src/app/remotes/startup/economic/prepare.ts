@@ -8,9 +8,10 @@ import { advanceEconomicProposal } from './advance';
 import type { StatePort } from '../../../../persistence/versioned-state';
 import type { RuntimeConfig } from '../../../../config/model';
 import type { RemoteFleetProfile } from '../../../../features/remotes/fleet/model';
-import type { StartupStructures } from '../model';
+import type { StartupStructures, RemoteStartupProbe } from '../model';
 type StartupGuard = () => boolean;
-export function prepareEconomicCohort(state: StatePort, structures: StartupStructures, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard): boolean {
+export function prepareEconomicCohort(state: StatePort, structures: StartupStructures, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard, trace: RemoteStartupProbe): boolean {
+  trace(profile,'prepare:enter');
   const approvals = createStartupApprovals(state,profile.home), approved = approvedEconomicContext(state,profile,config);
   if (approved) {
     const maintained = createStartupCohortMaintenance(state,profile.home,approvals.result)(approved,new Set(Object.keys(Game.creeps)));
@@ -19,7 +20,7 @@ export function prepareEconomicCohort(state: StatePort, structures: StartupStruc
   let pending = pendingEconomicContext(state,profile,config,guard);
   if (!pending) {
     if (!missingStartupBirths(state,profile,config) || !canStartHomeJob(state,profile)) return false;
-    if (!prepareEconomicProposal(state,structures,profile,config,guard)) return false;
+    if (!prepareEconomicProposal(state,structures,profile,config,guard,trace)) return false;
     pending = pendingEconomicContext(state,profile,config,guard);
   }
   return !!pending && advanceEconomicProposal(state,profile.home,pending,config,guard);
