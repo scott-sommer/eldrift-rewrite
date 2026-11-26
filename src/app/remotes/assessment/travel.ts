@@ -1,3 +1,4 @@
+import { pathTravelClock } from '../../../adapters/screeps/path-travel-clock';
 import { validWorldPosition } from '../../../core/geometry/world-position';
 import { plannedMobility } from '../../../adapters/screeps/travel-estimate';
 import { createNativePathSearch } from '../../../adapters/screeps/path-search';
@@ -6,7 +7,7 @@ import type { BodyPart } from '../../../capabilities/spawning/body';
 import type { Position } from '../../../capabilities/movement/step';
 import { prepareRemoteMatrices } from './matrices';
 import type { RemoteEstimateContext, RemoteTravelResult } from '../../../features/remotes/assessment-model';
-export interface RemoteLegRequest { origin: Position; destination: Position; body: readonly BodyPart[]; load: number; range?: number; blocked?: readonly Position[] }
+export interface RemoteLegRequest { origin: Position; destination: Position; body: readonly BodyPart[]; load: number; range?: number; blocked?: readonly Position[]; clock?: 'action' }
 export function measureRemoteTravel(context: RemoteEstimateContext, origin: Position, rooms: string[], maximumOps: number,
   snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean): RemoteTravelResult {
   const { miner,hauler } = context.request.economics;
@@ -34,7 +35,9 @@ export function measureRemoteLeg(context: Pick<RemoteEstimateContext, 'intel'>, 
     profile: { id: 'remote-static',plainCost: mobility.plainCost,swampCost: mobility.swampCost,maxOps: maximumOps,maxRooms: rooms.length },
     topologyVersion: JSON.stringify([matrices.version,leg.blocked ?? []]),policyVersion: 'remote-assessment-v1' });
   if (result.status !== 'complete') return { status: 'deferred' as const,reason: 'path-incomplete' };
-  return { status: 'complete' as const,ticks: result.cost,operations: result.operations,arrival: result.path.at(-1) ?? leg.origin };
+  const ticks = leg.clock === 'action' ? pathTravelClock(leg.origin,result.path,mobility,point => terrainRate(point,matrices,mobility.roadCost)) : result.cost;
+  if (ticks === undefined) return { status: 'deferred' as const,reason: 'path-clock' };
+  return { status: 'complete' as const,ticks,operations: result.operations,arrival: result.path.at(-1) ?? leg.origin };
 }
 
 /** Request-local overlays never change shared topology snapshots or another body's measurement. */
@@ -45,4 +48,10 @@ function legMatrices(matrices: ReturnType<typeof prepareRemoteMatrices>, blocked
     if (matrix) for (const point of blocked.filter(point => point.room === room)) matrix.set(point.x,point.y,255);
     return matrix;
   };
+}
+
+function terrainRate(point: Position, matrices: ReturnType<typeof prepareRemoteMatrices>, roadCost: number): 1 | 2 | 10 {
+  const matrix = matrices.matrix(point.room);
+  if (matrix && matrix.get(point.x,point.y) === roadCost) return 1;
+  return Game.map.getRoomTerrain(point.room).get(point.x,point.y) & TERRAIN_MASK_SWAMP ? 10 : 2;
 }
