@@ -38,3 +38,14 @@ test('a different queued request, expiry, body, owner or population home cannot 
     expect(f.admit(f.profile,{ ...f.request,...change },f.current)).toBe(false);
   }
 });
+
+test('later slots require every earlier modeled birth with matching actual identity and clocks',() => {
+  const f = fixture(), planned = f.query.input.project.spawning.requests[1]!;
+  const request = { ...planned,readyAt: 1,expiresAt: 101 }, query = { ...f.query,tick: 10 };
+  const profile = { ...f.profile,owner: request.owner,kind: 'courier' as const,body: [...request.body] };
+  const current = { ...f.current,query,tick: 10 };
+  expect(f.admit(profile,request,current)).toBe(false);
+  const prior = { request: f.request.id,owner: f.request.owner,home: f.home,body: f.request.body,startAt: 1,activeAt: 10 };
+  expect(f.admit(profile,request,{ ...current,births: [prior] })).toBe(true);
+  expect(f.admit(profile,request,{ ...current,births: [{ ...prior,activeAt: 11 }] })).toBe(false);
+});

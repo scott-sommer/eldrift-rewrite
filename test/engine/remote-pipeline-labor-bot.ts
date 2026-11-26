@@ -1,3 +1,4 @@
+import { changePipelineEconomicPolicy } from './pipeline-economic';
 import { recordCalibrationFrame } from './pipeline-cohort-calibration';
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 import { pipelineServicePolicy } from './pipeline-service-policy';
@@ -15,6 +16,7 @@ interface PipelineLaborMemory extends Memory { pipelineLabor?: { proposal: Labor
 const state = createMemoryPort(() => Memory), runtime = createNativeBot({ remoteBirths: pipelineServicePolicy,spawnEnergyPolicy: 'spawn-first-range-id-v1' });
 export function loop(): void { runPipeline(() => withPipelineServiceProbe(runtime),before,probe); }
 function before(): void {
+  changePipelineEconomicPolicy(state);
   const memory = Memory as PipelineLaborMemory, publisher = createNativeLaborPublication(state,'W0N1');
   if (Game.time === 1) {
     const config = openState(state,'operator/config',operatorSchema);
