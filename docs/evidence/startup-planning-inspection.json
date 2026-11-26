@@ -1,0 +1,120 @@
+{
+  "issue": "ED-29",
+  "scope": "Validated planning inspections, one-shot restored models, paid geometry views and actor budget fairness; latest supported configured/transport/refusal passes; default5ms exact delivery execution remains FAILED. Nine raw runs retain all6failures, including two intentionally short diagnostics.",
+  "native": [
+    {
+      "scenario": "inspection-probe",
+      "nativeSource": "4e5c941b505057dc762ff7d426eeff5b58d94b04",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-planning-inspection-inspection-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "46298a80d1cadeb6960246317c397aa4eb37310b96ac28c9d239874f57e6fb69",
+      "uncompressedSha256": "fa38f99a1659a5317ca820d0ce78ce20d9a0444307e69169910b341ba5bcb1b4",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-planning-inspection-inspection-probe-planning.jsonl",
+          "rowsSha256": "4cbcee1e5bbd49dd4762f4cf956aef31bcafb706c3b32ea40c8c3d42ad15fc06",
+          "rows": 50
+        }
+      ]
+    },
+    {
+      "scenario": "inspection-deadline",
+      "nativeSource": "4e5c941b505057dc762ff7d426eeff5b58d94b04",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-planning-inspection-inspection-deadline.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "21f75b020a14a7355d27037e08cd6e6273795965c545d00b8be99067407f1bda",
+      "uncompressedSha256": "2dc4ee9434861900cf65c24ffb021cd103cb5de37e7210bc7d95de8c05a6c985"
+    },
+    {
+      "scenario": "restored-model",
+      "nativeSource": "f3c4e09182c813e0d0c1e99927c607e3ca85023c",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-planning-inspection-restored-model.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3ca7319bcfafac46348180db9e6dfcf84d6589a2f68f32820b919360e2566d30",
+      "uncompressedSha256": "418e04e214fb06a303635d865bd1c49182aad3ddcd968953a5278843328b5d46"
+    },
+    {
+      "scenario": "service-view",
+      "nativeSource": "e66839cf7a48b71fc1cac064649e54881ee5c7ec",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-planning-inspection-service-view.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "ce645aa2fbee1370d34043ba167bc6edc0df939faebd744343415c51c4d75a2f",
+      "uncompressedSha256": "adb86719f872777572ce9ff250577faaf0d21a0951d3faa9943554b522eeb31d"
+    },
+    {
+      "scenario": "actor-probe",
+      "nativeSource": "2c00660ffdc661aaf67b9f57a5162eac2bcb072c",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-planning-inspection-actor-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "fc66760c71966cb3bc0bf6b3647beab494ebed5f8596be91bbd091442d09a723",
+      "uncompressedSha256": "c996393e22b6f66244da6a1a6152ed0352ba4bbfd443ecd768bb00d57f17f0ef",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-planning-inspection-actor-probe-phases.jsonl",
+          "rowsSha256": "2fb4e016662175e1e8c96b234a13b77a865fbda884ea24f104751377a6bb3f2e",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "budget-final",
+      "nativeSource": "4071696c878dbd4d67d125ed6ee4fbc98e79c082",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-planning-inspection-budget-final.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "bdfa39082fa0f293d167de5388973ebc763a73f9746abba2ca8d44412db78550",
+      "uncompressedSha256": "6a28aae8305aec02eb8cfb7e6070d62e66fe66c401f3fe843a33528b79315412",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-planning-inspection-budget-final-planning.jsonl",
+          "rowsSha256": "698ab8704c065e968171fb451f9642ad1b5250bff1981b5ba86c173fd9640ca6",
+          "rows": 51
+        },
+        {
+          "rowsFile": "docs/evidence/startup-planning-inspection-budget-final-calendar.jsonl",
+          "rowsSha256": "28529b3d3e33f4869174fcde75f4ac56e111b97a56d2fbfe765b328c36b1c708",
+          "rows": 85
+        }
+      ]
+    },
+    {
+      "scenario": "configured-final",
+      "nativeSource": "4071696c878dbd4d67d125ed6ee4fbc98e79c082",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-planning-inspection-configured-final.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "de01d0914fd1e55f5eaff8a127f2ee03485dc323d4f39ee27c7ee475902c3195",
+      "uncompressedSha256": "28bd7ded45bce44c003f0177580ac9d3fb85db5d0a2c98e08f13bebbaf03dc99",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-planning-inspection-configured-final-receipts.jsonl",
+          "rowsSha256": "de41d245c3088ebbc05fb7a88cc5878a7313cf69da069ad7de0159f6a3d4ba61",
+          "rows": 61
+        }
+      ]
+    },
+    {
+      "scenario": "transport-final",
+      "nativeSource": "4071696c878dbd4d67d125ed6ee4fbc98e79c082",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-planning-inspection-transport-final.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "15dc54cd1717bdd32cee4009af7f643fb462ce976ae7f710d77df3c35f4bc9d1",
+      "uncompressedSha256": "571c35b7fa3febc0346d178eed6e09350d45d802b4447b5e2eb9c95c894644da"
+    },
+    {
+      "scenario": "refused-final",
+      "nativeSource": "4071696c878dbd4d67d125ed6ee4fbc98e79c082",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-planning-inspection-refused-final.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8e9628005634bc61c2276fa7043948ee96af40561c00925f5a610de3cb06fec9",
+      "uncompressedSha256": "f555fbdef82b921064fad46fd41e263ee49575fb8ad1c248d80431d2a5ddebe5"
+    }
+  ]
+}
