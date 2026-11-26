@@ -1,6 +1,6 @@
 const assert = require('node:assert/strict');
 function verifyPipelineCalibration(memory,evidence) {
-  const proof = memory.pipelineCalibration; evidence.pipelineCalibration = { proof,rows: memory.pipelineRows,births: memory.pipelineBirths,attempts: memory.pipelineCalibrationAttempts }; assert.ok(proof);
+  const proof = memory.pipelineCalibration; evidence.pipelineCalibration = { proof,rows: memory.pipelineRows,births: memory.pipelineBirths,attempts: memory.pipelineCalibrationAttempts,policy: memory.pipelineCalibrationPolicy }; assert.ok(proof);
   const epoch = proof.quote.observedAt, cutoff = epoch+proof.horizon, rows = memory.pipelineRows;
   const actualBirths = proof.result.spawning.births.map(birth => { const observed = memory.pipelineBirths[birth.request]; return { request: birth.request,predictedStart: epoch+birth.startAt,actualStart: observed?.seenAt,predictedActive: epoch+birth.activeAt,actualActive: observed?.activeAt }; });
   const predictedMining = epoch+proof.result.spawning.births.find(birth => proof.input.project.workers.some(worker => worker.request === birth.request)).activeAt+proof.quote.legs.find(leg => leg.kind === 'miner-approach').ticks;

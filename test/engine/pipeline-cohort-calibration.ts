@@ -10,11 +10,11 @@ import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model'
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
 import type { NativeStartupQuote } from '../../src/app/remotes/startup/projection/model';
 interface CalibrationProof { quote: NativeStartupQuote; input: ReturnType<typeof encodeStartupPlanningInput>; result: ReturnType<typeof forecastStartupProject>; horizon: number; events: { tick: number; actor: string; action: string; amount: number }[] }
-export interface CalibrationMemory extends Memory { pipelineCalibrationMode?: boolean; pipelineCalibration?: CalibrationProof; pipelineCalibrationAttempts?: { tick: number; reason: string }[] }
+export interface CalibrationMemory extends Memory { pipelineCalibrationMode?: boolean; pipelineCalibration?: CalibrationProof; pipelineCalibrationAttempts?: { tick: number; reason: string }[]; pipelineCalibrationPolicy?: Record<string,{ count: number; lastAt: number }> }
 export function capturePipelineCalibration(state: StatePort, profile: Readonly<RemoteFleetProfile>, plan: StartupTravelPlan, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean {
   const memory = Memory as CalibrationMemory;
   if (!memory.pipelineCalibrationMode || memory.pipelineCalibration) return true;
-  if (profile.kind !== 'miner') return false;
+  if (profile.kind !== 'miner') return deferred(memory,'miner-first');
   const username = Game.rooms[plan.home]!.controller!.owner!.username;
   const quote = createNativeStartupTravel(state,{ availableEnergy: (_home,available) => available },{ maximumRooms: 2,maximumOps: 10000 })({ target: { home: plan.home,room: plan.room,source: plan.source,station: plan.station,endpoint: plan.endpoint.id,username,tick: Game.time },spawn: plan.spawn.id,exit: plan.spawn.exit,collection: plan.collection,deposit: plan.endpoint.deposit,miner: plan.miner,courier: plan.courier,traversal: nativeRemoteTraversalFor(username,config) },5,guard);
   if (quote.status !== 'complete') return deferred(memory,quote.reason);
@@ -31,4 +31,10 @@ export function recordCalibrationCall(creep: Creep, action: string, target: { en
   if (!proof || Game.time > proof.quote.observedAt+proof.horizon) return;
   const energy = action === 'harvest' ? Math.min(creep.getActiveBodyparts(WORK)*HARVEST_POWER,target.energy ?? 0,creep.store.getFreeCapacity(RESOURCE_ENERGY)) : amount ?? 0;
   proof.events.push({ tick: Game.time,actor: creep.name,action,amount: energy });
+}
+
+export function noteCalibrationPolicy(reason: string): void {
+  const memory = Memory as CalibrationMemory; if (!memory.pipelineCalibrationMode) return;
+  const rows = memory.pipelineCalibrationPolicy ??= {}, row = rows[reason] ??= { count: 0,lastAt: Game.time };
+  row.count++; row.lastAt = Game.time;
 }

@@ -1,4 +1,4 @@
-import { capturePipelineCalibration } from './pipeline-cohort-calibration';
+import { capturePipelineCalibration, noteCalibrationPolicy } from './pipeline-cohort-calibration';
 import { createRemoteFleetStore } from '../../src/features/remotes/fleet/store';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
 import { fleetServicePlan } from '../../src/app/remotes/fleet/service-policy';
@@ -20,9 +20,12 @@ function placement(profile: Readonly<RemoteFleetProfile>) {
 export const pipelineServicePolicy: RemoteFleetBirthPolicy = {
   prepare(profile,config,guard) {
     if (!(Memory as PipelineServiceMemory).pipelineServiceMode) return undefined;
+    noteCalibrationPolicy('prepare-'+profile.kind);
     if (selected(profile)) return placement(profile);
-    if (!guard()) return null;
-    const plan = prepare(profile); if (!plan || !capturePipelineCalibration(state,profile,plan,config,guard)) return null;
+    if (!guard()) { noteCalibrationPolicy('guard'); return null; }
+    const plan = prepare(profile);
+    if (!plan) { noteCalibrationPolicy('geometry'); return null; }
+    if (!capturePipelineCalibration(state,profile,plan,config,guard)) { noteCalibrationPolicy('capture'); return null; }
     ((Memory as PipelineServiceMemory).pipelineServicePlans ??= {})[profile.source] = { generation: profile.generation,plan };
     return placement(profile);
   },
