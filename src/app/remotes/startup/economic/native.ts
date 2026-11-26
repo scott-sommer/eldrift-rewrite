@@ -1,3 +1,4 @@
+import { readStartupServiceGeometry } from '../../../../features/remotes/startup/approvals/service-geometry';
 import { createEconomicApprovalViews } from './approval-view';
 import { createEconomicProposalStaging } from './staging';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
@@ -13,7 +14,7 @@ import type { RemoteFleetBirthPolicy, RemoteStartupProbe, StartupStructures } fr
 type StartupGuard = () => boolean;
 /** Configured adapter composition; facts, geometry, forecast, publication and payment keep their existing owners. */
 export function createNativeEconomicStartup(state: StatePort, structures: StartupStructures, trace?: RemoteStartupProbe): RemoteFleetBirthPolicy {
-  const staging = createEconomicProposalStaging(state), views = createEconomicApprovalViews(profile => matchingEconomicApproval(state,profile));
+  const staging = createEconomicProposalStaging(state), views = createEconomicApprovalViews(profile => matchingEconomicApproval(state,profile),profile => readStartupServiceGeometry(state,profile.home,profile,Game.time));
   function current(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
     if (config.remoteStartupPolicy !== 'economic') return undefined;
     const context = approvedEconomicContext(state,profile,config,views.current);

@@ -26,3 +26,12 @@ test('a different body, generation or source cannot borrow cached service geomet
   f.read.mockReturnValue(undefined);
   expect(f.views.service({ ...f.profile,generation: 2 })).toBeUndefined(); expect(f.views.service({ ...f.profile,source: 'other' })).toBeUndefined();
 });
+
+test('cold static projection recovers paid geometry while financial reads remain independent',() => {
+  const f = fixture(), geometry = vi.fn(() => f.context.quote.plan), finance = vi.fn(() => undefined);
+  const views = createEconomicApprovalViews(finance,geometry);
+  const first = views.service(f.profile)!; first.station.x++;
+  expect(views.service(f.profile)).toEqual(f.context.quote.plan); expect(geometry).toHaveBeenCalledTimes(1);
+  expect(finance).not.toHaveBeenCalled(); expect(views.current(f.profile)).toBeUndefined(); expect(finance).toHaveBeenCalledTimes(1);
+  expect(createEconomicApprovalViews(finance,geometry).service({ ...f.profile,body: ['move'] })).toBeNull();
+});
