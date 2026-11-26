@@ -530,7 +530,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (reachabilityMode) await remoteReachabilityWorld(server,bot,reachabilityMode);
   if (remoteCapacityMode) await remoteCapacityWorld(server,bot,remoteCapacityMode);
   if (reservationVision) await reservationVisionWorld(server,bot);
-  if (remotePipeline) await remotePipelineWorld(server,bot,remotePipelineLabor);
+  if (remotePipeline) await remotePipelineWorld(server,bot,remotePipelineLabor,remotePipelineCalibration);
   if (reservationPopulation) await reservationPopulationWorld(server,bot);
   if (reservationSelection) await reservationSelectionWorld(server,bot);
   if (roomReservation) await roomReservationWorld(server,bot);

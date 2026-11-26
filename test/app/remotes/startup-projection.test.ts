@@ -117,3 +117,13 @@ test('mixed non-energy cargo cannot be treated as empty carrying capacity',() =>
   expect(f.quote.facts.workers[0]).toMatchObject({ energy: 0,usedCapacity: 50 });
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' });
 });
+
+
+test('unsupported ready-container decay phases defer read-only instead of throwing from the simulator',() => {
+  const f = startupProjectionFixture(), before = JSON.stringify(f.root);
+  f.quote.facts.station.facts = { status: 'ready',id: 'container',remainingProgress: 0,energy: 0,claimedEnergy: 0,availableEnergy: 0,capacity: 2000,hits: 250000,hitsMax: 250000,ticksToDecay: 1000 };
+  expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'station-decay-phase' });
+  f.quote.facts.station.facts.ticksToDecay = 0;
+  expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'station-decay-phase' });
+  expect(JSON.stringify(f.root)).toBe(before);
+});
