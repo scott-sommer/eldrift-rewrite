@@ -13,11 +13,21 @@ export function createNativeStartupExecutionBinding(state: StatePort) {
     const context = { intel: (room: string) => intel.peek(room,Game.time).record };
     if (!rooms.includes(plan.home) || !rooms.includes(plan.room) || rooms.some(room => !Game.rooms[room] && !context.intel(room).summary)) return undefined;
     const matrices = prepareRemoteMatrices(context,rooms,1,snapshots);
-    const binding = JSON.stringify(['startup-execution-v1',plan,config,policy,matrices.version],orderedObject);
+    const binding = JSON.stringify(['startup-execution-v2',plan,configurationGroups(config),policy,matrices.version],orderedObject);
     return selectionBinding(binding) ? binding : undefined;
   };
 }
 function orderedObject(_key: string, value: unknown): unknown {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return value;
   return Object.fromEntries(Object.entries(value).sort(([a],[b]) => a.localeCompare(b)));
+}
+
+/** Lossless camel-prefix dictionary: original key = group name + suffix, including empty suffix. */
+function configurationGroups(config: Readonly<RuntimeConfig>): Record<string,Record<string,unknown>> {
+  const groups: Record<string,Record<string,unknown>> = {};
+  for (const [key,value] of Object.entries(config)) {
+    const prefix = key.match(/^[a-z]+/)?.[0] ?? key;
+    (groups[prefix] ??= {})[key.slice(prefix.length)] = value;
+  }
+  return groups;
 }

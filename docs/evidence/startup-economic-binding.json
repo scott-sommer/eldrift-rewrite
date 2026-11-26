@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Failed first native economic-context attempt: the exact full policy/topology binding exceeds the8192-character limit, so no forecast approval or source births are published.",
+  "native": [
+    {
+      "scenario": "economic-binding-capacity",
+      "nativeSource": "1e2c2ecb7e8b824279346e05c4c3005b5b19bd0a",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-economic-binding-capacity.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8f1e8f270925cec04349eb1e8f5fb3aeb894bd47d661e9016c882f8a22f4d662",
+      "uncompressedSha256": "6f88588e8b5372d2f2e1c4c2849c6b235521380f0619492edf10db8c82a9352a"
+    }
+  ]
+}

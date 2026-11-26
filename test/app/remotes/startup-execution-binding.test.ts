@@ -25,6 +25,10 @@ test('equivalent property order is stable, missing room evidence refuses',() => 
   const f = fixture();
   const reversed = Object.fromEntries(Object.entries(f.config).reverse()) as unknown as typeof f.config;
   expect(f.read(reversed)).toBe(f.read());
+  const encoded = JSON.parse(f.read()!)[2] as Record<string,Record<string,unknown>>;
+  const restored = Object.fromEntries(Object.entries(encoded).flatMap(([prefix,group]) => Object.entries(group).map(([suffix,value]) => [prefix+suffix,value])));
+  expect(restored).toEqual(f.config);
+  expect(f.read({ ...f.config,allies: ['x'.repeat(8192)] })).toBeUndefined();
   expect(f.bind(f.plan,['W0N1'],f.config,f.policy)).toBeUndefined();
   delete Game.rooms.E0N1; expect(f.read()).toBeUndefined(); expect(f.root).toEqual({});
 });
