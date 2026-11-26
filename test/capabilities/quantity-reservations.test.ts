@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { createQuantityReservations } from '../../src/persistence/quantities/store';
 import type { QuantityClaim } from '../../src/persistence/quantities/schema';
 import type { Envelope } from '../../src/persistence/versioned-state';
@@ -57,4 +57,18 @@ test('malformed capacities and allocations leave existing bookings untouched', (
   const copy = ledger.list(2);
   copy[0]!.allocations[0]!.amount = 10000;
   expect(ledger.list(2)[0]!.allocations[0]!.amount).toBe(40);
+});
+
+test('repeated pool release avoids unchanged writes but still checks ownership and removes final claims',() => {
+  const f = fixture(), first = claim('first',40), other = claim('other',20,'H');
+  f.ledger.reserve(first,capacities,1); f.ledger.reserve(other,capacities,1);
+  const write = vi.spyOn(f.port,'write');
+  f.ledger.releasePool(first,'stock:source:energy'); expect(write).toHaveBeenCalledTimes(1); write.mockClear();
+  const before = JSON.stringify([...f.records]);
+  createQuantityReservations(f.port).releasePool(first,'stock:source:energy');
+  expect(write).not.toHaveBeenCalled(); expect(JSON.stringify([...f.records])).toBe(before);
+  expect(() => f.ledger.releasePool({ ...first,holder: 'thief' },'stock:source:energy')).toThrow('identity conflict');
+  expect(write).not.toHaveBeenCalled();
+  f.ledger.releasePool(first,'capacity:storage'); expect(write).toHaveBeenCalledTimes(1);
+  expect(f.ledger.list(1)).toEqual([other]);
 });

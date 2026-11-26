@@ -31,7 +31,9 @@ export function createQuantityReservations(port: StatePort) {
       const claim = state.claims.find(item => item.id === identity.id);
       if (!claim) return;
       if (!sameOwner(claim, identity)) throw new Error('Quantity claim identity conflict');
-      claim.allocations = claim.allocations.filter(item => item.pool !== pool);
+      const retained = claim.allocations.filter(item => item.pool !== pool);
+      if (retained.length === claim.allocations.length) return;
+      claim.allocations = retained;
       state.claims = state.claims.filter(item => item.allocations.length > 0);
       saveState(port, key, quantitySchema, state);
     },
