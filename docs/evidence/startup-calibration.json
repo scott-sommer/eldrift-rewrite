@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Strict prospective prefix calibration: six failed attempts retained plus passing ordinary spawn/movement regressions. No passing prospective calendar or economic adoption claim.",
+  "scope": "Finite prospective prefix calibration with exact births, first harvest, all nine settled receipt frames/amounts and extraction/delivery totals; six failures retained; ordinary transport and full selected-service regressions. No whole-project prospective profitability or automatic adoption claim.",
   "native": [
     {
       "scenario": "initial-phase",
@@ -87,6 +87,42 @@
       "rawEncoding": "gzip",
       "rawSha256": "d168f731e0d83d3e88cd15eede622e3c6a4d9c22d287ab8b795fe8e863a220ee",
       "uncompressedSha256": "4b38b5104cc9568b3a54ae31008a5f062af7424ff008fc034e5ef1df49949f33"
+    },
+    {
+      "scenario": "turnaround-prefix",
+      "nativeSource": "758366e06ea52e0ccc12da82e4cbaf1e896f9a9b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/turnaround-prefix.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "10a8ed18e5067bcc2de5ae9350857cda7f3861d9ba38f67ced69286e74ba17ed",
+      "uncompressedSha256": "5de5abf49ff030526131d6dc5dd1aefa771dd73d69566191bf7f74744dd3a8da"
+    },
+    {
+      "scenario": "ordinary-transport-turnaround",
+      "nativeSource": "758366e06ea52e0ccc12da82e4cbaf1e896f9a9b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/ordinary-transport-turnaround.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2b205df3e44e6ae730c2b6e460917c02c130bce7542b5a790a242f64e1b26c92",
+      "uncompressedSha256": "fb38304aa1278ca121c4692d94973bd1d3366fe58e3af2c1fa2dabb4a8ebe657"
+    },
+    {
+      "scenario": "exact-receipt-prefix",
+      "nativeSource": "06895d1650cd0c536e325db8dbee64b2a06c7340",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/exact-receipt-prefix.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b2a1bd4e0f8cb8da9464834b95166d66d76d87d80e077cbfc475d5f5d070a0c5",
+      "uncompressedSha256": "3e2bff42519605b8db3b7928bb568d432159f6769815aeffcab910e552bff990"
+    },
+    {
+      "scenario": "selected-service-regression",
+      "nativeSource": "06895d1650cd0c536e325db8dbee64b2a06c7340",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/selected-service-regression.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "82868c4f59551cc3c29946e81f240da9a35595da28e19d2ffa3b646f330ba948",
+      "uncompressedSha256": "59b4ea1bb492afd917aaa90322a41817898b6cf5d55f7bd60f0c501380e639df"
     }
   ]
 }
