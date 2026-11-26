@@ -27,6 +27,12 @@ export function nativeCargoSinks(room: Room, resource: ResourceConstant, termina
   return room.find(FIND_STRUCTURES).filter(item => nativePriority(item, resource, terminalReserve) !== undefined)
     .sort((a, b) => nativePriority(a, resource, terminalReserve)! - nativePriority(b, resource, terminalReserve)! || a.id.localeCompare(b.id));
 }
+/** Resolve a quoted endpoint against current room and eligibility without ranking alternatives. */
+export function nativeCargoSink(room: Room, id: string, resource: ResourceConstant, terminalReserve: number): AnyStructure | undefined {
+  const target = Game.getObjectById(id as Id<AnyStructure>);
+  if (!target || !('structureType' in target) || target.pos.roomName !== room.name) return undefined;
+  return nativePriority(target,resource,terminalReserve) === undefined ? undefined : target;
+}
 function nativePriority(structure: AnyStructure, resource: ResourceConstant, terminalReserve: number): number | undefined {
   if (!('store' in structure) || !structure.isActive()) return undefined;
   return recoveryPriority({ kind: structure.structureType, owned: 'my' in structure && structure.my,

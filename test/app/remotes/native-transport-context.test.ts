@@ -52,3 +52,20 @@ test('selected transport uses only its quoted container and refuses changed requ
   request.service.collection.x--; expect(context.authority(request)).toBeUndefined();
   f.first.pos.x = 8; expect(context.source(f.creep,f.demand)?.endpoint).toBeUndefined();
 });
+
+test('selected home sink rechecks room ownership, banking policy and current capacity',() => {
+  const f = fixture(), service = { station: { room: 'E0N1',x: 9,y: 10 },collection: { room: 'E0N1',x: 8,y: 10 },
+    deposit: { room: 'W0N1',x: 1,y: 1 },endpoint: 'home' };
+  const sink = { id: 'home',structureType: 'storage',my: true,pos: { roomName: 'W0N1' },
+    isActive: () => true,store: { getFreeCapacity: () => 100 } };
+  const home = { name: 'W0N1',controller: { my: true },find: () => { throw new Error('Selected endpoint must not rank alternatives'); } };
+  vi.stubGlobal('Game',{ ...Game,rooms: { ...Game.rooms,W0N1: home },getObjectById: () => sink });
+  let resourceAllowed = true, sinkAllowed = true;
+  const context = createNativeRemoteTransportContext(f.state,f.dispatch,f.binding,{ ...f.options,service,
+    banking: { terminalReserve: 0,acceptsResource: () => resourceAllowed,acceptsSink: () => sinkAllowed } });
+  expect(context.sinks()).toEqual([sink]);
+  resourceAllowed = false; expect(context.sinks()).toEqual([]);
+  resourceAllowed = true; sinkAllowed = false; expect(context.sinks()).toEqual([]);
+  sinkAllowed = true; home.controller.my = false; expect(context.sinks()).toEqual([]);
+  home.controller.my = true; sink.store.getFreeCapacity = () => 0; expect(context.sinks()).toEqual([]);
+});

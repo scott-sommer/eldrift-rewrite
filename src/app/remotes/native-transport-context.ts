@@ -8,7 +8,7 @@ import { createRemoteAssignmentStore } from '../../features/remotes/assignment-s
 import { remoteTransportAuthority, remoteTransportOwner, transportToken } from '../../features/remotes/transport-authority';
 import type { RemoteTransportDemand } from '../../features/remotes/transport-authority';
 import { createIntelStore } from '../../features/intel/store';
-import { nativeCargoSinks } from '../native-cargo-recovery';
+import { nativeCargoSink, nativeCargoSinks } from '../native-cargo-recovery';
 import { createNativeRemoteMovement } from './native-movement';
 import type { NativeRemoteOptions } from './native-movement';
 import type { NativeRemoteBankingPolicy } from './native-banking';
@@ -49,7 +49,9 @@ export function createNativeRemoteTransportContext(state: StatePort, dispatch: R
   function sinks() {
     const room = Game.rooms[binding.home];
     if (!room?.controller?.my || policy.acceptsResource && !policy.acceptsResource(RESOURCE_ENERGY)) return [];
-    return nativeCargoSinks(room,RESOURCE_ENERGY,policy.terminalReserve).filter(policy.acceptsSink ?? (() => true)).filter(sink => !options.service || sink.id === options.service.endpoint);
+    const selected = options.service && nativeCargoSink(room,options.service.endpoint,RESOURCE_ENERGY,policy.terminalReserve);
+    const candidates = options.service ? selected ? [selected] : [] : nativeCargoSinks(room,RESOURCE_ENERGY,policy.terminalReserve);
+    return candidates.filter(policy.acceptsSink ?? (() => true));
   }
   function route(creep: Creep, request: LogisticsRequest, phase: 'collect' | 'deliver') {
     const demand = authority(request);
