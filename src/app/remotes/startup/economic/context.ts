@@ -26,7 +26,8 @@ export function pendingEconomicContext(state: StatePort, profile: Readonly<Remot
   if (!selection) return undefined;
   const username = Game.rooms[profile.home]?.controller?.owner?.username; if (!username) return undefined;
   const route = nativeRemoteRoute(state,profile.home,profile.room,nativeRemoteTraversalFor(username,config),config.remoteMaximumRouteRooms,false,guard);
-  return executionContext(state,job,selection.quote,route?.allowedRooms ?? [],config);
+  if (!route?.allowedRooms || !guard()) return undefined;
+  return executionContext(state,job,selection.quote,route.allowedRooms,config);
 }
 function executionContext(state: StatePort, job: StartupPlanningContext & { input: import('../../../../features/remotes/startup/planning/model').StartupPlanningInput }, quote: CompleteStartupTravel, rooms: readonly string[], config: Readonly<RuntimeConfig>) {
   const input = decodeStartupPlanningInput(job.input), policy = startupEconomicPolicy(config);

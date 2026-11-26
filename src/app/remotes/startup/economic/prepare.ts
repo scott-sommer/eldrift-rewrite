@@ -19,7 +19,7 @@ export function prepareEconomicCohort(state: StatePort, structures: StartupStruc
     if (maintained.status === 'current' && !missingStartupBirths(state,profile,config)) return true;
   }
   const resumed = staging.resume(profile,Game.time,config.remoteStartupFrames,guard);
-  trace(profile,'staging:'+resumed); if (resumed === 'waiting') return false;
+  trace(profile,'staging:'+resumed); if (resumed !== 'missing') return false;
   const pending = pendingEconomicContext(state,profile,config,guard);
   if (!pending) {
     if (!missingStartupBirths(state,profile,config) || !canStartHomeJob(state,profile)) return false;
