@@ -1,4 +1,4 @@
-import { createStartupPlanningJob } from '../../../../features/remotes/startup/planning/runner';
+import { createStartupPlanningJob, assessCompletedStartupPlanning } from '../../../../features/remotes/startup/planning/runner';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
 import { createStartupSelections } from '../../../../features/remotes/startup/selection-store';
 import { publishStartupCohort } from '../../../../features/remotes/startup/publish-cohort';
@@ -11,14 +11,14 @@ export function advanceEconomicProposal(state: StatePort, home: string, current:
   const planner = createStartupPlanningJob(state,home), { query } = current;
   const deadline = firstCohortDeadline(current);
   if (current.binding !== query.binding || Game.time >= deadline || Game.time > query.expiresAt) { discardEconomicProposal(state,home,current); return false; }
-  const record = planner.read(), horizon = query.input.project.spawning.cash.horizon;
-  let completed = record.job?.checkpoint.tick === horizon+1 ? planner.result(query) : undefined;
+  const planning = current.planning ?? planner.inspect(), record = planning.record, horizon = query.input.project.spawning.cash.horizon;
+  let completed = record.job?.checkpoint.tick === horizon+1 ? planning.result(query) : undefined;
   if (!completed && record.clock !== Game.time) {
-    const progress = planner.advance({ ...query,expectedRevision: record.revision },config.remoteStartupFrames,guard);
+    const progress = planning.advance({ ...query,expectedRevision: record.revision },config.remoteStartupFrames,guard);
     if (progress.status === 'complete') completed = progress.result;
   }
   if (!completed || !guard()) return false;
-  if (!cohortStartsBeforeExpiry(completed.spawning.births,current) || !planner.assess(query,current.policy)?.accepted) return false;
+  if (!cohortStartsBeforeExpiry(completed.spawning.births,current) || !assessCompletedStartupPlanning(completed,query,current.policy).accepted) return false;
   const published = publishStartupCohort(state,home,query,new Set(Object.keys(Game.creeps)));
   if (published !== 'published') { discardEconomicProposal(state,home,current); return false; }
   const approvals = createStartupApprovals(state,home);

@@ -1,3 +1,4 @@
+import type { StartupPlanningInspection } from '../../../../features/remotes/startup/planning/runner';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
 import { createStartupSelections } from '../../../../features/remotes/startup/selection-store';
 import { createStartupPlanningJob } from '../../../../features/remotes/startup/planning/runner';
@@ -20,14 +21,14 @@ export function matchingEconomicApproval(state: StatePort, profile: Readonly<Rem
   return createStartupApprovals(state,profile.home).read().approvals.find(entry => entry.job.room === profile.room && entry.job.source === profile.source && entry.job.generation === profile.generation);
 }
 export function pendingEconomicContext(state: StatePort, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: () => boolean) {
-  const job = createStartupPlanningJob(state,profile.home).read().job;
+  const planning = createStartupPlanningJob(state,profile.home).inspect(), job = planning.record.job;
   if (!job || job.room !== profile.room || job.source !== profile.source || job.generation !== profile.generation) return undefined;
   const selection = createStartupSelections(state,profile.home).read().selections.find(entry => entry.generation === job.generation && entry.binding === job.binding && entry.selectedAt === job.observedAt && entry.quote.plan.source === job.source && entry.quote.plan.room === job.room);
   if (!selection) return undefined;
   const username = Game.rooms[profile.home]?.controller?.owner?.username; if (!username) return undefined;
   const route = nativeRemoteRoute(state,profile.home,profile.room,nativeRemoteTraversalFor(username,config),config.remoteMaximumRouteRooms,false,guard);
   if (!route?.allowedRooms || !guard()) return undefined;
-  return executionContext(state,job,selection.quote,route.allowedRooms,config);
+  return { ...executionContext(state,job,selection.quote,route.allowedRooms,config),planning };
 }
 function executionContext(state: StatePort, job: StartupPlanningContext & { input: import('../../../../features/remotes/startup/planning/model').StartupPlanningInput }, quote: CompleteStartupTravel, rooms: readonly string[], config: Readonly<RuntimeConfig>) {
   const input = decodeStartupPlanningInput(job.input), policy = startupEconomicPolicy(config);
@@ -35,4 +36,4 @@ function executionContext(state: StatePort, job: StartupPlanningContext & { inpu
   const query = { room,source,generation,binding,observedAt,expiresAt,tick: Game.time,input };
   return { query,quote,rooms: [...rooms],policy,binding: createNativeStartupExecutionBinding(state)(quote.plan,rooms,config,policy) ?? '',tick: Game.time,births: observeStartupBirths(input.project.spawning.requests) };
 }
-export type EconomicExecutionContext = NonNullable<ReturnType<typeof approvedEconomicContext>>;
+export type EconomicExecutionContext = NonNullable<ReturnType<typeof approvedEconomicContext>> & { planning?: StartupPlanningInspection };

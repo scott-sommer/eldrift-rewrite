@@ -1,3 +1,4 @@
+import { copyPlain } from '../../../../core/plain-data';
 import { assessStartupProject, validateStartupReturnPolicy } from '../../../../capabilities/economy/startup/assessment';
 import type { StartupReturnPolicy } from '../../../../capabilities/economy/startup/assessment';
 import { PlainDataCapacityError } from '../../../../core/plain-data';
@@ -10,16 +11,21 @@ import { natural } from '../../assignment-validation';
 import { createStartupPlanningStore } from './store';
 import { planningContextKey, validPlanningContext } from './validation';
 import { decodeStartupPlanningInput, encodeStartupPlanningInput } from './input';
-import type { StartupPlanningJob, StartupPlanningQuery, StartupPlanningRequest, StartupPlanningResult } from './model';
+import type { StartupPlanningJob, StartupPlanningQuery, StartupPlanningRequest, StartupPlanningResult, StartupPlanningRecord } from './model';
+type PlanningGuard = () => boolean;
+type PlanningRead = () => StartupPlanningRecord;
 /** Frame admission is guarded; callers reserve serialization/publication budget separately. */
 export function createStartupPlanningJob(state: StatePort, home: string) {
   const store = createStartupPlanningStore(state,home);
-  function advance(request: StartupPlanningRequest, maximumFrames: number, guard: () => boolean = () => true): StartupPlanningResult {
+  function advance(request: StartupPlanningRequest, maximumFrames: number, guard: PlanningGuard = () => true): StartupPlanningResult {
+    return advanceRead(request,maximumFrames,guard,store.read);
+  }
+  function advanceRead(request: StartupPlanningRequest, maximumFrames: number, guard: PlanningGuard, read: PlanningRead): StartupPlanningResult {
     validateRequest(request,home);
     if (!natural(request.expectedRevision) || !natural(maximumFrames) || maximumFrames > 10001) throw new Error('Invalid startup planning budget/revision');
     if (request.tick > request.expiresAt) return deferred('expired');
     if (!guard()) return deferred('admission');
-    const current = store.read();
+    const current = read();
     if (request.tick < current.clock) return deferred('clock');
     if (request.expectedRevision !== current.revision) return deferred('conflict');
     const candidate = { ...request,input: snapshotStartupProject(request.input) };
@@ -38,10 +44,11 @@ export function createStartupPlanningJob(state: StatePort, home: string) {
     return progress.done ? { status: 'complete',frames: progress.frames,through: progress.through,result: project.result() }
       : deferred(progress.frames === maximumFrames ? 'budget' : 'admission',progress.frames);
   }
-  function result(request: StartupPlanningQuery) {
+  function result(request: StartupPlanningQuery) { return resultRead(request,store.read); }
+  function resultRead(request: StartupPlanningQuery, read: PlanningRead) {
     validateRequest(request,home);
     if (request.tick > request.expiresAt) return undefined;
-    const current = store.read();
+    const current = read();
     if (request.tick < current.clock || !current.job) return undefined;
     try {
       if (!matches(current.job,request,startupProjectIdentity(request.input))) return undefined;
@@ -53,11 +60,16 @@ export function createStartupPlanningJob(state: StatePort, home: string) {
     validateStartupReturnPolicy(policy);
     const completed = result(request);
     if (!completed) return undefined;
-    const participants = new Set([...request.input.project.workers,...request.input.couriers].map(worker => worker.request));
-    const requiredBirths = request.input.project.spawning.requests.filter(birth => participants.has(birth.id)).map(birth => birth.id);
-    return assessStartupProject(completed,request.input.project.spawning.cash.horizon,policy,requiredBirths,request.input.household?.labor?.jobs);
+    return assessCompletedStartupPlanning(completed,request,policy);
   }
-  return { read: store.read,advance,result,assess,withdraw: store.withdraw };
+  /** A detached operation snapshot. Fresh store.save still fences every write by revision/clock. */
+  function inspect() {
+    const current = store.read(), read = () => current;
+    return { record: copyPlain(current),
+      advance(request: StartupPlanningRequest, frames: number, guard: PlanningGuard = () => true) { return advanceRead(request,frames,guard,read); },
+      result(request: StartupPlanningQuery) { return resultRead(request,read); } };
+  }
+  return { read: store.read,advance,result,assess,inspect,withdraw: store.withdraw };
 }
 function validateRequest(request: StartupPlanningQuery, home: string): void {
   if (!natural(request.tick) || !validPlanningContext(request,home,request.tick)) throw new Error('Invalid startup planning context');
@@ -82,4 +94,13 @@ function prepareProject(request: StartupPlanningRequest, previous: StartupPlanni
 function snapshotJob(request: StartupPlanningRequest, project: ReturnType<typeof createStartupProject>) {
   try { return jobSnapshot(request,project.checkpoint()); }
   catch (error) { if (capacityError(error)) return undefined; throw error; }
+}
+
+export type StartupPlanningInspection = ReturnType<ReturnType<typeof createStartupPlanningJob>['inspect']>;
+/** Assess completed evidence without rereading the replaceable scratch namespace. Adoption remains a separate current-state check. */
+export function assessCompletedStartupPlanning(completed: NonNullable<ReturnType<ReturnType<typeof createStartupPlanningJob>['result']>>, request: StartupPlanningQuery, policy: StartupReturnPolicy) {
+  validateStartupReturnPolicy(policy);
+  const participants = new Set([...request.input.project.workers,...request.input.couriers].map(worker => worker.request));
+  const requiredBirths = request.input.project.spawning.requests.filter(birth => participants.has(birth.id)).map(birth => birth.id);
+  return assessStartupProject(completed,request.input.project.spawning.cash.horizon,policy,requiredBirths,request.input.household?.labor?.jobs);
 }
