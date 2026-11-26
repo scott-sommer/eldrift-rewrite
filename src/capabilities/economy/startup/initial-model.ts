@@ -5,7 +5,7 @@ interface StartupIncumbent {
 export type StartupInitialMiner = StartupIncumbent;
 export interface StartupInitialCourier extends StartupIncumbent {
   phase: 'collect' | 'deliver'; mode: 'courier' | 'return-only';
-  outboundTicks: number; returnTicks: number; collectionTicks: number; deliveryTicks: number; minimumBatch: number;
+  turnaroundTicks?: number; outboundTicks: number; returnTicks: number; collectionTicks: number; deliveryTicks: number; minimumBatch: number;
 }
 export interface StartupInitialState { containerEnergy: number; miner: StartupInitialMiner | null; couriers: readonly StartupInitialCourier[] }
 export interface StartupOpeningState { pendingMinerEnergy: number; minerStarted: boolean; minerOpeningEnergy: number; constructionEnergyFromOpening: number }

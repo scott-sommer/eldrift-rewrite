@@ -18,7 +18,7 @@ export function startupProjectWaves(input: StartupDeliveryInput, births: readonl
 }
 export function startupInitialCouriers(input: StartupDeliveryInput): StartupCourierState[] {
   return (input.initial?.couriers ?? []).map(worker => ({ request: worker.id,outboundTicks: worker.outboundTicks,returnTicks: worker.returnTicks,initialOutboundTicks: 0,
-    retireTicks: worker.retireTicks,minimumBatch: worker.minimumBatch,collectionTicks: worker.collectionTicks,deliveryTicks: worker.deliveryTicks,
+    ...(worker.turnaroundTicks === undefined ? {} : { turnaroundTicks: worker.turnaroundTicks }),retireTicks: worker.retireTicks,minimumBatch: worker.minimumBatch,collectionTicks: worker.collectionTicks,deliveryTicks: worker.deliveryTicks,
     capacity: worker.body.filter(part => part === 'carry').length*50,expiresAt: worker.expiresAt,stopAt: worker.mode === 'return-only' ? 0 : worker.expiresAt-worker.retireTicks,
     nextAt: worker.availableAt,phase: worker.phase,cargo: worker.energy }));
 }

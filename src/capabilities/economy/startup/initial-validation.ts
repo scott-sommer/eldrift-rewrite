@@ -32,6 +32,7 @@ function validateLifetime(worker: StartupInitialMiner): void {
 }
 function validateCourier(worker: StartupInitialCourier): void {
   validateWorker(worker);
+  if (worker.turnaroundTicks !== undefined && !integer(worker.turnaroundTicks,0,1500)) throw new Error('Invalid startup incumbent turnaround');
   if (!['collect','deliver'].includes(worker.phase) || !['courier','return-only'].includes(worker.mode)) throw new Error('Invalid startup incumbent phase');
   if (worker.phase === 'collect' && worker.energy !== 0) throw new Error('Collecting incumbent must have empty cargo');
   if (![worker.outboundTicks,worker.returnTicks].every(value => integer(value,0,1500))) throw new Error('Invalid startup incumbent route');

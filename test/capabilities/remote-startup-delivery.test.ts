@@ -85,3 +85,13 @@ test('small full containers impose backpressure without disappearing harvested c
   expect(d.containerEnergy).toBe(3); expect(d.minerCargoEnergy).toBe(50); expect(d.uncapturedOverflowEnergy).toBe(1);
   expect(c.harvestedEnergy+d.harvestedEnergy).toBe(c.constructionEnergy+d.containerEnergy+d.minerCargoEnergy+d.uncapturedOverflowEnergy);
 });
+
+test('explicit task turnaround delays subsequent approaches without changing the first receipt',() => {
+  const view = input(), baseline = forecastStartupDelivery(view);
+  view.couriers = [{ ...view.couriers[0]!,turnaroundTicks: 30 }];
+  const delayed = forecastStartupDelivery(view);
+  expect(delayed.delivery.receipts[0]).toEqual(baseline.delivery.receipts[0]);
+  expect(delayed.delivery.receipts[1]!.tick).toBe(78);
+  view.couriers = [{ ...view.couriers[0]!,turnaroundTicks: -1 }];
+  expect(() => forecastStartupDelivery(view)).toThrow('turnaround');
+});

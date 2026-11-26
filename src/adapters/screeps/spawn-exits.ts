@@ -16,7 +16,7 @@ function selectedExit(spawn: StructureSpawn): Position | undefined {
   const point = placement.exit;
   return point.room === spawn.room.name && Math.max(Math.abs(point.x-spawn.pos.x),Math.abs(point.y-spawn.pos.y)) === 1 ? { ...point } : undefined;
 }
-export function spawnExitAvoidance(name: string): Position[] { return pendingSpawnExits().filter(exit => exit.name !== name).map(exit => exit.position); }
+export function spawnExitAvoidance(name: string, destination?: Position): Position[] { return pendingSpawnExits().filter(exit => exit.name !== name && (!destination || !samePoint(exit.position,destination))).map(exit => exit.position); }
 export function permitsSpawnExit(unit: string, destination: Position): boolean {
   return !pendingSpawnExits().some(exit => samePoint(exit.position,destination) && Game.creeps[exit.name]?.id !== unit);
 }

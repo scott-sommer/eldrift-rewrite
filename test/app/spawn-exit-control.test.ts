@@ -19,7 +19,7 @@ test('only a real pending selected birth protects its detached exit and exempts 
   const f = fixture(); f.request.placement.exit.x = 1;
   expect(pendingSpawnExits()[0]?.position).toEqual({ room: 'W0N1',x: 9,y: 10 });
   const protectedPoint = { room: 'W0N1',x: 9,y: 10 };
-  expect(spawnExitAvoidance('other')).toEqual([protectedPoint]); expect(spawnExitAvoidance('newborn')).toEqual([]);
+  expect(spawnExitAvoidance('other')).toEqual([protectedPoint]); expect(spawnExitAvoidance('other',protectedPoint)).toEqual([]); expect(spawnExitAvoidance('newborn')).toEqual([]);
   expect(permitsSpawnExit('blocker-id',protectedPoint)).toBe(false); expect(permitsSpawnExit('born-id',protectedPoint)).toBe(true);
   Object.assign(f.spawn,{ spawning: null }); expect(pendingSpawnExits()).toEqual([]);
 });

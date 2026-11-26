@@ -6,7 +6,8 @@ import type { StartupConstructionInput } from './construction-model';
 import type { SelfBuildInput } from './build-model';
 export interface StartupCourier {
   request: string; outboundTicks: number; returnTicks: number; retireTicks: number; minimumBatch: number;
-  collectionTicks?: number; deliveryTicks?: number;
+  /** Idle task-completion frames after an observed empty delivery, before the next approach. */
+  turnaroundTicks?: number; collectionTicks?: number; deliveryTicks?: number;
   /** First journey starts at the selected spawn exit; later journeys start at the deposit service tile. */
   initialOutboundTicks?: number;
 }

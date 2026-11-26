@@ -47,7 +47,7 @@ function incumbentCourier(quote: NativeStartupQuote, worker: StartupWorkerFacts,
   const atCollection = samePosition(worker.position,quote.plan.collection), atDeposit = samePosition(worker.position,quote.plan.endpoint.deposit);
   if (!atCollection && !atDeposit) return undefined;
   const availableAt = worker.energy > 0 ? (atDeposit ? 0 : legs.get('courier-loaded')!) : (atCollection ? 0 : legs.get('courier-empty')!);
-  return { ...base,availableAt,phase: worker.energy > 0 ? 'deliver' : 'collect',mode: 'courier',outboundTicks: legs.get('courier-empty')!,returnTicks: legs.get('courier-loaded')!,collectionTicks: 1,deliveryTicks: 1,minimumBatch };
+  return { ...base,availableAt,phase: worker.energy > 0 ? 'deliver' : 'collect',mode: 'courier',outboundTicks: legs.get('courier-empty')!,returnTicks: legs.get('courier-loaded')!,turnaroundTicks: 1,collectionTicks: 1,deliveryTicks: 1,minimumBatch };
 }
 function samePosition(a: NativeStartupQuote['plan']['station'], b: typeof a): boolean { return a.room === b.room && a.x === b.x && a.y === b.y; }
 function refused() { return { status: 'deferred' as const,reason: 'existing-workforce' }; }

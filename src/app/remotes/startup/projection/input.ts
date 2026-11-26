@@ -8,7 +8,7 @@ export function startupProjectionInput(quote: NativeStartupQuote, options: Nativ
   const legs = new Map(quote.legs.map(leg => [leg.kind,leg.ticks]));
   const workers = options.births.filter(proposal => proposal.kind === 'miner').map(proposal => ({ request: proposal.request.id,travelTicks: legs.get('miner-approach')!,retireTicks: proposal.retireTicks }));
   const couriers = options.births.filter(proposal => proposal.kind === 'courier').map(proposal => ({ request: proposal.request.id,retireTicks: proposal.retireTicks,minimumBatch: proposal.minimumBatch,
-    initialOutboundTicks: legs.get('courier-approach')!,outboundTicks: legs.get('courier-empty')!,returnTicks: legs.get('courier-loaded')!,collectionTicks: 1,deliveryTicks: 1 }));
+    initialOutboundTicks: legs.get('courier-approach')!,outboundTicks: legs.get('courier-empty')!,returnTicks: legs.get('courier-loaded')!,turnaroundTicks: 1,collectionTicks: 1,deliveryTicks: 1 }));
   return { ...(initial ? { initial } : {}),containerCapacity: station.status === 'ready' ? station.capacity-Math.min(station.energy,station.claimedEnergy) : CONTAINER_CAPACITY,couriers,
     container: containerFacts(quote,options),homeSink: { capacity: facts.endpoint.capacity,freeCapacity: facts.endpoint.availableCapacity,changes: options.sinkChanges },
     project: { remainingProgress: station.remainingProgress,workers,source: { energy: facts.source.energy,capacity: facts.source.capacity,regenerationTicks: ENERGY_REGEN_TIME,regenerationIn: facts.source.regenerationIn },

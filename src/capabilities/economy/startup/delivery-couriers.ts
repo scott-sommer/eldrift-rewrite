@@ -45,10 +45,11 @@ function deliver(worker: StartupCourierState, result: StartupDeliveryForecast, t
   result.receipts.push({ tick: tick+worker.deliveryTicks,energy: amount,request: worker.request });
   result.deliveredEnergy += amount; result.firstDeliveryAt = Math.min(result.firstDeliveryAt ?? Infinity,tick+worker.deliveryTicks);
   worker.cargo -= amount; worker.nextAt = tick+worker.deliveryTicks;
-  if (worker.cargo === 0) { worker.phase = 'collect'; worker.nextAt += worker.outboundTicks; }
+  if (worker.cargo === 0) { worker.phase = 'collect'; worker.nextAt += worker.outboundTicks+(worker.turnaroundTicks ?? 0); }
 }
 
 function courierTiming(worker: StartupCourier, capacity: number) {
+  validateTurnaround(worker.turnaroundTicks ?? 0);
   const service = courierServiceTiming(worker), initialOutboundTicks = worker.initialOutboundTicks ?? worker.outboundTicks;
   if (![initialOutboundTicks,worker.outboundTicks,worker.returnTicks,worker.retireTicks].every(value => Number.isSafeInteger(value) && value >= 0 && value <= 1500)) throw new Error('Invalid courier timing');
   if (!Number.isSafeInteger(worker.minimumBatch) || worker.minimumBatch < 1 || worker.minimumBatch > capacity) throw new Error('Invalid courier batch');
@@ -58,4 +59,8 @@ function courierServiceTiming(worker: StartupCourier) {
   const collectionTicks = worker.collectionTicks ?? 1, deliveryTicks = worker.deliveryTicks ?? 1;
   if (![collectionTicks,deliveryTicks].every(value => Number.isSafeInteger(value) && value >= 1 && value <= 1500)) throw new Error('Invalid courier service delay');
   return { collectionTicks,deliveryTicks };
+}
+
+function validateTurnaround(ticks: number): void {
+  if (!Number.isSafeInteger(ticks) || ticks < 0 || ticks > 1500) throw new Error('Invalid courier turnaround');
 }
