@@ -1,0 +1,84 @@
+{
+  "issue": "ED-29",
+  "scope": "Resumable guarded birth publication in operational Memory, observed birth acknowledgement and retained task execution; ordinary recruitment and loaded refund regressions; fixture economic admission remains explicit",
+  "native": [
+    {
+      "scenario": "complete",
+      "nativeSource": "f8a9620e8ff9e75803c03632bc401768dcb2021e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-publication/complete.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "dee33661bb23b207ecfe6d870ff02552993ad7153bc182b727fcdf82b538b280",
+      "uncompressedSha256": "d784ba3ca4907e8768f8a8c04e445c16c77bc30c47d72ed5f5364e533ece2492",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-publication/complete-receipt.jsonl",
+          "rowsSha256": "2df827cc1d247c423b7c93d9970edf0e5dae6dcf83e24d48731fc413f7ea2d73",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-publication/complete-claims.jsonl",
+          "rowsSha256": "7895f6d85c4d09be995eb9ccea5454295e698f0c62c33eec07bfe48951a3e4c0",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-publication/complete-sdk-calls.jsonl",
+          "rowsSha256": "972b7d338ad05cc8ea7c3ed64e1354374eed072abf2e79d93b3610cd0bc6bd53",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-publication/complete-observations.jsonl",
+          "rowsSha256": "a37653ad1456571814e9fbabbb53cf85f58971628daf025ed43c62ff68f37db0",
+          "rows": 26
+        }
+      ]
+    },
+    {
+      "scenario": "worker-population",
+      "nativeSource": "f8a9620e8ff9e75803c03632bc401768dcb2021e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-publication/worker-population.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "28988810c64073f9deb2f671010ee7516db9f2e0e5726e17151382eb98eeef52",
+      "uncompressedSha256": "d8545c7bce60944a824c878508bf3713f51832594a8396e08bd6427dd630dcf6",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-publication/worker-population-samples.jsonl",
+          "rowsSha256": "2e2c0b0a9482cbc9de458c57eed5ce40efe2b69e20c83c72fddba2c13962b0ef",
+          "rows": 44
+        }
+      ]
+    },
+    {
+      "scenario": "loaded-cancel",
+      "nativeSource": "f8a9620e8ff9e75803c03632bc401768dcb2021e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/labor-publication/loaded-cancel.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "858d001ed53f5be085fa272ca7d3491769481a1bf306204f037e9c08eb277c61",
+      "uncompressedSha256": "f16e7fde9e20981d0f57878ed9671b40e1e0cff14adb2825a4ce3847f6f1e406",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/labor-publication/loaded-cancel-receipt.jsonl",
+          "rowsSha256": "25e358174ff72673e78c84c70e1e2cafd7ee914d65863f196579df4f699fb985",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/labor-publication/loaded-cancel-claims.jsonl",
+          "rowsSha256": "36f3321504e20363edc57c6c41f4ec50d7bc363a2ec67a46963ce031efa2412a",
+          "rows": 8
+        },
+        {
+          "rowsFile": "docs/evidence/labor-publication/loaded-cancel-sdk-calls.jsonl",
+          "rowsSha256": "c793eab7633faf1c2b1c2e5bdde80b8f44438135eb2a29ad397f9d2d28ca7afd",
+          "rows": 3
+        },
+        {
+          "rowsFile": "docs/evidence/labor-publication/loaded-cancel-observations.jsonl",
+          "rowsSha256": "5b2bb93df275affda0215adc1f2631f0031a0ddda4ee7f1fd24d0b77dd869320",
+          "rows": 26
+        }
+      ]
+    }
+  ]
+}
