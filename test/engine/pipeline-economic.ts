@@ -1,3 +1,4 @@
+import { createStartupApprovals } from '../../src/features/remotes/startup/approvals/catalog';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
 import { observeStartupBirths } from '../../src/adapters/screeps/startup-birth-observation';
@@ -15,7 +16,7 @@ import type { NativeStartupQuote } from '../../src/app/remotes/startup/projectio
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 export type NativeCalibrationQuote = NativeStartupQuote & { rooms: string[] };
 export interface PipelineEconomicContext { binding: string; generation: number; expiresAt: number }
-export interface PipelineEconomicMemory extends Memory { pipelineEconomicChangeMode?: boolean;  pipelineEconomicChanges?: number[]; pipelineEconomicMode?: boolean; pipelineEconomicChecks?: { tick: number; request: string; allowed: boolean; bindingMatches: boolean }[] }
+export interface PipelineEconomicMemory extends Memory { pipelineRetainedApprovalMode?: boolean; pipelineApprovalResetAt?: number; pipelineEconomicChangeMode?: boolean;  pipelineEconomicChanges?: number[]; pipelineEconomicMode?: boolean; pipelineEconomicChecks?: { tick: number; request: string; allowed: boolean; bindingMatches: boolean }[] }
 function policy(horizon: number) { return { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: horizon,maximumHouseholdCapital: 10000 }; }
 export function forecastPipelineCalibration(state: StatePort, profile: Readonly<RemoteFleetProfile>, quote: NativeCalibrationQuote, input: StartupDeliveryInput, config: Readonly<RuntimeConfig>, horizon: number, guard: () => boolean) {
   if (!(Memory as PipelineEconomicMemory).pipelineEconomicMode) return { status: 'ready' as const,result: forecastStartupProject(input) };
@@ -26,6 +27,10 @@ export function forecastPipelineCalibration(state: StatePort, profile: Readonly<
   const query = { ...economic,room: profile.room,source: profile.source,observedAt: quote.observedAt,tick: Game.time,input };
   const progress = planner.advance({ ...query,expectedRevision: planner.read().revision },horizon+1,guard);
   if (progress.status !== 'complete') return { status: 'deferred' as const,reason: 'economic-'+progress.reason };
+  if ((Memory as PipelineEconomicMemory).pipelineRetainedApprovalMode) {
+    const approvals = createStartupApprovals(state,profile.home), captured = approvals.capture({ query,quote,rooms: quote.rooms,policy: policy(horizon) },approvals.read().revision);
+    if (captured !== 'saved') return { status: 'deferred' as const,reason: 'approval-'+captured };
+  }
   return { status: 'ready' as const,result: progress.result,economic };
 }
 export function admitPipelineEconomic(state: StatePort, profile: Readonly<RemoteFleetProfile>, request: Readonly<SpawnRequest>, config: Readonly<RuntimeConfig>): boolean {
@@ -33,13 +38,18 @@ export function admitPipelineEconomic(state: StatePort, profile: Readonly<Remote
   if (!memory.pipelineEconomicMode) return true;
   const current = currentPipelineEconomic(state,profile,config);
   if (!current) return false;
-  const allowed = !!current.binding && createStartupForecastAdmission(state,profile.home)(profile,request,current);
+  const allowed = !!current.binding && createStartupForecastAdmission(state,profile.home,pipelineApprovalReader(state,profile.home))(profile,request,current);
   (memory.pipelineEconomicChecks ??= []).push({ tick: Game.time,request: request.id,allowed,bindingMatches: current.binding === current.query.binding });
   return allowed;
 }
 
 export function changePipelineEconomicPolicy(state: StatePort): void {
   const memory = Memory as PipelineEconomicMemory & CalibrationMemory & { pipelineStopped?: number };
+  if (memory.pipelineRetainedApprovalMode && Game.time === 40) {
+    const planner = createStartupPlanningJob(state,'W0N1'), scratch = planner.read(), job = scratch.job!;
+    if (!planner.withdraw(scratch.revision,Game.time,{ room: job.room,source: job.source,generation: job.generation })) throw new Error('Cannot discard scratch job');
+    memory.pipelineApprovalResetAt = Game.time;
+  }
   if (!memory.pipelineEconomicChangeMode || ![50,60,120].includes(Game.time)) return;
   const config = openState(state,'operator/config',operatorSchema);
   config.empire = { ...config.empire as object,...(Game.time === 120 ? { remoteMaximumSlots: 0 } : { remoteStartupEnergyReserve: Game.time === 50 ? 1 : 0 }) };
@@ -49,9 +59,23 @@ export function changePipelineEconomicPolicy(state: StatePort): void {
 }
 
 export function currentPipelineEconomic(state: StatePort, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
+  if ((Memory as PipelineEconomicMemory).pipelineRetainedApprovalMode) return approvedPipelineContext(state,profile,config);
   const proof = (Memory as CalibrationMemory).pipelineCalibration, economic = proof?.economic;
   if (!proof || !economic) return undefined;
   const currentPolicy = policy(proof.horizon), binding = createNativeStartupExecutionBinding(state)(proof.quote.plan,proof.quote.rooms,config,currentPolicy) ?? '';
   const query = { ...economic,room: proof.quote.plan.room,source: proof.quote.plan.source,observedAt: proof.quote.observedAt,tick: Game.time,input: decodeStartupPlanningInput(proof.input) };
   return { query,policy: currentPolicy,binding,tick: Game.time,births: observeStartupBirths(query.input.project.spawning.requests) };
+}
+
+export function pipelineApprovalReader(state: StatePort, home: string) {
+  return (Memory as PipelineEconomicMemory).pipelineRetainedApprovalMode ? createStartupApprovals(state,home).result : undefined;
+}
+function approvedPipelineContext(state: StatePort, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
+  const approval = createStartupApprovals(state,profile.home).read().approvals.find(entry => entry.job.room === profile.room && entry.job.source === profile.source && entry.job.generation === profile.generation);
+  if (!approval) return undefined;
+  const { room,source,generation,binding,observedAt,expiresAt } = approval.job;
+  const input = decodeStartupPlanningInput(approval.job.input), currentPolicy = policy(input.project.spawning.cash.horizon);
+  const currentBinding = createNativeStartupExecutionBinding(state)(approval.quote.plan,approval.rooms,config,currentPolicy) ?? '';
+  const query = { room,source,generation,binding,observedAt,expiresAt,tick: Game.time,input };
+  return { query,policy: currentPolicy,binding: currentBinding,tick: Game.time,births: observeStartupBirths(input.project.spawning.requests) };
 }

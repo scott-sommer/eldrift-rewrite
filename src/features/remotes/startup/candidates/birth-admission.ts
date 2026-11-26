@@ -13,12 +13,12 @@ export interface StartupBirthAdmissionContext {
   query: StartupPlanningQuery; policy: StartupReturnPolicy; binding: string; tick: number; births?: readonly StartupObservedBirth[];
 }
 /** Current caller context plus completed scratch evidence; never simulates, publishes or reserves capital. */
-export function createStartupForecastAdmission(state: StatePort, home: string) {
-  const planner = createStartupPlanningJob(state,home);
+export type StartupResultReader = ReturnType<typeof createStartupPlanningJob>['result'];
+export function createStartupForecastAdmission(state: StatePort, home: string, readResult: StartupResultReader = createStartupPlanningJob(state,home).result) {
   return (profile: Readonly<RemoteFleetProfile>, request: Readonly<SpawnRequest>, current: StartupBirthAdmissionContext): boolean => {
     const { query,policy } = current;
     if (!sameContext(home,profile,current) || request.owner !== profile.owner) return false;
-    const completed = planner.result(query); if (!completed) return false;
+    const completed = readResult(query); if (!completed) return false;
     const participants = [...query.input.project.workers,...query.input.couriers].map(worker => worker.request);
     const assessment = assessStartupProject(completed,query.input.project.spawning.cash.horizon,policy,participants,query.input.household?.labor?.jobs);
     if (!assessment.accepted) return false;
