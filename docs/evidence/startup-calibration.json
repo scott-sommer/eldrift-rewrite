@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Finite prospective prefix calibration with exact births, first harvest, all nine settled receipt frames/amounts and extraction/delivery totals; six failures retained; ordinary transport and full selected-service regressions. No whole-project prospective profitability or automatic adoption claim.",
+  "scope": "Prospective finite cohort operating-period calibration through799: exact births, extraction, all64 receipts and upkeep across depletion/regeneration; eight failures retained and ordinary/selected-service regressions. No automatic adoption, full withdrawal forecast, shared-capital or infrastructure-payback claim.",
   "native": [
     {
       "scenario": "initial-phase",
@@ -141,6 +141,24 @@
       "rawEncoding": "gzip",
       "rawSha256": "4d0a2c935080f256ab2f0bc8c29ca5f11054e99eb7bdc5c1b2b0eb1871d4ab34",
       "uncompressedSha256": "b97ff528c0de6f40c9c4f12d52efd2bf8378549e433ae6582358ad085b357d8a"
+    },
+    {
+      "scenario": "long-repairs",
+      "nativeSource": "733dd6a6eecce543e6f358fe9b7ce8451b1cead6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/long-repairs.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2fc3c3fe84e31d1a38e0d492850e0d8aaca432895cf299723cf144d11b1fd4f9",
+      "uncompressedSha256": "8e153e3b60ea31e14f7facec798e46bc7192e30474d7f02758421e56caa0e6a9"
+    },
+    {
+      "scenario": "ordinary-transport-collection",
+      "nativeSource": "733dd6a6eecce543e6f358fe9b7ce8451b1cead6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-calibration/ordinary-transport-collection.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f0b3250be6dfdfac59ccaf80af8362143230e42ebd68657e1b1823c86c7d3bb3",
+      "uncompressedSha256": "1f1c227b30193a7039a811904a87358f8e88932b540da4195d3df171fb7295e8"
     }
   ]
 }
