@@ -275,3 +275,8 @@ Focused publication/admission/queue/placement/boost25 tests5 files pass337ms; sm
 ## Combined realized operating costs
 
 The1000-tick remote pipeline now includes a published200-energy home worker, confirmed3-energy construction, actual distributor refills and explicit subsequent idle policy. Clean98367fe realizes4492 remote income against3750 ordinary births+200 home birth+3 work: surplus539 and exact home stock10300→10839. It exposed and corrected ordinary worker demand cancelling independently guarded births; the failed initial run is preserved. See remote-pipeline-household.md and evidence/remote-pipeline-household.json for source, checks and prebuilt-infrastructure/forecast/admission limits. This measured combined return is not yet a matched prospective whole-project adoption decision.
+
+
+## Selected remote service boundary
+
+Source5624c10 connects optional selected startup geometry to actual remote mining reservations and fixed-service hauling. The1000-tick combined native policy verifies563 harvests/71 withdrawals/70 productive transfers against planned positions and endpoint identities, with realized491 surplus after3750 ordinary births+200 home birth+3 work. Ordinary transport/mining regressions pass. See remote-selected-service.md/evidence/remote-selected-service.json; exact travel/calendar and prospective whole-project calibration remain open, so the earlier539 policy result is not substituted for this run.

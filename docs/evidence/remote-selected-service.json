@@ -1,0 +1,84 @@
+{
+  "issue": "ED-29",
+  "scope": "Optional selected miner station and courier container/service/sink execution through existing admission/reservation/hauling owners; accepted SDK positions checked against selected plans; combined realized return and ordinary regressions; not prospective timing/forecast calibration",
+  "native": [
+    {
+      "scenario": "selected-service",
+      "nativeSource": "5624c10f916e5318ebb2537a6b8f0beae838928b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/remote-selected-service/selected-service.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c2a117033147d9da4a6d86aa12a4ea542efb814483a5e4daad6a7c51a70a7756",
+      "uncompressedSha256": "0f8ff30ea5916cd5007652cac6609f9406687f3cc436b3cfb8ad753b9e2f0152",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-observations.jsonl",
+          "rowsSha256": "fb4205c1c42e27418234f1e24a4eccc8630fd976d0b91fa3dc9de09e7e86b8e9",
+          "rows": 1000
+        },
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-births.jsonl",
+          "rowsSha256": "c0403999ab8c36bdd366959173bf3a4b35cd376d45fd97d59b555adab8da5ab8",
+          "rows": 7
+        },
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-sdk-positions.jsonl",
+          "rowsSha256": "66d913d0a9489f8e24b0612d6066d56788651e1852686030038aca909e9e1282",
+          "rows": 5
+        },
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-plans.jsonl",
+          "rowsSha256": "1883950995c0bc2a4777fd77dc7e5fe4017d8e1b8d9c3ad0a82bfed4f445be5f",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-labor.jsonl",
+          "rowsSha256": "98bad401ed8f2ed67192098d0e63f5f26bb1784ebd365f6268e07581066c908b",
+          "rows": 1
+        },
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-remoteReceipts.jsonl",
+          "rowsSha256": "b0aef0ea6d558c6064427c20e2ec7c7ab104f25a1f548f7441d9149ebf7a70d0",
+          "rows": 72
+        },
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/selected-service-localReceipts.jsonl",
+          "rowsSha256": "2b7c87d0ad7e2d09d2642b85d2e419ce5f610acdfc5768b568452b22b7deff65",
+          "rows": 59
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "5624c10f916e5318ebb2537a6b8f0beae838928b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/remote-selected-service/ordinary-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c689feccc691afaa19d345b15a0571f32eff24b431789ab1a812ff4f1bb65f19",
+      "uncompressedSha256": "df72fc2096ce007aad7fd0bf5ba77076c929ccaf2ad1cb94700267bf2ad48fe4",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/ordinary-transport-observations.jsonl",
+          "rowsSha256": "cec06dd4c930bb978b4949213ce8ab927c1282cf46c5941657e4a3ab4c24c42e",
+          "rows": 240
+        }
+      ]
+    },
+    {
+      "scenario": "ordinary-mining",
+      "nativeSource": "5624c10f916e5318ebb2537a6b8f0beae838928b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/remote-selected-service/ordinary-mining.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "838e9ff27900a462c9be15b76fcfb1bd7633562d4f65fffb789fc7696cd7b5d3",
+      "uncompressedSha256": "11b615aede1520f510a1df98522fcefcc4c47368674f1d26d0af8c9cb75383d7",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/remote-selected-service/ordinary-mining-observations.jsonl",
+          "rowsSha256": "e2a61da5cf36417d1f9c341aa6d7416220187e3866e40ef3de88602ed7e8c809",
+          "rows": 130
+        }
+      ]
+    }
+  ]
+}
