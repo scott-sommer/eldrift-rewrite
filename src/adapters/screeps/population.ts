@@ -1,3 +1,4 @@
+import type {} from './spawn-exits';
 import { copySpawnBoost, spawnBoostIdentity } from '../../capabilities/spawning/boost';
 import type { BoostRequest } from '../../capabilities/industry/boosts/model';
 import type { SpawnRequest } from '../../capabilities/spawning/request';
@@ -7,11 +8,12 @@ declare global {
 }
 export function populationMemory(request: SpawnRequest): CreepMemory {
   const home = request.home ?? request.room;
-  if (!request.boost) return { population: { owner: request.owner,home } };
+  const memory: CreepMemory = { population: { owner: request.owner,home },...(request.placement ? { birthPlacement: { spawn: request.placement.spawn,exit: { ...request.placement.exit } } } : {}) };
+  if (!request.boost) return memory;
   const expiresAt = Game.time+request.body.length*CREEP_SPAWN_TIME+request.boost.timeout;
   if (!Number.isSafeInteger(expiresAt) || expiresAt >= Number.MAX_SAFE_INTEGER) throw new Error('Invalid birth boost deadline');
   const boost = copySpawnBoost(request.boost);
-  return { population: { owner: request.owner,home },industryBoostBirth: {
+  return { ...memory,industryBoostBirth: {
     id: spawnBoostIdentity(request),owner: request.owner,home,steps: boost.steps,required: boost.required,expiresAt,
   } };
 }

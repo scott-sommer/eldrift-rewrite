@@ -1,3 +1,4 @@
+import { recordCalibrationFrame } from './pipeline-cohort-calibration';
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 import { pipelineServicePolicy } from './pipeline-service-policy';
 import { withPipelineServiceProbe } from './pipeline-service-probe';
@@ -37,6 +38,7 @@ function before(): void {
   }
 }
 function probe(): Record<string,unknown> {
+  recordCalibrationFrame();
   const proof = (Memory as PipelineLaborMemory).pipelineLabor!, worker = Game.creeps[proof.proposal.input.request.name];
   if (worker) {
     proof.birthCost ??= bodyCost(worker.body.map(part => part.type));

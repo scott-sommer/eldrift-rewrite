@@ -1,3 +1,4 @@
+import { permitsSpawnExit } from './spawn-exits';
 import type { TrafficRequest, Occupant } from '../../capabilities/movement/traffic/model';
 import { tileKey } from '../../capabilities/movement/traffic/model';
 import { movementTransition, stepDirection } from '../../capabilities/movement/transition';
@@ -21,7 +22,7 @@ export function createMovementLegality(snapshots: ReturnType<typeof createMatrix
     if (!transition || tileKey(transition.landing) !== tileKey(request.to)) return false;
     if (!validTransit(request, transition.local)) return false;
     if (!connected(request.from.room, request.to.room)) return false;
-    return passable(transition.local) && passable(transition.landing);
+    return permitsSpawnExit(request.unit,transition.landing) && passable(transition.local) && passable(transition.landing);
   };
 }
 

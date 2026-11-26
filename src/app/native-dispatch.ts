@@ -1,3 +1,4 @@
+import { createSpawnExitControl } from './spawn-exit-control';
 import type { NativeSpawnEnergyAdmission } from '../adapters/screeps/spawn-energy-admission';
 import { createNativeControllerActions } from '../adapters/screeps/controller-actions';
 import { createActionArbiter } from '../core/execution/action-arbiter';
@@ -12,6 +13,7 @@ import type { StatePort } from '../persistence/versioned-state';
 export function createNativeDispatch(state: StatePort, acceptSpawn: (request: SpawnRequest) => boolean = () => true, physicalEnergy?: NativeSpawnEnergyAdmission) {
   const arbiter = createActionArbiter(() => Game.time);
   const movement = createMovementService(arbiter);
+  const clearExits = createSpawnExitControl(arbiter,movement);
   const structures = createNativeStructureActions(state, populationMemory,physicalEnergy);
   const observe = () => {
     const view = observeSpawning();
@@ -23,6 +25,7 @@ export function createNativeDispatch(state: StatePort, acceptSpawn: (request: Sp
   let activeTick = -1;
   return {
     arbiter, movement, structures, controllers: createNativeControllerActions(state, arbiter),
+    prepare() { if (clearExits()) activeTick = Game.time; },
     activate() { activeTick = Game.time; },
     flush() {
       if (activeTick !== Game.time) return;
