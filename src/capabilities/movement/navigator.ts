@@ -1,3 +1,4 @@
+import { createPathFollowing } from './path-following';
 import { createMovementDetours } from './detour';
 import { createMovementProgress } from './progress';
 import { movementStep, movementArrived } from './step';
@@ -12,7 +13,7 @@ interface NavigationPorts {
   rejected: MovementPorts['rejected'];
 }
 /** Caller owns shared movement arbitration; this service never invokes native moveTo. */
-export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
+export function createNavigator(ports: NavigationPorts, repathAfter = 2, following = createPathFollowing()) {
   if (!Number.isSafeInteger(repathAfter) || repathAfter < 1) throw new Error('Invalid repath threshold');
   const progress = createMovementProgress();
   const detours = createMovementDetours();
@@ -20,7 +21,7 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
     const failures = progress.observe(unit, view.position, view.tick, mobile && view.fatigue === 0);
     if (movementArrived(view)) {
       progress.forget(unit);
-      detours.forget(unit);
+      detours.forget(unit); following.forget(unit);
       return { status: 'done' as const };
     }
     if (!mobile) return { status: 'failed' as const, reason: 'no-active-move' };
@@ -28,8 +29,10 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
       route: () => {
         const avoidUnits = detours.avoid(unit, view, failures >= repathAfter);
         const request = ports.request(view, avoidUnits, unit);
-        if (avoidUnits) ports.paths.invalidate(request);
-        const path = ports.paths.find(request);
+        if (avoidUnits) { ports.paths.invalidate(request); following.forget(unit); }
+        const retained = following.next(unit,request,view.tick);
+        if (retained) return { status: 'ready',direction: ports.direction(view.position,retained),incomplete: false };
+        const path = ports.paths.find(request); following.remember(unit,request,path,view.tick);
         if (path.status === 'no-route') return { status: 'unavailable', reason: path.reason, retryAt: view.tick + 1 };
         const next = path.path[0];
         if (!next) return { status: 'unavailable', reason: 'empty-path', retryAt: view.tick + 1 };
@@ -42,7 +45,7 @@ export function createNavigator(ports: NavigationPorts, repathAfter = 2) {
       },
       rejected: ports.rejected,
     });
-    if (result.status === 'done') progress.forget(unit);
+    if (result.status === 'done') { progress.forget(unit); following.forget(unit); }
     return result;
   };
   return Object.assign(navigate, {

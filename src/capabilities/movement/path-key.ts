@@ -14,16 +14,22 @@ function validateProfile(profile: Readonly<PathProfile>): void {
   if (!integer(profile.plainCost, 1, 254) || !integer(profile.swampCost, 1, 254)) throw new Error('Invalid terrain costs');
   if (!integer(profile.maxOps, 1) || !integer(profile.maxRooms, 1, 64)) throw new Error('Invalid search limits');
 }
-export function pathKey(request: Readonly<PathRequest>): string {
+function identity(request: Readonly<PathRequest>, origin: readonly (string | number)[]): string {
   validateEndpoints(request);
   validateProfile(request.profile);
   const p = request.profile;
   const rooms = request.allowedRooms === undefined ? null : [...new Set(request.allowedRooms)].sort();
   if (rooms?.some(room => !room)) throw new Error('Invalid room policy');
   return JSON.stringify([
-    request.origin.room, request.origin.x, request.origin.y,
+    ...origin,
     request.destination.room, request.destination.x, request.destination.y, request.range,
     p.id, p.plainCost, p.swampCost, p.maxOps, p.maxRooms,
     request.topologyVersion, request.policyVersion, rooms,
   ]);
 }
+
+export function pathKey(request: Readonly<PathRequest>): string {
+  return identity(request,[request.origin.room,request.origin.x,request.origin.y]);
+}
+/** Same validated request context, while permitting observed progress within its origin room. */
+export function pathContextKey(request: Readonly<PathRequest>): string { return identity(request,[request.origin.room]); }
