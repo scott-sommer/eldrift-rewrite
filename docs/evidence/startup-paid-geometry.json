@@ -1,0 +1,49 @@
+{
+  "issue": "ED-29",
+  "scope": "Read-only paid geometry projection independent of financial approval validation; supported/refused passes and both exact5ms calendar failures retained.",
+  "native": [
+    {
+      "scenario": "refusals",
+      "nativeSource": "14d56264419e3773d8117d8eef96f979f7965afe",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-geometry-refusals.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f49e224cf75dd3b4aa7ee8cf24c53629db65898695467502084e67f3f59661a0",
+      "uncompressedSha256": "fff34b5e5c169843060e4dfb4d358c30c44b513b8c50e70090262ab741bc1346",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-paid-geometry-refusals.jsonl",
+          "rowsSha256": "d927fb3cca9a754f318a8144bfb65a97ff815eb59655263221f8c9e3cfa1b854",
+          "rows": 31
+        }
+      ]
+    },
+    {
+      "scenario": "untraced",
+      "nativeSource": "14d56264419e3773d8117d8eef96f979f7965afe",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-geometry-untraced.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0b9d7aae621aaac1068ac9e40b5a714e40285ce1e60f00fc89ee0939b7cf8ce4",
+      "uncompressedSha256": "87b8daf97cf17cfee23910a93311953476e518edf8867e6c35354f8edadf1782"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "14d56264419e3773d8117d8eef96f979f7965afe",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-geometry-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e5dd862593e82cf5936a7d98633b366f8c0c844a25f0c9c1a630fc4469fd712e",
+      "uncompressedSha256": "59c3346f6dff9c876f5cede4354b5c41d0d433c437bf30f7fe3d3a07434a8552"
+    },
+    {
+      "scenario": "refused",
+      "nativeSource": "14d56264419e3773d8117d8eef96f979f7965afe",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-geometry-refused.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "cb7eee07847676edbd278fafcdeab30bedad7c657a6ca2d50dde7d3bf265fdc3",
+      "uncompressedSha256": "5e04b0ce4e88b50418e9506f494ec25f7a1a60746e5ec1cfbf899794880e33df"
+    }
+  ]
+}
