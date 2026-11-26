@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Noninitializing validated transfer lookup; two uncertainty passes and supported-budget pass; unchanged exact5ms receipt failure retained.",
+  "native": [
+    {
+      "scenario": "unknown-delivery",
+      "nativeSource": "410dbd5c3dc80c50fbef9cddf93c2949ecb99358",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-journal-lookup-unknown-delivery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4902c8e4b6c11a1d3d167ec1e865c45357ecfec73214b290570d445989424f8b",
+      "uncompressedSha256": "ed4e03fa83c22146abe9f8fcc6bf999bcd265828361fc8b9902430ece99cecbb"
+    },
+    {
+      "scenario": "unknown-recovery",
+      "nativeSource": "410dbd5c3dc80c50fbef9cddf93c2949ecb99358",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-journal-lookup-unknown-recovery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "422759040e8b59e3d354ef79dc5b667087f4cf8264fdc39e36d220dc667fad27",
+      "uncompressedSha256": "c13cd62a860555b4c66d5ed2d457a48696975aba2ee5354a74e094ee0244a07f"
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "410dbd5c3dc80c50fbef9cddf93c2949ecb99358",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-journal-lookup-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3e0539e21bf253311fe1b6af1e13a2d000c39fb3a7a361d8edf58489619c4437",
+      "uncompressedSha256": "7b5409bd21d0c27ae0a5b8b884d2e1982c1ed92ca96bc0d50de69d05a9171c56"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "410dbd5c3dc80c50fbef9cddf93c2949ecb99358",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-journal-lookup-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4f0f936c5293c354e702689adbee8c32df01cf1027fbfef9628a48924513314b",
+      "uncompressedSha256": "9238a1ca4a13723e0136677aa4d50ce0497be9cac3a4854fd2e764269869d84f"
+    }
+  ]
+}
