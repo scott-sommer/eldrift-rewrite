@@ -1,3 +1,4 @@
+const { verifyConfiguredPipeline } = require('./remote-pipeline-configured.cjs');
 const { verifyPipelineApproval } = require('./remote-pipeline-approval.cjs');
 const { verifyPipelineGeometry } = require('./remote-pipeline-geometry.cjs');
 const { verifyPipelineEconomicChange } = require('./remote-pipeline-economic-change.cjs');
@@ -43,11 +44,12 @@ const remoteCapacityMode = ['idle','starved','busy','off'].find(mode => process.
 const { remoteCapacityWorld,changeRemoteCapacity,verifyRemoteCapacity } = require('./remote-capacity.cjs');
 const reservationVision = process.argv.includes('--reservation-vision');
 const { reservationVisionWorld,changeReservationVision,verifyReservationVision } = require('./reservation-vision.cjs');
+const remotePipelineConfigured = process.argv.includes('--remote-pipeline-configured');
 const remotePipelineApproval = process.argv.includes('--remote-pipeline-approval');
 const remotePipelineGeometry = remotePipelineApproval || process.argv.includes('--remote-pipeline-geometry');
 const remotePipelineEconomicChange = process.argv.includes('--remote-pipeline-economic-change');
 const remotePipelineEconomic = remotePipelineGeometry || remotePipelineEconomicChange || process.argv.includes('--remote-pipeline-economic');
-const remotePipelineCalibrationLong = remotePipelineEconomic || process.argv.includes('--remote-pipeline-calibration-long');
+const remotePipelineCalibrationLong = remotePipelineConfigured || remotePipelineEconomic || process.argv.includes('--remote-pipeline-calibration-long');
 const remotePipelineCalibration = remotePipelineCalibrationLong || process.argv.includes('--remote-pipeline-calibration');
 const remotePipelineService = remotePipelineCalibration || process.argv.includes('--remote-pipeline-service');
 const remotePipelineLabor = remotePipelineService || process.argv.includes('--remote-pipeline-labor');
@@ -412,7 +414,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (reachabilityMode) modules.main = await actionBundle(root,'remote-reachability-'+reachabilityMode+'-bot');
   if (remoteCapacityMode) modules.main = await actionBundle(root,'remote-capacity-'+remoteCapacityMode+'-bot');
   if (reservationVision) modules.main = await actionBundle(root,'reservation-vision-bot');
-  if (remotePipeline) modules.main = await actionBundle(root,remotePipelineLabor ? 'remote-pipeline-labor-bot' : 'remote-pipeline-bot')+'\nMemory.pipelineServiceMode = '+JSON.stringify(remotePipelineService)+'; Memory.pipelineCalibrationMode = '+JSON.stringify(remotePipelineCalibration)+'; Memory.pipelineCalibrationHorizon = '+JSON.stringify(remotePipelineCalibrationLong ? 767 : 120)+'; Memory.pipelineEconomicMode = '+JSON.stringify(remotePipelineEconomic)+'; Memory.pipelineEconomicChangeMode = '+JSON.stringify(remotePipelineEconomicChange)+'; Memory.pipelineGeometryMode = '+JSON.stringify(remotePipelineGeometry)+'; Memory.pipelineRetainedApprovalMode = '+JSON.stringify(remotePipelineApproval)+';';
+  if (remotePipeline) modules.main = await actionBundle(root,remotePipelineLabor ? 'remote-pipeline-labor-bot' : 'remote-pipeline-bot')+'\nMemory.pipelineServiceMode = '+JSON.stringify(remotePipelineService)+'; Memory.pipelineCalibrationMode = '+JSON.stringify(remotePipelineCalibration)+'; Memory.pipelineCalibrationHorizon = '+JSON.stringify(remotePipelineCalibrationLong ? 767 : 120)+'; Memory.pipelineEconomicMode = '+JSON.stringify(remotePipelineEconomic)+'; Memory.pipelineEconomicChangeMode = '+JSON.stringify(remotePipelineEconomicChange)+'; Memory.pipelineGeometryMode = '+JSON.stringify(remotePipelineGeometry)+'; Memory.pipelineRetainedApprovalMode = '+JSON.stringify(remotePipelineApproval)+'; Memory.pipelineConfiguredMode = '+JSON.stringify(remotePipelineConfigured)+';';
   if (reservationPopulation) modules.main = await actionBundle(root,reservationPopulationCancellation ? 'reservation-population-cancel-bot' : reservationPopulationAdmission ? 'reservation-population-admission-bot' : 'reservation-population-bot');
   if (reservationSelection) modules.main = await actionBundle(root,'reservation-selection-bot');
   if (roomReservation) modules.main = await actionBundle(root,'room-reservation-bot');
@@ -793,7 +795,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
       if (replacement) evidence.reloadProvenance = provenance(root,replacement);
     }
     if (remotePipeline) {
-      const replacement = await changeRemotePipeline(server,bot,modules,tick);
+      const replacement = await changeRemotePipeline(server,bot,modules,tick,remotePipelineConfigured);
       if (replacement) evidence.reloadProvenance = provenance(root,replacement);
     }
     if (reservationPopulation) {
@@ -1092,11 +1094,12 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (reservationVision) verifyReservationVision(memory,evidence);
   if (remotePipeline && !remotePipelineCalibration) verifyRemotePipeline(memory,evidence,remotePipelineLabor);
   if (remotePipelineService && !remotePipelineCalibration) verifyPipelineService(memory,evidence);
+  if (remotePipelineConfigured) verifyConfiguredPipeline(memory,evidence);
   if (remotePipelineApproval) verifyPipelineApproval(memory,evidence);
   if (remotePipelineGeometry) verifyPipelineGeometry(memory,evidence);
   if (remotePipelineEconomicChange) verifyPipelineEconomicChange(memory,evidence);
   if (remotePipelineCalibration && !remotePipelineEconomicChange) verifyPipelineCalibration(memory,evidence);
-  if (remotePipelineCalibrationLong && !remotePipelineEconomicChange) verifyRemotePipeline(memory,evidence,true,true);
+  if (remotePipelineCalibrationLong && !remotePipelineEconomicChange) verifyRemotePipeline(memory,evidence,true,true,remotePipelineConfigured);
   if (reservationPopulation) (reservationPopulationCancellation ? verifyReservationPopulationCancellation : reservationPopulationAdmission ? verifyReservationPopulationAdmission : verifyReservationPopulation)(memory,evidence);
   if (reservationSelection) verifyReservationSelection(memory,evidence);
   if (roomReservation) verifyRoomReservation(memory,evidence);

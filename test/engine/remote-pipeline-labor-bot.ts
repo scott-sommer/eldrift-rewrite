@@ -1,3 +1,5 @@
+import { observeConfiguredPipeline } from './pipeline-configured';
+import type { ConfiguredPipelineMemory } from './pipeline-configured';
 import { changePipelineEconomicPolicy } from './pipeline-economic';
 import { recordCalibrationFrame } from './pipeline-cohort-calibration';
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
@@ -13,8 +15,12 @@ import { operatorSchema } from '../../src/features/operator/state';
 import { bodyCost } from '../../src/capabilities/spawning/body';
 import type { LaborProposalSnapshot } from '../../src/capabilities/economy/startup/household/labor/proposal';
 interface PipelineLaborMemory extends Memory { pipelineLabor?: { proposal: LaborProposalSnapshot; publishedAt: number; acknowledgedAt?: number; birthCost?: number; activeAt?: number; receipt?: NonNullable<CreepMemory['startupLaborReceipt']>; idleAt?: number; moveCodes: number[] } }
-const state = createMemoryPort(() => Memory), runtime = createNativeBot({ remoteBirths: pipelineServicePolicy,spawnEnergyPolicy: 'spawn-first-range-id-v1' });
-export function loop(): void { runPipeline(() => withPipelineServiceProbe(runtime),before,probe); }
+const state = createMemoryPort(() => Memory);
+let runtime: ReturnType<typeof createNativeBot> | undefined;
+export function loop(): void {
+  runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
+  runPipeline(() => withPipelineServiceProbe(runtime!),before,probe);
+}
 function before(): void {
   changePipelineEconomicPolicy(state);
   const memory = Memory as PipelineLaborMemory, publisher = createNativeLaborPublication(state,'W0N1');
@@ -31,6 +37,7 @@ function before(): void {
     config.empire = { ...config.empire as object,distributorSpawningEnabled: true };
     saveState(state,'operator/config',operatorSchema,config);
   }
+  observeConfiguredPipeline(state);
   const proof = memory.pipelineLabor!;
   if (publisher.maintain() === 'born') proof.acknowledgedAt = Game.time;
   if (proof.receipt) {

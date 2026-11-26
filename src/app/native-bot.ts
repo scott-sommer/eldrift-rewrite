@@ -1,3 +1,4 @@
+import { createNativeEconomicStartup } from './remotes/startup/economic/native';
 import { createNativeRemoteServicePorts } from './remotes/service-ports';
 import { createNativeLaborBirthAdmission } from './native-labor/birth-admission';
 import { nativeWorkerSettings } from './native-worker-settings';
@@ -86,7 +87,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
     const policy = nativeWorkerSettings(owner,home,runtimeConfig(home));
     return !!policy?.workersEnabled && policy.workerSpawningEnabled;
   },taskDefinitions);
-  const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths);
+  const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths ?? createNativeEconomicStartup(state,dispatch.structures));
   const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, taskDefinitions, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time), withLaborReceiptRetirement(unit => settleHaulingTask(state,taskDefinitions,unit,observeTransfer)));

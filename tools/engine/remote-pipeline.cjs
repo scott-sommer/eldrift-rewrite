@@ -9,11 +9,11 @@ async function remotePipelineWorld(server,bot,labor = false,calibration = false)
   if (calibration) await db['rooms.objects'].update({ room: 'E0N1',type: 'container' },{ $set: { nextDecayTime: 100 } });
   if (labor) await server.world.addRoomObject('W0N1','constructionSite',46,26,{ user: bot.id,structureType: 'road',progress: 297,progressTotal: 300 });
 }
-async function changeRemotePipeline(server,bot,modules,index) {
+async function changeRemotePipeline(server,bot,modules,index,configured = false) {
   await server.driver.activateRoom(['W0N1','E0N1']);
-  return reloadStampDraft(server,bot,modules,index,[20,310,590,860]);
+  return reloadStampDraft(server,bot,modules,index,configured ? [20,40,310,590,860] : [20,310,590,860]);
 }
-function verifyRemotePipeline(memory,evidence,labor = false,unreserved = false) {
+function verifyRemotePipeline(memory,evidence,labor = false,unreserved = false,configured = false) {
   const rows = memory.pipelineRows, last = rows.at(-1);
   evidence.remotePipeline = { rows,births: memory.pipelineBirths,remoteReceipts: memory.pipelineRemote,localReceipts: memory.pipelineLocal,reloads: memory.stampReloads };
   assert.equal(rows.length,1000); assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
@@ -40,6 +40,6 @@ function verifyRemotePipeline(memory,evidence,labor = false,unreserved = false) 
   for (const row of rows) { assert.deepEqual(row.unrelated,rows[0].unrelated); assert.deepEqual(row.sentinel,rows[0].sentinel); }
   const capital = row => row.homeEnergy+row.units.reduce((sum,unit) => sum+unit.cargo,0)+row.birthCost-row.income;
   assert.equal(capital(last)+laborExpense,capital(rows[0]),'final stock plus births must reconcile to initial capital and independently confirmed remote income');
-  assert.deepEqual(memory.stampReloads,[21,311,591,861]);
+  assert.deepEqual(memory.stampReloads,configured ? [21,41,311,591,861] : [21,311,591,861]);
 }
 module.exports = { remotePipelineWorld,changeRemotePipeline,verifyRemotePipeline };

@@ -7,3 +7,9 @@ test('startup strategy and capital/lead controls resolve per home and default to
 test.each([{ remoteStartupPolicy: 'other' },{ remoteStartupEnergyReserve: -1 },{ remoteStartupCourierLead: 1501 }])('invalid startup configuration is rejected',(roomOverride) => {
   expect(() => resolveConfig({ roomOverride },1)).toThrow();
 });
+
+test('economic startup is opt-in with bounded planning and return settings',() => {
+  expect(resolveConfig({},1).values.remoteStartupPolicy).toBe('eager');
+  expect(resolveConfig({ roomOverride: { remoteStartupPolicy: 'economic',remoteStartupFrames: 32,remoteStartupPlanningLead: 30,remoteStartupHorizon: 767,remoteStartupMinimumMargin: 20,remoteStartupMaximumCapital: 1000 } },1).values).toMatchObject({ remoteStartupPolicy: 'economic',remoteStartupFrames: 32,remoteStartupPlanningLead: 30,remoteStartupHorizon: 767,remoteStartupMinimumMargin: 20,remoteStartupMaximumCapital: 1000 });
+  for (const patch of [{ remoteStartupPolicy: ['economic'] },{ remoteStartupFrames: 0 },{ remoteStartupPlanningLead: 0 },{ remoteStartupHorizon: 10001 },{ remoteStartupMinimumMargin: -1 },{ remoteStartupMaximumCapital: 0.5 }]) expect(() => resolveConfig({ roomOverride: patch },1)).toThrow('roomOverride');
+});
