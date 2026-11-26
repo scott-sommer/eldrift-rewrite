@@ -1,0 +1,19 @@
+# Identical quantity booking and fixture pressure
+
+Implementation a6c5946 avoids saving an identical last claim only after fresh current ownership and competing-capacity validation. Equality includes expiry and allocations, with plain-data validation that refuses serialization callbacks without invoking them. No expired records may require pruning. Limiting reuse to the last claim also preserves existing ledger ordering. Real renewal, changed amounts, capacity refusal, wrong ownership, pruning and reorder behavior retain their writes/refusals.
+
+Targeted29tests/six files passed332ms; fixedsmoke76/15 passed474ms. Quality (1042 production/898 test files, zero violations) and CommonJS bundle passed. Full units and milestone CI were not run.
+
+[Five clean-source raw archives and the bounded trace](evidence/startup-identical-booking.json) preserve three passes and two failures. Unknown-delivery, unknown-recovery and supported configured1000 passed. The short260-tick probe failed forecast cutoff as expected; its600 rows had no captured yield. Source median/max0.266/0.738ms, approach0.289/0.358ms, admission0.715/0.797ms, execution0.774/1.062ms and whole courier0.830/1.873ms. These samples do not establish whole-run timing or a guaranteed speedup.
+
+The full untraced5ms run observed35, approved81 and matched all starts135/156/168, activations156/168/180, firstharvest166/income183, harvest3264 andrepair88. Exact receipts FAILED:40actual vs53predicted frames, delivery2302 vs3080. The first differing frame is263/56energy against262/62energy. This run is not a passing economic qualification, even though the bounded phase probe showed no yield.
+
+## Newly measured harness cost
+
+This run's total Memory grows from21448 bytes at tick2 to1714226 at tick1000. Re-encoding its observed pipelineRows accounts for about1323501 bytes and its calibration proof for233069 bytes. Most of that is test-only per-tick row/frame/event history, rather than production decision state. This creates a plausible measurement confound: growing parsing/serialization/allocation pressure may alter timing. It is not proven to explain every failed calendar and does not erase any failure.
+
+Next add an explicit opt-in external telemetry collector for configured pipeline campaigns. After each completed native tick, the harness can collect/drain only fixture-owned pipelineRows and calibration frames/events, retaining complete rows externally and reassembling the same memory-shaped evidence before the existing unmodified verifiers run. Keep all production namespaces, frozen forecast/input/quote, cumulative receipts/income, births, approval, tasks, journals and operator configuration untouched. The pinned harness exposes storage env.get/set at env.keys.MEMORY+bot.id (screeps-server-mockup1.5.1 user.js and driver index.js); the change must be confined to between-tick fixture observation, never injected decisions or acknowledgments.
+
+Audit readers before draining: pipelineIncome uses pipelineRemote.amounts (retain it); pipelineRows are only appended by snapshotPipeline and verified afterward; calibration frames/events are appended by recordCalibrationFrame/recordCalibrationCall and verified afterward. Preserve every actual row/event across reloads20/40/310/590/860, detect gaps/duplicates and changed proof identities, and retain failures. First compare the external mode with the same supported-budget exact calendar and source-qualified old-mode baseline; run full5ms under the explicit new mode separately. Record both engine-visible Memory and external history bytes. Do not reinterpret a reduced-telemetry pass as the old bloated-fixture pressure gate passing.
+
+ED-29 remains open, with broader schedules/shared capital/replacement/home-loss and all downstream parity/pressure/migration/RC requirements intact.

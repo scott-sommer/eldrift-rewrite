@@ -1,0 +1,58 @@
+{
+  "issue": "ED-29",
+  "scope": "Identical last-claim booking idempotence; uncertainty and supported passes; failed exact5ms run and bounded diagnostic preserved. Fixture telemetry growth identified as separate pressure to investigate.",
+  "native": [
+    {
+      "scenario": "unknown-delivery",
+      "nativeSource": "a6c594609127e4fb042a6f8212cb24a380cbd33e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-identical-booking-unknown-delivery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "949f53376499ea09ddefe8e7ce564a31f6e81a16b30271a6722434b04be1c23e",
+      "uncompressedSha256": "fd270802a1745d21399e8a8fcd9e74a606066e076914de2feb5bd9ab70c59f65"
+    },
+    {
+      "scenario": "unknown-recovery",
+      "nativeSource": "a6c594609127e4fb042a6f8212cb24a380cbd33e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-identical-booking-unknown-recovery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "83b1dbc5e9607fa67e69a334f2fdaa695b7904aa11131dd74ec3f7c324d39ef8",
+      "uncompressedSha256": "d19688fe8d405bf37734fc0931bd01e6e08d949d3047944289d03854f3c89824"
+    },
+    {
+      "scenario": "probe",
+      "nativeSource": "a6c594609127e4fb042a6f8212cb24a380cbd33e",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-identical-booking-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8ead44bbcc6899a49e4974112e3ca470b2f1f6c9262e173b96a2f2dc5165c6dd",
+      "uncompressedSha256": "1e137b232f54828d45ee3ac4a02e7c1a0b7f5143a4d4baa713819e4b555f7b84",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-identical-booking-probe.jsonl",
+          "rowsSha256": "be33d37e4a628b5e219e1839772d18b808551268162a734c46118dac6398a69e",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "a6c594609127e4fb042a6f8212cb24a380cbd33e",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-identical-booking-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5930964236917db36f83ca413d466751bce0299d2b53687f1e7b2f77717f5048",
+      "uncompressedSha256": "4cdf465732a8b4f5b6eb294fcf91c465b7a0be14b98014f9ca8530451caf1af6"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "a6c594609127e4fb042a6f8212cb24a380cbd33e",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-identical-booking-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c11148c54555f174734875e8c4a464059496a9375795a5ffe109576627d6ffed",
+      "uncompressedSha256": "7976dccb30714576075f2ea617e661f95cfef1479dd22efebb6c893db46a698f"
+    }
+  ]
+}
