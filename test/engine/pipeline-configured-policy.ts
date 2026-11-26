@@ -19,10 +19,14 @@ export function changeConfiguredPolicy(state: StatePort, memory: ConfiguredPipel
   (memory.pipelineConfiguredChanges ??= []).push(Game.time);
 }
 
+const coldActorTicks = new Set([311,591,861]);
+function refusalOrColdActorPhase(phase: string, tick: number): boolean {
+  return /:(?:denied|yield|deferred)$/.test(phase) || coldActorTicks.has(tick) && /^actor:[^:]+:(?:begin|execute|done)$/.test(phase);
+}
 export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
   const memory = Memory as ConfiguredPipelineMemory;
   if (memory.pipelineConfiguredActorTraceMode && !phase.startsWith('actor:')) return;
-  if (memory.pipelineConfiguredYieldTraceMode && !/:(?:denied|yield|deferred)$/.test(phase)) return;
+  if (memory.pipelineConfiguredYieldTraceMode && !refusalOrColdActorPhase(phase,Game.time)) return;
   if (!memory.pipelineConfiguredYieldTraceMode && memory.pipelineConfiguredCourierTraceMode && (Game.time < 200 || Game.time > 240)) return;
   const rows = memory.pipelineStartupTrace ??= [];
   if (rows.length < (memory.pipelineConfiguredActorTraceMode ? 600 : 200)) rows.push({ tick: Game.time,phase,owner: profile.owner,cpu: Game.cpu.getUsed() });

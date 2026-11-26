@@ -25,7 +25,7 @@ test('throwing steps restore diagnostic scope and preserve the original exceptio
   expect(rows).toContain('first:transport:execute:end');
 });
 
-test('refusal-only fixture trace spans late service and stays bounded without successful-phase history',() => {
+test('refusal trace spans late service with only bounded cold actor markers',() => {
   const memory = { pipelineConfiguredActorTraceMode: true,pipelineConfiguredYieldTraceMode: true,
     pipelineStartupTrace: [] as { tick: number; phase: string; owner: string; cpu: number }[] };
   vi.stubGlobal('Memory',memory); vi.stubGlobal('Game',{ time: 900,cpu: { getUsed: () => 5 } });
@@ -35,6 +35,10 @@ test('refusal-only fixture trace spans late service and stays bounded without su
   captureStartupTrace(profile,'actor:unit:transport:source:denied');
   captureStartupTrace(profile,'actor:unit:yield'); captureStartupTrace(profile,'actor:unit:deferred');
   expect(memory.pipelineStartupTrace.map(row => row.tick)).toEqual([900,900,900]);
+  vi.stubGlobal('Game',{ time: 311,cpu: { getUsed: () => 5 } });
+  for (const phase of ['begin','execute','done']) captureStartupTrace(profile,'actor:unit:'+phase);
+  captureStartupTrace(profile,'actor:unit:transport:execute:begin');
+  expect(memory.pipelineStartupTrace.slice(3).map(row => row.phase)).toEqual(['actor:unit:begin','actor:unit:execute','actor:unit:done']);
   for (let index = 0; index < 610; index++) captureStartupTrace(profile,'actor:unit:yield');
   expect(memory.pipelineStartupTrace).toHaveLength(600);
 });
