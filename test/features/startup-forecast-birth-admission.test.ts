@@ -5,13 +5,14 @@ import { createStartupForecastAdmission } from '../../src/features/remotes/start
 import { startupDeliveryInput } from '../fixtures/startup-delivery';
 import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model';
 const policy = { minimumRecoveryMargin: 0,minimumDeliveredEnergy: 1,maximumRecoveryTicks: 1000,maximumHouseholdCapital: 1000 };
-function fixture(complete = true) {
+function fixture(complete = true, marked = false) {
   const root = {}, state = createMemoryPort(() => root), home = 'W0N1', input = startupDeliveryInput();
   input.project.spawning.room = home;
   input.project.spawning.requests = input.project.spawning.requests.map(request => ({ ...request,room: home }));
   input.project.spawning.spawns = input.project.spawning.spawns.map(spawn => ({ ...spawn,room: home }));
   input.project.spawning.cash.horizon = 1000; input.project.source.energy = 1000; input.project.source.capacity = 1000;
   const query = { room: 'E0N1',source: 'source',generation: 1,binding: 'current-config-world',observedAt: 1,expiresAt: 100,tick: 1,input };
+  if (marked) input.project.spawning.requests = input.project.spawning.requests.map(request => ({ ...request,admission: { kind: 'remote-startup',generation: 1,observedAt: 1 } }));
   if (complete) createStartupPlanningJob(state,home).advance({ ...query,expectedRevision: 0 },1001);
   const proposed = input.project.spawning.requests[0]!, request = { ...proposed,readyAt: 1,expiresAt: 101 };
   const profile: RemoteFleetProfile = { home,room: query.room,source: query.source,generation: 1,owner: request.owner,body: [...request.body],kind: 'miner',desired: 1,travelTicks: 0,marginTicks: 0,retireTicks: 10,priority: 0 };
@@ -48,4 +49,11 @@ test('later slots require every earlier modeled birth with matching actual ident
   const prior = { request: f.request.id,owner: f.request.owner,home: f.home,body: f.request.body,startAt: 1,activeAt: 10 };
   expect(f.admit(profile,request,{ ...current,births: [prior] })).toBe(true);
   expect(f.admit(profile,request,{ ...current,births: [{ ...prior,activeAt: 11 }] })).toBe(false);
+});
+
+test('a persisted cohort tag must name the approval generation and observation epoch',() => {
+  const f = fixture(true,true); expect(f.admit(f.profile,f.request,f.current)).toBe(true);
+  for (const admission of [{ kind: 'remote-startup' as const,generation: 2,observedAt: 1 },{ kind: 'remote-startup' as const,generation: 1,observedAt: 0 }]) {
+    expect(f.admit(f.profile,{ ...f.request,admission },f.current)).toBe(false);
+  }
 });

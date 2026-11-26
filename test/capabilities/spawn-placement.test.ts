@@ -31,11 +31,11 @@ test('queue serialization and per-tick deferral retain the constraint and reject
   const memory = JSON.parse(JSON.stringify(root)), restored = createSpawnQueue(createMemoryPort(() => memory),'W0N1');
   expect(restored.list()[0]).toMatchObject({ readyAt: 2,placement: { spawn: 'z',exit: { x: 24 } } });
 });
-test('schema1 pending requests migrate without loss and older readers refuse the schema4 queue',() => {
+test('schema1 pending requests migrate without loss and older readers refuse the schema5 queue',() => {
   const root = {}, state = createMemoryPort(() => root), legacy = request(); delete legacy.placement;
   state.write('spawning/W0N1',{ owner: 'population',version: 1,data: { requests: [{ ...legacy,legacyTag: 'keep' }] } });
   expect(createSpawnQueue(state,'W0N1').list()[0]).toMatchObject({ id: 'bound',legacyTag: 'keep' });
-  expect(state.read('spawning/W0N1')).toMatchObject({ version: 4 });
+  expect(state.read('spawning/W0N1')).toMatchObject({ version: 5 });
   expect(() => openState(state,'spawning/W0N1',{ ...spawnQueueSchema('W0N1'),version: 1 })).toThrow('future version');
 });
 test('legacy wire data cannot silently reinterpret an unsupported placement as a new constraint',() => {

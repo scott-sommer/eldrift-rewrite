@@ -32,12 +32,18 @@ test('changed identity/body/placement, missing marker and missed frame refuse be
   }
   f.at(2); expect(f.admit(f.request)).toBe(false);
 });
-test('v3 ordinary queues migrate to4 but cannot smuggle guarded requests into legacy records',() => {
+test('v3 ordinary queues migrate to5 but cannot smuggle guarded requests into legacy records',() => {
   const f = fixture(), ordinary = copySpawnRequest(f.request); delete ordinary.admission;
   f.state.write('spawning/W0N1',{ owner: 'population',version: 3,data: { requests: [ordinary] } });
   expect(openState(f.state,'spawning/W0N1',spawnQueueSchema('W0N1')).requests).toEqual([ordinary]);
-  expect(f.state.read('spawning/W0N1')).toMatchObject({ version: 4 });
+  expect(f.state.read('spawning/W0N1')).toMatchObject({ version: 5 });
   expect(() => openState(f.state,'spawning/W0N1',{ ...spawnQueueSchema('W0N1'),version: 3 })).toThrow('unsupported future version');
   f.state.write('spawning/W0N1',{ owner: 'population',version: 3,data: { requests: [f.request] } });
   expect(() => openState(f.state,'spawning/W0N1',spawnQueueSchema('W0N1'))).toThrow('Invalid legacy spawn admission');
+});
+
+test('remote financial authority cannot borrow a household task and ordinary remote requests pass this separate guard',() => {
+  const f = fixture(), admission = { kind: 'remote-startup' as const,generation: 1,observedAt: 1 };
+  expect(f.admit({ ...f.request,admission })).toBe(false);
+  expect(f.admit({ ...f.request,name: 'separate-remote',admission })).toBe(true);
 });

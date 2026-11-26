@@ -7,9 +7,11 @@ import type { TaskDefinition } from '../persistence/tasks/schema';
 import type { StatePort } from '../persistence/versioned-state';
 /** Refuse changed ownership; never cancel an active task or a replacement queue entry. */
 export function withdrawLaborPublication(state: StatePort, entry: LaborPublication, definitions: Readonly<Record<string,TaskDefinition>>): boolean {
-  const request = entry.request, queue = createSpawnQueue(state,request.room), pending = queue.list().find(item => item.id === request.id);
+  const request = entry.request;
+  if (request.admission?.kind !== 'household-labor') return false;
+  const taskId = request.admission.task, queue = createSpawnQueue(state,request.room), pending = queue.list().find(item => item.id === request.id);
   if (pending && !sameSpawnRequest(pending,request)) return false;
-  const staging = createLaborTaskStaging(state,definitions), task = staging.read(request.name)?.queue.find(task => task.id === request.admission!.task);
+  const staging = createLaborTaskStaging(state,definitions), task = staging.read(request.name)?.queue.find(task => task.id === taskId);
   if (task && !ownsPreparedTask(task,entry)) return false;
   if (pending) queue.cancel(request.id,request.owner);
   if (task) staging.cancel(request.name,request.id);

@@ -1,3 +1,4 @@
+import type { RemoteStartupAdmission } from '../../../capabilities/spawning/admission';
 import { sameSpawnPlacement } from '../../../capabilities/spawning/placement';
 import { remoteFleetDemand } from '../../../features/remotes/fleet/demand';
 import { applyPopulationDemand } from '../../../features/population/apply-demand';
@@ -17,15 +18,15 @@ export function createRemoteProfileRecruitment(state: StatePort, dispatch: Retur
     const placement = target > 0 ? prepareBirth(births,profile,config,guard) : undefined;
     if (!guard()) return false;
     const healthy = roster.filter(unit => unit.owner !== profile.owner || healthyRemoteActor(Game.creeps[unit.name]!,profile));
-    reconcileProfile(state,dispatch,profile,placement === null ? 0 : target,healthy,config.remoteSpawnRequestLifetime,placement);
+    reconcileProfile(state,dispatch,profile,placement === null ? 0 : target,healthy,config.remoteSpawnRequestLifetime,placement,births?.cohort?.(profile,config));
     return true;
   };
 }
 function reconcileProfile(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, profile: RemoteFleetProfile, desired: number,
-  units: ReturnType<typeof observePopulation>, lifetime: number, placement: RemoteBirthSelection): void {
-  const plan = { ...remoteFleetDemand(profile,desired,lifetime),...(placement ? { placement } : {}) };
+  units: ReturnType<typeof observePopulation>, lifetime: number, placement: RemoteBirthSelection, admission?: RemoteStartupAdmission): void {
+  const plan = { ...remoteFleetDemand(profile,desired,lifetime),...(placement ? { placement } : {}),...(admission ? { admission } : {}) };
   const queue = createSpawnQueue(state,profile.home);
-  for (const request of queue.list().filter(request => request.owner === profile.owner && (JSON.stringify(request.body) !== JSON.stringify(profile.body) || !sameSpawnPlacement(request.placement,plan.placement)))) queue.cancel(request.id,profile.owner);
+  for (const request of queue.list().filter(request => request.owner === profile.owner && request.admission?.kind !== 'remote-startup' && (JSON.stringify(request.body) !== JSON.stringify(profile.body) || !sameSpawnPlacement(request.placement,plan.placement)))) queue.cancel(request.id,profile.owner);
   const pending = queue.list(), decision = reconcileDemand(plan,units,pending,Game.time);
   if (pending.length-decision.cancel.length+decision.missing <= 200) applyPopulationDemand(state,plan,units,Game.time);
   else for (const id of decision.cancel) queue.cancel(id,profile.owner);

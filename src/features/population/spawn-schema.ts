@@ -11,7 +11,7 @@ function validRequest(value: unknown): value is SpawnRequest {
 }
 export function spawnQueueSchema(room: string): StateSchema<SpawnQueue> {
   return {
-    owner: 'population', version: 4, initial: () => ({ requests: [] }), migrations: { 1: migrateLegacy,2: migratePlacement,3: migrateAdmission },
+    owner: 'population', version: 5, initial: () => ({ requests: [] }), migrations: { 1: migrateLegacy,2: migratePlacement,3: migrateAdmission,4: migrateEconomicAdmission },
     valid(value: unknown): value is SpawnQueue {
       if (!value || typeof value !== 'object' || !('requests' in value)) return false;
       const requests = value.requests;
@@ -38,5 +38,11 @@ function migratePlacement(value: unknown): SpawnQueue {
 function migrateAdmission(value: unknown): SpawnQueue {
   if (!value || typeof value !== 'object' || !('requests' in value) || !Array.isArray(value.requests)) throw new Error('Invalid legacy spawn queue');
   if (!value.requests.every(validRequest) || value.requests.some(request => request.admission !== undefined)) throw new Error('Invalid legacy spawn admission');
+  return { ...value,requests: value.requests };
+}
+
+function migrateEconomicAdmission(value: unknown): SpawnQueue {
+  if (!value || typeof value !== 'object' || !('requests' in value) || !Array.isArray(value.requests)) throw new Error('Invalid legacy spawn queue');
+  if (!value.requests.every(validRequest) || value.requests.some(request => request.admission?.kind === 'remote-startup')) throw new Error('Invalid legacy remote startup admission');
   return { ...value,requests: value.requests };
 }

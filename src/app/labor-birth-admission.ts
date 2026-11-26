@@ -15,13 +15,13 @@ export interface LaborBirthAdmissionPorts { now(): number; current(proposal: Lab
 export function createLaborBirthAdmission(state: StatePort, ports: LaborBirthAdmissionPorts, definitions: Readonly<Record<string,TaskDefinition>> = {}) {
   const staging = createLaborTaskStaging(state,definitions);
   function published(request: SpawnRequest): boolean {
-    if (!request.admission?.publication) return true;
+    if (request.admission?.kind !== 'household-labor' || !request.admission.publication) return true;
     const entry = peekState(state,stateKey('labor-publications',request.room),laborPublicationSchema(request.room))?.entry;
     return entry?.phase === 'queued' && sameSpawnRequest(entry.request,request);
   }
   return (request: SpawnRequest): boolean => {
     const head = peekTaskHead(state,request.name);
-    if (!request.admission) return head?.kind !== 'household-labor';
+    if (request.admission?.kind !== 'household-labor') return head?.kind !== 'household-labor';
     if (head?.kind !== 'household-labor' || head.id !== request.admission.task || head.phase !== 'await-birth') return false;
     const payload = staging.read(request.name)!.queue[0]!.payload as LaborTaskPayload;
     if (payload.progress || !published(request)) return false;

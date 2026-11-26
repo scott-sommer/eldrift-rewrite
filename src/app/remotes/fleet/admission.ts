@@ -15,7 +15,7 @@ import { nativeRemoteTraversal } from '../management/policy';
 /** Final dispatcher admission fences queued work even when recruitment's bounded scan has not reached its owner. */
 export function admitRemoteFleetSpawn(state: StatePort, request: SpawnRequest, config: (home: string) => Readonly<RuntimeConfig>,births?: RemoteFleetBirthPolicy): boolean {
   const identity = remoteFleetIdentity(request.owner);
-  if (!identity) return !request.owner.startsWith('remote-fleet:');
+  if (!identity) return request.admission?.kind !== 'remote-startup' && !request.owner.startsWith('remote-fleet:');
   const policy = config(identity.home), home = Game.rooms[identity.home];
   if (!home || !remoteFleetSpawningEnabled(policy) || !remoteFleetBodyAllowed(request.body,identity.kind,home,policy)) return false;
   if (request.room !== identity.home || (request.home ?? request.room) !== identity.home) return false;
@@ -30,7 +30,21 @@ export function admitRemoteFleetSpawn(state: StatePort, request: SpawnRequest, c
 }
 
 function selectedBirthAllows(births: RemoteFleetBirthPolicy | undefined, profile: RemoteFleetProfile, request: SpawnRequest, config: Readonly<RuntimeConfig>): boolean {
+  const marker = request.admission;
+  if (!currentCohortAllows(request,profile,births)) return false;
   const selected = births?.current(profile,config);
+  if (marker?.kind === 'remote-startup' && !selected) return false;
   if (selected === null || selected && !sameSpawnPlacement(request.placement,selected)) return false;
-  return births?.admit?.(profile,request,config) ?? true;
+  return finalPolicyAllows(births,profile,request,config);
+}
+
+function currentCohortAllows(request: SpawnRequest, profile: RemoteFleetProfile, births: RemoteFleetBirthPolicy | undefined): boolean {
+  const marker = request.admission;
+  if (marker?.kind !== 'remote-startup') return true;
+  return marker.generation === profile.generation && marker.observedAt <= Game.time && !!births?.admit;
+}
+
+function finalPolicyAllows(births: RemoteFleetBirthPolicy | undefined, profile: RemoteFleetProfile, request: SpawnRequest, config: Readonly<RuntimeConfig>): boolean {
+  const admitted = births?.admit?.(profile,request,config);
+  return request.admission?.kind === 'remote-startup' ? admitted === true : admitted ?? true;
 }

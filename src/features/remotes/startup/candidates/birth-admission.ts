@@ -16,7 +16,8 @@ export interface StartupBirthAdmissionContext {
 export type StartupResultReader = ReturnType<typeof createStartupPlanningJob>['result'];
 export function createStartupForecastAdmission(state: StatePort, home: string, readResult: StartupResultReader = createStartupPlanningJob(state,home).result) {
   return (profile: Readonly<RemoteFleetProfile>, request: Readonly<SpawnRequest>, current: StartupBirthAdmissionContext): boolean => {
-    const { query,policy } = current;
+    const { query,policy } = current, marker = request.admission;
+    if (marker?.kind === 'remote-startup' && (marker.generation !== query.generation || marker.observedAt !== query.observedAt)) return false;
     if (!sameContext(home,profile,current) || request.owner !== profile.owner) return false;
     const completed = readResult(query); if (!completed) return false;
     const participants = [...query.input.project.workers,...query.input.couriers].map(worker => worker.request);

@@ -1,3 +1,5 @@
+import type { CalibrationMemory } from './pipeline-cohort-calibration';
+import type { PipelineEconomicMemory } from './pipeline-economic';
 import { createNativeStartupGeometry } from '../../src/app/remotes/startup/native-geometry';
 import { maintainPipelineEconomic } from './pipeline-economic-maintenance';
 import { admitPipelineEconomic } from './pipeline-economic';
@@ -21,6 +23,10 @@ function placement(profile: Readonly<RemoteFleetProfile>) {
   const plan = selected(profile); return plan ? { spawn: plan.spawn.id,exit: { ...plan.spawn.exit } } : null;
 }
 export const pipelineServicePolicy: RemoteFleetBirthPolicy = {
+  cohort(profile) {
+    const memory = Memory as PipelineEconomicMemory & CalibrationMemory, proof = memory.pipelineCalibration;
+    return memory.pipelineEconomicMode && proof ? { kind: 'remote-startup',generation: profile.generation,observedAt: proof.quote.observedAt } : undefined;
+  },
   admit: (profile,request,config) => admitPipelineEconomic(state,profile,request,config),
   prepare(profile,config,guard) {
     if (!(Memory as PipelineServiceMemory).pipelineServiceMode) return undefined;

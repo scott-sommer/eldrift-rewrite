@@ -48,6 +48,16 @@ test('final dispatch consults only the current selection and blocks stale unboun
   expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => config,{ current: () => placement,prepare,admit })).toBe(true);
   expect(admitRemoteFleetSpawn(f.state,{ ...request,placement,id: 'stale' },() => config,{ current: () => placement,prepare,admit })).toBe(false);
   expect(admitRemoteFleetSpawn(f.state,{ ...request,placement },() => ({ ...config,remoteStartupEnergyReserve: 1 }),{ current: () => placement,prepare,admit })).toBe(false);
+  const marked = { ...request,placement,admission: { kind: 'remote-startup' as const,generation: profile.generation,observedAt: 20 } };
+  expect(admitRemoteFleetSpawn(f.state,marked,() => config)).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,marked,() => config,{ current: () => placement })).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,marked,() => config,{ current: () => undefined,admit: () => true })).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,marked,() => config,{ current: () => placement,admit: () => false })).toBe(false);
+  expect(admitRemoteFleetSpawn(f.state,marked,() => config,{ current: () => placement,admit: () => true })).toBe(true);
+  expect(admitRemoteFleetSpawn(f.state,{ ...marked,owner: 'ordinary' },() => config,{ current: () => placement,admit: () => true })).toBe(false);
+  for (const admission of [{ ...marked.admission,generation: profile.generation+1 },{ ...marked.admission,observedAt: 21 }]) {
+    expect(admitRemoteFleetSpawn(f.state,{ ...marked,admission },() => config,{ current: () => placement,admit: () => true })).toBe(false);
+  }
   expect(admit).toHaveBeenCalledTimes(3); expect(JSON.stringify(f.root)).toBe(before);
   expect(prepare).not.toHaveBeenCalled();
 });

@@ -1,3 +1,4 @@
+import type { RemoteStartupAdmission } from '../../../capabilities/spawning/admission';
 import type { StartupTravelPlan } from '../../../features/remotes/startup/travel-model';
 import type { RemoteFleetProfile } from '../../../features/remotes/fleet/model';
 import type { SpawnRequest, SpawnPlacement } from '../../../capabilities/spawning/request';
@@ -12,6 +13,8 @@ export type StartupSurvey = (room: string,source: string) => SourceStartupSurvey
 /** Undefined permits ordinary allocation; null defers births; placement binds a selected origin. */
 export type RemoteBirthSelection = SpawnPlacement | null | undefined;
 export interface RemoteFleetBirthPolicy {
+  /** Cohort identity persists on each request; losing the reader must never remove its final fence. */
+  cohort?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): RemoteStartupAdmission | undefined;
   /** Undefined retains ordinary geometry; null withdraws productive service. */
   service?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>): StartupTravelPlan | null | undefined;
   prepare?(profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: () => boolean): RemoteBirthSelection;

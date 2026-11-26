@@ -1,3 +1,4 @@
+import type { SpawnAdmission } from '../../capabilities/spawning/admission';
 import { demandScope } from './demand-scope';
 import type { BodyPart } from '../../capabilities/spawning/body';
 import type { SpawnBoost } from '../../capabilities/spawning/boost';
@@ -14,6 +15,7 @@ export interface DemandPlan extends PopulationDemand {
   priority: number;
   requestLifetime: number;
   placement?: SpawnPlacement;
+  admission?: SpawnAdmission;
   boost?: SpawnBoost;
   externallyOwned?: (request: SpawnRequest) => boolean;
   selectBirthBoost?: (body: readonly BodyPart[]) => SpawnBoost | null | 'wait';
@@ -43,7 +45,7 @@ export function applyPopulationDemand(port: StatePort, plan: DemandPlan, units: 
 
 
 function demandRequest(plan: DemandPlan, id: string, tick: number) {
-  return copySpawnRequest({ id,name: id,owner: plan.owner,room: plan.room,priority: plan.priority,readyAt: tick,expiresAt: tick+plan.requestLifetime,body: plan.body,...(plan.boost ? { boost: plan.boost } : {}),...(plan.placement !== undefined ? { placement: plan.placement } : {}) });
+  return copySpawnRequest({ id,name: id,owner: plan.owner,room: plan.room,priority: plan.priority,readyAt: tick,expiresAt: tick+plan.requestLifetime,body: plan.body,...(plan.admission ? { admission: plan.admission } : {}),...(plan.boost ? { boost: plan.boost } : {}),...(plan.placement !== undefined ? { placement: plan.placement } : {}) });
 }
 
 function birthBoost(plan: DemandPlan): SpawnBoost | null | 'wait' | undefined {

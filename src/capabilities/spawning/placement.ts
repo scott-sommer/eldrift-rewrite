@@ -1,3 +1,4 @@
+import { sameSpawnAdmission } from './admission';
 import { copySpawnBoost } from './boost';
 import { validWorldPosition } from '../../core/geometry/world-position';
 import type { SpawnPlacement, SpawnRequest, SpawnSlot } from './request';
@@ -23,9 +24,5 @@ export function sameSpawnPlacement(a: SpawnPlacement | undefined, b: SpawnPlacem
 export function sameSpawnRequest(a: SpawnRequest, b: SpawnRequest): boolean {
   const fields = ['id','owner','room','home','name','priority','readyAt','expiresAt'] as const;
   return fields.every(key => a[key] === b[key]) && JSON.stringify(a.body) === JSON.stringify(b.body) && sameSpawnPlacement(a.placement,b.placement)
-    && JSON.stringify(a.boost ? copySpawnBoost(a.boost) : null) === JSON.stringify(b.boost ? copySpawnBoost(b.boost) : null) && sameSpawnAdmission(a,b);
-}
-
-function sameSpawnAdmission(a: SpawnRequest, b: SpawnRequest): boolean {
-  return JSON.stringify(a.admission ?? null) === JSON.stringify(b.admission ?? null);
+    && JSON.stringify(a.boost ? copySpawnBoost(a.boost) : null) === JSON.stringify(b.boost ? copySpawnBoost(b.boost) : null) && sameSpawnAdmission(a.admission,b.admission);
 }

@@ -34,3 +34,11 @@ test('guard exhaustion after preparation cannot publish a request, even if prepa
 test('absence of selected planning retains ordinary unbound demand',() => {
   const f = fixture(); f.reconcile(f.miner,1,[],f.config,() => true); expect(f.queue.list()[0]!.placement).toBeUndefined();
 });
+
+test('cohort metadata is published through common demand and survives loss of its selection policy',() => {
+  const marker = { kind: 'remote-startup' as const,generation: 1,observedAt: 1 }, f = fixture({ current: () => placement,cohort: () => marker });
+  f.reconcile(f.miner,1,[],f.config,() => true);
+  const original = f.queue.list()[0]!; expect(original.admission).toEqual(marker);
+  createRemoteProfileRecruitment(f.state,f.dispatch)(f.miner,1,[],f.config,() => true);
+  expect(f.queue.list()).toEqual([original]);
+});
