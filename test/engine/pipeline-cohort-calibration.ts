@@ -10,7 +10,7 @@ import type { RemoteFleetProfile } from '../../src/features/remotes/fleet/model'
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
 import type { NativeStartupQuote } from '../../src/app/remotes/startup/projection/model';
 interface CalibrationProof { quote: NativeStartupQuote; input: ReturnType<typeof encodeStartupPlanningInput>; result: ReturnType<typeof forecastStartupProject>; horizon: number; frames: { tick: number; remaining: number | null; spawning: string | null; occupants: string[]; units: { name: string; room: string; x: number; y: number; fatigue: number; cargo: number }[] }[]; events: { tick: number; actor: string; action: string; amount: number }[] }
-export interface CalibrationMemory extends Memory { pipelineCalibrationMode?: boolean; pipelineCalibration?: CalibrationProof; pipelineCalibrationAttempts?: { tick: number; reason: string }[]; pipelineCalibrationPolicy?: Record<string,{ count: number; lastAt: number }> }
+export interface CalibrationMemory extends Memory { pipelineCalibrationHorizon?: number; pipelineCalibrationMode?: boolean; pipelineCalibration?: CalibrationProof; pipelineCalibrationAttempts?: { tick: number; reason: string }[]; pipelineCalibrationPolicy?: Record<string,{ count: number; lastAt: number }> }
 export function capturePipelineCalibration(state: StatePort, profile: Readonly<RemoteFleetProfile>, plan: StartupTravelPlan, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean {
   const memory = Memory as CalibrationMemory;
   if (!memory.pipelineCalibrationMode || memory.pipelineCalibration) return true;
@@ -18,7 +18,7 @@ export function capturePipelineCalibration(state: StatePort, profile: Readonly<R
   const username = Game.rooms[plan.home]!.controller!.owner!.username;
   const quote = createNativeStartupTravel(state,{ availableEnergy: (_home,available) => available },{ maximumRooms: 2,maximumOps: 10000 })({ target: { home: plan.home,room: plan.room,source: plan.source,station: plan.station,endpoint: plan.endpoint.id,username,tick: Game.time },spawn: plan.spawn.id,exit: plan.spawn.exit,collection: plan.collection,deposit: plan.endpoint.deposit,miner: plan.miner,courier: plan.courier,traversal: nativeRemoteTraversalFor(username,config) },5,guard);
   if (quote.status !== 'complete') return deferred(memory,quote.reason);
-  const horizon = 120, projected = createNativeStartupProjection(state)(quote,{ horizon,protectedEnergy: 0,births: calibrationBirths(state,quote,config),unaffordable: 'skip',repairPolicy: null,refills: [],householdFlows: [],sinkChanges: [] },guard);
+  const horizon = memory.pipelineCalibrationHorizon ?? 120, projected = createNativeStartupProjection(state)(quote,{ horizon,protectedEnergy: 0,births: calibrationBirths(state,quote,config),unaffordable: 'skip',repairPolicy: null,refills: [],householdFlows: [],sinkChanges: [] },guard);
   if (projected.status !== 'ready') return deferred(memory,projected.reason);
   memory.pipelineCalibration = { quote,input: encodeStartupPlanningInput(projected.input),result: forecastStartupProject(projected.input),horizon,frames: [],events: [] };
   return true;
