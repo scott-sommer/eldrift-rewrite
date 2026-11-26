@@ -23,3 +23,9 @@ export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
   const rows = (Memory as ConfiguredPipelineMemory).pipelineStartupTrace ??= [];
   if (rows.length < 200) rows.push({ tick: Game.time,phase,owner: profile.owner,cpu: Game.cpu.getUsed() });
 };
+
+/** A calibration campaign cannot withdraw productive service before its own frozen forecast ends. */
+export function configuredWithdrawalAt(memory: ConfiguredPipelineMemory): number {
+  const proof = memory.pipelineCalibration;
+  return memory.pipelineConfiguredMode && proof ? Math.max(800,proof.quote.observedAt+proof.horizon+1) : 800;
+}

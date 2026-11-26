@@ -35,7 +35,8 @@ function verifyRemotePipeline(memory,evidence,labor = false,unreserved = false,c
   assert.ok(last.income > last.birthCost+laborExpense,'confirmed remote deliveries must exceed observed workforce birth expenditure');
   assert.ok(last.localTransfers > 0,'home redistribution must actually run');
   for (const id of Object.keys(memory.pipelineRemote.amounts)) assert.ok(!Object.hasOwn(memory.pipelineLocal.amounts,id),'local redistribution cannot also be credited as remote income');
-  assert.ok(last.stopped >= 800 && last.stopped < 900); assert.equal(last.lease,null); assert.equal(last.remotePending,0); assert.equal(last.quantityClaims,0); assert.equal(last.miningClaims,0);
+  const earliestStop = configured ? Math.max(800,memory.pipelineCalibration.quote.observedAt+memory.pipelineCalibration.horizon+1) : 800;
+  assert.ok(last.stopped >= earliestStop && last.stopped < earliestStop+100); assert.equal(last.lease,null); assert.equal(last.remotePending,0); assert.equal(last.quantityClaims,0); assert.equal(last.miningClaims,0);
   assert.ok(last.units.filter(unit => ['miner','courier','reserver'].includes(unit.family)).every(unit => unit.room === 'W0N1' && unit.cargo === 0 && unit.tasks === 0 && !unit.spawning));
   for (const row of rows) { assert.deepEqual(row.unrelated,rows[0].unrelated); assert.deepEqual(row.sentinel,rows[0].sentinel); }
   const capital = row => row.homeEnergy+row.units.reduce((sum,unit) => sum+unit.cargo,0)+row.birthCost-row.income;

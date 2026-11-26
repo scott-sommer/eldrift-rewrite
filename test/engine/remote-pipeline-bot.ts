@@ -1,3 +1,5 @@
+import { configuredWithdrawalAt } from './pipeline-configured-policy';
+import type { ConfiguredPipelineMemory } from './pipeline-configured';
 import { pipelineScenarioConfig } from './remote-pipeline-config';
 import { loop as runtimeLoop } from '../../src/main';
 import { createMemoryPort } from '../../src/adapters/screeps/memory';
@@ -12,7 +14,7 @@ export function loop(): void { runPipeline(); }
 export function runPipeline(run = runtimeLoop, before: () => void = () => {}, probe: () => Record<string,unknown> | undefined = () => undefined): void {
   const memory = Memory as PipelineMemory;
   if (Game.time === 1) setup();
-  if (!memory.pipelineStopped && Game.time >= 800 && pipelineIncome(memory) >= 3000 && Object.values(Game.creeps).some(creep => remoteFleetIdentity(creep.memory.population?.owner ?? '')?.kind === 'courier' && creep.pos.roomName === 'E0N1' && creep.store.energy > 0)) {
+  if (!memory.pipelineStopped && Game.time >= configuredWithdrawalAt(memory as ConfiguredPipelineMemory) && pipelineIncome(memory) >= 3000 && Object.values(Game.creeps).some(creep => remoteFleetIdentity(creep.memory.population?.owner ?? '')?.kind === 'courier' && creep.pos.roomName === 'E0N1' && creep.store.energy > 0)) {
     const config = openState(state,'operator/config',operatorSchema); config.empire = { ...config.empire as object,remoteMaximumSlots: 0 };
     saveState(state,'operator/config',operatorSchema,config); memory.pipelineStopped = Game.time;
   }
