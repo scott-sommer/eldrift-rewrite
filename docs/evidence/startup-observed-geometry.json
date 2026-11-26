@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "First observed-geometry campaign failed exact receipt calendars under home deposit contention despite matching total delivery/extraction and native geometry; preserved for service-access correction.",
+  "scope": "Observed-room service geometry through native economic admission, exact65-receipt calendar and closing capital; transient authoritative home-port clearance and ordinary/fixed-geometry regressions. First calendar contention failure retained. Default configured orchestration/replanning remain open.",
   "native": [
     {
       "scenario": "observed-geometry-traffic",
@@ -10,6 +10,58 @@
       "rawEncoding": "gzip",
       "rawSha256": "70c76c8c72374445fa41c14bfd229e75744a51ba6a9af0bdce9f7f54961b7435",
       "uncompressedSha256": "2c50ea3b5125cad7c16f8c1fc45c8a30ec2b1555da220118cd2ad83d38c9e0ec"
+    },
+    {
+      "scenario": "service-access",
+      "nativeSource": "7c3a9eaa6edd2227b05f629b902322ee27a3fb84",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-observed-geometry-service-access.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0f8f095baeab0572950f0935b9571968c704fe06e9a3e27b2a26571ff9ff60d1",
+      "uncompressedSha256": "d765ef2a9d4ca13e696770698ece1407a7d8b75dbe7d8b3c3ee438c01b64c049"
+    },
+    {
+      "scenario": "ordinary-transport",
+      "nativeSource": "7c3a9eaa6edd2227b05f629b902322ee27a3fb84",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-observed-geometry-ordinary-transport.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "ef459e32d6b1b49e976852b530ef9dfd1ac72242431003edf5e91deb02930f7e",
+      "uncompressedSha256": "ad68b66ac9e4f9ce73c52a33b1bae1a4562c44754469f923dfe7699540e7cac6"
+    },
+    {
+      "scenario": "ordinary-workers",
+      "nativeSource": "7c3a9eaa6edd2227b05f629b902322ee27a3fb84",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-observed-geometry-ordinary-workers.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "186c853edefb9af15d3fade1f7c29f3f2e5b57b2c8b945d5eb88876d17b4cdd5",
+      "uncompressedSha256": "c66a8bbfc11f5585e3441a0c6e7f0ab792b7f9d73797864d6c731b656729c70c"
+    },
+    {
+      "scenario": "fixed-economic",
+      "nativeSource": "7c3a9eaa6edd2227b05f629b902322ee27a3fb84",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-observed-geometry-fixed-economic.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "bf6dd561ae699788625659d2efe7f8073bf6171b0a291209a37a0cb886cfed81",
+      "uncompressedSha256": "1824badcd58dcc3bc8406388094e0b22b8ea248b8d83b80213f00c5dcc30169c"
+    },
+    {
+      "scenario": "canonical-service-access",
+      "nativeSource": "863cc604c92d757eb588d19b42a47570928593ce",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-observed-geometry-canonical-service-access.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "62430564ab1a2d305f3acce640d409ae84d2dc23c6c6b7c1b20b3c300e1b0153",
+      "uncompressedSha256": "89f661d7f3b0c187446e13d75f9f4bfb146349fc87fdbc06633d14440cc3fbe1",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-observed-geometry-receipts.jsonl",
+          "rowsSha256": "a96c48067c8341a359be5669215234568b3fa4e76799bd21b3c9617b3d8977d2",
+          "rows": 65
+        }
+      ]
     }
   ]
 }
