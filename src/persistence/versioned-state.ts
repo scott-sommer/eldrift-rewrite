@@ -12,6 +12,8 @@ export interface StateSchema<T> {
   migrations: Readonly<Record<number, (data: unknown) => unknown>>;
 }
 export interface StatePort {
+  /** When declared, every read returns fresh, plain-data-validated values with no shared mutable references. */
+  readonly detachedReads?: true;
   read(key: string): unknown;
   write(key: string, value: Envelope): void;
 }
@@ -26,20 +28,20 @@ function envelope(value: unknown): value is Envelope {
 export function openState<T>(port: StatePort, key: string, schema: StateSchema<T>): T {
   const raw = port.read(key);
   if (raw === undefined) return initialize(port, key, schema);
-  const data = decodeState(raw, key, schema);
+  const data = decodeState(raw, key, schema, port.detachedReads === true);
   if ((raw as Envelope).version !== schema.version) port.write(key, { owner: schema.owner, version: schema.version, data: copyPlain(data) });
   return data;
 }
 /** Validate and migrate a detached snapshot without initializing or persisting it. */
 export function peekState<T>(port: StatePort, key: string, schema: StateSchema<T>): T | undefined {
   const raw = port.read(key);
-  return raw === undefined ? undefined : decodeState(raw, key, schema);
+  return raw === undefined ? undefined : decodeState(raw, key, schema, port.detachedReads === true);
 }
-function decodeState<T>(raw: unknown, key: string, schema: StateSchema<T>): T {
+function decodeState<T>(raw: unknown, key: string, schema: StateSchema<T>, detached: boolean): T {
   if (!envelope(raw)) throw new Error(`${key}: corrupt state envelope`);
   if (raw.owner !== schema.owner) throw new Error(`${key}: state owner mismatch`);
   if (raw.version > schema.version) throw new Error(`${key}: unsupported future version`);
-  let data: unknown = copyPlain(raw.data);
+  let data: unknown = detached ? raw.data : copyPlain(raw.data);
   for (let version = raw.version; version < schema.version; version++) {
     const migrate = schema.migrations[version];
     if (!migrate) throw new Error(`${key}: missing migration ${version}`);

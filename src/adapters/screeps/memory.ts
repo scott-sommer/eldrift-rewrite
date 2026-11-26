@@ -17,6 +17,7 @@ function validKey(key: string): void {
 }
 export function createMemoryPort(memory: () => MemoryRoot): RemovableStatePort {
   return {
+    detachedReads: true,
     read(key) {
       validKey(key);
       const records = existingStore(memory())?.records;
