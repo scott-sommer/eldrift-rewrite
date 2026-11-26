@@ -7,7 +7,7 @@ function fixture(search: (value: number) => { path: number[] } = () => ({ path: 
   const memory: Pick<PathProbeMemory,'pipelineConfiguredPathProbeMode' | 'pipelinePathProbe'> = { pipelineConfiguredPathProbeMode: true };
   const values = ['unchanged'];
   class NativeRoom { name = 'room'; find(value: number) { expect(this.name).toBe('room'); expect(value).toBe(1); return values; } }
-  const finder = { search };
+  const finder = Object.freeze({ search });
   vi.stubGlobal('Memory',memory); vi.stubGlobal('Game',{ time: 311,cpu: { getUsed: () => clock++ } });
   vi.stubGlobal('Room',NativeRoom); vi.stubGlobal('PathFinder',finder);
   return { memory,values,NativeRoom,finder };
@@ -17,7 +17,7 @@ test('SDK measurement preserves arguments, receivers, object identity and origin
   const search = f.finder.search, find = f.NativeRoom.prototype.find;
   withPipelinePathProbe(() => {
     observePathActor('actor:unit:begin');
-    expect(new f.NativeRoom().find(1)).toBe(f.values); expect(f.finder.search(7)).toBe(result);
+    expect(new f.NativeRoom().find(1)).toBe(f.values); expect((PathFinder.search as unknown as typeof f.finder.search)(7)).toBe(result);
     observePathActor('actor:unit:done');
   });
   expect(f.finder.search).toBe(search); expect(f.NativeRoom.prototype.find).toBe(find);
@@ -26,14 +26,14 @@ test('SDK measurement preserves arguments, receivers, object identity and origin
 });
 test('throwing SDK calls retain the exact error and restore hooks',() => {
   const error = new Error('native failure'), f = fixture(() => { throw error; }), original = f.finder.search, find = f.NativeRoom.prototype.find;
-  expect(() => withPipelinePathProbe(() => f.finder.search(7))).toThrow(error);
+  expect(() => withPipelinePathProbe(() => (PathFinder.search as unknown as typeof f.finder.search)(7))).toThrow(error);
   expect(f.finder.search).toBe(original); expect(f.NativeRoom.prototype.find).toBe(find);
   expect(Object.values(f.memory.pipelinePathProbe!.rows)[0]!.calls).toBe(1);
 });
 test('operation aggregation has a fixed key bound and disabled probes create no metrics',() => {
   const f = fixture(); f.memory.pipelineConfiguredPathProbeMode = false;
-  withPipelinePathProbe(() => f.finder.search(1)); expect(f.memory.pipelinePathProbe).toBeUndefined();
+  withPipelinePathProbe(() => (PathFinder.search as unknown as typeof f.finder.search)(1)); expect(f.memory.pipelinePathProbe).toBeUndefined();
   f.memory.pipelineConfiguredPathProbeMode = true;
-  withPipelinePathProbe(() => { for (let index = 0; index < 300; index++) { observePathActor('actor:unit'+index+':begin'); f.finder.search(1); } });
+  withPipelinePathProbe(() => { for (let index = 0; index < 300; index++) { observePathActor('actor:unit'+index+':begin'); (PathFinder.search as unknown as typeof f.finder.search)(1); } });
   expect(Object.keys(f.memory.pipelinePathProbe!.rows)).toHaveLength(256); expect(f.memory.pipelinePathProbe!.droppedCalls).toBe(44);
 });

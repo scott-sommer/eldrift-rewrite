@@ -32,10 +32,12 @@ function measured<F extends (...args: never[]) => unknown>(original: F, label: (
 }
 export function withPipelinePathProbe(run: () => void): void {
   if (!(Memory as PathProbeMemory).pipelineConfiguredPathProbeMode) { run(); return; }
-  const search = PathFinder.search, find = Room.prototype.find; actor = undefined;
+  const finder = PathFinder, find = Room.prototype.find; actor = undefined;
   try {
-    PathFinder.search = measured(search,() => 'search');
+    const facade = Object.create(finder) as typeof PathFinder;
+    Object.defineProperty(facade,'search',{ value: measured(finder.search,() => 'search') });
+    if (!Reflect.set(globalThis,'PathFinder',facade)) throw new Error('PathFinder global is not replaceable');
     Room.prototype.find = measured(find,args => 'find:'+(typeof args[0] === 'number' ? args[0] : 'invalid'));
     run();
-  } finally { PathFinder.search = search; Room.prototype.find = find; actor = undefined; }
+  } finally { Reflect.set(globalThis,'PathFinder',finder); Room.prototype.find = find; actor = undefined; }
 }

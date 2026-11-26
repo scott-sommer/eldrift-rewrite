@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Native operation probe: initial frozen SDK failure preserved; no gameplay qualification.",
+  "native": [
+    {
+      "scenario": "configured-budget-path-probe-sdk-failure",
+      "nativeSource": "1ad0b378413284590c9a1377d5ae5904544deab2",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-path-operations-sdk-failure.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "621322010a0d02e0e289bc7e3e96f62532ea30d542376acea7b80c95620ef404",
+      "uncompressedSha256": "547ebb9e70be98f23c33738bc8768ee9c3722bdd82a001d3e1419f506c5c3edf"
+    }
+  ]
+}
