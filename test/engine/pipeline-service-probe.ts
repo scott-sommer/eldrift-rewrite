@@ -1,3 +1,4 @@
+import { recordCalibrationCall } from './pipeline-cohort-calibration';
 import { sameLogisticsService } from '../../src/capabilities/logistics/service';
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
 import type { PipelineServiceMemory } from './pipeline-service-policy';
@@ -9,15 +10,16 @@ export function withPipelineServiceProbe(run: () => void): void {
   if (!(Memory as PipelineServiceMemory).pipelineServiceMode) { run(); return; }
   const harvest = Creep.prototype.harvest, withdraw = Creep.prototype.withdraw, transfer = Creep.prototype.transfer;
   Creep.prototype.harvest = function(target) { const code = harvest.call(this,target); record(this,'harvest',target,code); return code; };
-  Creep.prototype.withdraw = function(target,resource,amount) { const code = withdraw.call(this,target,resource,amount); record(this,'withdraw',target,code); return code; };
-  Creep.prototype.transfer = function(target,resource,amount) { const code = transfer.call(this,target,resource,amount); record(this,'transfer',target,code); return code; };
+  Creep.prototype.withdraw = function(target,resource,amount) { const code = withdraw.call(this,target,resource,amount); record(this,'withdraw',target,code,amount); return code; };
+  Creep.prototype.transfer = function(target,resource,amount) { const code = transfer.call(this,target,resource,amount); record(this,'transfer',target,code,amount); return code; };
   try { run(); } finally { Creep.prototype.harvest = harvest; Creep.prototype.withdraw = withdraw; Creep.prototype.transfer = transfer; }
 }
 type PositionedTarget = { id: string; pos: { roomName: string; x: number; y: number } };
-function record(creep: Creep, action: 'harvest' | 'withdraw' | 'transfer', target: PositionedTarget, code: number): void {
+function record(creep: Creep, action: 'harvest' | 'withdraw' | 'transfer', target: PositionedTarget & { energy?: number }, code: number, amount?: number): void {
   if (code !== OK) return;
   const identity = remoteFleetIdentity(creep.memory.population?.owner ?? ''); if (!identity) return;
   const memory = Memory as PipelineServiceMemory, plan = memory.pipelineServicePlans?.[identity.source]?.plan; if (!plan) return;
+  recordCalibrationCall(creep,action,target,amount);
   const request = requestOf(creep);
   const matches = serviceMatches(creep,action,target,plan,request);
   if (matches === undefined) return; // Ordinary retirement banking is a separate recovery policy.

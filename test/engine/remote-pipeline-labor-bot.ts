@@ -1,3 +1,4 @@
+import type { CalibrationMemory } from './pipeline-cohort-calibration';
 import { pipelineServicePolicy } from './pipeline-service-policy';
 import { withPipelineServiceProbe } from './pipeline-service-probe';
 import { createNativeBot } from '../../src/app/native-bot';
@@ -16,7 +17,7 @@ function before(): void {
   const memory = Memory as PipelineLaborMemory, publisher = createNativeLaborPublication(state,'W0N1');
   if (Game.time === 1) {
     const config = openState(state,'operator/config',operatorSchema);
-    config.empire = { ...config.empire as object,distributorSpawningEnabled: false,workersEnabled: true,workerSpawningEnabled: true,workerBuilderTarget: 1,workerBodyBudget: 200,workerMode: 'builder' };
+    config.empire = { ...config.empire as object,remoteReservationEnabled: !(Memory as CalibrationMemory).pipelineCalibrationMode,distributorSpawningEnabled: false,workersEnabled: true,workerSpawningEnabled: true,workerBuilderTarget: 1,workerBodyBudget: 200,workerMode: 'builder' };
     saveState(state,'operator/config',operatorSchema,config);
     const plan = pipelineLaborPlan(state), proposal = plan.read().proposal;
     if (publisher.publish(proposal,plan.current,() => true) !== 'published') throw new Error('Pipeline labor publication failed');
