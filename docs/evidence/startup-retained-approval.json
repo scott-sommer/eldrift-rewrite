@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Retained validated approval survives scratch withdrawal and global reloads; exact-slot economic births, generated geometry, exact receipt calendar and closing capital. Configured default orchestration remains open.",
+  "native": [
+    {
+      "scenario": "retained-approval",
+      "nativeSource": "678829093ba37ba06f8cf490f9bd13e325c0294b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-retained-approval-native.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "40fe50afeae06c9292e5615ad4086407915f5f8b347632dd55da5395cd9f798d",
+      "uncompressedSha256": "c82a83dd6bd8fa4e83112f4e756c0abe32a57fefbe02261e93909b3ea4e7a14f"
+    }
+  ]
+}
