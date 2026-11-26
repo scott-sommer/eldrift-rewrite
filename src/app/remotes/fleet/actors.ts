@@ -19,8 +19,9 @@ import { nativeRemoteTraversalFor } from '../management/policy';
 import { settleRemoteFleetTransfers } from './confirmations';
 import { remoteFleetWorkEnabled } from './spawn-policy';
 import { healthyRemoteActor } from './health';
+type RemoteActorServices = Pick<RemoteFleetBirthPolicy,'service' | 'trace'>;
 export function createNativeRemoteActors(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, config: (home: string) => Readonly<RuntimeConfig>,
-  definitions: Readonly<Record<string,TaskDefinition>>, services?: RemoteFleetBirthPolicy['service']): EmpireFeature {
+  definitions: Readonly<Record<string,TaskDefinition>>, services?: RemoteActorServices): EmpireFeature {
   const cursor = createRemoteActorCursor(state);
   return { id: 'remote-actors',scope: 'empire',urgency: 'urgent',interval: 1,run(context) {
     const groups = actorGroups();
@@ -48,20 +49,21 @@ function actorGroups(): { name: string; creeps: Creep[] }[] {
   return [...groups].map(([name,creeps]) => ({ name,creeps }));
 }
 function runHomeActors(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, home: string, creeps: Creep[], policy: Readonly<RuntimeConfig>,
-  definitions: Readonly<Record<string,TaskDefinition>>, parentGuard: () => boolean, services?: RemoteFleetBirthPolicy['service']): void {
+  definitions: Readonly<Record<string,TaskDefinition>>, parentGuard: () => boolean, services?: RemoteActorServices): void {
   const deadline = Game.cpu.getUsed()+policy.remoteWorkerCpuBudget, guard = () => parentGuard() && Game.cpu.getUsed() < deadline;
   const profiles = createRemoteFleetStore(state,home).read().actors, assignments = createRemoteAssignmentStore(state), cursor = createRemoteActorCursor(state,home);
   for (const creep of cursor.order(creeps)) {
-    if (!guard()) break;
+    if (!guard()) { traceActor(services,profiles.find(actor => actor.owner === creep.memory.population!.owner),creep.name,'deferred'); break; }
     const owner = creep.memory.population!.owner, identity = remoteFleetIdentity(owner)!, profile = profiles.find(actor => actor.owner === owner);
+    traceActor(services,profile,creep.name,'begin');
     const selected = actorService(profile,policy,services), service = fleetServiceOptions(selected);
     const lease = selected !== null && active(creep,profile,policy) ? resolveRemoteFleetAssignment(assignments,profile!,Game.time) : undefined;
     const demand = lease && remoteAssignmentDemands(lease,Game.time).find((item): item is RemoteMiningDemand => item.kind === 'mine' && item.source === identity.source);
     const options = { maximumRooms: policy.remoteMaximumRouteRooms,guard,policy: (_home: string,username: string) => nativeRemoteTraversalFor(username,policy) };
-    const binding = { home,owner };
+    const binding = { home,owner }; traceActor(services,profile,creep.name,'execute');
     if (identity.kind === 'miner') createNativeRemoteMiningCycle(state,dispatch,binding,{ ...options,...service.mining },definitions).run(creep,demand);
     else createNativeRemoteTransportCycle(state,dispatch,binding,{ ...options,minimumBatch: policy.remoteMinimumBatch,requestLifetime: policy.remoteTripLifetime,...service.transport },definitions).run(creep,demand);
-    cursor.save(creep.name);
+    traceActor(services,profile,creep.name,'done'); cursor.save(creep.name);
   }
 }
 function active(creep: Creep, profile: RemoteFleetProfile | undefined, config: Readonly<RuntimeConfig>): boolean {
@@ -69,6 +71,10 @@ function active(creep: Creep, profile: RemoteFleetProfile | undefined, config: R
     && healthyRemoteActor(creep,profile) && (creep.ticksToLive ?? 0) > profile.retireTicks;
 }
 
-function actorService(profile: RemoteFleetProfile | undefined, config: Readonly<RuntimeConfig>, services: RemoteFleetBirthPolicy['service']) {
-  return profile && services ? fleetServicePlan(profile,services(profile,config)) : undefined;
+function actorService(profile: RemoteFleetProfile | undefined, config: Readonly<RuntimeConfig>, services: RemoteActorServices | undefined) {
+  return profile && services?.service ? fleetServicePlan(profile,services.service(profile,config)) : undefined;
+}
+
+function traceActor(services: RemoteActorServices | undefined, profile: RemoteFleetProfile | undefined, name: string, phase: string): void {
+  if (profile) services?.trace?.(profile,'actor:'+name+':'+phase);
 }

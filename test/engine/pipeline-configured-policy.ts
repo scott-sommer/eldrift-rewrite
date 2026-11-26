@@ -20,8 +20,10 @@ export function changeConfiguredPolicy(state: StatePort, memory: ConfiguredPipel
 }
 
 export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
-  const rows = (Memory as ConfiguredPipelineMemory).pipelineStartupTrace ??= [];
-  if (rows.length < 200) rows.push({ tick: Game.time,phase,owner: profile.owner,cpu: Game.cpu.getUsed() });
+  const memory = Memory as ConfiguredPipelineMemory;
+  if (memory.pipelineConfiguredActorTraceMode && !phase.startsWith('actor:')) return;
+  const rows = memory.pipelineStartupTrace ??= [];
+  if (rows.length < (memory.pipelineConfiguredActorTraceMode ? 600 : 200)) rows.push({ tick: Game.time,phase,owner: profile.owner,cpu: Game.cpu.getUsed() });
 };
 
 /** A calibration campaign cannot withdraw productive service before its own frozen forecast ends. */

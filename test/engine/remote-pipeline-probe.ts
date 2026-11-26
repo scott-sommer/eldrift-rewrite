@@ -44,6 +44,7 @@ export function snapshotPipeline(state: StatePort, memory: PipelineMemory, probe
     income: pipelineIncome(memory),localTransfers: Object.values(memory.pipelineLocal!.amounts).reduce((sum,value) => sum+value,0),
     birthCost: Object.values(births).reduce((sum,birth) => sum+(birth.seenAt < Game.time ? birth.cost : 0),0),
     homeEnergy: room.find(FIND_STRUCTURES).reduce((sum,item) => sum+('store' in item ? Number(item.store.energy ?? 0) : 0),0),
+    actorAfter: (state.read('remoteActors/'+home) as { data?: { after?: string } } | undefined)?.data?.after ?? null,
     remotePending: pending.filter(request => ['miner','courier','reserver'].includes(pipelineFamily(request.owner) ?? '')).length,
     unrelated: pending.find(request => request.id === 'unrelated-pipeline'),sentinel: state.read('fixture/remote-pipeline'),
     quantityClaims: (peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? []).filter(claim => holders.has(claim.holder)).length,
