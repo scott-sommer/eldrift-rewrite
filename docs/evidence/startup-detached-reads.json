@@ -1,0 +1,56 @@
+{
+  "issue": "ED-29",
+  "scope": "Explicitly detached read optimization; baseline and changed short actor probes are failed diagnostics; full5ms exact calendar fails despite equal delivery total; supported configured campaign passes.",
+  "native": [
+    {
+      "scenario": "actor-before",
+      "nativeSource": "14e2019fcddcfcef3be645b60b62cd3c532d9ae6",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-detached-reads-actor-before.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c607e1dafa703f841d0745662e6bede7a80b3119e8b923a5a5cfc770130cb1ef",
+      "uncompressedSha256": "67ef4022f519fa564bd721fe4cb9376ac31fb6ec2622e33cfd695da77df52149",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-detached-reads-actor-before.jsonl",
+          "rowsSha256": "4984d606de6d89e838529de4213d91a88087cf0e8e7ee680e25ba3b4a42dfcfd",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "actor-after",
+      "nativeSource": "6a5235956a5f81f43f04be7a616d716502c18db2",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-detached-reads-actor-after.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "858f66354e69ce6275e7040111051af95481c42aea5a6db45e9f786d594e32ea",
+      "uncompressedSha256": "392b190a53ae7623444e5a3c6b9e96e885ee624429dc0df25aa90bbe9256620f",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-detached-reads-actor-after.jsonl",
+          "rowsSha256": "8f8b82d99a2c68234de09b8b7acc0d3be8c4689ad720301ce893e770cdede4ec",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "6a5235956a5f81f43f04be7a616d716502c18db2",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-detached-reads-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "267f8f968d0ea98900007b0b48d0da6c505448ea5b2922d520153f940a461a24",
+      "uncompressedSha256": "7077f55ec7ae94dfdc5d0032fc6a482d9275534d1532fb7ca085577530c945bd"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "6a5235956a5f81f43f04be7a616d716502c18db2",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-detached-reads-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9a11c16c3557f74975e0bae480b60386b77e8b1c82b894adb09ed6ffa8cdf48e",
+      "uncompressedSha256": "79defdca044175c87cf55bd32f53bda9ef7b86eb5d333edc248f91e087da7108"
+    }
+  ]
+}
