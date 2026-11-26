@@ -1,6 +1,6 @@
 import { abandonUnknownTransfer } from './abandon-unknown-transfer';
 import type { StatePort } from '../persistence/versioned-state';
-import { openState } from '../persistence/versioned-state';
+import { peekState } from '../persistence/versioned-state';
 import { stateKey } from '../persistence/state-key';
 import { taskSchema } from '../persistence/tasks/schema';
 import type { TaskDefinition } from '../persistence/tasks/schema';
@@ -14,10 +14,9 @@ import { settleHaulingTransfer } from './settle-hauling-transfer';
 export function settleHaulingTask(state: StatePort, definitions: Readonly<Record<string, TaskDefinition>>,
   unit: { name: string; id: string }, observe: (attempt: TransferAttempt) => TransferObservation): void {
   const key = stateKey('tasks', unit.name);
-  if (state.read(key) === undefined || state.read(stateKey('logistics-attempts', unit.id)) === undefined) return;
-  const journal = createTransferJournal(state, unit.id).read();
-  if (!journal.attempt || (journal.acknowledged && journal.result?.status !== 'unknown')) return;
-  const task = openState(state, key, taskSchema(unit.name, definitions)).queue[0];
+  const journal = createTransferJournal(state, unit.id).peek();
+  if (!journal?.attempt || (journal.acknowledged && journal.result?.status !== 'unknown')) return;
+  const task = peekState(state, key, taskSchema(unit.name, definitions))?.queue[0];
   if (!task || task.kind !== 'haul' || !validHaulingPayload(task.payload) || task.payload.unitId !== unit.id) return;
   const binding = { home: task.payload.home, unit: unit.id, holder: unit.name, request: task.payload.request, scope: taskScope(unit.name, task.id) };
   const observation = observe(journal.attempt);

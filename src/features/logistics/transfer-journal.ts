@@ -1,4 +1,4 @@
-import { openState, saveState } from '../../persistence/versioned-state';
+import { openState, peekState, saveState } from '../../persistence/versioned-state';
 import type { StatePort, StateSchema } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
 import { confirmTransfer, validateTransferAttempt } from '../../capabilities/logistics/confirmation';
@@ -13,6 +13,7 @@ export function createTransferJournal(port: StatePort, unit: string) {
   const read = () => openState(port, key, schema);
   return {
     read,
+    peek: () => peekState(port,key,schema),
     begin(attempt: TransferAttempt): boolean {
       validateTransferAttempt(attempt);
       if (attempt.unit !== unit) throw new Error('Transfer journal unit mismatch');

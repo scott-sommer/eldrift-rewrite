@@ -17,8 +17,8 @@ export function remoteTransportTasks(state: StatePort, definitions: Readonly<Rec
   }
   return { head,payload,
     pending(unit: string): boolean {
-      if (state.read(stateKey('logistics-attempts',unit)) === undefined) return false;
-      return !createTransferJournal(state,unit).read().acknowledged;
+      const journal = createTransferJournal(state,unit).peek();
+      return !!journal && !journal.acknowledged;
     },
     cancel(unit: string, task: TaskRecord): void {
       const value = payload(task);
