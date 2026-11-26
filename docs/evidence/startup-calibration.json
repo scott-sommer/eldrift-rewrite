@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Strict prospective prefix calibration: five failed attempts retained plus passing ordinary spawn/movement regressions. No passing prospective calendar or economic adoption claim.",
+  "scope": "Strict prospective prefix calibration: six failed attempts retained plus passing ordinary spawn/movement regressions. No passing prospective calendar or economic adoption claim.",
   "native": [
     {
       "scenario": "initial-phase",
@@ -78,6 +78,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "0f49365c451984c739ed2b83a9721c2e1738b121e04463f59c1d1737691925f4",
       "uncompressedSha256": "65cfadc6fcd64e189746a8041ddbb09f4f88400966fb509ee842180e227d9ae7"
+    },
+    {
+      "scenario": "action-clock",
+      "nativeSource": "f668110466d2153cd4e77ba40d5564445b693a41",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/action-clock.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d168f731e0d83d3e88cd15eede622e3c6a4d9c22d287ab8b795fe8e863a220ee",
+      "uncompressedSha256": "4b38b5104cc9568b3a54ae31008a5f062af7424ff008fc034e5ef1df49949f33"
     }
   ]
 }
