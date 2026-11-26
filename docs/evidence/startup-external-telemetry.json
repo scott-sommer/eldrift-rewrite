@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Opt-in external fixture-history collection, unchanged bot bundles and exact verifiers. Supported campaign passes;5ms exact receipts fail with full history retained. Older bloated-fixture failures remain separate pressure evidence.",
+  "native": [
+    {
+      "scenario": "configured",
+      "nativeSource": "81f2e79f1691a4ce1a8a6a4fa234f84595837f04",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-external-telemetry-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e703b7920f4df3b689fbd70f50bc32082630075e739a76484b3bafb62055ccf6",
+      "uncompressedSha256": "d759ff6147f7d45f996987e6a0c3fb33ee3ed0e3cb385b8b84728500d4038a11"
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "81f2e79f1691a4ce1a8a6a4fa234f84595837f04",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-external-telemetry-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e3051afe44cbb3d0820e9485623710f30244e82f6c9d75b0316186330fb62ee0",
+      "uncompressedSha256": "34eecf4cb7ef30e9ba426b99d81fa5894a96bd05d1fb2fe5557ea76482f31ac3"
+    }
+  ]
+}
