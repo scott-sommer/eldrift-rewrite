@@ -1,3 +1,4 @@
+import { observePathActor } from './pipeline-path-probe';
 import type { RemoteStartupProbe } from '../../src/app/remotes/startup/model';
 import { openState, saveState } from '../../src/persistence/versioned-state';
 import { operatorSchema } from '../../src/features/operator/state';
@@ -23,8 +24,13 @@ const coldActorTicks = new Set([311,591,861]);
 function refusalOrColdActorPhase(phase: string, tick: number): boolean {
   return /:(?:denied|yield|deferred)$/.test(phase) || coldActorTicks.has(tick) && /^actor:[^:]+:(?:begin|execute|done)$/.test(phase);
 }
+function preparePathTrace(memory: ConfiguredPipelineMemory, phase: string): boolean {
+  if (!memory.pipelineConfiguredPathProbeMode) return true;
+  observePathActor(phase); return memory.pipelineConfiguredYieldTraceMode === true;
+}
 export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
   const memory = Memory as ConfiguredPipelineMemory;
+  if (!preparePathTrace(memory,phase)) return;
   if (memory.pipelineConfiguredActorTraceMode && !phase.startsWith('actor:')) return;
   if (memory.pipelineConfiguredYieldTraceMode && !refusalOrColdActorPhase(phase,Game.time)) return;
   if (!memory.pipelineConfiguredYieldTraceMode && memory.pipelineConfiguredCourierTraceMode && (Game.time < 200 || Game.time > 240)) return;

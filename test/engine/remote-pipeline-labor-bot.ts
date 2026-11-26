@@ -1,3 +1,4 @@
+import { withPipelinePathProbe } from './pipeline-path-probe';
 import { captureStartupTrace } from './pipeline-configured-policy';
 import { observeConfiguredPipeline } from './pipeline-configured';
 import type { ConfiguredPipelineMemory } from './pipeline-configured';
@@ -20,7 +21,7 @@ const state = createMemoryPort(() => Memory);
 let runtime: ReturnType<typeof createNativeBot> | undefined;
 export function loop(): void {
   runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredTraceMode ? { remoteStartupProbe: captureStartupTrace } : {}),...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
-  runPipeline(() => withPipelineServiceProbe(runtime!),before,probe);
+  runPipeline(() => withPipelinePathProbe(() => withPipelineServiceProbe(runtime!)),before,probe);
 }
 function before(): void {
   changePipelineEconomicPolicy(state);

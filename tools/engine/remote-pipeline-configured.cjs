@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 function verifyConfiguredPipeline(memory,evidence) {
   const planning = memory.pipelineConfiguredPlanning, approval = memory.pipelineConfiguredApproval, proof = memory.pipelineCalibration, variant = memory.pipelineConfiguredVariant;
-  evidence.pipelineConfigured = { trace: memory.pipelineStartupTrace,variant,planning,approval,changes: memory.pipelineConfiguredChanges,rejected: memory.pipelineConfiguredRejected,rows: memory.pipelineRows,births: memory.pipelineBirths,job: memory.eldrift.records['remoteStartupPlanning/W0N1'],queue: memory.eldrift.records['spawning/W0N1'],approvals: memory.eldrift.records['remoteStartupApprovals/W0N1'] };
+  evidence.pipelineConfigured = { trace: memory.pipelineStartupTrace,pathProbe: memory.pipelinePathProbe,variant,planning,approval,changes: memory.pipelineConfiguredChanges,rejected: memory.pipelineConfiguredRejected,rows: memory.pipelineRows,births: memory.pipelineBirths,job: memory.eldrift.records['remoteStartupPlanning/W0N1'],queue: memory.eldrift.records['spawning/W0N1'],approvals: memory.eldrift.records['remoteStartupApprovals/W0N1'] };
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   if (variant === 'refused') return verifyRefused(memory,evidence);
   assert.ok(planning?.length > 10,'forecast must resume over multiple native ticks');
