@@ -1,0 +1,40 @@
+{
+  "issue": "ED-29",
+  "scope": "Separate source approach from candidate discovery; full supported pass, full5ms exact calendar fails despite equal harvest and delivery, bounded diagnostic retained as failed short run.",
+  "native": [
+    {
+      "scenario": "probe",
+      "nativeSource": "ea4435b99e7ea5f6a424340dc5790ea271080197",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-source-approach-probe.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1fb2fffc76f78122f1cbbdcb7a1ecd413a0d2be0a11fd52772160fd4c6c15847",
+      "uncompressedSha256": "15a1de2b740a43a9c9c516cc465a7478f5605680c42bdbc5d753a3805f22fd1f",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/startup-source-approach-probe.jsonl",
+          "rowsSha256": "c478db577877c09a4a9766511599b22073f75ef83240079d3f115cae9b32b21f",
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "scenario": "budget",
+      "nativeSource": "ea4435b99e7ea5f6a424340dc5790ea271080197",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-source-approach-budget.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "02560bb62229aa41b438e72011b0cab33464608f6235d314e18207913224cb24",
+      "uncompressedSha256": "18e50f58e7776b2356300558b1c27c7b1711a52e43ab71a14c40f0df34f72992"
+    },
+    {
+      "scenario": "configured",
+      "nativeSource": "ea4435b99e7ea5f6a424340dc5790ea271080197",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-source-approach-configured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "383be46fe1ebff97366782d17c5d0eaed1cb40b62f61eddc5a0486e1f2eef6ae",
+      "uncompressedSha256": "c1741863e14c333b753ed2fc3423e8710f038ac7b5c8f967cf6a3b5cbcc8e497"
+    }
+  ]
+}

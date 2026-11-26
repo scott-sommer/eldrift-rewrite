@@ -1,0 +1,13 @@
+# Source approach separated from discovery
+
+Implementation ea4435b exposes current approach assessment independently of container/drop ranking. Existing collection preparation and collect-route validation use approach assessment; only new trip selection discovers candidates. Approach still obtains a fresh guarded route, current intel/controller safety, source position and visibility. A collect intent still validates the exact current source object, type and selected geometry. No authority or capacity cache was introduced.
+
+Focused tests prove existing trips do not scan alternatives, including a room-wide scan that throws; moved/changed selected containers, unsafe controller observations, withdrawn leases and denied budgets remain refused. Targeted 12 tests/four files passed in 485ms; fixed smoke 76/15 passed in 466ms; quality (1042 production/898 test files, zero violations) and CommonJS bundle passed. Full units and milestone CI were not run.
+
+[Source-qualified evidence](evidence/startup-source-approach.json) retains three raw runs and the bounded 600-row probe. The short 260-tick probe fails the forecast-cutoff assertion and supplies timing evidence only. Its source median/max were 0.716/1.667ms, approach 1.112/1.156ms, admission 0.735/0.819ms, execution 0.965/1.880ms and whole courier run 1.160/2.889ms. No yield was captured within the bounded window. Sample composition and scheduling differ from the prior probe; this does not prove a speedup.
+
+The supported configured 1000-tick campaign passed. Full untraced 5ms planning observed34 and approved86; births134/155/167 and activations155/167/179 matched. First harvest165, income182, harvest3264, delivered3080 and repair88 all matched the forecast totals. Exact receipt timing still failed: 52 actual frames against53 predicted, with the first late receipt245 rather than244. Equal harvest/delivery totals do not qualify this gate.
+
+Further source/route inspection identifies a concrete duplicate copy: nativeScoutIntelPorts obtains a validated detached intel record from createIntelStore.peek, then createIntelTraversal copies it again before schema validation. Investigate an explicit detached-read contract at that port, preserving every fresh read, current status, clock, schema/risk/room-budget/guard check and defensive copying for other ports. Do not cache traversal authority or skip safety validation. Qualify corruption, detached mutation and changed-risk requests as well as native behavior before claiming improvement.
+
+ED-29 and the full rewrite goal remain incomplete. Broader future schedules, shared capital, longer-route handoff, home loss and downstream specialist/operator/parity/migration/RC gates remain required.
