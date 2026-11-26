@@ -48,6 +48,6 @@ jobs:
       - name: Install pinned processor sources without native install scripts
         run: npm ci --prefix tools/processors --ignore-scripts
       - run: npm run test:processors
-      - run: node --test tools/engine/suite-report-check.cjs
+      - run: node --test tools/engine/suite-report-check.cjs tools/engine/pipeline-telemetry-check.cjs
       - run: npm run check:bundle
 

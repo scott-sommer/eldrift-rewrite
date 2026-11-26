@@ -1,3 +1,4 @@
+const { createPipelineTelemetry } = require('./pipeline-telemetry.cjs');
 const { verifyConfiguredPipeline } = require('./remote-pipeline-configured.cjs');
 const { verifyPipelineApproval } = require('./remote-pipeline-approval.cjs');
 const { verifyPipelineGeometry } = require('./remote-pipeline-geometry.cjs');
@@ -46,6 +47,8 @@ const reservationVision = process.argv.includes('--reservation-vision');
 const { reservationVisionWorld,changeReservationVision,verifyReservationVision } = require('./reservation-vision.cjs');
 const remotePipelineConfiguredVariant = ['refused','changed','budget'].find(variant => process.argv.includes('--remote-pipeline-configured-'+variant));
 const remotePipelineConfigured = !!remotePipelineConfiguredVariant || process.argv.includes('--remote-pipeline-configured');
+const externalPipelineTelemetry = process.argv.includes('--external-pipeline-telemetry');
+if (externalPipelineTelemetry && !remotePipelineConfigured) throw new Error('External telemetry requires configured pipeline mode');
 const remotePipelineApproval = process.argv.includes('--remote-pipeline-approval');
 const remotePipelineGeometry = remotePipelineApproval || process.argv.includes('--remote-pipeline-geometry');
 const remotePipelineEconomicChange = process.argv.includes('--remote-pipeline-economic-change');
@@ -321,6 +324,7 @@ fs.mkdirSync(path.join(root, 'artifacts'), { recursive: true });
 const directory = fs.mkdtempSync(path.join(root, 'artifacts/engine-'));
 const server = new ScreepsServer({ path: directory, logdir: path.join(directory, 'logs'), port: 32147 });
 const evidence = { status: 'running', directory, messages: [], errors: [], samples: [] };
+const pipelineTelemetry = externalPipelineTelemetry ? createPipelineTelemetry() : undefined;
 if (startupMode) evidence.startupDiagnosticRows = startupChanges.rows;
 let stopped = false;
 function finish(code, error) {
@@ -328,6 +332,7 @@ function finish(code, error) {
   stopped = true;
   evidence.childPids = Object.values(server.processes).map(child => child.pid);
   evidence.status = code === 0 ? 'passed' : 'failed';
+  if (pipelineTelemetry) evidence.pipelineTelemetry = pipelineTelemetry.report();
   if (error) evidence.failure = String(error.stack ?? error);
   try {
     fs.writeFileSync(path.join(directory, 'evidence.json'), JSON.stringify(evidence, null, 2));
@@ -1003,11 +1008,13 @@ server.on('error', error => { console.error(error); finish(1, error); });
     if (process.argv.includes('--storage-loss')) await removeStorage(server, tick);
     if (storeBalanceMode === 'guard') await restoreBalanceEnergy(server, tick);
     if (process.argv.includes('--banking-demand')) await createBankingDemand(server, tick);
-    samples.push(await sampleTick(server, bot));
+    const sample = await sampleTick(server, bot); samples.push(sample);
+    if (pipelineTelemetry) await pipelineTelemetry.capture(server,bot,sample.tick-1);
     if (planningCpu) await capturePlanningCpu(server, bot, tick, evidence);
   }
   if (!planningCpu) assert.deepEqual(errors, [], 'Engine reported bot exceptions');
   const memory = JSON.parse(await bot.memory);
+  if (pipelineTelemetry) pipelineTelemetry.restore(memory);
   if (constructionRetry) {
     evidence.constructionRetry = { rows: memory.constructionRetryRows, calls: memory.constructionRetryCalls };
     verifyConstructionRetry(memory);
