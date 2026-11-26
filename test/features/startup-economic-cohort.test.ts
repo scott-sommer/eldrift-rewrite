@@ -96,10 +96,25 @@ test('queue comparison normalizes observation clocks, ignores expired and beyond
   queue.submit({ ...current,id: 'expired',name: 'expired',readyAt: 0,expiresAt: 1 });
   queue.submit({ ...current,id: 'later',name: 'later',readyAt: 1002,expiresAt: 1100 });
   const before = f.root(); expect(startupQueueMatches(f.state,f.home,f.query)).toBe(true); expect(f.root()).toBe(before);
-  queue.defer(new Set([current.id]),1); expect(startupQueueMatches(f.state,f.home,f.query,current)).toBe(true);
-  expect(startupQueueMatches(f.state,f.home,f.query,{ ...current,body: ['carry'] })).toBe(false);
+  queue.defer(new Set([current.id]),1); expect(startupQueueMatches(f.state,f.home,f.query,{ attempt: current })).toBe(true);
+  expect(startupQueueMatches(f.state,f.home,f.query,{ attempt: { ...current,body: ['carry'] } })).toBe(false);
   for (const changed of [{ priority: 2 },{ readyAt: 3 },{ expiresAt: 102 },{ body: ['carry' as const] }]) {
     queue.cancel(current.id,current.owner); queue.submit({ ...current,...changed });
     const snapshot = f.root(); expect(startupQueueMatches(f.state,f.home,f.query)).toBe(false); expect(f.root()).toBe(snapshot);
   }
+});
+
+test('an observed paid attempt can remain queued until reconciliation without revoking unpaid companions',() => {
+  const f = economicCohortFixture();
+  for (const tick of [2,3,4,5]) { f.at(tick); advanceEconomicProposal(f.state,f.home,f.context,f.config,() => true); }
+  const queue = createSpawnQueue(f.state,f.home), request = queue.list()[0]!, result = f.approvals.result(f.query)!;
+  const birth = result.spawning.births.find(birth => birth.request === request.id)!;
+  const startAt = birth.startAt+f.query.observedAt, activeAt = birth.activeAt+f.query.observedAt;
+  queue.defer(new Set([request.id]),startAt); f.at(startAt+1);
+  const current = { ...f.context,births: [{ request: request.id,owner: request.owner,home: f.home,body: request.body,startAt,activeAt }] };
+  const before = f.root();
+  expect(createStartupCohortMaintenance(f.state,f.home,f.approvals.result)(current,new Set([request.name]))).toEqual({ status: 'current' });
+  expect(f.root()).toBe(before);
+  const changed = { ...current,births: [{ ...current.births[0]!,body: ['move' as const] }] };
+  expect(startupQueueMatches(f.state,f.home,f.query,{ births: changed.births })).toBe(false);
 });

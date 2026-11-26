@@ -28,6 +28,33 @@
       "rawEncoding": "gzip",
       "rawSha256": "524242e0a4757e773b12605da7121c826721cf7640257872362159bc166531a5",
       "uncompressedSha256": "c01d32f692148277b964fe025c884fd16395f1c908385d8079c69a8208155b53"
+    },
+    {
+      "scenario": "sealed-supported",
+      "nativeSource": "89245f781c862f65b8f7eebf5fe05d48a89ff4ce",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-queue-spending-sealed-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0d8cd8214c84b4fe05a41db875084996e5dbf34cc3e6b1a6e86237166d2acda2",
+      "uncompressedSha256": "267264354eddd037a31120eee3242cf8fd40b360350d86f4544b51a0615c0be4"
+    },
+    {
+      "scenario": "sealed-changed",
+      "nativeSource": "89245f781c862f65b8f7eebf5fe05d48a89ff4ce",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-queue-spending-sealed-changed.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2811c4ca28ad5fdf1216ccc8aaffdf1eac76f38739d5937a25301df4d5b2b0d7",
+      "uncompressedSha256": "ae76153e85f0ae8fef897ce54301c420103763fe7581ff845d1d35390f510e16"
+    },
+    {
+      "scenario": "sealed-refused",
+      "nativeSource": "89245f781c862f65b8f7eebf5fe05d48a89ff4ce",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-queue-spending-sealed-refused.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f9b7e43fe3f2de6a2e6bd6f773b3f7ce88d88d61b77c724c75a8b3bdfb4a0429",
+      "uncompressedSha256": "e2ffd83906557c86d0352b4d1ea29e10bbf8757643178c86b007226c870adf42"
     }
   ]
 }
