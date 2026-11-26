@@ -73,6 +73,7 @@ test('new spending after approval cannot borrow its old financial calendar at fi
   const profile = { home: f.home,room: f.query.room,source: f.query.source,generation: 1,owner: request.owner } as RemoteFleetProfile;
   f.at(21); const admit = createStartupForecastAdmission(f.state,f.home,f.approvals.result);
   expect(admit(profile,request,f.context)).toBe(true);
+  queue.defer(new Set([request.id]),21); expect(admit(profile,request,f.context)).toBe(true);
   queue.submit({ id: 'new-home-work',name: 'new-home-work',owner: 'household',room: f.home,body: ['work','carry','move'],priority: 0,readyAt: 21,expiresAt: 100 });
   const before = f.root(); expect(admit(profile,request,f.context)).toBe(false); expect(f.root()).toBe(before);
 });
@@ -95,6 +96,8 @@ test('queue comparison normalizes observation clocks, ignores expired and beyond
   queue.submit({ ...current,id: 'expired',name: 'expired',readyAt: 0,expiresAt: 1 });
   queue.submit({ ...current,id: 'later',name: 'later',readyAt: 1002,expiresAt: 1100 });
   const before = f.root(); expect(startupQueueMatches(f.state,f.home,f.query)).toBe(true); expect(f.root()).toBe(before);
+  queue.defer(new Set([current.id]),1); expect(startupQueueMatches(f.state,f.home,f.query,current)).toBe(true);
+  expect(startupQueueMatches(f.state,f.home,f.query,{ ...current,body: ['carry'] })).toBe(false);
   for (const changed of [{ priority: 2 },{ readyAt: 3 },{ expiresAt: 102 },{ body: ['carry' as const] }]) {
     queue.cancel(current.id,current.owner); queue.submit({ ...current,...changed });
     const snapshot = f.root(); expect(startupQueueMatches(f.state,f.home,f.query)).toBe(false); expect(f.root()).toBe(snapshot);

@@ -1,0 +1,33 @@
+{
+  "issue": "ED-29",
+  "scope": "Queue spending fence: initial native attempt-seal regression and refusal replan failure retained; correction qualification pending.",
+  "native": [
+    {
+      "scenario": "initial-supported",
+      "nativeSource": "84c675b215da3c4b3865fbee652af7415ac7f229",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-queue-spending-initial-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3d8b66b1e63d9b21ad9162d9001d2ca859086b2aebe1819321cd0b08a18c972d",
+      "uncompressedSha256": "8af9e2e81e93ca1c4b8f37e97ef4b99033e4e5057cf03dc6f18986dc45425d34"
+    },
+    {
+      "scenario": "initial-refused",
+      "nativeSource": "84c675b215da3c4b3865fbee652af7415ac7f229",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-queue-spending-initial-refused.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2cce7b3293137e22a9d69bf188b05fa3ae0c6e40c095ab9c50f8b789e3a72cc5",
+      "uncompressedSha256": "dd7f62c3b21c8ac4af96eb092dcb0eef835b47746e8b3145452c0fff49d8da24"
+    },
+    {
+      "scenario": "initial-changed",
+      "nativeSource": "84c675b215da3c4b3865fbee652af7415ac7f229",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-queue-spending-initial-changed.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "524242e0a4757e773b12605da7121c826721cf7640257872362159bc166531a5",
+      "uncompressedSha256": "c01d32f692148277b964fe025c884fd16395f1c908385d8079c69a8208155b53"
+    }
+  ]
+}
