@@ -13,8 +13,8 @@ import type { RemoteFleetProfile } from '../../../../features/remotes/fleet/mode
 import type { RuntimeConfig } from '../../../../config/model';
 import type { StartupPlanningContext } from '../../../../features/remotes/startup/planning/model';
 import type { CompleteStartupTravel } from '../../../../features/remotes/startup/selection-model';
-export function approvedEconomicContext(state: StatePort, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>) {
-  const approval = matchingEconomicApproval(state,profile); if (!approval) return undefined;
+export function approvedEconomicContext(state: StatePort, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, readApproval: EconomicApprovalReader = profile => matchingEconomicApproval(state,profile)) {
+  const approval = readApproval(profile); if (!approval) return undefined;
   return executionContext(state,approval.job,approval.quote,approval.rooms,config);
 }
 export function matchingEconomicApproval(state: StatePort, profile: Readonly<RemoteFleetProfile>) {
@@ -37,3 +37,5 @@ function executionContext(state: StatePort, job: StartupPlanningContext & { inpu
   return { query,quote,rooms: [...rooms],policy,binding: createNativeStartupExecutionBinding(state)(quote.plan,rooms,config,policy) ?? '',tick: Game.time,births: observeStartupBirths(input.project.spawning.requests) };
 }
 export type EconomicExecutionContext = NonNullable<ReturnType<typeof approvedEconomicContext>> & { planning?: StartupPlanningInspection };
+
+export type EconomicApprovalReader = (profile: Readonly<RemoteFleetProfile>) => ReturnType<typeof matchingEconomicApproval>;

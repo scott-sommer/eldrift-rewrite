@@ -1,3 +1,4 @@
+import type { EconomicApprovalReader } from './context';
 import type { EconomicProposalStaging } from './staging';
 import { createStartupPlanningJob } from '../../../../features/remotes/startup/planning/runner';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
@@ -11,9 +12,9 @@ import type { RuntimeConfig } from '../../../../config/model';
 import type { RemoteFleetProfile } from '../../../../features/remotes/fleet/model';
 import type { StartupStructures, RemoteStartupProbe } from '../model';
 type StartupGuard = () => boolean;
-export function prepareEconomicCohort(state: StatePort, structures: StartupStructures, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard, trace: RemoteStartupProbe, staging: EconomicProposalStaging): boolean {
+export function prepareEconomicCohort(state: StatePort, structures: StartupStructures, profile: Readonly<RemoteFleetProfile>, config: Readonly<RuntimeConfig>, guard: StartupGuard, trace: RemoteStartupProbe, staging: EconomicProposalStaging, readApproval: EconomicApprovalReader): boolean {
   trace(profile,'prepare:enter');
-  const approvals = createStartupApprovals(state,profile.home), approved = approvedEconomicContext(state,profile,config);
+  const approvals = createStartupApprovals(state,profile.home), approved = approvedEconomicContext(state,profile,config,readApproval);
   if (approved) {
     const maintained = createStartupCohortMaintenance(state,profile.home,approvals.result)(approved,new Set(Object.keys(Game.creeps)));
     if (maintained.status === 'current' && !missingStartupBirths(state,profile,config)) return true;
