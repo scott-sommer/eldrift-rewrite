@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { observePathActor, pathProbeSearch, withPipelinePathProbe } from '../engine/pipeline-path-probe';
+import { observePathActor, measureMatrixObservation, pathProbeSearch, withPipelinePathProbe } from '../engine/pipeline-path-probe';
 import type { PathProbeMemory } from '../engine/pipeline-path-probe';
 afterEach(() => vi.unstubAllGlobals());
 function fixture(search: (value: number) => { path: number[] } = () => ({ path: [] })) {
@@ -36,4 +36,22 @@ test('operation aggregation has a fixed key bound and disabled probes create no 
   f.memory.pipelineConfiguredPathProbeMode = true;
   withPipelinePathProbe(() => { for (let index = 0; index < 300; index++) { observePathActor('actor:unit'+index+':begin'); (pathProbeSearch as unknown as typeof f.finder.search)(1); } });
   expect(Object.keys(f.memory.pipelinePathProbe!.rows)).toHaveLength(256); expect(f.memory.pipelinePathProbe!.droppedCalls).toBe(44);
+});
+
+test('matrix observation returns exact values, counts cross-actor room duplication and resets per runtime',() => {
+  const f = fixture(), result = { unchanged: true };
+  expect(measureMatrixObservation('W0N0',() => result)).toBe(result);
+  expect(f.memory.pipelinePathProbe).toBeUndefined();
+  withPipelinePathProbe(() => {
+    observePathActor('actor:first:begin');
+    expect(measureMatrixObservation('W0N0',() => result)).toBe(result);
+    observePathActor('actor:second:begin');
+    measureMatrixObservation('W0N0',() => result);
+    expect(() => measureMatrixObservation('E0N0',() => { throw result; })).toThrow();
+  });
+  const rows = Object.values(f.memory.pipelinePathProbe!.rows);
+  expect(rows.map(row => [row.actor,row.operation,row.calls,row.duplicateCalls,row.totalCpu]))
+    .toEqual([['first','matrix:W0N0',1,0,1],['second','matrix:W0N0',1,1,1],['second','matrix:E0N0',1,0,1]]);
+  withPipelinePathProbe(() => measureMatrixObservation('W0N0',() => result));
+  expect(Object.values(f.memory.pipelinePathProbe!.rows).at(-1)!.duplicateCalls).toBe(0);
 });

@@ -1,8 +1,9 @@
 const assert = require('node:assert/strict');
 const { build } = require('esbuild');
+const { pathProbeOptions } = require('./path-probe-build.cjs');
 async function actionBundle(root, entry = 'action-bot') {
   const pathProbe = entry === 'remote-pipeline-labor-bot' && process.argv.includes('--path-probe');
-  const probeOptions = pathProbe ? { define: { 'PathFinder.search': 'pathProbeSearch' }, inject: [`${root}/test/engine/pipeline-path-probe.ts`] } : {};
+  const probeOptions = pathProbe ? pathProbeOptions(root) : {};
   const result = await build({ entryPoints: [`${root}/test/engine/${entry}.ts`], bundle: true, format: 'cjs', platform: 'neutral', target: 'es2022', write: false, ...probeOptions });
   return result.outputFiles[0].text;
 }
