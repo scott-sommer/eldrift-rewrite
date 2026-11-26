@@ -1,0 +1,89 @@
+{
+  "issue": "ED-29",
+  "scope": "Actual single-outpost operating receipts with paid guarded home labor, distributor refill and explicit idle/withdrawal policy; prebuilt infrastructure; initial cancelled-birth failure preserved; not a matched prospective whole-project forecast",
+  "native": [
+    {
+      "scenario": "initial-cancelled-birth",
+      "nativeSource": "2d108286c35bdbc23e561069762d8a78363d1604",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/remote-pipeline-household/initial-cancelled-birth.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2606b9d0ac9fa1d16c31a5405b1de344f7f9dbf323d4f0a9da2e5ce8920cb9d5",
+      "uncompressedSha256": "9b2d4f6d116f7e9536769d9b1112a72cdc06e214722610f5ba71c4a5db8609d9",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/initial-cancelled-birth-observations.jsonl",
+          "rowsSha256": "b6f004f4419ab9df7df978ce295637b649100df746c9440c94c476b646cc5908",
+          "rows": 1000
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/initial-cancelled-birth-births.jsonl",
+          "rowsSha256": "df14601f11c5991e61b8efa51d1c5d50f623eb648a39bd6f00a68cd9e7ae0c60",
+          "rows": 7
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/initial-cancelled-birth-remoteReceipts.jsonl",
+          "rowsSha256": "8e66e52c5568db932ec9faa369bdcff7dee2f4d86baaa3101aeeffcc37aadf3d",
+          "rows": 77
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/initial-cancelled-birth-localReceipts.jsonl",
+          "rowsSha256": "a547fd38e0fc1e13c8627443a74df3be375aa312f9bbd8fd18bf75c9690afc79",
+          "rows": 52
+        }
+      ]
+    },
+    {
+      "scenario": "combined",
+      "nativeSource": "98367fef3cd846c71924a74c04a3cdf4dddfdc21",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/remote-pipeline-household/combined.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1930bfd6f46b87c891689ed24953c4764e5b4d8d9f42f930ea14f62da7f24596",
+      "uncompressedSha256": "e910155eb290b400b5a52128175d56faf89317687393e083340bc09c947b8fd6",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/combined-observations.jsonl",
+          "rowsSha256": "65d144693a08e6f90ea0ac6b5a6dd6c2e083b607ffc7a64562425adea46051e1",
+          "rows": 1000
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/combined-births.jsonl",
+          "rowsSha256": "a282cb5594a8dcf2aaeba26e7d0fbf37b49d10f26340124c612f26309bab4d8f",
+          "rows": 7
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/combined-remoteReceipts.jsonl",
+          "rowsSha256": "1656e8645d219bef03000a0a215e74c7647c36aa7f87ac644c4fd4271aad6422",
+          "rows": 74
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/combined-localReceipts.jsonl",
+          "rowsSha256": "4cb4873559d35b69e498a2b62c2d47f471da3af6073806bc1ede8a3cdb4ce8af",
+          "rows": 55
+        },
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/combined-labor.jsonl",
+          "rowsSha256": "681382c5ac29a935ffa91ceed2920f2637ab4733b1f181df87cc3d8606099fd7",
+          "rows": 1
+        }
+      ]
+    },
+    {
+      "scenario": "worker-population",
+      "nativeSource": "98367fef3cd846c71924a74c04a3cdf4dddfdc21",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/remote-pipeline-household/worker-population.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "30d94ac6cdc757685845bafc5702d8f9cb32967a00ea27f7cf97542de4f80fa2",
+      "uncompressedSha256": "7484c4a4e9327b91e44d3677da5d533babcecda4c11d240e6d781b2eff918e0d",
+      "traces": [
+        {
+          "rowsFile": "docs/evidence/remote-pipeline-household/worker-population-samples.jsonl",
+          "rowsSha256": "cc0224f5b6e914c4f6075acb2c4096f16fed70ad455dad19d12a40771982a714",
+          "rows": 44
+        }
+      ]
+    }
+  ]
+}
