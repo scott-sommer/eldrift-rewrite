@@ -9,7 +9,7 @@ import { snapshotStartupProject } from '../../../../capabilities/economy/startup
 import type { StatePort } from '../../../../persistence/versioned-state';
 import { natural } from '../../assignment-validation';
 import { createStartupPlanningStore } from './store';
-import { planningContextKey, validPlanningContext } from './validation';
+import { planningContextKey, validPlanningContext, takeValidatedPlanningProject } from './validation';
 import { decodeStartupPlanningInput, encodeStartupPlanningInput } from './input';
 import type { StartupPlanningJob, StartupPlanningQuery, StartupPlanningRequest, StartupPlanningResult, StartupPlanningRecord } from './model';
 type PlanningGuard = () => boolean;
@@ -52,7 +52,7 @@ export function createStartupPlanningJob(state: StatePort, home: string) {
     if (request.tick < current.clock || !current.job) return undefined;
     try {
       if (!matches(current.job,request,startupProjectIdentity(request.input))) return undefined;
-      const project = restoreStartupProject(decodeStartupPlanningInput(current.job.input),current.job.checkpoint);
+      const project = takeValidatedPlanningProject(current.job) ?? restoreStartupProject(decodeStartupPlanningInput(current.job.input),current.job.checkpoint);
       return project.advance(0).done ? project.result() : undefined;
     } catch (error) { if (capacityError(error)) return undefined; throw error; }
   }
@@ -88,7 +88,7 @@ function deferred(reason: Extract<StartupPlanningResult,{ status: 'deferred' }>[
 function prepareProject(request: StartupPlanningRequest, previous: StartupPlanningJob | null) {
   try {
     const identity = startupProjectIdentity(request.input);
-    return matches(previous,request,identity) ? restoreStartupProject(request.input,previous!.checkpoint) : createStartupProject(request.input);
+    return matches(previous,request,identity) ? takeValidatedPlanningProject(previous!) ?? restoreStartupProject(request.input,previous!.checkpoint) : createStartupProject(request.input);
   } catch (error) { if (capacityError(error)) return undefined; throw error; }
 }
 function snapshotJob(request: StartupPlanningRequest, project: ReturnType<typeof createStartupProject>) {

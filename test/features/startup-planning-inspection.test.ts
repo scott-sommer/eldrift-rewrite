@@ -18,3 +18,10 @@ test('old completed inspection results grant no authority after scratch withdraw
   expect(inspection.result(f.query)).toBeDefined(); expect(f.planner.result(f.query)).toBeUndefined();
   expect(f.approvals.capture({ query: f.query,quote: f.context.quote,rooms: f.context.rooms,policy: f.context.policy },0)).toBe('unavailable'); expect(f.approvals.read().approvals).toEqual([]);
 });
+
+test('a consumed validated model cannot make its old captured checkpoint appear advanced or completed',() => {
+  const f = economicCohortFixture(), inspection = f.planner.inspect();
+  expect(inspection.advance({ ...f.query,tick: 2,expectedRevision: inspection.record.revision },1000).status).toBe('complete');
+  expect(inspection.result({ ...f.query,tick: 2 })).toBeUndefined(); expect(f.planner.result({ ...f.query,tick: 2 })).toBeDefined();
+  const before = f.root(); expect(inspection.advance({ ...f.query,tick: 3,expectedRevision: inspection.record.revision },0)).toMatchObject({ status: 'deferred',reason: 'budget',frames: 0 }); expect(f.root()).toBe(before);
+});
