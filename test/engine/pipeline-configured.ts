@@ -1,3 +1,4 @@
+import { changeConfiguredPolicy, configuredStartupSettings } from './pipeline-configured-policy';
 import { createStartupApprovals } from '../../src/features/remotes/startup/approvals/catalog';
 import { createStartupPlanningJob } from '../../src/features/remotes/startup/planning/runner';
 import { decodeStartupPlanningInput } from '../../src/features/remotes/startup/planning/input';
@@ -6,19 +7,27 @@ import { operatorSchema } from '../../src/features/operator/state';
 import type { StatePort } from '../../src/persistence/versioned-state';
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 import type { PipelineServiceMemory } from './pipeline-service-policy';
-export interface ConfiguredPipelineMemory extends CalibrationMemory, PipelineServiceMemory { pipelineConfiguredMode?: boolean; pipelineConfiguredPlanning?: { tick: number; through: number; observedAt: number }[]; pipelineConfiguredApproval?: { approvedAt: number; observedAt: number } }
+export interface ConfiguredPipelineMemory extends CalibrationMemory, PipelineServiceMemory { pipelineConfiguredMode?: boolean; pipelineConfiguredVariant?: 'refused' | 'changed' | 'budget'; pipelineConfiguredChanges?: number[]; pipelineConfiguredRejected?: { observedAt: number; through: number }[]; pipelineConfiguredPlanning?: { tick: number; through: number; observedAt: number }[]; pipelineConfiguredApproval?: { approvedAt: number; observedAt: number } }
 /** Test-only configuration and passive evidence collection; no proposal, queue, selection or approval publication. */
 export function observeConfiguredPipeline(state: StatePort): void {
   const memory = Memory as ConfiguredPipelineMemory; if (!memory.pipelineConfiguredMode) return;
   if (Game.time === 1) {
     const record = openState(state,'operator/config',operatorSchema);
-    record.empire = { ...record.empire as object,remoteStartupPolicy: 'economic',remoteStartupHorizon: 767,remoteStartupFrames: 32,remoteStartupPlanningLead: 30 };
+    record.empire = { ...record.empire as object,...configuredStartupSettings(memory.pipelineConfiguredVariant) };
     saveState(state,'operator/config',operatorSchema,record);
   }
+  changeConfiguredPolicy(state,memory);
   const job = createStartupPlanningJob(state,'W0N1').read().job;
   if (job) {
     const rows = memory.pipelineConfiguredPlanning ??= [];
-    if (rows.at(-1)?.through !== job.checkpoint.tick) rows.push({ tick: Game.time,through: job.checkpoint.tick,observedAt: job.observedAt });
+    if (rows.at(-1)?.through !== job.checkpoint.tick || rows.at(-1)?.observedAt !== job.observedAt) rows.push({ tick: Game.time,through: job.checkpoint.tick,observedAt: job.observedAt });
+  }
+  if (memory.pipelineConfiguredVariant === 'refused') {
+    if (job?.checkpoint.tick === 768) {
+      const rejected = memory.pipelineConfiguredRejected ??= [];
+      if (!rejected.some(row => row.observedAt === job.observedAt)) rejected.push({ observedAt: job.observedAt,through: job.checkpoint.tick });
+    }
+    return;
   }
   if (memory.pipelineCalibration) return;
   const approvals = createStartupApprovals(state,'W0N1'), approval = approvals.read().approvals[0]; if (!approval) return;
