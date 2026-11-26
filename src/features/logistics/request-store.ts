@@ -35,6 +35,13 @@ export function createLogisticsRequests(port: StatePort, room: string) {
         .filter(request => request.quantity > 0)
         .sort((a, b) => a.priority - b.priority || a.owner.localeCompare(b.owner) || a.id.localeCompare(b.id));
     },
+    findPending(owner: string, id: string, tick: number): LogisticsRequest | undefined {
+      validTick(tick);
+      const record = read().records.find(record => matches(record,owner,id));
+      if (!record || record.cancelled || record.request.expiresAt <= tick) return undefined;
+      const remaining = record.request.quantity-delivered(record);
+      return remaining > 0 ? { ...record.request,quantity: remaining } : undefined;
+    },
     confirm(owner: string, id: string, receipt: DeliveryReceipt, tick: number, issuedAt = tick): boolean {
       validTick(tick);
       const state = read();

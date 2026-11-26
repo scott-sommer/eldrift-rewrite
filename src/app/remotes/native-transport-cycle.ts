@@ -1,3 +1,4 @@
+import type { HaulingTaskPayload } from '../hauling-task';
 import { withinRange } from '../../capabilities/movement/path-model';
 import { transportService } from './transport-service';
 import { movementPosition } from '../../adapters/screeps/movement-traffic';
@@ -31,8 +32,7 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   const behaviors = { haul: combined }, definitions = { ...otherDefinitions,...behaviors };
   const tasks = remoteTransportTasks(state,definitions,binding.home), execute = createTaskRunner(state,behaviors,() => Game.time,definitions);
   const retire = (creep: Creep) => context.travel.retire(creep,binding.home,'remote-transport-return:' + creep.name);
-  function existing(creep: Creep, task: TaskRecord, desired: RemoteTransportDemand | undefined): void {
-    const payload = tasks.payload(task)!;
+  function existing(creep: Creep, task: TaskRecord, payload: HaulingTaskPayload, desired: RemoteTransportDemand | undefined): void {
     settleHaulingTask(state,definitions,creep,observeTransfer);
     if (tasks.pending(creep.id)) return;
     if (!validTrip(payload.request,desired)) {
@@ -86,7 +86,7 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   function processExisting(creep: Creep, head: TaskRecord | undefined, desired: RemoteTransportDemand | undefined): boolean {
     const payload = tasks.payload(head);
     if (!head || !payload || !context.owns(payload.request)) return false;
-    existing(creep,head,desired); return true;
+    existing(creep,head,payload,desired); return true;
   }
   function idle(creep: Creep, desired: RemoteTransportDemand | undefined): void {
     if (!options.guard()) return;

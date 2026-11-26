@@ -7,7 +7,7 @@ export interface Journal { acknowledged: boolean; attempt: TransferAttempt | nul
 export const schema: StateSchema<Journal> = {
   owner: 'logistics', version: 1, initial: () => ({ acknowledged: true, attempt: null, result: null }), migrations: {}, valid,
 };
-/** Begin persists before invocation; a reconstructed caller cannot issue the pending attempt again. */
+/** Begin persists before invocation. Pending or unretired unknown evidence cannot be overwritten. */
 export function createTransferJournal(port: StatePort, unit: string) {
   const key = stateKey('logistics-attempts', unit);
   const read = () => openState(port, key, schema);
@@ -17,7 +17,7 @@ export function createTransferJournal(port: StatePort, unit: string) {
       validateTransferAttempt(attempt);
       if (attempt.unit !== unit) throw new Error('Transfer journal unit mismatch');
       const previous = read();
-      if (previous.attempt && (!previous.acknowledged || previous.attempt.tick >= attempt.tick)) return false;
+      if (previous.attempt && (!previous.acknowledged || previous.attempt.tick >= attempt.tick || previous.result?.status === 'unknown')) return false;
       saveState(port, key, schema, { acknowledged: false, attempt, result: null });
       return true;
     },

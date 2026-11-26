@@ -54,3 +54,12 @@ test('last-valid-tick delivery settles at expiry even after another request is s
   expect(queue.availableSlots(20)).toBe(198);
   expect(queue.availableSlots(21)).toBe(199);
 });
+
+test('one pending request lookup preserves owner, receipt, cancellation and expiry boundaries',() => {
+  const { queue } = fixture(); queue.submit(request,1); queue.submit({ ...request,owner: 'industry' },1); queue.submit({ ...request,id: 'expiry' },1);
+  queue.confirm('economy','fill',{ id: 'partial',amount: 40 },2);
+  const current = queue.findPending('economy','fill',3)!; expect(current.quantity).toBe(60); current.source = 'changed';
+  expect(queue.findPending('economy','fill',3)).toMatchObject({ source: 'container',quantity: 60 }); expect(queue.findPending('industry','fill',3)?.quantity).toBe(100);
+  queue.confirm('economy','fill',{ id: 'rest',amount: 60 },4); expect(queue.findPending('economy','fill',4)).toBeUndefined();
+  queue.cancel('industry','fill'); expect(queue.findPending('industry','fill',4)).toBeUndefined(); expect(queue.findPending('economy','expiry',20)).toBeUndefined();
+});

@@ -52,3 +52,10 @@ test('incident detail retention is bounded and records how many older entries we
   expect(incidents.entries[0]!.attempt.id).toBe('1');
   expect(incidents.discarded).toBe(1);
 });
+
+test('acknowledged unknown evidence cannot be overwritten by another attempt before explicit retirement',() => {
+  const { state,records,journal } = fixture(), previous = journal.read().attempt!;
+  const next = { ...previous,id: 'next',requestKey: logisticsPool('request-binding','home','owner','replacement'),kind: 'withdraw' as const,target: 'source',tick: 4,cargoBefore: 0 };
+  const before = JSON.stringify([...records]); expect(journal.begin(next)).toBe(false); expect(JSON.stringify([...records])).toBe(before);
+  expect(abandonUnknownTransfer(state,binding,3,0)).toBe(true); expect(journal.begin(next)).toBe(true);
+});

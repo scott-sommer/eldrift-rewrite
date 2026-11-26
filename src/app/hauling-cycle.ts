@@ -19,8 +19,7 @@ export interface HaulingPorts {
 /** One assigned request's work cycle; callers own task admission, endpoint observations and native dispatch. */
 export function runHauling(state: StatePort, binding: HaulingBinding, view: HaulingView, ports: HaulingPorts): Outcome {
   if (![view.tick, view.cargo, view.freeCargo].every(value => Number.isSafeInteger(value) && value >= 0)) throw new Error('Invalid hauling view');
-  if (settlePending(state, binding, view, ports)) return wait(view.tick, 'transfer-pending');
-  if (abandonUnknownTransfer(state, binding, view.tick, view.cargo)) return { status: 'failed', reason: 'transfer-evidence-lost' };
+  const liability = settlePending(state,binding,view,ports); if (liability) return liability;
   if (unusableDestination(view)) {
     createLogisticsRequests(state, binding.home).cancel(binding.request.owner, binding.request.id);
     return finish(state, binding, view);
@@ -34,8 +33,7 @@ export function runHauling(state: StatePort, binding: HaulingBinding, view: Haul
   return ports.execute(request, phase, amount, logisticsPool('attempt', binding.unit, binding.scope, String(view.tick)), requestKey);
 }
 function pending(state: StatePort, binding: HaulingBinding, tick: number): LogisticsRequest | undefined {
-  return createLogisticsRequests(state, binding.home).pending(tick)
-    .find(request => request.owner === binding.request.owner && request.id === binding.request.id);
+  return createLogisticsRequests(state,binding.home).findPending(binding.request.owner,binding.request.id,tick);
 }
 function refreshCargoBooking(state: StatePort, binding: HaulingBinding, view: HaulingView): void {
   const request = pending(state, binding, view.tick);
@@ -53,13 +51,13 @@ function finish(state: StatePort, binding: HaulingBinding, view: HaulingView): O
 function wait(tick: number, reason: string): Outcome { return { status: 'blocked', reason, retryAt: tick + 1 }; }
 
 
-function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingView, ports: HaulingPorts): boolean {
+function settlePending(state: StatePort, binding: HaulingBinding, view: HaulingView, ports: HaulingPorts): Outcome | undefined {
   const previous = createTransferJournal(state, binding.unit).read();
-  if (!previous.attempt || previous.acknowledged) return false;
+  if (!previous.attempt || previous.acknowledged) return previous.result?.status === 'unknown' ? retireUnknown(state,binding,view) : undefined;
   const settled = settleHaulingTransfer(state, binding, ports.observe(previous.attempt), (_attempt, result) => {
     if (result.status === 'observed') refreshCargoBooking(state, binding, view);
   });
-  return settled?.status === 'waiting';
+  return settled?.status === 'waiting' ? wait(view.tick,'transfer-pending') : retireUnknown(state,binding,view);
 }
 
 function unavailable(state: StatePort, binding: HaulingBinding, view: HaulingView): Outcome {
@@ -69,4 +67,8 @@ function unavailable(state: StatePort, binding: HaulingBinding, view: HaulingVie
 
 function unusableDestination(view: HaulingView): boolean {
   return view.sinkStatus === 'missing' || (view.sinkStatus === 'visible' && view.sinkFree === 0 && view.cargo > 0);
+}
+
+function retireUnknown(state: StatePort, binding: HaulingBinding, view: HaulingView): Outcome | undefined {
+  return abandonUnknownTransfer(state,binding,view.tick,view.cargo) ? { status: 'failed',reason: 'transfer-evidence-lost' } : undefined;
 }
