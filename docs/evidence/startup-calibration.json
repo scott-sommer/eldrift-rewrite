@@ -132,6 +132,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "d6409b16628198a40e2f29421d27d254adea8ad9f8e390c509e4bfe3fb9a6193",
       "uncompressedSha256": "b89bb967443b849e9de5c3f7867fae69bf5ff732144c3c5a7bf3162ab9b58df2"
+    },
+    {
+      "scenario": "long-missing-repairs",
+      "nativeSource": "bc935dea2d1f3dda4b3f4f93545d7834d1b2909a",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-calibration/long-missing-repairs.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4d0a2c935080f256ab2f0bc8c29ca5f11054e99eb7bdc5c1b2b0eb1871d4ab34",
+      "uncompressedSha256": "b97ff528c0de6f40c9c4f12d52efd2bf8378549e433ae6582358ad085b357d8a"
     }
   ]
 }

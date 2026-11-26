@@ -7,13 +7,15 @@ function verifyPipelineCalibration(memory,evidence) {
   const actualMining = proof.events.find(event => event.action === 'harvest')?.tick, firstIncome = rows.find(row => row.income > 0)?.tick;
   const predictedReceipts = proof.result.delivery.receipts.map(receipt => ({ tick: epoch+receipt.tick,energy: receipt.energy }));
   const actualReceipts = rows.flatMap((row,index) => { const energy = row.income-(rows[index-1]?.income ?? 0); return row.tick <= cutoff && energy > 0 ? [{ tick: row.tick,energy }] : []; });
-  const comparison = { epoch,cutoff,receipts: { predicted: predictedReceipts,actual: actualReceipts },births: actualBirths,firstMining: { predicted: predictedMining,actual: actualMining },firstIncome: { predicted: epoch+proof.result.delivery.firstDeliveryAt,actual: firstIncome },harvested: { predicted: proof.result.delivery.harvestedEnergy,actual: proof.events.filter(event => event.action === 'harvest').reduce((sum,event) => sum+event.amount,0) },delivered: { predicted: proof.result.delivery.deliveredEnergy,actual: rows.find(row => row.tick === cutoff)?.income } };
+  const repairs = { predicted: proof.result.maintenance.repairEnergy,actual: proof.events.filter(event => event.action === 'repair').reduce((sum,event) => sum+event.amount,0) };
+  const comparison = { epoch,cutoff,repairs,receipts: { predicted: predictedReceipts,actual: actualReceipts },births: actualBirths,firstMining: { predicted: predictedMining,actual: actualMining },firstIncome: { predicted: epoch+proof.result.delivery.firstDeliveryAt,actual: firstIncome },harvested: { predicted: proof.result.delivery.harvestedEnergy,actual: proof.events.filter(event => event.action === 'harvest').reduce((sum,event) => sum+event.amount,0) },delivered: { predicted: proof.result.delivery.deliveredEnergy,actual: rows.find(row => row.tick === cutoff)?.income } };
   evidence.pipelineCalibration.comparison = comparison;
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]); assert.ok(cutoff < rows.at(-1).tick);
   for (const birth of actualBirths) { assert.equal(birth.actualStart,birth.predictedStart); assert.equal(birth.actualActive,birth.predictedActive); }
   assert.equal(actualMining,predictedMining,'First native harvest must match the quoted activation/approach frame');
   assert.equal(firstIncome,comparison.firstIncome.predicted,'First settled receipt must match the projected calendar');
   assert.deepEqual(actualReceipts,predictedReceipts,'Every settled receipt frame and amount must match the prospective calendar');
+  assert.equal(repairs.actual,repairs.predicted,'Native upkeep spend must match the projection');
   assert.equal(comparison.harvested.actual,comparison.harvested.predicted); assert.equal(comparison.delivered.actual,comparison.delivered.predicted);
 }
 module.exports = { verifyPipelineCalibration };

@@ -1,3 +1,4 @@
+import { defaultMiningRepairPolicy } from '../../src/capabilities/mining/repair-policy';
 import { createNativeStartupTravel } from '../../src/app/remotes/startup/travel/native';
 import { createNativeStartupProjection } from '../../src/app/remotes/startup/projection/native';
 import { nativeRemoteTraversalFor } from '../../src/app/remotes/management/policy';
@@ -18,7 +19,7 @@ export function capturePipelineCalibration(state: StatePort, profile: Readonly<R
   const username = Game.rooms[plan.home]!.controller!.owner!.username;
   const quote = createNativeStartupTravel(state,{ availableEnergy: (_home,available) => available },{ maximumRooms: 2,maximumOps: 10000 })({ target: { home: plan.home,room: plan.room,source: plan.source,station: plan.station,endpoint: plan.endpoint.id,username,tick: Game.time },spawn: plan.spawn.id,exit: plan.spawn.exit,collection: plan.collection,deposit: plan.endpoint.deposit,miner: plan.miner,courier: plan.courier,traversal: nativeRemoteTraversalFor(username,config) },5,guard);
   if (quote.status !== 'complete') return deferred(memory,quote.reason);
-  const horizon = memory.pipelineCalibrationHorizon ?? 120, projected = createNativeStartupProjection(state)(quote,{ horizon,protectedEnergy: 0,births: calibrationBirths(state,quote,config),unaffordable: 'skip',repairPolicy: null,refills: [],householdFlows: [],sinkChanges: [] },guard);
+  const horizon = memory.pipelineCalibrationHorizon ?? 120, projected = createNativeStartupProjection(state)(quote,{ horizon,protectedEnergy: 0,births: calibrationBirths(state,quote,config),unaffordable: 'skip',repairPolicy: defaultMiningRepairPolicy,refills: [],householdFlows: [],sinkChanges: [] },guard);
   if (projected.status !== 'ready') return deferred(memory,projected.reason);
   memory.pipelineCalibration = { quote,input: encodeStartupPlanningInput(projected.input),result: forecastStartupProject(projected.input),horizon,frames: [],events: [] };
   return true;
@@ -26,10 +27,10 @@ export function capturePipelineCalibration(state: StatePort, profile: Readonly<R
 function deferred(memory: CalibrationMemory, reason: string): false {
   (memory.pipelineCalibrationAttempts ??= []).push({ tick: Game.time,reason }); return false;
 }
-export function recordCalibrationCall(creep: Creep, action: string, target: { energy?: number }, amount?: number): void {
+export function recordCalibrationCall(creep: Creep, action: string, target: { energy?: number; hits?: number; hitsMax?: number }, amount?: number): void {
   const proof = (Memory as CalibrationMemory).pipelineCalibration;
   if (!proof || Game.time > proof.quote.observedAt+proof.horizon) return;
-  const energy = action === 'harvest' ? Math.min(creep.getActiveBodyparts(WORK)*HARVEST_POWER,target.energy ?? 0) : amount ?? 0;
+  const energy = action === 'harvest' ? Math.min(creep.getActiveBodyparts(WORK)*HARVEST_POWER,target.energy ?? 0) : action === 'repair' ? Math.min(creep.getActiveBodyparts(WORK),Math.ceil(((target.hitsMax ?? 0)-(target.hits ?? 0))/REPAIR_POWER),creep.store.energy) : amount ?? 0;
   proof.events.push({ tick: Game.time,actor: creep.name,action,amount: energy });
 }
 
