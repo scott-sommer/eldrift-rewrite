@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Matrix construction baseline and immutable same-tick room geometry sharing; native qualification remains open.",
+  "scope": "Bounded immutable current-tick room geometry sharing; measured baseline/after and untraced5ms failures retained, supported and four focused movement cases pass.",
   "native": [
     {
       "scenario": "configured-budget-matrix-before",
@@ -10,6 +10,69 @@
       "rawEncoding": "gzip",
       "rawSha256": "6be3b2d30cb59dc22587150898e89b1e6ed7af165130be4e475902b0e5bb04c3",
       "uncompressedSha256": "a080793293fce8113a9e18269234102d7fd1ffa74a18792d0353de256c728515"
+    },
+    {
+      "scenario": "after-measured",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-matrix-observations-after-measured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "20668fb4cfb5199055913d0920d94065a6a3fc2e0df32d06362bb7c3a1640eff",
+      "uncompressedSha256": "e5c8d6b3bd3161ba3e42820d3aaf7db1974129bbec6f6ad368e6995024f37770"
+    },
+    {
+      "scenario": "after-control",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-matrix-observations-after-control.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "1ec1de279cc080451615b679e088eeac1d4a8c4521f273611ba10dd5d214d3ee",
+      "uncompressedSha256": "4b5efeb9be60c309e39e0775ef8501ac584a02bcb615f81963f96fda1ccd8751"
+    },
+    {
+      "scenario": "supported",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-matrix-observations-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "051ab9fb4d371713ed23445dad4fe0c6e5a8c09f7bc4934d009cb82abca225d0",
+      "uncompressedSha256": "b46eb643a6494ad22aa06afc46dfc1b713fb8992d5637d12ed6e00163de23e2a"
+    },
+    {
+      "scenario": "paths",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-matrix-observations-paths.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "df7726003c9398902a3430e4365c7e3c178ff2f2b0ce71f5535747eab9f563dd",
+      "uncompressedSha256": "e44b9034a81f9456f8a0e2d2d068028917078798c769476090d8e31282cf4ff1"
+    },
+    {
+      "scenario": "traffic",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-matrix-observations-traffic.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "d86578414e2951ee49910d881e69f839a172dc7e7da9a0b1f87931602783b2c6",
+      "uncompressedSha256": "2393dc781cd056c8153d521a96f6b800a95a8274bc0f07b12f355e461bbd6070"
+    },
+    {
+      "scenario": "occupied-exit",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-matrix-observations-occupied-exit.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "884295950a1647879dba1734e28b819fbaf38c9e11db050b085b39ab025d97e1",
+      "uncompressedSha256": "d35e191b2c5db14fcd52871e944fab8b3278af2995e15332c90a7b0fff0cca6a"
+    },
+    {
+      "scenario": "fleet-border",
+      "nativeSource": "b3629eb6e2abf052e1463e15a08bf1daba2d8785",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-matrix-observations-fleet-border.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0bdca4624af8ea53a9bf2404c296606fb480d98b307d556024e6d0df25577ad2",
+      "uncompressedSha256": "8aaaf4cf6a9cfd8e2ab5357d6a1eeb77d7a9b4518b1404ad45b6d365ec8fb16a"
     }
   ]
 }
