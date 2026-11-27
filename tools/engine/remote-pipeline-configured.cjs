@@ -6,6 +6,7 @@ function verifyConfiguredPipeline(memory,evidence) {
   assert.deepEqual(evidence.errors,[]); assert.deepEqual(evidence.messages,[]);
   if (variant === 'shared') return verifySharedHome(memory,evidence);
   if (variant === 'refused') return verifyRefused(memory,evidence);
+  if (variant === undefined) require('./pipeline-paid-courier-check.cjs').verifyPaidCourierObservations(memory,evidence);
   assert.ok(planning?.length > 10,'forecast must resume over multiple native ticks');
   const frames = variant === 'budget' ? 20 : 32, horizon = variant === 'changed' ? 650 : 767, lead = variant === 'budget' ? 100 : 30;
   for (const epoch of new Set(planning.map(row => row.observedAt))) {
