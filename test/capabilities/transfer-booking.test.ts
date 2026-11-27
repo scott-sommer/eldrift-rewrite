@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+import { calculateTransferBooking, prepareTransferBooking } from '../../src/capabilities/logistics/booking';
 import { reserveTransfer } from '../../src/features/logistics/reserve-transfer';
 import { createQuantityReservations } from '../../src/persistence/quantities/store';
 import { logisticsPool } from '../../src/capabilities/logistics/request';
@@ -45,3 +46,29 @@ test('capacity loss cannot authorize delivery and does not erase an in-transit o
   expect(ledger.list(2)[0]!.allocations.some(item => item.pool === logisticsPool('stock', 'container', 'energy'))).toBe(false);
 });
 
+
+test('portable booking renews its own allocation while respecting outstanding quantity and foreign sink claims', () => {
+  const initial = prepareTransferBooking(request, booking, observed, 1)!;
+  const own = calculateTransferBooking(initial, [])!.claim;
+  const foreign = { ...own, id: 'foreign', holder: 'b', scope: 'other',
+    allocations: [{ pool: observed.sinkPool, amount: 90 }] };
+  const reduced = prepareTransferBooking({ ...request, quantity: 8 }, booking, observed, 2)!;
+  expect(calculateTransferBooking(reduced, [own, foreign])?.amount).toBe(8);
+  expect(calculateTransferBooking(initial, [own])?.amount).toBe(30);
+  expect(calculateTransferBooking(initial, [{ ...foreign, expiresAt: 1 }])?.amount).toBe(30);
+});
+
+test('portable booking rejects partial native pickup and pool collisions', () => {
+  const prepared = prepareTransferBooking(request, booking, { ...observed, sourceStock: 20, minimumCollection: 30 }, 1)!;
+  expect(calculateTransferBooking(prepared, [])).toBeUndefined();
+  expect(() => prepareTransferBooking(request, booking,
+    { ...observed, sinkPool: logisticsPool('request', request.owner, request.id) }, 1)).toThrow('collision');
+});
+
+test('expired requests never open storage and claim identity conflicts remain ledger-owned', () => {
+  const untouched = { read: () => { throw new Error('unexpected read'); }, write: () => { throw new Error('unexpected write'); } };
+  expect(reserveTransfer(untouched, { ...request, expiresAt: 1 }, booking, observed, 1)).toBe(0);
+  const { state } = fixture();
+  reserveTransfer(state, request, booking, observed, 1);
+  expect(() => reserveTransfer(state, request, { ...booking, holder: 'impostor' }, observed, 1)).toThrow('identity conflict');
+});
