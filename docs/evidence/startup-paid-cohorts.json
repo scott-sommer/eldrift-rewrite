@@ -1,6 +1,6 @@
 {
   "issue": "ED-29",
-  "scope": "Verified paid-cohort liabilities with format8; first two-source attempt timed out after966completed ticks. Full qualification pending.",
+  "scope": "Paid-cohort liability projection, demand-first recruitment and strengthened per-source settlement checks. Four operating/regression passes, two partial timeouts and one strict shared calendar failure retained.",
   "native": [
     {
       "scenario": "two-source-first-timeout",
@@ -55,6 +55,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "b8a76529609e0ecd2f88ba267eedab4df470fd0f9ff17b179ad6a8a69e0ca717",
       "uncompressedSha256": "71d3990422a59d7e67dbd46993856d39e8b0f20f45d92bd7067506fc8fd6b3c4"
+    },
+    {
+      "scenario": "two-source-exact-calendar",
+      "nativeSource": "eca0c00fb24da6166458240642730e7751fcef42",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-calendar-failure.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5d1e25da7aee5324e937d97f73df6fd6aeb6f4c3f59729ca4b890591457065c2",
+      "uncompressedSha256": "ab00423414d69c6805da202fc659dd4845ec9ad03ea0e2f77f12e0e58dace4c2"
     }
   ]
 }
