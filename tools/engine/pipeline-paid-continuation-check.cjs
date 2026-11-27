@@ -3,12 +3,19 @@ function verifyPaidContinuations(memory,evidence) {
   const rows = memory.pipelinePaidContinuations;
   evidence.paidContinuations = rows;
   assert.deepEqual(rows.map(row => row.tick),[97,150,151,152,153,154,155]);
-  const compiled = [];
+  const compiled = []; let revision = 0;
   for (const row of rows) {
     assert.equal(row.continuations.length,2);
     for (const item of row.continuations) {
       assert.equal(item.result.status,'ready');
       const value = item.result.compilation; compiled.push(value);
+      const activation = item.activation; assert.equal(activation.status,'ready');
+      assert.equal(activation.revision,++revision); assert.equal(activation.activatedAt,row.tick);
+      assert.equal(activation.name,value.initial.id); assert.equal(activation.unit,value.unit); assert.equal(activation.source,item.source);
+      assert.equal(activation.phase,value.initial.phase); assert.equal(activation.readyAt,value.basis.continuation.readyAt);
+      assert.equal(activation.cursor,value.initial.remainingSpawnTicks > 0 ? null : 0);
+      assert.equal(activation.routeVersion,value.routeVersion); assert.equal(activation.topologyVersion,value.topologyVersion);
+      assert.deepEqual(activation.writeKeys,['remoteStartupRoutes/W0N1']);
       assert.equal(value.observedAt,row.tick);
       assert.equal(value.source,item.source);
       assert.equal(value.initial.id,value.basis.observed.name);

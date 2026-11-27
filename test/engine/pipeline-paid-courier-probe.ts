@@ -1,3 +1,4 @@
+import { probePaidRouteActivation } from './pipeline-paid-route-probe';
 import { createNativePaidCourierContinuation } from '../../src/app/remotes/startup/projection/motion/continuation';
 import { createNativePaidCourierOpening } from '../../src/app/remotes/startup/motion-observation/native-opening';
 import { createNativePaidSourceObservation } from '../../src/app/remotes/startup/motion-observation/source';
@@ -31,7 +32,7 @@ export function observePipelinePaidOpening(state: StatePort,beforeDispatch = fal
   const contexts = shared.cohorts.map(cohort => ({ cohort,plan: approvals.find(approval => approval.job.room === cohort.room && approval.job.source === cohort.source)!.quote.plan }));
   const compile = createNativePaidCourierContinuation(readOnly);
   return {
-    continuations: beforeDispatch ? contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: compile({ ...context,paid },config,{ blocked: [] }) }))) : [],
+    continuations: beforeDispatch ? contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => { const scoped = { ...context,paid },result = compile(scoped,config,{ blocked: [] }); return { source: context.cohort.source,result,...(result.status === 'ready' ? { activation: probePaidRouteActivation(readOnly,config,scoped,result.compilation) } : {}) }; })) : [],
     openings: beforeDispatch ? contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: opening({ ...context,paid }) }))) : [],
     couriers: contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: courier({ ...context,paid }) }))),
     miners: contexts.flatMap(context => context.cohort.workers.filter(paid => paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: miner({ ...context,paid }) }))),
