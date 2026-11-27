@@ -1,3 +1,4 @@
+const { verifyPaidHomeSnapshots } = require('./pipeline-paid-home-check.cjs');
 const { verifyPaidRouteExecution } = require('./pipeline-paid-route-execution-check.cjs');
 const { verifyPaidContinuations } = require('./pipeline-paid-continuation-check.cjs');
 const assert = require('node:assert/strict');
@@ -16,6 +17,7 @@ function verifyPaidCourierObservations(memory,evidence) {
   verifyResolutions(memory,evidence);
   verifyPaidContinuations(memory,evidence);
   verifyPaidRouteExecution(memory,evidence);
+  verifyPaidHomeSnapshots(memory,evidence);
   assert.ok(rows.some(row => row.probe.paidCouriers.some(item => item.result.observation.stage === 'pending')),'real pending native effects must remain explicit');
 }
 module.exports = { verifyPaidCourierObservations };

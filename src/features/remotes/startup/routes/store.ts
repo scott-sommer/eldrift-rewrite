@@ -1,3 +1,4 @@
+import { upgradePaidRouteObservations } from './migration';
 import { peekState,openState,saveState } from '../../../../persistence/versioned-state';
 import { copyPlain } from '../../../../core/plain-data';
 import { activatePaidCourierRoute } from './progress';
@@ -6,7 +7,7 @@ import type { StatePort,StateSchema } from '../../../../persistence/versioned-st
 import type { PaidCourierRouteRecord,PaidCourierRouteProgram,PaidCourierActiveRoute } from './model';
 export function createPaidCourierRouteStore(state: StatePort,home: string) {
   const key = 'remoteStartupRoutes/'+home;
-  const schema: StateSchema<PaidCourierRouteRecord> = { owner: 'remotes',version: 1,migrations: {},initial: () => ({ home,revision: 0,clock: 0,routes: [] }),valid: (value): value is PaidCourierRouteRecord => validPaidCourierRouteRecord(value,home) };
+  const schema: StateSchema<PaidCourierRouteRecord> = { owner: 'remotes',version: 2,migrations: { 1: upgradePaidRouteObservations },initial: () => ({ home,revision: 0,clock: 0,routes: [] }),valid: (value): value is PaidCourierRouteRecord => validPaidCourierRouteRecord(value,home) };
   const read = () => peekState(state,key,schema) ?? schema.initial();
   function commit(expected: number,tick: number,routes: PaidCourierActiveRoute[]): boolean {
     const current = read(); if (current.revision !== expected || tick < current.clock) return false;

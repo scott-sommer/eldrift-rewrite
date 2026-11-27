@@ -15,7 +15,7 @@ function validIdentity(route: PaidCourierActiveRoute,context: PaidUnitContext,cr
   return paidRouteContextMatches(route.program,context) && route.program.unit === creep.id && route.program.name === creep.name;
 }
 function validObservation(route: PaidCourierActiveRoute,creep: Creep): boolean {
-  if (!route.cursor) return false;
+  if (!route.cursor || route.observedAt !== Game.time) return false;
   return route.cursor.observedAt === Game.time && route.cursor.requestedAt === null && route.energy === creep.store.energy && route.fatigue === creep.fatigue
     && Game.time >= route.readyAt && Game.time < route.program.retireAt;
 }

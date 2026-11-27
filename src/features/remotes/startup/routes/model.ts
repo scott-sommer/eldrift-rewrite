@@ -12,7 +12,7 @@ export interface PaidCourierRouteProgram {
 }
 export interface PaidCourierActiveRoute {
   program: PaidCourierRouteProgram; leg: 'opening' | 'empty' | 'loaded'; phase: 'collect' | 'deliver';
-  readyAt: number; energy: number; fatigue: number; cursor: ObservedTransitCursor | null;
+  observedAt: number; readyAt: number; energy: number; fatigue: number; cursor: ObservedTransitCursor | null;
 }
 export interface PaidCourierRouteRecord { home: string; revision: number; clock: number; routes: PaidCourierActiveRoute[] }
 export interface PaidCourierRouteObservation {

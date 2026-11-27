@@ -30,7 +30,19 @@ test('incubation has no invented physical cursor and wrong spawn exit or body id
   const f = paidRouteFixture(),program = f.program;
   program.activeAt = 110; program.opening = { ...program.opening,spawning: true,phase: 'collect',readyAt: 110,energy: 0,plan: program.empty };
   const route = activatePaidCourierRoute(program),observation = { tick: 110,name: program.name,unit: program.unit,position: f.point(10),phase: 'collect' as const,readyAt: 110,energy: 0,fatigue: 0 };
-  expect(route.cursor).toBeNull(); expect(observePaidCourierRoute(route,observation).cursor!.index).toBe(0);
+  expect(route.cursor).toBeNull(); const active = observePaidCourierRoute(route,observation); expect(active.cursor!.index).toBe(0);
+  expect(() => observePaidCourierRoute(active,{ ...observation,tick: 109,phase: 'spawning' })).toThrow('identity');
   expect(() => observePaidCourierRoute(route,{ ...observation,position: f.point(9) })).toThrow();
   expect(() => observePaidCourierRoute(route,{ ...observation,unit: 'new-native-id' })).toThrow('identity');
+});
+
+test('legacy route migration preserves body/program and never infers fresh incubation from another route clock',() => {
+  const f = paidRouteFixture(),root = {},state = createMemoryPort(() => root),store = createPaidCourierRouteStore(state,'W0N1');
+  store.activate(f.program,0); const record = store.read();
+  const legacy = { ...record,clock: 105,routes: record.routes.map(route => ({ program: route.program,leg: route.leg,phase: route.phase,readyAt: route.readyAt,energy: route.energy,fatigue: route.fatigue,cursor: route.cursor })) };
+  legacy.routes[0]!.program.activeAt = 110; legacy.routes[0]!.program.opening = { ...legacy.routes[0]!.program.opening,spawning: true,phase: 'collect',energy: 0,readyAt: 110,plan: legacy.routes[0]!.program.empty };
+  legacy.routes[0]!.phase = 'collect'; legacy.routes[0]!.energy = 0; legacy.routes[0]!.readyAt = 110; legacy.routes[0]!.cursor = null;
+  state.write('remoteStartupRoutes/W0N1',{ owner: 'remotes',version: 1,data: legacy }); const before = JSON.stringify(root);
+  const restored = store.read(); expect(restored.routes[0]!.observedAt).toBe(100); expect(restored.clock).toBe(105);
+  expect(restored.routes[0]!.program.unit).toBe('native-id'); expect(JSON.stringify(root)).toBe(before);
 });

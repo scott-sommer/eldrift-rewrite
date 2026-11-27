@@ -21,6 +21,6 @@ test('stale activation, changed generation/topology, missing budget and unreques
   f.at(101,13); expect(f.control.observe(f.context)).toMatchObject({ reason: 'route-physical-deviation' });
   expect(JSON.stringify(f.root)).toBe(before);
   const saved = f.state.read('remoteStartupRoutes/W0N1') as { data: unknown };
-  f.state.write('remoteStartupRoutes/W0N1',{ owner: 'remotes',version: 2,data: saved.data }); const future = JSON.stringify(f.root);
+  f.state.write('remoteStartupRoutes/W0N1',{ owner: 'remotes',version: 3,data: saved.data }); const future = JSON.stringify(f.root);
   expect(f.control.current(f.context)).toMatchObject({ reason: 'route-state' }); expect(JSON.stringify(f.root)).toBe(future);
 });

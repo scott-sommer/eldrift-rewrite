@@ -1,3 +1,4 @@
+import { snapshotPipelinePaidHome } from './pipeline-paid-home-probe';
 import { createNativePaidRouteInspector } from '../../src/app/remotes/startup/route-control/native';
 import { createNativePaidRouteServiceMovement } from '../../src/app/remotes/startup/route-control/native-service';
 import { createPaidCourierRouteStore } from '../../src/features/remotes/startup/routes/store';
@@ -25,6 +26,7 @@ export const pipelinePaidRouteExecution: RemoteServiceMovementFactory = (state,m
   });
   return { before() {
     selected.before();
+    snapshotPipelinePaidHome(state,configuration('W0N1'));
     if (Game.time !== 181) return;
     const store = createPaidCourierRouteStore(state,'W0N1');
     for (const route of store.read().routes) if (!store.release(route.program.name,route.program.unit,Game.time,store.read().revision)) throw new Error('Failed fixture route release');
