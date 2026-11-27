@@ -8,14 +8,17 @@ import { schema as journalSchema } from '../../../../features/logistics/transfer
 import { taskSchema } from '../../../../persistence/tasks/schema';
 import type { PaidCourierOpening } from '../motion-observation/opening-model';
 import { haulingDefinitions, normalizeHaulingOpening } from './opening';
+import { peekState } from '../../../../persistence/versioned-state';
+import type { PrivateHaulingRecord } from './private-state';
 import { privateHaulingState, seedHaulingRecord } from './private-state';
 export interface PaidHaulingForecastCourier { source: string; room: string; opening: PaidCourierOpening }
 /** Seed one home once: shared requests and outside liabilities remain shared, not copied per source. */
-export function createPaidHaulingForecastState(home: string, tick: number, couriers: readonly PaidHaulingForecastCourier[], claims: readonly QuantityClaim[]) {
+export function createPaidHaulingForecastState(home: string, tick: number, couriers: readonly PaidHaulingForecastCourier[], claims: readonly QuantityClaim[], checkpoint?: readonly PrivateHaulingRecord[]) {
   validateInput(home, tick, couriers);
-  const state = privateHaulingState(), records = new Map<string, LogisticsRecord>();
+  const state = privateHaulingState(checkpoint), records = new Map<string, LogisticsRecord>();
   const workers = couriers.map(courier => {
     const observed = courier.opening.observed;
+    if (checkpoint) return { source: courier.source,name: observed.name,unit: observed.unit,opening: copyPlain(courier.opening) };
     const normalized = normalizeHaulingOpening(home, courier.room, courier.opening);
     if (normalized.request) addRequest(records, normalized.request);
     if (normalized.journal) seedHaulingRecord(state,stateKey('logistics-attempts',observed.unit),journalSchema,normalized.journal);
@@ -23,6 +26,7 @@ export function createPaidHaulingForecastState(home: string, tick: number, couri
       { unit: observed.name,queue: normalized.task ? [normalized.task] : [] });
     return { source: courier.source,name: observed.name,unit: observed.unit,opening: copyPlain(courier.opening) };
   });
+  if (checkpoint) { validateRestoredState(state,home,workers); return { home,tick,state,workers }; }
   seedHaulingRecord(state,stateKey('logistics-requests',home),logisticsQueueSchema,{ records: [...records.values()] });
   seedHaulingRecord(state,'quantity-reservations/empire',quantitySchema,{ claims: copyPlain([...claims]) });
   return { home,tick,state,workers };
@@ -43,5 +47,13 @@ function addRequest(records: Map<string, LogisticsRecord>, record: LogisticsReco
     const posted = existing.receipts.find(item => item.id === receipt.id);
     if (posted && posted.amount !== receipt.amount) throw new Error('Conflicting shared forecast receipt');
     if (!posted) existing.receipts.push(receipt);
+  }
+}
+
+function validateRestoredState(state: ReturnType<typeof privateHaulingState>,home: string,workers: readonly { name: string; unit: string }[]): void {
+  if (!peekState(state,stateKey('logistics-requests',home),logisticsQueueSchema) || !peekState(state,'quantity-reservations/empire',quantitySchema)) throw new Error('Incomplete private hauling checkpoint');
+  for (const worker of workers) {
+    if (!peekState(state,stateKey('tasks',worker.name),taskSchema(worker.name,haulingDefinitions))) throw new Error('Missing private hauling tasks');
+    peekState(state,stateKey('logistics-attempts',worker.unit),journalSchema);
   }
 }

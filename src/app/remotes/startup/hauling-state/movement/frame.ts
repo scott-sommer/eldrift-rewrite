@@ -11,12 +11,15 @@ import type { TrafficRequest } from '../../../../../capabilities/movement/traffi
 import { paidCourierRoutePlan,requestPaidCourierRoute } from '../../../../../features/remotes/startup/routes/progress';
 import type { PaidCourierActiveRoute,PaidCourierRouteObservation } from '../../../../../features/remotes/startup/routes/model';
 import { seedPaidMovement,observePaidMovement,paidMovementTransit } from './input';
+import { restorePaidMovement } from './checkpoint';
+import type { PaidMovementCheckpoint } from './model';
 import type { PaidMovementExternalFrame } from './model';
 /** Private physical movement. Actual service requests and explicit outside movers share one traffic frame. */
 export function createPaidHaulingMovement(home: string, openingTick: number, initial: readonly PaidCourierActiveRoute[],
-  arbiter: Pick<ReturnType<typeof createActionArbiter>,'issue'>, ports: TransitFramePorts) {
+  arbiter: Pick<ReturnType<typeof createActionArbiter>,'issue'>, ports: TransitFramePorts, checkpoint?: PaidMovementCheckpoint) {
   let routes = seedPaidMovement(home,openingTick,initial), tick = openingTick-1, open = false, failed = false;
   let expected = new Map<string,TransitState>();
+  if (checkpoint) ({ routes,tick,expected } = restorePaidMovement(home,openingTick,initial,checkpoint));
   const requests = new Map<string,TrafficRequest>(), attempted = new Set<string>();
   function usable(): void { if (failed) throw new Error('Cannot resume failed paid movement'); }
   function requireOpen(): void { usable(); if (!open) throw new Error('Paid movement frame is closed'); }
@@ -54,6 +57,10 @@ export function createPaidHaulingMovement(home: string, openingTick: number, ini
         expected = new Map(result.states.slice(0,own.length).map(state => [state.unit,state])); open = false;
         return copyPlain(result);
       } catch (error) { failed = true; throw error; }
+    },
+    checkpoint(): PaidMovementCheckpoint {
+      usable(); if (open) throw new Error('Cannot checkpoint open paid movement frame');
+      return copyPlain({ tick,routes: [...routes.values()],expected: [...expected.values()] });
     },
     current(name: string) { usable(); const route = routes.get(name); return route && copyPlain(route); },
   };

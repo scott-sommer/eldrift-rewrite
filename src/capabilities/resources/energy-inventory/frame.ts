@@ -1,13 +1,14 @@
 import { copyPlain } from '../../../core/plain-data';
+import { validateEnergyEffects } from './checkpoint';
 import type { EnergyInventory, EnergyTransferEffect, EnergyTransferIntent } from './model';
 import { validateEnergyInventories,validateEnergyTransfer,validateEnergyTransferOrder } from './validation';
 /** Shared physical energy only. Actor observations stay frozen until all queued intents settle. */
-export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTick: number, input: readonly T[]) {
+export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTick: number, input: readonly T[], previousEffects: readonly EnergyTransferEffect[] = []) {
   if (!Number.isSafeInteger(openingTick) || openingTick < 0) throw new Error('Invalid energy inventory clock');
-  validateEnergyInventories(input);
+  validateEnergyInventories(input); validateEnergyEffects(openingTick,previousEffects,input);
   let stores = new Map(copyPlain([...input]).map(store => [store.id,store]));
   let tick = openingTick-1, open = false;
-  let effects = new Map<string, EnergyTransferEffect>();
+  let effects = new Map(copyPlain([...previousEffects]).map(effect => [effect.id,effect]));
   const intents = new Map<string,EnergyTransferIntent>();
   function requireOpen(): void { if (!open) throw new Error('Energy inventory frame is closed'); }
   return {
@@ -33,6 +34,10 @@ export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTic
       validateEnergyInventories([...next.values()]);
       stores = next; effects = new Map(settled.map(effect => [effect.id,effect])); open = false;
       return copyPlain(settled);
+    },
+    checkpoint() {
+      if (open) throw new Error('Cannot checkpoint open energy inventory frame');
+      return { nextTick: tick+1,stores: copyPlain([...stores.values()]),effects: copyPlain([...effects.values()]) };
     },
     snapshot(): T[] { if (open) throw new Error('Cannot snapshot open energy inventory frame'); return copyPlain([...stores.values()]); },
   };

@@ -29,12 +29,13 @@ export interface PaidHaulingServicePorts extends Pick<HaulingTaskPorts<PaidHauli
 export interface PaidHaulingVisit { name: string; work: boolean }
 export interface PaidHaulingServiceResult { name: string; status: 'executed' | 'waiting' | 'preparing' | 'deferred' | 'idle' | 'refused'; outcome?: Outcome }
 /** Task ownership only. The caller supplies the shared physical world and flushes its intents after all actors. */
-export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, ports: PaidHaulingServicePorts) {
+export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, ports: PaidHaulingServicePorts, nextTick = seed.tick) {
   const workers = new Map(seed.workers.map(worker => [worker.name, worker]));
   const byUnit = new Map(seed.workers.map(worker => [worker.unit,worker]));
   const units = seed.workers.map(worker => ({ name: worker.name,id: worker.unit }));
   const home = seed.home;
-  let tick = seed.tick-1, failed = false, open = false, settled = false;
+  if (!Number.isSafeInteger(nextTick) || nextTick < seed.tick) throw new Error('Invalid hauling service continuation clock');
+  let tick = nextTick-1, failed = false, open = false, settled = false;
   const visited = new Set<string>();
   function observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt): TransferObservation {
     const observation = ports.observe(worker,attempt);

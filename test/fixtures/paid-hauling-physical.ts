@@ -1,5 +1,5 @@
 import { createHomeHaulingWorld } from '../../src/app/remotes/startup/hauling-state/world/driver';
-import type { HomeHaulingInput,HomeWorldShared,HomeWorldOperation,HomeConfirmedDelivery } from '../../src/app/remotes/startup/hauling-state/world/model';
+import type { HomeHaulingInput,HomeWorldShared,HomeWorldOperation,HomeConfirmedDelivery,HomeWorldEnvironment } from '../../src/app/remotes/startup/hauling-state/world/model';
 import { remoteTransportOwner } from '../../src/features/remotes/transport-authority';
 import type { RemoteTransportDemand } from '../../src/features/remotes/transport-authority';
 import { paidRouteFixture } from './paid-route';
@@ -24,12 +24,13 @@ export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400,change?: (input
     claims: { owned: [],external: [] } };
   change?.(input);
   let shared!: HomeWorldShared,tick = 100;
-  const world = createHomeHaulingWorld(input,ports => {
+  const configure = (ports: HomeWorldShared): HomeWorldEnvironment => {
     shared = ports;
     return { authority: () => demand,visible: () => true,legal: () => true,terrain: () => 2,
       endpoint: (_worker,phase) => ({ id: phase === 'collect' ? 'container' : 'bank',position: phase === 'collect' ? f.context.plan.station : f.context.plan.endpoint.position,active: true }),
       roomPolicy: () => ({ blockedRooms: [],allowedRooms: ['W0N1'] }) };
-  },{ minimumBatch: 1,requestLifetime: 200 });
+  };
+  const world = createHomeHaulingWorld(input,configure,{ minimumBatch: 1,requestLifetime: 200 });
   const seed = { state: shared.state },inventory = { snapshot: () => world.snapshot().inventories };
   const frames: { tick: number; x: number; energy: number; stage: string; readyAt: number; effects: { kind: string; amount: number; settledAt: number }[] }[] = [];
   const deliveries: HomeConfirmedDelivery[] = [];
@@ -39,5 +40,5 @@ export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400,change?: (input
     frames.push({ tick,x: opening.observed.position.x,energy: opening.observed.energy,stage: opening.continuation.stage,readyAt: opening.continuation.readyAt,effects: result.effects });
     deliveries.push(...result.deliveries); tick++; return result;
   }
-  return { seed,inventory,world,shared,deliveries,frames,step,renew(at: number) { demand = { ...demand!,expiresAt: at }; },reassign() { demand = { ...demand!,generation: demand!.generation+1 }; } };
+  return { seed,inventory,world,configure,shared,deliveries,frames,step,renew(at: number) { demand = { ...demand!,expiresAt: at }; },reassign() { demand = { ...demand!,generation: demand!.generation+1 }; } };
 }

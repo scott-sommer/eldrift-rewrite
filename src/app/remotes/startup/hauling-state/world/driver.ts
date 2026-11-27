@@ -1,3 +1,6 @@
+import { copyPlain } from '../../../../../core/plain-data';
+import { readHomeHaulingCheckpoint } from './checkpoint';
+import type { HomeHaulingCheckpoint } from './checkpoint';
 import { readPaidHaulingForecastOpening } from '../observation';
 import type { PaidHaulingServiceResult } from '../service';
 import type { HomeHaulingInput,HomeHaulingFrame,HomeWorldEnvironment,HomeWorldShared,HomeConfirmedDelivery } from './model';
@@ -6,9 +9,16 @@ import { validateHomeWorldFrame } from './input';
 /** Ordered private physical frames; receipts are observations, never a spending permission. */
 export function createHomeHaulingWorld(input: HomeHaulingInput,configure: (shared: HomeWorldShared) => HomeWorldEnvironment,
   policy: { minimumBatch: number; requestLifetime: number }) {
-  const context = homeWorldContext(input,configure,policy),{ home,inventory,seed,bodies,movement,transfer,service,receipts } = context;
+  return runHomeHaulingWorld(homeWorldContext(input,configure,policy),copyPlain(policy));
+}
+export function resumeHomeHaulingWorld(raw: HomeHaulingCheckpoint,configure: (shared: HomeWorldShared) => HomeWorldEnvironment) {
+  const checkpoint = readHomeHaulingCheckpoint(raw);
+  return runHomeHaulingWorld(homeWorldContext(checkpoint.input,configure,checkpoint.policy,checkpoint),checkpoint.policy);
+}
+function runHomeHaulingWorld(context: ReturnType<typeof homeWorldContext>,policy: HomeHaulingCheckpoint['policy']) {
+  const { home,inventory,seed,bodies,movement,transfer,service,receipts } = context;
   const names = new Set(seed.workers.map(worker => worker.name));
-  let tick = home.observedAt,failed = false;
+  let tick = context.nextTick,failed = false;
   function usable(): void { if (failed) throw new Error('Cannot resume failed home world'); }
   function begin(frame: HomeHaulingFrame) {
     validateHomeWorldFrame(frame,tick,names); bodies.validate(frame.outside,tick); inventory.begin(tick);
@@ -36,6 +46,10 @@ export function createHomeHaulingWorld(input: HomeHaulingInput,configure: (share
         bodies.commit(transit.states); tick++;
         return { tick: frame.tick,openings,deliveries,visits,effects,transit };
       } catch (error) { failed = true; throw error; }
+    },
+    checkpoint(): HomeHaulingCheckpoint {
+      usable();
+      return copyPlain({ format: 1,input: home,policy,inventory: inventory.checkpoint(),state: seed.state.checkpoint(),movement: movement.checkpoint(),bodies: bodies.snapshot() });
     },
     snapshot() { usable(); return { tick,inventories: inventory.snapshot(),bodies: bodies.snapshot() }; },
   };

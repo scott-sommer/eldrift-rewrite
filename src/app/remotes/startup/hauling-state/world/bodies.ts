@@ -1,3 +1,4 @@
+import { tileKey } from '../../../../../capabilities/movement/traffic/model';
 import { copyPlain } from '../../../../../core/plain-data';
 import { withinRange } from '../../../../../capabilities/movement/path-model';
 import type { TransitState } from '../../../../../capabilities/movement/transit/model';
@@ -13,6 +14,15 @@ export class HomeWorldBodies {
       this.bodies.set(body.unit,{ position: copyPlain(worker.position),fatigue: worker.fatigue,spawning: worker.spawning });
       if (worker.ticksToLive !== null) this.expires.set(body.unit,home.observedAt+worker.ticksToLive);
     }
+  }
+  restore(rows: readonly (ForecastCourierPhysical & { unit: string })[]): void {
+    if (rows.length !== this.bodies.size || new Set(rows.map(row => row.unit)).size !== rows.length) throw new Error('Invalid home body checkpoint roster');
+    const next = new Map(rows.map(row => {
+      const opening = this.bodies.get(row.unit); tileKey(row.position);
+      if (!opening || !Number.isSafeInteger(row.fatigue) || row.fatigue < 0 || row.spawning !== opening.spawning) throw new Error('Invalid home body checkpoint');
+      return [row.unit,copyPlain({ position: row.position,fatigue: row.fatigue,spawning: row.spawning })] as const;
+    }));
+    for (const [unit,body] of next) this.bodies.set(unit,body);
   }
   get(unit: string): ForecastCourierPhysical {
     const body = this.bodies.get(unit); if (!body) throw new Error('Unknown home world body'); return copyPlain(body);

@@ -11,17 +11,22 @@ import type { PaidHaulingForecastWorker } from '../service';
 import type { HomeHaulingInput,HomeWorldEnvironment,HomeWorldShared } from './model';
 import { HomeWorldBodies } from './bodies';
 import { homeWorldInput,homeWorldRoutes } from './input';
+import { restoreHomeInventory,validateHomeContinuation } from './checkpoint';
+import type { HomeHaulingCheckpoint } from './checkpoint';
 import { homeWorldReceiptCollector } from './receipts';
 /** Composition owns private mechanisms; outside actor policy is supplied through explicit ports. */
 export function homeWorldContext(input: HomeHaulingInput,configure: (shared: HomeWorldShared) => HomeWorldEnvironment,
-  policy: { minimumBatch: number; requestLifetime: number }) {
-  const home = homeWorldInput(input),inventory = createPaidHomePhysicalInventory(home);
+  policy: { minimumBatch: number; requestLifetime: number }, checkpoint?: HomeHaulingCheckpoint) {
+  const home = homeWorldInput(input),initialInventory = createPaidHomePhysicalInventory(home);
+  const inventory = checkpoint ? restoreHomeInventory(home,checkpoint.inventory) : initialInventory;
+  const nextTick = checkpoint?.inventory.nextTick ?? home.observedAt;
   const seed = createPaidHaulingForecastState(home.home,home.observedAt,home.sources.flatMap(source => source.couriers.map(courier =>
-    ({ source: source.plan.source,room: source.plan.room,opening: courier.opening }))),[...home.claims.owned,...home.claims.external]);
+    ({ source: source.plan.source,room: source.plan.room,opening: courier.opening }))),[...home.claims.owned,...home.claims.external],checkpoint?.state);
   const bodies = new HomeWorldBodies(home,new Set(seed.workers.map(worker => worker.unit)));
+  if (checkpoint) { bodies.restore(checkpoint.bodies); validateHomeContinuation(checkpoint,seed); }
   const arbiter = createActionArbiter(inventory.tick),quantities = createQuantityReservations(seed.state);
   const shared: HomeWorldShared = { state: seed.state,inventory,quantities,arbiter,body: unit => bodies.get(unit) };
-  const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment);
+  const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment,checkpoint?.movement);
   function endpoint(worker: PaidHaulingForecastWorker,phase: 'collect' | 'deliver') {
     const target = environment.endpoint(worker,phase,inventory.tick());
     if (!target) return undefined;
@@ -53,6 +58,6 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
     physical: worker => bodies.get(worker.unit),authority: environment.authority,
     collection: worker => endpoint(worker,'collect')?.id,visible: room => environment.visible(room,inventory.tick()),
     roomPolicy: (worker,phase) => environment.roomPolicy(worker,phase,inventory.tick()),move: movement.request,view: transfer.view });
-  const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive });
-  return { home,inventory,seed,bodies,shared,movement,transfer,service,receipts: homeWorldReceiptCollector(seed) };
+  const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive },nextTick);
+  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,receipts: homeWorldReceiptCollector(seed) };
 }
