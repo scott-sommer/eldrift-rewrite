@@ -71,3 +71,10 @@ test('shared liabilities bind the planning source and observation rather than on
   expect(() => changed.planner.advance({ ...query,source: 'different-source',expectedRevision: changed.planner.read().revision },1)).toThrow();
   expect(changed.root()).toBe(before);
 });
+
+test('another planned endpoint cannot erase possible shared home return capacity',() => {
+  const f = paidCohortFixture(); f.scope.endpoint = 'other-home-endpoint';
+  const shared = qualifyPaidCohorts(f.scope,f.workers,() => f.evidence,50)!;
+  expect(shared.cohorts[0]!.endpoint).not.toBe(f.scope.endpoint);
+  expect(sharedSinkCapacity(shared)).toBeGreaterThan(0);
+});

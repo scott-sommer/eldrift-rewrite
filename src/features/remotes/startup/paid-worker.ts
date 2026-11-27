@@ -15,7 +15,7 @@ export function qualifyPaidWorker(worker: PaidWorkerObservation, evidence: PaidC
   return { request: worker.name,owner: worker.owner,body,startAt: observed.startAt,activeAt: observed.activeAt,expiresAt,retireAt,capacity: body.filter(part => part === 'carry').length*50 };
 }
 function healthy(worker: PaidWorkerObservation, body: readonly string[]): boolean {
-  return worker.body.every(part => part.hits === 100 && part.boost === null) && JSON.stringify(worker.body.map(part => part.type)) === JSON.stringify(body);
+  return worker.body.every(part => part.hits === 100 && part.boost === null && ['move','carry','work'].includes(part.type)) && JSON.stringify(worker.body.map(part => part.type)) === JSON.stringify(body);
 }
 function matchingBirth(worker: PaidWorkerObservation, evidence: PaidCohortEvidence, expected: StartupScheduledBirth, observed: PaidCohortEvidence['births'][number]): boolean {
   const epoch = evidence.approval.job.observedAt;

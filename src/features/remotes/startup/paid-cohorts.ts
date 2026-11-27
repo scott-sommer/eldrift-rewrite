@@ -34,7 +34,7 @@ function qualifyGroup(scope: PaidCohortScope, group: readonly PaidWorkerObservat
   const births = paidBirths(approval); if (!births || !matchingGroup(group,evidence,births)) return undefined;
   const workers = group.map(worker => qualifyPaidWorker(worker,evidence,births,scope,tick)); if (workers.some(worker => !worker)) return undefined;
   const paid = workers as NonNullable<typeof workers[number]>[];
-  const sinkCapacity = approval.quote.plan.endpoint.id === scope.endpoint ? paid.reduce((sum,worker) => sum+worker.capacity,0)*(scope.horizon+1) : 0;
+  const sinkCapacity = paid.reduce((sum,worker) => sum+worker.capacity,0)*(scope.horizon+1);
   return { home: scope.home,room: job.room,source: job.source,generation: job.generation,observedAt: job.observedAt,approvedAt: approval.approvedAt,endpoint: approval.quote.plan.endpoint.id,sinkCapacity,workers: paid.sort((a,b) => a.request.localeCompare(b.request)) };
 }
 

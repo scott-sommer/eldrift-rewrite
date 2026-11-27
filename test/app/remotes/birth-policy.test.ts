@@ -1,3 +1,4 @@
+import { observePopulation } from '../../../src/adapters/screeps/population';
 import { afterEach, expect, test, vi } from 'vitest';
 import { startupFixture } from '../../fixtures/remote-startup';
 import { createRemoteProfileRecruitment } from '../../../src/app/remotes/fleet/recruitment-profile';
@@ -41,4 +42,22 @@ test('cohort metadata is published through common demand and survives loss of it
   const original = f.queue.list()[0]!; expect(original.admission).toEqual(marker);
   createRemoteProfileRecruitment(f.state,f.dispatch)(f.miner,1,[],f.config,() => true);
   expect(f.queue.list()).toEqual([original]);
+});
+
+test('a satisfied healthy population with no owned queue performs no birth planning or state initialization',() => {
+  const prepare = vi.fn(() => placement), current = vi.fn(() => placement), cohort = vi.fn(() => undefined);
+  const f = fixture({ prepare,current,cohort }), creep = f.activeMiner(); f.game.creeps.miner = creep;
+  const before = JSON.stringify(f.root);
+  expect(f.reconcile(f.miner,1,observePopulation(),f.config,() => true)).toBe(true);
+  expect(prepare).not.toHaveBeenCalled(); expect(current).not.toHaveBeenCalled(); expect(cohort).not.toHaveBeenCalled();
+  expect(JSON.stringify(f.root)).toBe(before);
+});
+test('pending, damaged and replacement-due populations still execute current birth planning',() => {
+  for (const change of ['pending','damage','retirement']) {
+    const prepare = vi.fn(() => placement), f = fixture({ prepare,current: () => placement }), creep = f.activeMiner(); f.game.creeps.miner = creep;
+    if (change === 'pending') f.queue.submit({ id: 'pending',name: 'pending',owner: f.miner.owner,room: 'W0N1',body: f.miner.body,priority: 1,readyAt: 1,expiresAt: 100 });
+    if (change === 'damage') creep.getActiveBodyparts = () => 0;
+    if (change === 'retirement') creep.ticksToLive = 1;
+    f.reconcile(f.miner,1,observePopulation(),f.config,() => true); expect(prepare,change).toHaveBeenCalledOnce();
+  }
 });

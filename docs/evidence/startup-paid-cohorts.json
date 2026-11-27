@@ -10,6 +10,15 @@
       "rawEncoding": "gzip",
       "rawSha256": "bce11c8733142ce90c88091e2adc2f62561035e36aff712b0aac13bd39c11d72",
       "uncompressedSha256": "4c5e8dfb4cc63c4a1f0be7a3b542dad9cf36b37ff373d67a2413cb0c47ac6887"
+    },
+    {
+      "scenario": "two-source-passive-timeout",
+      "nativeSource": "269bf37f8aaf60cceaf0f613899ae4717c32e203",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-passive-timeout.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "43fa28b63448df6b3b7c597fd925f05b7666f50ac37cd566cefb5596f5d46ed6",
+      "uncompressedSha256": "64ff7f0a0fc7d0c75b75b210ec293e255f802cd5a0e340870a271bd51c8e12b0"
     }
   ]
 }

@@ -1,3 +1,5 @@
+import { peekState } from '../../../persistence/versioned-state';
+import { spawnQueueSchema } from '../../../features/population/spawn-schema';
 import type { RemoteStartupAdmission } from '../../../capabilities/spawning/admission';
 import { sameSpawnPlacement } from '../../../capabilities/spawning/placement';
 import { remoteFleetDemand } from '../../../features/remotes/fleet/demand';
@@ -16,9 +18,10 @@ export function createRemoteProfileRecruitment(state: StatePort, dispatch: Retur
   return (profile: RemoteFleetProfile, target: number, roster: ReturnType<typeof observePopulation>, config: Readonly<RuntimeConfig>, guard: () => boolean): boolean => {
     births?.trace?.(profile,'profile:enter');
     if (!guard()) return false;
+    const healthy = roster.filter(unit => unit.owner !== profile.owner || healthyRemoteActor(Game.creeps[unit.name]!,profile));
+    if (satisfiedPopulation(state,profile,target,healthy,config.remoteSpawnRequestLifetime)) return true;
     const placement = target > 0 ? prepareBirth(births,profile,config,guard) : undefined;
     if (!guard()) return false;
-    const healthy = roster.filter(unit => unit.owner !== profile.owner || healthyRemoteActor(Game.creeps[unit.name]!,profile));
     reconcileProfile(state,dispatch,profile,placement === null ? 0 : target,healthy,config.remoteSpawnRequestLifetime,placement,births?.cohort?.(profile,config));
     return true;
   };
@@ -41,4 +44,12 @@ function reconcileProfile(state: StatePort, dispatch: ReturnType<typeof createNa
 function prepareBirth(policy: RemoteFleetBirthPolicy | undefined, profile: RemoteFleetProfile, config: Parameters<RemoteFleetBirthPolicy['current']>[1], guard: () => boolean) {
   if (!policy) return undefined;
   return policy.prepare ? policy.prepare(profile,config,guard) : policy.current(profile,config);
+}
+
+/** Fresh population and queue facts decide whether any birth work exists; final payment is independently fenced. */
+function satisfiedPopulation(state: StatePort, profile: RemoteFleetProfile, target: number, units: ReturnType<typeof observePopulation>, lifetime: number): boolean {
+  if (target <= 0) return false;
+  const pending = peekState(state,'spawning/'+profile.home,spawnQueueSchema(profile.home))?.requests ?? [];
+  if (pending.some(request => request.owner === profile.owner)) return false;
+  return reconcileDemand(remoteFleetDemand(profile,target,lifetime),units,[],Game.time).missing === 0;
 }

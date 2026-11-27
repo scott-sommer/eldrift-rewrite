@@ -20,7 +20,7 @@ function validateCohort(cohort: StartupPaidCohort, scope: StartupSharedCommitmen
   if (!Array.isArray(cohort.workers) || !cohort.workers.length || cohort.workers.length > 64) throw new Error('Invalid shared worker bound');
   for (const worker of cohort.workers) validateWorker(worker,cohort,scope,names);
   const maximum = cohort.workers.reduce((sum,worker) => sum+worker.capacity,0)*(scope.horizon+1);
-  if (cohort.sinkCapacity !== (cohort.endpoint === scope.endpoint ? maximum : 0)) throw new Error('Shared capacity envelope mismatch');
+  if (cohort.sinkCapacity !== maximum) throw new Error('Shared capacity envelope mismatch');
 }
 function validateWorker(worker: StartupPaidWorker, cohort: StartupPaidCohort, scope: StartupSharedCommitments, names: Set<string>): void {
   if (![worker.request,worker.owner].every(text) || names.has(worker.request)) throw new Error('Shared worker identity mismatch');
