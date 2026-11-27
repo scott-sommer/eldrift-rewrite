@@ -1,3 +1,4 @@
+import { createStartupProjectMotion } from './courier-trips/project';
 import { validateSharedCommitments } from './shared-validation';
 import { startupProjectFormat } from './checkpoints/project-format';
 import { createStartupOpeningStock } from './opening-stock';
@@ -40,6 +41,7 @@ class StartupProject {
   private readonly houseAccounting;
   private readonly sourceAccounting;
   private readonly opening;
+  private readonly motion;
   private waves: StartupBuildWave[] = [];
   private previousMiner: string | undefined;
   private tick = 0;
@@ -56,6 +58,10 @@ class StartupProject {
     this.opening = createStartupOpeningStock(this.input,this.delivery,saved?.opening);
     this.waves = startupProjectWaves(this.input,[]); startupDeliveryCouriers(this.input,[]);
     if (saved) this.resume(saved); else this.seed();
+    this.motion = this.createMotion(saved);
+  }
+  private createMotion(saved: StartupProjectCheckpoint | undefined) {
+    return this.input.motion ? createStartupProjectMotion(this.input,saved?.motion,this.couriers,this.births,this.tick) : undefined;
   }
   private seed(): void {
     this.delivery.containerEnergy = this.input.initial?.containerEnergy ?? 0;
@@ -66,7 +72,7 @@ class StartupProject {
   }
   checkpoint(): StartupProjectCheckpoint {
     return boundedProjectCheckpoint({ format: startupProjectFormat(this.input),binding: startupProjectIdentity(this.input),tick: this.tick,
-      ...this.timeline.checkpoint(),container: this.container.checkpoint(),sink: this.sink.checkpoint(),
+      ...this.timeline.checkpoint(),...(this.motion ? { motion: this.motion.checkpoint() } : {}),container: this.container.checkpoint(),sink: this.sink.checkpoint(),
       construction: this.construction,delivery: this.delivery,opening: this.opening.checkpoint(),
       couriers: this.couriers.map(worker => ({ ...worker,nextAt: worker.nextAt === Infinity ? null : worker.nextAt })),
       due: [...this.due.values()].flat(),settled: this.settled,houseAccounting: this.houseAccounting.checkpoint(),sourceAccounting: this.sourceAccounting.checkpoint() });
@@ -102,12 +108,17 @@ class StartupProject {
     let deposit = 0;
     if (building && wave) this.build(wave);
     else deposit = this.station(wave);
-    advanceStartupCouriers(this.couriers,this.delivery,this.tick,this.input.project.spawning.cash.horizon,this.sink);
+    this.deliver();
     this.sink.finish(); this.delivery.containerEnergy += deposit;
     if (!building && !this.container.finish(this.tick,this.delivery.containerEnergy)) this.delivery.containerEnergy = 0;
     if (!(building && wave)) this.regenerate(building);
     if (building) { this.construction.source = { ...this.delivery.source }; this.construction.projectedThrough = this.tick+1; }
     this.queueReceipts(); this.account(); this.tick++;
+  }
+  private deliver(): void {
+    const service = (ready?: (worker: StartupCourierState,tick: number) => boolean) => advanceStartupCouriers(this.couriers,this.delivery,this.tick,this.input.project.spawning.cash.horizon,this.sink,ready);
+    if (this.motion) this.motion.advance(this.couriers,this.births,this.tick,service);
+    else service();
   }
   private build(wave: StartupBuildWave): void {
     const before = this.construction.constructionEnergy;

@@ -1,3 +1,4 @@
+import type { StartupProjectMotionInput } from './courier-trips/project-model';
 import type { StartupSharedCommitments } from './shared-model';
 import type { StartupHouseholdInput } from './household/model';
 import type { StartupInitialState } from './initial-model';
@@ -12,7 +13,7 @@ export interface StartupCourier {
   /** First journey starts at the selected spawn exit; later journeys start at the deposit service tile. */
   initialOutboundTicks?: number;
 }
-export interface StartupDeliveryInput { shared?: StartupSharedCommitments; household?: Omit<StartupHouseholdInput,'spawning'>; initial?: StartupInitialState; project: StartupConstructionInput; couriers: readonly StartupCourier[]; containerCapacity: number; homeSink: StartupSinkInput; container: StartupContainerInput }
+export interface StartupDeliveryInput { motion?: StartupProjectMotionInput; shared?: StartupSharedCommitments; household?: Omit<StartupHouseholdInput,'spawning'>; initial?: StartupInitialState; project: StartupConstructionInput; couriers: readonly StartupCourier[]; containerCapacity: number; homeSink: StartupSinkInput; container: StartupContainerInput }
 export interface StartupDeliveryForecast {
   firstDeliveryAt: number | null; deliveredEnergy: number; harvestedEnergy: number; regeneratedEnergy: number;
   unreturnedCourierEnergy: number; overflowEnergy: number; uncapturedOverflowEnergy: number;

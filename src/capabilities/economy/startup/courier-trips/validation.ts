@@ -7,12 +7,12 @@ export function validateCourierTrips(routes: readonly StartupCourierRoutes[],pre
   for (const worker of workers) {
     const route = routes.find(route => route.request === worker.request);
     if (!route) throw new Error('Missing courier route');
-    validateRoute(route);
+    validateCourierRoute(route);
     if (tick >= route.activeAt && tick < worker.expiresAt && !previous.some(trip => trip.request === worker.request)) validateOpening(worker,route,tick);
   }
   for (const trip of previous) validateTrip(trip,workers,tick);
 }
-function validateRoute(route: StartupCourierRoutes): void {
+export function validateCourierRoute(route: StartupCourierRoutes): void {
   if (!Number.isSafeInteger(route.activeAt) || route.activeAt < 0) throw new Error('Invalid courier route clock');
   for (const plan of [route.approach,route.empty,route.loaded]) {
     if (plan.unit !== route.request || plan.path.length === 0) throw new Error('Invalid courier route identity');

@@ -10,8 +10,7 @@ import { advanceStartupSource } from './source';
 import type { StartupDeliveryForecast, StartupDeliveryInput } from './delivery-model';
 /** Construction and scheduled births establish labor; finite source stock and trips establish receipts. */
 export function forecastStartupDelivery(input: StartupDeliveryInput) {
-  if (input.household !== undefined) throw new Error('Household transfers require the forward startup project');
-  if (input.initial !== undefined) throw new Error('Initial workforce requires the forward startup project');
+  validateDeliveryMode(input);
   if (!Number.isSafeInteger(input.containerCapacity) || input.containerCapacity < 1 || input.containerCapacity > 1000000) throw new Error('Invalid startup container capacity');
   const container = createStartupContainer(input.container);
   const sink = createStartupSink(input.homeSink,input.project.spawning.cash);
@@ -49,4 +48,10 @@ function switchMiner(result: StartupDeliveryForecast, previous: string | undefin
 export function initialStartupDelivery(construction: StartupConstructionForecast): StartupDeliveryForecast {
   return { firstDeliveryAt: null,deliveredEnergy: 0,harvestedEnergy: 0,regeneratedEnergy: 0,
     unreturnedCourierEnergy: 0,overflowEnergy: 0,uncapturedOverflowEnergy: construction.overflowEnergy,containerEnergy: 0,minerCargoEnergy: 0,courierCargoEnergy: 0,unusedMinerCargoEnergy: construction.unusedCargoEnergy,projectedThrough: construction.projectedThrough,source: { ...construction.source },receipts: [] };
+}
+
+function validateDeliveryMode(input: StartupDeliveryInput): void {
+  if (input.motion !== undefined) throw new Error('Physical courier motion requires the forward startup project');
+  if (input.household !== undefined) throw new Error('Household transfers require the forward startup project');
+  if (input.initial !== undefined) throw new Error('Initial workforce requires the forward startup project');
 }

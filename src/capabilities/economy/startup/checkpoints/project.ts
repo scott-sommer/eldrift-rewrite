@@ -1,3 +1,4 @@
+import { createStartupProjectMotion } from '../courier-trips/project';
 import { validateSharedCommitments } from '../shared-validation';
 import { startupProjectFormat } from './project-format';
 import { createStartupSpawnTimeline } from '../spawn-timeline';
@@ -21,13 +22,14 @@ import type { StartupProjectCheckpoint } from './project-model';
 export function readStartupProjectCheckpoint(input: StartupDeliveryInput, value: unknown): StartupProjectCheckpoint {
   const saved = upgradeStartupCheckpoint(input,boundedProjectCheckpoint(value));
   requireCheckpoint(record(saved));
-  requireCheckpoint(keys(saved as unknown as Record<string,unknown>,['format','binding','tick','timeline','container','sink','construction','delivery','couriers','due','settled','houseAccounting','sourceAccounting','opening',...(input.household ? ['household'] : [])]));
+  requireCheckpoint(keys(saved as unknown as Record<string,unknown>,['format','binding','tick','timeline','container','sink','construction','delivery','couriers','due','settled','houseAccounting','sourceAccounting','opening',...(input.household ? ['household'] : []),...(input.motion ? ['motion'] : [])]));
   requireCheckpoint(saved.format === startupProjectFormat(input) && saved.binding === startupProjectIdentity(input));
   requireCheckpoint(integer(saved.tick,0,input.project.spawning.cash.horizon+1));
   validateComponents(input,saved);
   validateProjectConstruction(input,saved.construction,saved.tick);
   restoreOpeningStock(input,saved.opening);
   validateProjectCouriers(input,saved.timeline.births,saved.couriers,saved.tick);
+  if (input.motion) createStartupProjectMotion(input,saved.motion,saved.couriers.map(worker => ({ ...worker,nextAt: worker.nextAt ?? Infinity })),saved.timeline.births,saved.tick);
   validateProjectDelivery(input,saved); validateProjectLinks(input,saved);
   return saved;
 }
