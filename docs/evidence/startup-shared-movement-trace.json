@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Final SDK movement outcomes for the alternate source ordering; exact shared calendar remains failed.",
+  "native": [
+    {
+      "scenario": "shared-movement-trace",
+      "nativeSource": "32d99c060e8b71609dc2d0963f06d6d911a6efe4",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-shared-movement-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5367d37a89bde1695b2710c52287900fe25525672b963a3b2e0ffeab9c3ad676",
+      "uncompressedSha256": "e64747d20854e37ddb1347a9e5a95edcd1725bdd357a05d1ec63af3bbaf98f17"
+    }
+  ]
+}
