@@ -44,3 +44,9 @@ test('failed observation seals this tick and capacity never silently replaces an
   expect(() => authority.flush()).toThrow('observation');
   expect(authority.flush()).toBeUndefined();
 });
+
+test('invalid ordering metadata refuses before queuing a native intent',() => {
+  const authority = createTrafficAuthority({ clock: () => 1,observe: () => [],legal: () => true,issue: () => ({ status: 'issued',code: 0 }) });
+  expect(() => authority.submit({ ...request,order: '' })).toThrow('order');
+  expect(() => authority.submit({ ...request,order: 'x'.repeat(241) })).toThrow('order');
+});

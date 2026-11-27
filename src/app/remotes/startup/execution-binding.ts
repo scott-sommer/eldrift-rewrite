@@ -1,3 +1,4 @@
+import { trafficOrderPolicy } from '../../../capabilities/movement/traffic/model';
 import { createMatrixSnapshots } from '../../../adapters/screeps/matrix-snapshots';
 import { createIntelStore } from '../../../features/intel/store';
 import { selectionBinding } from '../../../features/remotes/startup/selection-validation';
@@ -13,7 +14,7 @@ export function createNativeStartupExecutionBinding(state: StatePort) {
     const context = { intel: (room: string) => intel.peek(room,Game.time).record };
     if (!rooms.includes(plan.home) || !rooms.includes(plan.room) || rooms.some(room => !Game.rooms[room] && !context.intel(room).summary)) return undefined;
     const matrices = prepareRemoteMatrices(context,rooms,1,snapshots);
-    const binding = JSON.stringify(['startup-execution-v2',plan,configurationGroups(config),policy,matrices.version],orderedObject);
+    const binding = JSON.stringify(['startup-execution-v3',plan,configurationGroups(config),policy,matrices.version,trafficOrderPolicy],orderedObject);
     return selectionBinding(binding) ? binding : undefined;
   };
 }

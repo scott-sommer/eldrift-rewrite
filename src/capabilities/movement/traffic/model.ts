@@ -1,7 +1,10 @@
+export const trafficOrderPolicy = 'planned-name-then-native-id-v1';
 import type { Position } from '../step';
 export interface TrafficRequest {
   unit: string;
   owner: string;
+  /** Stable planned identity for equal-priority ordering; unit remains the observed native ID. */
+  order?: string;
   from: Position;
   to: Position;
   /** Local exit tile when to is the remote landing. */

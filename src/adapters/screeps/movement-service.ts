@@ -43,7 +43,7 @@ export function createMovementService(arbiter: Arbiter = createActionArbiter(() 
       const from = movementPosition(creep.pos);
       const transition = movementTransition(from, direction);
       if (!transition) return { status: 'blocked', reason: 'invalid-transition' };
-      return dispatch.submit({ unit, owner: command.owner, from, to: transition.landing, via: transition.local,
+      return dispatch.submit({ unit, order: creep.name, owner: command.owner, from, to: transition.landing, via: transition.local,
         priority: command.priority ?? 0, mobile: true, ...(command.group ? { group: command.group } : {}) });
     },
     rejected: code => ({ status: 'failed', reason: String(code) }),

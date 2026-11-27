@@ -24,7 +24,7 @@ function request(plan: TransitPlan,state: TransitState,tick: number): TrafficReq
   const step = movementTransition(state.position,stepDirection(state.position,target));
   if (!step || !withinRange(step.landing,target,0)) throw new Error('Invalid transit next step');
   return [{ unit: state.unit,owner: plan.owner,from: { ...state.position },to: step.landing,priority: plan.priority,mobile: true,
-    ...(plan.group ? { group: plan.group } : {}),...(step.local.room !== step.landing.room ? { via: step.local } : {}) }];
+    ...(plan.group ? { group: plan.group } : {}),...(plan.order === undefined ? {} : { order: plan.order }),...(step.local.room !== step.landing.room ? { via: step.local } : {}) }];
 }
 function advance(plan: TransitPlan,state: TransitState,move: TrafficRequest | undefined,tick: number,ports: TransitFramePorts): TransitState {
   if (!move) return { ...state,lastAt: tick,position: { ...state.position },fatigue: Math.max(0,state.fatigue-plan.recovery) };

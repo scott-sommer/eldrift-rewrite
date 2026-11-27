@@ -1,6 +1,6 @@
 import type { Position } from '../step';
 export interface TransitPlan {
-  unit: string; owner: string; priority: number; weight: number; recovery: number;
+  unit: string; order?: string; owner: string; priority: number; weight: number; recovery: number;
   origin: Position; path: readonly Position[]; group?: string;
 }
 export interface TransitState {

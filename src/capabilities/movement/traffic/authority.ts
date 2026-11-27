@@ -1,3 +1,4 @@
+import { validTrafficOrder } from './validation';
 import type { IntentResult } from '../../../core/execution/action-arbiter';
 import type { Occupant, TrafficRequest, TrafficResolution } from './model';
 import { tileKey, trafficTargets } from './model';
@@ -50,6 +51,7 @@ export function createTrafficAuthority(ports: TrafficPorts, maximum = 1000) {
 }
 function validateSubmission(request: TrafficRequest): void {
   if (!request.unit || !request.owner || !Number.isFinite(request.priority)) throw new Error('Invalid traffic request');
+  if (!validTrafficOrder(request.order)) throw new Error('Invalid traffic order');
   tileKey(request.from); trafficTargets(request);
 }
 

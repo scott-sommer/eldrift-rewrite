@@ -13,6 +13,7 @@ export function trafficOccupancy(occupants: readonly Occupant[]): Map<string, st
 }
 function validateRequest(request: TrafficRequest, units: Set<string>, occupied: ReadonlyMap<string, string>): void {
   if (!request.unit || !request.owner || !Number.isFinite(request.priority) || units.has(request.unit)) throw new Error('Invalid or duplicate traffic owner');
+  if (!validTrafficOrder(request.order)) throw new Error('Invalid traffic order');
   if (request.group !== undefined && !request.group) throw new Error('Empty traffic group');
   if (occupied.get(tileKey(request.from)) !== request.unit) throw new Error('Traffic origin does not match observation');
   trafficTargets(request);
@@ -24,3 +25,7 @@ export function validateRequests(requests: readonly TrafficRequest[], occupied: 
   for (const request of requests) validateRequest(request, units, occupied);
 }
 
+
+export function validTrafficOrder(value: unknown): boolean {
+  return value === undefined || typeof value === 'string' && value.length > 0 && value.length <= 240;
+}

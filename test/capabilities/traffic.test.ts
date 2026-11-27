@@ -44,3 +44,17 @@ test('exit dependencies allow a landing occupant to leave and propagate its bloc
   expect(accepted([exit, inward])).toEqual(['a', 'b']);
   expect(accepted([exit, inward], [{ unit: 'block', position: pos(1, 'E0N0') }])).toEqual([]);
 });
+
+test('planned order keeps named winners stable when native IDs and submission order change',() => {
+  for (const [first,second] of [['native-z','native-a'],['native-a','native-z']]) {
+    const requests = [{ ...move(first!,19,20),order: 'ed-1' },{ ...move(second!,21,20),order: 'ed-2' }];
+    expect(accepted(requests)).toEqual([first]);
+    expect(accepted([...requests].reverse())).toEqual([first]);
+    expect(accepted([{ ...requests[1]!,priority: 1 },requests[0]!])).toEqual([second]);
+  }
+});
+test('duplicate ordering keys retain deterministic native fallback and malformed keys refuse',() => {
+  const requests = [{ ...move('b',19,20),order: 'same' },{ ...move('a',21,20),order: 'same' }];
+  expect(accepted(requests)).toEqual(['a']);
+  expect(() => accepted([{ ...requests[0]!,order: '' }])).toThrow('order');
+});

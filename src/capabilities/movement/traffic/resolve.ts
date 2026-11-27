@@ -4,7 +4,7 @@ import { trafficOccupancy, validateRequests } from './validation';
 function select(requests: readonly TrafficRequest[], legal: (request: TrafficRequest) => boolean, denied: Map<string, Denial>): Map<string, TrafficRequest> {
   const winners = new Map<string, TrafficRequest>();
   const destinations = new Set<string>();
-  const ordered = [...requests].sort((a, b) => b.priority - a.priority || (a.unit < b.unit ? -1 : 1));
+  const ordered = [...requests].sort(compareRequests);
   for (const request of ordered) {
     const target = tileKey(request.to);
     const targets = trafficTargets(request);
@@ -42,3 +42,8 @@ export function resolveTraffic(requests: readonly TrafficRequest[], occupants: r
   return { accepted: [...winners.values()], denied: [...denied].map(([unit, reason]) => ({ unit, reason })) };
 }
 
+
+function compareRequests(a: TrafficRequest,b: TrafficRequest): number {
+  return b.priority-a.priority || compareText(a.order ?? a.unit,b.order ?? b.unit) || compareText(a.unit,b.unit);
+}
+function compareText(a: string,b: string): number { return a < b ? -1 : a > b ? 1 : 0; }

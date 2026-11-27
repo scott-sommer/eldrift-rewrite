@@ -1,3 +1,4 @@
+import { validTrafficOrder } from '../traffic/validation';
 import { validWorldPosition } from '../../../core/geometry/world-position';
 import { movementTransition, stepDirection } from '../transition';
 import { withinRange } from '../path-model';
@@ -21,7 +22,12 @@ export function initialTransitState(plan: TransitPlan,readyAt: number,fatigue = 
 }
 
 function validatePlan(input: TransitPlan): void {
-  if (!input.unit || !input.owner || !Number.isFinite(input.priority) || !validWorldPosition(input.origin)) throw new Error('Invalid transit identity');
+  validateIdentity(input);
   if (![input.weight,input.recovery].every(Number.isSafeInteger) || input.weight < 0 || input.recovery <= 0) throw new Error('Invalid transit mobility');
   if (input.path.length > 2500 || !input.path.every(validWorldPosition)) throw new Error('Invalid transit path');
+}
+
+function validateIdentity(input: TransitPlan): void {
+  if (!validTrafficOrder(input.order)) throw new Error('Invalid transit order');
+  if (!input.unit || !input.owner || !Number.isFinite(input.priority) || !validWorldPosition(input.origin)) throw new Error('Invalid transit identity');
 }

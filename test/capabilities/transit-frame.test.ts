@@ -72,3 +72,9 @@ test('a restored arrival marker cannot bypass an unfinished route cursor',() => 
   const input = plan('a',p(10),[p(11)]),state = initialTransitState(input,0);
   expect(() => advanceTransitFrame([input],[{ ...state,arrivedAt: 0 }],0,[],ports)).toThrow('arrival/cursor');
 });
+
+test('forecast transit uses the same explicit stable order as native dispatch',() => {
+  const plans = [{ ...plan('native-z',p(10),[p(11)]),order: 'ed-1' },{ ...plan('native-a',p(12),[p(11)]),order: 'ed-2' }];
+  const result = advanceTransitFrame(plans,plans.map(item => initialTransitState(item,0)),0,[],ports);
+  expect(result.resolution.accepted.map(item => item.unit)).toEqual(['native-z']);
+});

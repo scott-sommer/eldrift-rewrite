@@ -16,6 +16,7 @@ export function prepareStartupProjectMotion(input: StartupDeliveryInput): Startu
     if (!request || !input.couriers.some(worker => worker.request === route.request)) throw new Error('Unknown physical courier');
     const recovery = request.body.filter(part => part === 'move').length*2;
     const plans = [route.approach,route.empty,route.loaded];
+    if (plans.some(plan => (plan.order ?? plan.unit) !== request.name)) throw new Error('Physical courier order/name mismatch');
     if (plans.some(plan => plan.unit !== route.request || plan.owner !== request.owner || plan.recovery !== recovery)) throw new Error('Physical courier body/owner mismatch');
     const prepared = { request: route.request,approach: createTransitPlan(route.approach),empty: createTransitPlan(route.empty),loaded: createTransitPlan(route.loaded) };
     validateCourierRoute({ ...prepared,activeAt: 0 });
