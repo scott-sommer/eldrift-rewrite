@@ -1,4 +1,4 @@
-import { observePipelinePaidCouriers } from './pipeline-paid-courier-probe';
+import { observePipelinePaidOpening } from './pipeline-paid-courier-probe';
 import { observeSharedService, withSharedMovementTrace } from './pipeline-shared-service-trace';
 import { observePipelineScouts } from './pipeline-scout-probe';
 import { withPipelinePathProbe } from './pipeline-path-probe';
@@ -63,6 +63,6 @@ function probe(): Record<string,unknown> {
       else proof.moveCodes.push(worker.moveTo(43,24));
     }
   }
-  const scouts = observePipelineScouts(state);
-  return { paidCouriers: observePipelinePaidCouriers(state),sharedService: observeSharedService(),...(scouts ? { scouts } : {}),labor: { birthCost: proof.birthCost ?? 0,spent: proof.receipt?.spent ?? 0,cargo: worker?.store.energy ?? 0,position: worker ? [worker.pos.x,worker.pos.y] : null,receipt: proof.receipt ?? null,idleAt: proof.idleAt ?? null } };
+  const scouts = observePipelineScouts(state),paid = observePipelinePaidOpening(state);
+  return { ...(paid ? { paidCouriers: paid.couriers,paidMiners: paid.miners,paidSources: paid.sources } : {}),sharedService: observeSharedService(),...(scouts ? { scouts } : {}),labor: { birthCost: proof.birthCost ?? 0,spent: proof.receipt?.spent ?? 0,cargo: worker?.store.energy ?? 0,position: worker ? [worker.pos.x,worker.pos.y] : null,receipt: proof.receipt ?? null,idleAt: proof.idleAt ?? null } };
 }

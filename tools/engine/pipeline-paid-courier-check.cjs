@@ -10,6 +10,24 @@ function verifyPaidCourierObservations(memory,evidence) {
       assert.ok(item.result.observation.unit); assert.ok(item.result.observation.position.room);
     }
   }
+  verifyOpening(rows,evidence);
   assert.ok(rows.some(row => row.probe.paidCouriers.some(item => item.result.observation.stage === 'pending')),'real pending native effects must remain explicit');
 }
 module.exports = { verifyPaidCourierObservations };
+
+function verifyOpening(rows,evidence) {
+  evidence.paidSourceObservations = rows.map(row => ({ tick: row.tick,sources: row.probe.paidSources,miners: row.probe.paidMiners }));
+  for (const row of rows) {
+    assert.equal(row.probe.paidSources.length,1); assert.equal(row.probe.paidMiners.length,1);
+    const source = row.probe.paidSources[0].result,miner = row.probe.paidMiners[0].result;
+    assert.equal(source.status,'ready'); assert.equal(miner.status,'ready');
+    assert.equal(source.observation.observedAt,row.tick); assert.equal(miner.observation.observedAt,row.tick);
+    assert.equal(source.observation.station.facts.status,'ready');
+    assert.ok(source.observation.containerSpace.usedCapacity >= source.observation.station.facts.energy);
+    assert.equal(miner.observation.stage,'station'); assert.equal(miner.observation.assigned,true);
+    const position = source.observation.station;
+    assert.deepEqual(miner.observation.position,{ room: position.room,x: position.x,y: position.y });
+    const observed = source.observation.workers.find(worker => worker.name === miner.observation.name); assert.ok(observed);
+    assert.equal(observed.energy,miner.observation.energy);
+  }
+}

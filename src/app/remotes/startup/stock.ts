@@ -1,5 +1,6 @@
 import { logisticsPool } from '../../../capabilities/logistics/request';
 import { peekState } from '../../../persistence/versioned-state';
+import type { QuantityClaim } from '../../../persistence/quantities/schema';
 import { quantitySchema } from '../../../persistence/quantities/schema';
 import type { StatePort } from '../../../persistence/versioned-state';
 import type { StartupStructures } from './model';
@@ -16,8 +17,12 @@ export function startupHomeStock(state: StatePort, structures: StartupStructures
 
 export function startupClaimedPools(state: StatePort): ReadonlyMap<string,number> {
   const claims = peekState(state,'quantity-reservations/empire',quantitySchema)?.claims ?? [];
+  return startupClaimedPoolTotals(claims,Game.time);
+}
+
+export function startupClaimedPoolTotals(claims: readonly QuantityClaim[],tick: number): ReadonlyMap<string,number> {
   const amounts = new Map<string,number>();
-  for (const claim of claims.filter(claim => claim.expiresAt > Game.time)) {
+  for (const claim of claims.filter(claim => claim.expiresAt > tick)) {
     for (const allocation of claim.allocations) amounts.set(allocation.pool,(amounts.get(allocation.pool) ?? 0)+allocation.amount);
   }
   return amounts;

@@ -10,12 +10,17 @@ export function observeStartupWorkers(home: string, room: string | undefined, gu
     const owner = creep.memory.population?.owner ?? '', identity = remotePopulationIdentity(owner);
     if (identity?.home !== home || room !== undefined && identity.room !== room) continue;
     if (workers.length === 128) return undefined;
-    workers.push({ name: creep.name,owner,position: movementPosition(creep.pos),spawning: creep.spawning,ticksToLive: creep.ticksToLive ?? null,energy: creep.store.energy,fatigue: creep.fatigue ?? 0,usedCapacity: creep.store.getUsedCapacity?.() ?? fallbackUsedCapacity(creep.store),
-      body: creep.body.map(part => ({ type: part.type,hits: part.hits,boost: part.boost === undefined ? null : String(part.boost) })) });
+    workers.push(observeStartupWorker(creep));
   }
   return workers.sort((a,b) => a.name.localeCompare(b.name));
 }
 
 function fallbackUsedCapacity(store: Creep['store']): number {
   return Object.values(store).filter((value): value is number => typeof value === 'number').reduce((sum,value) => sum+value,0);
+}
+
+/** Detached native unit facts, including actors whose ownership is not yet qualified. */
+export function observeStartupWorker(creep: Creep): StartupWorkerFacts {
+  return { name: creep.name,owner: creep.memory.population?.owner ?? '',position: movementPosition(creep.pos),spawning: creep.spawning,ticksToLive: creep.ticksToLive ?? null,energy: creep.store.energy,fatigue: creep.fatigue ?? 0,usedCapacity: creep.store.getUsedCapacity?.() ?? fallbackUsedCapacity(creep.store),
+      body: creep.body.map(part => ({ type: part.type,hits: part.hits,boost: part.boost === undefined ? null : String(part.boost) })) };
 }
