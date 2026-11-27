@@ -1,3 +1,4 @@
+import { remoteFleetOwner } from '../../../src/features/remotes/fleet/identity';
 import { afterEach, expect, test, vi } from 'vitest';
 import { startupProjectionFixture } from '../../fixtures/native-startup-projection';
 import { forecastStartupProject } from '../../../src/capabilities/economy/startup/project';
@@ -125,5 +126,16 @@ test('unsupported ready-container decay phases defer read-only instead of throwi
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'station-decay-phase' });
   f.quote.facts.station.facts.ticksToDecay = 0;
   expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'station-decay-phase' });
+  expect(JSON.stringify(f.root)).toBe(before);
+});
+
+test('another source paid workforce remains an explicit liability until the shared forecast can represent it',() => {
+  const f = startupProjectionFixture(), worker = f.activeMiner();
+  worker.memory.population!.owner = remoteFleetOwner({ home: f.request.home,room: f.request.room,source: 'other-source',kind: 'miner' });
+  f.game.creeps.other = worker;
+  const observed = f.observe(f.request); if (observed.status !== 'observed') throw new Error('Expected complete room workforce');
+  f.quote.facts = observed.facts;
+  expect(f.quote.facts.workers).toHaveLength(1);
+  const before = JSON.stringify(f.root); expect(f.convert(f.quote,f.options)).toEqual({ status: 'deferred',reason: 'existing-workforce' });
   expect(JSON.stringify(f.root)).toBe(before);
 });

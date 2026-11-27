@@ -1,0 +1,33 @@
+{
+  "issue": "ED-29",
+  "scope": "Per-home unpaid cohort coordination. Native two-source counterexample remains FAILED on the single-source workforce model; accepted/refused single-source regressions PASS.",
+  "native": [
+    {
+      "scenario": "two-source-counterexample",
+      "nativeSource": "48bbcd805ea7bda3c0692e4c370336bc7fa10f88",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-shared-home-two-source-counterexample.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "bf98d7973f9206cc0c7b48bb5a294f35bb045a109db77da70549f2911533e9a5",
+      "uncompressedSha256": "92cc1b70d15d7a6f96f402b8314a15bd83b16e67cc262cd7ce59cab4c504dfe2"
+    },
+    {
+      "scenario": "supported",
+      "nativeSource": "48bbcd805ea7bda3c0692e4c370336bc7fa10f88",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-shared-home-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c660cd1e51fee1f67b0d836f9eb371cb18fda4201a50f990699061284c1bea40",
+      "uncompressedSha256": "16c87be925d36e4e931cf4fbbc282ec3c3e513597482f173f374b849151c51c3"
+    },
+    {
+      "scenario": "refused",
+      "nativeSource": "48bbcd805ea7bda3c0692e4c370336bc7fa10f88",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-shared-home-refused.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0dc4c7b2f7d1e5a031fe32cf0aa3005baaf8f2dd3b3fb3fd8bc5c4b536f5772a",
+      "uncompressedSha256": "15314b8574c4adae23dd7a138c6214941569628c14885d8707039d44c6082391"
+    }
+  ]
+}
