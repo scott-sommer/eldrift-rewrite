@@ -14,9 +14,9 @@ test('stale activation, changed generation/topology, missing budget and unreques
   const f = fixture(); f.at(101,14);
   expect(f.control.activate(f.context,f.compiled,0)).toMatchObject({ status: 'deferred' }); expect(f.root).toEqual({});
   f.at(100,14); expect(f.control.activate(f.context,f.compiled,0).status).toBe('ready'); const before = JSON.stringify(f.root);
-  f.topology('changed'); expect(f.control.observe(f.context)).toMatchObject({ reason: 'route-observation-binding' });
+  f.topology('changed'); expect(f.control.observe(f.context)).toMatchObject({ reason: 'route-observation-topology' });
   f.topology('matrix-v1'); f.context.cohort.generation++;
-  expect(f.control.observe(f.context)).toMatchObject({ reason: 'route-observation-binding' }); f.context.cohort.generation--;
+  expect(f.control.observe(f.context)).toMatchObject({ reason: 'route-observation-context' }); f.context.cohort.generation--;
   expect(f.control.observe(f.context,() => false)).toMatchObject({ reason: 'budget' });
   f.at(101,13); expect(f.control.observe(f.context)).toMatchObject({ reason: 'route-physical-deviation' });
   expect(JSON.stringify(f.root)).toBe(before);
