@@ -1185,7 +1185,7 @@ server.on('error', error => { console.error(error); finish(1, error); });
   if (process.argv.includes('--work-selection')) verifyWorkSelection(memory);
   if (process.argv.includes('--work')) verifyWork(memory);
   if (process.argv.includes('--resources')) verifyResources(memory);
-  if (process.argv.includes('--movement')) verifyMovement(memory);
+  if (process.argv.includes('--movement')) verifyMovement(memory,evidence);
   if (process.argv.includes('--maintenance')) assert.deepEqual(memory.maintenanceEvidence.remaining, [['short', 'long'], ['long'], ['long']]);
   if (process.argv.includes('--retirement')) {
     assert.deepEqual(memory.retirementEvidence, { counts: [2, 1, 1], requested: 0 });

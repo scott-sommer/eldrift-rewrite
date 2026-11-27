@@ -7,7 +7,8 @@ async function movementWorld(server, bot) {
     store: { energy: 0 }, storeCapacity: 0, hits: 100, hitsMax: 100, spawning: false, fatigue: 0, ageTime: 1500,
   });
 }
-function verifyMovement(memory) {
+function verifyMovement(memory,evidence) {
+  if (evidence) evidence.fixedMovement = { cursor: memory.movementPlanEvidence,observations: memory.movementEvidence };
   assert.deepEqual(memory.movementPlanEvidence,[0,1,1]);
   assert.deepEqual(memory.movementEvidence, { outcomes: ['running', 'done', 'done'], positions: [[20, 20], [21, 20], [21, 20]] });
 }
