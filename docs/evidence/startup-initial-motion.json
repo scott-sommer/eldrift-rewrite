@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Format-10 incumbent courier motion and portable-model VM reset; no native incumbent execution calibration.",
+  "native": [
+    {
+      "scenario": "initial-motion-reset",
+      "nativeSource": "7f082aee7db7e5f691bb05c031af11c3fab21044",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-initial-motion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5a5f56b0115e288afa258dcc6dd46c2902aed67d0f14021cf388556510c98300",
+      "uncompressedSha256": "9b79a658d1ae2c750da754eae1f9b4d81fd612628edd51acfe2e0cc3c1f34756"
+    }
+  ]
+}
