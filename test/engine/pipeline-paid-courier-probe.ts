@@ -1,3 +1,4 @@
+import { createNativePaidCourierContinuation } from '../../src/app/remotes/startup/projection/motion/continuation';
 import { createNativePaidCourierOpening } from '../../src/app/remotes/startup/motion-observation/native-opening';
 import { createNativePaidSourceObservation } from '../../src/app/remotes/startup/motion-observation/source';
 import { createNativePaidMinerObservation } from '../../src/app/remotes/startup/motion-observation/miner';
@@ -15,7 +16,8 @@ import type { ConfiguredPipelineMemory } from './pipeline-configured';
 /** Six passive samples of fully qualified actually paid crews; no writes through any observed owner. */
 export function observePipelinePaidOpening(state: StatePort,beforeDispatch = false) {
   const memory = Memory as ConfiguredPipelineMemory;
-  if (!memory.pipelineConfiguredMode || memory.pipelineConfiguredVariant !== undefined || Game.time < 150 || Game.time > 155) return undefined;
+  if (!memory.pipelineConfiguredMode || memory.pipelineConfiguredVariant !== undefined || (Game.time !== 97 && (Game.time < 150 || Game.time > 155))) return undefined;
+  if (Game.time === 97 && !beforeDispatch) return undefined;
   const readOnly: StatePort = { read: key => state.read(key),write() { throw new Error('Paid courier observation wrote state'); } };
   const config = resolveConfig(configurationFor(peekState(readOnly,'operator/config',operatorSchema) ?? {},'W0N1'),Game.time).values;
   const approvals = createStartupApprovals(readOnly,'W0N1').read().approvals;
@@ -27,7 +29,9 @@ export function observePipelinePaidOpening(state: StatePort,beforeDispatch = fal
   const courier = createNativePaidCourierObservation(readOnly),miner = createNativePaidMinerObservation(readOnly),source = createNativePaidSourceObservation(readOnly);
   const opening = createNativePaidCourierOpening(readOnly);
   const contexts = shared.cohorts.map(cohort => ({ cohort,plan: approvals.find(approval => approval.job.room === cohort.room && approval.job.source === cohort.source)!.quote.plan }));
+  const compile = createNativePaidCourierContinuation(readOnly);
   return {
+    continuations: beforeDispatch ? contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: compile({ ...context,paid },config,{ blocked: [] }) }))) : [],
     openings: beforeDispatch ? contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: opening({ ...context,paid }) }))) : [],
     couriers: contexts.flatMap(context => context.cohort.workers.filter(paid => !paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: courier({ ...context,paid }) }))),
     miners: contexts.flatMap(context => context.cohort.workers.filter(paid => paid.body.includes('work')).map(paid => ({ source: context.cohort.source,result: miner({ ...context,paid }) }))),
