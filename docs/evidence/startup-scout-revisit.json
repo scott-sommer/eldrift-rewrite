@@ -10,6 +10,24 @@
       "rawEncoding": "gzip",
       "rawSha256": "abab33ada142501ffdf5e6ab9af829b59ce8e6784ee724c896e1cfd80b167bae",
       "uncompressedSha256": "4576eacb634022c6ce41b14d85694b1770bc6e35a6dcc543724cc39db69c918c"
+    },
+    {
+      "scenario": "refused-measured",
+      "nativeSource": "75f44fdc781777c8d7d39e7b49070221011622b6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-scout-revisit-refused-measured.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "5cecee146cd3112a5be9068ea7ee00e5b47f18a208c63daa5782f8731cdf92f3",
+      "uncompressedSha256": "e5ad2da0a197656a2ee946c7c9c9c3bc8cc477eef204a22d8c3b080c204a1b9c"
+    },
+    {
+      "scenario": "refused-untraced",
+      "nativeSource": "75f44fdc781777c8d7d39e7b49070221011622b6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-scout-revisit-refused-untraced.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "91453be4066fde171911abfc1691ee42117724cf6e73078160255fab00f83665",
+      "uncompressedSha256": "f63a5b433e27ba059bc7635edf9e8b5a3b205db2bb833cf8c6136c8bde6aeccf"
     }
   ]
 }
