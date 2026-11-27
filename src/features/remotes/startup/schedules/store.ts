@@ -68,7 +68,8 @@ function upgradeSecondSchedule(value: unknown, home: string): StartupScheduleRec
 
 function upgradeThirdSchedule(value: unknown, home: string): StartupScheduleRecord {
   if (!validRecord(value,home)) throw new Error('Invalid schema3 startup schedule');
-  const next = value as StartupScheduleRecord, household = next.job && decodeStartupPlanningInput(next.job.input).household;
+  const next = value as StartupScheduleRecord, input = next.job && decodeStartupPlanningInput(next.job.input), household = input && input.household;
+  if (input && input.shared !== undefined) throw new Error('Unsupported legacy shared cohort schedule');
   if (household && (household.labor !== undefined || household.endpointCapacity !== undefined)) throw new Error('Unsupported schema3 household labor');
   return next;
 }

@@ -10,7 +10,7 @@ export function snapshotStartupSpawns(input: StartupSpawnInput): StartupSpawnInp
 export function snapshotStartupProject(input: StartupDeliveryInput): StartupDeliveryInput {
   input = normalizeStartupOpening(input);
   const initial = input.initial;
-  return { ...input,...(input.household ? { household: copyPlain(input.household) } : {}),...(initial ? { initial: { ...initial,miner: initial.miner && { ...initial.miner,body: [...initial.miner.body] },couriers: initial.couriers.map(worker => ({ ...worker,body: [...worker.body] })) } } : {}),couriers: input.couriers.map(worker => ({ ...worker })),
+  return { ...input,...(input.shared ? { shared: copyPlain(input.shared) } : {}),...(input.household ? { household: copyPlain(input.household) } : {}),...(initial ? { initial: { ...initial,miner: initial.miner && { ...initial.miner,body: [...initial.miner.body] },couriers: initial.couriers.map(worker => ({ ...worker,body: [...worker.body] })) } } : {}),couriers: input.couriers.map(worker => ({ ...worker })),
     project: { ...input.project,source: { ...input.project.source },workers: input.project.workers.map(worker => ({ ...worker })),spawning: snapshotStartupSpawns(input.project.spawning) },
     homeSink: { ...input.homeSink,changes: input.homeSink.changes.map(flow => ({ ...flow })) },
     container: { ...input.container,repairPolicy: input.container.repairPolicy && { ...input.container.repairPolicy } } };

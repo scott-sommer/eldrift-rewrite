@@ -1,3 +1,4 @@
+import { validateSharedCommitments } from './shared-validation';
 import { startupProjectFormat } from './checkpoints/project-format';
 import { createStartupOpeningStock } from './opening-stock';
 import { startupProjectWaves, startupProjectCouriers, startupOpeningEnergy } from './initial';
@@ -44,6 +45,7 @@ class StartupProject {
   private tick = 0;
   constructor(input: StartupDeliveryInput, checkpoint?: unknown) {
     if (!Number.isSafeInteger(input.containerCapacity) || input.containerCapacity < 1 || input.containerCapacity > 1000000) throw new Error('Invalid startup container capacity');
+    validateSharedCommitments(input);
     this.input = snapshotStartupProject(input);
     const saved = checkpoint === undefined ? undefined : readStartupProjectCheckpoint(this.input,checkpoint);
     const cashOptions = { ambient: !!this.input.project.spawning.funding.energyLayout?.regeneration };

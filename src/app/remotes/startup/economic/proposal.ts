@@ -1,3 +1,4 @@
+import { createPaidHomeProjection } from './paid-projection';
 import { createNativeStartupGeometry } from '../native-geometry';
 import { createNativeStartupTravel } from '../travel/native';
 import { createNativeStartupProjection } from '../projection/native';
@@ -21,7 +22,7 @@ export function prepareEconomicProposal(state: StatePort, structures: StartupStr
   trace(profile,quote.status === 'complete' ? 'travel:ready' : 'travel:'+quote.reason);
   if (quote.status !== 'complete' || !quote.facts.authority) return undefined;
   const births = proposeEconomicBirths(state,quote,config); if (!births.length) return undefined;
-  const projected = createNativeStartupProjection(state)(quote,{ horizon: config.remoteStartupHorizon,protectedEnergy: config.remoteStartupEnergyReserve,births,incumbentMinimumBatch: config.remoteMinimumBatch,unaffordable: 'skip',repairPolicy: defaultMiningRepairPolicy,refills: [],householdFlows: [],sinkChanges: [] },guard);
+  const projected = createNativeStartupProjection(state,createPaidHomeProjection(state,config))(quote,{ horizon: config.remoteStartupHorizon,protectedEnergy: config.remoteStartupEnergyReserve,births,incumbentMinimumBatch: config.remoteMinimumBatch,unaffordable: 'skip',repairPolicy: defaultMiningRepairPolicy,refills: [],householdFlows: [],sinkChanges: [] },guard);
   trace(profile,projected.status === 'ready' ? 'projection:ready' : 'projection:'+projected.reason);
   if (projected.status !== 'ready') return undefined;
   const binding = createNativeStartupExecutionBinding(state)(quote.plan,quote.rooms,config,startupEconomicPolicy(config)); if (!binding) return undefined;

@@ -1,3 +1,5 @@
+import type { StartupSharedCommitments } from '../../../../capabilities/economy/startup/shared-model';
+import type { StartupWorkerFacts } from '../facts-model';
 import type { NativeStartupFacts } from '../facts-model';
 import type { CompleteStartupTravel } from '../../../../features/remotes/startup/selection-model';
 import type { SpawnRequest, UnaffordablePolicy } from '../../../../capabilities/spawning/request';
@@ -17,4 +19,8 @@ export interface NativeStartupProjectionOptions {
 }
 export type NativeStartupProjection =
   | { status: 'ready'; observedAt: number; quoteIdentity: string; costScope: 'prospective'; input: StartupDeliveryInput }
+  | { status: 'deferred'; reason: string };
+
+export type NativeCohortProjection = (quote: NativeStartupQuote, options: NativeStartupProjectionOptions, guard: () => boolean) =>
+  | { status: 'ready'; workers: readonly StartupWorkerFacts[]; shared?: StartupSharedCommitments }
   | { status: 'deferred'; reason: string };

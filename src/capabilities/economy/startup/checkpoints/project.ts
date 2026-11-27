@@ -1,3 +1,4 @@
+import { validateSharedCommitments } from '../shared-validation';
 import { startupProjectFormat } from './project-format';
 import { createStartupSpawnTimeline } from '../spawn-timeline';
 import { createStartupHousehold } from '../household/timeline';
@@ -37,6 +38,7 @@ export function boundedProjectCheckpoint<T>(value: T): T {
 }
 function validateComponents(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
   const spawning = input.project.spawning, ambient = !!spawning.funding.energyLayout?.regeneration;
+  validateSharedCommitments(input);
   validateHouseholdProject(input);
   if (input.household) createStartupHousehold({ ...input.household,spawning },{ ...saved.household!,spawning: saved.timeline });
   else createStartupSpawnTimeline(spawning,saved.timeline);

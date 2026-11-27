@@ -46,7 +46,7 @@ function upgradeThirdAssessments(value: unknown, home: string): StartupCandidate
 }
 function nonLaborIdentity(identity: string): boolean {
   try {
-    const input = JSON.parse(identity) as { project?: { spawning?: { cash?: { flows?: unknown } } }; household?: { labor?: unknown; endpointCapacity?: unknown } } | null;
-    return Array.isArray(input?.project?.spawning?.cash?.flows) && input?.household?.labor === undefined && input?.household?.endpointCapacity === undefined;
+    const input = JSON.parse(identity) as { shared?: unknown; project?: { spawning?: { cash?: { flows?: unknown } } }; household?: { labor?: unknown; endpointCapacity?: unknown } } | null;
+    return Array.isArray(input?.project?.spawning?.cash?.flows) && input?.shared === undefined && input?.household?.labor === undefined && input?.household?.endpointCapacity === undefined;
   } catch { return false; }
 }

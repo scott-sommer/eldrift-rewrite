@@ -1,3 +1,4 @@
+import { paidHomeCurrent } from './paid-projection';
 import type { StartupPlanningInspection } from '../../../../features/remotes/startup/planning/runner';
 import { createStartupApprovals } from '../../../../features/remotes/startup/approvals/catalog';
 import { createStartupSelections } from '../../../../features/remotes/startup/selection-store';
@@ -34,7 +35,7 @@ function executionContext(state: StatePort, job: StartupPlanningContext & { inpu
   const input = decodeStartupPlanningInput(job.input), policy = startupEconomicPolicy(config);
   const { room,source,generation,binding,observedAt,expiresAt } = job;
   const query = { room,source,generation,binding,observedAt,expiresAt,tick: Game.time,input };
-  return { query,quote,rooms: [...rooms],policy,binding: createNativeStartupExecutionBinding(state)(quote.plan,rooms,config,policy) ?? '',tick: Game.time,births: observeStartupBirths(input.project.spawning.requests) };
+  return { query,quote,rooms: [...rooms],policy,binding: paidHomeCurrent(state,input.shared,config) ? createNativeStartupExecutionBinding(state)(quote.plan,rooms,config,policy) ?? '' : '',tick: Game.time,births: observeStartupBirths(input.project.spawning.requests) };
 }
 export type EconomicExecutionContext = NonNullable<ReturnType<typeof approvedEconomicContext>> & { planning?: StartupPlanningInspection };
 

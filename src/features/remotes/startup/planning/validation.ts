@@ -1,3 +1,4 @@
+import type { StartupSharedCommitments } from '../../../../capabilities/economy/startup/shared-model';
 import { natural, object, room } from '../../assignment-validation';
 import { selectionBinding } from '../selection-validation';
 import { restoreStartupProject } from '../../../../capabilities/economy/startup/project';
@@ -18,7 +19,7 @@ export function validPlanningJob(value: unknown, home: string, clock: number): v
   if (!validPlanningContext(value,home,clock) || Object.keys(value).length !== 8) return false;
   try {
     const job = value as StartupPlanningJob, input = decodeStartupPlanningInput(job.input);
-    if (input.project.spawning.room !== home) return false;
+    if (input.project.spawning.room !== home || !sharedContextMatches(input.shared,job)) return false;
     if (JSON.stringify(encodeStartupPlanningInput(input)) !== JSON.stringify(job.input)) return false;
     const project = restoreStartupProject(input,job.checkpoint);
     restoredProjects.set(job,project); return true;
@@ -31,4 +32,8 @@ export function planningContextKey(value: StartupPlanningContext): string {
 /** Consume the exact instance restored while validating this detached job. Never reuse an advanced model for an older snapshot. */
 export function takeValidatedPlanningProject(job: StartupPlanningJob) {
   const project = restoredProjects.get(job); restoredProjects.delete(job); return project;
+}
+
+function sharedContextMatches(shared: StartupSharedCommitments | undefined, job: StartupPlanningContext): boolean {
+  return !shared || shared.room === job.room && shared.source === job.source && shared.observedAt === job.observedAt;
 }
