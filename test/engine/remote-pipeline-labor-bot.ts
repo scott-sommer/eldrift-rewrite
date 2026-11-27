@@ -1,3 +1,4 @@
+import { observeSharedService } from './pipeline-shared-service-trace';
 import { observePipelineScouts } from './pipeline-scout-probe';
 import { withPipelinePathProbe } from './pipeline-path-probe';
 import { captureStartupTrace } from './pipeline-configured-policy';
@@ -62,5 +63,5 @@ function probe(): Record<string,unknown> {
     }
   }
   const scouts = observePipelineScouts(state);
-  return { ...(scouts ? { scouts } : {}),labor: { birthCost: proof.birthCost ?? 0,spent: proof.receipt?.spent ?? 0,cargo: worker?.store.energy ?? 0,position: worker ? [worker.pos.x,worker.pos.y] : null,receipt: proof.receipt ?? null,idleAt: proof.idleAt ?? null } };
+  return { sharedService: observeSharedService(),...(scouts ? { scouts } : {}),labor: { birthCost: proof.birthCost ?? 0,spent: proof.receipt?.spent ?? 0,cargo: worker?.store.energy ?? 0,position: worker ? [worker.pos.x,worker.pos.y] : null,receipt: proof.receipt ?? null,idleAt: proof.idleAt ?? null } };
 }

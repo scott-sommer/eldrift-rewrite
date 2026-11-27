@@ -1,3 +1,4 @@
+import { recordSharedServiceCall } from './pipeline-shared-service-trace';
 import { recordCalibrationCall } from './pipeline-cohort-calibration';
 import { sameLogisticsService } from '../../src/capabilities/logistics/service';
 import type { StartupTravelPlan } from '../../src/features/remotes/startup/travel-model';
@@ -17,6 +18,7 @@ export function withPipelineServiceProbe(run: () => void): void {
 }
 type PositionedTarget = { id: string; pos: { roomName: string; x: number; y: number } };
 function record(creep: Creep, action: 'harvest' | 'withdraw' | 'transfer' | 'repair', target: PositionedTarget & { energy?: number; hits?: number; hitsMax?: number }, code: number, amount?: number): void {
+  recordSharedServiceCall(creep,action,target.id,code,amount);
   if (code !== OK) return;
   const identity = remoteFleetIdentity(creep.memory.population?.owner ?? ''); if (!identity) return;
   const memory = Memory as PipelineServiceMemory, plan = memory.pipelineServicePlans?.[identity.source]?.plan; if (!plan) return;
