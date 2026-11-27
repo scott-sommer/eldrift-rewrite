@@ -152,3 +152,8 @@ Runtime `f8afb85` now preserves full observed task records and builds isolated t
 ## Ordered forecast task service (2026-11-28)
 
 The private task service now reuses actual settlement/admission/runner owners and accepts explicit ordered/deferred actor visits. Source preparation, completion-frame recruitment delay, shared bookings and strict frame-clock/authority checks are covered by targeted tests. Shared transit can now accept only service-requested movement while stationary workers remain occupants and recover fatigue. See `startup-paid-hauling-service.md`. This component is not native future-calendar qualification: the canonical physical inventory/body owner, journaled next-frame effects, concrete recruitment, shared sink/spawn/cash composition, checkpoint/resume and the existing native/cleanup/CPU gates remain open.
+
+
+## Shared physical energy and journaled effects (2026-11-28)
+
+A bounded canonical energy inventory frame and private hauling transfer adapter now provide frozen actor observations, explicit processing-order settlement, mixed-resource capacity, next-frame effects, and actual journal/task receipt confirmation under the world action arbiter. Targeted service/state/inventory tests and direct pinned transfer/withdraw processor comparisons pass; see `startup-hauling-inventory.md`. This is component evidence, not full native calendar qualification. Observed body capacity/identity conversion, concrete movement/visibility and all-actor processing order, mining/maintenance, births/lifecycle, shared home cash/spawn composition and checkpoint/resume remain necessary before the existing native multi-source/horizon/cleanup/CPU gates can close.
