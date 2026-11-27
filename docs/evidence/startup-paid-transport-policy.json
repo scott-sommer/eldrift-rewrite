@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Native shared collection-admission and before-work fleet-settlement regression, with actual source lease tokens. Concrete productive forecast policy has component/physical-fixture evidence; not full native future-calendar or financial-admission qualification.",
+  "native": [
+    {
+      "scenario": "lease-aware-admission-supported1000",
+      "nativeSource": "4e4f254c9a6831551abe43e7583d8b5dd1bd4be8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-policy-admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b11e3e55ed6bcca91f480c3c07ebe0fe8ae72b911878da2dd4f1007f23fb0a14",
+      "uncompressedSha256": "ea347ef96f23630d0f261bf8fd6e6c1b452e431058361cfea2f4c81cb655f8ee"
+    },
+    {
+      "scenario": "before-work-fleet-settlement-supported1000",
+      "nativeSource": "765b803845f0ccd471ba31626c608d341cc3f3a4",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-policy-settlement.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9a5c3f09b6873424d2ee390ae2d21cacf0cbbba4fd40bda56c470951a0ca88ab",
+      "uncompressedSha256": "eb541fe1d5037551ed892a726e5dc95dcdbbaffc4eadd8f02ec4466542a2e6bc"
+    }
+  ]
+}
