@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Native read-only paid continuation geometry compilation, not joint physical execution or financial admission.",
+  "native": [
+    {
+      "scenario": "paid-continuation-supported1000",
+      "nativeSource": "d9770e88eb2e08016bb7775668a50398245cc7f6",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-continuation.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2002b10fb5f6856aa5de771cab1b0ccd6418f97e76be7911ad3fd2e65eb248c6",
+      "uncompressedSha256": "904e9454c067e4dd7e9f74e86a8b1991c372a03baf07df7ed91a61cdc68f9f5a"
+    }
+  ]
+}
