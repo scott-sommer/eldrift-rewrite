@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Read-only coherent native home/source/body/route/inventory/claim snapshots; not joined forecast conversion or financial admission.",
+  "native": [
+    {
+      "scenario": "paid-home-observation-supported1000",
+      "nativeSource": "3928da4c8cb350b128e19f4610f8688595dd3bdf",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-home-observation.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "675304264970056b1ef0c4c4769f50e4ec5ae03a67418f063adb4c611e802ac5",
+      "uncompressedSha256": "19d18f357e67b6c3d42bd537fbf086742d7a4bec098a59ad78a08c94fa72f2b8"
+    }
+  ]
+}

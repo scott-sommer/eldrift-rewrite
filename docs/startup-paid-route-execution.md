@@ -21,3 +21,5 @@ Initial extracted fixture missed its expect import; the two failing affected tes
 ## Required next integration
 
 Join native paid/new/source/home observations into the durable home project; run activation before the pricing epoch and compare actual route, stock, cargo, fatigue, service and receipt prefixes before new payment. Financial admission remains on its existing single-source model. Multi-source actors, household/miner physical schedules and complete horizon matching remain unqualified. Hazard/home-loss/alternate-sink and loaded-retirement/parking behavior under activated contracts still require explicit qualification; retaining existing cleanup ports is not proof of those cases. No live deployment or release-candidate claim follows from this bounded run.
+
+The coherent native observation join is now available as described in startup-paid-home-observation.md. Conversion of those facts and bookings into joint home project inputs, and pre-payment prefix validation, remain outstanding.
