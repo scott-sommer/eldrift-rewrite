@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Stable planned-name traffic ordering: supported1000 exact pipeline plus3 native movement regressions. Shared-calendar qualification not rerun.",
+  "native": [
+    {
+      "scenario": "supported",
+      "nativeSource": "d2f0fdb051e751729f4d07534ef5932b4a42a062",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-stable-traffic-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "11cad4f76759ddad4ed0929bc73e50b0cff3b023ecad14bd199de235b63ff015",
+      "uncompressedSha256": "92bec5c0024ba3d3814cae4b1fd1f112c4d0168dbe40ff138261fec5e728f0c5"
+    },
+    {
+      "scenario": "traffic",
+      "nativeSource": "d2f0fdb051e751729f4d07534ef5932b4a42a062",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-stable-traffic-traffic.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "37deae2ebc930b7a578a95c311882ef10e459a7c295691d1c96180f77547e3b8",
+      "uncompressedSha256": "79b3b593bf679fc7b3bb696149792d361ab733a710a637afaa9bdf76ed4db848"
+    },
+    {
+      "scenario": "occupied-exit",
+      "nativeSource": "d2f0fdb051e751729f4d07534ef5932b4a42a062",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-stable-traffic-occupied-exit.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "cd72c4d191a386c03dfdb78abb037245c878b2ddd930d563f888474d0015027b",
+      "uncompressedSha256": "a1c95056270b498854dafc8b2cddf85d7ebf5b64582f734c37ae10d8196c6f18"
+    },
+    {
+      "scenario": "paths",
+      "nativeSource": "d2f0fdb051e751729f4d07534ef5932b4a42a062",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-stable-traffic-paths.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e40b887e52198e7a42abdc6ff9cc0b25cb7e81beed9aa9d52a0eb310aced5e77",
+      "uncompressedSha256": "625e360f51b8895cf089c5b228ff3aa6c47a65086ae42cd74c6a0e1c4251dd50"
+    }
+  ]
+}
