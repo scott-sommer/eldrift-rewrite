@@ -1,3 +1,4 @@
+import { paidHomeSourceDemand } from './demand';
 import { createNativePaidSourceObservation } from '../motion-observation/source';
 import { createNativePaidMinerObservation } from '../motion-observation/miner';
 import { createNativePaidCourierOpening } from '../motion-observation/native-opening';
@@ -9,6 +10,7 @@ import type { PaidHomeGroup,PaidHomeSourceObservation } from './model';
 import type { PaidCourierActiveRoute } from '../../../../features/remotes/startup/routes/model';
 import type { PaidCourierOpening } from '../motion-observation/opening-model';
 export function observePaidHomeSource(state: StatePort,group: PaidHomeGroup,requireActivated: boolean,guard: () => boolean): PaidHomeSourceObservation | undefined {
+  const demand = paidHomeSourceDemand(state,group,Game.time); if (!demand || demand.kind !== 'mine') return undefined;
   const source = createNativePaidSourceObservation(state)(group,guard); if (source.status === 'deferred') return undefined;
   const { quantityClaims,...observation } = source.observation;
   const miners: PaidHomeSourceObservation['miners'] = [],couriers: PaidHomeSourceObservation['couriers'] = [];
@@ -26,7 +28,7 @@ export function observePaidHomeSource(state: StatePort,group: PaidHomeGroup,requ
     if (requireActivated && !routeCurrent(route,current.opening)) return undefined;
     couriers.push({ paid,opening: current.opening,route });
   }
-  return { ...group,observation,claimIds: quantityClaims.map(claim => claim.id),miners,couriers };
+  return { ...group,demand,observation,claimIds: quantityClaims.map(claim => claim.id),miners,couriers };
 }
 function routeCurrent(route: PaidCourierActiveRoute | null,opening: PaidCourierOpening): boolean {
   if (!route || !routeBodyCurrent(route,opening)) return false;

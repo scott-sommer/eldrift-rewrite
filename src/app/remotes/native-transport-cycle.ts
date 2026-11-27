@@ -1,12 +1,11 @@
 import { createTransportProbe } from './transport-probe';
 import type { HaulingTaskPayload } from '../hauling-task';
 import { withinRange } from '../../capabilities/movement/path-model';
-import { transportService } from './transport-service';
+import { remoteCollectionAdmission } from './transport-admission';
 import { movementPosition } from '../../adapters/screeps/movement-traffic';
 import type { StatePort } from '../../persistence/versioned-state';
 import type { TaskDefinition, TaskRecord } from '../../persistence/tasks/schema';
 import type { LogisticsRequest } from '../../capabilities/logistics/request';
-import { logisticsPool } from '../../capabilities/logistics/request';
 import type { RemoteTransportDemand } from '../../features/remotes/transport-authority';
 import { createNativeHaulingTask } from '../native-hauling-task';
 import { submitHaulingTask } from '../submit-hauling-task';
@@ -78,14 +77,11 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
     dispatch.activate(); movement.move(creep,{ owner: binding.owner,destination,range: options.service ? 0 : 1,policy: view.route });
   }
   function admit(creep: Creep, demand: RemoteTransportDemand, container: RemoteTransportSource, sink: AnyStructure, maximum: number): boolean {
-    const expiresAt = Math.min(demand.expiresAt,Game.time + options.requestLifetime);
-    const request = { id: logisticsPool('remote-trip',creep.id,sink.id,String(Game.time)),owner: context.owner(demand),source: container.id,
-      sink: sink.id,resource: RESOURCE_ENERGY,quantity: maximum,priority: 0,expiresAt,...(options.service ? { service: transportService(options.service) } : {}) };
-    const observed = observeHauling(creep,request,binding.home);
-    const available = { ...observed,minimumCollection: Math.max(observed.minimumCollection,Math.min(options.minimumBatch,maximum)) };
-    return submitHaulingTask(state,definitions,{ home: binding.home,name: creep.name,unitId: creep.id,tick: Game.time,request,
-      phase: 'collect',maximum,sinkRoom: binding.home,available });
+    const admission = remoteCollectionAdmission({ home: binding.home,name: creep.name,unitId: creep.id,actor: binding.owner,tick: Game.time,demand,
+      source: container.id,sink: sink.id,maximum },options,request => observeHauling(creep,request,binding.home));
+    return !!admission && submitHaulingTask(state,definitions,admission);
   }
+
   function validTrip(request: LogisticsRequest, desired: RemoteTransportDemand | undefined): desired is RemoteTransportDemand {
     return !!desired && request.owner === context.owner(desired) && !!context.authority(request) && !!Game.rooms[binding.home]?.controller?.my;
   }

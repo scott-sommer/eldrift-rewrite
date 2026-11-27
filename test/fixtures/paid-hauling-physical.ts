@@ -1,3 +1,6 @@
+import { createPaidHomeTransportPolicy } from '../../src/app/remotes/startup/hauling-state/policy/transport';
+import { remoteTransportOwner } from '../../src/features/remotes/transport-authority';
+import type { RemoteTransportDemand } from '../../src/features/remotes/transport-authority';
 import { paidRouteFixture } from './paid-route';
 import { createActionArbiter } from '../../src/core/execution/action-arbiter';
 import { createEnergyInventoryFrame } from '../../src/capabilities/resources/energy-inventory/frame';
@@ -9,11 +12,13 @@ import { readPaidHaulingForecastOpening } from '../../src/app/remotes/startup/ha
 import { activatePaidCourierRoute } from '../../src/features/remotes/startup/routes/progress';
 import { withinRange } from '../../src/capabilities/movement/path-model';
 import { logisticsPool } from '../../src/capabilities/logistics/request';
-export function paidHaulingPhysicalFixture() {
-  const f = paidRouteFixture(), request = { id: 'first',owner: 'transport',source: 'container',sink: 'bank',resource: 'energy',quantity: 32,priority: 0,expiresAt: 130,
+export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400) {
+  const f = paidRouteFixture();
+  let demand: RemoteTransportDemand | undefined = { kind: 'mine',id: 'demand',assignment: 'lease',home: 'W0N1',room: 'W0N1',source: 'source',generation: 1,expiresAt: leaseExpiresAt };
+  const request = { id: 'first',owner: remoteTransportOwner(demand,'paid-owner'),source: 'container',sink: 'bank',resource: 'energy',quantity: 32,priority: 0,expiresAt: Math.min(130,leaseExpiresAt),
     service: { collection: f.context.plan.collection,deposit: f.context.plan.endpoint.deposit,avoid: [f.context.plan.station] } };
-  const record = { id: 'first',kind: 'haul',phase: 'work',payload: { home: 'W0N1',unitId: 'native-id',request },wakeAt: 100,retries: 0,expiresAt: 130 };
-  f.opening.observed.task = { record,id: 'first',wakeAt: 100,expiresAt: 130,request,remaining: 32,receipts: [] };
+  const record = { id: 'first',kind: 'haul',phase: 'work',payload: { home: 'W0N1',unitId: 'native-id',request },wakeAt: 100,retries: 0,expiresAt: request.expiresAt };
+  f.opening.observed.task = { record,id: 'first',wakeAt: 100,expiresAt: request.expiresAt,request,remaining: 32,receipts: [] };
   const seed = createPaidHaulingForecastState('W0N1',100,[{ source: 'source',room: 'W0N1',opening: f.opening }],[]);
   const store = (id: string,energy: number,capacity: number) => ({ id,energy,capacity,usedCapacity: energy,freeEnergyCapacity: capacity-energy });
   const inventory = createEnergyInventoryFrame(100,[store('native-id',32,50),store('container',100,200),store('bank',0,100)]);
@@ -26,15 +31,10 @@ export function paidHaulingPhysicalFixture() {
     approach: (worker,binding,request,phase) => movement.request(worker.name,{ owner: binding.scope,destination: phase === 'collect' ? request.service!.collection : request.service!.deposit,range: 0,policy }),
   });
   const worker = seed.workers[0]!;
-  const service = createPaidHaulingForecastService(seed,{ ...transfer,authorized: () => true,prepare: () => true,refused: () => {},
-    recruit(worker) {
-      if (!withinRange(position,f.context.plan.collection,0)) {
-        movement.request(worker.name,{ owner: 'paid-owner',destination: f.context.plan.collection,range: 0,policy }); return undefined;
-      }
-      const next = { ...request,id: 'second',quantity: 50 },view = transfer.view(worker,{ home: 'W0N1',unitId: worker.unit,request: next });
-      return { request: next,phase: 'collect',maximum: 50,available: { ...view,minimumCollection: 1 } };
-    },
-  });
+  const productive = createPaidHomeTransportPolicy('W0N1',[{ demand,plan: f.context.plan,couriers: [{ paid: f.context.paid }] }],seed,
+    { minimumBatch: 1,requestLifetime: 200 },{ inventory,physical: () => ({ position,fatigue,spawning: false }),authority: () => demand,
+      collection: () => 'container',visible: () => true,roomPolicy: () => policy,move: movement.request,view: transfer.view });
+  const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive });
   const frames: { tick: number; x: number; energy: number; stage: string; readyAt: number; effects: { kind: string; amount: number; settledAt: number }[] }[] = [];
   function step() {
     inventory.begin(tick);
@@ -47,5 +47,5 @@ export function paidHaulingPhysicalFixture() {
     frames.push({ tick,x: position.x,energy: opening.observed.energy,stage: opening.continuation.stage,readyAt: opening.continuation.readyAt,effects });
     position = physical.position; fatigue = physical.fatigue; tick++;
   }
-  return { seed,inventory,movement,frames,step };
+  return { seed,inventory,movement,frames,step,renew(at: number) { demand = { ...demand!,expiresAt: at }; },reassign() { demand = { ...demand!,generation: demand!.generation+1 }; } };
 }

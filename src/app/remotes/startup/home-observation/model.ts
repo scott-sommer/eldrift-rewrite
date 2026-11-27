@@ -1,3 +1,4 @@
+import type { RemoteTransportDemand } from '../../../../features/remotes/transport-authority';
 import type { StartupPaidCohort,StartupPaidWorker } from '../../../../capabilities/economy/startup/shared-model';
 import type { StartupTravelPlan } from '../../../../features/remotes/startup/travel-model';
 import type { PaidSourceObservation,PaidMinerObservation } from '../motion-observation/source-model';
@@ -8,7 +9,7 @@ import type { QuantityClaimPartition } from '../../../../persistence/quantities/
 export interface PaidHomeGroup { cohort: StartupPaidCohort; plan: StartupTravelPlan }
 export interface PaidHomeObservationRequest { home: string; endpoint: string; groups: readonly PaidHomeGroup[]; requireActivated: boolean }
 export interface PaidHomeSourceObservation {
-  cohort: StartupPaidCohort; plan: StartupTravelPlan;
+  cohort: StartupPaidCohort; plan: StartupTravelPlan; demand: RemoteTransportDemand;
   observation: Omit<PaidSourceObservation,'quantityClaims'>; claimIds: string[];
   miners: { paid: StartupPaidWorker; observation: PaidMinerObservation }[];
   couriers: { paid: StartupPaidWorker; opening: PaidCourierOpening; route: PaidCourierActiveRoute | null }[];

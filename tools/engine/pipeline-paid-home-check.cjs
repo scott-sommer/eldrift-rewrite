@@ -29,6 +29,9 @@ function verifyPaidHomeSnapshots(memory,evidence) {
     assert.equal(capacity.owned+capacity.external,home.endpoint.claimedCapacity);
     assert.equal(home.endpoint.availableCapacity,Math.max(0,home.endpoint.freeCapacity-home.endpoint.claimedCapacity));
     for (const source of home.sources) {
+      assert.equal(source.demand.kind,'mine'); assert.equal(source.demand.home,home.home);
+      assert.equal(source.demand.room,source.cohort.room); assert.equal(source.demand.source,source.cohort.source);
+      assert.equal(source.demand.generation,source.cohort.generation); assert.ok(source.demand.expiresAt > row.tick);
       assert.equal(source.miners.length,1); assert.equal(source.couriers.length,2);
       assert.equal(source.observation.observedAt,row.tick);
       const station = source.observation.station.facts;

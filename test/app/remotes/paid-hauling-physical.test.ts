@@ -14,3 +14,17 @@ test('actual task service, shared movement and journaled transfers complete a tr
     { cancelled: true,receipts: [{ amount: 32 }] },{ cancelled: true,receipts: [{ amount: 50 }] },
   ] } });
 });
+
+test('productive forecasting stops at unrenewed authority and rejects a different generation', () => {
+  const expired = paidHaulingPhysicalFixture(130); for (let tick = 100; tick < 130; tick++) expired.step();
+  expect(() => expired.step()).toThrow('authority/lifecycle invalidated');
+  const renewed = paidHaulingPhysicalFixture(130); renewed.step(); renewed.renew(1400);
+  expect(() => renewed.step()).not.toThrow();
+  const changed = paidHaulingPhysicalFixture(); changed.reassign(); expect(() => changed.step()).toThrow('authority invalidated');
+  const unbounded = paidHaulingPhysicalFixture(); unbounded.renew(Infinity); expect(() => unbounded.step()).toThrow('authority invalidated');
+});
+
+test('an explicit lease renewal does not extend an existing request deadline', () => {
+  const f = paidHaulingPhysicalFixture(101); f.step(); f.renew(1400);
+  expect(() => f.step()).toThrow('authority invalidated');
+});
