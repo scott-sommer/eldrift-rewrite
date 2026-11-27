@@ -1,3 +1,4 @@
+import { capturePipelinePaidOpening } from './pipeline-paid-opening-probe';
 import { observePipelinePaidOpening } from './pipeline-paid-courier-probe';
 import { observeSharedService, withSharedMovementTrace } from './pipeline-shared-service-trace';
 import { observePipelineScouts } from './pipeline-scout-probe';
@@ -43,6 +44,7 @@ function before(): void {
     saveState(state,'operator/config',operatorSchema,config);
   }
   observeConfiguredPipeline(state);
+  capturePipelinePaidOpening(state);
   const proof = memory.pipelineLabor!;
   if (publisher.maintain() === 'born') proof.acknowledgedAt = Game.time;
   if (proof.receipt) {

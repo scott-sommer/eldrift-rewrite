@@ -11,6 +11,7 @@ function verifyPaidCourierObservations(memory,evidence) {
     }
   }
   verifyOpening(rows,evidence);
+  verifyResolutions(memory,evidence);
   assert.ok(rows.some(row => row.probe.paidCouriers.some(item => item.result.observation.stage === 'pending')),'real pending native effects must remain explicit');
 }
 module.exports = { verifyPaidCourierObservations };
@@ -30,4 +31,24 @@ function verifyOpening(rows,evidence) {
     const observed = source.observation.workers.find(worker => worker.name === miner.observation.name); assert.ok(observed);
     assert.equal(observed.energy,miner.observation.energy);
   }
+}
+
+function verifyResolutions(memory,evidence) {
+  const rows = memory.pipelinePaidOpeningResolutions; evidence.paidOpeningResolutions = rows;
+  assert.deepEqual(rows.map(row => row.tick),[150,151,152,153,154,155]);
+  const effects = [];
+  for (const row of rows) {
+    assert.equal(row.openings.length,2);
+    for (const item of row.openings) {
+      assert.equal(item.result.status,'ready'); const opening = item.result.opening;
+      assert.equal(opening.observed.observedAt,row.tick);
+      if (!opening.reflectedEffect) continue;
+      const effect = opening.reflectedEffect; effects.push(effect);
+      assert.equal(effect.issuedAt,row.tick-1); assert.equal(effect.projectedIncome,0);
+      assert.equal(opening.observed.journal.acknowledged,false);
+      assert.equal(opening.continuation.readyAt,row.tick+(effect.kind === 'transfer' ? 1 : 0));
+    }
+  }
+  assert.ok(effects.some(effect => effect.kind === 'withdraw' && effect.amount > 0));
+  assert.ok(effects.some(effect => effect.kind === 'transfer' && effect.amount > 0));
 }
