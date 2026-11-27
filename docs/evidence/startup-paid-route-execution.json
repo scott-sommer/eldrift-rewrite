@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Opt-in productive transport route execution for two paid couriers150\u2013181 and unchanged supported1000 exact receipts; not general joint financial/CPU/cleanup qualification.",
+  "native": [
+    {
+      "scenario": "initial-binding-refusal",
+      "nativeSource": "2dae2419563605c575a0ee0a816bb23df41679ad",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-route-execution-initial-binding-refusal.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "973dbcf18f71852d9680aee797d645431cef16976cecdd4938f5f5a0a0407509",
+      "uncompressedSha256": "9da57856397554729f0031baaa5fe536769cc4110e56c8634288ee58501d1960"
+    },
+    {
+      "scenario": "binding-diagnostic",
+      "nativeSource": "ee0ef84d5397e18f7fb8acddc4fc63df5b29619d",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-route-execution-binding-diagnostic.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f8b342fd1c3b5aae721cbe78739fcae1b9d5e4b5533603053f9c050d2233409e",
+      "uncompressedSha256": "11b46e8cfb9d6fdbbbfc981ab598066a1881c400a68e505a3610f19b5f71514e"
+    },
+    {
+      "scenario": "corrected-execution",
+      "nativeSource": "012bf509b4a69d16af4645498388f2cca397dac2",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-route-execution-corrected-execution.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "84ec8ad6508859c25b680238572b39e6684f70d04f608d109310937b2cf3aae1",
+      "uncompressedSha256": "70a8f0e855e00c214acac2aff93b99bb742c6d4c51d3c7a6722ef96b56370f43"
+    },
+    {
+      "scenario": "startup-admission",
+      "nativeSource": "012bf509b4a69d16af4645498388f2cca397dac2",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-route-execution-startup-admission.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "95415ac0b324410f55b305c5f2f499329e3f592ee82d79278a4909ae38614a11",
+      "uncompressedSha256": "8375f3f2cae6db12beca587e7f85599476c564c6b2c9438c279d84714a8e8b37"
+    }
+  ]
+}
