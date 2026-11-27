@@ -1,3 +1,4 @@
+import { createPipelineRevisionGate } from './pipeline-revision-gate';
 import { observeSharedHome } from './pipeline-shared-home';
 import type { SharedHomeApproval } from './pipeline-shared-home';
 import type { PathProbeMemory } from './pipeline-path-probe';
@@ -11,6 +12,7 @@ import type { StatePort } from '../../src/persistence/versioned-state';
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 import type { PipelineServiceMemory } from './pipeline-service-policy';
 export interface ConfiguredPipelineMemory extends CalibrationMemory, PipelineServiceMemory, PathProbeMemory { pipelineConfiguredMode?: boolean; pipelineConfiguredTraceMode?: boolean; pipelineConfiguredActorTraceMode?: boolean; pipelineConfiguredCourierTraceMode?: boolean; pipelineConfiguredYieldTraceMode?: boolean; pipelineStartupTrace?: { tick: number; phase: string; owner: string; cpu: number }[]; pipelineConfiguredVariant?: 'refused' | 'changed' | 'budget' | 'shared'; pipelineSharedApprovals?: SharedHomeApproval[]; pipelineConfiguredRevisitRequestedAt?: number; pipelineConfiguredChanges?: number[]; pipelineConfiguredRejected?: { observedAt: number; through: number }[]; pipelineConfiguredPlanning?: { tick: number; through: number; observedAt: number }[]; pipelineConfiguredApproval?: { approvedAt: number; observedAt: number } }
+const planningChanged = createPipelineRevisionGate('remoteStartupPlanning/W0N1','remotes',7);
 /** Test-only configuration and passive evidence collection; no proposal, queue, selection or approval publication. */
 export function observeConfiguredPipeline(state: StatePort): void {
   const memory = Memory as ConfiguredPipelineMemory; if (!memory.pipelineConfiguredMode) return;
@@ -20,7 +22,8 @@ export function observeConfiguredPipeline(state: StatePort): void {
     saveState(state,'operator/config',operatorSchema,record);
   }
   changeConfiguredPolicy(state,memory);
-  const job = createStartupPlanningJob(state,'W0N1').read().job;
+  const inspect = memory.pipelineConfiguredVariant !== 'shared' || planningChanged(state);
+  const job = inspect ? createStartupPlanningJob(state,'W0N1').read().job : undefined;
   if (job) {
     const rows = memory.pipelineConfiguredPlanning ??= [];
     if (rows.at(-1)?.through !== job.checkpoint.tick || rows.at(-1)?.observedAt !== job.observedAt) rows.push({ tick: Game.time,through: job.checkpoint.tick,observedAt: job.observedAt });

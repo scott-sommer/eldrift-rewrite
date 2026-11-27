@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Verified paid-cohort liabilities with format8; first two-source attempt timed out after966completed ticks. Full qualification pending.",
+  "native": [
+    {
+      "scenario": "two-source-first-timeout",
+      "nativeSource": "5feef2c4666cdf71d1bbe7360a323521569b2f3a",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-timeout.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "bce11c8733142ce90c88091e2adc2f62561035e36aff712b0aac13bd39c11d72",
+      "uncompressedSha256": "4c5e8dfb4cc63c4a1f0be7a3b542dad9cf36b37ff373d67a2413cb0c47ac6887"
+    }
+  ]
+}

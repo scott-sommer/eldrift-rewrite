@@ -1,3 +1,4 @@
+import { createPipelineRevisionGate } from './pipeline-revision-gate';
 import { createStartupApprovals } from '../../src/features/remotes/startup/approvals/catalog';
 import { decodeStartupPlanningInput } from '../../src/features/remotes/startup/planning/input';
 import type { StatePort } from '../../src/persistence/versioned-state';
@@ -6,8 +7,10 @@ export interface SharedHomeApproval {
   source: string; observedAt: number; approvedAt: number; cutoff: number; homeEnergy: number;
   births: { request: string; owner: string; cost: number; startAt: number; activeAt: number }[];
 }
+const changed = createPipelineRevisionGate('remoteStartupApprovals/W0N1','remotes',1);
 /** Passive summaries of actual retained approvals; no selection, publication or payment. */
 export function observeSharedHome(state: StatePort, memory: ConfiguredPipelineMemory): void {
+  if (!changed(state)) return;
   const approvals = createStartupApprovals(state,'W0N1'), rows = memory.pipelineSharedApprovals ??= [];
   for (const approval of approvals.read().approvals) {
     const job = approval.job;
