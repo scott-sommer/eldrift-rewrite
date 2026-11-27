@@ -147,3 +147,8 @@ Native paid home join3928da4: read-only request snapshot combines one home/sourc
 ## Paid hauling state seed (2026-11-28)
 
 Runtime `f8afb85` now preserves full observed task records and builds isolated task/request/journal/claim state for all selected couriers at one home boundary. Supported1000 native run `engine-NhVkTi` passed, including a reflected pickup and delivery; past delivery receipts are seeded before simulation and must remain excluded from future income. See `startup-paid-hauling-state.md` and its raw evidence manifest. This closes only the opening-state conversion step: actual hauling service integration with joint physical movement and shared inventory/cash, private-state checkpoint/resume, two-source exact receipt calendars, full horizon/cleanup and strict5ms gates remain required.
+
+
+## Ordered forecast task service (2026-11-28)
+
+The private task service now reuses actual settlement/admission/runner owners and accepts explicit ordered/deferred actor visits. Source preparation, completion-frame recruitment delay, shared bookings and strict frame-clock/authority checks are covered by targeted tests. Shared transit can now accept only service-requested movement while stationary workers remain occupants and recover fatigue. See `startup-paid-hauling-service.md`. This component is not native future-calendar qualification: the canonical physical inventory/body owner, journaled next-frame effects, concrete recruitment, shared sink/spawn/cash composition, checkpoint/resume and the existing native/cleanup/CPU gates remain open.

@@ -25,7 +25,7 @@ export function createPaidHaulingForecastState(home: string, tick: number, couri
   });
   seedHaulingRecord(state,stateKey('logistics-requests',home),logisticsQueueSchema,{ records: [...records.values()] });
   seedHaulingRecord(state,'quantity-reservations/empire',quantitySchema,{ claims: copyPlain([...claims]) });
-  return { state,workers };
+  return { home,tick,state,workers };
 }
 function validateInput(home: string, tick: number, couriers: readonly PaidHaulingForecastCourier[]): void {
   if (!home || !Number.isSafeInteger(tick) || tick < 0 || couriers.length > 64) throw new Error('Invalid forecast home boundary');

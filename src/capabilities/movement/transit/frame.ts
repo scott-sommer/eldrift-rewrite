@@ -10,9 +10,10 @@ export interface TransitFramePorts {
   terrain: (position: Position) => 1 | 2 | 10;
 }
 /** One frame, using the runtime traffic solver. The caller owns service waits and plan changes. */
-export function advanceTransitFrame(plans: readonly TransitPlan[],states: readonly TransitState[],tick: number,occupants: readonly Occupant[],ports: TransitFramePorts) {
+export function advanceTransitFrame(plans: readonly TransitPlan[],states: readonly TransitState[],tick: number,occupants: readonly Occupant[],ports: TransitFramePorts, requestedUnits?: readonly string[]) {
   validateTransitFrame(plans,states,tick);
-  const requests = states.flatMap((state,index) => request(plans[index]!,state,tick));
+  const requested = requestedTransitUnits(states,requestedUnits);
+  const requests = states.flatMap((state,index) => requested.has(state.unit) ? request(plans[index]!,state,tick) : []);
   const resolution = resolveTraffic(requests,[...occupants,...states.map(state => ({ unit: state.unit,position: state.position }))],ports.legal,64);
   const accepted = new Map(resolution.accepted.map(item => [item.unit,item]));
   const next = states.map((state,index) => advance(plans[index]!,state,accepted.get(state.unit),tick,ports));
@@ -35,3 +36,11 @@ function advance(plan: TransitPlan,state: TransitState,move: TrafficRequest | un
   return { ...state,lastAt: tick,index,position: { ...move.to },fatigue,...(index === plan.path.length ? { arrivedAt: tick+1 } : {}) };
 }
 function edge(point: Position): boolean { return point.x === 0 || point.x === 49 || point.y === 0 || point.y === 49; }
+/** Unrequested bodies retain occupancy and recover fatigue, but cannot consume a route step. */
+function requestedTransitUnits(states: readonly TransitState[], requestedUnits: readonly string[] | undefined): ReadonlySet<string> {
+  const available = new Set(states.map(state => state.unit)), requested = requestedUnits ?? [...available];
+  if (requested.length > states.length || new Set(requested).size !== requested.length || requested.some(unit => !available.has(unit))) {
+    throw new Error('Invalid requested transit units');
+  }
+  return new Set(requested);
+}

@@ -78,3 +78,17 @@ test('forecast transit uses the same explicit stable order as native dispatch',(
   const result = advanceTransitFrame(plans,plans.map(item => initialTransitState(item,0)),0,[],ports);
   expect(result.resolution.accepted.map(item => item.unit)).toEqual(['native-z']);
 });
+
+test('only service-requested bodies move; stationary route holders still block and recover fatigue', () => {
+  const plans = [plan('a',p(10),[p(11)]),plan('b',p(11),[p(12)])];
+  const start = plans.map(item => initialTransitState(item,0)); start[1]!.fatigue = 2;
+  const before = JSON.stringify(start);
+  const waiting = advanceTransitFrame(plans,start,0,[],ports,['a']);
+  expect(waiting.states.map(state => [state.index,state.fatigue])).toEqual([[0,0],[0,0]]);
+  expect(waiting.resolution.denied).toEqual([{ unit: 'a',reason: 'dependency-blocked' }]);
+  const moving = advanceTransitFrame(plans,waiting.states,1,[],ports,['a','b']);
+  expect(moving.states.map(state => state.position.x)).toEqual([11,12]);
+  expect(JSON.stringify(start)).toBe(before);
+  expect(() => advanceTransitFrame(plans,start,0,[],ports,['absent'])).toThrow('requested transit');
+  expect(() => advanceTransitFrame(plans,start,0,[],ports,['a','a'])).toThrow('requested transit');
+});
