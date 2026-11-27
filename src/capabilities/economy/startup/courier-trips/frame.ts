@@ -25,17 +25,32 @@ export function advanceStartupCourierTrips(routes: readonly StartupCourierRoutes
 }
 function routeOf(routes: readonly StartupCourierRoutes[],request: string): StartupCourierRoutes { return routes.find(route => route.request === request)!; }
 function opening(route: StartupCourierRoutes): StartupCourierTrip {
+  if (route.opening) {
+    const value = route.opening;
+    return { request: route.request,phase: value.phase,leg: 'opening',serviceAt: value.readyAt,transit: initialTransitState(value.plan,value.readyAt,value.fatigue) };
+  }
   return { request: route.request,phase: 'collect',leg: 'approach',serviceAt: route.activeAt,transit: initialTransitState(route.approach,route.activeAt) };
 }
 function planOf(route: StartupCourierRoutes,trip: StartupCourierTrip,worker: StartupCourierState): TransitPlan {
-  return { ...route[trip.leg],weight: trip.leg === 'loaded' ? Math.ceil(worker.cargo/50) : 0 };
+  return { ...startupCourierTripPlan(route,trip),weight: worker.phase === 'deliver' ? Math.ceil(worker.cargo/50) : 0 };
 }
 function transition(route: StartupCourierRoutes,trip: StartupCourierTrip,worker: StartupCourierState,tick: number,beforeCargo: number): StartupCourierTrip {
-  if (trip.phase === worker.phase) return { ...trip,serviceAt: worker.phase === 'deliver' && worker.cargo < beforeCargo ? Math.max(trip.serviceAt,tick+worker.deliveryTicks) : trip.serviceAt };
+  if (trip.phase === worker.phase) return afterService(trip,worker,tick,beforeCargo);
   const leg = worker.phase === 'deliver' ? 'loaded' : 'empty',plan = route[leg];
   if (!withinRange(trip.transit.position,plan.origin,0)) throw new Error('Courier trip transition origin mismatch');
   const delay = worker.phase === 'deliver' ? worker.collectionTicks : worker.deliveryTicks+(worker.turnaroundTicks ?? 0);
   const readyAt = tick+delay;
   return { request: trip.request,phase: worker.phase,leg,serviceAt: readyAt,
     transit: { ...initialTransitState(plan,readyAt,trip.transit.fatigue),lastAt: tick } };
+}
+
+export function startupCourierTripPlan(route: StartupCourierRoutes,trip: StartupCourierTrip): TransitPlan {
+  const plan = trip.leg === 'opening' ? route.opening?.plan : route[trip.leg];
+  if (!plan) throw new Error('Missing courier opening route');
+  return plan;
+}
+
+function afterService(trip: StartupCourierTrip,worker: StartupCourierState,tick: number,beforeCargo: number): StartupCourierTrip {
+  const transferred = worker.phase === 'deliver' && worker.cargo < beforeCargo;
+  return { ...trip,serviceAt: transferred ? Math.max(trip.serviceAt,tick+worker.deliveryTicks) : trip.serviceAt };
 }

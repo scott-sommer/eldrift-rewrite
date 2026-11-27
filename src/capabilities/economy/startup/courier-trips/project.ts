@@ -1,5 +1,6 @@
+import { projectCourierRoute } from './project-route';
 import { copyPlain } from '../../../../core/plain-data';
-import { advanceStartupCourierTrips } from './frame';
+import { advanceStartupCourierTrips,startupCourierTripPlan } from './frame';
 import { validateCourierTrips } from './validation';
 import { validateTransitFrame } from '../../../movement/transit/validation';
 import { tileKey } from '../../../movement/traffic/model';
@@ -14,14 +15,14 @@ export function createStartupProjectMotion(input: StartupDeliveryInput,saved?: u
   const ports = { legal: (request: { to: Parameters<typeof tileKey>[0]; via?: Parameters<typeof tileKey>[0] }) => terrain.has(tileKey(request.to)) && terrain.has(tileKey(request.via ?? request.to)),
     terrain(position: Parameters<typeof tileKey>[0]) { const rate = terrain.get(tileKey(position)); if (rate === undefined) throw new Error('Missing physical courier terrain'); return rate; } };
   function routesOf(births: readonly StartupScheduledBirth[]): StartupCourierRoutes[] {
-    return motion.routes.flatMap(route => { const birth = births.find(birth => birth.request === route.request); return birth ? [{ ...route,activeAt: birth.activeAt }] : []; });
+    return motion.routes.flatMap(route => projectCourierRoute(input,route,motion.openings,births));
   }
   let trips: StartupCourierTrip[] = [];
   if (saved !== undefined) {
-    trips = readMotionTrips(saved,workers,births,tick);
+    trips = readMotionTrips(saved,workers,routesOf(births),tick);
     const routes = routesOf(births);
     validateCourierTrips(routes,trips,workers,tick);
-    const plans = trips.map(trip => routes.find(route => route.request === trip.request)![trip.leg]);
+    const plans = trips.map(trip => startupCourierTripPlan(routes.find(route => route.request === trip.request)!,trip));
     validateTransitFrame(plans,trips.map(trip => trip.transit),tick);
   }
   return {

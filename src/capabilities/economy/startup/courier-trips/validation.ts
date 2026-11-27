@@ -1,3 +1,4 @@
+import { validateOpeningProgress } from './opening-state';
 import { withinRange } from '../../../movement/path-model';
 import type { StartupCourierState } from '../delivery-model';
 import type { StartupCourierRoutes, StartupCourierTrip } from './model';
@@ -10,7 +11,10 @@ export function validateCourierTrips(routes: readonly StartupCourierRoutes[],pre
     validateCourierRoute(route);
     if (tick >= route.activeAt && tick < worker.expiresAt && !previous.some(trip => trip.request === worker.request)) validateOpening(worker,route,tick);
   }
-  for (const trip of previous) validateTrip(trip,workers,tick);
+  for (const trip of previous) {
+    validateTrip(trip,workers,tick);
+    validateOpeningProgress(routes.find(route => route.request === trip.request)!,trip,workers.find(worker => worker.request === trip.request)!,tick);
+  }
 }
 export function validateCourierRoute(route: StartupCourierRoutes): void {
   if (!Number.isSafeInteger(route.activeAt) || route.activeAt < 0) throw new Error('Invalid courier route clock');
@@ -23,11 +27,13 @@ export function validateCourierRoute(route: StartupCourierRoutes): void {
 function validateTrip(trip: StartupCourierTrip,workers: readonly StartupCourierState[],tick: number): void {
   const worker = workers.find(worker => worker.request === trip.request);
   if (!worker || worker.phase !== trip.phase || trip.transit.unit !== trip.request) throw new Error('Courier trip ownership mismatch');
-  if (!['approach','empty','loaded'].includes(trip.leg) || !Number.isSafeInteger(trip.serviceAt) || trip.serviceAt < 0) throw new Error('Invalid courier trip state');
-  if ((trip.leg === 'loaded') !== (trip.phase === 'deliver')) throw new Error('Courier trip phase mismatch');
+  if (!['approach','empty','loaded','opening'].includes(trip.leg) || !Number.isSafeInteger(trip.serviceAt) || trip.serviceAt < 0) throw new Error('Invalid courier trip state');
+  if (trip.leg !== 'opening' && (trip.leg === 'loaded') !== (trip.phase === 'deliver')) throw new Error('Courier trip phase mismatch');
   if (trip.transit.lastAt !== tick-1) throw new Error('Nonconsecutive courier trip frame');
 }
 
 function validateOpening(worker: StartupCourierState,route: StartupCourierRoutes,tick: number): void {
-  if (tick !== route.activeAt || worker.phase !== 'collect' || worker.cargo !== 0) throw new Error('Missing courier opening history');
+  if (tick !== route.activeAt) throw new Error('Missing courier opening history');
+  const expected = route.opening ?? { phase: 'collect',cargo: 0 };
+  if (worker.phase !== expected.phase || worker.cargo !== expected.cargo) throw new Error('Invalid courier opening cargo/phase');
 }

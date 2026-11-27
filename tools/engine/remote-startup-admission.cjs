@@ -39,6 +39,12 @@ function verifyStartupAdmission(memory,rows) {
   const motion = memory.startupMotionProof; assert.ok(motion);
   assert.equal(motion.savedAt,149); assert.equal(motion.resumedAt,150); assert.equal(motion.format,9); assert.equal(motion.tripCount,1);
   assert.deepEqual(motion.result,motion.uninterrupted); assert.ok(motion.result.delivery.deliveredEnergy > 0);
+  const initialMotion = memory.startupInitialMotionProof; assert.ok(initialMotion);
+  assert.equal(initialMotion.savedAt,149); assert.equal(initialMotion.resumedAt,150); assert.equal(initialMotion.format,10);
+  assert.equal(initialMotion.birthCount,0); assert.equal(initialMotion.tripCount,1);
+  assert.deepEqual(initialMotion.result,initialMotion.uninterrupted);
+  assert.equal(initialMotion.result.delivery.deliveredEnergy,32); assert.equal(initialMotion.result.delivery.firstDeliveryAt,7);
+  assert.equal(initialMotion.result.cash.birthEnergy,0);
   const proof = memory.startupProjectProof; assert.ok(proof);
   assert.equal(proof.savedAt,149); assert.equal(proof.resumedAt,150);
   assert.equal(proof.initialThrough,43); assert.equal(proof.pendingBefore,1);

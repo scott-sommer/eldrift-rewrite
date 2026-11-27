@@ -1,3 +1,4 @@
+import { prepareCourierOpenings,physicalCourierIdentity } from './project-openings';
 import { validateCourierRoute } from './validation';
 import { createTransitPlan } from '../../../movement/transit/plan';
 import { validWorldPosition } from '../../../../core/geometry/world-position';
@@ -7,13 +8,12 @@ import type { StartupProjectMotionInput } from './project-model';
 /** Geometry is input-bound; this validates the strategy, never grants financial authority. */
 export function prepareStartupProjectMotion(input: StartupDeliveryInput): StartupProjectMotionInput {
   const motion = input.motion!;
-  if (input.initial) throw new Error('Physical courier motion requires explicit opening trip history');
-  if (motion.routes.length !== input.couriers.length || motion.routes.length > 16) throw new Error('Physical courier route count');
+  const openings = prepareCourierOpenings(input);
+  if (motion.routes.length !== input.couriers.length+(input.initial?.couriers.length ?? 0) || motion.routes.length > 16) throw new Error('Physical courier route count');
   if (new Set(motion.routes.map(route => route.request)).size !== motion.routes.length) throw new Error('Duplicate physical courier route');
   validateTerrain(motion); validateBlockers(motion);
   const routes = motion.routes.map(route => {
-    const request = input.project.spawning.requests.find(request => request.id === route.request);
-    if (!request || !input.couriers.some(worker => worker.request === route.request)) throw new Error('Unknown physical courier');
+    const request = physicalCourierIdentity(input,route.request);
     const recovery = request.body.filter(part => part === 'move').length*2;
     const plans = [route.approach,route.empty,route.loaded];
     if (plans.some(plan => (plan.order ?? plan.unit) !== request.name)) throw new Error('Physical courier order/name mismatch');
@@ -22,7 +22,7 @@ export function prepareStartupProjectMotion(input: StartupDeliveryInput): Startu
     validateCourierRoute({ ...prepared,activeAt: 0 });
     return prepared;
   });
-  return { ...motion,routes };
+  return { ...motion,routes,...(openings ? { openings } : {}) };
 }
 function validateTerrain(motion: StartupProjectMotionInput): void {
   if (motion.terrain.length > 10000) throw new Error('Physical courier terrain bound');
