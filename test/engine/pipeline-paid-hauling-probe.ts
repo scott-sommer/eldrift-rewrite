@@ -1,3 +1,4 @@
+import { createPaidHomePhysicalInventory } from '../../src/app/remotes/startup/hauling-state/inventory';
 import { createPaidHaulingForecastState } from '../../src/app/remotes/startup/hauling-state/seed';
 import { haulingDefinitions } from '../../src/app/remotes/startup/hauling-state/opening';
 import type { PaidHomeObservation } from '../../src/app/remotes/startup/home-observation/model';
@@ -20,6 +21,6 @@ export function probePaidHaulingSeed(home: PaidHomeObservation) {
       remaining: record ? record.request.quantity-record.receipts.reduce((total,receipt) => total+receipt.amount,0) : null,
       receipts: record?.receipts ?? [],journal: createTransferJournal(seed.state,worker.unit).peek() ?? null };
   });
-  return { workers,claims: createQuantityReservations(seed.state).list(home.observedAt) };
+  return { workers,inventories: createPaidHomePhysicalInventory(home).snapshot(),claims: createQuantityReservations(seed.state).list(home.observedAt) };
 }
 export type PaidHaulingSeedProbe = ReturnType<typeof probePaidHaulingSeed>;

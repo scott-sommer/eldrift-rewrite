@@ -26,7 +26,7 @@ function observe(state: StatePort,structures: StartupStructures,request: PaidHom
   const inventories = joinPaidHomeInventories(assets.inventories,sources);
   const claims = paidHomeClaims(assets.claims,assets.pools,sources);
   if (!guard() || tick !== Game.time) return { status: 'deferred',reason: 'home-observation-frame' };
-  return { status: 'ready',observation: copyPlain({ observedAt: tick,home: request.home,endpoint: assets.endpoint,stock: assets.stock,spawns: assets.spawns,inventories,workers: assets.workers,sources,claims }) };
+  return { status: 'ready',observation: copyPlain({ observedAt: tick,home: request.home,endpoint: assets.endpoint,stock: assets.stock,spawns: assets.spawns,inventories,bodies: assets.bodies,workers: assets.workers,sources,claims }) };
 }
 function validRequest(request: PaidHomeObservationRequest): boolean {
   if (!request.home || !request.endpoint || !request.groups.length || request.groups.length > 8) return false;

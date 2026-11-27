@@ -7,6 +7,15 @@ function verifyPaidHomeSnapshots(memory,evidence) {
     assert.equal(row.result.status,'ready'); const home = row.result.observation;
     assert.equal(new Set(home.inventories.map(inventory => inventory.id)).size,home.inventories.length);
     assert.ok(home.inventories.every(inventory => inventory.usedCapacity >= inventory.energy));
+    assert.equal(home.bodies.length,home.workers.length);
+    assert.equal(new Set(home.bodies.map(body => body.unit)).size,home.bodies.length);
+    assert.deepEqual(row.seed.inventories,[...home.inventories,...home.bodies.map(body => body.inventory)]);
+    for (const body of home.bodies) {
+      const worker = home.workers.find(worker => worker.name === body.name); assert.ok(worker);
+      assert.equal(body.inventory.id,body.unit); assert.equal(body.inventory.energy,worker.energy);
+      assert.equal(body.inventory.usedCapacity,worker.usedCapacity); assert.equal(body.inventory.room,worker.position.room);
+      assert.equal(body.inventory.active,!worker.spawning);
+    }
     assert.equal(home.observedAt,row.tick); assert.equal(home.home,'W0N1'); assert.equal(home.sources.length,1);
     const all = [...home.claims.owned,...home.claims.external]; owned += home.claims.owned.length;
     assert.equal(new Set(all.map(claim => claim.id)).size,all.length);
@@ -27,6 +36,8 @@ function verifyPaidHomeSnapshots(memory,evidence) {
         assert.equal(courier.opening.observed.fatigue,courier.route.fatigue);
         assert.deepEqual(courier.opening.observed.position,courier.route.cursor.position);
         const worker = home.workers.find(worker => worker.name === courier.paid.request); assert.ok(worker); assert.equal(worker.energy,courier.route.energy);
+        const body = home.bodies.find(body => body.unit === courier.opening.observed.unit); assert.ok(body);
+        assert.equal(body.inventory.capacity,courier.paid.capacity);
         const seed = row.seed.workers.find(worker => worker.name === courier.paid.request); assert.ok(seed);
         assert.equal(seed.source,source.cohort.source); assert.equal(seed.unit,courier.opening.observed.unit);
         assert.deepEqual(seed.task,courier.opening.observed.task?.record ?? null);

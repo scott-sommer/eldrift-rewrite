@@ -14,8 +14,9 @@ export interface PaidHomeSourceObservation {
   couriers: { paid: StartupPaidWorker; opening: PaidCourierOpening; route: PaidCourierActiveRoute | null }[];
 }
 export interface PaidHomeInventory { id: string; room: string; energy: number; capacity: number; usedCapacity: number; freeEnergyCapacity: number; active: boolean }
+export interface PaidHomeBody { name: string; unit: string; inventory: PaidHomeInventory }
 export interface PaidHomeObservation {
   observedAt: number; home: string; endpoint: NativeStartupFacts['endpoint']; stock: NativeStartupFacts['stock']; spawns: NativeStartupFacts['spawns'];
-  inventories: PaidHomeInventory[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;
+  inventories: PaidHomeInventory[]; bodies: PaidHomeBody[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;
 }
 export type PaidHomeObservationResult = { status: 'ready'; observation: PaidHomeObservation } | { status: 'deferred'; reason: string };

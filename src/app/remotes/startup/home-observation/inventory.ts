@@ -12,7 +12,7 @@ export function joinPaidHomeInventories(home: readonly PaidHomeInventory[],sourc
   }
   return [...inventory.values()].sort((a,b) => a.id.localeCompare(b.id));
 }
-export function observePaidHomeInventory(target: AnyStoreStructure): PaidHomeInventory {
+export function observePaidHomeInventory(target: AnyStoreStructure | Creep): PaidHomeInventory {
   return { id: target.id,room: target.pos.roomName,energy: target.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,capacity: target.store.getCapacity(RESOURCE_ENERGY) ?? 0,
-    usedCapacity: nativeUsedCapacity(target.store),freeEnergyCapacity: target.store.getFreeCapacity(RESOURCE_ENERGY) ?? 0,active: target.isActive() };
+    usedCapacity: nativeUsedCapacity(target.store),freeEnergyCapacity: target.store.getFreeCapacity(RESOURCE_ENERGY) ?? 0,active: 'isActive' in target ? target.isActive() : !target.spawning };
 }
