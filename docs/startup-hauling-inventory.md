@@ -14,9 +14,9 @@ The frozen script observation boundary follows [Screeps simultaneous-action docu
 
 ## Evidence
 
--19 relevant tests across inventory/transfer/service/state files passed in389ms. They exercise the actual private task runner and journal, clipped and multi-load settlement, mixed stores, energy conservation, action-owner contention, approach without transfer, explicit settlement order, and detached/atomic frame behavior.
--4 focused pinned-processor comparisons passed in197ms: shared withdrawals with an intervening deposit under two orders, mixed-resource receiving-capacity clipping, and insufficient sender stock. These invoke upstream processor functions with fixture scopes; they do not run a complete engine tick or establish its global processing order.
--Fixed smoke76 tests/15 files passed in565ms. Type checking, lint, architecture boundaries, Lizard (1141 production/953 test files; zero violations) and packaged bundle passed. Full units remain reserved for milestone/ticket closure.
+- 19 relevant tests across inventory/transfer/service/state files passed in389ms. They exercise the actual private task runner and journal, clipped and multi-load settlement, mixed stores, energy conservation, action-owner contention, approach without transfer, explicit settlement order, and detached/atomic frame behavior.
+- 4 focused pinned-processor comparisons passed in197ms: shared withdrawals with an intervening deposit under two orders, mixed-resource receiving-capacity clipping, and insufficient sender stock. These invoke upstream processor functions with fixture scopes; they do not run a complete engine tick or establish its global processing order.
+- Fixed smoke76 tests/15 files passed in565ms. Type checking, lint, architecture boundaries, Lizard (1141 production/953 test files; zero violations) and packaged bundle passed. Full units remain reserved for milestone/ticket closure.
 
 Commands: `npx vitest run test/capabilities/energy-inventory.test.ts test/app/remotes/paid-hauling-transfer.test.ts test/app/remotes/paid-hauling-service.test.ts test/app/remotes/paid-hauling-state.test.ts`; `npx vitest run --config tools/processors/vitest.config.mjs tools/processors/hauling.check.mjs`; `npm run quality`; `npm run test:smoke`; `npm run check:bundle`.
 
