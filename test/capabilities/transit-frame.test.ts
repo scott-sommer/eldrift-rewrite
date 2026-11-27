@@ -67,3 +67,8 @@ test('uncontended frames preserve the previously qualified static native travel 
     expect(states[0]!.arrivedAt).toBe(expected);
   }
 });
+
+test('a restored arrival marker cannot bypass an unfinished route cursor',() => {
+  const input = plan('a',p(10),[p(11)]),state = initialTransitState(input,0);
+  expect(() => advanceTransitFrame([input],[{ ...state,arrivedAt: 0 }],0,[],ports)).toThrow('arrival/cursor');
+});
