@@ -1,3 +1,4 @@
+import type { StaticTravelLeg } from '../../../capabilities/movement/path-model';
 import { pathTravelClock } from '../../../adapters/screeps/path-travel-clock';
 import { validWorldPosition } from '../../../core/geometry/world-position';
 import { plannedMobility } from '../../../adapters/screeps/travel-estimate';
@@ -25,7 +26,7 @@ export function measureRemoteTravel(context: RemoteEstimateContext, origin: Posi
     rooms: [...rooms],operations: mining.operations+outbound.operations+inbound.operations+returningMiner.operations };
 }
 export function measureRemoteLeg(context: Pick<RemoteEstimateContext, 'intel'>, leg: RemoteLegRequest, rooms: string[], maximumOps: number,
-  snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean) {
+  snapshots: ReturnType<typeof createMatrixSnapshots>, guard: () => boolean): ({ status: 'complete' } & StaticTravelLeg) | { status: 'deferred'; reason: string } {
   if (!guard()) return { status: 'deferred' as const,reason: 'admission' };
   const mobility = plannedMobility(leg.body,leg.load);
   if (!mobility.mobile) return { status: 'deferred' as const,reason: 'immobile' };
@@ -37,7 +38,7 @@ export function measureRemoteLeg(context: Pick<RemoteEstimateContext, 'intel'>, 
   if (result.status !== 'complete') return { status: 'deferred' as const,reason: 'path-incomplete' };
   const ticks = leg.clock === 'action' ? pathTravelClock(leg.origin,result.path,mobility,point => terrainRate(point,matrices,mobility.roadCost)) : result.cost;
   if (ticks === undefined) return { status: 'deferred' as const,reason: 'path-clock' };
-  return { status: 'complete' as const,ticks,operations: result.operations,arrival: result.path.at(-1) ?? leg.origin };
+  return { status: 'complete' as const,ticks,operations: result.operations,arrival: result.path.at(-1) ?? leg.origin,path: result.path.map(point => ({ ...point })) };
 }
 
 /** Request-local overlays never change shared topology snapshots or another body's measurement. */

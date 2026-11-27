@@ -11,6 +11,10 @@ function verifyStartupTravel(probes) {
   assert.deepEqual(result.legs.map(leg => leg.kind),['miner-approach','miner-return','courier-approach','courier-empty','courier-loaded']);
   const targets = [plan.station,plan.endpoint.deposit,plan.collection,plan.collection,plan.endpoint.deposit];
   result.legs.forEach((leg,index) => { assert.deepEqual(leg.arrival,targets[index]); assert.ok(leg.ticks > 0 && Number.isSafeInteger(leg.ticks)); });
+  for (const leg of result.legs) {
+    assert.ok(Array.isArray(leg.path) && leg.path.length > 0 && leg.path.length <= 2500,'native travel retains bounded measured geometry');
+    assert.deepEqual(leg.path.at(-1),leg.arrival);
+  }
   assert.equal(result.operations,result.legs.reduce((sum,leg) => sum+leg.operations,0));
   assert.ok(result.operations > 0);
   assert.notDeepEqual(plan.spawn.exit,plan.endpoint.deposit);

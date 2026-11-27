@@ -24,5 +24,9 @@ const schema: StateSchema<Progress> = { owner: 'remotes',version: 1,migrations: 
   } };
 export function validStartupTravelLeg(value: unknown): value is StaticTravelLeg { return validLeg(value); }
 function validLeg(value: unknown): value is StaticTravelLeg {
-  return object(value) && natural(value.ticks) && value.ticks <= 1000000 && natural(value.operations) && validWorldPosition(value.arrival);
+  return object(value) && natural(value.ticks) && value.ticks <= 1000000 && natural(value.operations) && validWorldPosition(value.arrival) && validPath(value.path);
+}
+
+function validPath(value: unknown): boolean {
+  return value === undefined || Array.isArray(value) && value.length <= 2500 && value.every(validWorldPosition);
 }

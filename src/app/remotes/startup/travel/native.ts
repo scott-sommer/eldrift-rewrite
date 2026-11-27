@@ -17,7 +17,7 @@ export function createNativeStartupTravel(state: StatePort, structures: StartupS
     const matrices = prepareRemoteMatrices(context,context.rooms,1,snapshots);
     const points = [context.plan.spawn.exit,context.plan.station,context.plan.collection,context.plan.endpoint.deposit];
     if (!points.every(point => walkable(point,matrices)) || !guard()) return { status: 'deferred' as const,reason: 'service-tile',completedLegs: 0 };
-    const binding = JSON.stringify(['startup-fixed-service-v2',matrices.version,context.route,request.traversal,options.maximumOps,context.facts.authority && [context.facts.authority.assignment,context.facts.authority.generation]]);
+    const binding = JSON.stringify(['startup-fixed-service-v3',matrices.version,context.route,request.traversal,options.maximumOps,context.facts.authority && [context.facts.authority.assignment,context.facts.authority.generation]]);
     const measure = createStartupTravel(state,context.plan.home,(leg,admitted) => measureRemoteLeg(context,{ ...leg,clock: 'action' },context.rooms,options.maximumOps,snapshots,admitted));
     const result = measure(context.plan,binding,Game.time,maximumLegs,guard);
     return result.status === 'complete' ? { ...result,observedAt: Game.time,facts: context.facts,rooms: context.rooms } : result;

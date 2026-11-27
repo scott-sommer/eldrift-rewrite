@@ -76,3 +76,19 @@ test('the detached request cannot be changed while a measurement is running',() 
   const result = service(f.plan,'topology',1,5,() => true); expect(result.status).toBe('complete'); if (result.status !== 'complete') return;
   expect(result.plan.station.x).toBe(5); expect(result.legs[0]!.arrival.x).toBe(5);
 });
+
+test('measured path geometry is copied, persisted and revalidated after JSON reload',() => {
+  const f = fixture();
+  const path = [47,48,49].map(x => ({ room: 'W0N1',x,y: 24 }));
+  path.push(...[0,1,2,3,4,5].map(x => ({ room: 'E0N1',x,y: 24 })));
+  const advance = createStartupTravel(f.state,f.plan.home,request => ({ ...measured(request),path }));
+  expect(advance(f.plan,'geometry',1,1,() => true)).toMatchObject({ completedLegs: 1 });
+  path[0]!.x = 10;
+  const restored = createMemoryPort(() => JSON.parse(JSON.stringify(f.root)));
+  const retained = createStartupTravelProgress(restored,f.plan.home).read().legs[0]!;
+  expect(retained.path?.[0]?.x).toBe(47);
+  const resumed = createStartupTravel(restored,f.plan.home,measured);
+  expect(resumed(f.plan,'geometry',2,0,() => true)).toMatchObject({ completedLegs: 1 });
+  const invalid = createStartupTravel(f.state,f.plan.home,request => ({ ...measured(request),path }));
+  expect(() => invalid(f.plan,'changed-geometry',3,1,() => true)).toThrow('path');
+});

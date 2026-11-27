@@ -1,3 +1,4 @@
+import { validStaticPath } from '../../../capabilities/movement/static-path';
 import { copyPlain } from '../../../persistence/plain-data';
 import { withinRange } from '../../../capabilities/movement/path-model';
 import type { StaticTravelLeg } from '../../../capabilities/movement/path-model';
@@ -20,8 +21,8 @@ export function createStartupTravel(state: StatePort, home: string, measure: Sta
       if (measured === maximumLegs) return { status: 'deferred',reason: 'leg-budget',completedLegs: legs.length };
       const request = requests[legs.length]!, result = measure(request,guard);
       if (result.status !== 'complete') return { ...result,completedLegs: legs.length };
-      requireMeasurement(result,request.destination);
-      legs.push({ ticks: result.ticks,operations: result.operations,arrival: { ...result.arrival } }); measured++;
+      requireMeasurement(result,request.destination,request.origin);
+      legs.push({ ticks: result.ticks,operations: result.operations,arrival: { ...result.arrival },...(result.path ? { path: result.path.map(point => ({ ...point })) } : {}) }); measured++;
       if (!store.save(record.revision,tick,identity,legs)) return { status: 'deferred',reason: 'progress-conflict',completedLegs: legs.length-1 };
       record = store.read();
     }
@@ -34,11 +35,12 @@ function validateBudget(plan: StartupTravelPlan, home: string, binding: string, 
   if (!Number.isSafeInteger(maximumLegs) || maximumLegs < 0 || maximumLegs > 5) throw new Error('Invalid startup travel leg budget');
 }
 
-function requireMeasurement(result: StaticTravelLeg, destination: StartupTravelPlan['station']): void {
+function requireMeasurement(result: StaticTravelLeg, destination: StartupTravelPlan['station'], origin: StartupTravelPlan['station']): void {
   if (!validStartupTravelLeg(result) || !withinRange(result.arrival,destination,0)) throw new Error('Invalid startup travel measurement');
+  if (result.path && !validStaticPath(origin,result.path,result.arrival)) throw new Error('Invalid startup travel path');
 }
 function retainedLegs(record: ReturnType<ReturnType<typeof createStartupTravelProgress>['read']>, requests: ReturnType<typeof startupTravelLegs>, identity: string) {
   if (record.identity !== identity) return [];
-  record.legs.forEach((leg,index) => requireMeasurement(leg,requests[index]!.destination));
+  record.legs.forEach((leg,index) => requireMeasurement(leg,requests[index]!.destination,requests[index]!.origin));
   return record.legs;
 }
