@@ -1,3 +1,5 @@
+import { observeSharedHome } from './pipeline-shared-home';
+import type { SharedHomeApproval } from './pipeline-shared-home';
 import type { PathProbeMemory } from './pipeline-path-probe';
 import { changeConfiguredPolicy, configuredStartupSettings } from './pipeline-configured-policy';
 import { createStartupApprovals } from '../../src/features/remotes/startup/approvals/catalog';
@@ -8,7 +10,7 @@ import { operatorSchema } from '../../src/features/operator/state';
 import type { StatePort } from '../../src/persistence/versioned-state';
 import type { CalibrationMemory } from './pipeline-cohort-calibration';
 import type { PipelineServiceMemory } from './pipeline-service-policy';
-export interface ConfiguredPipelineMemory extends CalibrationMemory, PipelineServiceMemory, PathProbeMemory { pipelineConfiguredMode?: boolean; pipelineConfiguredTraceMode?: boolean; pipelineConfiguredActorTraceMode?: boolean; pipelineConfiguredCourierTraceMode?: boolean; pipelineConfiguredYieldTraceMode?: boolean; pipelineStartupTrace?: { tick: number; phase: string; owner: string; cpu: number }[]; pipelineConfiguredVariant?: 'refused' | 'changed' | 'budget'; pipelineConfiguredRevisitRequestedAt?: number; pipelineConfiguredChanges?: number[]; pipelineConfiguredRejected?: { observedAt: number; through: number }[]; pipelineConfiguredPlanning?: { tick: number; through: number; observedAt: number }[]; pipelineConfiguredApproval?: { approvedAt: number; observedAt: number } }
+export interface ConfiguredPipelineMemory extends CalibrationMemory, PipelineServiceMemory, PathProbeMemory { pipelineConfiguredMode?: boolean; pipelineConfiguredTraceMode?: boolean; pipelineConfiguredActorTraceMode?: boolean; pipelineConfiguredCourierTraceMode?: boolean; pipelineConfiguredYieldTraceMode?: boolean; pipelineStartupTrace?: { tick: number; phase: string; owner: string; cpu: number }[]; pipelineConfiguredVariant?: 'refused' | 'changed' | 'budget' | 'shared'; pipelineSharedApprovals?: SharedHomeApproval[]; pipelineConfiguredRevisitRequestedAt?: number; pipelineConfiguredChanges?: number[]; pipelineConfiguredRejected?: { observedAt: number; through: number }[]; pipelineConfiguredPlanning?: { tick: number; through: number; observedAt: number }[]; pipelineConfiguredApproval?: { approvedAt: number; observedAt: number } }
 /** Test-only configuration and passive evidence collection; no proposal, queue, selection or approval publication. */
 export function observeConfiguredPipeline(state: StatePort): void {
   const memory = Memory as ConfiguredPipelineMemory; if (!memory.pipelineConfiguredMode) return;
@@ -30,6 +32,7 @@ export function observeConfiguredPipeline(state: StatePort): void {
     }
     return;
   }
+  if (memory.pipelineConfiguredVariant === 'shared') { observeSharedHome(state,memory); return; }
   if (memory.pipelineCalibration) return;
   const approvals = createStartupApprovals(state,'W0N1'), approval = approvals.read().approvals[0]; if (!approval) return;
   const { room,source,generation,binding,observedAt,expiresAt } = approval.job, input = decodeStartupPlanningInput(approval.job.input);

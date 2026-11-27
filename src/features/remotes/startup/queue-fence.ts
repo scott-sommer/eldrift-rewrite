@@ -1,3 +1,4 @@
+import type { RemoteStartupAdmission } from '../../../capabilities/spawning/admission';
 import type { StartupObservedBirth } from './candidates/birth-admission';
 import type { SpawnRequest } from '../../../capabilities/spawning/request';
 import { sameSpawnRequest } from '../../../capabilities/spawning/placement';
@@ -39,4 +40,13 @@ function paidClock(current: Readonly<SpawnRequest>, proposed: SpawnRequest, birt
 }
 function paidIdentity(current: Readonly<SpawnRequest>, birth: StartupObservedBirth): boolean {
   return birth.owner === current.owner && birth.home === (current.home ?? current.room) && JSON.stringify(birth.body) === JSON.stringify(current.body);
+}
+
+/** One home publishes a paid cohort before staging another; each home remains independent. */
+export function startupQueueHasUnpaidCohort(state: StatePort, home: string, tick: number, observe: (requests: readonly SpawnRequest[]) => readonly StartupObservedBirth[]): boolean {
+  const queued = peekState(state,'spawning/'+home,spawnQueueSchema(home))?.requests ?? [];
+  const pending = queued.filter((request): request is SpawnRequest & { admission: RemoteStartupAdmission } => request.admission?.kind === 'remote-startup' && request.expiresAt > tick);
+  const births = observe(pending);
+  return pending.some(request => !births.some(birth => birth.request === request.id && paidIdentity(request,birth)
+    && birth.startAt >= request.admission!.observedAt && birth.startAt <= tick));
 }

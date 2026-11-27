@@ -1,3 +1,5 @@
+import { startupQueueHasUnpaidCohort } from '../../../../features/remotes/startup/queue-fence';
+import { observeStartupBirths } from '../../../../adapters/screeps/startup-birth-observation';
 import type { EconomicApprovalReader } from './context';
 import type { EconomicProposalStaging } from './staging';
 import { createStartupPlanningJob } from '../../../../features/remotes/startup/planning/runner';
@@ -32,7 +34,8 @@ export function prepareEconomicCohort(state: StatePort, structures: StartupStruc
   const accepted = advanceEconomicProposal(state,profile.home,pending,config,guard);
   trace(profile,accepted ? 'advance:accepted' : 'advance:waiting'); return accepted;
 }
-function canStartHomeJob(state: StatePort, profile: Readonly<RemoteFleetProfile>): boolean {
+export function canStartHomeJob(state: StatePort, profile: Readonly<RemoteFleetProfile>): boolean {
+  if (startupQueueHasUnpaidCohort(state,profile.home,Game.time,observeStartupBirths)) return false;
   const record = createStartupPlanningJob(state,profile.home).read(); if (record.clock === Game.time) return false;
   const job = record.job; if (!job || job.expiresAt < Game.time) return true;
   return createStartupApprovals(state,profile.home).read().approvals.some(approval => approval.job.observedAt === job.observedAt && approval.job.binding === job.binding && approval.job.room === job.room && approval.job.source === job.source);

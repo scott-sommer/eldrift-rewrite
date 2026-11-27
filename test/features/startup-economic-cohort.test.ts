@@ -1,4 +1,5 @@
-import { startupQueueMatches } from '../../src/features/remotes/startup/queue-fence';
+import { canStartHomeJob } from '../../src/app/remotes/startup/economic/prepare';
+import { startupQueueHasUnpaidCohort, startupQueueMatches } from '../../src/features/remotes/startup/queue-fence';
 import { createStartupCohortMaintenance } from '../../src/features/remotes/startup/candidates/cohort-maintenance';
 import { missingStartupBirths } from '../../src/app/remotes/startup/economic/proposals';
 import { startupFixture } from '../fixtures/remote-startup';
@@ -117,4 +118,28 @@ test('an observed paid attempt can remain queued until reconciliation without re
   expect(f.root()).toBe(before);
   const changed = { ...current,births: [{ ...current.births[0]!,body: ['move' as const] }] };
   expect(startupQueueMatches(f.state,f.home,f.query,{ births: changed.births })).toBe(false);
+});
+
+test('a second source waits for the current home cohort payments instead of invalidating their priced queue',() => {
+  const f = economicCohortFixture();
+  for (const tick of [2,3,4,5]) { f.at(tick); advanceEconomicProposal(f.state,f.home,f.context,f.config,() => true); }
+  f.at(6); const second = { home: f.home,room: f.query.room,source: 'second-source',generation: 1 } as RemoteFleetProfile;
+  const before = f.root(); expect(canStartHomeJob(f.state,second)).toBe(false); expect(f.root()).toBe(before);
+});
+
+test('home cohort coordination resumes after observed payment and isolates other homes, ordinary requests and expired records',() => {
+  const f = economicCohortFixture();
+  for (const tick of [2,3,4,5]) { f.at(tick); advanceEconomicProposal(f.state,f.home,f.context,f.config,() => true); }
+  const queue = createSpawnQueue(f.state,f.home), pending = queue.list(), observe = vi.fn(() => [] as { request: string; owner: string; home: string; body: typeof pending[number]['body']; startAt: number; activeAt: number }[]);
+  f.at(6); const before = f.root();
+  expect(startupQueueHasUnpaidCohort(f.state,f.home,6,observe)).toBe(true);
+  const births = pending.map(request => ({ request: request.id,owner: request.owner,home: f.home,body: request.body,startAt: 5,activeAt: 5+request.body.length*3 }));
+  observe.mockReturnValue(births.slice(0,1)); expect(startupQueueHasUnpaidCohort(f.state,f.home,6,observe)).toBe(true);
+  observe.mockReturnValue(births); expect(startupQueueHasUnpaidCohort(f.state,f.home,6,observe)).toBe(false);
+  observe.mockReturnValue(births.map(birth => ({ ...birth,owner: 'changed' }))); expect(startupQueueHasUnpaidCohort(f.state,f.home,6,observe)).toBe(true);
+  expect(startupQueueHasUnpaidCohort(f.state,'W1N1',6,observe)).toBe(false); expect(f.root()).toBe(before);
+  for (const request of pending) queue.cancel(request.id,request.owner);
+  queue.submit({ id: 'ordinary',name: 'ordinary',owner: 'household',room: f.home,body: ['move'],priority: 0,readyAt: 1,expiresAt: 100 });
+  queue.submit({ ...pending[0]!,expiresAt: 6,readyAt: 1 });
+  expect(startupQueueHasUnpaidCohort(f.state,f.home,6,() => [])).toBe(false);
 });

@@ -7,6 +7,7 @@ import type { ConfiguredPipelineMemory } from './pipeline-configured';
 import type { RuntimeConfig } from '../../src/config/model';
 export function configuredStartupSettings(variant: ConfiguredPipelineMemory['pipelineConfiguredVariant']): Partial<RuntimeConfig> {
   const base = { remoteStartupPolicy: 'economic' as const,remoteStartupHorizon: variant === 'changed' ? 650 : 767,remoteStartupFrames: 32,remoteStartupPlanningLead: 30 };
+  if (variant === 'shared') return { ...base,remoteStartupHorizon: 300 };
   if (variant === 'refused') return { ...base,remoteStartupMinimumMargin: 1000000 };
   if (variant === 'budget') return { ...base,remoteWorkerCpuBudget: 5,remoteStartupFrames: 20,remoteStartupPlanningLead: 100 };
   return base;
@@ -50,6 +51,7 @@ export const captureStartupTrace: RemoteStartupProbe = (profile,phase) => {
 
 /** A calibration campaign cannot withdraw productive service before its own frozen forecast ends. */
 export function configuredWithdrawalAt(memory: ConfiguredPipelineMemory): number {
+  if (memory.pipelineConfiguredVariant === 'shared') return Math.max(800,...(memory.pipelineSharedApprovals ?? []).map(row => row.cutoff+1));
   const proof = memory.pipelineCalibration;
   return memory.pipelineConfiguredMode && proof ? Math.max(800,proof.quote.observedAt+proof.horizon+1) : 800;
 }

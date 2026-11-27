@@ -2,11 +2,15 @@ const { verifyPipelineLabor } = require('./remote-pipeline-labor.cjs');
 const assert = require('node:assert/strict');
 const { reservationPopulationWorld } = require('./reservation-population.cjs');
 const { reloadStampDraft } = require('./stamp-draft.cjs');
-async function remotePipelineWorld(server,bot,labor = false,calibration = false) {
+async function remotePipelineWorld(server,bot,labor = false,calibration = false,shared = false) {
   await reservationPopulationWorld(server,bot);
   const { db } = await server.world.load();
   await db['rooms.objects'].removeWhere({ room: 'E0N1',type: 'creep' });
   if (calibration) await db['rooms.objects'].update({ room: 'E0N1',type: 'container' },{ $set: { nextDecayTime: 100 } });
+  if (shared) {
+    await server.world.addRoomObject('E0N1','source',10,25,{ energy: 1500,energyCapacity: 1500,ticksToRegeneration: 300 });
+    await server.world.addRoomObject('E0N1','container',9,25,{ store: { energy: 0 },storeCapacity: 2000,hits: 250000,hitsMax: 250000,nextDecayTime: 100 });
+  }
   if (labor) await server.world.addRoomObject('W0N1','constructionSite',46,26,{ user: bot.id,structureType: 'road',progress: 297,progressTotal: 300 });
 }
 async function changeRemotePipeline(server,bot,modules,index,configured = false) {
