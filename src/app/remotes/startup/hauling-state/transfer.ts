@@ -42,8 +42,8 @@ export function createForecastHaulingTransfer(state: StatePort, inventory: Energ
   }
   return {
     view(worker: PaidHaulingForecastWorker, payload: HaulingTaskPayload) {
-      const request = payload.request, unit = stock(worker.unit), target = ports.target(worker,request,'deliver');
-      return { tick: inventory.tick(),cargo: unit.energy,freeCargo: unit.freeEnergyCapacity,sourceStock: inventory.observe(request.source)?.energy ?? 0,
+      const request = payload.request, unit = stock(worker.unit), target = ports.target(worker,request,'deliver'), source = ports.target(worker,request,'collect');
+      return { tick: inventory.tick(),cargo: unit.energy,freeCargo: unit.freeEnergyCapacity,sourceStock: source.status === 'visible' ? inventory.observe(request.source)?.energy ?? 0 : 0,
         sinkFree: receivingCapacity(target,inventory.observe(request.sink)),sinkPool: ports.capacityPool(request.sink),minimumCollection: 0,sinkStatus: target.status };
     },
     observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt) {

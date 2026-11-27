@@ -34,7 +34,8 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
   const byUnit = new Map(seed.workers.map(worker => [worker.unit,worker]));
   const units = seed.workers.map(worker => ({ name: worker.name,id: worker.unit }));
   const home = seed.home;
-  let tick = seed.tick-1, failed = false;
+  let tick = seed.tick-1, failed = false, open = false, settled = false;
+  const visited = new Set<string>();
   function observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt): TransferObservation {
     const observation = ports.observe(worker,attempt);
     if (observation.tick !== tick) throw new Error('Hauling observation frame mismatch');
@@ -81,19 +82,38 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
     const outcome = execute(worker.name,worker);
     return { name: worker.name,status: 'executed',...(outcome ? { outcome } : {}) };
   }
-  return {
+  function requireOpen(): void {
+    if (failed) throw new Error('Cannot resume failed hauling service');
+    if (!open) throw new Error('Hauling service frame is closed');
+  }
+  function begin(frame: number): void {
+    if (failed) throw new Error('Cannot resume failed hauling service');
+    if (open) throw new Error('Hauling service frame already open');
+    validateFrame(frame,tick,[],workers); tick = frame; open = true; settled = false; visited.clear();
+  }
+  function settle(): void {
+    requireOpen(); if (settled) throw new Error('Hauling fleet already settled');
+    try {
+      settleHaulingFleet(seed.state,units,definitions,attempt => {
+        const worker = byUnit.get(attempt.unit); if (!worker) throw new Error('Unknown forecast settlement unit');
+        return observe(worker,attempt);
+      }); settled = true;
+    } catch (error) { failed = true; throw error; }
+  }
+  function service(name: string, work: boolean): PaidHaulingServiceResult {
+    requireOpen();
+    try {
+      const worker = workers.get(name);
+      if (!settled || !worker || visited.has(name) || typeof work !== 'boolean') throw new Error('Invalid hauling service visit phase');
+      visited.add(name); return visit(worker,work);
+    } catch (error) { failed = true; throw error; }
+  }
+  function finish(): void { requireOpen(); if (!settled) throw new Error('Hauling fleet not settled'); open = false; }
+  return { begin,settle,visit: service,finish,
     step(frame: number, visits: readonly PaidHaulingVisit[]): PaidHaulingServiceResult[] {
       if (failed) throw new Error('Cannot resume failed hauling service');
-      validateFrame(frame,tick,visits,workers);
-      tick = frame;
-      try {
-        settleHaulingFleet(seed.state,units,definitions,attempt => {
-          const worker = byUnit.get(attempt.unit); if (!worker) throw new Error('Unknown forecast settlement unit');
-          return observe(worker,attempt);
-        });
-        return visits.map(entry => visit(workers.get(entry.name)!,entry.work));
-      }
-      catch (error) { failed = true; throw error; }
+      validateFrame(frame,tick,visits,workers); begin(frame); settle();
+      const results = visits.map(entry => service(entry.name,entry.work)); finish(); return results;
     },
   };
 }

@@ -26,7 +26,7 @@ Raw evidence and exact-source hashes: `evidence/startup-paid-transport-policy.js
 
 ## Concrete world work still required
 
-Compose the canonical native inventory/body/route input with these production controllers and explicit source visibility, room/tile legality, current authority updates and all-actor ordering. A private authority controller must derive fresh demands from its modelled current lease state; repeatedly resolving the original expired token is not renewal. Actor cursor/control state and household/miner commitments must be seeded coherently when their controllers are added.
+The initial composition now exists in [the private home hauling world](startup-home-hauling-world.md), including explicit source visibility, room/tile legality, current authority observations and actor ordering. Complete the remaining controllers and native qualification described there. A private authority controller must derive fresh demands from its modelled current lease state; repeatedly resolving the original expired token is not renewal. Actor cursor/control state and household/miner commitments must be seeded coherently when their controllers are added.
 
 Keep the native order: observe current physical openings, settle fleet liabilities before optional work, execute the modelled actor sequence and then flush physical intents. Preserve source attribution and opening receipt baselines. Add private-world checkpoint/resume, mining/maintenance, births and cleanup/retirement/alternate sinks before full native future-calendar use.
 

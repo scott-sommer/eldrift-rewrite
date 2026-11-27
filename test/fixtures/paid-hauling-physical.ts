@@ -1,51 +1,43 @@
-import { createPaidHomeTransportPolicy } from '../../src/app/remotes/startup/hauling-state/policy/transport';
+import { createHomeHaulingWorld } from '../../src/app/remotes/startup/hauling-state/world/driver';
+import type { HomeHaulingInput,HomeWorldShared,HomeWorldOperation,HomeConfirmedDelivery } from '../../src/app/remotes/startup/hauling-state/world/model';
 import { remoteTransportOwner } from '../../src/features/remotes/transport-authority';
 import type { RemoteTransportDemand } from '../../src/features/remotes/transport-authority';
 import { paidRouteFixture } from './paid-route';
-import { createActionArbiter } from '../../src/core/execution/action-arbiter';
-import { createEnergyInventoryFrame } from '../../src/capabilities/resources/energy-inventory/frame';
-import { createPaidHaulingForecastState } from '../../src/app/remotes/startup/hauling-state/seed';
-import { createPaidHaulingForecastService } from '../../src/app/remotes/startup/hauling-state/service';
-import { createForecastHaulingTransfer } from '../../src/app/remotes/startup/hauling-state/transfer';
-import { createPaidHaulingMovement } from '../../src/app/remotes/startup/hauling-state/movement/frame';
-import { readPaidHaulingForecastOpening } from '../../src/app/remotes/startup/hauling-state/observation';
 import { activatePaidCourierRoute } from '../../src/features/remotes/startup/routes/progress';
-import { withinRange } from '../../src/capabilities/movement/path-model';
+import type { PaidMovementExternalFrame } from '../../src/app/remotes/startup/hauling-state/movement/model';
 import { logisticsPool } from '../../src/capabilities/logistics/request';
-export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400) {
+export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400,change?: (input: HomeHaulingInput) => void) {
   const f = paidRouteFixture();
   let demand: RemoteTransportDemand | undefined = { kind: 'mine',id: 'demand',assignment: 'lease',home: 'W0N1',room: 'W0N1',source: 'source',generation: 1,expiresAt: leaseExpiresAt };
   const request = { id: 'first',owner: remoteTransportOwner(demand,'paid-owner'),source: 'container',sink: 'bank',resource: 'energy',quantity: 32,priority: 0,expiresAt: Math.min(130,leaseExpiresAt),
     service: { collection: f.context.plan.collection,deposit: f.context.plan.endpoint.deposit,avoid: [f.context.plan.station] } };
   const record = { id: 'first',kind: 'haul',phase: 'work',payload: { home: 'W0N1',unitId: 'native-id',request },wakeAt: 100,retries: 0,expiresAt: request.expiresAt };
   f.opening.observed.task = { record,id: 'first',wakeAt: 100,expiresAt: request.expiresAt,request,remaining: 32,receipts: [] };
-  const seed = createPaidHaulingForecastState('W0N1',100,[{ source: 'source',room: 'W0N1',opening: f.opening }],[]);
-  const store = (id: string,energy: number,capacity: number) => ({ id,energy,capacity,usedCapacity: energy,freeEnergyCapacity: capacity-energy });
-  const inventory = createEnergyInventoryFrame(100,[store('native-id',32,50),store('container',100,200),store('bank',0,100)]);
-  let tick = 100, position = f.point(14), fatigue = 0;
-  const arbiter = createActionArbiter(() => tick), movement = createPaidHaulingMovement('W0N1',100,[activatePaidCourierRoute(f.program)],arbiter,{ legal: () => true,terrain: () => 2 });
-  const policy = { blockedRooms: [],allowedRooms: ['W0N1'] };
-  const transfer = createForecastHaulingTransfer(seed.state,inventory,arbiter,{
-    position: () => position,capacityPool: id => logisticsPool('capacity',id),
-    target: (_worker,request,phase) => ({ status: 'visible',accepting: true,inRange: withinRange(position,phase === 'collect' ? request.service!.collection : request.service!.deposit,0) }),
-    approach: (worker,binding,request,phase) => movement.request(worker.name,{ owner: binding.scope,destination: phase === 'collect' ? request.service!.collection : request.service!.deposit,range: 0,policy }),
-  });
-  const worker = seed.workers[0]!;
-  const productive = createPaidHomeTransportPolicy('W0N1',[{ demand,plan: f.context.plan,couriers: [{ paid: f.context.paid }] }],seed,
-    { minimumBatch: 1,requestLifetime: 200 },{ inventory,physical: () => ({ position,fatigue,spawning: false }),authority: () => demand,
-      collection: () => 'container',visible: () => true,roomPolicy: () => policy,move: movement.request,view: transfer.view });
-  const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive });
+  const store = (id: string,energy: number,capacity: number) => ({ id,energy,capacity,usedCapacity: energy,freeEnergyCapacity: capacity-energy,
+    capacityPool: logisticsPool('capacity',id),room: 'W0N1',active: true });
+  const input: HomeHaulingInput = { home: 'W0N1',observedAt: 100,endpoint: { id: 'bank',energy: 0,capacity: 100,freeCapacity: 100 },
+    inventories: [store('container',100,200),store('bank',0,100)],
+    bodies: [{ name: 'paid-courier',unit: 'native-id',inventory: store('native-id',32,50) }],
+    workers: [{ name: 'paid-courier',owner: 'paid-owner',position: f.point(14),spawning: false,ticksToLive: 1406,energy: 32,fatigue: 0,usedCapacity: 32,
+      body: [{ type: 'carry',hits: 100,boost: null },{ type: 'move',hits: 100,boost: null }] }],
+    sources: [{ demand,plan: f.context.plan,miners: [],couriers: [{ paid: f.context.paid,opening: f.opening,route: activatePaidCourierRoute(f.program) }] }],
+    claims: { owned: [],external: [] } };
+  change?.(input);
+  let shared!: HomeWorldShared,tick = 100;
+  const world = createHomeHaulingWorld(input,ports => {
+    shared = ports;
+    return { authority: () => demand,visible: () => true,legal: () => true,terrain: () => 2,
+      endpoint: (_worker,phase) => ({ id: phase === 'collect' ? 'container' : 'bank',position: phase === 'collect' ? f.context.plan.station : f.context.plan.endpoint.position,active: true }),
+      roomPolicy: () => ({ blockedRooms: [],allowedRooms: ['W0N1'] }) };
+  },{ minimumBatch: 1,requestLifetime: 200 });
+  const seed = { state: shared.state },inventory = { snapshot: () => world.snapshot().inventories };
   const frames: { tick: number; x: number; energy: number; stage: string; readyAt: number; effects: { kind: string; amount: number; settledAt: number }[] }[] = [];
-  function step() {
-    inventory.begin(tick);
-    const opening = readPaidHaulingForecastOpening('W0N1',seed.state,inventory,worker,{ position,fatigue,spawning: false },attempt => transfer.observe(worker,attempt));
-    movement.begin(tick,[{ tick,name: worker.name,unit: worker.unit,position,energy: opening.observed.energy,fatigue,
-      phase: opening.continuation.stage === 'deliver' ? 'deliver' : 'collect',readyAt: opening.continuation.readyAt }]);
-    service.step(tick,[{ name: worker.name,work: true }]);
-    const physical = movement.finish({ plans: [],states: [],requestedUnits: [],occupants: [] }).states[0]!;
-    const effects = inventory.finish(inventory.pending().map(intent => intent.id));
-    frames.push({ tick,x: position.x,energy: opening.observed.energy,stage: opening.continuation.stage,readyAt: opening.continuation.readyAt,effects });
-    position = physical.position; fatigue = physical.fatigue; tick++;
+  const deliveries: HomeConfirmedDelivery[] = [];
+  function step(operations: readonly HomeWorldOperation[] = [{ kind: 'settle' },{ kind: 'paid',name: 'paid-courier',work: true }],outside: PaidMovementExternalFrame = { plans: [],states: [],requestedUnits: [],occupants: [] }) {
+    const result = world.step({ tick,operations,outside,settlementOrder: intents => intents.map(intent => intent.id) });
+    const opening = result.openings[0]!;
+    frames.push({ tick,x: opening.observed.position.x,energy: opening.observed.energy,stage: opening.continuation.stage,readyAt: opening.continuation.readyAt,effects: result.effects });
+    deliveries.push(...result.deliveries); tick++; return result;
   }
-  return { seed,inventory,movement,frames,step,renew(at: number) { demand = { ...demand!,expiresAt: at }; },reassign() { demand = { ...demand!,generation: demand!.generation+1 }; } };
+  return { seed,inventory,world,shared,deliveries,frames,step,renew(at: number) { demand = { ...demand!,expiresAt: at }; },reassign() { demand = { ...demand!,generation: demand!.generation+1 }; } };
 }
