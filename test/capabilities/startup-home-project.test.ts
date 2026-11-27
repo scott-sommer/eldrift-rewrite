@@ -1,5 +1,5 @@
 import { expect,test } from 'vitest';
-import { startupHomeInput } from '../fixtures/startup-home';
+import { startupHomeBirthInput,startupHomeInput } from '../fixtures/startup-home';
 import { createStartupHomeProject } from '../../src/capabilities/economy/startup/home/project';
 test('two source inventories share one sink and receipt-funded home cash ledger',() => {
   const project = createStartupHomeProject(startupHomeInput()); project.advance(31); const result = project.result();
@@ -23,15 +23,7 @@ test('conflicting shared terrain and duplicate paid bodies cannot enter joint pl
 });
 
 test('source requests use one home spawn slot and each body is charged once',() => {
-  const input = startupHomeInput(); input.spawning.cash.homeEnergy = 200;
-  input.spawning.funding = { capacity: 200,initialEnergy: 200,refills: [] };
-  input.spawning.requests = input.sources.map((source,index) => {
-    const id = 'request:'+index,name = source.id;
-    delete source.initial; delete source.motion.openings;
-    source.requests = [id]; source.couriers = [{ request: id,outboundTicks: 2,returnTicks: 2,retireTicks: 10,minimumBatch: 1 }];
-    source.motion.routes = source.motion.routes.map(route => ({ ...route,request: id,approach: { ...route.approach,unit: id },empty: { ...route.empty,unit: id },loaded: { ...route.loaded,unit: id } }));
-    return { id,name,owner: 'paid-owner',room: 'W0N1',body: ['carry','move'],priority: index,readyAt: 0,expiresAt: 30 };
-  });
+  const input = startupHomeBirthInput();
   const project = createStartupHomeProject(input); project.advance(31); const result = project.result();
   expect(result.spawning.births.map(birth => [birth.startAt,birth.activeAt,birth.cost])).toEqual([[0,6,100],[6,12,100]]);
   expect(result.spawning.cash.birthEnergy).toBe(200); expect(result.spawning.cash.endingEnergy).toBe(0);

@@ -1,26 +1,29 @@
+import { startupHomeSources,startupHomeDue } from './state';
+import { boundedProjectCheckpoint } from '../checkpoints/project';
+import { readStartupHomeCheckpoint } from './checkpoint';
+import { startupHomeIdentity } from './identity';
+import { startupHomeTimelineInput } from './timeline-input';
+import type { StartupHomeCheckpoint } from './checkpoint-model';
 import { startupHomeOccupants } from './occupants';
 import { copyPlain } from '../../../../core/plain-data';
 import { tileKey } from '../../../movement/traffic/model';
-import { StartupProjectSource } from '../project-source';
 import { createStartupProjectTimeline } from '../project-timeline';
 import { createStartupSink } from '../sink';
-import { startupProjectCouriers,startupProjectWaves } from '../initial';
+import { startupProjectWaves } from '../initial';
 import { startupDeliveryCouriers,advanceStartupCouriers } from '../delivery-couriers';
 import { projectCourierRoute } from '../courier-trips/project-route';
 import { advanceStartupCourierGroups } from '../courier-trips/groups';
 import { prepareStartupHomeProject } from './input';
 import type { StartupHomeProjectInput } from './model';
 import type { StartupScheduledBirth } from '../spawn-model';
-import type { StartupProjectReceipt } from '../checkpoints/project-model';
-import type { StartupCourierTrip } from '../courier-trips/model';
-/** Forward-only joint model. Persistence and native financial admission are separate integration gates. */
-export function createStartupHomeProject(raw: StartupHomeProjectInput) {
+/** One shared home timeline; native financial admission remains a separate integration gate. */
+export function createStartupHomeProject(raw: StartupHomeProjectInput,checkpoint?: unknown) {
   const input = prepareStartupHomeProject(raw),horizon = input.spawning.cash.horizon;
-  const anchor = input.sources[0]!.input;
-  const timeline = createStartupProjectTimeline({ ...anchor,project: { ...anchor.project,spawning: input.spawning,workers: input.sources.flatMap(source => source.input.project.workers) },couriers: input.sources.flatMap(source => source.input.couriers),...(input.household ? { household: input.household } : {}) });
-  const sink = createStartupSink(input.sink,input.spawning.cash),births: StartupScheduledBirth[] = [];
-  const sources = input.sources.map(source => ({ ...source,state: new StartupProjectSource(source.input),workers: startupProjectCouriers(source.input,[]),trips: [] as StartupCourierTrip[],settled: [] as StartupProjectReceipt[] }));
-  const due = new Map<number,{ source: string; receipt: StartupProjectReceipt }[]>(); let tick = 0;
+  const saved = checkpoint === undefined ? undefined : readStartupHomeCheckpoint(input,checkpoint);
+  const timeline = createStartupProjectTimeline(startupHomeTimelineInput(input),saved);
+  const sink = createStartupSink(input.sink,input.spawning.cash,saved?.sink),births: StartupScheduledBirth[] = [...(saved?.timeline.births ?? [])];
+  let tick = saved?.tick ?? 0;
+  const sources = startupHomeSources(input,saved,births,tick),due = startupHomeDue(saved);
   const ports = { legal: (request: { to: Parameters<typeof tileKey>[0]; via?: Parameters<typeof tileKey>[0] }) => input.terrain.has(tileKey(request.to)) && input.terrain.has(tileKey(request.via ?? request.to)),
     terrain(position: Parameters<typeof tileKey>[0]) { const fact = input.terrain.get(tileKey(position)); if (!fact) throw new Error('Missing home terrain'); return fact.rate; } };
   function step(): void {
@@ -56,6 +59,12 @@ export function createStartupHomeProject(raw: StartupHomeProjectInput) {
     due.delete(tick);
   }
   return {
+    checkpoint(): StartupHomeCheckpoint {
+      return boundedProjectCheckpoint({ format: 1,binding: startupHomeIdentity(input),tick,...timeline.checkpoint(),sink: sink.checkpoint(),sources: sources.map(source => ({ id: source.id,
+        container: source.state.container.checkpoint(),construction: source.state.construction,delivery: source.state.delivery,opening: source.state.opening.checkpoint(),
+        couriers: [...source.workers].sort((a,b) => a.request.localeCompare(b.request)).map(worker => ({ ...worker,nextAt: worker.nextAt === Infinity ? null : worker.nextAt })),
+        trips: source.trips,settled: source.settled,due: [...due.values()].flat().filter(row => row.source === source.id).map(row => row.receipt) })) });
+    },
     advance(maximumFrames: number,guard: () => boolean = () => true) {
       if (!Number.isSafeInteger(maximumFrames) || maximumFrames < 0 || maximumFrames > 10001) throw new Error('Invalid home frame budget');
       let frames = 0; while (tick <= horizon && frames < maximumFrames && guard()) { step(); frames++; }

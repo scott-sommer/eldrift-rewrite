@@ -15,3 +15,25 @@ export function startupHomeInput(): StartupHomeProjectInput {
   });
   return { spawning,sink: { capacity: 50,freeCapacity: 50,changes: [] },sources };
 }
+
+export function startupHomeBirthInput(): StartupHomeProjectInput {
+  const input = startupHomeInput(); input.spawning.cash.homeEnergy = 200;
+  input.spawning.funding = { capacity: 200,initialEnergy: 200,refills: [] };
+  input.spawning.requests = input.sources.map((source,index) => {
+    const id = 'request:'+index,name = source.id;
+    delete source.initial; delete source.motion.openings;
+    source.requests = [id]; source.couriers = [{ request: id,outboundTicks: 2,returnTicks: 2,retireTicks: 10,minimumBatch: 1 }];
+    source.motion.routes = source.motion.routes.map(route => ({ ...route,request: id,approach: { ...route.approach,unit: id },empty: { ...route.empty,unit: id },loaded: { ...route.loaded,unit: id } }));
+    return { id,name,owner: 'paid-owner',room: 'W0N1',body: ['carry','move'],priority: index,readyAt: 0,expiresAt: 30 };
+  });
+  return input;
+}
+
+export function startupHomeHouseholdInput(): StartupHomeProjectInput {
+  const input = startupHomeInput();
+  input.spawning.cash.homeEnergy = 164; input.spawning.funding = { capacity: 100,initialEnergy: 100,refills: [] };
+  input.spawning.requests = [{ id: 'house',name: 'house',owner: 'house',room: 'W0N1',body: ['carry','move'],priority: 0,readyAt: 0,expiresAt: 30 }];
+  input.sink = { capacity: 100,freeCapacity: 36,changes: [] };
+  input.household = { endpointEnergy: 64,redistribution: { horizon: 30,trips: [{ id: 'refill',request: 'house',pickupAt: 6,loadedTicks: 2,returnTicks: 1,energy: 50 }] } };
+  return input;
+}

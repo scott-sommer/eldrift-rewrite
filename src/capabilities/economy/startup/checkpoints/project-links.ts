@@ -1,5 +1,5 @@
 import { validateProjectHouseholdLinks } from './household-links';
-import { startupOpeningEnergy, startupProjectWaves } from '../initial';
+import { validateProjectSourceLinks } from './source-links';
 import { requireCheckpoint } from './validation';
 import { receiptId } from './project-delivery';
 import type { StartupDeliveryInput } from '../delivery-model';
@@ -15,12 +15,9 @@ export function validateProjectLinks(input: StartupDeliveryInput, saved: Startup
   validateProjectHouseholdLinks(input,saved);
   validateAmbientLinks(input,saved);
   validateReceiptIdentities(input,saved);
-  validateEnergy(input,saved);
+  validateProjectSourceLinks(input,saved);
   validateOpeningLinks(input,saved);
-  const complete = saved.construction.completeAt;
-  const previous = complete === null || tick <= complete ? null : tick-1;
-  requireCheckpoint(saved.container.previousFrame === previous);
-  if (saved.container.hits === 0) requireCheckpoint(saved.delivery.containerEnergy === 0);
+
 }
 function sameHouseLedger(a: StartupProjectCheckpoint['houseAccounting']['state'], b: typeof a): boolean {
   return Object.keys(a).filter(key => !['firstRecoveryAt','constructionRecoveryMargin'].includes(key)).every(key => a[key as keyof typeof a] === b[key as keyof typeof b]);
@@ -32,23 +29,8 @@ function validateReceiptIdentities(input: StartupDeliveryInput, saved: StartupPr
   requireCheckpoint(expected.size === saved.timeline.receiptIds.length && saved.timeline.receiptIds.every(id => expected.has(id)));
 }
 
-function validateEnergy(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
-  const c = saved.construction, d = saved.delivery, maintenance = saved.container;
-  const harvested = c.harvestedEnergy+d.harvestedEnergy;
-  const held = saved.opening.pendingMinerEnergy+d.containerEnergy+d.minerCargoEnergy+saved.couriers.reduce((sum,worker) => sum+worker.cargo,0);
-  const lost = d.unusedMinerCargoEnergy+d.uncapturedOverflowEnergy+d.unreturnedCourierEnergy+maintenance.unrecoveredEnergy;
-  requireCheckpoint(startupOpeningEnergy(input)+harvested === c.constructionEnergy+d.deliveredEnergy+held+lost+maintenance.repairEnergy);
-  requireCheckpoint(input.project.source.energy+c.regeneratedEnergy+d.regeneratedEnergy-harvested === d.source.energy);
-  requireCheckpoint(input.project.remainingProgress-c.constructionEnergy === c.remainingProgress);
-  requireCheckpoint(maintenance.hits === Math.max(0,input.container.hits+maintenance.repairedHits-maintenance.decayEvents*input.container.decayAmount));
-}
-
 function validateOpeningLinks(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
-  const initial = input.initial?.miner, opening = saved.opening;
-  const wave = startupProjectWaves(input,saved.timeline.births).find(wave => wave.request === initial?.id);
-  requireCheckpoint(opening.minerStarted === (!!wave && saved.tick > wave.startAt));
-  requireCheckpoint(opening.minerOpeningEnergy <= saved.delivery.minerCargoEnergy);
-  requireCheckpoint(opening.constructionEnergyFromOpening <= saved.construction.constructionEnergy);
+  const opening = saved.opening;
   const credit = Math.min(opening.constructionEnergyFromOpening,input.project.spawning.cash.selfHarvestedConstruction);
   requireCheckpoint(saved.houseAccounting.openingConstructionEnergy === credit && saved.sourceAccounting.openingConstructionEnergy === credit);
   requireCheckpoint(saved.timeline.accounting.openingConstructionEnergy === 0);

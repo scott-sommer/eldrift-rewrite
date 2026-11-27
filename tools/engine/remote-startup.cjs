@@ -23,6 +23,7 @@ function verifyRemoteStartup(memory,evidence,mode,streamed) {
   if (memory.startupFacts) evidence.remoteStartup.nativeFacts = memory.startupFacts;
   if (memory.startupTravel) evidence.remoteStartup.nativeTravel = memory.startupTravel;
   if (memory.startupInitialMotionProof) evidence.remoteStartup.initialMotionCheckpoint = memory.startupInitialMotionProof;
+  if (memory.startupHomeProof) evidence.remoteStartup.homeCheckpoint = memory.startupHomeProof;
   if (memory.startupMotionProof) evidence.remoteStartup.motionCheckpoint = memory.startupMotionProof;
   if (memory.startupProjectProof) evidence.remoteStartup.projectCheckpoint = memory.startupProjectProof;
   if (memory.startupLaborProjects) evidence.remoteStartup.laborProjects = memory.startupLaborProjects;

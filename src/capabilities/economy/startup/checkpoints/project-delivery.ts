@@ -3,7 +3,7 @@ import { validProjectSource } from './project-work';
 import type { StartupDeliveryInput, StartupDeliveryForecast } from '../delivery-model';
 import type { StartupProjectCheckpoint, StartupProjectReceipt } from './project-model';
 const counters = ['deliveredEnergy','harvestedEnergy','regeneratedEnergy','unreturnedCourierEnergy','overflowEnergy','uncapturedOverflowEnergy','containerEnergy','minerCargoEnergy','courierCargoEnergy','unusedMinerCargoEnergy','projectedThrough'];
-export function validateProjectDelivery(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
+export function validateProjectDelivery(input: StartupDeliveryInput, saved: Pick<StartupProjectCheckpoint,'delivery' | 'tick' | 'due' | 'settled'>): void {
   const value: unknown = saved.delivery;
   requireCheckpoint(record(value) && keys(value,[...counters,'firstDeliveryAt','source','receipts']));
   const delivery = value as StartupDeliveryForecast;
@@ -12,7 +12,7 @@ export function validateProjectDelivery(input: StartupDeliveryInput, saved: Star
   requireCheckpoint(Array.isArray(delivery.receipts) && delivery.receipts.length === 0);
   validateReceipts(input,saved);
 }
-function validateReceipts(input: StartupDeliveryInput, saved: StartupProjectCheckpoint): void {
+function validateReceipts(input: StartupDeliveryInput, saved: Pick<StartupProjectCheckpoint,'delivery' | 'tick' | 'due' | 'settled'>): void {
   const horizon = input.project.spawning.cash.horizon;
   requireCheckpoint(Array.isArray(saved.due) && Array.isArray(saved.settled) && saved.due.length+saved.settled.length <= 160016);
   requireCheckpoint(saved.settled.every(receipt => validReceipt(receipt,input) && time(receipt.tick,saved.tick)));

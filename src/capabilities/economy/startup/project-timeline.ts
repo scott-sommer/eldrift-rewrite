@@ -4,7 +4,7 @@ import type { StartupHouseholdCheckpoint } from './household/model';
 import type { StartupDeliveryInput } from './delivery-model';
 import type { StartupProjectCheckpoint } from './checkpoints/project-model';
 import type { StartupCashReceipt } from './cash-model';
-export function createStartupProjectTimeline(input: StartupDeliveryInput, saved?: StartupProjectCheckpoint) {
+export function createStartupProjectTimeline(input: StartupDeliveryInput, saved?: Pick<StartupProjectCheckpoint,'timeline' | 'household'>) {
   validatePassiveProject(input);
   if (!input.household) return ordinary(input,saved);
   validateHouseholdProject(input);
@@ -14,7 +14,7 @@ export function createStartupProjectTimeline(input: StartupDeliveryInput, saved?
     finish(receipts: readonly StartupCashReceipt[], acceptReturn?: (energy: number) => number) { const result = timeline.finish(receipts,acceptReturn); return { flows: result.flows,picked: result.withdrawn+result.laborWithdrawn,spent: timeline.frameOutsideExpense(),ambientEnergy: timeline.frameAmbientEnergy() }; },
     checkpoint() { const wire = timeline.checkpoint(); return { timeline: wire.spawning,household: householdPart(wire) }; } };
 }
-function ordinary(input: StartupDeliveryInput, saved?: StartupProjectCheckpoint) {
+function ordinary(input: StartupDeliveryInput, saved?: Pick<StartupProjectCheckpoint,'timeline' | 'household'>) {
   const timeline = createStartupSpawnTimeline(input.project.spawning,saved?.timeline);
   return { begin: (tick: number) => timeline.begin(tick),result: () => timeline.result(),
     finish(receipts: readonly StartupCashReceipt[], acceptReturn?: (energy: number) => number) { void acceptReturn; const flows = timeline.finish(receipts); return { flows,picked: 0,spent: 0,ambientEnergy: timeline.frameAmbientEnergy() }; },checkpoint: () => ({ timeline: timeline.checkpoint() }) };

@@ -1,3 +1,4 @@
+import { snapshotStartupHomeCheckpoint } from './startup-home-checkpoint';
 import { snapshotStartupMotionCheckpoint } from './startup-motion-checkpoint';
 import { snapshotStartupPlanningJob } from './startup-planning-job';
 import { createStartupProject, restoreStartupProject, forecastStartupProject } from '../../src/capabilities/economy/startup/project';
@@ -13,6 +14,7 @@ interface ProjectMemory extends Memory { startupProjectProof?: ProjectProof }
 export function snapshotStartupProjectCheckpoint(state: StatePort): void {
   snapshotStartupPlanningJob(state);
   snapshotStartupMotionCheckpoint(state);
+  snapshotStartupHomeCheckpoint(state);
   const input = startupDeliveryInput(), memory = Memory as ProjectMemory;
   if (Game.time === 149) {
     const project = createStartupProject(input); project.advance(43); const checkpoint = project.checkpoint();

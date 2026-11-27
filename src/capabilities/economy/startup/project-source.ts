@@ -9,6 +9,7 @@ import { advanceStartupSource } from './source';
 import type { StartupDeliveryForecast,StartupDeliveryInput } from './delivery-model';
 import type { StartupProjectCheckpoint } from './checkpoints/project-model';
 import type { StartupBuildWave } from './construction-model';
+export type StartupSourceState = Pick<StartupProjectCheckpoint,'container' | 'construction' | 'delivery' | 'opening' | 'tick'> & { timeline: Pick<StartupProjectCheckpoint['timeline'],'births'> };
 /** Source stocks, work and maintenance only; home cash, sink and courier motion have separate owners. */
 export class StartupProjectSource {
   readonly container;
@@ -18,7 +19,7 @@ export class StartupProjectSource {
   private nextTick: number;
   private pending = false;
   private previousMiner: string | undefined;
-  constructor(private readonly input: StartupDeliveryInput,saved?: StartupProjectCheckpoint) {
+  constructor(private readonly input: StartupDeliveryInput,saved?: StartupSourceState) {
     this.nextTick = saved?.tick ?? 0;
     this.container = createStartupContainer(input.container,saved?.container);
     this.construction = saved?.construction ?? initialStartupConstruction(input.project);
@@ -26,7 +27,7 @@ export class StartupProjectSource {
     this.opening = createStartupOpeningStock(input,this.delivery,saved?.opening);
     this.restoreOpening(saved);
   }
-  private restoreOpening(saved: StartupProjectCheckpoint | undefined): void {
+  private restoreOpening(saved: StartupSourceState | undefined): void {
     if (!saved) { this.delivery.containerEnergy = this.input.initial?.containerEnergy ?? 0; return; }
     this.previousMiner = startupProjectWaves(this.input,saved.timeline.births).find(wave => wave.startAt <= saved.tick-1 && saved.tick-1 < wave.endAt)?.request;
   }

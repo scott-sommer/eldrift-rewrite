@@ -36,6 +36,10 @@ function verifyStartupAdmission(memory,rows) {
   assert.equal(continuation.input.initial.miner.energy,facts.workers[0].energy);
   assert.deepEqual(continuation.input.project.spawning.requests,[]);
   assert.equal(facts.stock.claimedSpawnEnergy,0); assert.equal(facts.stock.availableSpawnEnergy,facts.stock.spawnEnergy);
+  const home = memory.startupHomeProof; assert.ok(home);
+  assert.equal(home.savedAt,149); assert.equal(home.resumedAt,150); assert.equal(home.format,1); assert.equal(home.through,7);
+  assert.equal(home.sources,2); assert.equal(home.trips,2); assert.equal(home.births,1); assert.equal(home.householdCargo,50); assert.equal(home.dueEnergy,36);
+  assert.deepEqual(home.result,home.uninterrupted); assert.equal(home.result.spawning.cash.deliveredEnergy,64); assert.equal(home.result.spawning.cash.birthEnergy,100);
   const motion = memory.startupMotionProof; assert.ok(motion);
   assert.equal(motion.savedAt,149); assert.equal(motion.resumedAt,150); assert.equal(motion.format,9); assert.equal(motion.tripCount,1);
   assert.deepEqual(motion.result,motion.uninterrupted); assert.ok(motion.result.delivery.deliveredEnergy > 0);
