@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Before-dispatch paid courier past-effect reconciliation with zero new income and retained journal ownership; supported1000 exact regression.",
+  "native": [
+    {
+      "scenario": "paid-opening-resolution",
+      "nativeSource": "5b596dc8b9ef8b32c1d46ceebcd5cddee9dfc3d8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-opening-resolution.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "fcb1a2a9b7c0ae54df6c254549fe510e1728a2ac69bb24ce00513dcd84d94454",
+      "uncompressedSha256": "73395d6df8c002a2d19134bd68462e32b97d86f487c1ab2c35c736a3c2dc4d79"
+    }
+  ]
+}
