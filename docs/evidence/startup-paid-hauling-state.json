@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Private native paid hauling task/request/journal/quantity-claim seed qualification; not full-horizon joined forecast or financial admission.",
+  "native": [
+    {
+      "scenario": "paid-hauling-state-supported1000",
+      "nativeSource": "f8afb85fd6790b829b78246045635d6752738d11",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-hauling-state.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4bd45450c7f3a4b72580e7adb186616357dca2a2f21384a40d4e29006a58e3b0",
+      "uncompressedSha256": "8e61004e40b9ccf2027221bc66be7a1818b5d911a11473e72dbcc791d1707b45"
+    }
+  ]
+}
