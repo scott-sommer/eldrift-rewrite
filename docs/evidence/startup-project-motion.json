@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Format-9 physical project integration and portable-model VM-reset proof; not native shared movement calibration.",
+  "native": [
+    {
+      "scenario": "startup-project-motion-reset",
+      "nativeSource": "27d676a3aef5468d29dbc940bc7c640945d2bc37",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-project-motion.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "18cad819fd74fd71e1004655882b6d559ac2022d94d743de9bd764e1e7f06e9f",
+      "uncompressedSha256": "c053127ff00938f21a55b6af5c1d8c5e49ae89b467ff811b065c653023bc8a26"
+    }
+  ]
+}

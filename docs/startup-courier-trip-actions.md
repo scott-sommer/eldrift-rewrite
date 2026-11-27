@@ -1,5 +1,7 @@
 # Physical courier trips and service actions
 
+Follow-on integration: [startup-project-motion.md](startup-project-motion.md) records format9 project ownership and reset evidence. The integration limitations below describe the earlier action-boundary checkpoint.
+
 The existing advanceStartupCouriers accepts an optional movement-readiness predicate. Without it all existing duration-based behavior remains. With it, actual route arrival gates each collection or delivery; the existing action functions still own container debits, sink acceptance, expiry losses and receipt scheduling. No second accounting ledger or SDK action owner is added.
 
 advanceStartupCourierTrips composes the shared transit solver with those actions. Inputs are normalized approach/empty/loaded TransitPlans, an actual activation frame, prior JSON-compatible trip states, current courier states, other occupants and legality/terrain ports. It advances all supplied couriers together, calls the existing service loop once through the readiness predicate, then transitions to the next route following collection/delivery settlement and turnaround delays. Empty routes use zero CARRY load weight; ordinary unboosted loaded CARRY weight is ceil(cargo/50), retaining the plan's body recovery. Existing courier qualification only supports CARRY/MOVE bodies. Partial deliveries retain cargo and honor service cadence without continually pushing their own due frame forward.
