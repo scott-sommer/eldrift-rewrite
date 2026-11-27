@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Durable non-spending route control and shadow activation against native paid facts; not production route execution or joint financial admission.",
+  "native": [
+    {
+      "scenario": "paid-route-shadow-activation-supported1000",
+      "nativeSource": "769ef5d0d2af5d0d4b5e17a3e0f3a64d66a8df63",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-route-activation.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "023a933fe5b34961670eb4e98626627f5d417c0b5ed00e35c3ca8d642cd9ca9e",
+      "uncompressedSha256": "363c99339fdde8313cc6ef69017dc604540e109e903d8513fa9510065d862f0a"
+    }
+  ]
+}
