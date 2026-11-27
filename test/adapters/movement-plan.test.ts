@@ -1,9 +1,10 @@
 import { afterEach,expect,test,vi } from 'vitest';
+import * as traffic from '../../src/adapters/screeps/movement-traffic';
 import { createMovementService } from '../../src/adapters/screeps/movement-service';
 import { followNativeMovementPlan } from '../../src/adapters/screeps/movement-plan';
 import { createTrafficDispatch } from '../../src/capabilities/movement/traffic/dispatch';
 import { createTransitPlan } from '../../src/capabilities/movement/transit/plan';
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 function fixture(blocked = false) {
   vi.stubGlobal('Game',{ time: 10 }); vi.stubGlobal('MOVE','move'); vi.stubGlobal('CARRY','carry'); vi.stubGlobal('CARRY_CAPACITY',50);
   const point = (x: number) => ({ room: 'W0N1',x,y: 25 });
@@ -32,4 +33,14 @@ test('fixed and searched movement share one per-unit reservation',() => {
   expect(movement.follow(f.creep,f.command,f.plan,0)).toMatchObject({ status: 'running' });
   expect(movement.move(f.creep,f.command)).toMatchObject({ reason: 'movement-already-requested' });
   expect(movement.follow(f.creep,f.command,f.plan,0)).toMatchObject({ reason: 'movement-already-requested' });
+});
+
+test('fixed native settlement never calls uninitialized navigator progress',() => {
+  const f = fixture(),move = vi.fn(() => 0);
+  Object.assign(f.creep,{ move }); Object.assign(Game,{ getObjectById: () => f.creep });
+  vi.spyOn(traffic,'movementOccupants').mockReturnValue([{ unit: f.creep.id,position: f.plan.origin }]);
+  vi.spyOn(traffic,'createMovementLegality').mockReturnValue(() => true);
+  const movement = createMovementService(); movement.follow(f.creep,f.command,f.plan,0);
+  expect(() => movement.flush()).not.toThrow(); expect(move).toHaveBeenCalledOnce();
+  movement.flush(); expect(move).toHaveBeenCalledOnce();
 });

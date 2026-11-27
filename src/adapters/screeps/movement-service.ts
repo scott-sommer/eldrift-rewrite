@@ -27,12 +27,13 @@ export function createMovementService(arbiter: Arbiter = createActionArbiter(() 
   const preparation = createMovementPaths(access?.avoid);
   const paths = createPathService(preparation.search, () => Game.time);
   const commands = new Map<string, MovementCommand>();
+  const fixedPlans = new Set<string>();
   let tick = -1;
   const dispatch = createTrafficDispatch({
     clock: () => Game.time, observe: movementOccupants, legal: createMovementLegality(preparation.snapshots,access?.permits),
     issue: request => createCreepActions(creepById(request.unit), request.owner, arbiter)
       .move(stepDirection(request.from, request.via ?? request.to) as DirectionConstant),
-  }, (unit, time, outcome) => navigate.settle(unit, time, outcome));
+  }, (unit,time,outcome) => { if (!fixedPlans.has(unit)) navigate.settle(unit,time,outcome); });
   const navigate = createNavigator({
     paths, direction: stepDirection,
     request: (view, avoidUnits, unit) => {
@@ -51,13 +52,14 @@ export function createMovementService(arbiter: Arbiter = createActionArbiter(() 
     rejected: code => ({ status: 'failed', reason: String(code) }),
   });
   function reserve(creep: Creep,command: MovementCommand): boolean {
-    if (tick !== Game.time) { commands.clear(); tick = Game.time; }
+    if (tick !== Game.time) { commands.clear(); fixedPlans.clear(); tick = Game.time; }
     if (commands.has(creep.id)) return false;
     commands.set(creep.id,command); return true;
   }
   return {
     follow(creep: Creep,command: MovementCommand,plan: TransitPlan,index: number) {
       if (!reserve(creep,command)) return { status: 'blocked' as const,reason: 'movement-already-requested',retryAt: Game.time+1 };
+      fixedPlans.add(creep.id);
       return followNativeMovementPlan(creep,command,plan,index,request => dispatch.submit(request));
     },
     move(creep: Creep, command: MovementCommand) {
