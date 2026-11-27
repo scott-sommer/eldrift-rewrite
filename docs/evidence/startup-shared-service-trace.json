@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Passive shared service action and occupancy trace; exact per-source calendar remains failed.",
+  "native": [
+    {
+      "scenario": "shared-service-trace",
+      "nativeSource": "d32f6e28f3e56a0ded7aeeed320446b25876d71d",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-shared-service-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f44a86fc3227c547b3cb223038534cb3486f733793002088d201083194f5b09c",
+      "uncompressedSha256": "df475d489ed096073da610f0e15c664168d729383115c94d18a906722c9f4ee1"
+    }
+  ]
+}
