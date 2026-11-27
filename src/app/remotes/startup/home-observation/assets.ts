@@ -21,7 +21,7 @@ export function paidHomeAssets(state: StatePort,structures: StartupStructures,na
   const bank = Game.getObjectById(endpoint.id as Id<StructureStorage | StructureTerminal | StructureContainer>); if (!bank) return undefined;
   const inventories = [...new Map([...stores,bank].map(target => [target.id,observePaidHomeInventory(target)])).values()];
   const bodies = observePaidHomeBodies(roster);
-  const pools = [logisticsPool('capacity',endpoint.id),logisticsPool('stock',endpoint.id,'energy'),...stores.map(store => logisticsPool('stock',store.id,'energy'))];
+  const pools = [...inventories,...bodies.map(body => body.inventory)].flatMap(inventory => [inventory.capacityPool,logisticsPool('stock',inventory.id,'energy')]);
   const spawns = home.find(FIND_MY_SPAWNS).map(spawn => ({ id: spawn.id,position: movementPosition(spawn.pos),remainingTime: spawn.spawning?.remainingTime ?? 0 })).sort((a,b) => a.id.localeCompare(b.id));
   return { endpoint,stock,workers,spawns,claims,pools,inventories,bodies };
 }

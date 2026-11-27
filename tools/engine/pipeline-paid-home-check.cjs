@@ -10,6 +10,10 @@ function verifyPaidHomeSnapshots(memory,evidence) {
     assert.equal(home.bodies.length,home.workers.length);
     assert.equal(new Set(home.bodies.map(body => body.unit)).size,home.bodies.length);
     assert.deepEqual(row.seed.inventories,[...home.inventories,...home.bodies.map(body => body.inventory)]);
+    for (const inventory of row.seed.inventories) {
+      assert.ok([['capacity',inventory.id],['capacity',inventory.id,'energy']].some(identity => inventory.capacityPool === 'logistics:'+JSON.stringify(identity)));
+    }
+    assert.ok(home.inventories.some(inventory => inventory.capacityPool.endsWith(',"energy"]')),'real specialized energy compartments retain their distinct pool');
     for (const body of home.bodies) {
       const worker = home.workers.find(worker => worker.name === body.name); assert.ok(worker);
       assert.equal(body.inventory.id,body.unit); assert.equal(body.inventory.energy,worker.energy);

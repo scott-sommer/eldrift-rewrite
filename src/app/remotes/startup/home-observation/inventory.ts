@@ -1,3 +1,4 @@
+import { capacityPool } from '../../../../adapters/screeps/hauling-observation';
 import { nativeUsedCapacity } from '../../../../adapters/screeps/store-usage';
 import type { PaidHomeInventory,PaidHomeSourceObservation } from './model';
 /** Shared physical stores occur once even if multiple source plans refer to them. */
@@ -13,6 +14,6 @@ export function joinPaidHomeInventories(home: readonly PaidHomeInventory[],sourc
   return [...inventory.values()].sort((a,b) => a.id.localeCompare(b.id));
 }
 export function observePaidHomeInventory(target: AnyStoreStructure | Creep): PaidHomeInventory {
-  return { id: target.id,room: target.pos.roomName,energy: target.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,capacity: target.store.getCapacity(RESOURCE_ENERGY) ?? 0,
+  return { capacityPool: capacityPool(target.id,target,RESOURCE_ENERGY),id: target.id,room: target.pos.roomName,energy: target.store.getUsedCapacity(RESOURCE_ENERGY) ?? 0,capacity: target.store.getCapacity(RESOURCE_ENERGY) ?? 0,
     usedCapacity: nativeUsedCapacity(target.store),freeEnergyCapacity: target.store.getFreeCapacity(RESOURCE_ENERGY) ?? 0,active: 'isActive' in target ? target.isActive() : !target.spawning };
 }

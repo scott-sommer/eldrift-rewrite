@@ -29,5 +29,5 @@ function validateParticipants(participants: readonly QuantityParticipant[]): voi
   if (new Set(participants.map(participant => participant.holder)).size !== participants.length) throw new Error('Ambiguous claim participant');
 }
 function validatePools(pools: readonly string[]): void {
-  if (pools.length > 256 || pools.some(pool => typeof pool !== 'string' || !pool) || new Set(pools).size !== pools.length) throw new Error('Invalid selected claim pools');
+  if (pools.length > 512 || pools.some(pool => typeof pool !== 'string' || !pool) || new Set(pools).size !== pools.length) throw new Error('Invalid selected claim pools');
 }

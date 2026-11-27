@@ -1,3 +1,4 @@
+import { logisticsPool } from '../../../../capabilities/logistics/request';
 import { createEnergyInventoryFrame } from '../../../../capabilities/resources/energy-inventory/frame';
 import { withinRange } from '../../../../capabilities/movement/path-model';
 import type { PaidHomeBody, PaidHomeObservation, PaidHomeSourceObservation } from '../home-observation/model';
@@ -16,6 +17,9 @@ export function createPaidHomePhysicalInventory(home: PaidHomePhysicalInput) {
     for (const courier of source.couriers) validatePaidBody(home.observedAt,courier.paid,courier.opening.observed,roster);
   }
   const stores = [...home.inventories,...home.bodies.map(body => body.inventory)];
+  if (stores.some(store => ![logisticsPool('capacity',store.id),logisticsPool('capacity',store.id,'energy')].includes(store.capacityPool))) {
+    throw new Error('Physical inventory capacity pool mismatch');
+  }
   const bank = home.inventories.find(store => store.id === home.endpoint.id);
   if (!bank || bank.energy !== home.endpoint.energy || bank.capacity !== home.endpoint.capacity || bank.freeEnergyCapacity !== home.endpoint.freeCapacity) {
     throw new Error('Physical home bank mismatch');
