@@ -72,3 +72,16 @@ test('a different world action owner blocks hauling without a physical transfer 
   const attempt = createTransferJournal(s.seed.state,'native').read().attempt!;
   expect(attempt.tick).toBe(12); expect(s.inventory.finish([attempt.id])[0]!.amount).toBe(50);
 });
+
+test('fleet settlement captures an unvisited courier delivery before its event window is lost', () => {
+  const s = fixture(); s.inventory.begin(11); s.service.step(11,[{ name: 'courier',work: true }]);
+  const delivered = createTransferJournal(s.seed.state,'native').read().attempt!;
+  s.inventory.finish([delivered.id]); s.inventory.begin(12);
+  expect(s.service.step(12,[])).toEqual([]); expect(s.inventory.pending()).toEqual([]);
+  expect(createTransferJournal(s.seed.state,'native').read()).toMatchObject({ acknowledged: true,result: { status: 'observed',amount: 50 } });
+  expect(s.seed.state.read('logistics-requests/W0N1')).toMatchObject({ data: { records: [{ receipts: [{ id: delivered.id,amount: 50 }] }] } });
+  expect(s.seed.state.read('tasks/courier')).toMatchObject({ data: { queue: [{ id: 'trip' }] } });
+  s.inventory.finish([]); s.inventory.begin(13);
+  expect(() => s.service.step(13,[{ name: 'courier',work: true }])).not.toThrow();
+  expect(s.inventory.pending()[0]).toMatchObject({ kind: 'withdraw',amount: 15 });
+});

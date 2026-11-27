@@ -1,3 +1,4 @@
+import { settleHaulingFleet } from '../../../settle-hauling-fleet';
 import type { TaskRecord } from '../../../../persistence/tasks/schema';
 import type { TransferAttempt, TransferObservation } from '../../../../capabilities/logistics/confirmation';
 import type { Outcome } from '../../../../core/execution/model';
@@ -30,6 +31,8 @@ export interface PaidHaulingServiceResult { name: string; status: 'executed' | '
 /** Task ownership only. The caller supplies the shared physical world and flushes its intents after all actors. */
 export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, ports: PaidHaulingServicePorts) {
   const workers = new Map(seed.workers.map(worker => [worker.name, worker]));
+  const byUnit = new Map(seed.workers.map(worker => [worker.unit,worker]));
+  const units = seed.workers.map(worker => ({ name: worker.name,id: worker.unit }));
   const home = seed.home;
   let tick = seed.tick-1, failed = false;
   function observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt): TransferObservation {
@@ -83,7 +86,13 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
       if (failed) throw new Error('Cannot resume failed hauling service');
       validateFrame(frame,tick,visits,workers);
       tick = frame;
-      try { return visits.map(entry => visit(workers.get(entry.name)!,entry.work)); }
+      try {
+        settleHaulingFleet(seed.state,units,definitions,attempt => {
+          const worker = byUnit.get(attempt.unit); if (!worker) throw new Error('Unknown forecast settlement unit');
+          return observe(worker,attempt);
+        });
+        return visits.map(entry => visit(workers.get(entry.name)!,entry.work));
+      }
       catch (error) { failed = true; throw error; }
     },
   };
