@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Real native path/topology to physical project geometry compilation; no shared calendar or full motion proposal qualification.",
+  "native": [
+    {
+      "scenario": "native-motion-geometry",
+      "nativeSource": "e0fab565d8fd3cc28541667b996a29f9fb43463b",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-native-motion-geometry.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "cc6016554fa552026cc19f473ca4a8fc3e78332f7ca94a86de692076a54de36e",
+      "uncompressedSha256": "2778cd371b9cde35bf9bb832ce34fda609c59be135662d307d98ccf914d710d9"
+    }
+  ]
+}
