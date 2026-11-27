@@ -1,0 +1,51 @@
+{
+  "issue": "ED-29",
+  "scope": "Fixed-path shared native movement and observed cursor prerequisite; not durable route activation or joint calendar qualification.",
+  "native": [
+    {
+      "scenario": "initial-failure",
+      "nativeSource": "1f6512c0a34eb14ccb6a4206cdaaf7f3096ab611",
+      "expectedStatus": "failed",
+      "rawFile": "docs/evidence/startup-fixed-native-movement-initial-failure.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "399d2026a80127965baaeed105478e237fe8d62281fa50d6b39711fa8da83a6a",
+      "uncompressedSha256": "4634b71a85678160d3ae69a2beac31a128bb1518788b641c2f9b00e04938f327"
+    },
+    {
+      "scenario": "corrected",
+      "nativeSource": "b0e7ae131d3fcf952c63e28c6cfb023158dc4cdb",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-fixed-native-movement-corrected.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "3621519e679a66559d27a8a14dd1497be313112fbf22a24d4ef4feba34198d0d",
+      "uncompressedSha256": "da8b392cec76a6c124eb2493ff0320a3e13c25fbb7abaa30b3ce0bc1e5802f00"
+    },
+    {
+      "scenario": "navigation",
+      "nativeSource": "b0e7ae131d3fcf952c63e28c6cfb023158dc4cdb",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-fixed-native-movement-navigation.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "303dd7e6efe35b20bc265bc274cf4358f27eb2f10e1606621378a5e18612c80c",
+      "uncompressedSha256": "44c0d95263b92d838194135c4800737deb8391f37b304a62af7c8b3cab0fc8f7"
+    },
+    {
+      "scenario": "occupied-exit",
+      "nativeSource": "b0e7ae131d3fcf952c63e28c6cfb023158dc4cdb",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-fixed-native-movement-occupied-exit.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "9ee7f86def67ee8b232d5675bc1fe63ef412808ddb452af6d8e44b9f11ac686e",
+      "uncompressedSha256": "0d40a4b86b63b5df67655448d6bc9d5ed5a017f2a01faa9c1d6bf2f51efe933e"
+    },
+    {
+      "scenario": "observed-trace",
+      "nativeSource": "31cb04b5c429f6b8017e1324e30f840514e80207",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-fixed-native-movement-observed-trace.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "8aac709b73d5c8902fd7a93b059d394c8bfd0b43bded49aa139fa4895402c112",
+      "uncompressedSha256": "c473f24ad124efb3cf36db5fc75d518e2116f5fcd27dfd744567315082a55dca"
+    }
+  ]
+}
