@@ -6,6 +6,12 @@ function verifyStartupTravel(probes) {
   assert.deepEqual(first.result,{ status: 'deferred',reason: 'leg-budget',completedLegs: 2 });
   assert.equal(last.tick,150); assert.equal(last.beforeLegs,2); assert.equal(last.afterLegs,5); assert.equal(last.afterRevision,5);
   const result = last.result; assert.equal(result.status,'complete'); assert.equal(result.observedAt,150);
+  const geometry = last.motionGeometry; assert.equal(geometry.status,'ready');
+  assert.equal(geometry.observedAt,150); assert.equal(geometry.quoteIdentity,result.identity);
+  assert.equal(geometry.geometry.routes.length,1); assert.ok(geometry.geometry.terrain.length > 0);
+  const route = geometry.geometry.routes[0]; assert.equal(route.request,'projection-courier');
+  for (const leg of [route.approach,route.empty,route.loaded]) { assert.equal(leg.unit,'projection-courier'); assert.equal(leg.order,'projection-courier'); assert.ok(leg.path.length > 0); }
+  assert.ok(geometry.geometry.terrain.every(fact => [1,2,10].includes(fact.rate)));
   const plan = result.plan;
   assert.deepEqual(result.rooms,['W0N1','E0N1']); assert.equal(result.facts.observedAt,150);
   assert.deepEqual(result.legs.map(leg => leg.kind),['miner-approach','miner-return','courier-approach','courier-empty','courier-loaded']);

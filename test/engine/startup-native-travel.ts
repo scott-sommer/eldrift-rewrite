@@ -1,3 +1,4 @@
+import { createNativeStartupMotionGeometry } from '../../src/app/remotes/startup/projection/motion/native';
 import { createNativeStartupProjection } from '../../src/app/remotes/startup/projection/native';
 import { nativeProjectionOptions } from './startup-native-projection';
 import { startupNativeFactsRequest } from './startup-native-facts';
@@ -15,7 +16,8 @@ export function snapshotStartupNativeTravel(state: StatePort, home: string, maxi
     traversal: { mode: 'known-safe',username: target.username,allies: [],blockedRooms: [],avoidUntil: {},allowKeeper: false,maximumAge: 200,maximumRooms: 128,unknownCost: 8,staleCost: 4,keeperCost: 25 } },maximumLegs,guard);
   const after = progress.read();
   const options = result.status === 'complete' ? nativeProjectionOptions(result) : undefined;
+  const motionGeometry = result.status === 'complete' ? createNativeStartupMotionGeometry(state)(result,options!.births,guard) : undefined;
   if (options) options.births = [];
   const continuation = result.status === 'complete' && Game.time === 150 ? createNativeStartupProjection(state)(result,options!) : undefined;
-  return { ...(continuation ? { projectionContinuation: continuation } : {}),tick: Game.time,beforeLegs: before.legs.length,afterLegs: after.legs.length,beforeRevision: before.revision,afterRevision: after.revision,result };
+  return { ...(motionGeometry ? { motionGeometry } : {}),...(continuation ? { projectionContinuation: continuation } : {}),tick: Game.time,beforeLegs: before.legs.length,afterLegs: after.legs.length,beforeRevision: before.revision,afterRevision: after.revision,result };
 }
