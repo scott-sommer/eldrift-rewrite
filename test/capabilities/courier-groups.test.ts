@@ -15,9 +15,11 @@ function group(name: string,vertical = false): StartupCourierGroup {
 }
 test('two sources compete in one traffic resolution independent of supplied group order',() => {
   const a = group('a'),b = group('b',true);
+  for (const plan of [a.routes[0]!.approach,a.routes[0]!.empty,a.routes[0]!.loaded]) plan.order = 'z';
+  for (const plan of [b.routes[0]!.approach,b.routes[0]!.empty,b.routes[0]!.loaded]) plan.order = 'a';
   const next = advanceStartupCourierGroups([b,a],0,[],ports);
-  expect(next.find(row => row.source === a.source)!.trips[0]!.transit.position).toEqual(point(11));
-  expect(next.find(row => row.source === b.source)!.trips[0]!.transit.position).toEqual(point(11,24));
+  expect(next.find(row => row.source === a.source)!.trips[0]!.transit.position).toEqual(point(10));
+  expect(next.find(row => row.source === b.source)!.trips[0]!.transit.position).toEqual(point(11));
   const reverse = advanceStartupCourierGroups([a,b],0,[],ports);
   expect(reverse).toEqual([...next].reverse());
 });

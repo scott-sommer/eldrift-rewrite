@@ -13,7 +13,8 @@ export interface StartupCourierGroup {
 /** One shared movement frame; source owners retain stock and receipts, and share their actual sink owner. */
 export function advanceStartupCourierGroups(groups: readonly StartupCourierGroup[],tick: number,occupants: readonly Occupant[],ports: TransitFramePorts) {
   validateGroups(groups);
-  const workers = groups.flatMap(group => group.workers).sort((a,b) => a.request.localeCompare(b.request));
+  const orders = new Map(groups.flatMap(group => group.routes.map(route => [route.request,route.approach.order ?? route.request] as const)));
+  const workers = groups.flatMap(group => group.workers).sort((a,b) => compareName(orders.get(a.request)!,orders.get(b.request)!) || compareName(a.request,b.request));
   const owners = new Map(groups.flatMap(group => group.workers.map(worker => [worker.request,group] as const)));
   const trips = advanceStartupCourierTrips(groups.flatMap(group => group.routes),groups.flatMap(group => group.previous),workers,tick,occupants,ports,ready => {
     for (const worker of workers) owners.get(worker.request)!.service(worker,ready);
@@ -27,5 +28,8 @@ function validateGroups(groups: readonly StartupCourierGroup[]): void {
   for (const group of groups) {
     const names = new Set(group.workers.map(worker => worker.request));
     if (group.routes.some(route => !names.has(route.request)) || group.previous.some(trip => !names.has(trip.request))) throw new Error('Courier source ownership mismatch');
+    if (group.workers.some(worker => !group.routes.some(route => route.request === worker.request))) throw new Error('Missing courier route');
   }
 }
+
+function compareName(a: string,b: string): number { return a < b ? -1 : a > b ? 1 : 0; }

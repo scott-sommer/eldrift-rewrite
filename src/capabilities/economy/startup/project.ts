@@ -81,8 +81,7 @@ class StartupProject {
   }
   result() {
     const spawning = this.timeline.result();
-    const construction = { ...this.source.construction,source: { ...this.source.construction.source },waves: this.source.construction.waves.map(wave => ({ ...wave,work: { ...wave.work } })),unusedCargoEnergy: this.source.construction.unusedCargoEnergy+(this.source.construction.completeAt === null ? this.source.delivery.minerCargoEnergy : 0) };
-    const delivery = { ...this.source.delivery,source: { ...this.source.delivery.source },projectedThrough: this.tick,courierCargoEnergy: this.couriers.reduce((sum,worker) => sum+worker.cargo,0),receipts: this.settled.map(receipt => ({ ...receipt })) };
+    const { construction,delivery } = this.source.result(this.tick,this.couriers.reduce((sum,worker) => sum+worker.cargo,0),this.settled);
     return { ...(this.input.initial ? { openingAssets: { energy: startupOpeningEnergy(this.input),...this.source.opening.checkpoint() } } : {}),spawning,construction,delivery,homeSink: this.sink.result(),maintenance: this.source.container.result(),
       cash: this.houseAccounting.result(),projectCash: this.sourceAccounting.result() };
   }

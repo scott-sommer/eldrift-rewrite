@@ -6,7 +6,7 @@ import { startupMiningFrame } from './delivery-mining';
 import { advanceStartupBuilding } from './project-building';
 import { createStartupContainer } from './container';
 import { advanceStartupSource } from './source';
-import type { StartupDeliveryInput } from './delivery-model';
+import type { StartupDeliveryForecast,StartupDeliveryInput } from './delivery-model';
 import type { StartupProjectCheckpoint } from './checkpoints/project-model';
 import type { StartupBuildWave } from './construction-model';
 /** Source stocks, work and maintenance only; home cash, sink and courier motion have separate owners. */
@@ -29,6 +29,11 @@ export class StartupProjectSource {
   private restoreOpening(saved: StartupProjectCheckpoint | undefined): void {
     if (!saved) { this.delivery.containerEnergy = this.input.initial?.containerEnergy ?? 0; return; }
     this.previousMiner = startupProjectWaves(this.input,saved.timeline.births).find(wave => wave.startAt <= saved.tick-1 && saved.tick-1 < wave.endAt)?.request;
+  }
+  result(tick: number,courierCargoEnergy: number,receipts: readonly StartupDeliveryForecast['receipts'][number][]) {
+    const construction = { ...this.construction,source: { ...this.construction.source },waves: this.construction.waves.map(wave => ({ ...wave,work: { ...wave.work } })),unusedCargoEnergy: this.construction.unusedCargoEnergy+(this.construction.completeAt === null ? this.delivery.minerCargoEnergy : 0) };
+    const delivery = { ...this.delivery,source: { ...this.delivery.source },projectedThrough: tick,courierCargoEnergy,receipts: receipts.map(receipt => ({ ...receipt })) };
+    return { construction,delivery,maintenance: this.container.result(),opening: this.opening.checkpoint() };
   }
   /** Finish after courier service: same-frame production cannot be collected until the next frame. */
   prepare(tick: number,wave: StartupBuildWave | undefined) {
