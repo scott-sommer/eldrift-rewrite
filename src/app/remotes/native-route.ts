@@ -10,17 +10,26 @@ export function nativeRemoteRoute(state: StatePort, origin: string, target: stri
   const traversal = createIntelTraversal(nativeScoutIntelPorts(state),policy,Game.time,guard);
   if (traversal.assess(target).status === 'blocked') return undefined;
   if (!retreat && traversal.assess(origin).status === 'blocked') return undefined;
-  const costs: Record<string,number> = {};
   const route = Game.map.findRoute(origin,target,{ routeCallback: name => {
     if (retreat && name === origin) return 1;
-    const cost = traversal.cost(name);
-    if (Number.isFinite(cost)) costs[name] = cost;
-    return cost;
+    return traversal.cost(name);
   } });
   if (route === ERR_NO_PATH || traversal.diagnostics().incomplete) return undefined;
   const allowedRooms = [origin,...route.map(step => step.room)];
   if (allowedRooms.length > maximumRooms) return undefined;
   const permitted = allowedRooms.every(name => retreat && name === origin || traversal.allows(name));
   if (!permitted || traversal.diagnostics().incomplete) return undefined;
-  return { version: JSON.stringify(['remote',retreat,allowedRooms,costs]),blockedRooms: [],costs,maximumRooms,allowedRooms };
+  return corridorPolicy(origin,allowedRooms,retreat,traversal,maximumRooms);
+}
+
+/** Bind the admitted corridor, not unrelated nodes explored by the route finder. */
+function corridorPolicy(origin: string,allowedRooms: string[],retreat: boolean,traversal: ReturnType<typeof createIntelTraversal>,maximumRooms: number): RoutePolicy | undefined {
+  const costs: Record<string,number> = {};
+  for (const room of allowedRooms) {
+    const cost = retreat && room === origin ? 1 : traversal.cost(room);
+    if (!Number.isFinite(cost)) return undefined;
+    costs[room] = cost;
+  }
+  if (traversal.diagnostics().incomplete) return undefined;
+  return { version: JSON.stringify(['remote-corridor-v2',retreat,allowedRooms,costs]),blockedRooms: [],costs,maximumRooms,allowedRooms };
 }

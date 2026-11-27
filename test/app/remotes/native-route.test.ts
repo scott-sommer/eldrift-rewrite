@@ -50,3 +50,17 @@ test('native routing snapshots are detached and a new route sees changed actual 
   f.intel.observeSummary({ ...f.target,controller: { id: 'controller',x: 25,y: 25,level: 1,owned: false,owner: 'hostile',reservation: null } });
   expect(nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,8,false,() => true)).toBeUndefined();
 });
+
+test('learning an explored off-corridor room cannot invalidate unchanged admitted corridor semantics',() => {
+  const f = fixture();
+  f.findRoute.mockImplementation((_origin,destination,options) => {
+    options.routeCallback('E0N0');
+    return options.routeCallback(destination) === Infinity ? -2 : [{ room: destination,exit: 3 }];
+  });
+  const before = nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,8,false,() => true)!;
+  f.intel.observeSummary({ ...intelSummary(10,'E0N0'),controller: null,structures: [],units: [] });
+  const after = nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,8,false,() => true)!;
+  expect(after).toEqual(before); expect(Object.keys(after.costs)).toEqual(['W0N1','E0N1']);
+  f.intel.observeSummary({ ...f.target,controller: { id: 'hostile',x: 25,y: 25,level: 1,owned: false,owner: 'enemy',reservation: null } });
+  expect(nativeRemoteRoute(f.port,'W0N1','E0N1',f.policy,8,false,() => true)).toBeUndefined();
+});
