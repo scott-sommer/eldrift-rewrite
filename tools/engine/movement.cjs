@@ -8,6 +8,7 @@ async function movementWorld(server, bot) {
   });
 }
 function verifyMovement(memory) {
+  assert.deepEqual(memory.movementPlanEvidence,[0,1,1]);
   assert.deepEqual(memory.movementEvidence, { outcomes: ['running', 'done', 'done'], positions: [[20, 20], [21, 20], [21, 20]] });
 }
 module.exports = { movementWorld, verifyMovement };

@@ -10,7 +10,7 @@ import type { LaborTaskPorts } from '../labor-task-model';
 import type { IntentResult } from '../../core/execution/action-arbiter';
 import { createLaborClaims, laborScope } from './claims';
 import { nativeLaborWork, nativeLaborActor, inLaborRange } from './facts';
-type Dispatch = Pick<ReturnType<typeof createNativeDispatch>,'arbiter' | 'movement'>;
+type Dispatch = Pick<ReturnType<typeof createNativeDispatch>,'arbiter'> & { movement: Pick<ReturnType<typeof createNativeDispatch>['movement'],'move'> };
 export interface NativeLaborPolicy {
   enabled(home: string): boolean;
   failed?(creep: Creep, progress: Readonly<LaborProgress>, payload: LaborTaskPayload, reason: string): void;

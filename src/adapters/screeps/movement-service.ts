@@ -1,3 +1,5 @@
+import { followNativeMovementPlan } from './movement-plan';
+import type { TransitPlan } from '../../capabilities/movement/transit/model';
 import { createActionArbiter } from '../../core/execution/action-arbiter';
 import { createNavigator } from '../../capabilities/movement/navigator';
 import { createPathService } from '../../capabilities/movement/path-service';
@@ -48,11 +50,18 @@ export function createMovementService(arbiter: Arbiter = createActionArbiter(() 
     },
     rejected: code => ({ status: 'failed', reason: String(code) }),
   });
+  function reserve(creep: Creep,command: MovementCommand): boolean {
+    if (tick !== Game.time) { commands.clear(); tick = Game.time; }
+    if (commands.has(creep.id)) return false;
+    commands.set(creep.id,command); return true;
+  }
   return {
+    follow(creep: Creep,command: MovementCommand,plan: TransitPlan,index: number) {
+      if (!reserve(creep,command)) return { status: 'blocked' as const,reason: 'movement-already-requested',retryAt: Game.time+1 };
+      return followNativeMovementPlan(creep,command,plan,index,request => dispatch.submit(request));
+    },
     move(creep: Creep, command: MovementCommand) {
-      if (tick !== Game.time) { commands.clear(); tick = Game.time; }
-      if (commands.has(creep.id)) return { status: 'blocked' as const, reason: 'movement-already-requested', retryAt: Game.time + 1 };
-      commands.set(creep.id, command);
+      if (!reserve(creep,command)) return { status: 'blocked' as const, reason: 'movement-already-requested', retryAt: Game.time + 1 };
       return navigate(creep.id, { tick: Game.time, position: movementPosition(creep.pos), destination: command.destination,
         range: command.range, fatigue: creep.fatigue, allowPartial: command.allowPartial ?? false }, creepMobility(creep).mobile);
     },
