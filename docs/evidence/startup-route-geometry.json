@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Native startup admission with retained bounded route geometry; no shared calendar qualification claimed.",
+  "native": [
+    {
+      "scenario": "startup-route-geometry",
+      "nativeSource": "140d53ce14e55e2c959d30f0a949fedccc73abfb",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-route-geometry.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "c6ad3b4b911ef2a9071cd483c132b0a0ea61f22defaeb9d4811d1c61a7f060a6",
+      "uncompressedSha256": "b39e0bcfa581eaa6bc21050e30f8875629e086b50e854892d14a1554ecbdbc5f"
+    }
+  ]
+}
