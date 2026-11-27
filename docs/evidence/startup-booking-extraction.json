@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Portable runtime booking extraction regression; not joined forecast task conversion or financial admission.",
+  "native": [
+    {
+      "scenario": "booking-extraction-supported1000",
+      "nativeSource": "5f632cfbd54ac0f9ea2ac02dae552711ab7dbe9f",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-booking-extraction.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "7408aaa5a173b75a30983ce561600bcb9822002edb3754617ecd610361b49ee6",
+      "uncompressedSha256": "7b3b9368bb9d9ec4d7c66d32f2b75de9a2852831bfe54354ee230a88ac86346a"
+    }
+  ]
+}
