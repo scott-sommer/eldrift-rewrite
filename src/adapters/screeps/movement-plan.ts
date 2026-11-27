@@ -16,6 +16,7 @@ export function followNativeMovementPlan(creep: Creep,command: MovementCommand,p
   if (!next) return { status: 'done' as const };
   const direction = stepDirection(from,next),transition = movementTransition(from,direction);
   if (!transition || !withinRange(transition.landing,next,0)) return blocked('planned-movement-step');
+  if (!allowedStep(command,transition.landing.room)) return blocked('planned-movement-room-policy');
   return movementStep({ tick: Game.time,position: from,destination: command.destination,range: command.range,fatigue: creep.fatigue,allowPartial: false },{
     route: () => ({ status: 'ready',direction,incomplete: false }),
     move: () => submit({ unit: creep.id,order: creep.name,owner: command.owner,from,to: transition.landing,via: transition.local,priority: plan.priority,mobile: true,...(plan.group ? { group: plan.group } : {}) }),
@@ -34,4 +35,9 @@ function validPlanPosition(creep: Creep,plan: TransitPlan,index: number): boolea
   if (!Number.isSafeInteger(index) || index < 0 || index > plan.path.length) return false;
   const expected = index === 0 ? plan.origin : plan.path[index-1];
   return !!expected && withinRange(movementPosition(creep.pos),expected,0);
+}
+
+function allowedStep(command: MovementCommand,room: string): boolean {
+  if (command.policy.blockedRooms.includes(room)) return false;
+  return command.policy.allowedRooms === undefined || command.policy.allowedRooms.includes(room);
 }

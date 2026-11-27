@@ -1,3 +1,4 @@
+import type { RemoteServiceMovementFactory } from './remotes/service-movement';
 import { createNativeEconomicStartup } from './remotes/startup/economic/native';
 import { createNativeRemoteServicePorts } from './remotes/service-ports';
 import { createNativeLaborBirthAdmission } from './native-labor/birth-admission';
@@ -57,7 +58,7 @@ import { createPersistentConfiguration } from './persistent-configuration';
 import { createGamePorts } from '../adapters/screeps/runtime';
 import { createMemoryPort } from '../adapters/screeps/memory';
 
-export interface NativeBotOptions { remoteBirths?: RemoteFleetBirthPolicy; remoteStartupProbe?: RemoteStartupProbe; spawnEnergyPolicy?: typeof explicitSpawnEnergyPolicy }
+export interface NativeBotOptions { remoteServiceMovement?: RemoteServiceMovementFactory; remoteBirths?: RemoteFleetBirthPolicy; remoteStartupProbe?: RemoteStartupProbe; spawnEnergyPolicy?: typeof explicitSpawnEnergyPolicy }
 /** One composition root; injected planning policy shares ordinary recruitment and final dispatch. */
 export function createNativeBot(options: NativeBotOptions = {}) {
   const constructionLedger = createConstructionReservationLedger();
@@ -67,6 +68,7 @@ export function createNativeBot(options: NativeBotOptions = {}) {
   const recovery = createNativeRecovery(state);
   const configuration = createPersistentConfiguration(state, () => ports.clock().tick);
   const runtimeConfig = (room?: string) => resolveConfig(configuration(room), Game.time).values;
+  const serviceMovement = options.remoteServiceMovement?.(state,dispatch.movement,runtimeConfig);
   const boosts = createNativeBoosts(state,dispatch,runtimeConfig,ports);
   const startup = createNativeRemoteStartup(state,dispatch.structures,runtimeConfig);
   const observeSpawnLoad = createNativeSpawnLoadObserver(state,dispatch.structures,runtimeConfig,ports.reportFailure);
@@ -87,12 +89,12 @@ export function createNativeBot(options: NativeBotOptions = {}) {
     const policy = nativeWorkerSettings(owner,home,runtimeConfig(home));
     return !!policy?.workersEnabled && policy.workerSpawningEnabled;
   },taskDefinitions);
-  const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths ?? createNativeEconomicStartup(state,dispatch.structures,options.remoteStartupProbe));
+  const remoteWorkers = createNativeRemoteWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit,options.remoteBirths ?? createNativeEconomicStartup(state,dispatch.structures,options.remoteStartupProbe),serviceMovement);
   const constructionWorkers = createNativeRemoteConstructionWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const reservationWorkers = createNativeReservationWorkers(state,dispatch,runtimeConfig,taskDefinitions,startup.permit);
   const maintainCreeps = createCreepMaintenance(state, ownedCreepRoster, taskDefinitions, withScoutRetirement(state, createLogisticsRetirement(state), () => Game.time), withLaborReceiptRetirement(unit => settleHaulingTask(state,taskDefinitions,unit,observeTransfer)));
   const admitTick = createTickAdmission(state,createMigrationGate(state,[],ports),() => ports.clock().tick,maintainCreeps);
-  const beforeTick = boosts.before(() => { if (!admitTick()) return false; dispatch.prepare(); return true; });
+  const beforeTick = boosts.before(() => { if (!admitTick()) return false; serviceMovement?.before?.(); dispatch.prepare(); return true; });
   // Gameplay registration is separate from configuration-controlled activation.
   return createGameLoop([createNativeBoostLabRoles(state), createNativeLabs(state,dispatch.structures,createNativeEmpireProduction(state,runtimeConfig)), createNativeRemoteReachabilityFeature(state,dispatch), createNativeRemoteCapacityFeature(state), scouts.feature, scouts.demand, createNativeObservers(state, dispatch.structures, ports), createNativeIntelFeature(state, ports), mining.feature, logistics.feature, workers.loss, workers.feature, support.feature, upgradeMaster.feature, createNativeUpgradeLifecycle(state, dispatch, runtimeConfig), createNativeUpgradeParking(state, dispatch, upgradeMaster.definitions), upgradeFleet, createNativeSupplyRecovery(state, dispatch, runtimeConfig), createNativeUpgradeSupply(state, dispatch, runtimeConfig), createNativeUpgradeRoom(state, dispatch), createNativePlanningFeature(state, runtimeConfig), createNativeConstructionFeature(state,constructionLedger), createNativeRemoteInfrastructureFeature(state,constructionLedger), createNativeRemoteManagementFeature(state,remoteWorkers.publish), remoteWorkers.recruitment, remoteWorkers.actors, constructionWorkers.recruitment, constructionWorkers.actors, reservationWorkers.recruitment, reservationWorkers.actors], {
     ...ports,

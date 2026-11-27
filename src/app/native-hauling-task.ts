@@ -1,3 +1,4 @@
+import type { createMovementService } from '../adapters/screeps/movement-service';
 import type { StatePort } from '../persistence/versioned-state';
 import type { LogisticsRequest } from '../capabilities/logistics/request';
 import type { RoutePolicy } from '../capabilities/movement/room-route';
@@ -11,12 +12,12 @@ export type NativeHaulingPolicy = RoutePolicy | ((creep: Creep, request: Logisti
 /** Native task composition shares the application's arbiter and movement flush. */
 export function createNativeHaulingTask(state: StatePort,
   dispatch: Pick<ReturnType<typeof createNativeDispatch>, 'arbiter' | 'movement'>, policy: NativeHaulingPolicy,
-  observe: typeof observeHauling = observeHauling) {
+  observe: typeof observeHauling = observeHauling,movement: Pick<ReturnType<typeof createMovementService>,'move'> = dispatch.movement) {
   return createHaulingTaskBehavior<Creep>(state, {
     identity: creep => ({ id: creep.id, name: creep.name }),
     view: (creep, payload) => observe(creep, payload.request, payload.sinkRoom),
     execution: (creep, binding) => {
-      const transfer = createNativeTransfer(dispatch.arbiter, dispatch.movement, createTransferJournal(state, creep.id).begin);
+      const transfer = createNativeTransfer(dispatch.arbiter, movement, createTransferJournal(state, creep.id).begin);
       return { observe: observeTransfer, execute: (request, phase, amount, attemptId, requestKey) => {
         const target = logisticsEndpoint(phase === 'collect' ? request.source : request.sink);
         if (!target) return { status: 'blocked', reason: 'hauling-endpoint-unavailable', retryAt: Game.time + 1 };

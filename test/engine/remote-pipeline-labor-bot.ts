@@ -1,3 +1,4 @@
+import { pipelinePaidRouteExecution } from './pipeline-paid-route-execution';
 import { capturePipelinePaidOpening } from './pipeline-paid-opening-probe';
 import { observePipelinePaidOpening } from './pipeline-paid-courier-probe';
 import { observeSharedService, withSharedMovementTrace } from './pipeline-shared-service-trace';
@@ -24,7 +25,7 @@ interface PipelineLaborMemory extends Memory { pipelineLabor?: { proposal: Labor
 const state = createMemoryPort(() => Memory);
 let runtime: ReturnType<typeof createNativeBot> | undefined;
 export function loop(): void {
-  runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredTraceMode ? { remoteStartupProbe: captureStartupTrace } : {}),...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
+  runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode && (Memory as ConfiguredPipelineMemory).pipelineConfiguredVariant === undefined ? { remoteServiceMovement: pipelinePaidRouteExecution } : {}), ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredTraceMode ? { remoteStartupProbe: captureStartupTrace } : {}),...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
   runPipeline(() => withPipelinePathProbe(() => withPipelineServiceProbe(() => withSharedMovementTrace(runtime!))),before,probe);
 }
 function before(): void {

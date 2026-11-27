@@ -1,3 +1,4 @@
+import type { RemoteServiceMovement } from '../service-movement';
 import { createActorCycles } from './actor-cycles';
 import { fleetServicePlan, fleetServiceOptions } from './service-policy';
 import type { RemoteFleetBirthPolicy } from '../startup/model';
@@ -19,7 +20,7 @@ import { remoteFleetWorkEnabled } from './spawn-policy';
 import { healthyRemoteActor } from './health';
 type RemoteActorServices = Pick<RemoteFleetBirthPolicy,'service' | 'trace'>;
 export function createNativeRemoteActors(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, config: (home: string) => Readonly<RuntimeConfig>,
-  definitions: Readonly<Record<string,TaskDefinition>>, services?: RemoteActorServices): EmpireFeature {
+  definitions: Readonly<Record<string,TaskDefinition>>, services?: RemoteActorServices,serviceMovement?: RemoteServiceMovement): EmpireFeature {
   const cursor = createRemoteActorCursor(state);
   return { id: 'remote-actors',scope: 'empire',urgency: 'urgent',interval: 1,run(context) {
     const groups = actorGroups();
@@ -30,7 +31,7 @@ export function createNativeRemoteActors(state: StatePort, dispatch: ReturnType<
     for (const group of cursor.order(groups)) {
       if (!guard()) break;
       const policy = context.rooms.get(group.name)?.values ?? config(group.name);
-      runHomeActors(state,dispatch,group.name,group.creeps,policy,definitions,guard,services);
+      runHomeActors(state,dispatch,group.name,group.creeps,policy,definitions,guard,services,serviceMovement);
       cursor.save(group.name);
     }
   } };
@@ -47,12 +48,12 @@ function actorGroups(): { name: string; creeps: Creep[] }[] {
   return [...groups].map(([name,creeps]) => ({ name,creeps }));
 }
 function runHomeActors(state: StatePort, dispatch: ReturnType<typeof createNativeDispatch>, home: string, creeps: Creep[], policy: Readonly<RuntimeConfig>,
-  definitions: Readonly<Record<string,TaskDefinition>>, parentGuard: () => boolean, services?: RemoteActorServices): void {
+  definitions: Readonly<Record<string,TaskDefinition>>, parentGuard: () => boolean, services?: RemoteActorServices,serviceMovement?: RemoteServiceMovement): void {
   const deadline = Game.cpu.getUsed()+policy.remoteWorkerCpuBudget, guard = () => parentGuard() && Game.cpu.getUsed() < deadline;
   const profiles = createRemoteFleetStore(state,home).read().actors, assignments = createRemoteAssignmentStore(state), cursor = createRemoteActorCursor(state,home);
   let deferred: boolean;
   function admittedGuard(): boolean { const available = guard(); if (!available) deferred = true; return available; }
-  const cycles = createActorCycles({ state,dispatch,home,policy,definitions,guard: admittedGuard,...(services?.trace ? { trace: (owner: string,unit: string,phase: string) => traceActor(services,profiles.find(profile => profile.owner === owner),unit,phase) } : {}) });
+  const cycles = createActorCycles({ state,dispatch,home,policy,definitions,guard: admittedGuard,...(serviceMovement ? { serviceMovement } : {}),...(services?.trace ? { trace: (owner: string,unit: string,phase: string) => traceActor(services,profiles.find(profile => profile.owner === owner),unit,phase) } : {}) });
   for (const creep of cursor.order(creeps)) {
     if (!guard()) { traceActor(services,profiles.find(actor => actor.owner === creep.memory.population!.owner),creep.name,'deferred'); break; }
     const owner = creep.memory.population!.owner, identity = remoteFleetIdentity(owner)!, profile = profiles.find(actor => actor.owner === owner);

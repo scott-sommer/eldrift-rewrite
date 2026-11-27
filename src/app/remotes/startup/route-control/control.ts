@@ -27,7 +27,7 @@ export function createPaidCourierRouteControl(state: StatePort,movement: Pick<Re
   }
   function observe(context: PaidUnitContext,guard: () => boolean = () => true): PaidRouteControlResult {
     const before = current(context); if (before.status === 'deferred') return before;
-    const facts = inspect(context,guard); if (facts.status === 'deferred') return facts;
+    const facts = inspect(context,guard,before.route.program); if (facts.status === 'deferred') return facts;
     const program = before.route.program,opening = facts.opening;
     if (!paidRouteContextMatches(program,context) || program.routeVersion !== facts.routeVersion || program.topologyVersion !== facts.topologyVersion) return deferred('route-observation-binding');
     const route = observedPaidRoute(before.route,opening,Game.time);

@@ -29,7 +29,8 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   const probe = createTransportProbe(options.trace); options = { ...options,guard: probe.guard(options.guard) };
   const context = createNativeRemoteTransportContext(state,dispatch,binding,options);
   const bank = createNativeRemoteBanking(state,dispatch,binding.home,options,options.banking);
-  const haul = createNativeHaulingTask(state,dispatch,context.route);
+  const movement = options.serviceMovement ?? dispatch.movement;
+  const haul = createNativeHaulingTask(state,dispatch,context.route,observeHauling,movement);
   const combined = { ...haul,handlers: (task: Readonly<TaskRecord>) => bank.owns(task) ? bank.definitions.haul.handlers(task) : haul.handlers(task) };
   const behaviors = { haul: combined }, definitions = { ...otherDefinitions,...behaviors };
   const tasks = remoteTransportTasks(state,definitions,binding.home), execute = createTaskRunner(state,behaviors,() => Game.time,definitions);
@@ -52,7 +53,7 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
       tasks.cancel(creep.name,task); retire(creep); return false;
     }
     if (view.visible) return true;
-    dispatch.activate(); dispatch.movement.move(creep,{ owner: binding.owner,destination: options.service?.collection ?? view.position,range: options.service ? 0 : 1,policy: view.route });
+    dispatch.activate(); movement.move(creep,{ owner: binding.owner,destination: options.service?.collection ?? view.position,range: options.service ? 0 : 1,policy: view.route });
     return false;
   }
   function recruitTrip(creep: Creep, demand: RemoteTransportDemand): void {
@@ -74,7 +75,7 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   }
   function stage(creep: Creep, view: NonNullable<ReturnType<typeof context.source>>): void {
     const destination = options.service?.collection ?? (view.endpoint ? movementPosition(view.endpoint.pos) : view.position);
-    dispatch.activate(); dispatch.movement.move(creep,{ owner: binding.owner,destination,range: options.service ? 0 : 1,policy: view.route });
+    dispatch.activate(); movement.move(creep,{ owner: binding.owner,destination,range: options.service ? 0 : 1,policy: view.route });
   }
   function admit(creep: Creep, demand: RemoteTransportDemand, container: RemoteTransportSource, sink: AnyStructure, maximum: number): boolean {
     const expiresAt = Math.min(demand.expiresAt,Game.time + options.requestLifetime);

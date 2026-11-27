@@ -23,6 +23,9 @@ test('fixed path queues actual native identity into the shared traffic batch and
 test('shared occupancy blocks a fixed plan and invalid cursor or fatigue never invokes a substitute search',() => {
   const f = fixture(true); followNativeMovementPlan(f.creep,f.command,f.plan,0,f.dispatch.submit); f.dispatch.flush(); expect(f.issue).not.toHaveBeenCalled();
   expect(followNativeMovementPlan(f.creep,f.command,f.plan,1,f.dispatch.submit)).toMatchObject({ reason: 'planned-movement-position' });
+  Object.assign(f.command.policy,{ allowedRooms: ['E0N1'] });
+  expect(followNativeMovementPlan(f.creep,f.command,f.plan,0,f.dispatch.submit)).toMatchObject({ reason: 'planned-movement-room-policy' });
+  Object.assign(f.command.policy,{ allowedRooms: ['W0N1'] });
   f.creep.fatigue = 2;
   expect(followNativeMovementPlan(f.creep,f.command,f.plan,0,f.dispatch.submit)).toMatchObject({ reason: 'fatigue' });
   expect(f.issue).not.toHaveBeenCalled();
