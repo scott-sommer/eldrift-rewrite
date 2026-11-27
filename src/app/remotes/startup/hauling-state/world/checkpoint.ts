@@ -3,7 +3,7 @@ import type { Journal } from '../../../../../features/logistics/transfer-journal
 import type { TransferAttempt } from '../../../../../capabilities/logistics/confirmation';
 import { createTransferJournal } from '../../../../../features/logistics/transfer-journal';
 import type { PaidHaulingForecastSeed,PaidHaulingForecastWorker } from '../service';
-import type { EnergyTransferEffect } from '../../../../../capabilities/resources/energy-inventory/model';
+import type { EnergyEffect,EnergySource } from '../../../../../capabilities/resources/energy-inventory/model';
 import { copyPlain } from '../../../../../core/plain-data';
 import type { EnergyInventoryCheckpoint } from '../../../../../capabilities/resources/energy-inventory/model';
 import { createEnergyInventoryFrame } from '../../../../../capabilities/resources/energy-inventory/frame';
@@ -25,13 +25,14 @@ export function readHomeHaulingCheckpoint(raw: HomeHaulingCheckpoint): HomeHauli
 }
 /** Material metadata is immutable in this version; body pose is separately owned and restored. */
 export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyInventoryCheckpoint<PaidHomeInventory>) {
+  validateEcologyMetadata(input.ecology,checkpoint.ecology);
   const original = [...input.inventories,...input.bodies.map(body => body.inventory)];
   if (original.length !== checkpoint.stores.length) throw new Error('Home checkpoint inventory roster mismatch');
   for (const store of checkpoint.stores) {
     const opening = original.find(value => value.id === store.id);
     if (!opening || ['capacityPool','room','capacity','active'].some(key => opening[key as keyof PaidHomeInventory] !== store[key as keyof PaidHomeInventory])) throw new Error('Home checkpoint inventory metadata mismatch');
   }
-  return createEnergyInventoryFrame(checkpoint.nextTick,checkpoint.stores,checkpoint.effects);
+  return createEnergyInventoryFrame(checkpoint.nextTick,checkpoint.stores,checkpoint.effects,checkpoint.ecology);
 }
 
 /** Pending private attempts must retain the effect needed by the one-frame confirmation window. */
@@ -46,20 +47,35 @@ function validateBodyContinuation(checkpoint: HomeHaulingCheckpoint): void {
     if (!body || !withinRange(body.position,expected.position,0) || body.fatigue !== expected.fatigue) throw new Error('Home checkpoint body/movement mismatch');
   }
 }
-function validatePendingContinuation(effects: readonly EnergyTransferEffect[],seed: PaidHaulingForecastSeed,worker: PaidHaulingForecastWorker): void {
+function validatePendingContinuation(effects: readonly EnergyEffect[],seed: PaidHaulingForecastSeed,worker: PaidHaulingForecastWorker): void {
   const journal = createTransferJournal(seed.state,worker.unit).peek();
-  const own = effects.filter(effect => (effect.kind === 'withdraw' ? effect.target : effect.source) === worker.unit);
+  const own = effects.filter(effect => effect.kind !== 'harvest' && (effect.kind === 'withdraw' ? effect.target : effect.source) === worker.unit);
   validateEffectJournals(own,journal);
   if (!journal?.attempt || journal.acknowledged || journal.result !== null) return;
   validatePendingEffect(effects,journal.attempt,worker.unit);
 }
-function validateEffectJournals(effects: readonly EnergyTransferEffect[],journal: Journal | undefined): void {
+function validateEffectJournals(effects: readonly EnergyEffect[],journal: Journal | undefined): void {
   if (effects.some(effect => journal?.attempt?.id !== effect.id || journal.acknowledged)) throw new Error('Missing home checkpoint pending journal');
 }
-function validatePendingEffect(effects: readonly EnergyTransferEffect[],attempt: TransferAttempt,unit: string): void {
+function validatePendingEffect(effects: readonly EnergyEffect[],attempt: TransferAttempt,unit: string): void {
   const effect = effects.find(effect => effect.id === attempt.id);
   if (!effect || effect.kind !== attempt.kind || effect.issuedAt !== attempt.tick) throw new Error('Missing home checkpoint pending effect');
   const source = attempt.kind === 'withdraw' ? attempt.target : unit;
   const target = attempt.kind === 'withdraw' ? unit : attempt.target;
   if (effect.source !== source || effect.target !== target || effect.amount > attempt.amount) throw new Error('Home checkpoint effect binding mismatch');
+}
+
+function validateEcologyMetadata(opening: HomeHaulingInput['ecology'],current: HomeHaulingInput['ecology']): void {
+  if (!opening && !current) return;
+  if (!opening || !current) throw new Error('Home checkpoint ecology presence mismatch');
+  if (opening.sources.length !== current.sources.length) throw new Error('Home checkpoint source roster mismatch');
+  validateSourceMetadata(opening.sources,current.sources);
+  if (current.decayDivisor !== opening.decayDivisor || JSON.stringify(current.containers) !== JSON.stringify(opening.containers)) throw new Error('Home checkpoint ecology rules mismatch');
+}
+
+function validateSourceMetadata(original: readonly EnergySource[],restored: readonly EnergySource[]): void {
+  for (const source of restored) {
+    const initial = original.find(value => value.id === source.id);
+    if (!initial || !withinRange(initial.position,source.position,0) || initial.capacity !== source.capacity || initial.regenerationTicks !== source.regenerationTicks) throw new Error('Home checkpoint source metadata mismatch');
+  }
 }

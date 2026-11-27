@@ -1,3 +1,4 @@
+import type { EnergyEcology } from '../../../../capabilities/resources/energy-inventory/model';
 import { logisticsPool } from '../../../../capabilities/logistics/request';
 import { createEnergyInventoryFrame } from '../../../../capabilities/resources/energy-inventory/frame';
 import { withinRange } from '../../../../capabilities/movement/path-model';
@@ -10,7 +11,7 @@ export interface PaidHomePhysicalInput extends Pick<PaidHomeObservation,'observe
   sources: readonly Pick<PaidHomeSourceObservation,'miners' | 'couriers'>[];
 }
 /** Structures and actual native bodies share one inventory; worker cargo never becomes opening bank cash. */
-export function createPaidHomePhysicalInventory(home: PaidHomePhysicalInput) {
+export function createPaidHomePhysicalInventory(home: PaidHomePhysicalInput,ecology?: EnergyEcology) {
   const roster = bodyRoster(home);
   for (const source of home.sources) {
     for (const miner of source.miners) validatePaidBody(home.observedAt,miner.paid,miner.observation,roster);
@@ -24,7 +25,7 @@ export function createPaidHomePhysicalInventory(home: PaidHomePhysicalInput) {
   if (!bank || bank.energy !== home.endpoint.energy || bank.capacity !== home.endpoint.capacity || bank.freeEnergyCapacity !== home.endpoint.freeCapacity) {
     throw new Error('Physical home bank mismatch');
   }
-  return createEnergyInventoryFrame(home.observedAt,stores);
+  return createEnergyInventoryFrame(home.observedAt,stores,[],ecology);
 }
 function bodyRoster(home: PaidHomePhysicalInput) {
   if (home.bodies.length > 128 || home.bodies.length !== home.workers.length) throw new Error('Physical home roster mismatch');

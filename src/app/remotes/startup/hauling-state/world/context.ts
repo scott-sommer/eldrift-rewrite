@@ -9,6 +9,7 @@ import { createPaidHaulingForecastService } from '../service';
 import { withinRange } from '../../../../../capabilities/movement/path-model';
 import type { PaidHaulingForecastWorker } from '../service';
 import type { HomeHaulingInput,HomeWorldEnvironment,HomeWorldShared } from './model';
+import { homeWorldInventoryPorts } from './inventory-ports';
 import { HomeWorldBodies } from './bodies';
 import { homeWorldInput,homeWorldRoutes } from './input';
 import { restoreHomeInventory,validateHomeContinuation } from './checkpoint';
@@ -17,7 +18,7 @@ import { homeWorldReceiptCollector } from './receipts';
 /** Composition owns private mechanisms; outside actor policy is supplied through explicit ports. */
 export function homeWorldContext(input: HomeHaulingInput,configure: (shared: HomeWorldShared) => HomeWorldEnvironment,
   policy: { minimumBatch: number; requestLifetime: number }, checkpoint?: HomeHaulingCheckpoint) {
-  const home = homeWorldInput(input),initialInventory = createPaidHomePhysicalInventory(home);
+  const home = homeWorldInput(input),initialInventory = createPaidHomePhysicalInventory(home,home.ecology);
   const inventory = checkpoint ? restoreHomeInventory(home,checkpoint.inventory) : initialInventory;
   const nextTick = checkpoint?.inventory.nextTick ?? home.observedAt;
   const seed = createPaidHaulingForecastState(home.home,home.observedAt,home.sources.flatMap(source => source.couriers.map(courier =>
@@ -25,7 +26,7 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
   const bodies = new HomeWorldBodies(home,new Set(seed.workers.map(worker => worker.unit)));
   if (checkpoint) { bodies.restore(checkpoint.bodies); validateHomeContinuation(checkpoint,seed); }
   const arbiter = createActionArbiter(inventory.tick),quantities = createQuantityReservations(seed.state);
-  const shared: HomeWorldShared = { state: seed.state,inventory,quantities,arbiter,body: unit => bodies.get(unit) };
+  const shared: HomeWorldShared = { state: seed.state,inventory: homeWorldInventoryPorts(inventory,bodies),quantities,arbiter,body: unit => bodies.get(unit) };
   const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment,checkpoint?.movement);
   function endpoint(worker: PaidHaulingForecastWorker,phase: 'collect' | 'deliver') {
     const target = environment.endpoint(worker,phase,inventory.tick());

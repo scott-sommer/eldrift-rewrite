@@ -1,4 +1,4 @@
-import type { EnergyInventory, EnergyTransferIntent } from './model';
+import type { EnergyInventory, EnergyTransferIntent,EnergyIntent } from './model';
 export function validateEnergyInventories(stores: readonly EnergyInventory[]): void {
   if (stores.length > 256 || new Set(stores.map(store => store.id)).size !== stores.length) throw new Error('Invalid energy inventory identities');
   for (const store of stores) {
@@ -10,7 +10,7 @@ export function validateEnergyTransfer(intent: EnergyTransferIntent, stores: Rea
   if (typeof intent.id !== 'string' || !intent.id || !['withdraw','transfer'].includes(intent.kind) || !quantity(intent.amount) || intent.amount === 0) throw new Error('Invalid energy transfer intent');
   if (intent.source === intent.target || !stores.has(intent.source) || !stores.has(intent.target)) throw new Error('Invalid energy transfer endpoints');
 }
-export function validateEnergyTransferOrder(order: readonly string[], intents: ReadonlyMap<string,EnergyTransferIntent>): void {
+export function validateEnergyTransferOrder(order: readonly string[], intents: ReadonlyMap<string,EnergyIntent>): void {
   if (order.length !== intents.size || new Set(order).size !== order.length || order.some(id => !intents.has(id))) throw new Error('Invalid energy transfer settlement order');
 }
 function quantity(value: number): boolean { return Number.isSafeInteger(value) && value >= 0 && value <= 1000000000; }

@@ -1,0 +1,25 @@
+# Shared physical harvesting and source clocks
+
+ED-29 remains in progress. The private home world now accepts explicit `EnergyEcology` opening facts: natural sources with current stock/capacity/regeneration countdown, standing container identities/positions, existing dropped energy and the decay divisor. Natural sources are separate from withdrawable store inventories. No opening source stock or miner cargo becomes bank cash.
+
+## One ordered material owner
+
+`capabilities/resources/energy-inventory` settles harvest and transfer intents in one explicit processor order, against one copied physical state. Actor observations remain frozen for the frame. A harvest removes full available WORK output through the existing `energyHarvestEffect`, clips carried energy to actual free shared capacity, automatically captures overflow in a live catalogued container on the miner tile, then merges the remainder with dropped energy on that tile. Container capture is automatic even when no handoff target is supplied. Any explicit overflow target must agree with the actual tile. Dropped energy loses `ceil(energy / decayDivisor)` in the post-action phase; exhausted piles disappear.
+
+After action settlement the source clocks advance through the same portable recurrence already used by the startup economy model, extracted to `capabilities/mining/source-regeneration.ts`. A newly partial source starts its regeneration clock; a due source refills after actions. All next state is validated before stores, sources, drops and effects commit together. Invalid settlement order cannot partially change source stock.
+
+The home world exposes current source observations to explicit outside actors, binds harvest intents to the actual known body pose and retains the existing shared action arbiter. The caller still owns action selection and effective harvest-power facts. Its checkpoint now includes source clocks, dropped energy, fixed container geometry/rules and next-frame harvest effects; restore validates those immutable facts against the opening. Existing no-ecology format1 checkpoints remain supported. This adds optional ecology state to that format, rather than interpreting old checkpoints as having natural source income.
+
+## Evidence
+
+`tools/processors/harvest.check.mjs` invokes pinned engine4.3.2 harvest, source-tick and dropped-energy-tick processors using local object/clock/bulk fixtures. It compares actual stores, source energy/countdown, dropped stock and event harvest amounts. Cases include zero CARRY, depleted source clipping, full and mixed-resource containers, mixed-resource miner capacity, successive drop merging, automatic standing-container capture, both harvest/withdrawal orders and a300-frame regeneration cycle. Together with the existing transfer comparisons,15 processor tests/two files passed in382ms. Command: `npx vitest run --config tools/processors/vitest.config.mjs tools/processors/harvest.check.mjs tools/processors/hauling.check.mjs`.
+
+The targeted source/hauling/inventory/checkpoint selection passed61 tests/13 files in891ms. After the final automatic-capture and validation extraction changes, the directly affected source-work, harvest-frame and hauling-checkpoint files passed17 tests/three files in734ms. These selections overlap. The fixed smoke suite remained unchanged:76 tests/15 files passed in555ms. Full units and milestone closure CI were not run for this incremental step.
+
+`npm run quality` passed: typecheck, lint, architecture boundaries and pinned Lizard (1167 production/962 test files, zero violations). `npm run check:bundle` passed after the final changes. Unit tests prove frozen observations, physical conservation minus explicit decay, atomic refusal and300-frame JSON checkpoint equivalence. The home fixture verifies an8-energy harvest from a48-energy miner:2 retained and6 captured by the same container used by the courier, with exact checkpoint/resume agreement.
+
+## Remaining native integration
+
+This is physical action settlement, not a native miner policy or financial qualification. The native coherent-home adapter does not yet capture and install this ecology packet. Reuse the current miner/task/station selector and observed effective body powers when adding that controller; its approach, establishment, repair, handoff, authority and station claims must retain native ordering and state. Do not simply issue a harvest every tick. Container creation/decay/destruction, pickup/drop actions, source capacity changes from reservation control, source power effects, prospective births, damage and TTL need their own modeled transitions and checkpoint state. The implemented source recurrence assumes the supplied capacity and ordinary regeneration rules remain valid.
+
+No new packaged native scenario was run for this private model. Processor fixtures establish the tested effects and declared order, not the complete native global ordering or future receipt calendars. Exact multi-source future native calendars, household/control-state capture, accounting reconciliation, full horizon and strict5ms operation remain open. No financial admission or deployment was enabled.
