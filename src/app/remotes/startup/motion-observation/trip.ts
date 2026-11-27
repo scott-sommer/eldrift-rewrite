@@ -1,3 +1,5 @@
+import { validHaulingPayload } from '../../../hauling-task';
+import { stateKey } from '../../../../persistence/state-key';
 import { peekState } from '../../../../persistence/versioned-state';
 import type { StatePort } from '../../../../persistence/versioned-state';
 import { logisticsQueueSchema,delivered } from '../../../../features/logistics/request-schema';
@@ -9,9 +11,14 @@ import type { TaskRecord } from '../../../../persistence/tasks/schema';
 import type { HaulingTaskPayload } from '../../../hauling-task';
 import type { PaidCourierContext,PaidCourierObservation } from './model';
 export function observePaidCourierTask(state: StatePort,context: PaidCourierContext,creep: Creep,task: TaskRecord): PaidCourierObservation['task'] | undefined {
-  const payload = task.payload as HaulingTaskPayload,request = payload.request;
   if (!validHead(state,context,creep,task)) return undefined;
-  const record = peekState(state,'logistics-requests/'+context.cohort.home,logisticsQueueSchema)?.records.find(record => record.request.id === request.id && record.request.owner === request.owner);
+  return paidCourierTaskProgress(state,context.cohort.home,creep.id,task);
+}
+/** Read the same owner progress in a private forecast; native admission remains with validHead. */
+export function paidCourierTaskProgress(state: StatePort, home: string, unit: string, task: TaskRecord): PaidCourierObservation['task'] | undefined {
+  if (!validHaulingPayload(task.payload) || task.payload.home !== home || task.payload.unitId !== unit) return undefined;
+  const request = task.payload.request;
+  const record = peekState(state,stateKey('logistics-requests',home),logisticsQueueSchema)?.records.find(record => record.request.id === request.id && record.request.owner === request.owner);
   if (!record || record.cancelled || !sameRequest(record.request,request)) return undefined;
   return { record: task,id: task.id,wakeAt: task.wakeAt,expiresAt: task.expiresAt,request,remaining: request.quantity-delivered(record),receipts: record.receipts };
 }

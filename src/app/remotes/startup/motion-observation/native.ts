@@ -1,3 +1,4 @@
+import { paidCourierStage } from './stage';
 import { copyPlain } from '../../../../core/plain-data';
 import { movementPosition } from '../../../../adapters/screeps/movement-traffic';
 import { peekState } from '../../../../persistence/versioned-state';
@@ -9,7 +10,7 @@ import { createRemoteAssignmentStore } from '../../../../features/remotes/assign
 import { paidCourierMatches } from './identity';
 import { observePaidCourierTask } from './trip';
 import { validPaidCourierJournal } from './journal';
-import type { PaidCourierContext,PaidCourierObservation,PaidCourierResult } from './model';
+import type { PaidCourierContext,PaidCourierResult } from './model';
 const definitions = { haul: { phases: ['work'],validPayload: validHaulingPayload } };
 /** Observe existing owners only: no task admission, settlement, acknowledgement or namespace initialization. */
 export function createNativePaidCourierObservation(state: StatePort) {
@@ -29,16 +30,9 @@ function observe(state: StatePort,context: PaidCourierContext,creep: Creep,guard
   if (queue.length && !task) return { status: 'deferred',reason: 'paid-courier-task' };
   const journal = createTransferJournal(state,creep.id).peek();
   if (!validPaidCourierJournal(context,creep.id,journal,task,Game.time)) return { status: 'deferred',reason: 'paid-courier-journal' };
-  const stage = stageOf(creep,task,journal?.acknowledged === false);
+  const stage = paidCourierStage(creep.spawning,creep.store.energy,task,journal?.acknowledged === false);
   if (!stage) return { status: 'deferred',reason: 'paid-courier-cargo' };
   if (!guard()) return { status: 'deferred',reason: 'budget' };
   return { status: 'ready',observation: copyPlain({ observedAt: Game.time,name: creep.name,unit: creep.id,owner: context.paid.owner,position: movementPosition(creep.pos),
     energy: creep.store.energy,fatigue: creep.fatigue,activeAt: context.paid.activeAt,expiresAt: context.paid.expiresAt,retireAt: context.paid.retireAt,stage,...(task ? { task } : {}),...(journal ? { journal } : {}) }) };
-}
-function stageOf(creep: Creep,task: PaidCourierObservation['task'],pending: boolean): PaidCourierObservation['stage'] | undefined {
-  if (creep.spawning) return task || pending ? undefined : 'spawning';
-  if (pending) return 'pending';
-  if (!task) return creep.store.energy === 0 ? 'idle' : undefined;
-  if (task.remaining === 0) return creep.store.energy === 0 ? 'completion' : undefined;
-  return creep.store.energy === 0 ? 'collect' : 'deliver';
 }

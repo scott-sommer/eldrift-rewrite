@@ -25,6 +25,7 @@ export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTic
       if (intents.has(raw.id) || intents.size >= 512) throw new Error('Duplicate or excessive energy transfer intents');
       intents.set(raw.id,copyPlain(raw));
     },
+    pending(): EnergyTransferIntent[] { requireOpen(); return copyPlain([...intents.values()]); },
     finish(order: readonly string[]): EnergyTransferEffect[] {
       requireOpen(); validateEnergyTransferOrder(order,intents);
       const next = new Map([...stores].map(([id,store]) => [id,copyPlain(store)]));

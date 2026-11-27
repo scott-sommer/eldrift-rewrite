@@ -15,7 +15,7 @@ import type { PaidHaulingForecastWorker } from './service';
 export interface ForecastHaulingTransferPorts {
   position(worker: PaidHaulingForecastWorker): Position;
   target(worker: PaidHaulingForecastWorker, request: LogisticsRequest, phase: 'collect' | 'deliver'): { status: 'visible' | 'unseen' | 'missing'; inRange: boolean; accepting: boolean };
-  approach(worker: PaidHaulingForecastWorker, request: LogisticsRequest, phase: 'collect' | 'deliver'): Outcome;
+  approach(worker: PaidHaulingForecastWorker, binding: HaulingBinding, request: LogisticsRequest, phase: 'collect' | 'deliver'): Outcome;
   capacityPool(target: string): string;
 }
 /** Real transfer mechanism and journal, with intents restricted to the private shared physical inventory. */
@@ -55,7 +55,7 @@ export function createForecastHaulingTransfer(state: StatePort, inventory: Energ
       return { execute(request: LogisticsRequest, phase: 'collect' | 'deliver', maximum: number, attemptId: string, requestKey: string): Outcome {
         if (request.resource !== 'energy' || !Number.isSafeInteger(maximum) || maximum < 1) throw new Error('Invalid forecast energy transfer');
         return transferStep(physicalView(worker,request,phase,maximum), {
-          approach: () => ports.approach(worker,request,phase),
+          approach: () => ports.approach(worker,binding,request,phase),
           transfer: amount => issue(worker,binding,request,phase,amount,attemptId,requestKey),
           rejected: code => ({ status: 'blocked',reason: 'transfer-intent:'+code,retryAt: inventory.tick()+1 }),
         });
