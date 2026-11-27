@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Joint home strict checkpoint and SYNTHETIC portable-model VM reset; not native joint route/calendar calibration.",
+  "native": [
+    {
+      "scenario": "joint-home-checkpoint-reset",
+      "nativeSource": "26357baa79a3b6842e343a9aa45378e6b4e2a115",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-home-checkpoint.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "632b91ae516d176d50780443d4cd094bf3b1a77bed3a89b9ec0b72129af10414",
+      "uncompressedSha256": "fd58c7b505fb563c23acd94abd0a2496054f762753a2a80ac53535b928185a92"
+    }
+  ]
+}
