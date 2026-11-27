@@ -20,7 +20,7 @@ import { traceReceipts } from './receipt-trace';
 import type { ReceiptTrace } from './receipt-trace';
 interface Birth { cost: number; family: string; seenAt: number; owner: string; id?: string; target?: string; activeAt?: number }
 export interface PipelineMemory extends Memory {
-  pipelineRows?: unknown[]; pipelineBirths?: Record<string,Birth>; pipelineRemote?: ReceiptTrace; pipelineLocal?: ReceiptTrace; pipelineStopped?: number;
+  pipelineConfiguredVariant?: string; pipelineRows?: unknown[]; pipelineBirths?: Record<string,Birth>; pipelineRemote?: ReceiptTrace; pipelineLocal?: ReceiptTrace; pipelineStopped?: number;
 }
 const home = 'W0N1', remote = 'E0N1';
 export function pipelineFamily(owner: string): string | undefined {
@@ -32,7 +32,7 @@ export function snapshotPipeline(state: StatePort, memory: PipelineMemory, probe
   const births = trackBirths(memory,actors), holders = remoteHolders(births);
   const records = peekState(state,'logistics-requests/'+home,logisticsQueueSchema)?.records ?? [];
   const isRemote = (record: typeof records[number]) => !!remoteTransportAuthority(record.request.owner) || holders.has(record.request.source);
-  traceReceipts(records.filter(isRemote),memory.pipelineRemote ??= { amounts: {},bindings: {} });
+  traceReceipts(records.filter(isRemote),memory.pipelineRemote ??= { amounts: {},bindings: {} },memory.pipelineConfiguredVariant === 'shared' ? Game.time : undefined);
   traceReceipts(records.filter(record => !isRemote(record)),memory.pipelineLocal ??= { amounts: {},bindings: {} });
   const room = Game.rooms[home]!, source = Game.rooms[remote]?.find(FIND_SOURCES)[0];
   const lease = createRemoteAssignmentStore(state).owner(remote,Game.time), manager = createRemoteManagementStore(state,home).read();

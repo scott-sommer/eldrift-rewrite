@@ -19,6 +19,42 @@
       "rawEncoding": "gzip",
       "rawSha256": "43fa28b63448df6b3b7c597fd925f05b7666f50ac37cd566cefb5596f5d46ed6",
       "uncompressedSha256": "64ff7f0a0fc7d0c75b75b210ec293e255f802cd5a0e340870a271bd51c8e12b0"
+    },
+    {
+      "scenario": "two-source-birth-capital",
+      "nativeSource": "8f861419b6c99937515d209336cd89d51b7df7ee",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-two-source-birth-capital.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b4f6118d6ad1c5107b569ed76c0402a7af2acca3368897175daebde1c9c11bf7",
+      "uncompressedSha256": "ef55151e98ec9e2ecc88381fc78fc21eb839d45910c377efc907c7ff9c20232b"
+    },
+    {
+      "scenario": "supported",
+      "nativeSource": "8f861419b6c99937515d209336cd89d51b7df7ee",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-supported.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "f6202429c16ffdc4f573fe0e718722ccdd2ee487b74309460abbcb0c258fbb28",
+      "uncompressedSha256": "cf1d51da02aaae80015de066cdd98eee584d528ed4dcc73a2e29d83d319ac7cc"
+    },
+    {
+      "scenario": "refused",
+      "nativeSource": "8f861419b6c99937515d209336cd89d51b7df7ee",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-refused.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "19fdd877595cc31122583341a4c5e0d792ff3c3e616a11f003292726a12bb848",
+      "uncompressedSha256": "8238b64b83bbaacf7bb4c903875c65774d650a12d9b8d37d0892b555e6e4d464"
+    },
+    {
+      "scenario": "changed",
+      "nativeSource": "8f861419b6c99937515d209336cd89d51b7df7ee",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-paid-cohorts-changed.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b8a76529609e0ecd2f88ba267eedab4df470fd0f9ff17b179ad6a8a69e0ca717",
+      "uncompressedSha256": "71d3990422a59d7e67dbd46993856d39e8b0f20f45d92bd7067506fc8fd6b3c4"
     }
   ]
 }

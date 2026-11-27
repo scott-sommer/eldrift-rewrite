@@ -1,3 +1,4 @@
+const { verifySharedReceipts } = require('./pipeline-shared-receipts.cjs');
 const assert = require('node:assert/strict');
 function verifySharedHome(memory,evidence) {
   const approvals = memory.pipelineSharedApprovals ?? [], rows = memory.pipelineRows, births = memory.pipelineBirths, last = rows.at(-1);
@@ -26,5 +27,6 @@ function verifySharedHome(memory,evidence) {
   for (const row of rows) { assert.deepEqual(row.unrelated,rows[0].unrelated); assert.deepEqual(row.sentinel,rows[0].sentinel); }
   assert.equal(last.homeEnergy+last.units.reduce((sum,unit) => sum+unit.cargo,0)+last.birthCost+memory.pipelineLabor.birthCost+memory.pipelineLabor.receipt.spent-last.income,rows[0].homeEnergy);
   assert.deepEqual(memory.stampReloads,[21,41,311,591,861]);
+  verifySharedReceipts(memory,evidence);
 }
 module.exports = { verifySharedHome };
