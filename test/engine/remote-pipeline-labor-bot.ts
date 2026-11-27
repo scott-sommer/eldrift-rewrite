@@ -1,4 +1,4 @@
-import { observeSharedService } from './pipeline-shared-service-trace';
+import { observeSharedService, withSharedMovementTrace } from './pipeline-shared-service-trace';
 import { observePipelineScouts } from './pipeline-scout-probe';
 import { withPipelinePathProbe } from './pipeline-path-probe';
 import { captureStartupTrace } from './pipeline-configured-policy';
@@ -23,7 +23,7 @@ const state = createMemoryPort(() => Memory);
 let runtime: ReturnType<typeof createNativeBot> | undefined;
 export function loop(): void {
   runtime ??= createNativeBot({ ...((Memory as ConfiguredPipelineMemory).pipelineConfiguredTraceMode ? { remoteStartupProbe: captureStartupTrace } : {}),...((Memory as ConfiguredPipelineMemory).pipelineConfiguredMode ? {} : { remoteBirths: pipelineServicePolicy }),spawnEnergyPolicy: 'spawn-first-range-id-v1' });
-  runPipeline(() => withPipelinePathProbe(() => withPipelineServiceProbe(runtime!)),before,probe);
+  runPipeline(() => withPipelinePathProbe(() => withPipelineServiceProbe(() => withSharedMovementTrace(runtime!))),before,probe);
 }
 function before(): void {
   changePipelineEconomicPolicy(state);

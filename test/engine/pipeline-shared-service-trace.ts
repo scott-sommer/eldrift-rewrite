@@ -24,3 +24,16 @@ export function observeSharedService(): Record<string,unknown> | undefined {
     energy: creep.store.energy,fatigue: creep.fatigue,spawning: creep.spawning,
   })) };
 }
+
+/** Observe the final native move call after traffic arbitration, with no extra movement owner. */
+export function withSharedMovementTrace(run: () => void): void {
+  if (!enabled()) { run(); return; }
+  const move = Creep.prototype.move;
+  const invoke = move as (this: Creep,direction: DirectionConstant | Creep) => number;
+  Creep.prototype.move = function(this: Creep,direction: DirectionConstant | Creep) {
+    const code = invoke.call(this,direction);
+    recordSharedServiceCall(this,'move',String(direction),code);
+    return code;
+  } as Creep['move'];
+  try { run(); } finally { Creep.prototype.move = move; }
+}
