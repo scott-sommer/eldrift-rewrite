@@ -1,3 +1,4 @@
+import type { EnergyEcology } from '../../../../capabilities/resources/energy-inventory/model';
 import type { RemoteTransportDemand } from '../../../../features/remotes/transport-authority';
 import type { StartupPaidCohort,StartupPaidWorker } from '../../../../capabilities/economy/startup/shared-model';
 import type { StartupTravelPlan } from '../../../../features/remotes/startup/travel-model';
@@ -18,6 +19,6 @@ export interface PaidHomeInventory { capacityPool: string; id: string; room: str
 export interface PaidHomeBody { name: string; unit: string; inventory: PaidHomeInventory }
 export interface PaidHomeObservation {
   observedAt: number; home: string; endpoint: NativeStartupFacts['endpoint']; stock: NativeStartupFacts['stock']; spawns: NativeStartupFacts['spawns'];
-  inventories: PaidHomeInventory[]; bodies: PaidHomeBody[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;
+  ecology: EnergyEcology; inventories: PaidHomeInventory[]; bodies: PaidHomeBody[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;
 }
 export type PaidHomeObservationResult = { status: 'ready'; observation: PaidHomeObservation } | { status: 'deferred'; reason: string };

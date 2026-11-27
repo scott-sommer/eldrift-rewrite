@@ -21,6 +21,7 @@ export function probePaidHaulingSeed(home: PaidHomeObservation) {
       remaining: record ? record.request.quantity-record.receipts.reduce((total,receipt) => total+receipt.amount,0) : null,
       receipts: record?.receipts ?? [],journal: createTransferJournal(seed.state,worker.unit).peek() ?? null };
   });
-  return { workers,inventories: createPaidHomePhysicalInventory(home).snapshot(),claims: createQuantityReservations(seed.state).list(home.observedAt) };
+  const inventory = createPaidHomePhysicalInventory(home);
+  return { workers,inventories: inventory.snapshot(),ecology: inventory.ecologySnapshot(),claims: createQuantityReservations(seed.state).list(home.observedAt) };
 }
 export type PaidHaulingSeedProbe = ReturnType<typeof probePaidHaulingSeed>;

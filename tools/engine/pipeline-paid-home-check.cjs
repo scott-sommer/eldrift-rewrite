@@ -8,6 +8,12 @@ function verifyPaidHomeSnapshots(memory,evidence) {
     assert.equal(new Set(home.inventories.map(inventory => inventory.id)).size,home.inventories.length);
     assert.ok(home.inventories.every(inventory => inventory.usedCapacity >= inventory.energy));
     assert.equal(home.bodies.length,home.workers.length);
+    assert.deepEqual(row.seed.ecology,home.ecology,'native source/ground facts survive physical seeding');
+    assert.equal(home.ecology.decayDivisor,1000);
+    assert.ok(home.ecology.sources.length > 0 && home.ecology.sources.length <= 64);
+    assert.ok(home.ecology.ground.every(drop => drop.energy > 0));
+    assert.ok(home.ecology.containers.every(container => home.inventories.some(store => store.id === container.id)));
+    assert.ok(home.ecology.sources.every(source => !home.inventories.some(store => store.id === source.id)),'natural stock is not a withdrawable store');
     assert.equal(new Set(home.bodies.map(body => body.unit)).size,home.bodies.length);
     assert.deepEqual(row.seed.inventories,[...home.inventories,...home.bodies.map(body => body.inventory)]);
     for (const inventory of row.seed.inventories) {
@@ -34,6 +40,9 @@ function verifyPaidHomeSnapshots(memory,evidence) {
       assert.equal(source.demand.generation,source.cohort.generation); assert.ok(source.demand.expiresAt > row.tick);
       assert.equal(source.miners.length,1); assert.equal(source.couriers.length,2);
       assert.equal(source.observation.observedAt,row.tick);
+      const natural = home.ecology.sources.find(fact => fact.id === source.observation.source.id); assert.ok(natural);
+      assert.equal(natural.energy,source.observation.source.energy); assert.equal(natural.capacity,source.observation.source.capacity);
+      assert.equal(natural.regenerationIn,source.observation.source.regenerationIn); assert.equal(natural.regenerationTicks,300);
       const station = source.observation.station.facts;
       assert.equal(home.inventories.find(inventory => inventory.id === station.id).energy,station.energy);
       assert.ok(source.claimIds.every(id => all.some(claim => claim.id === id)));

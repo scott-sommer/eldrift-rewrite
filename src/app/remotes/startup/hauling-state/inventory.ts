@@ -7,11 +7,12 @@ import type { StartupWorkerFacts } from '../facts-model';
 import type { PaidUnitObservation } from '../motion-observation/model';
 import type { StartupPaidWorker } from '../../../../capabilities/economy/startup/shared-model';
 export interface PaidHomePhysicalInput extends Pick<PaidHomeObservation,'observedAt' | 'inventories' | 'bodies' | 'workers'> {
+  ecology?: EnergyEcology;
   endpoint: Pick<PaidHomeObservation['endpoint'],'id' | 'energy' | 'capacity' | 'freeCapacity'>;
   sources: readonly Pick<PaidHomeSourceObservation,'miners' | 'couriers'>[];
 }
 /** Structures and actual native bodies share one inventory; worker cargo never becomes opening bank cash. */
-export function createPaidHomePhysicalInventory(home: PaidHomePhysicalInput,ecology?: EnergyEcology) {
+export function createPaidHomePhysicalInventory(home: PaidHomePhysicalInput,ecology: EnergyEcology | undefined = home.ecology) {
   const roster = bodyRoster(home);
   for (const source of home.sources) {
     for (const miner of source.miners) validatePaidBody(home.observedAt,miner.paid,miner.observation,roster);
