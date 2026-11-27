@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Canonical native physical opening inventory, body SDK capacities, and shared/specialized claim pool preservation; not future joined forecast or financial admission.",
+  "native": [
+    {
+      "scenario": "paid-body-inventory-supported1000",
+      "nativeSource": "b92a04bd916cad29fb15cb1521de818548220eaf",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-native-inventory-bodies.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4ae10faa94c84e3ef0fe833b4a6048a197f7c94b56f051738d0917bd1176c5e1",
+      "uncompressedSha256": "5e3a7f78eacc705bd34a4d2c6e37fcfa58bfa0d287710d9449e874b29ff8dbc1"
+    },
+    {
+      "scenario": "paid-body-pools-supported1000",
+      "nativeSource": "90a425ce84e8feea52e97720bf1dedb05f5ab321",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-native-inventory-pools.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "515aa66599c89434e7cb64883bc5340994ff5c0c6b510824b32740371286c2ba",
+      "uncompressedSha256": "d10220709e19ab6fddc1b9cd6fbd2a536f116a0c0438dd67abf5512e125eeedd"
+    }
+  ]
+}
