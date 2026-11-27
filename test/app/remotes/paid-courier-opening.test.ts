@@ -3,8 +3,10 @@ import { resolvePaidCourierOpening } from '../../../src/app/remotes/startup/moti
 import type { PaidCourierObservation } from '../../../src/app/remotes/startup/motion-observation/model';
 import type { TransferObservation } from '../../../src/capabilities/logistics/confirmation';
 function fixture(kind: 'withdraw' | 'transfer' = 'withdraw',amount = 56) {
+  const request = { id: 'trip',owner: 'owner',source: 'container',sink: 'bank',resource: 'energy',quantity: amount,priority: 0,expiresAt: 100 };
+  const record = { id: 'trip',kind: 'haul',phase: 'work',payload: { home: 'W0N1',unitId: 'native',request },wakeAt: 11,retries: 0,expiresAt: 100 };
   const observed: PaidCourierObservation = { observedAt: 11,name: 'courier',unit: 'native',owner: 'fleet',position: { room: 'W0N1',x: 10,y: 25 },energy: kind === 'withdraw' ? amount : 0,fatigue: 0,activeAt: 1,expiresAt: 1500,retireAt: 1400,stage: 'pending',
-    task: { id: 'trip',wakeAt: 11,expiresAt: 100,remaining: amount,receipts: [],request: { id: 'trip',owner: 'owner',source: 'container',sink: 'bank',resource: 'energy',quantity: amount,priority: 0,expiresAt: 100 } },
+    task: { record,id: 'trip',wakeAt: 11,expiresAt: 100,remaining: amount,receipts: [],request },
     journal: { acknowledged: false,result: null,attempt: { id: 'attempt',unit: 'native',target: kind === 'withdraw' ? 'container' : 'bank',room: 'W0N1',resource: 'energy',kind,tick: 10,amount,cargoBefore: kind === 'withdraw' ? 0 : amount } } };
   const witness: TransferObservation = { tick: 11,cargo: observed.energy,events: [{ source: kind === 'withdraw' ? 'container' : 'native',target: kind === 'withdraw' ? 'native' : 'bank',resource: 'energy',amount }] };
   return { observed,witness };

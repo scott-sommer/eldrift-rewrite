@@ -13,7 +13,7 @@ export function observePaidCourierTask(state: StatePort,context: PaidCourierCont
   if (!validHead(state,context,creep,task)) return undefined;
   const record = peekState(state,'logistics-requests/'+context.cohort.home,logisticsQueueSchema)?.records.find(record => record.request.id === request.id && record.request.owner === request.owner);
   if (!record || record.cancelled || !sameRequest(record.request,request)) return undefined;
-  return { id: task.id,wakeAt: task.wakeAt,expiresAt: task.expiresAt,request,remaining: request.quantity-delivered(record),receipts: record.receipts };
+  return { record: task,id: task.id,wakeAt: task.wakeAt,expiresAt: task.expiresAt,request,remaining: request.quantity-delivered(record),receipts: record.receipts };
 }
 function authorized(state: StatePort,context: PaidCourierContext,request: LogisticsRequest): boolean {
   const token = transportToken(request),scope = context.cohort;

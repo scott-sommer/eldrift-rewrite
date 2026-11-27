@@ -1,3 +1,4 @@
+import type { TaskRecord } from '../../../../persistence/tasks/schema';
 import type { DeliveryReceipt } from '../../../../features/logistics/request-schema';
 import type { StartupPaidCohort,StartupPaidWorker } from '../../../../capabilities/economy/startup/shared-model';
 import type { StartupTravelPlan } from '../../../../features/remotes/startup/travel-model';
@@ -15,7 +16,7 @@ export interface PaidUnitObservation {
 }
 export interface PaidCourierObservation extends PaidUnitObservation {
   stage: 'spawning' | 'idle' | 'collect' | 'deliver' | 'completion' | 'pending';
-  task?: { id: string; wakeAt: number; expiresAt: number; request: LogisticsRequest; remaining: number; receipts: DeliveryReceipt[] };
+  task?: { record: TaskRecord; id: string; wakeAt: number; expiresAt: number; request: LogisticsRequest; remaining: number; receipts: DeliveryReceipt[] };
   journal?: Journal;
 }
 export type PaidCourierResult = { status: 'ready'; observation: PaidCourierObservation } | { status: 'deferred'; reason: string };
