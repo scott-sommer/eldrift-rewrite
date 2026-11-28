@@ -80,3 +80,13 @@ test('physical repair energy, health and task continuation survive JSON resume w
   }
   expect(restored.checkpoint()).toEqual(f.world.checkpoint()); expect(f.world.checkpoint().inventory.ecology!.structures![0]!.hits).toBe(501);
 });
+
+
+test('real miner repair saves a container before its due decay and the new countdown resumes exactly', () => {
+  const f = paidMiningCycleFixture({ repairHits: 4999,containerDecay: { remaining: 3,interval: 99,amount: 5000 } }); f.step(); f.step();
+  expect(f.step().effects).toMatchObject([{ kind: 'repair',amount: 1,repairedHits: 100 }]);
+  const cp = JSON.parse(JSON.stringify(f.world.checkpoint())); expect(cp.inventory.ecology.structures[0].hits).toBe(99); expect(cp.inventory.ecology.containers[0].decay.remaining).toBe(99);
+  const fresh = paidMiningCycleFixture({ repairHits: 4999,containerDecay: { remaining: 3,interval: 99,amount: 5000 } }),resumed = resumeHomeHaulingWorld(cp,fresh.configure);
+  const result = resumed.step({ tick: 13,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) });
+  expect(result).toEqual(f.step()); expect(resumed.checkpoint()).toEqual(f.world.checkpoint());
+});

@@ -9,9 +9,11 @@ export function validateRepairTargets(targets: readonly EnergyRepairTarget[]): v
     if (!target.id || typeof target.repairable !== 'boolean' || ![target.hits,target.hitsMax].every(quantity) || target.hitsMax < 1 || target.hits > target.hitsMax) throw new Error('Invalid repair target health');
   }
 }
-export function validateRepair(intent: EnergyRepairIntent,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology): void {
+export function validateRepair(intent: EnergyRepairIntent,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology,recordedAt?: number): void {
   tileKey(intent.position); validateRepairProfile(intent.profile);
   const target = ecology.structures?.find(target => target.id === intent.target);
+  const destroyed = ecology.containers.find(container => container.id === intent.target)?.destroyedAt;
+  if (destroyed !== undefined && destroyed !== recordedAt) throw new Error('Destroyed physical repair target');
   if (!intent.id || !stores.has(intent.source) || !target || !withinRange(intent.position,target.position,3)) throw new Error('Invalid physical repair intent/range');
 }
 export function settleRepair(stores: Map<string,EnergyInventory>,ecology: EnergyEcology,intent: EnergyRepairIntent,tick: number): EnergyRepairEffect {

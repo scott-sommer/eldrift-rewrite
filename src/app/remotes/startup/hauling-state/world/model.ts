@@ -1,3 +1,4 @@
+import type { EnergyPostprocessOrder } from '../../../../../capabilities/resources/energy-inventory/model';
 import type { PaidHomeControl } from '../../home-observation/model';
 import type { StatePort } from '../../../../../persistence/versioned-state';
 import type { createActionArbiter } from '../../../../../core/execution/action-arbiter';
@@ -39,6 +40,7 @@ export type HomeWorldOperation = { kind: 'settle' } | { kind: 'paid'; name: stri
   | { kind: 'external'; id: string; run(shared: HomeWorldShared): void };
 export interface HomeHaulingFrame {
   tick: number; operations: readonly HomeWorldOperation[]; outside: PaidMovementExternalFrame;
+  postprocessOrder?: EnergyPostprocessOrder;
   settlementOrder(intents: readonly EnergyIntent[]): readonly string[];
 }
 export interface HomeConfirmedDelivery { source: string; request: string; id: string; energy: number; issuedAt: number; tick: number }

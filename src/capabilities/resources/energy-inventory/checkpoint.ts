@@ -1,3 +1,4 @@
+import { withinRange } from '../../movement/path-model';
 import type { EnergyInventory,EnergyEffect,EnergyEcology,EnergyHarvestEffect,EnergyRepairEffect } from './model';
 import { validateRepair } from './repair';
 import { validateHarvest } from './ecology';
@@ -6,8 +7,9 @@ import { validateEnergyTransfer } from './validation';
 export function validateEnergyEffects(nextTick: number,effects: readonly EnergyEffect[],stores: readonly EnergyInventory[],ecology: EnergyEcology): void {
   if (!Array.isArray(effects) || effects.length > 512 || new Set(effects.map(effect => effect.id)).size !== effects.length) throw new Error('Invalid energy effect checkpoint');
   const byId = new Map(stores.map(store => [store.id,store]));
+  const endpoints = new Set([...byId.keys(),...ecology.containers.filter(container => container.destroyedAt === nextTick).map(container => container.id)]);
   for (const effect of effects) {
-    validateEffectKind(effect,byId,ecology);
+    validateEffectKind(effect,byId,ecology,endpoints,nextTick);
     if (!Number.isSafeInteger(effect.amount) || effect.amount < 0 || effect.issuedAt !== nextTick-1 || effect.settledAt !== nextTick) throw new Error('Invalid energy effect clock/quantity');
   }
 }
@@ -22,9 +24,18 @@ function validateRepairAccounting(effect: EnergyRepairEffect): void {
   if ((effect.amount === 0) !== (effect.repairedHits === 0)) throw new Error('Inconsistent repair effect energy/hits');
 }
 
-function validateEffectKind(effect: EnergyEffect,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology): void {
+function validateEffectKind(effect: EnergyEffect,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology,endpoints: ReadonlySet<string>,tick: number): void {
   if (effect.kind === 'harvest') {
-    validateHarvest({ ...effect,amount: Math.max(1,effect.amount) },stores,ecology); validateHarvestAccounting(effect);
-  } else if (effect.kind === 'repair') { validateRepair(effect,stores,ecology); validateRepairAccounting(effect); }
-  else validateEnergyTransfer({ ...effect,amount: Math.max(1,effect.amount) },stores);
+    validateRecordedHarvest(effect,stores,ecology,tick); validateHarvestAccounting(effect);
+  } else if (effect.kind === 'repair') { validateRepair(effect,stores,ecology,tick); validateRepairAccounting(effect); }
+  else validateEnergyTransfer({ ...effect,amount: Math.max(1,effect.amount) },endpoints);
+}
+
+function validateRecordedHarvest(effect: EnergyHarvestEffect,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology,tick: number): void {
+  const container = ecology.containers.find(container => container.id === effect.container);
+  if (container?.destroyedAt === tick) {
+    if (!withinRange(container.position,effect.position,0)) throw new Error('Invalid destroyed harvest container position');
+    const intent = { ...effect }; delete intent.container;
+    validateHarvest({ ...intent,amount: Math.max(1,effect.amount) },stores,ecology);
+  } else validateHarvest({ ...effect,amount: Math.max(1,effect.amount) },stores,ecology);
 }

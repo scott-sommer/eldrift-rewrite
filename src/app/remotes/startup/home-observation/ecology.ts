@@ -28,13 +28,14 @@ function observeRoomEcology(room: Room,ecology: EnergyEcology,stores: Map<string
   }
   for (const structure of room.find(FIND_STRUCTURES)) {
     observeRepairTarget(structure,ecology);
-    if (structure.structureType === STRUCTURE_CONTAINER && structure.hits > 0) observeContainer(structure,ecology,stores);
+    if (structure.structureType === STRUCTURE_CONTAINER && structure.hits > 0) observeContainer(structure,room,ecology,stores);
   }
 }
-function observeContainer(container: StructureContainer,ecology: EnergyEcology,stores: Map<string,PaidHomeInventory>): void {
+function observeContainer(container: StructureContainer,room: Room,ecology: EnergyEcology,stores: Map<string,PaidHomeInventory>): void {
   const current = observePaidHomeInventory(container),previous = stores.get(current.id);
   if (previous && JSON.stringify(previous) !== JSON.stringify(current)) throw new Error('Conflicting home ecology container');
-  stores.set(current.id,current); ecology.containers.push({ id: container.id,position: movementPosition(container.pos) });
+  stores.set(current.id,current); ecology.containers.push({ id: container.id,position: movementPosition(container.pos),
+    decay: { remaining: Math.max(1,container.ticksToDecay ?? 1),amount: CONTAINER_DECAY,interval: (room.controller && room.controller.level > 0 ? CONTAINER_DECAY_TIME_OWNED : CONTAINER_DECAY_TIME)-1 } });
 }
 
 function observeSource(source: Source,ecology: EnergyEcology): void {

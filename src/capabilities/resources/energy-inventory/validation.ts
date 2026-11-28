@@ -6,7 +6,7 @@ export function validateEnergyInventories(stores: readonly EnergyInventory[]): v
     if (store.usedCapacity < store.energy || store.energy+store.freeEnergyCapacity > store.capacity) throw new Error('Inconsistent energy inventory');
   }
 }
-export function validateEnergyTransfer(intent: EnergyTransferIntent, stores: ReadonlyMap<string,EnergyInventory>): void {
+export function validateEnergyTransfer(intent: EnergyTransferIntent, stores: { has(id: string): boolean }): void {
   if (typeof intent.id !== 'string' || !intent.id || !['withdraw','transfer'].includes(intent.kind) || !quantity(intent.amount) || intent.amount === 0) throw new Error('Invalid energy transfer intent');
   if (intent.source === intent.target || !stores.has(intent.source) || !stores.has(intent.target)) throw new Error('Invalid energy transfer endpoints');
 }

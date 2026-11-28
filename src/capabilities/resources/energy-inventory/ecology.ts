@@ -2,7 +2,8 @@ import { validateRepairTargets } from './repair';
 import { tileKey } from '../../movement/traffic/model';
 import { withinRange } from '../../movement/path-model';
 import { energyHarvestEffect } from '../../mining/harvest-effect';
-import { advanceEnergySource } from '../../mining/source-regeneration';
+import { addGroundEnergy } from './ground';
+import { validateContainerLifecycle } from './container';
 import type { EnergyEcology,EnergyInventory,EnergyHarvestIntent,EnergyHarvestEffect,EnergySource } from './model';
 export function validateEnergyEcology(ecology: EnergyEcology,stores: readonly EnergyInventory[]): void {
   validateEcologyBounds(ecology); validateRepairTargets(ecology.structures === undefined ? [] : ecology.structures);
@@ -25,14 +26,14 @@ export function validateHarvest(intent: EnergyHarvestIntent,stores: ReadonlyMap<
 }
 function validateOverflowContainer(intent: EnergyHarvestIntent,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology): void {
   const container = ecology.containers.find(container => container.id === intent.container);
-  if (!container || !stores.has(container.id) || !withinRange(intent.position,container.position,0)) throw new Error('Missing or misplaced physical overflow container');
+  if (!container || container.destroyedAt !== undefined || !stores.has(container.id) || !withinRange(intent.position,container.position,0)) throw new Error('Missing or misplaced physical overflow container');
 }
 function validateContainers(ecology: EnergyEcology,stores: readonly EnergyInventory[]): void {
   if (new Set(ecology.containers.map(container => tileKey(container.position))).size !== ecology.containers.length) throw new Error('Ambiguous physical overflow tile');
   if (new Set(ecology.containers.map(container => container.id)).size !== ecology.containers.length) throw new Error('Duplicate physical overflow containers');
   for (const container of ecology.containers) {
     tileKey(container.position);
-    if (!stores.some(store => store.id === container.id)) throw new Error('Missing physical overflow container store');
+    validateContainerLifecycle(container,ecology,stores);
   }
 }
 export function settleHarvest(stores: Map<string,EnergyInventory>,ecology: EnergyEcology,intent: EnergyHarvestIntent,tick: number): EnergyHarvestEffect {
@@ -45,21 +46,10 @@ export function settleHarvest(stores: Map<string,EnergyInventory>,ecology: Energ
   const containerEnergy = Math.min(effect.overflowEnergy,container?.freeEnergyCapacity ?? 0);
   if (container) credit(container,containerEnergy);
   const droppedEnergy = effect.overflowEnergy-containerEnergy;
-  if (droppedEnergy > 0) drop(ecology,intent.position,droppedEnergy);
+  if (droppedEnergy > 0) addGroundEnergy(ecology,intent.position,droppedEnergy);
   return { ...intent,amount: effect.harvestedEnergy,issuedAt: tick,settledAt: tick+1,carriedEnergy,containerEnergy,droppedEnergy };
 }
-export function finishEnergyEcology(ecology: EnergyEcology) {
-  const regenerated = ecology.sources.reduce((sum,source) => sum+advanceEnergySource(source,1),0);
-  let decayed = 0;
-  for (const drop of ecology.ground) { const amount = Math.ceil(drop.energy/ecology.decayDivisor); drop.energy -= amount; decayed += amount; }
-  ecology.ground = ecology.ground.filter(drop => drop.energy > 0);
-  return { regenerated,decayed };
-}
 function credit(store: EnergyInventory,amount: number): void { store.energy += amount; store.usedCapacity += amount; store.freeEnergyCapacity -= amount; }
-function drop(ecology: EnergyEcology,position: EnergyHarvestIntent['position'],energy: number): void {
-  const existing = ecology.ground.find(drop => tileKey(drop.position) === tileKey(position));
-  if (existing) existing.energy += energy; else ecology.ground.push({ position: { ...position },energy });
-}
 function quantity(value: number): boolean { return Number.isSafeInteger(value) && value >= 0 && value <= 1000000; }
 
 function validateEcologyBounds(ecology: EnergyEcology): void {

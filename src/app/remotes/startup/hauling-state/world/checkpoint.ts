@@ -1,3 +1,4 @@
+import { destroyedHomeStores,validateHomeContainerMetadata } from './container-state';
 import { withinRange } from '../../../../../capabilities/movement/path-model';
 import type { Journal } from '../../../../../features/logistics/transfer-journal';
 import type { TransferAttempt } from '../../../../../capabilities/logistics/confirmation';
@@ -26,7 +27,8 @@ export function readHomeHaulingCheckpoint(raw: HomeHaulingCheckpoint): HomeHauli
 /** Material metadata is immutable in this version; body pose is separately owned and restored. */
 export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyInventoryCheckpoint<PaidHomeInventory>) {
   validateEcologyMetadata(input.ecology,checkpoint.ecology);
-  const original = [...input.inventories,...input.bodies.map(body => body.inventory)];
+  const dead = destroyedHomeStores(checkpoint.ecology);
+  const original = [...input.inventories,...input.bodies.map(body => body.inventory)].filter(store => !dead.has(store.id));
   if (original.length !== checkpoint.stores.length) throw new Error('Home checkpoint inventory roster mismatch');
   for (const store of checkpoint.stores) {
     const opening = original.find(value => value.id === store.id);
@@ -71,7 +73,8 @@ function validateEcologyMetadata(opening: HomeHaulingInput['ecology'],current: H
   if (opening.sources.length !== current.sources.length) throw new Error('Home checkpoint source roster mismatch');
   validateSourceMetadata(opening.sources,current.sources);
   validateHealthMetadata(opening,current);
-  if (current.decayDivisor !== opening.decayDivisor || JSON.stringify(current.containers) !== JSON.stringify(opening.containers)) throw new Error('Home checkpoint ecology rules mismatch');
+  validateHomeContainerMetadata(opening.containers,current.containers);
+  if (current.decayDivisor !== opening.decayDivisor) throw new Error('Home checkpoint ecology rules mismatch');
 }
 
 function validateSourceMetadata(original: readonly EnergySource[],restored: readonly EnergySource[]): void {

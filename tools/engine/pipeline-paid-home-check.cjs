@@ -57,6 +57,8 @@ function verifyPaidHomeSnapshots(memory,evidence) {
       assert.equal(home.inventories.find(inventory => inventory.id === station.id).energy,station.energy);
       const health = home.ecology.structures.find(target => target.id === station.id); assert.ok(health);
       assert.equal(health.hits,station.hits); assert.equal(health.hitsMax,station.hitsMax); assert.equal(health.repairable,true);
+      const container = home.ecology.containers.find(container => container.id === station.id); assert.ok(container);
+      assert.equal(container.decay.remaining,Math.max(1,station.ticksToDecay)); assert.equal(container.decay.amount,5000); assert.equal(container.decay.interval,99);
       assert.ok(source.claimIds.every(id => all.some(claim => claim.id === id)));
       for (const courier of source.couriers) {
         assert.equal(courier.route.cursor.observedAt,row.tick); assert.equal(courier.route.cursor.requestedAt,null);

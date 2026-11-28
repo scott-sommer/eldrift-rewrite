@@ -42,7 +42,7 @@ function runHomeHaulingWorld(context: ReturnType<typeof homeWorldContext>,policy
           else operation.run(context.shared);
         }
         service.finish();
-        const transit = movement.finish(frame.outside),effects = inventory.finish(frame.settlementOrder(inventory.pending()));
+        const transit = movement.finish(frame.outside),effects = inventory.finish(frame.settlementOrder(inventory.pending()),frame.postprocessOrder);
         bodies.commit(transit.states); tick++;
         return { tick: frame.tick,openings,deliveries,visits,effects,transit };
       } catch (error) { failed = true; throw error; }
