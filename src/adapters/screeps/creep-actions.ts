@@ -1,11 +1,9 @@
+import { economySlots } from '../../capabilities/actions/economy-slots';
+import type { EconomyAction } from '../../capabilities/actions/economy-slots';
 import type { createActionArbiter } from '../../core/execution/action-arbiter';
 type Arbiter = ReturnType<typeof createActionArbiter>;
-export type EconomyAction = 'move' | 'dismantle' | 'harvest' | 'build' | 'repair' | 'upgradeController' | 'transfer' | 'withdraw' | 'pickup' | 'drop';
-/** Engine 4.3.2 suppresses harvest/build/repair/dismantle against each other. */
-export function economySlots(action: EconomyAction): readonly string[] {
-  if (action === 'harvest' || action === 'build' || action === 'repair' || action === 'dismantle') return ['primary-work'];
-  return [action];
-}
+export type { EconomyAction } from '../../capabilities/actions/economy-slots';
+export { economySlots } from '../../capabilities/actions/economy-slots';
 export function createCreepActions(creep: Creep, owner: string, arbiter: Arbiter) {
   function issue(action: EconomyAction, invoke: () => number) {
     return arbiter.issue(creep.name, owner, economySlots(action), invoke, code => code === 0);
