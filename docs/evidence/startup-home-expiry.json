@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Native final-delivery retirement ordering and clean supported1000 expiry-profile/global-roster capture regression. Whole-home natural expiry, pose/route pruning, native maintenance20 cap and postmortem receipt/uncertainty continuation have integration-unit evidence. Not a complete native future financial/dispatch calendar.",
+  "native": [
+    {
+      "scenario": "home-expiry-final-delivery",
+      "nativeSource": "9eb6e29470a2471ec42453523476962e59462d9d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-home-expiry-final-delivery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "95a703b394f501f4c72ecd5ef933f992c2a6d20bae411da907a26957a1f71846",
+      "uncompressedSha256": "2347fd9460293f5ba48b9e578808a42601c4c358e4dcccee773abc70e09d58fe"
+    },
+    {
+      "scenario": "home-expiry-capture-supported1000",
+      "nativeSource": "9eb6e29470a2471ec42453523476962e59462d9d",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-home-expiry-capture-supported1000.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "fbf71ac7f22150419050f42c52eff90c43d99e1792eca3238643246fe9df138a",
+      "uncompressedSha256": "d311a6899e632a763f7cdff1e82c3ecb19869450af3a142330962c0103d8f2ac"
+    }
+  ]
+}
