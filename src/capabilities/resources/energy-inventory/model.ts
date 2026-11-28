@@ -11,7 +11,7 @@ export interface EnergyInventoryCheckpoint<T extends EnergyInventory = EnergyInv
 
 export interface EnergySource { id: string; position: Position; energy: number; capacity: number; regenerationIn: number | null; regenerationTicks: number }
 export interface GroundEnergy { position: Position; energy: number }
-export interface EnergyEcology { sources: EnergySource[]; ground: GroundEnergy[]; containers: EnergyContainer[]; decayDivisor: number; structures?: EnergyRepairTarget[]; sites?: EnergyBuildSite[] }
+export interface EnergyEcology { sources: EnergySource[]; ground: GroundEnergy[]; containers: EnergyContainer[]; decayDivisor: number; structures?: EnergyRepairTarget[]; sites?: EnergyBuildSite[]; bodies?: EnergyBody[]; tombstones?: EnergyTombstone[] }
 export interface EnergyHarvestIntent { id: string; kind: 'harvest'; source: string; target: string; amount: number; position: Position; container?: string }
 export interface EnergyHarvestEffect extends EnergyHarvestIntent { issuedAt: number; settledAt: number; carriedEnergy: number; containerEnergy: number; droppedEnergy: number }
 export type EnergyIntent = EnergyTransferIntent | EnergyHarvestIntent | EnergyRepairIntent | EnergyBuildIntent;
@@ -22,7 +22,7 @@ export interface EnergyRepairIntent { id: string; kind: 'repair'; source: string
 export interface EnergyRepairEffect extends EnergyRepairIntent { amount: number; repairedHits: number; issuedAt: number; settledAt: number }
 
 export interface EnergyContainer { id: string; position: Position; decay?: { remaining: number; interval: number; amount: number }; destroyedAt?: number; spilledEnergy?: number }
-export interface EnergyPostprocess { key: string; kind: 'source' | 'ground' | 'container'; id: string }
+export interface EnergyPostprocess { key: string; kind: 'source' | 'ground' | 'container' | 'body' | 'tombstone'; id: string }
 export type EnergyPostprocessOrder = (operations: readonly EnergyPostprocess[]) => readonly string[];
 
 /** Birth identities are forecast-local aliases, never predicted native SDK object IDs. */
@@ -31,3 +31,7 @@ export interface EnergyContainerBirth { store: EnergyBornInventory; health: Ener
 export interface EnergyBuildSite { id: string; position: Position; structureType: string; progress: number; progressTotal: number; completion: EnergyContainerBirth | null; completedAt?: number }
 export interface EnergyBuildIntent { id: string; kind: 'build'; source: string; target: string; position: Position; profile: BuildProfile; allowed: boolean }
 export interface EnergyBuildEffect extends EnergyBuildIntent { amount: number; progressAdded: number; completed: boolean; created?: string; issuedAt: number; settledAt: number }
+
+export interface EnergyBody { id: string; position: Position; expiresAt: number; salvageEnergy: number; tombstoneId: string; tombstoneDecay: number; diedAt?: number }
+export interface EnergyTombstone { id: string; body: string; position: Position; energy: number; remaining: number; createdAt: number; expiredAt?: number; releasedEnergy?: number }
+export interface EnergyBodyPosition { id: string; position: Position }

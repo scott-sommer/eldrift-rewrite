@@ -1,3 +1,4 @@
+import { validateEnergyLifetimeClocks } from './lifetime-validation';
 import { validateBuildClocks } from './construction';
 import { settleEnergyFrame } from './settlement';
 import { validateContainerClocks } from './container';
@@ -5,13 +6,13 @@ import { validateEnergyIntent } from './operations';
 import { copyPlain } from '../../../core/plain-data';
 import { validateEnergyEcology } from './ecology';
 import { validateEnergyEffects } from './checkpoint';
-import type { EnergyInventory,EnergyEffect,EnergyIntent,EnergyEcology,EnergyPostprocessOrder,EnergyBornInventory } from './model';
+import type { EnergyInventory,EnergyEffect,EnergyIntent,EnergyEcology,EnergyPostprocessOrder,EnergyBornInventory,EnergyBodyPosition } from './model';
 import { validateEnergyInventories } from './validation';
 /** Shared physical energy only. Actor observations stay frozen until all queued intents settle. */
 export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTick: number, input: readonly T[], previousEffects: readonly EnergyEffect[] = [], initialEcology?: EnergyEcology) {
   if (!Number.isSafeInteger(openingTick) || openingTick < 0) throw new Error('Invalid energy inventory clock');
   const initial: EnergyEcology = initialEcology ?? { sources: [],ground: [],containers: [],decayDivisor: 1000 };
-  validateEnergyInventories(input); validateEnergyEcology(initial,input); validateEnergyEffects(openingTick,previousEffects,input,initial); validateContainerClocks(initial,openingTick); validateBuildClocks(initial,openingTick);
+  validateEnergyInventories(input); validateEnergyEcology(initial,input); validateEnergyEffects(openingTick,previousEffects,input,initial); validateContainerClocks(initial,openingTick); validateBuildClocks(initial,openingTick); validateEnergyLifetimeClocks(initial,openingTick);
   let stores = new Map<string,T | EnergyBornInventory>(copyPlain([...input]).map(store => [store.id,store]));
   let ecology = copyPlain(initial);
   let tick = openingTick-1, open = false,settling = false;
@@ -34,21 +35,23 @@ export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTic
       intents.set(raw.id,copyPlain(raw));
     },
     pending(): EnergyIntent[] { requireOpen(); return copyPlain([...intents.values()]); },
-    finish(order: readonly string[],postprocess?: EnergyPostprocessOrder): EnergyEffect[] {
+    finish(order: readonly string[],postprocess?: EnergyPostprocessOrder,positions?: readonly EnergyBodyPosition[]): EnergyEffect[] {
       requireOpen(); settling = true;
       try {
-        const next = settleEnergyFrame(stores,ecology,intents,order,tick,postprocess);
+        const next = settleEnergyFrame(stores,ecology,intents,order,tick,postprocess,positions);
         stores = next.stores; ecology = next.ecology; effects = new Map(next.effects.map(effect => [effect.id,effect])); open = false;
         return copyPlain(next.effects);
       } finally { settling = false; }
     },
     site(id: string) { requireOpen(); const site = ecology.sites?.find(site => site.id === id && site.completedAt === undefined); return site && copyPlain(site); },
+    bodyLife(id: string) { requireOpen(); const body = ecology.bodies?.find(body => body.id === id); return body && copyPlain(body); },
+    tombstone(id: string) { requireOpen(); const tomb = ecology.tombstones?.find(tomb => tomb.id === id && tomb.expiredAt === undefined); return tomb && copyPlain(tomb); },
     source(id: string) { requireOpen(); const source = ecology.sources.find(source => source.id === id); return source && copyPlain(source); },
     structure(id: string) { requireOpen(); const target = ecology.containers.some(container => container.id === id && container.destroyedAt !== undefined) ? undefined : ecology.structures?.find(target => target.id === id); return target && copyPlain(target); },
     ecologySnapshot() { if (open || settling) throw new Error('Cannot snapshot open energy ecology'); return copyPlain(ecology); },
     checkpoint() {
       if (open || settling) throw new Error('Cannot checkpoint open energy inventory frame');
-      return { nextTick: tick+1,stores: copyPlain([...stores.values()]),effects: copyPlain([...effects.values()]),...(initialEcology !== undefined || ecology.sources.length || ecology.ground.length || ecology.containers.length || ecology.structures?.length || ecology.sites?.length ? { ecology: copyPlain(ecology) } : {}) };
+      return { nextTick: tick+1,stores: copyPlain([...stores.values()]),effects: copyPlain([...effects.values()]),...(initialEcology !== undefined || ecology.sources.length || ecology.ground.length || ecology.containers.length || ecology.structures?.length || ecology.sites?.length || ecology.bodies?.length || ecology.tombstones?.length ? { ecology: copyPlain(ecology) } : {}) };
     },
     snapshot(): (T | EnergyBornInventory)[] { if (open || settling) throw new Error('Cannot snapshot open energy inventory frame'); return copyPlain([...stores.values()]); },
   };
