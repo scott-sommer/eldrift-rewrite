@@ -1,3 +1,4 @@
+import { validateHomeTransferIncidents } from './uncertainty-state';
 import { validateHomeRetirementArchive } from './lifecycle-state';
 import { deadHomeBodies,validateHomeLifetimeMetadata } from './lifetimes';
 import { validateHomeBankingContinuation } from '../../banking-state/checkpoint';
@@ -42,7 +43,8 @@ export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyI
 
 /** Pending private attempts must retain the effect needed by the one-frame confirmation window. */
 export function validateHomeContinuation(checkpoint: HomeHaulingCheckpoint,seed: PaidHaulingForecastSeed): void {
-  validateBodyContinuation(checkpoint); validateHomeRetirementArchive(seed.state);
+  validateBodyContinuation(checkpoint); validateHomeRetirementArchive(seed.state,checkpoint.inventory.nextTick);
+  validateHomeTransferIncidents(checkpoint.input,seed.state,checkpoint.inventory.nextTick);
   if (checkpoint.inventory.nextTick === checkpoint.input.observedAt) return;
   for (const worker of seed.workers) validatePendingInventoryUnit(checkpoint.inventory.effects,seed.state,worker.unit,checkpoint.inventory.nextTick);
   validateHomeBankingContinuation(checkpoint.input,checkpoint.inventory.effects,seed.state,checkpoint.inventory.nextTick);

@@ -59,4 +59,9 @@ test('invisible postmortem transfer evidence is archived as uncertain rather tha
   expect(world.snapshot().inventories.find(store => store.id === 'bank')!.energy).toBe(32);
   const archive = world.checkpoint().state.find(record => record.key === 'logistics-retired/empire')!.value.data;
   expect(archive).toMatchObject({ entries: [{ unit: 'native-id',incidents: { entries: [{ attempt: { amount: 32 },cargo: null }] } }] });
+  const checkpoint = JSON.parse(JSON.stringify(world.checkpoint()));
+  expect(resumeHomeHaulingWorld(checkpoint,f.configure).checkpoint()).toEqual(checkpoint);
+  const evidence = checkpoint.state.find((row: { key: string }) => row.key === 'logistics-retired/empire')!.value.data;
+  evidence.entries[0].incidents.entries[0].attempt.requestKey = 'another-request';
+  expect(() => resumeHomeHaulingWorld(checkpoint,f.configure)).toThrow('request binding');
 });
