@@ -2,14 +2,19 @@ import { copyPlain } from '../../../../core/plain-data';
 import type { Envelope, StatePort, StateSchema } from '../../../../persistence/versioned-state';
 /** Forecast writes have no reference to live owner storage. Reads and writes are detached. */
 export interface PrivateHaulingRecord { key: string; value: Envelope }
-// At most64 selected actors: task, journal and bounded uncertainty archive each, plus four shared owners.
-const MAX_RECORDS = 64*3+4;
+// At most64 selected actors: task, journal and bounded uncertainty archive each, plus six shared/retirement owners.
+const MAX_RECORDS = 64*3+6;
 export function privateHaulingState(initial: readonly PrivateHaulingRecord[] = []) {
   validateRecords(initial);
   const records = new Map(copyPlain([...initial]).map(record => [record.key,record.value]));
   return {
     detachedReads: true as const,
     checkpoint: () => copyPlain([...records].map(([key,value]) => ({ key,value }))),
+    remove(key: string,owner: string): void {
+      const value = records.get(key);
+      if (value && value.owner !== owner) throw new Error('Private state removal owner mismatch');
+      records.delete(key);
+    },
     read(key: string) { const value = records.get(key); return value === undefined ? undefined : copyPlain(value); },
     write(key: string, value: Envelope) {
       if (!records.has(key) && records.size >= MAX_RECORDS) throw new Error('Forecast state capacity exceeded');

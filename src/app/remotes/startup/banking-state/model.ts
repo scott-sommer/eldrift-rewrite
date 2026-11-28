@@ -4,6 +4,7 @@ import type { ForecastHaulingTransferPorts } from '../hauling-state/transfer';
 export interface ForecastRecoverySink { id: string; room: string; kind: string; owned: boolean; active: boolean }
 /** Current modeled home/routes/visibility and sink policy; capacity and cargo come from the physical world. */
 export interface ForecastBankingEnvironment extends Omit<ForecastHaulingTransferPorts<ForecastMinerWorker>,'position'> {
+  eventsVisible: NonNullable<ForecastHaulingTransferPorts<ForecastMinerWorker>['eventsVisible']>;
   eligible(worker: ForecastMinerWorker): boolean;
   homeReady(worker: ForecastMinerWorker): boolean;
   routeReady(worker: ForecastMinerWorker): boolean;

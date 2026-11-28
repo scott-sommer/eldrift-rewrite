@@ -1,3 +1,4 @@
+import { unitRosterSchema } from '../../../../../persistence/units/schema';
 import { haulingDefinitions } from '../opening';
 import { peekState } from '../../../../../persistence/versioned-state';
 import type { StatePort,StateSchema } from '../../../../../persistence/versioned-state';
@@ -19,6 +20,7 @@ export const homeMinerDefinitions = { ...haulingDefinitions,'remote-mine': remot
 export function seedHomeWorldControl(home: HomeHaulingInput,state: StatePort,restored: boolean,frame = home.observedAt): void {
   const miners = home.sources.flatMap(source => source.miners);
   if (!home.control) { if (miners.length) throw new Error('Missing private miner control'); return; }
+  seedLifecycleOwner(home,state,restored);
   owner(state,'remotes/assignments',remoteAssignmentSchema,home.control.assignments,restored);
   owner(state,'reservations/empire',reservationSchema,home.control.reservations,restored);
   validateControlClock(home,state,frame);
@@ -30,6 +32,9 @@ export function seedHomeWorldControl(home: HomeHaulingInput,state: StatePort,res
     validateMinerStation(home,source,observation,state);
     seedHaulingRecord(state,'tasks/'+name,schema,{ unit: name,queue: observation.task ? [observation.task.record] : [] });
   }
+}
+function seedLifecycleOwner(home: HomeHaulingInput,state: StatePort,restored: boolean): void {
+  if (home.control?.units) owner(state,'units/creeps',unitRosterSchema,home.control.units,restored);
 }
 function owner<T>(state: StatePort,key: string,schema: StateSchema<T>,opening: T | null,restored: boolean): void {
   if (restored) { const current = peekState(state,key,schema); if (opening && !current) throw new Error('Missing restored home control owner'); }

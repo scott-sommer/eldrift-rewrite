@@ -18,7 +18,7 @@ export function createHomeMiningActors(home: HomeHaulingInput,shared: HomeWorldS
       repair: (worker,target,id) => queueForecastMiningRepair(shared,worker,target,id,profile.repair),
     });
     const cycle = createRemoteMiningCycle(shared.state,{ home: home.home,owner: paid.owner },{ ...service,
-      eligible: worker => !shared.body(worker.unit).spawning && environment.eligible(worker),
+      eligible: worker => !!shared.inventory.observe(worker.unit) && !shared.body(worker.unit).spawning && environment.eligible(worker),
       cargo: worker => shared.inventory.observe(worker.unit)!.usedCapacity,lifetime: () => expiresAt-clock(),
       mode(worker,definitions) {
         const mode = environment.mode(worker,definitions);

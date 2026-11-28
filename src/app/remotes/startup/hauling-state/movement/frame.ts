@@ -16,10 +16,10 @@ import type { PaidMovementCheckpoint } from './model';
 import type { PaidMovementExternalFrame } from './model';
 /** Private physical movement. Actual service requests and explicit outside movers share one traffic frame. */
 export function createPaidHaulingMovement(home: string, openingTick: number, initial: readonly PaidCourierActiveRoute[],
-  arbiter: Pick<ReturnType<typeof createActionArbiter>,'issue'>, ports: TransitFramePorts, checkpoint?: PaidMovementCheckpoint) {
+  arbiter: Pick<ReturnType<typeof createActionArbiter>,'issue'>, ports: TransitFramePorts, checkpoint?: PaidMovementCheckpoint,retired: ReadonlySet<string> = new Set()) {
   let routes = seedPaidMovement(home,openingTick,initial), tick = openingTick-1, open = false, failed = false;
   let expected = new Map<string,TransitState>();
-  if (checkpoint) ({ routes,tick,expected } = restorePaidMovement(home,openingTick,initial,checkpoint));
+  if (checkpoint) ({ routes,tick,expected } = restorePaidMovement(home,openingTick,initial,checkpoint,retired));
   const requests = new Map<string,TrafficRequest>(), attempted = new Set<string>();
   function usable(): void { if (failed) throw new Error('Cannot resume failed paid movement'); }
   function requireOpen(): void { usable(); if (!open) throw new Error('Paid movement frame is closed'); }
@@ -57,6 +57,11 @@ export function createPaidHaulingMovement(home: string, openingTick: number, ini
         expected = new Map(result.states.slice(0,own.length).map(state => [state.unit,state])); open = false;
         return copyPlain(result);
       } catch (error) { failed = true; throw error; }
+    },
+    retire(units: ReadonlySet<string>): void {
+      usable(); if (open) throw new Error('Cannot retire open paid movement');
+      for (const [name,route] of routes) if (units.has(route.program.unit)) routes.delete(name);
+      for (const unit of units) expected.delete(unit);
     },
     checkpoint(): PaidMovementCheckpoint {
       usable(); if (open) throw new Error('Cannot checkpoint open paid movement frame');

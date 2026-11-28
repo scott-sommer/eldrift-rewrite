@@ -1,3 +1,5 @@
+import { validateHomeRetirementArchive } from './lifecycle-state';
+import { deadHomeBodies,validateHomeLifetimeMetadata } from './lifetimes';
 import { validateHomeBankingContinuation } from '../../banking-state/checkpoint';
 import { validatePendingInventoryUnit } from './transfer-state';
 import { expandHomeConstruction } from './construction-state';
@@ -28,7 +30,7 @@ export function readHomeHaulingCheckpoint(raw: HomeHaulingCheckpoint): HomeHauli
 export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyInventoryCheckpoint<PaidHomeInventory>) {
   input = expandHomeConstruction(input,checkpoint.ecology);
   validateEcologyMetadata(input.ecology,checkpoint.ecology);
-  const dead = destroyedHomeStores(checkpoint.ecology);
+  const dead = new Set([...destroyedHomeStores(checkpoint.ecology),...deadHomeBodies(checkpoint.ecology)]);
   const original = [...input.inventories,...input.bodies.map(body => body.inventory)].filter(store => !dead.has(store.id));
   if (original.length !== checkpoint.stores.length) throw new Error('Home checkpoint inventory roster mismatch');
   for (const store of checkpoint.stores) {
@@ -40,9 +42,9 @@ export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyI
 
 /** Pending private attempts must retain the effect needed by the one-frame confirmation window. */
 export function validateHomeContinuation(checkpoint: HomeHaulingCheckpoint,seed: PaidHaulingForecastSeed): void {
-  validateBodyContinuation(checkpoint);
+  validateBodyContinuation(checkpoint); validateHomeRetirementArchive(seed.state);
   if (checkpoint.inventory.nextTick === checkpoint.input.observedAt) return;
-  for (const worker of seed.workers) validatePendingInventoryUnit(checkpoint.inventory.effects,seed.state,worker.unit);
+  for (const worker of seed.workers) validatePendingInventoryUnit(checkpoint.inventory.effects,seed.state,worker.unit,checkpoint.inventory.nextTick);
   validateHomeBankingContinuation(checkpoint.input,checkpoint.inventory.effects,seed.state,checkpoint.inventory.nextTick);
 }
 function validateBodyContinuation(checkpoint: HomeHaulingCheckpoint): void {
@@ -56,7 +58,7 @@ function validateEcologyMetadata(opening: HomeHaulingInput['ecology'],current: H
   if (!opening || !current) throw new Error('Home checkpoint ecology presence mismatch');
   if (opening.sources.length !== current.sources.length) throw new Error('Home checkpoint source roster mismatch');
   validateSourceMetadata(opening.sources,current.sources);
-  validateHealthMetadata(opening,current);
+  validateHealthMetadata(opening,current); validateHomeLifetimeMetadata(opening,current);
   validateHomeContainerMetadata(opening.containers,current.containers);
   if (current.decayDivisor !== opening.decayDivisor) throw new Error('Home checkpoint ecology rules mismatch');
 }

@@ -40,7 +40,7 @@ function harness(input: HomeHaulingInput,checkpoint?: HomeHaulingCheckpoint) {
 }
 
 test('complete owner snapshots retain outside and expired records without initializing missing native state', () => {
-  const empty = privateHaulingState(); expect(observePaidHomeControl(empty,10)).toEqual({ assignments: null,reservations: null }); expect(empty.checkpoint()).toEqual([]);
+  const empty = privateHaulingState(); expect(observePaidHomeControl(empty,10)).toEqual({ assignments: null,reservations: null,units: null }); expect(empty.checkpoint()).toEqual([]);
   const f = paidMinerControlFixture(),before = JSON.stringify(f.state.checkpoint()),h = harness(f.input);
   expect(observePaidHomeControl(h.shared.state,10)).toEqual(f.input.control);
   expect(f.input.control!.reservations!.claims).toHaveLength(2);

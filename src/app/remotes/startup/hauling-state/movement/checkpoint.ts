@@ -3,11 +3,12 @@ import { validateTransitFrame } from '../../../../../capabilities/movement/trans
 import type { PaidCourierActiveRoute } from '../../../../../features/remotes/startup/routes/model';
 import { seedPaidMovement,paidMovementTransit } from './input';
 import type { PaidMovementCheckpoint } from './model';
-export function restorePaidMovement(home: string,openingTick: number,initial: readonly PaidCourierActiveRoute[],raw: PaidMovementCheckpoint) {
+export function restorePaidMovement(home: string,openingTick: number,initial: readonly PaidCourierActiveRoute[],raw: PaidMovementCheckpoint,retired: ReadonlySet<string> = new Set()) {
   const checkpoint = copyPlain(raw),clock = Math.max(openingTick,checkpoint.tick);
   if (!Number.isSafeInteger(checkpoint.tick) || checkpoint.tick < openingTick-1) throw new Error('Invalid paid movement checkpoint clock');
   const routes = seedPaidMovement(home,clock,checkpoint.routes);
-  if (routes.size !== initial.length || initial.some(route => JSON.stringify(routes.get(route.program.name)?.program) !== JSON.stringify(route.program))) throw new Error('Paid movement checkpoint program mismatch');
+  const live = initial.filter(route => !retired.has(route.program.unit));
+  if (routes.size !== live.length || live.some(route => JSON.stringify(routes.get(route.program.name)?.program) !== JSON.stringify(route.program))) throw new Error('Paid movement checkpoint program mismatch');
   const active = [...routes.values()].filter(route => route.cursor !== null);
   const expected = new Map(checkpoint.expected.map(state => [state.unit,state]));
   if (expected.size !== checkpoint.expected.length) throw new Error('Duplicate paid movement checkpoint body');

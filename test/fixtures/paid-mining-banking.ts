@@ -15,7 +15,7 @@ export function paidMiningBankingFixture({ capacity = 1000,alternate = false,cla
   const configure = (ports: HomeWorldShared): HomeWorldEnvironment => {
     shared = ports; const environment = f.configure(ports);
     const banking = createForecastRemoteBanking(input.home,ports,{
-      eligible: () => true,homeReady: () => homeReady,routeReady: () => routeReady,retire: f.retire,
+      eventsVisible: () => true,eligible: () => true,homeReady: () => homeReady,routeReady: () => routeReady,retire: f.retire,
       acceptsEnergy: () => true,acceptsSink: () => true,
       destinations: () => input.inventories.filter(store => store.room === input.home).map(store => ({ id: store.id,room: store.room,kind: 'storage',owned: true,active: true })),
       capacityPool: id => input.inventories.find(store => store.id === id)!.capacityPool,

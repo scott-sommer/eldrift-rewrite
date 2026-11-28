@@ -8,7 +8,7 @@ import type { Incidents } from './uncertainty';
 interface RetiredEvidence { unit: string; journal: Journal | null; incidents: Incidents | null }
 interface Archive { entries: RetiredEvidence[]; discarded: number }
 const archiveKey = 'logistics-retired/empire';
-const archiveSchema: StateSchema<Archive> = {
+export const archiveSchema: StateSchema<Archive> = {
   owner: 'logistics', version: 1, initial: () => ({ entries: [], discarded: 0 }), migrations: {},
   valid(value: unknown): value is Archive {
     if (!value || typeof value !== 'object') return false;

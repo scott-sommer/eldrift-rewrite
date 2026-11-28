@@ -31,7 +31,7 @@ export function paidMiningCycleFixture({ cargo = 48,sourceEnergy = 100,regenerat
   if (constructionRemaining !== undefined) infrastructure = { site: 'site' };
   const configure = (ports: HomeWorldShared): HomeWorldEnvironment => {
     shared = ports;
-    return { authority: () => undefined,visible: () => true,endpoint: () => undefined,roomPolicy: () => ({ blockedRooms: [] }),legal: () => true,terrain: () => 2,
+    return { ...(input.bodies.some(body => body.expiry) ? { lifecycleRoster: () => input.bodies.filter(body => ports.inventory.observe(body.unit)).map(body => ({ name: body.name,id: body.unit })) } : {}),authority: () => undefined,visible: () => true,endpoint: () => undefined,roomPolicy: () => ({ blockedRooms: [] }),legal: () => true,terrain: () => 2,
       mining: { allowed: () => allowed,eligible: () => eligible,mode: () => mode,banking: {},buildAllowed: () => true,
       station: () => present ? ({ id: 'source',target: 'source',kind: 'energy',resource: 'energy',position: input.ecology!.sources[0]!.position,access: [tile],container: 'container',throughput: 5,available: 100,observedAt: ports.inventory.tick(),readyAt: ports.inventory.tick(),risk: 'safe' } satisfies MiningStation) : undefined,
       infrastructure: () => {

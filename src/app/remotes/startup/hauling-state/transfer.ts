@@ -1,3 +1,4 @@
+import { observePhysicalTransfer } from './transfer-observation';
 import type { EnergyInventory } from '../../../../capabilities/resources/energy-inventory/model';
 import type { createActionArbiter } from '../../../../core/execution/action-arbiter';
 import type { Outcome } from '../../../../core/execution/model';
@@ -15,6 +16,7 @@ import type { PaidHaulingForecastWorker } from './service';
 export interface ForecastHaulingUnit { name: string; unit: string }
 export interface ForecastHaulingTransferPorts<Worker extends ForecastHaulingUnit = PaidHaulingForecastWorker> {
   position(worker: Worker): Position;
+  eventsVisible?(worker: Worker,attempt: TransferAttempt): boolean;
   target(worker: Worker, request: LogisticsRequest, phase: 'collect' | 'deliver'): { status: 'visible' | 'unseen' | 'missing'; inRange: boolean; accepting: boolean };
   approach(worker: Worker, binding: HaulingBinding, request: LogisticsRequest, phase: 'collect' | 'deliver'): Outcome;
   capacityPool(target: string): string;
@@ -48,9 +50,7 @@ export function createForecastHaulingTransfer<Worker extends ForecastHaulingUnit
         sinkFree: receivingCapacity(target,inventory.observe(request.sink)),sinkPool: ports.capacityPool(request.sink),minimumCollection: 0,sinkStatus: target.status };
     },
     observe(worker: Worker, attempt: TransferAttempt) {
-      const effect = inventory.effect(attempt.id);
-      return { tick: inventory.tick(),cargo: stock(worker.unit).energy,events: effect && (effect.kind === 'transfer' || effect.kind === 'withdraw') && effect.amount > 0
-        ? [{ source: effect.source,target: effect.target,resource: 'energy',amount: effect.amount }] : [] };
+      return observePhysicalTransfer(inventory,attempt,ports.eventsVisible?.(worker,attempt) ?? true);
     },
     execution(worker: Worker, binding: HaulingBinding) {
       return { execute(request: LogisticsRequest, phase: 'collect' | 'deliver', maximum: number, attemptId: string, requestKey: string): Outcome {

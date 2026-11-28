@@ -14,7 +14,7 @@ Scheduled mining composition installs `banking.definitions` and calls `banking.p
 
 The previous physical-effect/journal validation is extracted into a shared helper used by courier and bank continuation. Banking restore retains the original unit/home/request binding and required previous-frame effect. Missing or substituted immediate witnesses refuse. If the actor legitimately misses the event window, the older pending journal and absent expired witness can resume, but the common confirmation owner can only settle unknown: archive the incident once, cancel/release/retire the journal and create no receipt. Physical material stays where the actual processor put it, independently of confirmed financial attribution.
 
-The private state bound is now196 envelopes: at most64 selected actors times task, journal and ten-entry bounded uncertainty archive, plus four shared owners. This deliberately provisions the new owner without an unbounded map or dropping incidents. Restore validates the archive schema and original home/unit identities. Future household controllers may require their own explicit bounded allowance.
+The banking integration initially provisioned196 envelopes; [whole-home expiry](startup-home-expiry.md) adds the native unit roster and retirement archive for a current bound of198. The original196 allowance covers: at most64 selected actors times task, journal and ten-entry bounded uncertainty archive, plus four shared owners. This deliberately provisions the new owner without an unbounded map or dropping incidents. Restore validates the archive schema and original home/unit identities. Future household controllers may require their own explicit bounded allowance.
 
 ## Incremental evidence
 

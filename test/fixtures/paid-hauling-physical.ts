@@ -26,7 +26,7 @@ export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400,change?: (input
   let shared!: HomeWorldShared,tick = 100;
   const configure = (ports: HomeWorldShared): HomeWorldEnvironment => {
     shared = ports;
-    return { authority: () => demand,visible: () => true,legal: () => true,terrain: () => 2,
+    return { ...(input.bodies.some(body => body.expiry) ? { lifecycleRoster: () => input.bodies.filter(body => ports.inventory.observe(body.unit)).map(body => ({ name: body.name,id: body.unit })) } : {}),authority: () => demand,visible: () => true,legal: () => true,terrain: () => 2,
       endpoint: (_worker,phase) => ({ id: phase === 'collect' ? 'container' : 'bank',position: phase === 'collect' ? f.context.plan.station : f.context.plan.endpoint.position,active: true }),
       roomPolicy: () => ({ blockedRooms: [],allowedRooms: ['W0N1'] }) };
   };
@@ -35,7 +35,7 @@ export function paidHaulingPhysicalFixture(leaseExpiresAt = 1400,change?: (input
   const frames: { tick: number; x: number; energy: number; stage: string; readyAt: number; effects: { kind: string; amount: number; settledAt: number }[] }[] = [];
   const deliveries: HomeConfirmedDelivery[] = [];
   function step(operations: readonly HomeWorldOperation[] = [{ kind: 'settle' },{ kind: 'paid',name: 'paid-courier',work: true }],outside: PaidMovementExternalFrame = { plans: [],states: [],requestedUnits: [],occupants: [] }) {
-    const result = world.step({ tick,operations,outside,settlementOrder: intents => intents.map(intent => intent.id) });
+    const result = world.step({ tick,operations,outside,settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) });
     const opening = result.openings[0]!;
     frames.push({ tick,x: opening.observed.position.x,energy: opening.observed.energy,stage: opening.continuation.stage,readyAt: opening.continuation.readyAt,effects: result.effects });
     deliveries.push(...result.deliveries); tick++; return result;

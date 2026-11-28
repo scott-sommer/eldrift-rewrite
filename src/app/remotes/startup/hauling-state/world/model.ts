@@ -1,3 +1,4 @@
+import type { UnitIdentity } from '../../../../../persistence/units/schema';
 import type { HomeMiningEnvironment } from '../../mining-state/environment';
 import type { EnergyPostprocessOrder } from '../../../../../capabilities/resources/energy-inventory/model';
 import type { PaidHomeControl } from '../../home-observation/model';
@@ -26,13 +27,14 @@ export interface HomeHaulingInput extends PaidHomePhysicalInput {
 }
 export interface HomeWorldShared {
   state: StatePort;
-  inventory: Pick<EnergyInventoryFrame,'tick' | 'observe' | 'queue' | 'pending' | 'effect' | 'source' | 'structure' | 'site'>;
+  inventory: Pick<EnergyInventoryFrame,'tick' | 'observe' | 'queue' | 'pending' | 'effect' | 'source' | 'structure' | 'site' | 'bodyLife' | 'tombstone'>;
   quantities: ReturnType<typeof createQuantityReservations>;
   arbiter: ReturnType<typeof createActionArbiter>;
   body(unit: string): ForecastCourierPhysical;
 }
 export interface HomeWorldEnvironment extends TransitFramePorts {
   mining?: HomeMiningEnvironment;
+  lifecycleRoster?(tick: number): readonly UnitIdentity[];
   authority(worker: PaidHaulingForecastWorker,tick: number): RemoteTransportDemand | undefined;
   visible(room: string,tick: number): boolean;
   endpoint(worker: PaidHaulingForecastWorker,phase: 'collect' | 'deliver',tick: number): { id: string; position: Position; active: boolean } | undefined;
@@ -40,7 +42,7 @@ export interface HomeWorldEnvironment extends TransitFramePorts {
 }
 export type HomeWorldOperation = { kind: 'settle' } | { kind: 'paid'; name: string; work: boolean }
   | { kind: 'miner'; name: string }
-  | { kind: 'external'; id: string; run(shared: HomeWorldShared): void };
+  | { kind: 'external'; id: string; independent?: boolean; run(shared: HomeWorldShared): void };
 export interface HomeHaulingFrame {
   tick: number; operations: readonly HomeWorldOperation[]; outside: PaidMovementExternalFrame;
   postprocessOrder?: EnergyPostprocessOrder;

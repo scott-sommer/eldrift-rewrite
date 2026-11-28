@@ -1,3 +1,5 @@
+import { createHomeLifecycle } from './lifecycle';
+import { deadHomeBodies } from './lifetimes';
 import { createHomeMiningActors } from '../../mining-state/actors';
 import { seedHomeWorldControl } from './control';
 import { createActionArbiter } from '../../../../../core/execution/action-arbiter';
@@ -27,10 +29,10 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
     ({ source: source.plan.source,room: source.plan.room,opening: courier.opening }))),[...home.claims.owned,...home.claims.external],checkpoint?.state);
   seedHomeWorldControl(home,seed.state,checkpoint !== undefined,nextTick);
   const bodies = new HomeWorldBodies(home,new Set(seed.workers.map(worker => worker.unit)));
-  if (checkpoint) { bodies.restore(checkpoint.bodies); validateHomeContinuation(checkpoint,seed); }
+  if (checkpoint) { bodies.restore(checkpoint.bodies,checkpoint.inventory.ecology); validateHomeContinuation(checkpoint,seed); }
   const arbiter = createActionArbiter(inventory.tick),quantities = createQuantityReservations(seed.state);
   const shared: HomeWorldShared = { state: seed.state,inventory: homeWorldInventoryPorts(inventory,bodies),quantities,arbiter,body: unit => bodies.get(unit) };
-  const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment,checkpoint?.movement);
+  const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment,checkpoint?.movement,deadHomeBodies(checkpoint?.inventory.ecology));
   const miners = environment.mining ? createHomeMiningActors(home,shared,environment.mining) : undefined;
   function endpoint(worker: PaidHaulingForecastWorker,phase: 'collect' | 'deliver') {
     const target = environment.endpoint(worker,phase,inventory.tick());
@@ -42,6 +44,7 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
   }
   const transfer = createForecastHaulingTransfer<PaidHaulingForecastWorker>(seed.state,inventory,arbiter,{
     position: worker => bodies.get(worker.unit).position,
+    eventsVisible: (_worker,attempt) => environment.visible(attempt.room,inventory.tick()),
     capacityPool: id => { const store = inventory.observe(id) ?? home.inventories.find(store => store.id === id) ?? home.ecology?.sites?.find(site => site.completion?.store.id === id)?.completion?.store; if (!store) throw new Error('Unknown home world capacity pool'); return store.capacityPool; },
     target(worker,request,phase) {
       const target = endpoint(worker,phase),id = phase === 'collect' ? request.source : request.sink;
@@ -64,5 +67,6 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
     collection: worker => endpoint(worker,'collect')?.id,visible: room => environment.visible(room,inventory.tick()),
     roomPolicy: (worker,phase) => environment.roomPolicy(worker,phase,inventory.tick()),move: movement.request,view: transfer.view });
   const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive },nextTick);
-  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,miners,receipts: homeWorldReceiptCollector(seed) };
+  const receipts = homeWorldReceiptCollector(seed),lifecycle = createHomeLifecycle(home,seed,inventory,bodies,environment,receipts);
+  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,miners,receipts,lifecycle };
 }

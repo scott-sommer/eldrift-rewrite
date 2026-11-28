@@ -27,7 +27,7 @@ export function createForecastRemoteBanking(home: string,shared: HomeWorldShared
     atHome: worker => shared.body(worker.unit).position.room === home,work: (worker,task) => hauling.handlers(task).work!(worker),
   });
   const control = createRemoteBankingControl(shared.state,home,{ identity,
-    eligible: worker => !shared.body(worker.unit).spawning && environment.eligible(worker),
+    eligible: worker => !!shared.inventory.observe(worker.unit) && !shared.body(worker.unit).spawning && environment.eligible(worker),
     cargo: worker => shared.inventory.observe(worker.unit)!.usedCapacity,
     interior(worker) { const p = shared.body(worker.unit).position; return p.room === home && p.x > 0 && p.x < 49 && p.y > 0 && p.y < 49; },
     homeReady: environment.homeReady,routeReady: environment.routeReady,

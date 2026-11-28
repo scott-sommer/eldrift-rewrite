@@ -1,13 +1,15 @@
+import { stubExpiryGlobals } from '../../fixtures/expiry-globals';
 import { nativeRepairProfile } from '../../../src/adapters/screeps/repair-profile';
 import { paidHomeClaims } from '../../../src/app/remotes/startup/home-observation/claims';
 import { observePaidHomeInventory } from '../../../src/app/remotes/startup/home-observation/inventory';
-import { afterEach,expect,test,vi } from 'vitest';
+import { afterEach,beforeEach,expect,test,vi } from 'vitest';
 import { observePaidHomeBodies } from '../../../src/app/remotes/startup/home-observation/bodies';
 import { paidHomeAssets } from '../../../src/app/remotes/startup/home-observation/assets';
 import { createPaidHomePhysicalInventory } from '../../../src/app/remotes/startup/hauling-state/inventory';
 import type { PaidHomePhysicalInput } from '../../../src/app/remotes/startup/hauling-state/inventory';
 import { paidHaulingStateFixture } from '../../fixtures/paid-hauling-state';
 import { logisticsPool } from '../../../src/capabilities/logistics/request';
+beforeEach(stubExpiryGlobals);
 afterEach(() => vi.unstubAllGlobals());
 function fixture(): PaidHomePhysicalInput {
   const f = paidHaulingStateFixture('withdraw',50,100), point = { room: 'W0N1',x: 10,y: 25 };

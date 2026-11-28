@@ -1,3 +1,5 @@
+import type { UnitRoster } from '../../../../persistence/units/schema';
+import type { nativeExpiryProfile } from '../../../../adapters/screeps/expiry-profile';
 import type { BuildProfile } from '../../../../capabilities/construction/build-effect';
 import type { RepairProfile } from '../../../../capabilities/mining/repair-effect';
 import type { RemoteAssignmentState } from '../../../../features/remotes/assignment-model';
@@ -20,8 +22,8 @@ export interface PaidHomeSourceObservation {
   couriers: { paid: StartupPaidWorker; opening: PaidCourierOpening; route: PaidCourierActiveRoute | null }[];
 }
 export interface PaidHomeInventory { capacityPool: string; id: string; room: string; energy: number; capacity: number; usedCapacity: number; freeEnergyCapacity: number; active: boolean }
-export interface PaidHomeBody { name: string; unit: string; repair?: RepairProfile; build?: BuildProfile; harvestPower?: number; inventory: PaidHomeInventory }
-export interface PaidHomeControl { assignments: RemoteAssignmentState | null; reservations: Reservations | null }
+export interface PaidHomeBody { name: string; unit: string; repair?: RepairProfile; build?: BuildProfile; harvestPower?: number; expiry?: ReturnType<typeof nativeExpiryProfile>; inventory: PaidHomeInventory }
+export interface PaidHomeControl { assignments: RemoteAssignmentState | null; reservations: Reservations | null; units?: UnitRoster | null }
 export interface PaidHomeObservation {
   observedAt: number; home: string; endpoint: NativeStartupFacts['endpoint']; stock: NativeStartupFacts['stock']; spawns: NativeStartupFacts['spawns'];
   control: PaidHomeControl; ecology: EnergyEcology; inventories: PaidHomeInventory[]; bodies: PaidHomeBody[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;

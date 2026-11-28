@@ -1,10 +1,11 @@
+import { bindHomeLifetimes } from './lifetimes';
 import { copyPlain } from '../../../../../core/plain-data';
 import { paidRouteContextMatches } from '../../route-control/program';
 import type { PaidCourierActiveRoute } from '../../../../../features/remotes/startup/routes/model';
 import type { HomeHaulingInput,HomeHaulingFrame } from './model';
 export function homeWorldInput(input: HomeHaulingInput): HomeHaulingInput {
-  return copyPlain({ home: input.home,observedAt: input.observedAt,endpoint: input.endpoint,inventories: input.inventories,bodies: input.bodies,workers: input.workers,
-    ...(input.control ? { control: input.control } : {}),...(input.ecology ? { ecology: input.ecology } : {}),sources: input.sources.map(({ plan,demand,miners,couriers }) => ({ plan,demand,miners,couriers })),claims: input.claims });
+  return bindHomeLifetimes(copyPlain({ home: input.home,observedAt: input.observedAt,endpoint: input.endpoint,inventories: input.inventories,bodies: input.bodies,workers: input.workers,
+    ...(input.control ? { control: input.control } : {}),...(input.ecology ? { ecology: input.ecology } : {}),sources: input.sources.map(({ plan,demand,miners,couriers }) => ({ plan,demand,miners,couriers })),claims: input.claims }));
 }
 export function homeWorldRoutes(home: HomeHaulingInput): PaidCourierActiveRoute[] {
   return home.sources.flatMap(source => source.couriers.map(courier => {
@@ -43,6 +44,11 @@ function validateExternalVisits(frame: HomeHaulingFrame): void {
   for (const operation of frame.operations) {
     if (operation.kind === 'settle' || operation.kind === 'paid' || operation.kind === 'miner') continue;
     if (operation.kind !== 'external' || !operation.id || external.has(operation.id) || typeof operation.run !== 'function') throw new Error('Invalid outside world operation');
+    validateIndependent(operation.independent);
     external.add(operation.id);
   }
+}
+
+function validateIndependent(value: unknown): void {
+  if (value !== undefined && typeof value !== 'boolean') throw new Error('Invalid outside admission scope');
 }

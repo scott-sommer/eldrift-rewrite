@@ -1,3 +1,4 @@
+import { unitRosterSchema } from '../../../../persistence/units/schema';
 import { peekState } from '../../../../persistence/versioned-state';
 import type { StatePort } from '../../../../persistence/versioned-state';
 import { remoteAssignmentSchema } from '../../../../features/remotes/assignment-schema';
@@ -9,5 +10,12 @@ export function observePaidHomeControl(state: StatePort,tick: number): PaidHomeC
   const reservations = peekState(state,'reservations/empire',reservationSchema) ?? null;
   if (assignments && assignments.clock > tick) throw new Error('Future home assignment control');
   if (reservations && reservations.claims.length > 512) throw new Error('Home station claim bound exceeded');
-  return { assignments,reservations };
+  const units = observeUnits(state);
+  return { assignments,reservations,units };
+}
+
+function observeUnits(state: StatePort) {
+  const units = peekState(state,'units/creeps',unitRosterSchema) ?? null;
+  if (units && units.units.length > 512) throw new Error('Home global unit roster bound exceeded');
+  return units;
 }

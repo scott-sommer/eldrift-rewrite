@@ -35,7 +35,7 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
   const units = seed.workers.map(worker => ({ name: worker.name,id: worker.unit }));
   const home = seed.home;
   if (!Number.isSafeInteger(nextTick) || nextTick < seed.tick) throw new Error('Invalid hauling service continuation clock');
-  let tick = nextTick-1, failed = false, open = false, settled = false;
+  let tick = nextTick-1, failed = false, open = false, settled = false,paused = false;
   const visited = new Set<string>();
   function observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt): TransferObservation {
     const observation = ports.observe(worker,attempt);
@@ -90,7 +90,7 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
   function begin(frame: number): void {
     if (failed) throw new Error('Cannot resume failed hauling service');
     if (open) throw new Error('Hauling service frame already open');
-    validateFrame(frame,tick,[],workers); tick = frame; open = true; settled = false; visited.clear();
+    validateFrame(frame,tick,[],workers); tick = frame; open = true; settled = false; paused = false; visited.clear();
   }
   function settle(): void {
     requireOpen(); if (settled) throw new Error('Hauling fleet already settled');
@@ -105,12 +105,15 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
     requireOpen();
     try {
       const worker = workers.get(name);
-      if (!settled || !worker || visited.has(name) || typeof work !== 'boolean') throw new Error('Invalid hauling service visit phase');
+      if (!settled || paused || !worker || visited.has(name) || typeof work !== 'boolean') throw new Error('Invalid hauling service visit phase');
       visited.add(name); return visit(worker,work);
     } catch (error) { failed = true; throw error; }
   }
   function finish(): void { requireOpen(); if (!settled) throw new Error('Hauling fleet not settled'); open = false; }
-  return { begin,settle,visit: service,finish,
+  function deferSettlement(): void {
+    requireOpen(); if (settled) throw new Error('Hauling fleet already settled'); settled = true; paused = true;
+  }
+  return { begin,settle,visit: service,finish,deferSettlement,
     step(frame: number, visits: readonly PaidHaulingVisit[]): PaidHaulingServiceResult[] {
       if (failed) throw new Error('Cannot resume failed hauling service');
       validateFrame(frame,tick,visits,workers); begin(frame); settle();
