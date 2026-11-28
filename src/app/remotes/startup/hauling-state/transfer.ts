@@ -12,16 +12,17 @@ import { createTransferJournal } from '../../../../features/logistics/transfer-j
 import type { HaulingBinding } from '../../../hauling-cycle';
 import type { HaulingTaskPayload } from '../../../hauling-task';
 import type { PaidHaulingForecastWorker } from './service';
-export interface ForecastHaulingTransferPorts {
-  position(worker: PaidHaulingForecastWorker): Position;
-  target(worker: PaidHaulingForecastWorker, request: LogisticsRequest, phase: 'collect' | 'deliver'): { status: 'visible' | 'unseen' | 'missing'; inRange: boolean; accepting: boolean };
-  approach(worker: PaidHaulingForecastWorker, binding: HaulingBinding, request: LogisticsRequest, phase: 'collect' | 'deliver'): Outcome;
+export interface ForecastHaulingUnit { name: string; unit: string }
+export interface ForecastHaulingTransferPorts<Worker extends ForecastHaulingUnit = PaidHaulingForecastWorker> {
+  position(worker: Worker): Position;
+  target(worker: Worker, request: LogisticsRequest, phase: 'collect' | 'deliver'): { status: 'visible' | 'unseen' | 'missing'; inRange: boolean; accepting: boolean };
+  approach(worker: Worker, binding: HaulingBinding, request: LogisticsRequest, phase: 'collect' | 'deliver'): Outcome;
   capacityPool(target: string): string;
 }
 /** Real transfer mechanism and journal, with intents restricted to the private shared physical inventory. */
-export function createForecastHaulingTransfer(state: StatePort, inventory: EnergyInventoryFrame, arbiter: Pick<ReturnType<typeof createActionArbiter>, 'issue'>, ports: ForecastHaulingTransferPorts) {
+export function createForecastHaulingTransfer<Worker extends ForecastHaulingUnit>(state: StatePort, inventory: Pick<EnergyInventoryFrame,'tick' | 'observe' | 'queue' | 'effect'>, arbiter: Pick<ReturnType<typeof createActionArbiter>, 'issue'>, ports: ForecastHaulingTransferPorts<Worker>) {
   function stock(id: string) { const value = inventory.observe(id); if (!value) throw new Error('Missing forecast inventory: '+id); return value; }
-  function issue(worker: PaidHaulingForecastWorker, binding: HaulingBinding, request: LogisticsRequest,
+  function issue(worker: Worker, binding: HaulingBinding, request: LogisticsRequest,
     phase: 'collect' | 'deliver', amount: number, attemptId: string, requestKey: string): IntentResult {
     const collect = phase === 'collect', kind = collect ? 'withdraw' : 'transfer';
     const attempt: TransferAttempt = { id: attemptId,requestKey,unit: worker.unit,target: collect ? request.source : request.sink,
@@ -32,7 +33,7 @@ export function createForecastHaulingTransfer(state: StatePort, inventory: Energ
       return 0;
     }, code => code === 0);
   }
-  function physicalView(worker: PaidHaulingForecastWorker, request: LogisticsRequest, phase: 'collect' | 'deliver', maximum: number) {
+  function physicalView(worker: Worker, request: LogisticsRequest, phase: 'collect' | 'deliver', maximum: number) {
     const target = ports.target(worker,request,phase), unit = stock(worker.unit);
     const endpoint = inventory.observe(phase === 'collect' ? request.source : request.sink);
     if (target.status === 'visible' && !endpoint) throw new Error('Missing visible forecast endpoint');
@@ -41,17 +42,17 @@ export function createForecastHaulingTransfer(state: StatePort, inventory: Energ
       capacity: phase === 'collect' ? unit.freeEnergyCapacity : receivingCapacity(target,endpoint),remaining: maximum };
   }
   return {
-    view(worker: PaidHaulingForecastWorker, payload: HaulingTaskPayload) {
+    view(worker: Worker, payload: HaulingTaskPayload) {
       const request = payload.request, unit = stock(worker.unit), target = ports.target(worker,request,'deliver'), source = ports.target(worker,request,'collect');
       return { tick: inventory.tick(),cargo: unit.energy,freeCargo: unit.freeEnergyCapacity,sourceStock: source.status === 'visible' ? inventory.observe(request.source)?.energy ?? 0 : 0,
         sinkFree: receivingCapacity(target,inventory.observe(request.sink)),sinkPool: ports.capacityPool(request.sink),minimumCollection: 0,sinkStatus: target.status };
     },
-    observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt) {
+    observe(worker: Worker, attempt: TransferAttempt) {
       const effect = inventory.effect(attempt.id);
       return { tick: inventory.tick(),cargo: stock(worker.unit).energy,events: effect && (effect.kind === 'transfer' || effect.kind === 'withdraw') && effect.amount > 0
         ? [{ source: effect.source,target: effect.target,resource: 'energy',amount: effect.amount }] : [] };
     },
-    execution(worker: PaidHaulingForecastWorker, binding: HaulingBinding) {
+    execution(worker: Worker, binding: HaulingBinding) {
       return { execute(request: LogisticsRequest, phase: 'collect' | 'deliver', maximum: number, attemptId: string, requestKey: string): Outcome {
         if (request.resource !== 'energy' || !Number.isSafeInteger(maximum) || maximum < 1) throw new Error('Invalid forecast energy transfer');
         return transferStep(physicalView(worker,request,phase,maximum), {

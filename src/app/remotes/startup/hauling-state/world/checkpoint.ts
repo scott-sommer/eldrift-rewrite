@@ -1,11 +1,10 @@
+import { validateHomeBankingContinuation } from '../../banking-state/checkpoint';
+import { validatePendingInventoryUnit } from './transfer-state';
 import { expandHomeConstruction } from './construction-state';
 import { destroyedHomeStores,validateHomeContainerMetadata } from './container-state';
 import { withinRange } from '../../../../../capabilities/movement/path-model';
-import type { Journal } from '../../../../../features/logistics/transfer-journal';
-import type { TransferAttempt } from '../../../../../capabilities/logistics/confirmation';
-import { createTransferJournal } from '../../../../../features/logistics/transfer-journal';
-import type { PaidHaulingForecastSeed,PaidHaulingForecastWorker } from '../service';
-import type { EnergyEffect,EnergySource,EnergyRepairTarget } from '../../../../../capabilities/resources/energy-inventory/model';
+import type { PaidHaulingForecastSeed } from '../service';
+import type { EnergySource,EnergyRepairTarget } from '../../../../../capabilities/resources/energy-inventory/model';
 import { copyPlain } from '../../../../../core/plain-data';
 import type { EnergyInventoryCheckpoint } from '../../../../../capabilities/resources/energy-inventory/model';
 import { createEnergyInventoryFrame } from '../../../../../capabilities/resources/energy-inventory/frame';
@@ -43,7 +42,8 @@ export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyI
 export function validateHomeContinuation(checkpoint: HomeHaulingCheckpoint,seed: PaidHaulingForecastSeed): void {
   validateBodyContinuation(checkpoint);
   if (checkpoint.inventory.nextTick === checkpoint.input.observedAt) return;
-  for (const worker of seed.workers) validatePendingContinuation(checkpoint.inventory.effects,seed,worker);
+  for (const worker of seed.workers) validatePendingInventoryUnit(checkpoint.inventory.effects,seed.state,worker.unit);
+  validateHomeBankingContinuation(checkpoint.input,checkpoint.inventory.effects,seed.state,checkpoint.inventory.nextTick);
 }
 function validateBodyContinuation(checkpoint: HomeHaulingCheckpoint): void {
   for (const expected of checkpoint.movement.expected) {
@@ -51,24 +51,6 @@ function validateBodyContinuation(checkpoint: HomeHaulingCheckpoint): void {
     if (!body || !withinRange(body.position,expected.position,0) || body.fatigue !== expected.fatigue) throw new Error('Home checkpoint body/movement mismatch');
   }
 }
-function validatePendingContinuation(effects: readonly EnergyEffect[],seed: PaidHaulingForecastSeed,worker: PaidHaulingForecastWorker): void {
-  const journal = createTransferJournal(seed.state,worker.unit).peek();
-  const own = effects.filter(effect => (effect.kind === 'transfer' || effect.kind === 'withdraw') && (effect.kind === 'withdraw' ? effect.target : effect.source) === worker.unit);
-  validateEffectJournals(own,journal);
-  if (!journal?.attempt || journal.acknowledged || journal.result !== null) return;
-  validatePendingEffect(effects,journal.attempt,worker.unit);
-}
-function validateEffectJournals(effects: readonly EnergyEffect[],journal: Journal | undefined): void {
-  if (effects.some(effect => journal?.attempt?.id !== effect.id || journal.acknowledged)) throw new Error('Missing home checkpoint pending journal');
-}
-function validatePendingEffect(effects: readonly EnergyEffect[],attempt: TransferAttempt,unit: string): void {
-  const effect = effects.find(effect => effect.id === attempt.id);
-  if (!effect || effect.kind !== attempt.kind || effect.issuedAt !== attempt.tick) throw new Error('Missing home checkpoint pending effect');
-  const source = attempt.kind === 'withdraw' ? attempt.target : unit;
-  const target = attempt.kind === 'withdraw' ? unit : attempt.target;
-  if (effect.source !== source || effect.target !== target || effect.amount > attempt.amount) throw new Error('Home checkpoint effect binding mismatch');
-}
-
 function validateEcologyMetadata(opening: HomeHaulingInput['ecology'],current: HomeHaulingInput['ecology']): void {
   if (!opening && !current) return;
   if (!opening || !current) throw new Error('Home checkpoint ecology presence mismatch');
