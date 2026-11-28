@@ -1,3 +1,5 @@
+import type { RemoteAssignmentState } from '../../../../features/remotes/assignment-model';
+import type { Reservations } from '../../../../persistence/reservations/schema';
 import type { EnergyEcology } from '../../../../capabilities/resources/energy-inventory/model';
 import type { RemoteTransportDemand } from '../../../../features/remotes/transport-authority';
 import type { StartupPaidCohort,StartupPaidWorker } from '../../../../capabilities/economy/startup/shared-model';
@@ -17,8 +19,9 @@ export interface PaidHomeSourceObservation {
 }
 export interface PaidHomeInventory { capacityPool: string; id: string; room: string; energy: number; capacity: number; usedCapacity: number; freeEnergyCapacity: number; active: boolean }
 export interface PaidHomeBody { name: string; unit: string; inventory: PaidHomeInventory }
+export interface PaidHomeControl { assignments: RemoteAssignmentState | null; reservations: Reservations | null }
 export interface PaidHomeObservation {
   observedAt: number; home: string; endpoint: NativeStartupFacts['endpoint']; stock: NativeStartupFacts['stock']; spawns: NativeStartupFacts['spawns'];
-  ecology: EnergyEcology; inventories: PaidHomeInventory[]; bodies: PaidHomeBody[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;
+  control: PaidHomeControl; ecology: EnergyEcology; inventories: PaidHomeInventory[]; bodies: PaidHomeBody[]; workers: StartupWorkerFacts[]; sources: PaidHomeSourceObservation[]; claims: QuantityClaimPartition;
 }
 export type PaidHomeObservationResult = { status: 'ready'; observation: PaidHomeObservation } | { status: 'deferred'; reason: string };

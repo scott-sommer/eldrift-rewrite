@@ -1,3 +1,4 @@
+import type { TaskRecord } from '../../../../persistence/tasks/schema';
 import type { NativeStartupFacts,StartupWorkerFacts } from '../facts-model';
 import type { QuantityClaim } from '../../../../persistence/quantities/schema';
 import type { Claim } from '../../../../persistence/reservations/schema';
@@ -12,6 +13,6 @@ export interface PaidSourceObservation {
 export type PaidSourceResult = { status: 'ready'; observation: PaidSourceObservation } | { status: 'deferred'; reason: string };
 export interface PaidMinerObservation extends PaidUnitObservation {
   stage: 'spawning' | 'idle' | 'approach' | 'station'; assigned: boolean; claim: Claim | null;
-  task?: { id: string; wakeAt: number; expiresAt: number; scope: string };
+  task?: { record: TaskRecord; id: string; wakeAt: number; expiresAt: number; scope: string };
 }
 export type PaidMinerResult = { status: 'ready'; observation: PaidMinerObservation } | { status: 'deferred'; reason: string };

@@ -1,3 +1,4 @@
+import { seedHomeWorldControl } from './control';
 import { createActionArbiter } from '../../../../../core/execution/action-arbiter';
 import { createQuantityReservations } from '../../../../../persistence/quantities/store';
 import { createPaidHomePhysicalInventory } from '../inventory';
@@ -23,6 +24,7 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
   const nextTick = checkpoint?.inventory.nextTick ?? home.observedAt;
   const seed = createPaidHaulingForecastState(home.home,home.observedAt,home.sources.flatMap(source => source.couriers.map(courier =>
     ({ source: source.plan.source,room: source.plan.room,opening: courier.opening }))),[...home.claims.owned,...home.claims.external],checkpoint?.state);
+  seedHomeWorldControl(home,seed.state,checkpoint !== undefined,nextTick);
   const bodies = new HomeWorldBodies(home,new Set(seed.workers.map(worker => worker.unit)));
   if (checkpoint) { bodies.restore(checkpoint.bodies); validateHomeContinuation(checkpoint,seed); }
   const arbiter = createActionArbiter(inventory.tick),quantities = createQuantityReservations(seed.state);

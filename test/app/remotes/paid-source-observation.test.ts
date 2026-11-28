@@ -51,3 +51,14 @@ test('missing state stays missing and unsafe/lost source context defers',() => {
   delete f.game.rooms.E0N1; expect(f.source(f.context)).toMatchObject({ reason: 'vision' });
   f.context.cohort.generation = 2; expect(f.miner(f.context)).toMatchObject({ reason: 'paid-miner-authority' });
 });
+
+
+test('full miner task payload, retries and sleep survive detached read-only observation',() => {
+  const f = fixture(); f.reserve();
+  const envelope = f.state.read('tasks/miner') as { owner: string; version: number; data: { unit: string; queue: import('../../../src/persistence/tasks/schema').TaskRecord[] } };
+  envelope.data.queue[0]!.wakeAt = 12; envelope.data.queue[0]!.retries = 2; f.state.write('tasks/miner',envelope);
+  const before = JSON.stringify(f.root),observed = f.miner(f.context);
+  expect(observed).toMatchObject({ status: 'ready',observation: { task: { wakeAt: 12,record: { phase: 'work',wakeAt: 12,retries: 2,payload: { home: 'W0N1' } } } } });
+  if (observed.status === 'ready') observed.observation.task!.record.retries = 99;
+  expect(JSON.stringify(f.root)).toBe(before);
+});

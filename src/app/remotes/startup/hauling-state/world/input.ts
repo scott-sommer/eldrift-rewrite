@@ -4,7 +4,7 @@ import type { PaidCourierActiveRoute } from '../../../../../features/remotes/sta
 import type { HomeHaulingInput,HomeHaulingFrame } from './model';
 export function homeWorldInput(input: HomeHaulingInput): HomeHaulingInput {
   return copyPlain({ home: input.home,observedAt: input.observedAt,endpoint: input.endpoint,inventories: input.inventories,bodies: input.bodies,workers: input.workers,
-    ...(input.ecology ? { ecology: input.ecology } : {}),sources: input.sources.map(({ plan,demand,miners,couriers }) => ({ plan,demand,miners,couriers })),claims: input.claims });
+    ...(input.control ? { control: input.control } : {}),...(input.ecology ? { ecology: input.ecology } : {}),sources: input.sources.map(({ plan,demand,miners,couriers }) => ({ plan,demand,miners,couriers })),claims: input.claims });
 }
 export function homeWorldRoutes(home: HomeHaulingInput): PaidCourierActiveRoute[] {
   return home.sources.flatMap(source => source.couriers.map(courier => {

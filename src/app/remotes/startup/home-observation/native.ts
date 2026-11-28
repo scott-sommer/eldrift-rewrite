@@ -1,3 +1,4 @@
+import { observePaidHomeControl } from './control';
 import { observePaidHomeEcology } from './ecology';
 import { logisticsPool } from '../../../../capabilities/logistics/request';
 import { joinPaidHomeInventories } from './inventory';
@@ -25,6 +26,7 @@ function observe(state: StatePort,structures: StartupStructures,request: PaidHom
     if (!source) return { status: 'deferred',reason: 'home-observation-source-or-route' };
     sources.push(source);
   }
+  const control = observePaidHomeControl(state,tick);
   const joined = joinPaidHomeInventories(assets.inventories,sources);
   let capture: ReturnType<typeof observePaidHomeEcology>;
   try { capture = observePaidHomeEcology(request.home,sources,assets.workers,joined,guard); }
@@ -32,7 +34,7 @@ function observe(state: StatePort,structures: StartupStructures,request: PaidHom
   const { inventories,ecology } = capture;
   const claims = paidHomeClaims(assets.claims,[...assets.pools,...inventories.flatMap(store => [store.capacityPool,logisticsPool('stock',store.id,'energy')])],sources);
   if (!guard() || tick !== Game.time) return { status: 'deferred',reason: 'home-observation-frame' };
-  return { status: 'ready',observation: copyPlain({ observedAt: tick,home: request.home,endpoint: assets.endpoint,stock: assets.stock,spawns: assets.spawns,ecology,inventories,bodies: assets.bodies,workers: assets.workers,sources,claims }) };
+  return { status: 'ready',observation: copyPlain({ observedAt: tick,home: request.home,endpoint: assets.endpoint,stock: assets.stock,spawns: assets.spawns,control,ecology,inventories,bodies: assets.bodies,workers: assets.workers,sources,claims }) };
 }
 function validRequest(request: PaidHomeObservationRequest): boolean {
   if (!request.home || !request.endpoint || !request.groups.length || request.groups.length > 8) return false;

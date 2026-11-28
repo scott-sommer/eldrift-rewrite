@@ -7,7 +7,7 @@ import type { StatePort } from '../../../../persistence/versioned-state';
 import { taskSchema } from '../../../../persistence/tasks/schema';
 import type { TaskRecord } from '../../../../persistence/tasks/schema';
 import { reservationSchema } from '../../../../persistence/reservations/schema';
-import { validRemoteTaskPayload } from '../../task';
+import { remoteTaskDefinition } from '../../task';
 import type { RemoteTaskPayload } from '../../task';
 import { taskScope } from '../../../task-runner';
 import { createRemoteAssignmentStore } from '../../../../features/remotes/assignment-store';
@@ -15,7 +15,7 @@ import { paidRemoteUnitMatches } from './identity';
 import { paidSourceLeaseCurrent } from './scope';
 import type { PaidUnitContext } from './model';
 import type { PaidMinerResult } from './source-model';
-const definitions = { 'remote-mine': { phases: ['work'],validPayload: validRemoteTaskPayload } };
+const definitions = { 'remote-mine': remoteTaskDefinition };
 export function createNativePaidMinerObservation(state: StatePort) {
   return (context: PaidUnitContext,guard: () => boolean = () => true): PaidMinerResult => {
     if (!guard()) return { status: 'deferred',reason: 'budget' };
@@ -38,7 +38,7 @@ function observe(state: StatePort,context: PaidUnitContext,creep: Creep,guard: (
   const stage = stageOf(creep,context,task);
   if (!guard()) return { status: 'deferred',reason: 'budget' };
   return { status: 'ready',observation: copyPlain({ observedAt: Game.time,name: creep.name,unit: creep.id,owner: context.paid.owner,position: movementPosition(creep.pos),energy: creep.store.energy,fatigue: creep.fatigue,
-    activeAt: context.paid.activeAt,expiresAt: context.paid.expiresAt,retireAt: context.paid.retireAt,stage,assigned,claim,...(task ? { task: { id: task.id,wakeAt: task.wakeAt,expiresAt: task.expiresAt,scope: scope! } } : {}) }) };
+    activeAt: context.paid.activeAt,expiresAt: context.paid.expiresAt,retireAt: context.paid.retireAt,stage,assigned,claim,...(task ? { task: { record: task,id: task.id,wakeAt: task.wakeAt,expiresAt: task.expiresAt,scope: scope! } } : {}) }) };
 }
 function validTask(state: StatePort,context: PaidUnitContext,task: TaskRecord): boolean {
   const payload = task.payload as RemoteTaskPayload;

@@ -19,11 +19,12 @@ export function validRemoteTaskPayload(value: unknown): value is RemoteTaskPaylo
   return text(token.id) && text(token.assignment) && natural(token.generation) && token.generation > 0 && natural(token.expiresAt);
 }
 function text(value: unknown): value is string { return typeof value === 'string' && value.length > 0 && value.length <= 1024; }
+export const remoteTaskDefinition = { phases: ['work'],validPayload: validRemoteTaskPayload };
 /** Continuous service uses the shared task runner; waits do not consume failure retries. */
 export function createRemoteTaskBehavior<Context, Kind extends RemoteAssignmentDemand['kind']>(state: StatePort, kind: Kind,
   ports: RemoteTaskPorts<Context, Extract<RemoteAssignmentDemand, { kind: Kind }>>): TaskBehavior<Context> {
   const assignments = createRemoteAssignmentStore(state);
-  return { phases: ['work'],validPayload: validRemoteTaskPayload,
+  return { ...remoteTaskDefinition,
     handlers: task => ({ work: context => {
       const payload = task.payload as RemoteTaskPayload;
       const demand = assignments.resolve(payload.token,ports.clock());

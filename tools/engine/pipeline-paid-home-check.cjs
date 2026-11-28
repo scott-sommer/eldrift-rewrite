@@ -8,6 +8,7 @@ function verifyPaidHomeSnapshots(memory,evidence) {
     assert.equal(new Set(home.inventories.map(inventory => inventory.id)).size,home.inventories.length);
     assert.ok(home.inventories.every(inventory => inventory.usedCapacity >= inventory.energy));
     assert.equal(home.bodies.length,home.workers.length);
+    assert.deepEqual(row.seed.control,home.control,'full native assignment/station owners survive private seeding');
     assert.deepEqual(row.seed.ecology,home.ecology,'native source/ground facts survive physical seeding');
     assert.equal(home.ecology.decayDivisor,1000);
     assert.ok(home.ecology.sources.length > 0 && home.ecology.sources.length <= 64);
@@ -38,6 +39,11 @@ function verifyPaidHomeSnapshots(memory,evidence) {
       assert.equal(source.demand.kind,'mine'); assert.equal(source.demand.home,home.home);
       assert.equal(source.demand.room,source.cohort.room); assert.equal(source.demand.source,source.cohort.source);
       assert.equal(source.demand.generation,source.cohort.generation); assert.ok(source.demand.expiresAt > row.tick);
+      for (const miner of source.miners) {
+        const seeded = row.seed.miners.find(worker => worker.name === miner.paid.request); assert.ok(seeded);
+        assert.equal(seeded.unit,miner.observation.unit); assert.equal(seeded.source,source.cohort.source);
+        assert.deepEqual(seeded.task,miner.observation.task?.record ?? null,'full miner task payload/wake/retries survive private seeding');
+      }
       assert.equal(source.miners.length,1); assert.equal(source.couriers.length,2);
       assert.equal(source.observation.observedAt,row.tick);
       const natural = home.ecology.sources.find(fact => fact.id === source.observation.source.id); assert.ok(natural);

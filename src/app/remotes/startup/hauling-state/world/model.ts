@@ -1,3 +1,4 @@
+import type { PaidHomeControl } from '../../home-observation/model';
 import type { StatePort } from '../../../../../persistence/versioned-state';
 import type { createActionArbiter } from '../../../../../core/execution/action-arbiter';
 import type { createQuantityReservations } from '../../../../../persistence/quantities/store';
@@ -17,6 +18,7 @@ import type { PaidMovementExternalFrame } from '../movement/model';
 export interface HomeHaulingInput extends PaidHomePhysicalInput {
   home: string;
   ecology?: EnergyEcology;
+  control?: PaidHomeControl;
   sources: readonly Pick<PaidHomeSourceObservation,'plan' | 'demand' | 'miners' | 'couriers'>[];
   claims: Pick<QuantityClaimPartition,'owned' | 'external'>;
 }
