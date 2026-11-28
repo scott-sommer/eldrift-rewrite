@@ -21,8 +21,23 @@ The private state bound is now196 envelopes: at most64 selected actors times tas
 - Banking/hauling/native banking initial selection24 tests/3 files769ms. Final banking/hauling/current actor/multi-source/native banking/work-cycle selection35 tests/6 files1.21s (overlap).
 - Six bank integration cases cover physical deposit and immediate JSON continuation, partial/alternate deposits, outside liabilities and home/route refusal, home loss after a physical effect, corrupt witnesses/bindings and missed-event JSON resume with one uncertainty/no receipt.
 - A20-energy initial body deposits20 exactly once. A10-capacity bank accepts10, then a real spare sink accepts the remaining10. An outside15 claim against20 capacity permits only5. A missed20 deposit remains20 physically while its cancelled request has no receipts.
-- Final affected selection:57 tests/11 files857ms. Pinned transfer comparisons:4 tests/1 file551ms. Fixed smoke:76 tests/15 files507ms, selection unchanged. Final typecheck, lint, boundaries and Lizard pass (1207 production/980 test files; zero violations), as does the CommonJS/no-Node-globals bundle check. Full units and exact-source both-OS closure CI were not run for this incremental checkpoint. Clean targeted native evidence remains to be recorded below.
+- Final affected selection:57 tests/11 files857ms. Pinned transfer comparisons:4 tests/1 file551ms. Fixed smoke:76 tests/15 files507ms, selection unchanged. Final typecheck, lint, boundaries and Lizard pass (1207 production/980 test files; zero violations), as does the CommonJS/no-Node-globals bundle check. Full units and exact-source both-OS closure CI were not run for this incremental checkpoint. Clean targeted native evidence follows below.
 
 ## Remaining qualification
 
 This integrates remote miner banking after a qualified opening; it does not install a complete future financial admission calendar. Current environment/route/sink providers, native bank openings and outside liabilities, multi-resource physical state, body transitions, source/controller changes, household work and complete native dispatch/receipt calendars remain required. Do not treat a physical bank balance, uncertain deposit, orphan cargo or a booked transfer as permission to spend. ED-29 and RC gates stay open; no live deployment.
+
+## Clean targeted native evidence
+
+All four existing native banking scenarios passed160 ticks each on clean published runtime source `46b3bea79c39be8675952c00eb29306bbeca1d60`:
+
+| Mode | Engine run | Confirmed energy | Uncertain energy | VM confirmation resets |
+| --- | --- | ---: | ---: | ---: |
+| normal | engine-CjYL0N | 48 | 0 | 2 |
+| gap | engine-N7Oe5z | 20 | 28 | 2 |
+| sink-loss | engine-JEeBfY | 52 | 0 | 2 |
+| full | engine-F46zNc | 48 | 0 | 2 |
+
+Every run has zero reported errors, final cargo0, bank claims0 and mining-tile claims0. Existing assertions retain unrelated sentinel owners, explicit completed/cancelled requests, unique receipt IDs, no credit at intent time, and reconciliation of native home stock against confirmed plus explicitly uncertain effects. Sink removal occurs at41; full capacity begins40 and is released61. The gap run archives one incident without claiming its deposit as confirmed income. Each run crosses actual VM resets while confirmation is pending.
+
+Commands: `node tools/engine/smoke.cjs --remote-banking`, `--remote-banking-gap`, `--remote-banking-sink-loss`, `--remote-banking-full`, executed serially on unchanged source. These targeted scenarios directly cover the extracted native banking owners; the1000-tick pipeline was not unnecessarily repeated for this incremental extraction. They do not run a complete private future financial forecast. Exact source, deterministic raw archives and hashes: `evidence/startup-physical-banking.json`.

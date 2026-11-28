@@ -1,0 +1,42 @@
+{
+  "issue": "ED-29",
+  "scope": "Four clean native160-tick banking scenarios qualify shared control/work extraction under ordinary, missed-confirmation, sink-loss and full-sink conditions. Private physical banking and JSON/uncertainty continuation have integration-unit evidence; complete native future financial calendar remains unqualified.",
+  "native": [
+    {
+      "scenario": "shared-banking-normal-160",
+      "nativeSource": "46b3bea79c39be8675952c00eb29306bbeca1d60",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-physical-banking-normal.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "26b6b3d96811e957741d4567b37186b930677560e39003c48eec9e4fbd4c5ad7",
+      "uncompressedSha256": "7d1d8c807ec8f632e78fb7df9b96aa2bb885486191a7e00d1937ea8c3e26bc15"
+    },
+    {
+      "scenario": "shared-banking-gap-160",
+      "nativeSource": "46b3bea79c39be8675952c00eb29306bbeca1d60",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-physical-banking-gap.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "758f14ff358f92d581a716d560c7b39f2c424f2f614881fd4ef3ce2a4b7a5dd6",
+      "uncompressedSha256": "575678b68d15e608702aaab2c6b1df508d9022189c05d8e64f4d9e0937662f80"
+    },
+    {
+      "scenario": "shared-banking-sink-loss-160",
+      "nativeSource": "46b3bea79c39be8675952c00eb29306bbeca1d60",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-physical-banking-sink-loss.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "be969fdf23150b00e0d7caa05bee1805f31194859d9cba40af18c59b57e62b07",
+      "uncompressedSha256": "d58d2090fb87a78ea3e0a8db32489972c63a4b9b4c6dc05e39174259f1540380"
+    },
+    {
+      "scenario": "shared-banking-full-160",
+      "nativeSource": "46b3bea79c39be8675952c00eb29306bbeca1d60",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-physical-banking-full.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "6da1c06dd33dbcd8e1a11755c0dc04ff8f58e19e74f6065c1ba800c5dea98f43",
+      "uncompressedSha256": "6f20d77d96568d73c33b138eed5896bbc16facc678153bf6202596e7d704517b"
+    }
+  ]
+}
