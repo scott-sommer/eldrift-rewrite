@@ -40,7 +40,7 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
   }
   const transfer = createForecastHaulingTransfer(seed.state,inventory,arbiter,{
     position: worker => bodies.get(worker.unit).position,
-    capacityPool: id => { const store = inventory.observe(id) ?? home.inventories.find(store => store.id === id); if (!store) throw new Error('Unknown home world capacity pool'); return store.capacityPool; },
+    capacityPool: id => { const store = inventory.observe(id) ?? home.inventories.find(store => store.id === id) ?? home.ecology?.sites?.find(site => site.completion?.store.id === id)?.completion?.store; if (!store) throw new Error('Unknown home world capacity pool'); return store.capacityPool; },
     target(worker,request,phase) {
       const target = endpoint(worker,phase),id = phase === 'collect' ? request.source : request.sink;
       const room = phase === 'collect' ? request.service?.collection.room : request.service?.deposit.room;

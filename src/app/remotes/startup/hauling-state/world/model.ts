@@ -25,7 +25,7 @@ export interface HomeHaulingInput extends PaidHomePhysicalInput {
 }
 export interface HomeWorldShared {
   state: StatePort;
-  inventory: Pick<EnergyInventoryFrame,'tick' | 'observe' | 'queue' | 'pending' | 'effect' | 'source' | 'structure'>;
+  inventory: Pick<EnergyInventoryFrame,'tick' | 'observe' | 'queue' | 'pending' | 'effect' | 'source' | 'structure' | 'site'>;
   quantities: ReturnType<typeof createQuantityReservations>;
   arbiter: ReturnType<typeof createActionArbiter>;
   body(unit: string): ForecastCourierPhysical;

@@ -1,3 +1,5 @@
+import { validateBuild } from './construction';
+import { validateBuildAccounting } from './construction-checkpoint';
 import { withinRange } from '../../movement/path-model';
 import type { EnergyInventory,EnergyEffect,EnergyEcology,EnergyHarvestEffect,EnergyRepairEffect } from './model';
 import { validateRepair } from './repair';
@@ -28,6 +30,7 @@ function validateEffectKind(effect: EnergyEffect,stores: ReadonlyMap<string,Ener
   if (effect.kind === 'harvest') {
     validateRecordedHarvest(effect,stores,ecology,tick); validateHarvestAccounting(effect);
   } else if (effect.kind === 'repair') { validateRepair(effect,stores,ecology,tick); validateRepairAccounting(effect); }
+  else if (effect.kind === 'build') { validateBuild(effect,stores,ecology,tick); validateBuildAccounting(effect,ecology,tick); }
   else validateEnergyTransfer({ ...effect,amount: Math.max(1,effect.amount) },endpoints);
 }
 

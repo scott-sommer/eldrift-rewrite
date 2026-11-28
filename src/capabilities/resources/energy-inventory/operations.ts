@@ -1,3 +1,4 @@
+import { validateBuild,settleBuild } from './construction';
 import { validateHarvest,settleHarvest } from './ecology';
 import { validateRepair,settleRepair } from './repair';
 import { validateEnergyTransfer } from './validation';
@@ -5,11 +6,13 @@ import type { EnergyInventory,EnergyIntent,EnergyEffect,EnergyEcology,EnergyTran
 export function validateEnergyIntent(intent: EnergyIntent,stores: ReadonlyMap<string,EnergyInventory>,ecology: EnergyEcology): void {
   if (intent.kind === 'harvest') validateHarvest(intent,stores,ecology);
   else if (intent.kind === 'repair') validateRepair(intent,stores,ecology);
+  else if (intent.kind === 'build') validateBuild(intent,stores,ecology);
   else validateEnergyTransfer(intent,stores);
 }
 export function settleEnergyIntent(stores: Map<string,EnergyInventory>,ecology: EnergyEcology,intent: EnergyIntent,tick: number): EnergyEffect {
   if (intent.kind === 'harvest') return settleHarvest(stores,ecology,intent,tick);
   if (intent.kind === 'repair') return settleRepair(stores,ecology,intent,tick);
+  if (intent.kind === 'build') return settleBuild(stores,ecology,intent,tick);
   return settleTransfer(stores,intent,tick);
 }
 function settleTransfer(stores: Map<string,EnergyInventory>,intent: EnergyTransferIntent,tick: number): EnergyTransferEffect {

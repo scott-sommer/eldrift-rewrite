@@ -1,3 +1,4 @@
+import { expandHomeConstruction } from './construction-state';
 import { destroyedHomeStores,validateHomeContainerMetadata } from './container-state';
 import { withinRange } from '../../../../../capabilities/movement/path-model';
 import type { Journal } from '../../../../../features/logistics/transfer-journal';
@@ -26,6 +27,7 @@ export function readHomeHaulingCheckpoint(raw: HomeHaulingCheckpoint): HomeHauli
 }
 /** Material metadata is immutable in this version; body pose is separately owned and restored. */
 export function restoreHomeInventory(input: HomeHaulingInput,checkpoint: EnergyInventoryCheckpoint<PaidHomeInventory>) {
+  input = expandHomeConstruction(input,checkpoint.ecology);
   validateEcologyMetadata(input.ecology,checkpoint.ecology);
   const dead = destroyedHomeStores(checkpoint.ecology);
   const original = [...input.inventories,...input.bodies.map(body => body.inventory)].filter(store => !dead.has(store.id));

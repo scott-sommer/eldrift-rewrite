@@ -1,3 +1,4 @@
+import { validateBuildSites } from './construction-validation';
 import { validateRepairTargets } from './repair';
 import { tileKey } from '../../movement/traffic/model';
 import { withinRange } from '../../movement/path-model';
@@ -9,7 +10,7 @@ export function validateEnergyEcology(ecology: EnergyEcology,stores: readonly En
   validateEcologyBounds(ecology); validateRepairTargets(ecology.structures === undefined ? [] : ecology.structures);
   const ids = ecology.sources.map(source => source.id),tiles = ecology.ground.map(drop => tileKey(drop.position));
   if (new Set(ids).size !== ids.length || new Set(tiles).size !== tiles.length || stores.some(store => ids.includes(store.id))) throw new Error('Duplicate source/ground energy identities');
-  validateContainers(ecology,stores);
+  validateContainers(ecology,stores); validateBuildSites(ecology,stores);
   for (const source of ecology.sources) validateSource(source);
   if (ecology.ground.some(drop => !quantity(drop.energy) || drop.energy === 0)) throw new Error('Invalid physical dropped energy');
 }

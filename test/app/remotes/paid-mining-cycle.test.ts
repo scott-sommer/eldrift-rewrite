@@ -17,13 +17,13 @@ test('shared task cycle and miner selector sleep, harvest, hand off and resume w
 });
 
 test('establishment and depleted/critical repairs keep the existing selector precedence', () => {
-  const building = paidMiningCycleFixture({ repairHits: 1 }); building.infrastructure({ sink: 'container',site: 'site',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
-  building.step(); building.step(); expect(building.step().effects).toEqual([]); expect(building.build).toHaveBeenCalledOnce(); expect(building.repair).not.toHaveBeenCalled();
+  const building = paidMiningCycleFixture({ constructionRemaining: 5 }); building.infrastructure({ sink: 'container',site: 'site',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
+  building.step(); building.step(); expect(building.step().effects).toMatchObject([{ kind: 'build',amount: 5,progressAdded: 5,completed: true }]); expect(building.build).toHaveBeenCalledOnce(); expect(building.repair).not.toHaveBeenCalled();
   const repairing = paidMiningCycleFixture({ repairHits: 1 }); repairing.infrastructure({ sink: 'container',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
   repairing.step(); repairing.step(); expect(repairing.step().effects).toMatchObject([{ kind: 'repair',amount: 1,repairedHits: 100 }]); expect(repairing.repair).toHaveBeenCalledOnce();
   expect(repairing.world.snapshot().inventories.find(store => store.id === 'miner-id')!.energy).toBe(47);
   expect(repairing.world.checkpoint().inventory.ecology!.structures![0]!.hits).toBe(101);
-  // Construction remains a controlled port here; repair now changes the shared material world.
+  // Both selected actions now change the shared material world.
 });
 
 test('hold/eligibility prevent work, while current safety refusal releases the miner station claim', () => {

@@ -1,3 +1,4 @@
+import { observePaidHomeSites } from './construction';
 import { movementPosition } from '../../../../adapters/screeps/movement-traffic';
 import { validateEnergyEcology } from '../../../../capabilities/resources/energy-inventory/ecology';
 import type { EnergyEcology } from '../../../../capabilities/resources/energy-inventory/model';
@@ -9,7 +10,7 @@ export function observePaidHomeEcology(home: string,sources: readonly PaidHomeSo
   inventories: readonly PaidHomeInventory[],guard: () => boolean) {
   const names = [...new Set([home,...sources.map(source => source.plan.room),...workers.map(worker => worker.position.room)])].sort();
   if (names.length > 16) throw new Error('Home ecology room bound exceeded');
-  const ecology: EnergyEcology = { sources: [],ground: [],containers: [],structures: [],decayDivisor: ENERGY_DECAY };
+  const ecology: EnergyEcology = { sources: [],ground: [],containers: [],structures: [],sites: [],decayDivisor: ENERGY_DECAY };
   const stores = new Map(inventories.map(store => [store.id,store]));
   for (const name of names) {
     if (!guard()) throw new Error('Home ecology budget');
@@ -22,6 +23,7 @@ export function observePaidHomeEcology(home: string,sources: readonly PaidHomeSo
   return { ecology,inventories: joined };
 }
 function observeRoomEcology(room: Room,ecology: EnergyEcology,stores: Map<string,PaidHomeInventory>): void {
+  ecology.sites!.push(...observePaidHomeSites(room));
   for (const source of room.find(FIND_SOURCES)) observeSource(source,ecology);
   for (const resource of room.find(FIND_DROPPED_RESOURCES)) {
     if (resource.resourceType === RESOURCE_ENERGY && resource.amount > 0) ecology.ground.push({ position: movementPosition(resource.pos),energy: resource.amount });
