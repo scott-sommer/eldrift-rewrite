@@ -1,0 +1,28 @@
+# Shared mining actor cycle and private station work
+
+ED-29 runtime source: `5306373243c416cbd34220137ae8a51a7a1dd2ab`. The native mining actor now delegates its task control to portable `app/remotes/mining-cycle.ts`. Private station work uses that same cycle, the real task runner, assignment/task renewal and station reservations, and the existing `minerStep` action selector. This avoids a second handwritten productive mining loop.
+
+## Responsibility boundaries
+
+The shared cycle retains native eligibility, banking/hold/service dispatch, cargo cleanup before new service, explicit withdrawal cancellation, current-demand task renewal and retirement behavior. The SDK composition still supplies native unit eligibility, cargo, TTL, banking and service observations. Native owner validation remains before adapter construction. Recruitment remains outside this actor cycle.
+
+`startup/mining-state/work.ts` binds selected station work to current private body/store/source observations and the actual station reservation owner. It acquires the fixed station tile for two ticks, honors spawning/current admission, stages inter-room movement, and uses the shared selector's construction, repair, handoff, depletion and harvest priorities. Home waiting and inter-room arrival do not complete the continuous parent task. Releasing an absent station namespace does not initialize it.
+
+`startup/mining-state/actions.ts` queues actual harvest and default clipped transfer handoff effects into the shared physical inventory. It uses the same economic action slots as native `createCreepActions`; those slots now live in `capabilities/actions/economy-slots.ts`, with existing adapter exports retained. Full sink/empty energy/no WORK and action-owner conflicts retain their native-style outcomes. Miner-to-container handoff emits no paid-courier income receipt.
+
+Current environment ports must provide qualified home/body/routing/safety admission, visible station assessment, usable infrastructure (including native range/activity/ownership checks), actual effective harvest power and movement/retirement. Build and repair effect ports are mandatory and must enqueue real effects before this controller is used for a complete forecast. No default silently skips them. Current tests use controlled build/repair returns to verify selector priority only; they intentionally do not claim corresponding material effects.
+
+## Evidence
+
+- Task/selector/assignment selection:23 tests/six files passed in713ms. Final mining-cycle/native-withdrawal/banking selection:14 tests/three files passed in837ms, after adding end-to-end harvest/handoff resume. These selections overlap.
+- Fixed smoke:76 tests/15 files passed in695ms; selection unchanged.
+- Final `npm run quality` passed: type check, lint, architecture boundaries and pinned Lizard (1175 production/967 test files, zero violations). Final `npm run check:bundle` passed.
+- Private integration starts with48 carried energy and the real task's wake12. Frames10/11 sleep;12 harvests2;13 hands off50;14 harvests2. Source/body/container conservation is preserved and the bank stays0. Station scope renews through the real reservation owner. A depleted source unloads before waiting for regeneration. A full sink retains cargo and the continuous task/retry count. Construction-before-repair priority and shared primary-work conflicts are exercised, with material qualification limited as described above.
+- JSON resume after frame12's full-store harvest matches each future frame through20 and the entire final checkpoint against uninterrupted execution, using freshly configured controller ports.
+- `node tools/engine/smoke.cjs --remote-pipeline-configured --external-pipeline-telemetry` passed supported1000 (`engine-jx3jEY`) on clean published runtime source above. Existing exact receipt-calendar, activated-route, source/inventory and full task/control ownership assertions remained enabled. The flag records local fixture memory/files only. This qualifies the native cycle extraction regression, not an installed private future forecast.
+
+Raw archive/provenance: `evidence/startup-shared-mining-cycle.json` and deterministic compressed evidence. Full units and closure CI were not run for this incremental step; ED-29 remains in progress.
+
+## Required next integration
+
+Implement real physical build/repair/container-lifecycle effects and their checkpoint state, and provide current station/infrastructure/work-power/movement/banking observations from modeled native facts. In particular, container destruction spills stock and ground decay has an object-processing order; do not turn either into free retained stock or free recovery. Capture/model household control and outside work, source capacity/power changes, prospective bodies, damage/TTL and retirement/alternate sinks. Reconcile material inventory with cash/spawn accounting once. Exact multi-source future native receipt calendars, full horizon, strict5ms and the remaining RC gates remain open. No financial admission or deployment was enabled.
