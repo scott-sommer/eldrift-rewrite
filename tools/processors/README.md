@@ -17,3 +17,5 @@ Keep fixtures local and trusted. The pinned upstream dependency graph retains Lo
 `hauling.check.mjs` compares the shared energy inventory against pinned creep withdrawal/transfer processors: explicit processing orders for competing withdrawals and a deposit, mixed-resource receiving capacity, and insufficient sender stock. It checks stores and actual event amounts. These fixture comparisons do not establish global native processing order or replace the packaged full-tick scenarios.
 
 `harvest.check.mjs` compares full energy harvest, shared-capacity clipping, automatic standing-container overflow, ground merge/decay, explicit harvest/withdrawal ordering and a300-frame source regeneration cycle. These action-physics fixtures do not install a native miner controller or qualify a full future home forecast.
+
+`repair.check.mjs` compares shared material repair against the pinned processor, including base rounded cost, boost bonuses from damaged WORK, mixed cargo, exhausted/nonrepairable targets, and donation/repair ordering. It checks native event hits and energySpent as well as final health/stores.
