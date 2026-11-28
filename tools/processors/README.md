@@ -19,3 +19,5 @@ Keep fixtures local and trusted. The pinned upstream dependency graph retains Lo
 `harvest.check.mjs` compares full energy harvest, shared-capacity clipping, automatic standing-container overflow, ground merge/decay, explicit harvest/withdrawal ordering and a300-frame source regeneration cycle. These action-physics fixtures do not install a native miner controller or qualify a full future home forecast.
 
 `repair.check.mjs` compares shared material repair against the pinned processor, including base rounded cost, boost bonuses from damaged WORK, mixed cargo, exhausted/nonrepairable targets, and donation/repair ordering. It checks native event hits and energySpent as well as final health/stores.
+
+`container.check.mjs` compares declared object-order decay/destruction and energy spills, including old/new pile timing, owned/ordinary recurrence, repair-before-decay and retained pre-destruction effects across JSON resume. It does not infer global native object order from SDK enumeration.

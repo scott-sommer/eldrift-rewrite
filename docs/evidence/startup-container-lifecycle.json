@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Native container decay-clock capture/private seeding supported1000 regression. Ordered decay/destruction/spill, pre-death effects and home resume have pinned-processor/integration evidence. Global native future object order and full financial calendar remain unqualified.",
+  "native": [
+    {
+      "scenario": "container-lifecycle-capture-supported1000",
+      "nativeSource": "e9b50a543f65ecbe2888e95dabf7422dea86a584",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-container-lifecycle.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "b0e2a986e6d2cd358d8a3b01e3e686a17cc51db92d8b92803946f2cc8abfcf0c",
+      "uncompressedSha256": "fd70e1a9168dd08afb9a691212c90b8dd8bcb176a0a22c0a06db2cbb06995a23"
+    }
+  ]
+}
