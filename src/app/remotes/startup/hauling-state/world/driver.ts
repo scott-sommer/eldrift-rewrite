@@ -24,7 +24,7 @@ function runHomeHaulingWorld(context: ReturnType<typeof homeWorldContext>,policy
   function begin(frame: HomeHaulingFrame) {
     validateHomeWorldFrame(frame,tick,bodies.liveNames(names),context.miners && bodies.liveNames(context.miners.names)); bodies.validate(frame.outside,tick); inventory.begin(tick);
     const maintenance = context.lifecycle?.run() ?? { admitted: true,retired: [],deliveries: [],owned: new Set<string>() };
-    const openings = seed.workers.filter(worker => bodies.isAlive(worker.unit)).map(worker => readPaidHaulingForecastOpening(home.home,seed.state,inventory,worker,bodies.get(worker.unit),attempt => transfer.observe(worker,attempt)));
+    const openings = seed.workers.filter(worker => bodies.isAlive(worker.unit)).map(worker => readPaidHaulingForecastOpening(home.home,seed.state,inventory,worker,bodies.get(worker.unit),attempt => transfer.observe(worker,attempt),movement.recovering(worker.name) || !!context.banking));
     movement.begin(tick,openings.map(opening => {
       const observed = opening.observed,stage = opening.continuation.stage;
       return { tick,name: observed.name,unit: observed.unit,position: observed.position,energy: observed.energy,fatigue: observed.fatigue,

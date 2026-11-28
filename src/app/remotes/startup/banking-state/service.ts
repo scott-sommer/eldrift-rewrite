@@ -6,15 +6,15 @@ import { settleHaulingTask } from '../../../settle-hauling-task';
 import { createForecastHaulingTransfer } from '../hauling-state/transfer';
 import { recoverForecastCargo } from './recovery';
 import type { HomeWorldShared } from '../hauling-state/world/model';
-import type { ForecastMinerWorker } from '../mining-state/model';
+import type { ForecastHaulingUnit } from '../hauling-state/transfer';
 import type { ForecastBankingEnvironment } from './model';
 /** Native banking control with real private hauling reservations, journals and physical transfer effects. */
 export function createForecastRemoteBanking(home: string,shared: HomeWorldShared,environment: ForecastBankingEnvironment,policy: { terminalReserve: number }) {
   roomCoordinates(home);
   const reserve = policy.terminalReserve;
   if (!Number.isSafeInteger(reserve) || reserve < 0) throw new Error('Invalid forecast banking terminal reserve');
-  const identity = (worker: ForecastMinerWorker) => ({ name: worker.name,id: worker.unit });
-  const transfer = createForecastHaulingTransfer<ForecastMinerWorker>(shared.state,shared.inventory,shared.arbiter,{ ...environment,position: worker => shared.body(worker.unit).position });
+  const identity = (worker: ForecastHaulingUnit) => ({ name: worker.name,id: worker.unit });
+  const transfer = createForecastHaulingTransfer<ForecastHaulingUnit>(shared.state,shared.inventory,shared.arbiter,{ ...environment,position: worker => shared.body(worker.unit).position });
   const hauling = createHaulingTaskBehavior(shared.state,{ identity,
     view(worker,payload) {
       if (payload.request.resource !== 'energy') throw new Error('Forecast banking requires a physical resource model');
@@ -23,7 +23,7 @@ export function createForecastRemoteBanking(home: string,shared: HomeWorldShared
     execution: (worker,binding) => ({ ...transfer.execution(worker,binding),observe: attempt => transfer.observe(worker,attempt) }),
   });
   const behavior = createRemoteBankingWork(shared.state,home,hauling,{
-    name: (worker: ForecastMinerWorker) => worker.name,homeReady: environment.homeReady,routeReady: environment.routeReady,retire: environment.retire,
+    name: (worker: ForecastHaulingUnit) => worker.name,homeReady: environment.homeReady,routeReady: environment.routeReady,retire: environment.retire,
     atHome: worker => shared.body(worker.unit).position.room === home,work: (worker,task) => hauling.handlers(task).work!(worker),
   });
   const control = createRemoteBankingControl(shared.state,home,{ identity,

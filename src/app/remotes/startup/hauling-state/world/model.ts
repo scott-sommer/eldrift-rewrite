@@ -1,3 +1,5 @@
+import type { ForecastBankingEnvironment } from '../../banking-state/model';
+import type { Outcome } from '../../../../../core/execution/model';
 import type { UnitIdentity } from '../../../../../persistence/units/schema';
 import type { HomeMiningEnvironment } from '../../mining-state/environment';
 import type { EnergyPostprocessOrder } from '../../../../../capabilities/resources/energy-inventory/model';
@@ -31,9 +33,12 @@ export interface HomeWorldShared {
   quantities: ReturnType<typeof createQuantityReservations>;
   arbiter: ReturnType<typeof createActionArbiter>;
   body(unit: string): ForecastCourierPhysical;
+  /** Explicit retirement-owner route; no productive service restart or invented path. */
+  recoverCourier(name: string,command: PlannedMovementCommand,path?: readonly Position[]): Outcome;
 }
 export interface HomeWorldEnvironment extends TransitFramePorts {
   mining?: HomeMiningEnvironment;
+  courierBanking?: { environment: Omit<ForecastBankingEnvironment,'eventsVisible'>; policy: { terminalReserve: number } };
   lifecycleRoster?(tick: number): readonly UnitIdentity[];
   authority(worker: PaidHaulingForecastWorker,tick: number): RemoteTransportDemand | undefined;
   visible(room: string,tick: number): boolean;

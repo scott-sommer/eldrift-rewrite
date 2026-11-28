@@ -28,6 +28,10 @@ export function createPaidHomeTransportPolicy(home: string,sources: readonly Pai
     if (!value || value.capacity !== binding(worker).paid.capacity || value.usedCapacity !== value.energy) throw new Error('Paid transport physical store changed');
     return value;
   }
+  function retire(worker: PaidHaulingForecastWorker,reason: string): void {
+    if (!ports.retire) throw new Error(reason);
+    ports.retire(worker);
+  }
   return {
     authorized(worker: PaidHaulingForecastWorker,payload: HaulingTaskPayload): boolean {
       const current = authority(worker); if (!current) return false;
@@ -40,9 +44,9 @@ export function createPaidHomeTransportPolicy(home: string,sources: readonly Pai
     },
     recruit(worker: PaidHaulingForecastWorker) {
       if (ports.physical(worker).spawning) return undefined;
-      const current = authority(worker); if (!current) throw new Error('Paid transport authority/lifecycle invalidated');
+      const current = authority(worker); if (!current) { retire(worker,'Paid transport authority/lifecycle invalidated'); return undefined; }
       const physical = unit(worker),selected = binding(worker),plan = selected.source.plan;
-      if (physical.energy > 0) throw new Error('Paid transport cargo requires cleanup');
+      if (physical.energy > 0) { retire(worker,'Paid transport cargo requires cleanup'); return undefined; }
       const container = ports.visible(plan.room) ? ports.collection(worker) : undefined;
       if (!container || !withinRange(ports.physical(worker).position,plan.collection,0)) { stage(worker); return undefined; }
       if (physical.freeEnergyCapacity < 1) return undefined;

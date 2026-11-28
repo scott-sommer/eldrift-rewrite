@@ -1,6 +1,8 @@
+import type { RemoteBankingMode } from '../../banking-control';
+import type { TaskBehavior } from '../../../task-runner';
 import { serviceRemoteTransportTrip } from '../../transport-trip';
 import { settleHaulingFleet } from '../../../settle-hauling-fleet';
-import type { TaskRecord } from '../../../../persistence/tasks/schema';
+import type { TaskRecord,TaskDefinition } from '../../../../persistence/tasks/schema';
 import type { TransferAttempt, TransferObservation } from '../../../../capabilities/logistics/confirmation';
 import type { Outcome } from '../../../../core/execution/model';
 import type { HaulingBinding, HaulingPorts } from '../../../hauling-cycle';
@@ -15,7 +17,14 @@ import type { createPaidHaulingForecastState } from './seed';
 export type PaidHaulingForecastSeed = ReturnType<typeof createPaidHaulingForecastState>;
 export type PaidHaulingForecastWorker = PaidHaulingForecastSeed['workers'][number];
 export type PaidHaulingAdmission = Omit<NewHaulingTask, 'home' | 'name' | 'unitId' | 'tick'>;
+export interface PaidHaulingBanking {
+  owns(task: Readonly<TaskRecord>): boolean;
+  prepare(worker: PaidHaulingForecastWorker,definitions: Readonly<Record<string,TaskDefinition>>): RemoteBankingMode;
+  definitions: { haul: TaskBehavior<PaidHaulingForecastWorker> };
+}
 export interface PaidHaulingServicePorts extends Pick<HaulingTaskPorts<PaidHaulingForecastWorker>, 'view'> {
+  banking?: PaidHaulingBanking;
+  retire?(worker: PaidHaulingForecastWorker): void;
   /** Current-frame physical observation, including past effects already applied by the world owner. */
   observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt): TransferObservation;
   execution(worker: PaidHaulingForecastWorker, binding: HaulingBinding): Pick<HaulingPorts, 'execute'>;
@@ -52,22 +61,33 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
     },
     execution: (worker,binding) => ({ ...ports.execution(worker,binding),observe: attempt => observe(worker,attempt) }),
   });
-  const definitions = { haul: behavior }, tasks = remoteTransportTasks(seed.state, definitions, home);
+  const combined = { ...behavior,handlers: (task: Readonly<TaskRecord>) => ports.banking?.owns(task) ? ports.banking.definitions.haul.handlers(task) : behavior.handlers(task) };
+  const definitions = { haul: combined }, tasks = remoteTransportTasks(seed.state, definitions, home);
   const execute = createTaskRunner(seed.state, definitions, () => tick);
   function visit(worker: PaidHaulingForecastWorker, work: boolean): PaidHaulingServiceResult {
     const head = tasks.head(worker.name), payload = tasks.payload(head);
     if (head && !payload) throw new Error('Unsupported forecast task');
-    if (head && payload) {
-      return existing(worker,head,payload,work);
-    }
+    if (head && payload && !ports.banking?.owns(head)) return existing(worker,head,payload,work);
     if (!work) return { name: worker.name,status: 'deferred' };
+    return recoverOrRecruit(worker,head);
+  }
+  function recoverOrRecruit(worker: PaidHaulingForecastWorker,head: TaskRecord | undefined): PaidHaulingServiceResult {
+    const mode = ports.banking?.prepare(worker,definitions);
+    if (mode === 'bank') {
+      const outcome = execute(worker.name,worker);
+      return { name: worker.name,status: 'executed',...(outcome ? { outcome } : {}) };
+    }
+    if (mode === 'hold' || head) return { name: worker.name,status: 'waiting' };
     return recruit(worker);
   }
   function existing(worker: PaidHaulingForecastWorker, head: TaskRecord, payload: HaulingTaskPayload, work: boolean): PaidHaulingServiceResult {
     const result = serviceRemoteTransportTrip({
       settle: () => settleHaulingTask(seed.state,definitions,{ id: worker.unit,name: worker.name },attempt => observe(worker,attempt)),
       pending: () => tasks.pending(worker.unit),authorized: () => ports.authorized(worker,payload),
-      invalidate: () => { throw new Error('Forecast productive authority invalidated'); },
+      invalidate: () => {
+        if (!ports.retire) throw new Error('Forecast productive authority invalidated');
+        tasks.cancel(worker.name,head); ports.retire(worker);
+      },
       allowed: () => work,prepare: () => ports.prepare(worker,payload),execute: () => execute(worker.name,worker),
       completed: () => !tasks.head(worker.name),close: () => tasks.close(head),
     });

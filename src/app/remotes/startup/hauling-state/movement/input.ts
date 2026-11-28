@@ -4,9 +4,9 @@ import { paidCourierRoutePlan,observePaidCourierRoute } from '../../../../../fea
 import { validPaidCourierRouteRecord } from '../../../../../features/remotes/startup/routes/validation';
 import type { PaidCourierActiveRoute,PaidCourierRouteObservation } from '../../../../../features/remotes/startup/routes/model';
 import type { TransitState } from '../../../../../capabilities/movement/transit/model';
-export function seedPaidMovement(home: string, tick: number, routes: readonly PaidCourierActiveRoute[]) {
+export function seedPaidMovement(home: string, tick: number, routes: readonly PaidCourierActiveRoute[],historical: ReadonlySet<string> = new Set()) {
   if (!validPaidCourierRouteRecord({ home,revision: 0,clock: tick,routes },home)
-    || routes.some(route => route.observedAt !== tick) || new Set(routes.map(route => route.program.unit)).size !== routes.length) throw new Error('Invalid paid movement seed');
+    || routes.some(route => route.observedAt !== tick && !historical.has(route.program.name)) || new Set(routes.map(route => route.program.unit)).size !== routes.length) throw new Error('Invalid paid movement seed');
   return new Map(copyPlain([...routes]).map(route => [route.program.name,route]));
 }
 export function observePaidMovement(routes: ReadonlyMap<string,PaidCourierActiveRoute>, observations: readonly PaidCourierRouteObservation[], tick: number, expected: ReadonlyMap<string,TransitState>) {

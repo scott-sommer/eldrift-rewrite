@@ -10,6 +10,7 @@ export interface PaidTransportSource { demand: RemoteTransportDemand; plan: Star
 export interface PaidTransportBinding { source: PaidTransportSource; paid: StartupPaidWorker }
 export interface PaidTransportPolicyPorts {
   inventory: EnergyInventoryFrame;
+  retire?(worker: PaidHaulingForecastWorker): void;
   physical(worker: PaidHaulingForecastWorker): ForecastCourierPhysical;
   /** A current qualified token or an explicit modelled renewal; never inferred from the opening token. */
   authority(worker: PaidHaulingForecastWorker,tick: number): RemoteTransportDemand | undefined;

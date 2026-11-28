@@ -1,3 +1,4 @@
+import { createForecastRemoteBanking } from '../../banking-state/service';
 import { createHomeLifecycle } from './lifecycle';
 import { deadHomeBodies } from './lifetimes';
 import { createHomeMiningActors } from '../../mining-state/actors';
@@ -31,7 +32,8 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
   const bodies = new HomeWorldBodies(home,new Set(seed.workers.map(worker => worker.unit)));
   if (checkpoint) { bodies.restore(checkpoint.bodies,checkpoint.inventory.ecology); validateHomeContinuation(checkpoint,seed); }
   const arbiter = createActionArbiter(inventory.tick),quantities = createQuantityReservations(seed.state);
-  const shared: HomeWorldShared = { state: seed.state,inventory: homeWorldInventoryPorts(inventory,bodies),quantities,arbiter,body: unit => bodies.get(unit) };
+  const shared: HomeWorldShared = { state: seed.state,inventory: homeWorldInventoryPorts(inventory,bodies),quantities,arbiter,body: unit => bodies.get(unit),
+    recoverCourier: (name,command,path) => movement.recover(name,command,path) };
   const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment,checkpoint?.movement,deadHomeBodies(checkpoint?.inventory.ecology));
   const miners = environment.mining ? createHomeMiningActors(home,shared,environment.mining) : undefined;
   function endpoint(worker: PaidHaulingForecastWorker,phase: 'collect' | 'deliver') {
@@ -62,11 +64,21 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
       return movement.request(worker.name,{ owner: binding.scope,destination,range: 0,policy: environment.roomPolicy(worker,phase,inventory.tick()) });
     },
   });
-  const productive = createPaidHomeTransportPolicy(home.home,home.sources,seed,policy,{ inventory,
+  const banking = environment.courierBanking && createForecastRemoteBanking(home.home,shared,{ ...environment.courierBanking.environment,
+    eventsVisible: (_worker,attempt) => environment.visible(attempt.room,inventory.tick()) },environment.courierBanking.policy);
+  const retirement = banking ? { banking: { ...banking,prepare(worker: PaidHaulingForecastWorker,definitions: Parameters<typeof banking.prepare>[1]) {
+    const mode = banking.prepare(worker,definitions);
+    if (mode === 'bank') movement.handoff(worker.name);
+    return mode;
+  } },retire(worker: PaidHaulingForecastWorker): void {
+    movement.handoff(worker.name);
+    environment.courierBanking!.environment.retire(worker,home.home,'remote-transport-return:'+worker.name);
+  } } : {};
+  const productive = createPaidHomeTransportPolicy(home.home,home.sources,seed,policy,{ inventory,...retirement,
     physical: worker => bodies.get(worker.unit),authority: environment.authority,
     collection: worker => endpoint(worker,'collect')?.id,visible: room => environment.visible(room,inventory.tick()),
     roomPolicy: (worker,phase) => environment.roomPolicy(worker,phase,inventory.tick()),move: movement.request,view: transfer.view });
-  const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive },nextTick);
+  const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive,...retirement },nextTick);
   const receipts = homeWorldReceiptCollector(seed),lifecycle = createHomeLifecycle(home,seed,inventory,bodies,environment,receipts);
-  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,miners,receipts,lifecycle };
+  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,miners,receipts,lifecycle,banking };
 }

@@ -2,9 +2,9 @@ import { recoveryPriority } from '../../../../features/logistics/recovery-destin
 import { assignCargoRecovery } from '../../../assign-cargo-recovery';
 import type { TaskDefinition } from '../../../../persistence/tasks/schema';
 import type { HomeWorldShared } from '../hauling-state/world/model';
-import type { ForecastMinerWorker } from '../mining-state/model';
+import type { ForecastHaulingUnit } from '../hauling-state/transfer';
 import type { ForecastBankingEnvironment } from './model';
-export function recoverForecastCargo(home: string,shared: HomeWorldShared,environment: ForecastBankingEnvironment,terminalReserve: number,worker: ForecastMinerWorker,definitions: Readonly<Record<string,TaskDefinition>>): void {
+export function recoverForecastCargo(home: string,shared: HomeWorldShared,environment: ForecastBankingEnvironment,terminalReserve: number,worker: ForecastHaulingUnit,definitions: Readonly<Record<string,TaskDefinition>>): void {
   const unit = shared.inventory.observe(worker.unit)!;
   if (unit.usedCapacity === 0) return;
   if (unit.usedCapacity !== unit.energy) throw new Error('Mixed forecast cargo requires a physical resource model');
@@ -14,7 +14,7 @@ export function recoverForecastCargo(home: string,shared: HomeWorldShared,enviro
       sink: sink.id,sinkRoom: home,sinkFree: sink.free,sinkPool: environment.capacityPool(sink.id) })) return;
   }
 }
-function rankedSinks(home: string,shared: HomeWorldShared,environment: ForecastBankingEnvironment,reserve: number,worker: ForecastMinerWorker) {
+function rankedSinks(home: string,shared: HomeWorldShared,environment: ForecastBankingEnvironment,reserve: number,worker: ForecastHaulingUnit) {
   return environment.destinations(worker).flatMap(sink => {
     if (sink.room !== home || !sink.active || !environment.acceptsSink(worker,sink)) return [];
     const physical = shared.inventory.observe(sink.id); if (!physical) return [];

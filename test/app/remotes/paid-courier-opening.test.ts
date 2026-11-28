@@ -1,5 +1,6 @@
+import { logisticsPool } from '../../../src/capabilities/logistics/request';
 import { expect,test } from 'vitest';
-import { resolvePaidCourierOpening } from '../../../src/app/remotes/startup/motion-observation/opening';
+import { resolvePaidCourierOpening,resolvePaidCourierBankingOpening } from '../../../src/app/remotes/startup/motion-observation/opening';
 import type { PaidCourierObservation } from '../../../src/app/remotes/startup/motion-observation/model';
 import type { TransferObservation } from '../../../src/capabilities/logistics/confirmation';
 function fixture(kind: 'withdraw' | 'transfer' = 'withdraw',amount = 56) {
@@ -35,4 +36,16 @@ test('partial delivery and task wake clocks preserve remaining work without an i
   const f = fixture('transfer'); f.observed.energy = 44; f.observed.journal!.attempt!.cargoBefore = 100; f.observed.task!.remaining = 100; f.observed.task!.wakeAt = 15;
   expect(resolvePaidCourierOpening(f.observed,{ ...f.witness,cargo: 44 })).toMatchObject({ opening: { continuation: { stage: 'deliver',readyAt: 15,requestRemaining: 44 } } });
   f.observed.task!.receipts = [{ id: 'attempt',amount: 1 }]; expect(resolvePaidCourierOpening(f.observed,{ ...f.witness,cargo: 44 })).toMatchObject({ reason: 'courier-opening-receipt' });
+});
+
+test('only a bound banking task can complete a clipped request while physical cargo remains',() => {
+  const f = fixture('transfer',16); f.observed.energy = 16; f.observed.journal!.attempt!.cargoBefore = 32;
+  const witness = { ...f.witness,cargo: 16 };
+  expect(resolvePaidCourierOpening(f.observed,witness)).toMatchObject({ reason: 'courier-opening-task-cargo' });
+  expect(resolvePaidCourierBankingOpening('W0N1',f.observed,witness)).toMatchObject({ reason: 'courier-banking-binding' });
+  const task = f.observed.task!,payload = task.record.payload as { sinkRoom?: string; request: typeof task.request };
+  payload.sinkRoom = 'W0N1'; payload.request.owner = logisticsPool('cargo-recovery','W0N1'); payload.request.source = 'native';
+  expect(resolvePaidCourierBankingOpening('W0N1',f.observed,witness)).toMatchObject({ status: 'ready',opening: { continuation: { stage: 'deliver',readyAt: 12,requestRemaining: 0 },reflectedEffect: { amount: 16,projectedIncome: 0 } } });
+  expect(resolvePaidCourierBankingOpening('W9N9',f.observed,witness)).toMatchObject({ reason: 'courier-banking-binding' });
+  payload.request.source = 'another-body'; expect(resolvePaidCourierBankingOpening('W0N1',f.observed,witness)).toMatchObject({ reason: 'courier-banking-binding' });
 });
