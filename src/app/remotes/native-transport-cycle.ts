@@ -1,3 +1,4 @@
+import { serviceRemoteTransportTrip } from './transport-trip';
 import { createTransportProbe } from './transport-probe';
 import type { HaulingTaskPayload } from '../hauling-task';
 import { withinRange } from '../../capabilities/movement/path-model';
@@ -35,15 +36,16 @@ export function createNativeRemoteTransportCycle(state: StatePort, dispatch: Ret
   const tasks = remoteTransportTasks(state,definitions,binding.home), execute = createTaskRunner(state,behaviors,() => Game.time,definitions);
   const retire = (creep: Creep) => context.travel.retire(creep,binding.home,'remote-transport-return:' + creep.name);
   function existing(creep: Creep, task: TaskRecord, payload: HaulingTaskPayload, desired: RemoteTransportDemand | undefined): void {
-    probe.step('settle',() => settleHaulingTask(state,definitions,creep,observeTransfer));
-    if (tasks.pending(creep.id)) return;
-    if (!probe.step('authority',() => validTrip(payload.request,desired))) {
-      tasks.cancel(creep.name,task); retire(creep); return;
-    }
-    if (!options.guard()) return;
-    if (creep.store.getUsedCapacity() === 0 && !probe.step('collection',() => prepareCollection(creep,desired!,task))) return;
-    dispatch.activate(); probe.step('execute',() => execute(creep.name,creep));
-    if (!tasks.head(creep.name)) tasks.close(task);
+    serviceRemoteTransportTrip({
+      settle: () => probe.step('settle',() => settleHaulingTask(state,definitions,creep,observeTransfer)),
+      pending: () => tasks.pending(creep.id),
+      authorized: () => probe.step('authority',() => validTrip(payload.request,desired)),
+      invalidate: () => { tasks.cancel(creep.name,task); retire(creep); },
+      allowed: options.guard,
+      prepare: () => creep.store.getUsedCapacity() > 0 || probe.step('collection',() => prepareCollection(creep,desired!,task)),
+      execute: () => { dispatch.activate(); return probe.step('execute',() => execute(creep.name,creep)); },
+      completed: () => !tasks.head(creep.name),close: () => tasks.close(task),
+    });
   }
   function prepareCollection(creep: Creep, demand: RemoteTransportDemand, task: TaskRecord): boolean {
     const view = probe.step('approach',() => context.approach(creep,demand));

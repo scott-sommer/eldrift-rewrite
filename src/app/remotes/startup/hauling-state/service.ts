@@ -1,3 +1,4 @@
+import { serviceRemoteTransportTrip } from '../../transport-trip';
 import { settleHaulingFleet } from '../../../settle-hauling-fleet';
 import type { TaskRecord } from '../../../../persistence/tasks/schema';
 import type { TransferAttempt, TransferObservation } from '../../../../capabilities/logistics/confirmation';
@@ -27,7 +28,7 @@ export interface PaidHaulingServicePorts extends Pick<HaulingTaskPorts<PaidHauli
   authorized(worker: PaidHaulingForecastWorker, payload: HaulingTaskPayload): boolean;
 }
 export interface PaidHaulingVisit { name: string; work: boolean }
-export interface PaidHaulingServiceResult { name: string; status: 'executed' | 'waiting' | 'preparing' | 'deferred' | 'idle' | 'refused'; outcome?: Outcome }
+export interface PaidHaulingServiceResult { name: string; status: 'executed' | 'waiting' | 'preparing' | 'retired' | 'deferred' | 'idle' | 'refused'; outcome?: Outcome }
 /** Task ownership only. The caller supplies the shared physical world and flushes its intents after all actors. */
 export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, ports: PaidHaulingServicePorts, nextTick = seed.tick) {
   const workers = new Map(seed.workers.map(worker => [worker.name, worker]));
@@ -63,14 +64,14 @@ export function createPaidHaulingForecastService(seed: PaidHaulingForecastSeed, 
     return recruit(worker);
   }
   function existing(worker: PaidHaulingForecastWorker, head: TaskRecord, payload: HaulingTaskPayload, work: boolean): PaidHaulingServiceResult {
-    settleHaulingTask(seed.state, definitions, { id: worker.unit,name: worker.name }, attempt => observe(worker,attempt));
-    if (tasks.pending(worker.unit)) return { name: worker.name,status: 'waiting' };
-    if (!ports.authorized(worker,payload)) throw new Error('Forecast productive authority invalidated');
-    if (!work) return { name: worker.name,status: 'deferred' };
-    if (!ports.prepare(worker,payload)) return { name: worker.name,status: 'preparing' };
-    const outcome = execute(worker.name,worker);
-    if (!tasks.head(worker.name)) tasks.close(head);
-    return { name: worker.name,status: 'executed',...(outcome ? { outcome } : {}) };
+    const result = serviceRemoteTransportTrip({
+      settle: () => settleHaulingTask(seed.state,definitions,{ id: worker.unit,name: worker.name },attempt => observe(worker,attempt)),
+      pending: () => tasks.pending(worker.unit),authorized: () => ports.authorized(worker,payload),
+      invalidate: () => { throw new Error('Forecast productive authority invalidated'); },
+      allowed: () => work,prepare: () => ports.prepare(worker,payload),execute: () => execute(worker.name,worker),
+      completed: () => !tasks.head(worker.name),close: () => tasks.close(head),
+    });
+    return { name: worker.name,...result };
   }
   function recruit(worker: PaidHaulingForecastWorker): PaidHaulingServiceResult {
     const candidate = ports.recruit(worker,tick);
