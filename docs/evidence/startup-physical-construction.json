@@ -1,0 +1,15 @@
+{
+  "issue": "ED-29",
+  "scope": "Clean supported1000 native regression and SDK build-profile capture. Native snapshots contain zero sites. Container completion, actor ordering, newborn overflow/decay and JSON continuation have direct pinned-processor/private integration evidence; complete native future construction/calendar remains unqualified.",
+  "native": [
+    {
+      "scenario": "physical-construction-capture-supported1000",
+      "nativeSource": "93a30da0e6f240b0d54c7eba55afb154832029a8",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-physical-construction.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "31efed517a717188c036280cb60de224e904cda2282f7df81998ffa58910f2a1",
+      "uncompressedSha256": "f8b97565dd271e8a5265ec2b83538147a8f581503fd1a10f2cb209ffd6664c0d"
+    }
+  ]
+}
