@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Clean native mechanism regressions after private scheduled courier recovery integration: full-sink banking and postmortem final delivery. New private retirement routes/scheduled alternate-sink/expiry composition have targeted integration-unit evidence; these native reports do not execute a complete private future dispatch/financial calendar.",
+  "native": [
+    {
+      "scenario": "courier-recovery-banking-full",
+      "nativeSource": "97c5c26d6f2f8436f4c7a8593986a3281df18622",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-courier-recovery-banking-full.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "0edef5fb8028eb829fd1626387ed61d61ed459bb53ad09d6f4c6b23b1266cba3",
+      "uncompressedSha256": "c6f69884220956a523f916ae1361d2a200dca70b37b82da7a93878633fdcc707"
+    },
+    {
+      "scenario": "courier-recovery-final-delivery",
+      "nativeSource": "97c5c26d6f2f8436f4c7a8593986a3281df18622",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-courier-recovery-final-delivery.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "4da8df2391a6d024c5a985efe696a73f9d60c913f6441b91075c78d4664a3ba2",
+      "uncompressedSha256": "b3f4a22e3fae5b57d4f3da800915b97f46412f4673d19883972cc46935a471f8"
+    }
+  ]
+}

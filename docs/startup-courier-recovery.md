@@ -28,3 +28,13 @@ Recovery plans cannot extend the body's paid lifetime or alter native identity/c
 ## Remaining qualification
 
 The caller must still supply a complete current recovery environment and explicit physical paths; there is no default speculative sink, route or capital credit. These integration cases use a known home-room corridor, selected bodies and physically available stores. They do not qualify arbitrary multi-room recovery, automatic path generation, return from recovery to a renewed productive route, native opening capture of already-banking couriers, ambiguous surviving-courier event gaps, prospective spawns/replacements, all household actors or the complete future native dispatch/financial calendar. Existing native banking supports broader operating behavior; porting that behavior into the future world remains required. Full horizon, strict CPU budget, parity, pressure, migration/rollback and RC gates remain open.
+
+
+## Clean native mechanism regressions
+
+Both focused native checks pass without reported errors on clean published implementation source `97c5c26d6f2f8436f4c7a8593986a3281df18622`:
+
+- `--remote-banking-full`, `engine-8m30Uu`:160 ticks,48 confirmed energy, two actual confirmation VM resets (85/144), sink full40 and released61. Existing assertions retain zero banking claims/credit while full, distinguish fixture external energy999350 from receipts, reconcile final physical stock, and finish with zero cargo/tasks/banking/station claims. This is native shared-banking regression; the supplied fixture controls sink filling.
+- `--final-delivery`, `engine-8xfwO0`:four ticks, existing harness confirms the last-alive-tick30 transfer after death, with final task/quantity cleanup and one acknowledged archived journal. Detailed trace assertions remain in `tools/engine/final-delivery.cjs`; the report records status/provenance rather than exporting that trace separately.
+
+Exact source, deterministic full raw reports and hashes: `evidence/startup-courier-recovery.json`. These native checks exercise the reused native mechanisms and preserve their assertions. The newly composed private future recovery calendar is evidenced by the integration cases above, not by claiming these native fixture runs execute it. Full financial/dispatch/RC qualification remains open.
