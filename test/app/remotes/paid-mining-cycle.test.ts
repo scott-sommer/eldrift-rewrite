@@ -17,12 +17,13 @@ test('shared task cycle and miner selector sleep, harvest, hand off and resume w
 });
 
 test('establishment and depleted/critical repairs keep the existing selector precedence', () => {
-  const building = paidMiningCycleFixture(); building.infrastructure({ sink: 'container',site: 'site',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
+  const building = paidMiningCycleFixture({ repairHits: 1 }); building.infrastructure({ sink: 'container',site: 'site',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
   building.step(); building.step(); expect(building.step().effects).toEqual([]); expect(building.build).toHaveBeenCalledOnce(); expect(building.repair).not.toHaveBeenCalled();
-  const repairing = paidMiningCycleFixture(); repairing.infrastructure({ sink: 'container',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
-  repairing.step(); repairing.step(); expect(repairing.step().effects).toEqual([]); expect(repairing.repair).toHaveBeenCalledOnce();
-  expect(repairing.world.snapshot().inventories.find(store => store.id === 'miner-id')!.energy).toBe(48);
-  // Controlled effect ports establish policy selection only; no repair/build material effect is claimed.
+  const repairing = paidMiningCycleFixture({ repairHits: 1 }); repairing.infrastructure({ sink: 'container',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
+  repairing.step(); repairing.step(); expect(repairing.step().effects).toMatchObject([{ kind: 'repair',amount: 1,repairedHits: 100 }]); expect(repairing.repair).toHaveBeenCalledOnce();
+  expect(repairing.world.snapshot().inventories.find(store => store.id === 'miner-id')!.energy).toBe(47);
+  expect(repairing.world.checkpoint().inventory.ecology!.structures![0]!.hits).toBe(101);
+  // Construction remains a controlled port here; repair now changes the shared material world.
 });
 
 test('hold/eligibility prevent work, while current safety refusal releases the miner station claim', () => {
@@ -67,4 +68,15 @@ test('source work and original control owners resume from a full-store harvest b
     expect(result).toEqual(f.step());
   }
   expect(restored.checkpoint()).toEqual(f.world.checkpoint());
+});
+
+
+test('physical repair energy, health and task continuation survive JSON resume without courier income', () => {
+  const f = paidMiningCycleFixture({ repairHits: 1 }); f.step(); f.step(); const repair = f.step(); expect(repair.deliveries).toEqual([]);
+  const fresh = paidMiningCycleFixture({ repairHits: 1 }),checkpoint = JSON.parse(JSON.stringify(f.world.checkpoint()));
+  const restored = resumeHomeHaulingWorld(checkpoint,fresh.configure);
+  for (let tick = 13; tick <= 16; tick++) {
+    expect(restored.step({ tick,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id) })).toEqual(f.step());
+  }
+  expect(restored.checkpoint()).toEqual(f.world.checkpoint()); expect(f.world.checkpoint().inventory.ecology!.structures![0]!.hits).toBe(501);
 });

@@ -7,12 +7,12 @@ import { logisticsPool } from '../../../src/capabilities/logistics/request';
 import type { PaidHomePhysicalInput } from '../../../src/app/remotes/startup/hauling-state/inventory';
 afterEach(() => vi.unstubAllGlobals());
 function fixture() {
-  for (const [key,value] of Object.entries({ RESOURCE_ENERGY: 'energy',STRUCTURE_CONTAINER: 'container',FIND_SOURCES: 1,FIND_DROPPED_RESOURCES: 2,FIND_STRUCTURES: 3,ENERGY_DECAY: 1000,ENERGY_REGEN_TIME: 300 })) vi.stubGlobal(key,value);
+  for (const [key,value] of Object.entries({ RESOURCE_ENERGY: 'energy',STRUCTURE_CONTAINER: 'container',FIND_SOURCES: 1,FIND_DROPPED_RESOURCES: 2,FIND_STRUCTURES: 3,ENERGY_DECAY: 1000,ENERGY_REGEN_TIME: 300,CONSTRUCTION_COST: { container: 5000 } })) vi.stubGlobal(key,value);
   const point = (roomName: string,x: number,y: number) => ({ roomName,x,y });
   const source = { id: 'source',pos: point('E0N1',20,20),energy: 1234,energyCapacity: 3000,ticksToRegeneration: 17,effects: [] as { effect: number; ticksRemaining: number }[] };
   const store = (energy: number,other: number,capacity: number) => ({ energy,U: other,getUsedCapacity: (resource?: string) => resource ? energy : energy+other,getCapacity: () => capacity,getFreeCapacity: () => capacity-energy-other });
-  const bank = { id: 'bank',structureType: 'container',pos: point('W0N1',10,10),hits: 100,isActive: () => true,store: store(100,0,1000) };
-  const extra = { id: 'outside-container',structureType: 'container',pos: point('E0N1',19,20),hits: 100,isActive: () => true,store: store(10,20,2000) };
+  const bank = { id: 'bank',structureType: 'container',pos: point('W0N1',10,10),hits: 100,hitsMax: 250000,isActive: () => true,store: store(100,0,1000) };
+  const extra = { id: 'outside-container',structureType: 'container',pos: point('E0N1',19,20),hits: 100,hitsMax: 250000,isActive: () => true,store: store(10,20,2000) };
   const drops = [{ pos: point('E0N1',19,20),resourceType: 'energy',amount: 7 },{ pos: point('E0N1',20,19),resourceType: 'U',amount: 9 }];
   const room = (sources: unknown[],resources: unknown[],structures: unknown[]) => ({ find: (kind: number) => kind === 1 ? sources : kind === 2 ? resources : structures });
   const rooms: Record<string,unknown> = { W0N1: room([],[],[bank]),E0N1: room([source],drops,[extra]) };
@@ -26,7 +26,7 @@ function fixture() {
 test('native ecology includes outside containers and energy drops without cash conversion, detached from SDK objects', () => {
   const f = fixture(),before = JSON.stringify({ source: f.source,extra: f.extra }),captured = f.capture();
   expect(captured.ecology).toEqual({ sources: [{ id: 'source',position: { room: 'E0N1',x: 20,y: 20 },energy: 1234,capacity: 3000,regenerationIn: 17,regenerationTicks: 300 }],
-    ground: [{ position: { room: 'E0N1',x: 19,y: 20 },energy: 7 }],containers: [{ id: 'outside-container',position: { room: 'E0N1',x: 19,y: 20 } },{ id: 'bank',position: { room: 'W0N1',x: 10,y: 10 } }],decayDivisor: 1000 });
+    ground: [{ position: { room: 'E0N1',x: 19,y: 20 },energy: 7 }],containers: [{ id: 'outside-container',position: { room: 'E0N1',x: 19,y: 20 } },{ id: 'bank',position: { room: 'W0N1',x: 10,y: 10 } }],structures: [{ id: 'outside-container',position: { room: 'E0N1',x: 19,y: 20 },hits: 100,hitsMax: 250000,repairable: true },{ id: 'bank',position: { room: 'W0N1',x: 10,y: 10 },hits: 100,hitsMax: 250000,repairable: true }],decayDivisor: 1000 });
   expect(captured.inventories.find(store => store.id === 'outside-container')).toMatchObject({ energy: 10,usedCapacity: 30,freeEnergyCapacity: 1970 });
   const input: PaidHomePhysicalInput = { observedAt: 100,endpoint: { id: 'bank',energy: 100,capacity: 1000,freeCapacity: 900 },...captured,bodies: [],workers: [],sources: [] };
   const world = createPaidHomePhysicalInventory(input); world.begin(100); expect(world.source('source')!.energy).toBe(1234); expect(world.observe('bank')!.energy).toBe(100);

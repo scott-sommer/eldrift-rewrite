@@ -1,10 +1,11 @@
+import { validateRepairTargets } from './repair';
 import { tileKey } from '../../movement/traffic/model';
 import { withinRange } from '../../movement/path-model';
 import { energyHarvestEffect } from '../../mining/harvest-effect';
 import { advanceEnergySource } from '../../mining/source-regeneration';
 import type { EnergyEcology,EnergyInventory,EnergyHarvestIntent,EnergyHarvestEffect,EnergySource } from './model';
 export function validateEnergyEcology(ecology: EnergyEcology,stores: readonly EnergyInventory[]): void {
-  validateEcologyBounds(ecology);
+  validateEcologyBounds(ecology); validateRepairTargets(ecology.structures === undefined ? [] : ecology.structures);
   const ids = ecology.sources.map(source => source.id),tiles = ecology.ground.map(drop => tileKey(drop.position));
   if (new Set(ids).size !== ids.length || new Set(tiles).size !== tiles.length || stores.some(store => ids.includes(store.id))) throw new Error('Duplicate source/ground energy identities');
   validateContainers(ecology,stores);

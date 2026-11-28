@@ -9,7 +9,7 @@ export function observePaidHomeEcology(home: string,sources: readonly PaidHomeSo
   inventories: readonly PaidHomeInventory[],guard: () => boolean) {
   const names = [...new Set([home,...sources.map(source => source.plan.room),...workers.map(worker => worker.position.room)])].sort();
   if (names.length > 16) throw new Error('Home ecology room bound exceeded');
-  const ecology: EnergyEcology = { sources: [],ground: [],containers: [],decayDivisor: ENERGY_DECAY };
+  const ecology: EnergyEcology = { sources: [],ground: [],containers: [],structures: [],decayDivisor: ENERGY_DECAY };
   const stores = new Map(inventories.map(store => [store.id,store]));
   for (const name of names) {
     if (!guard()) throw new Error('Home ecology budget');
@@ -27,6 +27,7 @@ function observeRoomEcology(room: Room,ecology: EnergyEcology,stores: Map<string
     if (resource.resourceType === RESOURCE_ENERGY && resource.amount > 0) ecology.ground.push({ position: movementPosition(resource.pos),energy: resource.amount });
   }
   for (const structure of room.find(FIND_STRUCTURES)) {
+    observeRepairTarget(structure,ecology);
     if (structure.structureType === STRUCTURE_CONTAINER && structure.hits > 0) observeContainer(structure,ecology,stores);
   }
 }
@@ -40,4 +41,10 @@ function observeSource(source: Source,ecology: EnergyEcology): void {
   if (source.effects?.length) throw new Error('Source power effects require a qualified physical model');
   ecology.sources.push({ id: source.id,position: movementPosition(source.pos),energy: source.energy,capacity: source.energyCapacity,
     regenerationIn: source.ticksToRegeneration ?? null,regenerationTicks: ENERGY_REGEN_TIME });
+}
+
+function observeRepairTarget(structure: AnyStructure,ecology: EnergyEcology): void {
+  if (!('hits' in structure) || !('hitsMax' in structure) || typeof structure.hits !== 'number' || typeof structure.hitsMax !== 'number' || structure.hitsMax < 1) return;
+  const costs = CONSTRUCTION_COST as Partial<Record<StructureConstant,number>>;
+  ecology.structures!.push({ id: structure.id,position: movementPosition(structure.pos),hits: structure.hits,hitsMax: structure.hitsMax,repairable: !!costs[structure.structureType] });
 }

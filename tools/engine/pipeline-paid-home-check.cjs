@@ -12,6 +12,8 @@ function verifyPaidHomeSnapshots(memory,evidence) {
     assert.deepEqual(row.seed.ecology,home.ecology,'native source/ground facts survive physical seeding');
     assert.equal(home.ecology.decayDivisor,1000);
     assert.ok(home.ecology.sources.length > 0 && home.ecology.sources.length <= 64);
+    assert.ok(home.ecology.structures.length <= 512);
+    assert.ok(home.ecology.structures.every(target => target.hits >= 0 && target.hits <= target.hitsMax && typeof target.repairable === 'boolean'));
     assert.ok(home.ecology.ground.every(drop => drop.energy > 0));
     assert.ok(home.ecology.containers.every(container => home.inventories.some(store => store.id === container.id)));
     assert.ok(home.ecology.sources.every(source => !home.inventories.some(store => store.id === source.id)),'natural stock is not a withdrawable store');
@@ -26,6 +28,8 @@ function verifyPaidHomeSnapshots(memory,evidence) {
       assert.equal(body.inventory.id,body.unit); assert.equal(body.inventory.energy,worker.energy);
       assert.equal(body.inventory.usedCapacity,worker.usedCapacity); assert.equal(body.inventory.room,worker.position.room);
       assert.equal(body.inventory.active,!worker.spawning);
+      assert.equal(body.repair.workParts,worker.body.filter(part => part.type === 'work' && part.hits > 0).length);
+      assert.equal(body.repair.boostBonuses.length,worker.body.filter(part => part.type === 'work').length);
     }
     assert.equal(home.observedAt,row.tick); assert.equal(home.home,'W0N1'); assert.equal(home.sources.length,1);
     const all = [...home.claims.owned,...home.claims.external]; owned += home.claims.owned.length;
@@ -51,6 +55,8 @@ function verifyPaidHomeSnapshots(memory,evidence) {
       assert.equal(natural.regenerationIn,source.observation.source.regenerationIn); assert.equal(natural.regenerationTicks,300);
       const station = source.observation.station.facts;
       assert.equal(home.inventories.find(inventory => inventory.id === station.id).energy,station.energy);
+      const health = home.ecology.structures.find(target => target.id === station.id); assert.ok(health);
+      assert.equal(health.hits,station.hits); assert.equal(health.hitsMax,station.hitsMax); assert.equal(health.repairable,true);
       assert.ok(source.claimIds.every(id => all.some(claim => claim.id === id)));
       for (const courier of source.couriers) {
         assert.equal(courier.route.cursor.observedAt,row.tick); assert.equal(courier.route.cursor.requestedAt,null);

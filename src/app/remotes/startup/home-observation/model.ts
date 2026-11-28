@@ -1,3 +1,4 @@
+import type { RepairProfile } from '../../../../capabilities/mining/repair-effect';
 import type { RemoteAssignmentState } from '../../../../features/remotes/assignment-model';
 import type { Reservations } from '../../../../persistence/reservations/schema';
 import type { EnergyEcology } from '../../../../capabilities/resources/energy-inventory/model';
@@ -18,7 +19,7 @@ export interface PaidHomeSourceObservation {
   couriers: { paid: StartupPaidWorker; opening: PaidCourierOpening; route: PaidCourierActiveRoute | null }[];
 }
 export interface PaidHomeInventory { capacityPool: string; id: string; room: string; energy: number; capacity: number; usedCapacity: number; freeEnergyCapacity: number; active: boolean }
-export interface PaidHomeBody { name: string; unit: string; inventory: PaidHomeInventory }
+export interface PaidHomeBody { name: string; unit: string; repair?: RepairProfile; inventory: PaidHomeInventory }
 export interface PaidHomeControl { assignments: RemoteAssignmentState | null; reservations: Reservations | null }
 export interface PaidHomeObservation {
   observedAt: number; home: string; endpoint: NativeStartupFacts['endpoint']; stock: NativeStartupFacts['stock']; spawns: NativeStartupFacts['spawns'];

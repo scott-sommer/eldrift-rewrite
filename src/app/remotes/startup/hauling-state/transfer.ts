@@ -48,7 +48,7 @@ export function createForecastHaulingTransfer(state: StatePort, inventory: Energ
     },
     observe(worker: PaidHaulingForecastWorker, attempt: TransferAttempt) {
       const effect = inventory.effect(attempt.id);
-      return { tick: inventory.tick(),cargo: stock(worker.unit).energy,events: effect && effect.amount > 0
+      return { tick: inventory.tick(),cargo: stock(worker.unit).energy,events: effect && (effect.kind === 'transfer' || effect.kind === 'withdraw') && effect.amount > 0
         ? [{ source: effect.source,target: effect.target,resource: 'energy',amount: effect.amount }] : [] };
     },
     execution(worker: PaidHaulingForecastWorker, binding: HaulingBinding) {

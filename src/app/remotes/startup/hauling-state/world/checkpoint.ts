@@ -3,7 +3,7 @@ import type { Journal } from '../../../../../features/logistics/transfer-journal
 import type { TransferAttempt } from '../../../../../capabilities/logistics/confirmation';
 import { createTransferJournal } from '../../../../../features/logistics/transfer-journal';
 import type { PaidHaulingForecastSeed,PaidHaulingForecastWorker } from '../service';
-import type { EnergyEffect,EnergySource } from '../../../../../capabilities/resources/energy-inventory/model';
+import type { EnergyEffect,EnergySource,EnergyRepairTarget } from '../../../../../capabilities/resources/energy-inventory/model';
 import { copyPlain } from '../../../../../core/plain-data';
 import type { EnergyInventoryCheckpoint } from '../../../../../capabilities/resources/energy-inventory/model';
 import { createEnergyInventoryFrame } from '../../../../../capabilities/resources/energy-inventory/frame';
@@ -49,7 +49,7 @@ function validateBodyContinuation(checkpoint: HomeHaulingCheckpoint): void {
 }
 function validatePendingContinuation(effects: readonly EnergyEffect[],seed: PaidHaulingForecastSeed,worker: PaidHaulingForecastWorker): void {
   const journal = createTransferJournal(seed.state,worker.unit).peek();
-  const own = effects.filter(effect => effect.kind !== 'harvest' && (effect.kind === 'withdraw' ? effect.target : effect.source) === worker.unit);
+  const own = effects.filter(effect => (effect.kind === 'transfer' || effect.kind === 'withdraw') && (effect.kind === 'withdraw' ? effect.target : effect.source) === worker.unit);
   validateEffectJournals(own,journal);
   if (!journal?.attempt || journal.acknowledged || journal.result !== null) return;
   validatePendingEffect(effects,journal.attempt,worker.unit);
@@ -70,6 +70,7 @@ function validateEcologyMetadata(opening: HomeHaulingInput['ecology'],current: H
   if (!opening || !current) throw new Error('Home checkpoint ecology presence mismatch');
   if (opening.sources.length !== current.sources.length) throw new Error('Home checkpoint source roster mismatch');
   validateSourceMetadata(opening.sources,current.sources);
+  validateHealthMetadata(opening,current);
   if (current.decayDivisor !== opening.decayDivisor || JSON.stringify(current.containers) !== JSON.stringify(opening.containers)) throw new Error('Home checkpoint ecology rules mismatch');
 }
 
@@ -78,4 +79,16 @@ function validateSourceMetadata(original: readonly EnergySource[],restored: read
     const initial = original.find(value => value.id === source.id);
     if (!initial || !withinRange(initial.position,source.position,0) || initial.capacity !== source.capacity || initial.regenerationTicks !== source.regenerationTicks) throw new Error('Home checkpoint source metadata mismatch');
   }
+}
+
+function validateStructureMetadata(opening: readonly EnergyRepairTarget[],current: readonly EnergyRepairTarget[]): void {
+  if (opening.length !== current.length) throw new Error('Home checkpoint repair target roster mismatch');
+  for (const target of current) {
+    const original = opening.find(value => value.id === target.id);
+    if (!original || original.hitsMax !== target.hitsMax || original.repairable !== target.repairable || !withinRange(original.position,target.position,0)) throw new Error('Home checkpoint repair target metadata mismatch');
+  }
+}
+
+function validateHealthMetadata(opening: NonNullable<HomeHaulingInput['ecology']>,current: NonNullable<HomeHaulingInput['ecology']>): void {
+  validateStructureMetadata(opening.structures ?? [],current.structures ?? []);
 }

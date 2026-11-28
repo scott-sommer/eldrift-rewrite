@@ -1,3 +1,4 @@
+import { nativeRepairProfile } from '../../../src/adapters/screeps/repair-profile';
 import { paidHomeClaims } from '../../../src/app/remotes/startup/home-observation/claims';
 import { observePaidHomeInventory } from '../../../src/app/remotes/startup/home-observation/inventory';
 import { afterEach,expect,test,vi } from 'vitest';
@@ -82,4 +83,11 @@ test('the supported 128-body roster retains outside capacity claims across every
   const partition = paidHomeClaims(assets.claims,assets.pools,[]);
   expect(partition.external).toEqual([claim]);
   expect(partition.pools.find(pool => pool.pool === claim.allocations[0]!.pool)!.external).toBe(1);
+});
+
+
+test('native repair power retains inactive WORK boost bonuses while charging only active base WORK', () => {
+  vi.stubGlobal('BOOSTS',{ work: { XLH2O: { repair: 2 },UO: { harvest: 3 } } });
+  const body = [{ type: 'work',hits: 100,boost: 'XLH2O' },{ type: 'work',hits: 0,boost: 'XLH2O' },{ type: 'work',hits: 0,boost: 'UO' },{ type: 'move',hits: 100 }] as BodyPartDefinition[];
+  expect(nativeRepairProfile(body)).toEqual({ workParts: 1,boostBonuses: [100,100,0] });
 });

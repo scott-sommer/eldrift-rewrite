@@ -11,7 +11,7 @@ test('all actors observe opening stock; explicitly ordered effects appear only i
   expect(world.observe('source')!.energy).toBe(50); expect(world.observe('a')!.energy).toBe(0);
   expect(world.effect('a')).toBeUndefined();
   expect(world.pending().map(intent => intent.id)).toEqual(['a','deposit','b']);
-  world.pending()[0]!.amount = 1;
+  const detached = world.pending()[0]!; if (detached.kind !== 'withdraw') throw new Error('Expected withdrawal fixture'); detached.amount = 1;
   expect(world.finish(['a','b','deposit']).map(effect => effect.amount)).toEqual([50,0,50]);
   expect(() => world.observe('a')).toThrow('closed');
   world.begin(11); expect(world.observe('source')!.energy).toBe(50); expect(world.observe('a')!.energy).toBe(50);

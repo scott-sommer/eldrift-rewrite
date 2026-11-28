@@ -1,14 +1,16 @@
+import { validateEnergyIntent,settleEnergyIntent } from './operations';
 import { copyPlain } from '../../../core/plain-data';
-import { validateEnergyEcology,validateHarvest,settleHarvest,finishEnergyEcology } from './ecology';
+import { validateEnergyEcology,finishEnergyEcology } from './ecology';
 import { validateEnergyEffects } from './checkpoint';
-import type { EnergyInventory, EnergyTransferEffect, EnergyTransferIntent,EnergyEffect,EnergyIntent,EnergyEcology } from './model';
-import { validateEnergyInventories,validateEnergyTransfer,validateEnergyTransferOrder } from './validation';
+import type { EnergyInventory,EnergyEffect,EnergyIntent,EnergyEcology } from './model';
+import { validateEnergyInventories,validateEnergyTransferOrder } from './validation';
 /** Shared physical energy only. Actor observations stay frozen until all queued intents settle. */
-export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTick: number, input: readonly T[], previousEffects: readonly EnergyEffect[] = [], initialEcology: EnergyEcology = { sources: [],ground: [],containers: [],decayDivisor: 1000 }) {
+export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTick: number, input: readonly T[], previousEffects: readonly EnergyEffect[] = [], initialEcology?: EnergyEcology) {
   if (!Number.isSafeInteger(openingTick) || openingTick < 0) throw new Error('Invalid energy inventory clock');
-  validateEnergyInventories(input); validateEnergyEcology(initialEcology,input); validateEnergyEffects(openingTick,previousEffects,input,initialEcology);
+  const initial: EnergyEcology = initialEcology ?? { sources: [],ground: [],containers: [],decayDivisor: 1000 };
+  validateEnergyInventories(input); validateEnergyEcology(initial,input); validateEnergyEffects(openingTick,previousEffects,input,initial);
   let stores = new Map(copyPlain([...input]).map(store => [store.id,store]));
-  let ecology = copyPlain(initialEcology);
+  let ecology = copyPlain(initial);
   let tick = openingTick-1, open = false;
   let effects = new Map(copyPlain([...previousEffects]).map(effect => [effect.id,effect]));
   const intents = new Map<string,EnergyIntent>();
@@ -24,7 +26,7 @@ export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTic
       requireOpen(); const effect = effects.get(id); return effect?.settledAt === tick ? copyPlain(effect) : undefined;
     },
     queue(raw: EnergyIntent): void {
-      requireOpen(); if (raw.kind === 'harvest') validateHarvest(raw,stores,ecology); else validateEnergyTransfer(raw,stores);
+      requireOpen(); validateEnergyIntent(raw,stores,ecology);
       if (intents.has(raw.id) || intents.size >= 512) throw new Error('Duplicate or excessive energy transfer intents');
       intents.set(raw.id,copyPlain(raw));
     },
@@ -33,28 +35,20 @@ export function createEnergyInventoryFrame<T extends EnergyInventory>(openingTic
       requireOpen(); validateEnergyTransferOrder(order,intents);
       const next = new Map([...stores].map(([id,store]) => [id,copyPlain(store)]));
       const nextEcology = copyPlain(ecology);
-      const settled = order.map(id => { const intent = intents.get(id)!; return intent.kind === 'harvest' ? settleHarvest(next,nextEcology,intent,tick) : settle(next,intent,tick); });
+      const settled = order.map(id => settleEnergyIntent(next,nextEcology,intents.get(id)!,tick));
       finishEnergyEcology(nextEcology); validateEnergyEcology(nextEcology,[...next.values()]);
       validateEnergyInventories([...next.values()]);
       stores = next; ecology = nextEcology; effects = new Map(settled.map(effect => [effect.id,effect])); open = false;
       return copyPlain(settled);
     },
     source(id: string) { requireOpen(); const source = ecology.sources.find(source => source.id === id); return source && copyPlain(source); },
+    structure(id: string) { requireOpen(); const target = ecology.structures?.find(target => target.id === id); return target && copyPlain(target); },
     ecologySnapshot() { if (open) throw new Error('Cannot snapshot open energy ecology'); return copyPlain(ecology); },
     checkpoint() {
       if (open) throw new Error('Cannot checkpoint open energy inventory frame');
-      return { nextTick: tick+1,stores: copyPlain([...stores.values()]),effects: copyPlain([...effects.values()]),...(ecology.sources.length || ecology.ground.length ? { ecology: copyPlain(ecology) } : {}) };
+      return { nextTick: tick+1,stores: copyPlain([...stores.values()]),effects: copyPlain([...effects.values()]),...(initialEcology !== undefined || ecology.sources.length || ecology.ground.length || ecology.containers.length || ecology.structures?.length ? { ecology: copyPlain(ecology) } : {}) };
     },
     snapshot(): T[] { if (open) throw new Error('Cannot snapshot open energy inventory frame'); return copyPlain([...stores.values()]); },
   };
-}
-function settle(stores: Map<string, EnergyInventory>, intent: EnergyTransferIntent, tick: number): EnergyTransferEffect {
-  const source = stores.get(intent.source)!, target = stores.get(intent.target)!;
-  // Engine4.3.2 transfers require the full sender amount; withdrawals clip to remaining source stock.
-  const available = intent.kind === 'transfer' && source.energy < intent.amount ? 0 : source.energy;
-  const amount = Math.min(intent.amount,available,target.freeEnergyCapacity);
-  source.energy -= amount; source.usedCapacity -= amount; source.freeEnergyCapacity += amount;
-  target.energy += amount; target.usedCapacity += amount; target.freeEnergyCapacity -= amount;
-  return { ...intent,amount,issuedAt: tick,settledAt: tick+1 };
 }
 export type EnergyInventoryFrame = ReturnType<typeof createEnergyInventoryFrame>;
