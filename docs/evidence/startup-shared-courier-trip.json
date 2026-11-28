@@ -1,0 +1,24 @@
+{
+  "issue": "ED-29",
+  "scope": "Clean native regression of shared assigned courier trip control: ordinary transport and loaded threat escape/authority withdrawal with global resets and final stock conservation. Private uncertainty restore has targeted integration evidence, not native full future financial-calendar qualification.",
+  "native": [
+    {
+      "scenario": "shared-courier-trip-normal",
+      "nativeSource": "476aaa73f14feade49d960d2fc99c27d7940d4d3",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-shared-courier-trip-normal.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "a4617f8f757b61984430af602e4b19944577afcd8f6016e0bdd1c3a6b99dcabc",
+      "uncompressedSha256": "ce3ded31833c3c412111ffc4f517ec67ccf297793f8f1ba141182b982cbdf93b"
+    },
+    {
+      "scenario": "shared-courier-trip-threat",
+      "nativeSource": "476aaa73f14feade49d960d2fc99c27d7940d4d3",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-shared-courier-trip-threat.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "2cffbb62f3304cd7ec27bbe327c1ee28b6f03fcd33bb21cad2263f8016f384bc",
+      "uncompressedSha256": "0ae43094c86a7e4bd396fe37a37c79e567663bfd5101b4376b4271b123de2fd8"
+    }
+  ]
+}
