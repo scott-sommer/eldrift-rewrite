@@ -1,0 +1,25 @@
+{
+  "issue": "ED-29",
+  "scope": "Clean native same-body productive recovery after threat escape, strengthened to require a new matched productive withdrawal/transfer pair. Private same-cohort reentry, expired-opening-token renewal, alternate-sink corridor return and JSON continuation have targeted integration evidence. This native scenario is not the complete private financial/dispatch calendar.",
+  "native": [
+    {
+      "scenario": "courier-productive-reentry-threat",
+      "nativeSource": "2f46f3e9f0026aad6562ef4e0cbd25fb6a1b29b5",
+      "expectedStatus": "passed",
+      "rawFile": "docs/evidence/startup-courier-reentry-threat.json.gz",
+      "rawEncoding": "gzip",
+      "rawSha256": "e09a404e54ae4e4a803b2e29408e1d0161f1e0ca6e72ffb7d3a5b140c4b3d8ee",
+      "uncompressedSha256": "4e50d62a856a63cf9304f46fb5635fd81904a3d46e29bfeea9c2eeb82553515c",
+      "measurements": {
+        "ticks": 240,
+        "credited": 366,
+        "resumedAt": 80,
+        "deliveredAt": 88,
+        "resumedConfirmedEnergy": 52,
+        "threatAt": 38,
+        "clearedAt": 58,
+        "confirmationResets": 12
+      }
+    }
+  ]
+}
