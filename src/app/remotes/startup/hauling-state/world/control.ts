@@ -1,3 +1,4 @@
+import { haulingDefinitions } from '../opening';
 import { peekState } from '../../../../../persistence/versioned-state';
 import type { StatePort,StateSchema } from '../../../../../persistence/versioned-state';
 import { remoteAssignmentSchema } from '../../../../../features/remotes/assignment-schema';
@@ -13,7 +14,7 @@ import { taskScope } from '../../../../task-runner';
 import { seedHaulingRecord } from '../private-state';
 import type { HomeHaulingInput } from './model';
 import type { PaidMinerObservation } from '../../motion-observation/source-model';
-export const homeMinerDefinitions = { 'remote-mine': remoteTaskDefinition };
+export const homeMinerDefinitions = { ...haulingDefinitions,'remote-mine': remoteTaskDefinition };
 /** Seed complete control once; restore validates current owners without replaying the opening. */
 export function seedHomeWorldControl(home: HomeHaulingInput,state: StatePort,restored: boolean,frame = home.observedAt): void {
   const miners = home.sources.flatMap(source => source.miners);

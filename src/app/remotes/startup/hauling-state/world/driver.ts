@@ -21,7 +21,7 @@ function runHomeHaulingWorld(context: ReturnType<typeof homeWorldContext>,policy
   let tick = context.nextTick,failed = false;
   function usable(): void { if (failed) throw new Error('Cannot resume failed home world'); }
   function begin(frame: HomeHaulingFrame) {
-    validateHomeWorldFrame(frame,tick,names); bodies.validate(frame.outside,tick); inventory.begin(tick);
+    validateHomeWorldFrame(frame,tick,names,context.miners?.names); bodies.validate(frame.outside,tick); inventory.begin(tick);
     const openings = seed.workers.map(worker => readPaidHaulingForecastOpening(home.home,seed.state,inventory,worker,bodies.get(worker.unit),attempt => transfer.observe(worker,attempt)));
     movement.begin(tick,openings.map(opening => {
       const observed = opening.observed,stage = opening.continuation.stage;
@@ -39,6 +39,7 @@ function runHomeHaulingWorld(context: ReturnType<typeof homeWorldContext>,policy
           if (operation.kind === 'settle') {
             const candidates = receipts.capture(); service.settle(); deliveries.push(...receipts.confirmed(candidates,tick));
           } else if (operation.kind === 'paid') visits.push(service.visit(operation.name,operation.work));
+          else if (operation.kind === 'miner') context.miners!.visit(operation.name);
           else operation.run(context.shared);
         }
         service.finish();

@@ -18,9 +18,9 @@ test('shared task cycle and miner selector sleep, harvest, hand off and resume w
 
 test('establishment and depleted/critical repairs keep the existing selector precedence', () => {
   const building = paidMiningCycleFixture({ constructionRemaining: 5 }); building.infrastructure({ sink: 'container',site: 'site',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
-  building.step(); building.step(); expect(building.step().effects).toMatchObject([{ kind: 'build',amount: 5,progressAdded: 5,completed: true }]); expect(building.build).toHaveBeenCalledOnce(); expect(building.repair).not.toHaveBeenCalled();
+  building.step(); building.step(); expect(building.step().effects).toMatchObject([{ kind: 'build',amount: 5,progressAdded: 5,completed: true }]);
   const repairing = paidMiningCycleFixture({ repairHits: 1 }); repairing.infrastructure({ sink: 'container',repair: { id: 'container',hits: 1,hitsMax: 250000 } });
-  repairing.step(); repairing.step(); expect(repairing.step().effects).toMatchObject([{ kind: 'repair',amount: 1,repairedHits: 100 }]); expect(repairing.repair).toHaveBeenCalledOnce();
+  repairing.step(); repairing.step(); expect(repairing.step().effects).toMatchObject([{ kind: 'repair',amount: 1,repairedHits: 100 }]);
   expect(repairing.world.snapshot().inventories.find(store => store.id === 'miner-id')!.energy).toBe(47);
   expect(repairing.world.checkpoint().inventory.ecology!.structures![0]!.hits).toBe(101);
   // Both selected actions now change the shared material world.
@@ -63,7 +63,7 @@ test('source work and original control owners resume from a full-store harvest b
   const fresh = paidMiningCycleFixture(),checkpoint = JSON.parse(JSON.stringify(f.world.checkpoint()));
   const restored = resumeHomeHaulingWorld(checkpoint,fresh.configure);
   for (let tick = 13; tick <= 20; tick++) {
-    const result = restored.step({ tick,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],
+    const result = restored.step({ tick,operations: [{ kind: 'settle' },{ kind: 'miner',name: 'miner' }],
       outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id) });
     expect(result).toEqual(f.step());
   }
@@ -76,7 +76,7 @@ test('physical repair energy, health and task continuation survive JSON resume w
   const fresh = paidMiningCycleFixture({ repairHits: 1 }),checkpoint = JSON.parse(JSON.stringify(f.world.checkpoint()));
   const restored = resumeHomeHaulingWorld(checkpoint,fresh.configure);
   for (let tick = 13; tick <= 16; tick++) {
-    expect(restored.step({ tick,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id) })).toEqual(f.step());
+    expect(restored.step({ tick,operations: [{ kind: 'settle' },{ kind: 'miner',name: 'miner' }],outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id) })).toEqual(f.step());
   }
   expect(restored.checkpoint()).toEqual(f.world.checkpoint()); expect(f.world.checkpoint().inventory.ecology!.structures![0]!.hits).toBe(501);
 });
@@ -87,6 +87,6 @@ test('real miner repair saves a container before its due decay and the new count
   expect(f.step().effects).toMatchObject([{ kind: 'repair',amount: 1,repairedHits: 100 }]);
   const cp = JSON.parse(JSON.stringify(f.world.checkpoint())); expect(cp.inventory.ecology.structures[0].hits).toBe(99); expect(cp.inventory.ecology.containers[0].decay.remaining).toBe(99);
   const fresh = paidMiningCycleFixture({ repairHits: 4999,containerDecay: { remaining: 3,interval: 99,amount: 5000 } }),resumed = resumeHomeHaulingWorld(cp,fresh.configure);
-  const result = resumed.step({ tick: 13,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) });
+  const result = resumed.step({ tick: 13,operations: [{ kind: 'settle' },{ kind: 'miner',name: 'miner' }],outside: { plans: [],states: [],requestedUnits: [],occupants: [{ unit: 'miner-id',position: f.plan.station }] },settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) });
   expect(result).toEqual(f.step()); expect(resumed.checkpoint()).toEqual(f.world.checkpoint());
 });

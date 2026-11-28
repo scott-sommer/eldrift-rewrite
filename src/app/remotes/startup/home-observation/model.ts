@@ -20,7 +20,7 @@ export interface PaidHomeSourceObservation {
   couriers: { paid: StartupPaidWorker; opening: PaidCourierOpening; route: PaidCourierActiveRoute | null }[];
 }
 export interface PaidHomeInventory { capacityPool: string; id: string; room: string; energy: number; capacity: number; usedCapacity: number; freeEnergyCapacity: number; active: boolean }
-export interface PaidHomeBody { name: string; unit: string; repair?: RepairProfile; build?: BuildProfile; inventory: PaidHomeInventory }
+export interface PaidHomeBody { name: string; unit: string; repair?: RepairProfile; build?: BuildProfile; harvestPower?: number; inventory: PaidHomeInventory }
 export interface PaidHomeControl { assignments: RemoteAssignmentState | null; reservations: Reservations | null }
 export interface PaidHomeObservation {
   observedAt: number; home: string; endpoint: NativeStartupFacts['endpoint']; stock: NativeStartupFacts['stock']; spawns: NativeStartupFacts['spawns'];

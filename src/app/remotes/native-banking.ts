@@ -1,16 +1,15 @@
+import { remoteBankingTask as bankingTask } from './banking-task';
 import type { StatePort } from '../../persistence/versioned-state';
 import { peekState } from '../../persistence/versioned-state';
 import { stateKey } from '../../persistence/state-key';
 import type { TaskDefinition, TaskRecord } from '../../persistence/tasks/schema';
 import { taskSchema } from '../../persistence/tasks/schema';
 import { roomCoordinates } from '../../core/geometry/room-grid';
-import { logisticsPool } from '../../capabilities/logistics/request';
 import { createTransferJournal } from '../../features/logistics/transfer-journal';
 import { createLogisticsRequests } from '../../features/logistics/request-store';
 import { observeTransfer } from '../../adapters/screeps/transfer-observation';
 import { createNativeHaulingTask } from '../native-hauling-task';
 import type { HaulingTaskPayload } from '../hauling-task';
-import { validHaulingPayload } from '../hauling-task';
 import { recoverNativeCargo } from '../native-cargo-recovery';
 import { settleHaulingTask } from '../settle-hauling-task';
 import { cancelTask } from '../cancel-task';
@@ -61,7 +60,7 @@ export function createNativeRemoteBanking(state: StatePort, dispatch: ReturnType
     if (!Game.rooms[home]?.controller?.my || !travel.route(creep,home,home)) return 'hold';
     return undefined;
   }
-  return { definitions: { haul: behavior },owns: (task: Readonly<TaskRecord>) => bankingTask(task,home),
+  return { definitions: { haul: behavior },owns: (task: Readonly<TaskRecord>) => Boolean(bankingTask(task,home)),
     prepare(creep: Creep, definitions: Readonly<Record<string,TaskDefinition>>, interruptKinds: readonly string[] = []): RemoteBankingMode {
       if (!bankActor(creep,home)) return 'hold';
       const tasks = queue(creep,definitions);
@@ -74,11 +73,6 @@ export function createNativeRemoteBanking(state: StatePort, dispatch: ReturnType
       return queue(creep,definitions).length > 0 ? 'bank' : 'hold';
     },
   };
-}
-function bankingTask(task: Readonly<TaskRecord>, home: string): boolean {
-  if (task.kind !== 'haul' || !validHaulingPayload(task.payload)) return false;
-  const payload = task.payload;
-  return payload.home === home && payload.sinkRoom === home && payload.request.owner === logisticsPool('cargo-recovery',home);
 }
 function unsettled(state: StatePort, unit: string): boolean {
   if (state.read(stateKey('logistics-attempts',unit)) === undefined) return false;

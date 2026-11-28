@@ -9,7 +9,7 @@ test('actual mining cycle completes infrastructure, switches to harvest/handoff,
   const checkpoint = JSON.parse(JSON.stringify(f.world.checkpoint()));
   const fresh = paidMiningCycleFixture({ constructionRemaining: 5 }),resumed = resumeHomeHaulingWorld(checkpoint,fresh.configure);
   for (let tick = 13; tick <= 18; tick++) {
-    expect(resumed.step({ tick,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],outside: outside(f.plan.station),settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) })).toEqual(f.step());
+    expect(resumed.step({ tick,operations: [{ kind: 'settle' },{ kind: 'miner',name: 'miner' }],outside: outside(f.plan.station),settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) })).toEqual(f.step());
   }
   expect(resumed.checkpoint()).toEqual(f.world.checkpoint());
   // One harvest overflow is automatically captured before the 50-energy handoff.
@@ -29,7 +29,7 @@ test('a partially built site resumes through completion under the same task owne
   const f = paidMiningCycleFixture({ constructionRemaining: 10 }); f.step(); f.step();
   expect(f.step().effects).toMatchObject([{ kind: 'build',amount: 5,completed: false }]);
   const fresh = paidMiningCycleFixture({ constructionRemaining: 10 }),resumed = resumeHomeHaulingWorld(JSON.parse(JSON.stringify(f.world.checkpoint())),fresh.configure);
-  const completion = resumed.step({ tick: 13,operations: [{ kind: 'settle' },{ kind: 'external',id: 'miner',run: fresh.visit }],outside: outside(f.plan.station),settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) });
+  const completion = resumed.step({ tick: 13,operations: [{ kind: 'settle' },{ kind: 'miner',name: 'miner' }],outside: outside(f.plan.station),settlementOrder: intents => intents.map(intent => intent.id),postprocessOrder: operations => operations.map(operation => operation.key) });
   expect(completion).toEqual(f.step()); expect(completion.effects).toMatchObject([{ kind: 'build',amount: 5,completed: true }]);
   expect(resumed.checkpoint()).toEqual(f.world.checkpoint());
 });

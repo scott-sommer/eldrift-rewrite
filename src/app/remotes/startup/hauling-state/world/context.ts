@@ -1,3 +1,4 @@
+import { createHomeMiningActors } from '../../mining-state/actors';
 import { seedHomeWorldControl } from './control';
 import { createActionArbiter } from '../../../../../core/execution/action-arbiter';
 import { createQuantityReservations } from '../../../../../persistence/quantities/store';
@@ -30,6 +31,7 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
   const arbiter = createActionArbiter(inventory.tick),quantities = createQuantityReservations(seed.state);
   const shared: HomeWorldShared = { state: seed.state,inventory: homeWorldInventoryPorts(inventory,bodies),quantities,arbiter,body: unit => bodies.get(unit) };
   const environment = configure(shared),movement = createPaidHaulingMovement(home.home,home.observedAt,homeWorldRoutes(home),arbiter,environment,checkpoint?.movement);
+  const miners = environment.mining ? createHomeMiningActors(home,shared,environment.mining) : undefined;
   function endpoint(worker: PaidHaulingForecastWorker,phase: 'collect' | 'deliver') {
     const target = environment.endpoint(worker,phase,inventory.tick());
     if (!target) return undefined;
@@ -62,5 +64,5 @@ export function homeWorldContext(input: HomeHaulingInput,configure: (shared: Hom
     collection: worker => endpoint(worker,'collect')?.id,visible: room => environment.visible(room,inventory.tick()),
     roomPolicy: (worker,phase) => environment.roomPolicy(worker,phase,inventory.tick()),move: movement.request,view: transfer.view });
   const service = createPaidHaulingForecastService(seed,{ ...transfer,...productive },nextTick);
-  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,receipts: homeWorldReceiptCollector(seed) };
+  return { home,nextTick,inventory,seed,bodies,shared,movement,transfer,service,miners,receipts: homeWorldReceiptCollector(seed) };
 }

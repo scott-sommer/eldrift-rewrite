@@ -22,7 +22,7 @@ function fixture(): PaidHomePhysicalInput {
 }
 
 test('native body stores use SDK energy capacity and total mixed usage, including spawning bodies', () => {
-  vi.stubGlobal('RESOURCE_ENERGY','energy');
+  vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('WORK','work'); vi.stubGlobal('HARVEST_POWER',2);
   const creep = { id: 'native',name: 'courier',pos: { roomName: 'W0N1' },spawning: false,body: [{ type: 'carry',hits: 100,boost: 'XKH2O' }],
     store: { energy: 10,H: 50,getUsedCapacity: (resource?: string) => resource ? 10 : 60,getCapacity: () => 200,getFreeCapacity: () => 140 } };
   expect(observePaidHomeBodies([creep as unknown as Creep])[0]!.inventory).toEqual({ capacityPool: logisticsPool('capacity','native'),id: 'native',room: 'W0N1',energy: 10,capacity: 200,usedCapacity: 60,freeEnergyCapacity: 140,active: true });
@@ -55,7 +55,7 @@ test('contradictory body identity, paid capacity, bank stock and duplicate physi
 });
 
 test('a quoted container bank is observed even outside owned structures and its stock pool stays selected', () => {
-  vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('FIND_MY_STRUCTURES',1); vi.stubGlobal('FIND_MY_SPAWNS',2);
+  vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('WORK','work'); vi.stubGlobal('HARVEST_POWER',2); vi.stubGlobal('FIND_MY_STRUCTURES',1); vi.stubGlobal('FIND_MY_SPAWNS',2);
   const bank = { id: 'bank',structureType: 'container',pos: { roomName: 'W0N1',x: 10,y: 25 },isActive: () => true,
     store: { energy: 20,getUsedCapacity: (resource?: string) => resource ? 20 : 30,getCapacity: () => 100,getFreeCapacity: () => 70 } };
   const home = { name: 'W0N1',controller: { my: true },energyAvailable: 0,energyCapacityAvailable: 0,find: () => [] };
@@ -68,7 +68,7 @@ test('a quoted container bank is observed even outside owned structures and its 
 });
 
 test('the supported 128-body roster retains outside capacity claims across every physical pool', () => {
-  vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('FIND_MY_STRUCTURES',1); vi.stubGlobal('FIND_MY_SPAWNS',2);
+  vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('WORK','work'); vi.stubGlobal('HARVEST_POWER',2); vi.stubGlobal('FIND_MY_STRUCTURES',1); vi.stubGlobal('FIND_MY_SPAWNS',2);
   const store = { energy: 0,getUsedCapacity: () => 0,getCapacity: () => 50,getFreeCapacity: () => 50 };
   const bank = { id: 'bank',structureType: 'container',pos: { roomName: 'W0N1',x: 10,y: 25 },isActive: () => true,store };
   const creeps = Object.fromEntries(Array.from({ length: 128 },(_,index) => ['body-'+index,{ id: 'unit-'+index,name: 'body-'+index,my: true,spawning: false,
@@ -90,4 +90,13 @@ test('native repair power retains inactive WORK boost bonuses while charging onl
   vi.stubGlobal('BOOSTS',{ work: { XLH2O: { repair: 2 },UO: { harvest: 3 } } });
   const body = [{ type: 'work',hits: 100,boost: 'XLH2O' },{ type: 'work',hits: 0,boost: 'XLH2O' },{ type: 'work',hits: 0,boost: 'UO' },{ type: 'move',hits: 100 }] as BodyPartDefinition[];
   expect(nativeRepairProfile(body)).toEqual({ workParts: 1,boostBonuses: [100,100,0] });
+});
+
+test('native body profiles retain actual active boosted harvesting rather than paid-template production',() => {
+  vi.stubGlobal('RESOURCE_ENERGY','energy'); vi.stubGlobal('WORK','work'); vi.stubGlobal('HARVEST_POWER',2);
+  vi.stubGlobal('BOOSTS',{ work: { UO: { harvest: 3 } } });
+  const creep = { id: 'miner',name: 'miner',pos: { roomName: 'E0N1' },spawning: false,
+    body: [{ type: 'work',hits: 100,boost: 'UO' },{ type: 'work',hits: 0,boost: 'UO' },{ type: 'work',hits: 100 }],
+    store: { getUsedCapacity: () => 0,getCapacity: () => 50,getFreeCapacity: () => 50 } };
+  expect(observePaidHomeBodies([creep as unknown as Creep])[0]).toMatchObject({ harvestPower: 8,build: { workParts: 2,boostBonuses: [0,0,0] },repair: { workParts: 2,boostBonuses: [0,0,0] } });
 });

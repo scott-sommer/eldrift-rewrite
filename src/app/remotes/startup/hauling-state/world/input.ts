@@ -15,12 +15,12 @@ export function homeWorldRoutes(home: HomeHaulingInput): PaidCourierActiveRoute[
     return route;
   }));
 }
-export function validateHomeWorldFrame(frame: HomeHaulingFrame,tick: number,names: ReadonlySet<string>): void {
+export function validateHomeWorldFrame(frame: HomeHaulingFrame,tick: number,names: ReadonlySet<string>,miners: ReadonlySet<string> = new Set()): void {
   if (frame.tick !== tick || !Number.isSafeInteger(frame.tick) || frame.operations.length > 512) throw new Error('Invalid home world frame');
   const settlement = frame.operations.findIndex(operation => operation.kind === 'settle');
   if (settlement < 0) throw new Error('Missing world settlement');
   if (frame.operations.filter(operation => operation.kind === 'settle').length !== 1) throw new Error('Duplicate world settlement');
-  validatePaidVisits(frame,settlement,names); validateExternalVisits(frame);
+  validatePaidVisits(frame,settlement,names); validateMinerVisits(frame,settlement,miners); validateExternalVisits(frame);
 }
 function validatePaidVisits(frame: HomeHaulingFrame,settlement: number,names: ReadonlySet<string>): void {
   const paid = new Set<string>();
@@ -30,10 +30,18 @@ function validatePaidVisits(frame: HomeHaulingFrame,settlement: number,names: Re
     paid.add(operation.name);
   });
 }
+function validateMinerVisits(frame: HomeHaulingFrame,settlement: number,names: ReadonlySet<string>): void {
+  const visited = new Set<string>();
+  frame.operations.forEach((operation,index) => {
+    if (operation.kind !== 'miner') return;
+    if (index < settlement || !names.has(operation.name) || visited.has(operation.name)) throw new Error('Invalid world miner visit');
+    visited.add(operation.name);
+  });
+}
 function validateExternalVisits(frame: HomeHaulingFrame): void {
   const external = new Set<string>();
   for (const operation of frame.operations) {
-    if (operation.kind === 'settle' || operation.kind === 'paid') continue;
+    if (operation.kind === 'settle' || operation.kind === 'paid' || operation.kind === 'miner') continue;
     if (operation.kind !== 'external' || !operation.id || external.has(operation.id) || typeof operation.run !== 'function') throw new Error('Invalid outside world operation');
     external.add(operation.id);
   }
