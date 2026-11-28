@@ -1,3 +1,4 @@
+const { verifyRemoteTransportRecovery } = require('./remote-transport-recovery.cjs');
 const assert = require('node:assert/strict');
 const { remoteMiningWorld } = require('./remote-mining.cjs');
 const { reloadStampDraft } = require('./stamp-draft.cjs');
@@ -62,6 +63,7 @@ async function verifyRemoteTransport(memory,evidence,metadata,server) {
   assert.ok([...attempts.values()].some(attempt => attempt.kind === 'withdraw'));
   if (metadata.mode === 'threat') {
     assert.ok(metadata.clearedAt > metadata.threatAt);
+    evidence.remoteTransport.recovery = verifyRemoteTransportRecovery([...attempts.values()],metadata);
     assert.ok([...attempts.values()].filter(attempt => attempt.kind === 'withdraw').every(attempt => attempt.tick < metadata.threatAt || attempt.tick >= metadata.clearedAt));
     assert.ok(rows.some(row => row.tick > metadata.threatAt && row.tick < metadata.clearedAt && row.credited > 0),'loaded escape must finish delivery while collection is suspended');
   }

@@ -38,7 +38,11 @@ export interface HomeWorldShared {
 }
 export interface HomeWorldEnvironment extends TransitFramePorts {
   mining?: HomeMiningEnvironment;
-  courierBanking?: { environment: Omit<ForecastBankingEnvironment,'eventsVisible'>; policy: { terminalReserve: number } };
+  courierBanking?: {
+    environment: Omit<ForecastBankingEnvironment,'eventsVisible'>; policy: { terminalReserve: number };
+    /** Current explicit path back to the productive corridor when banking ended elsewhere. */
+    rejoin?(worker: PaidHaulingForecastWorker,command: PlannedMovementCommand): Outcome;
+  };
   lifecycleRoster?(tick: number): readonly UnitIdentity[];
   authority(worker: PaidHaulingForecastWorker,tick: number): RemoteTransportDemand | undefined;
   visible(room: string,tick: number): boolean;

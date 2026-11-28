@@ -1,3 +1,4 @@
+import { rejoinPaidService } from './rejoin';
 import { holdPaidRetirement,planPaidRetirement,paidRetirementTransit } from './retirement';
 import type { PaidRetirementRoute } from './retirement';
 import { observePaidMovementFrame } from './retirement-frame';
@@ -68,6 +69,13 @@ export function createPaidHaulingMovement(home: string, openingTick: number, ini
       tick = frame; open = true; requests.clear(); attempted.clear();
     },
     request,recover,
+    resume(name: string): boolean {
+      requireOpen(); const original = routes.get(name),recovery = retirements.get(name);
+      if (!original || attempted.has(name) || tick >= original.program.retireAt) return false;
+      if (!recovery) return true;
+      const rejoined = rejoinPaidService(original,recovery,tick); if (!rejoined) return false;
+      routes.set(name,rejoined); retirements.delete(name); return true;
+    },
     handoff(name: string): void { retirementRoute(name); },
     recovering(name: string): boolean { usable(); return retirements.has(name); },
     finish(external: PaidMovementExternalFrame) {

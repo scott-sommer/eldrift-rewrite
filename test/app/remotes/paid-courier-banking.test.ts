@@ -26,7 +26,7 @@ test('scheduled courier control banks cargo after productive cutoff with exact J
 });
 
 test('partial courier banking selects an actual alternate sink and recovery path without collecting another productive batch',() => {
-  const f = paidCourierBankingFixture(16),receipts = [];
+  const f = paidCourierBankingFixture({ capacity: 16 }),receipts = [];
   for (let tick = 100; tick <= 113; tick++) receipts.push(...f.world.step(f.frame(tick)).deliveries);
   expect(receipts.map(receipt => receipt.energy)).toEqual([16,16]);
   const stores = f.world.snapshot().inventories;
@@ -36,11 +36,11 @@ test('partial courier banking selects an actual alternate sink and recovery path
 });
 
 test('a final recovery deposit confirms after natural expiry, prunes the recovery route and archives once',() => {
-  const f = paidCourierBankingFixture(100,6);
+  const f = paidCourierBankingFixture({ life: 6 });
   for (let tick = 100; tick <= 105; tick++) f.world.step(f.frame(tick));
   const checkpoint = JSON.parse(JSON.stringify(f.world.checkpoint()));
   expect(checkpoint.movement.routes).toEqual([]); expect(checkpoint.movement.retirements).toBeUndefined();
-  const fresh = paidCourierBankingFixture(100,6),resumed = resumeHomeHaulingWorld(checkpoint,fresh.configure);
+  const fresh = paidCourierBankingFixture({ life: 6 }),resumed = resumeHomeHaulingWorld(checkpoint,fresh.configure);
   const confirmed = f.world.step(f.frame(106)); expect(resumed.step(fresh.frame(106))).toEqual(confirmed);
   expect(confirmed.deliveries).toMatchObject([{ energy: 32 }]); expect(confirmed.deliveries).toHaveLength(1);
   expect(f.shared.state.read('logistics-retired/empire')).toMatchObject({ data: { entries: [{ unit: 'native-id',journal: { acknowledged: true,result: { status: 'observed',amount: 32 } } }] } });

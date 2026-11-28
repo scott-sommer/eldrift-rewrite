@@ -20,9 +20,16 @@ export function createPaidHomeTransportPolicy(home: string,sources: readonly Pai
     if (tick < expected.paid.activeAt || tick >= expected.paid.retireAt || ports.physical(worker).spawning) return undefined;
     return current;
   }
-  function stage(worker: PaidHaulingForecastWorker): void {
-    ports.move(worker.name,{ owner: binding(worker).paid.owner,destination: binding(worker).source.plan.collection,range: 0,policy: ports.roomPolicy(worker,'collect') });
+  function collectionCommand(worker: PaidHaulingForecastWorker) {
+    return { owner: binding(worker).paid.owner,destination: binding(worker).source.plan.collection,range: 0,policy: ports.roomPolicy(worker,'collect') };
   }
+  function stage(worker: PaidHaulingForecastWorker): void { ports.move(worker.name,collectionCommand(worker)); }
+  function collection(worker: PaidHaulingForecastWorker,plan: PaidTransportSource['plan']): string | undefined {
+    const container = ports.visible(plan.room) ? ports.collection(worker) : undefined;
+    if (!container || !withinRange(ports.physical(worker).position,plan.collection,0)) { stage(worker); return undefined; }
+    return container;
+  }
+  function resumeService(worker: PaidHaulingForecastWorker): boolean { return ports.resume?.(worker,collectionCommand(worker)) ?? true; }
   function unit(worker: PaidHaulingForecastWorker) {
     const value = ports.inventory.observe(worker.unit);
     if (!value || value.capacity !== binding(worker).paid.capacity || value.usedCapacity !== value.energy) throw new Error('Paid transport physical store changed');
@@ -47,8 +54,8 @@ export function createPaidHomeTransportPolicy(home: string,sources: readonly Pai
       const current = authority(worker); if (!current) { retire(worker,'Paid transport authority/lifecycle invalidated'); return undefined; }
       const physical = unit(worker),selected = binding(worker),plan = selected.source.plan;
       if (physical.energy > 0) { retire(worker,'Paid transport cargo requires cleanup'); return undefined; }
-      const container = ports.visible(plan.room) ? ports.collection(worker) : undefined;
-      if (!container || !withinRange(ports.physical(worker).position,plan.collection,0)) { stage(worker); return undefined; }
+      if (!resumeService(worker)) return undefined;
+      const container = collection(worker,plan); if (!container) return undefined;
       if (physical.freeEnergyCapacity < 1) return undefined;
       const admission = remoteCollectionAdmission({ home,name: worker.name,unitId: worker.unit,actor: selected.paid.owner,tick: ports.inventory.tick(),demand: current,
         source: container,sink: plan.endpoint.id,maximum: physical.freeEnergyCapacity },{ ...policy,service: service(selected) },request => ports.view(worker,{ home,unitId: worker.unit,request }));

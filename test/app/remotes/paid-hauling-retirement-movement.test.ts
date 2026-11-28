@@ -59,6 +59,7 @@ test('retirement restore rejects changed native identity, mobility, lifespan and
 
 test('recovery respects room policy, one movement per body and the natural lifetime boundary',() => {
   const f = fixture(); f.at(102); f.movement.begin(102,[f.observation(14)]);
+  expect(f.movement.resume('paid-courier')).toBe(false);
   expect(f.movement.recover('paid-courier',{ ...f.command(),policy: { blockedRooms: ['W0N1'] } })).toMatchObject({ reason: 'planned-movement-room-policy' });
   expect(f.movement.recover('paid-courier',f.command())).toMatchObject({ reason: 'movement-already-requested' });
   expect(f.movement.finish(empty()).states[0]!.position.x).toBe(14);
